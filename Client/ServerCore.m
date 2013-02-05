@@ -1,0 +1,231 @@
+//
+//  ServerCore.m
+//  Mobile Clinic
+//
+//  Created by Michael Montaque on 1/30/13.
+//  Copyright (c) 2013 Florida International University. All rights reserved.
+//
+#define ARCHIVER    @"archiver"
+#import "ServerCore.h"
+#import "ObjectFactory.h"
+#import "StatusObject.h"
+#import "BaseObjectProtocol.h"
+
+@interface ServerCore (Private)
+- (void)connectToNextAddress;
+@end
+
+@implementation ServerCore
+
++(id)sharedInstance{
+    static ServerCore *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    
+    return sharedMyManager;
+}
+
+-(id)init{
+    if (self=[super init]) {
+        
+        netServiceBrowser = [[NSNetServiceBrowser alloc] init];
+        [netServiceBrowser setDelegate:self];
+    }
+    return self;
+}
+-(void)startClient{
+    [netServiceBrowser searchForServicesOfType:@"_MC-EMR._tcp." inDomain:@"local."]; 
+}
+- (void)netServiceBrowser:(NSNetServiceBrowser *)sender didNotSearch:(NSDictionary *)errorInfo
+{
+	NSLog(@"DidNotSearch: %@", errorInfo);
+}
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
+
+}
+
+- (void)netServiceBrowser:(NSNetServiceBrowser *)sender
+           didFindService:(NSNetService *)netService
+               moreComing:(BOOL)moreServicesComing
+{
+	NSLog(@"DidFindService: %@", [netService name]);
+	
+	// Connect to the first service we find
+	
+	if (serverService == nil)
+	{
+		NSLog(@"Resolving...");
+		
+		serverService = netService;
+		
+		[serverService setDelegate:self];
+		[serverService resolveWithTimeout:5.0];
+	}
+}
+
+- (void)netServiceBrowser:(NSNetServiceBrowser *)sender
+         didRemoveService:(NSNetService *)netService
+               moreComing:(BOOL)moreServicesComing
+{
+	NSLog(@"DidRemoveService: %@", [netService name]);
+}
+
+- (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)sender
+{
+	NSLog(@"DidStopSearch");
+}
+
+- (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict
+{
+	NSLog(@"DidNotResolve");
+}
+
+- (void)netServiceDidResolveAddress:(NSNetService *)sender
+{
+	NSLog(@"DidResolve: %@", [sender addresses]);
+	
+	if (serverAddresses == nil)
+	{
+		serverAddresses = [[sender addresses] mutableCopy];
+	}
+	
+	if (asyncSocket == nil)
+	{
+		asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+		[self connectToNextAddress];
+	}
+}
+
+- (void)connectToNextAddress
+{
+	BOOL done = NO;
+	
+	while (!done && ([serverAddresses count] > 0))
+	{
+		NSData *addr;
+		
+		// Note: The serverAddresses array probably contains both IPv4 and IPv6 addresses.
+		//
+		// If your server is also using GCDAsyncSocket then you don't have to worry about it,
+		// as the socket automatically handles both protocols for you transparently.
+		
+		if (YES) // Iterate forwards
+		{
+			addr = [serverAddresses objectAtIndex:0];
+			[serverAddresses removeObjectAtIndex:0];
+		}
+		else // Iterate backwards
+		{
+			addr = [serverAddresses lastObject];
+			[serverAddresses removeLastObject];
+		}
+		
+		NSLog(@"Attempting connection to %@", addr);
+		
+		NSError *err = nil;
+		if ([asyncSocket connectToAddress:addr error:&err])
+		{
+			done = YES;
+		}
+		else
+		{
+			NSLog(@"Unable to connect: %@", err);
+		}
+		
+	}
+	
+	if (!done)
+	{
+		NSLog(@"Unable to connect to any resolved address");
+	}
+}
+
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+{
+	NSLog(@"Socket:DidConnectToHost: %@ Port: %hu", host, port);
+	[self grabURLInBackground:host];
+	connected = YES;
+}
+
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
+{
+	NSLog(@"SocketDidDisconnect:WithError: %@", err);
+	
+	if (!connected)
+	{
+		[self connectToNextAddress];
+	}
+    
+    
+}
+-(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
+    NSLog(@"Server did accept data %i",data.length);
+    
+    NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:data] copyItems:YES];
+    
+    id obj;
+    
+    if(data) {
+        // ObjectFactory: Used to instatiate the proper class but returns it generically
+        obj = [ObjectFactory createObjectForType:myDictionary];
+        
+        // setup the object to use the dictionary values
+        [obj unpackageFileForUser:myDictionary];
+        
+        NSLog(@"Dictionary: %@",[obj description]);
+        
+        [obj CommonExecution];
+    } else {
+        NSLog(@"Write Error in Log: Recieved No data");
+        obj = [[StatusObject alloc]init];
+        [obj setStatus: kError];
+        [obj setErrorMessage:@"There was an error"];
+    }
+}
+-(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
+    NSLog(@"Completed Writing");
+    [asyncSocket readDataWithTimeout:-1 tag:tag];
+}
+
+-(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data{
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    
+    NSDictionary* myDictionary = [unarchiver decodeObjectForKey:ARCHIVER];
+    
+    [unarchiver finishDecoding];
+    
+    return myDictionary;
+}
+
+- (void)sendData:(NSDictionary*)dataToBeSent;
+{
+    //New mutable data object
+   globalData = [[NSMutableData alloc] init];
+    
+    //Created an archiver to serialize dictionary into data object
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:globalData];
+    //encodes the dataToBeSent into data object
+    [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
+    //finalize archiving
+    [archiver finishEncoding];
+
+	[asyncSocket writeData:globalData withTimeout:-1 tag:10];
+	
+}
+-(void)stopClient{
+    [netServiceBrowser stop];
+    [asyncSocket disconnect];
+    [serverService stop];
+}
+-(NSInteger)numberOfConnections{
+    return serverAddresses.count;
+}
+
+-(NSString *)getCurrentConnectionName{
+    return asyncSocket.connectedHost;
+}
+@end
