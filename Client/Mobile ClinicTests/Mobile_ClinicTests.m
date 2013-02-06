@@ -10,12 +10,16 @@
 #define LOGIN_SCREEN @"loginScreen"
 #import "Mobile_ClinicTests.h"
 #import "UIViewControllerExt.h"
+#import "FIUPatientRegistrationViewController.h"
+
+FIUPatientRegistrationViewController *pReg;
 @implementation Mobile_ClinicTests
 
 - (void)setUp
 {
     [super setUp];
     loginScreen = [UIViewController getViewControllerFromiPadStoryboardWithName:LOGIN_SCREEN];
+    pReg = [[FIUPatientRegistrationViewController alloc] init];
     user = [[UserObject alloc]init];
     // Set-up code here.
 }
@@ -55,5 +59,40 @@
     }];
 
 }
+
+
+-(void)testValidateRegistration {
+    [self setUp];
+    [pReg view];
+    
+    //all of this below checks for empty input
+    STAssertFalse([pReg validateRegistration], @"family name empty");
+    [pReg.familyNameField setText:@"family name"];
+    
+    STAssertFalse([pReg validateRegistration], @"patient name empty");
+    [pReg.patientNameField setText:@"patient name"];
+    
+    STAssertFalse([pReg validateRegistration], @"village name empty");
+    [pReg.villageNameField setText:@"village name"];
+    
+    STAssertFalse([pReg validateRegistration], @"patient weight empty");
+    [pReg.patientWeightField setText:@"weight"];
+    
+    //now that the weight and age are non null, check that they are numbers
+    STAssertFalse([pReg validateRegistration], @"patient weight is not a number");
+    [pReg.patientWeightField setText:@"150"];
+    
+    STAssertFalse([pReg validateRegistration], @"patient age empty");
+    [pReg.patientAgeField setText:@"age"];
+    
+    STAssertFalse([pReg validateRegistration], @"patient age is not a number");
+    [pReg.patientAgeField setText:@"50"];
+    
+    //check that all of the above tests completed successfuly, and that we return true
+    STAssertTrue([pReg validateRegistration], @"validate registration works");
+    [self tearDown];
+}
+
+
 
 @end

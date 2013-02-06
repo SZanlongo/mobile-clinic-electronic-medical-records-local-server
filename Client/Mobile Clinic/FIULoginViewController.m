@@ -43,7 +43,7 @@
 	// Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
-   
+    user = [[UserObject alloc]init];
 
 }
 - (void)didReceiveMemoryWarning
@@ -98,6 +98,7 @@
                     }
                 }];
             }];
+            
             dvc.user = user;
         }
     }

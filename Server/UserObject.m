@@ -57,7 +57,7 @@
     _firstname = [data objectForKey:FIRSTNAME];
     _password = [data objectForKey:PASSWORD];
     _username = [data objectForKey:USERNAME];
-    _status = [[data objectForKey:STATUS]intValue];
+    _status = [[data objectForKey:STATUS]boolValue];
     _type = [[data objectForKey:USERTYPE]intValue];
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
 }
@@ -233,6 +233,7 @@ return YES;
         return;
     }
    
+    // Validate with information inside database
     Users* user = [userArray objectAtIndex:0];
    
     if (![user.password isEqualToString:_password]) {
@@ -244,7 +245,7 @@ return YES;
         return;
         }
     
-    if (!user.status) {
+    if (!user.status.boolValue) {
         // Its good to send a message
         [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
         // Let the status object send this information
@@ -252,6 +253,7 @@ return YES;
         NSLog(@"User is inactive");
         return;
     }
+    
     // status will hold a copy of this user data
     [status setData:[self consolidateForTransmitting]];
     // Indicates that this was a success

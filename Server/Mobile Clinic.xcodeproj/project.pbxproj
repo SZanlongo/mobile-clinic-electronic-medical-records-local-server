@@ -54,9 +54,9 @@
 		EA8D863916B0C9C000256495 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D863816B0C9C000256495 /* MySpotlightImporter.m */; };
 		EA9372AB16BC6D6300D3D617 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
 		EA9372AC16BC6D6300D3D617 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
+		EAA7AC2416C31B6400B3B911 /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2316C31B6400B3B911 /* Users.m */; };
 		EAE6CD9F16BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
 		EAE6CDA016BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
-		EAE6CE0A16BE57CE008949DC /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CE0916BE57CE008949DC /* Users.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,10 +136,10 @@
 		EA9372A716BC622C00D3D617 /* BaseObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseObjectProtocol.h; sourceTree = "<group>"; };
 		EA9372A916BC6D6300D3D617 /* DatabaseDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDriver.h; sourceTree = "<group>"; };
 		EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseDriver.m; sourceTree = "<group>"; };
+		EAA7AC2216C31B6400B3B911 /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		EAA7AC2316C31B6400B3B911 /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 		EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
-		EAE6CE0816BE57CE008949DC /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
-		EAE6CE0916BE57CE008949DC /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,8 +291,8 @@
 				EA8D860116B0C9C000256495 /* FIUAppDelegate.m */,
 				EA8D860316B0C9C000256495 /* MainMenu.xib */,
 				EA8D860616B0C9C000256495 /* Mobile_Clinic.xcdatamodeld */,
-				EAE6CE0816BE57CE008949DC /* Users.h */,
-				EAE6CE0916BE57CE008949DC /* Users.m */,
+				EAA7AC2216C31B6400B3B911 /* Users.h */,
+				EAA7AC2316C31B6400B3B911 /* Users.m */,
 				EA8D85F516B0C9BF00256495 /* Supporting Files */,
 			);
 			path = "Mobile Clinic";
@@ -552,7 +552,7 @@
 				EA186A4716BB5BF500977A00 /* HTTPServerCore.m in Sources */,
 				EA9372AB16BC6D6300D3D617 /* DatabaseDriver.m in Sources */,
 				EAE6CD9F16BE29B9008949DC /* NSString+Validation.m in Sources */,
-				EAE6CE0A16BE57CE008949DC /* Users.m in Sources */,
+				EAA7AC2416C31B6400B3B911 /* Users.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

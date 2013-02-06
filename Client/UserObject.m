@@ -43,7 +43,7 @@ StatusObject* tempObject;
     _firstname = [self getValueForKey:FIRSTNAME];
     _password = [self getValueForKey:PASSWORD];
     _username = [self getValueForKey:USERNAME];
-    _status = [[self getValueForKey:STATUS]intValue];
+    _status = [[self getValueForKey:STATUS]boolValue];
     _type = [[self getValueForKey:USERTYPE]intValue];
 }
 

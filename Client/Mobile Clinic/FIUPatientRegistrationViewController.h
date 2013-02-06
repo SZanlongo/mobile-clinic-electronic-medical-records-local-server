@@ -7,22 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FIUAppDelegate.h"
 
 @interface FIUPatientRegistrationViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
-    
-    IBOutlet UITextField *familyNameField;
-    IBOutlet UITextField *patientNameField;
-    IBOutlet UITextField *villageNameField;
-    IBOutlet UITextField *patientWeightField;
-    IBOutlet UITextField *patientAgeField;
-    IBOutlet UIImageView *patientPictureImage;
-    
     UIImagePickerController *pCtrl;
+    FIUAppDelegate *appDelegate;
 }
+@property (strong, nonatomic) IBOutlet UITextField *familyNameField;
+@property (strong, nonatomic) IBOutlet UITextField *patientNameField;
+@property (strong, nonatomic) IBOutlet UITextField *villageNameField;
+@property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
+@property (strong, nonatomic) IBOutlet UITextField *patientAgeField;
+@property (strong, nonatomic) IBOutlet UIImageView *patientPictureImage;
 
 - (IBAction)patientSexSegment:(id)sender;
 - (IBAction)patientPictureButton:(id)sender;
-- (IBAction)addFamilyMembersButton:(id)sender;
+- (IBAction)giveMedicineButton:(id)sender;
 - (IBAction)registerPatientButton:(id)sender;
-
+- (BOOL)validateRegistration;
 @end
