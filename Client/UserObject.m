@@ -19,7 +19,7 @@
 #import "StatusObject.h"
 #import "NSString+Validation.h"
 
-StatusObject* tempObject;
+
 @implementation UserObject
 
 -(NSDictionary *)consolidateForTransmitting{
@@ -99,8 +99,9 @@ StatusObject* tempObject;
     
     // Any methods that makes calls and expects information back
     // you have to listen for the GLOBAL_STATUS_LISTENER
+    id obj = [super self];
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];    
-    [center addObserver:self selector:@selector(ActionSuccessfull) name:GLOBAL_STATUS_LISTENER object:tempObject];
+    [center addObserver:obj selector:@selector(ActionSuccessfull) name:GLOBAL_STATUS_LISTENER object:tempObject];
     
     //storing internal variables to be sent to the client
     NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
@@ -112,21 +113,7 @@ StatusObject* tempObject;
     [self.appDelegate.ServerManager sendData:dataToSend];
 }
 
--(void)ActionSuccessfull
-{
-    // Remove event listener
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-    
-    if (tempObject.status == kSuccess) {
-        // Reset this object with the information brought back through the server
-        [self unpackageFileForUser:tempObject.data];
-        // Activate the callback so user knows it was successful
-        respondToEvent(self, nil);
-    }else{
-        respondToEvent(nil,[self createErrorWithDescription:tempObject.errorMessage andErrorCodeNumber:10 inDomain:@"User Object"] );
-    }
-    
-}
+
 
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler{
     // Handle callback

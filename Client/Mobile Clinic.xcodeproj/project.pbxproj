@@ -48,6 +48,8 @@
 		EA3856B116C0EA9200FA83FD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4677413316BD936F002FD4A5 /* CoreData.framework */; };
 		EA9C2F3B16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
 		EA9C2F3C16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
+		EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
+		EAA7AC2816C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
 		EACEB53916BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53A16BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
@@ -155,6 +157,8 @@
 		EA3856A716C0E80D00FA83FD /* NSObject+CustomTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CustomTools.m"; sourceTree = "<group>"; };
 		EA9C2F3916BF624F000F38CD /* UIViewControllerExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerExt.h; sourceTree = "<group>"; };
 		EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerExt.m; sourceTree = "<group>"; };
+		EAA7AC2516C33D8700B3B911 /* PatientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObject.m; sourceTree = "<group>"; };
+		EAA7AC2616C33D8700B3B911 /* PatientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObject.h; sourceTree = "<group>"; };
 		EACEB53716BEC4E100685AE8 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -285,6 +289,8 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				EAA7AC2516C33D8700B3B911 /* PatientObject.m */,
+				EAA7AC2616C33D8700B3B911 /* PatientObject.h */,
 				EA38569E16C0844C00FA83FD /* black-ui-kit.png */,
 				EA3856A016C089AF00FA83FD /* clearSearchBar.png */,
 				EA952F1816BEF1EC006A9AF9 /* Categories */,
@@ -643,6 +649,7 @@
 				EA9C2F3B16BF624F000F38CD /* UIViewControllerExt.m in Sources */,
 				EA3856A416C08BD200FA83FD /* CreateNewUserViewController.m in Sources */,
 				EA3856A816C0E80D00FA83FD /* NSObject+CustomTools.m in Sources */,
+				EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +683,7 @@
 				EA9C2F3C16BF624F000F38CD /* UIViewControllerExt.m in Sources */,
 				EA3856A516C08BD200FA83FD /* CreateNewUserViewController.m in Sources */,
 				EA3856A916C0E80D00FA83FD /* NSObject+CustomTools.m in Sources */,
+				EAA7AC2816C33D8700B3B911 /* PatientObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

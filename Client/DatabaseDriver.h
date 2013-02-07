@@ -23,6 +23,9 @@
 -(id)getValueForKey:(NSString*)key;
 -(BOOL)CreateANewObjectFromClass:(NSString *)name;
 -(void)SaveCurrentObjectToDatabase;
+
+// ** DEPRECIATED ** //
 -(NSArray*)getListFromTable:(NSString*)tableName sortByAttr:(NSString*)sortAttr;
+
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute;
 @end
