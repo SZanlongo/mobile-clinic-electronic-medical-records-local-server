@@ -14,7 +14,7 @@
 
 -(NSDictionary *)consolidateForTransmitting{
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
-    [consolidate setValue:self.objID forKey:OBJECTID];
+ 
     return consolidate;
 }
 

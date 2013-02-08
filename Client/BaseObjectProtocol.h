@@ -5,12 +5,12 @@
 //  Created by Michael Montaque on 2/1/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
-
+#define SAVECOMPLETE      @"savedone"
 #define OBJECTTYPE        @"objectType"
 #define OBJECTCOMMAND     @"userCommand" //The different user types (look at enum)
 
 #import <Foundation/Foundation.h>
-
+#import <CoreData/CoreData.h>
 /* These are all the classes the server and client will know how to handle */
 typedef enum {
     kUserType       = 1,
@@ -32,7 +32,7 @@ typedef enum {
 typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 @optional
-//-(void) unpackageDatabaseFileForUser:(NSManagedObject*)object;
+-(void) unpackageDatabaseFileForUser:(NSManagedObject*)object;
 
 @required
 /* This method should take all the objects important information

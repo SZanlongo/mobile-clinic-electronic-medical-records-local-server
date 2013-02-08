@@ -13,8 +13,9 @@
 typedef enum {
     kTriageNurse    = 0,
     kDoctor         = 1,
-    kAppAdmin       = 2,
-    kRecordKeeper   = 3,
+    kPharmacists    = 2,
+    kAppAdmin       = 3,
+    kRecordKeeper   = 4
 }UserTypes;
 
 

@@ -17,10 +17,10 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 +(AJNotificationView *)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString *)msg{
     UIView *topMostView = [[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0];
-    return [AJNotificationView showNoticeInView:topMostView type:color title:msg linedBackground:animate hideAfter:0];
+    return [AJNotificationView showNoticeInView:topMostView type:color title:msg linedBackground:animate hideAfter:10];
 }
 +(AJNotificationView *)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString *)msg inView:(UIView *)view{
-    return [AJNotificationView showNoticeInView:view type:color title:msg linedBackground:animate hideAfter:0];
+    return [AJNotificationView showNoticeInView:view type:color title:msg linedBackground:animate hideAfter:10];
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -114,9 +114,12 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Mobile_Clinic.sqlite"];
     
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     NSError *error = nil;
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -140,6 +143,7 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
+        
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }

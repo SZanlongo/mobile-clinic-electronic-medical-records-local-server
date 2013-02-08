@@ -50,6 +50,7 @@
 		EA9C2F3C16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
 		EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
 		EAA7AC2816C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
+		EAA7AC2B16C3882C00B3B911 /* Triage.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2A16C3882C00B3B911 /* Triage.m */; };
 		EACEB53916BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53A16BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
@@ -159,6 +160,8 @@
 		EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerExt.m; sourceTree = "<group>"; };
 		EAA7AC2516C33D8700B3B911 /* PatientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObject.m; sourceTree = "<group>"; };
 		EAA7AC2616C33D8700B3B911 /* PatientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObject.h; sourceTree = "<group>"; };
+		EAA7AC2916C3882C00B3B911 /* Triage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triage.h; sourceTree = "<group>"; };
+		EAA7AC2A16C3882C00B3B911 /* Triage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Triage.m; sourceTree = "<group>"; };
 		EACEB53716BEC4E100685AE8 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -273,6 +276,8 @@
 				4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */,
 				EA3856A216C08BD200FA83FD /* CreateNewUserViewController.h */,
 				EA3856A316C08BD200FA83FD /* CreateNewUserViewController.m */,
+				EAA7AC2916C3882C00B3B911 /* Triage.h */,
+				EAA7AC2A16C3882C00B3B911 /* Triage.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -289,8 +294,6 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
-				EAA7AC2516C33D8700B3B911 /* PatientObject.m */,
-				EAA7AC2616C33D8700B3B911 /* PatientObject.h */,
 				EA38569E16C0844C00FA83FD /* black-ui-kit.png */,
 				EA3856A016C089AF00FA83FD /* clearSearchBar.png */,
 				EA952F1816BEF1EC006A9AF9 /* Categories */,
@@ -450,6 +453,8 @@
 				EAE6CDCF16BE46CC008949DC /* StatusObject.m */,
 				EAE6CDD816BE46CC008949DC /* UserObject.h */,
 				EAE6CDD916BE46CC008949DC /* UserObject.m */,
+				EAA7AC2616C33D8700B3B911 /* PatientObject.h */,
+				EAA7AC2516C33D8700B3B911 /* PatientObject.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 				EA3856A416C08BD200FA83FD /* CreateNewUserViewController.m in Sources */,
 				EA3856A816C0E80D00FA83FD /* NSObject+CustomTools.m in Sources */,
 				EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */,
+				EAA7AC2B16C3882C00B3B911 /* Triage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

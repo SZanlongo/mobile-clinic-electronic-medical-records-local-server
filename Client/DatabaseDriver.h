@@ -14,14 +14,14 @@
 }
 
 @property(nonatomic, strong) FIUAppDelegate* appDelegate;
-@property(nonatomic, strong) NSManagedObjectID* objID;
+
 
 
 -(id)init;
--(BOOL)FindDataBaseObjectWithID;
 -(void)addObjectToDatabaseObject:(id)obj forKey:(NSString*)key;
 -(id)getValueForKey:(NSString*)key;
 -(BOOL)CreateANewObjectFromClass:(NSString *)name;
+-(id)getValueForKey:(NSString *)key fromObject:(NSManagedObject*) obj;
 -(void)SaveCurrentObjectToDatabase;
 
 // ** DEPRECIATED ** //

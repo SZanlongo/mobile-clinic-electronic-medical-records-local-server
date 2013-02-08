@@ -13,7 +13,6 @@
 -(id)init{
     if (self = [super init]) {
         appDelegate = (FIUAppDelegate*)[[UIApplication sharedApplication]delegate];
-        self.objID = [[NSManagedObjectID alloc]init];
     }
 return self;
 }
@@ -24,6 +23,9 @@ return self;
 -(id)getValueForKey:(NSString *)key{
    return [databaseObject valueForKey:key];
 }
+-(id)getValueForKey:(NSString *)key fromObject:(NSManagedObject *)obj{
+    return [obj valueForKey:key];
+}
 -(BOOL)doesDatabaseObjectExists{
     if (databaseObject) {
         return YES;
@@ -31,13 +33,7 @@ return self;
     return NO;
 }
 
--(BOOL)FindDataBaseObjectWithID{
-    
-    if (self.objID && !databaseObject) {
-        databaseObject = [appDelegate.managedObjectContext objectWithID:self.objID];
-    }
-    return  [self doesDatabaseObjectExists];
-}
+
 
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute{
     
@@ -53,8 +49,8 @@ return self;
     [fetchRequest setFetchBatchSize:10];
     
     //Narrows down list to classes in current semester
-    if (name && attribute.length >0) {
-        NSPredicate *sort = [NSPredicate predicateWithFormat:@"%@ == %@",attribute, name];
+    if (name && attribute.length > 0) {
+        NSPredicate *sort = [NSPredicate predicateWithFormat:@"%K == %@",attribute, name];
         [fetchRequest setPredicate:sort];
     }
     
@@ -79,14 +75,11 @@ return self;
 -(BOOL)CreateANewObjectFromClass:(NSString *)name{
     NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:appDelegate.managedObjectContext];
     databaseObject =[[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
-    self.objID = databaseObject.objectID;
     return [self doesDatabaseObjectExists];
 }
 
 -(void)SaveCurrentObjectToDatabase{
     [appDelegate saveContext];
-    [appDelegate.managedObjectContext refreshObject:databaseObject mergeChanges:YES];
-    self.objID = databaseObject.objectID;
 }
 
 
