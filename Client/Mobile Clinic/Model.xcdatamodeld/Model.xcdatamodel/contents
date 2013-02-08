@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="FamilyHistory" syncable="YES">
-        <attribute name="family_member_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="patient_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="relationship" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="related_to" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patients" inverseName="relation" inverseEntity="Patients" syncable="YES"/>
-    </entity>
-    <entity name="PatientHistory" syncable="YES">
-        <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="patient_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="treatment" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="history_for" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patients" inverseName="history" inverseEntity="Patients" syncable="YES"/>
-    </entity>
     <entity name="Patients" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="family_name" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,19 +11,6 @@
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="village_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="history" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PatientHistory" inverseName="history_for" inverseEntity="PatientHistory" syncable="YES"/>
-        <relationship name="medication" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Prescriptions" inverseName="prescribed_to" inverseEntity="Prescriptions" syncable="YES"/>
-        <relationship name="relation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FamilyHistory" inverseName="related_to" inverseEntity="FamilyHistory" syncable="YES"/>
-        <relationship name="treatment" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Treatment" inverseName="treatment_for" inverseEntity="Treatment" syncable="YES"/>
-    </entity>
-    <entity name="Prescriptions" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="directions" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dosage" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="medication" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="patient_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="prescription_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="prescribed_to" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patients" inverseName="medication" inverseEntity="Patients" syncable="YES"/>
     </entity>
     <entity name="Treatment" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -44,7 +18,6 @@
         <attribute name="note_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patient_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="treatment_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="treatment_for" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patients" inverseName="treatment" inverseEntity="Patients" syncable="YES"/>
     </entity>
     <entity name="Users" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -57,11 +30,8 @@
         <attribute name="usertype" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FamilyHistory" positionX="358" positionY="498" width="128" height="103"/>
-        <element name="PatientHistory" positionX="-29" positionY="267" width="128" height="120"/>
-        <element name="Patients" positionX="160" positionY="261" width="128" height="253"/>
-        <element name="Prescriptions" positionX="358" positionY="261" width="128" height="150"/>
-        <element name="Treatment" positionX="-29" positionY="468" width="128" height="135"/>
+        <element name="Patients" positionX="160" positionY="261" width="128" height="195"/>
+        <element name="Treatment" positionX="-29" positionY="468" width="128" height="120"/>
         <element name="Users" positionX="160" positionY="18" width="128" height="165"/>
     </elements>
 </model>
