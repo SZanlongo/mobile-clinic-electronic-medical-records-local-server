@@ -16,6 +16,7 @@
     * Its type can be found int he BaseObjectProtocol
     */
     ObjectResponse respondToEvent;
+    id tempObject;
 }
 
 @property(nonatomic, weak)      id client;

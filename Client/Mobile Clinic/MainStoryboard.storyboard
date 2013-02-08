@@ -256,7 +256,7 @@
             <objects>
                 <viewController id="GIS-Lm-b96" customClass="FIUPatientRegistrationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i65-tm-MmM">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ni4-E1-F4h">
@@ -559,7 +559,7 @@
             <objects>
                 <viewController id="lMS-hU-ZIp" customClass="FIUSearchPatientFingerPrintController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Ix-FS-0rm">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilE-81-9mg">
@@ -594,7 +594,7 @@
             <objects>
                 <viewController id="try-tJ-urt" customClass="FIUFamilyMemberViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aFj-1j-9uO">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Family Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90y-dY-FhL">
@@ -751,7 +751,7 @@
             <objects>
                 <viewController id="JsA-iA-Kg5" customClass="FIUSearchPatientViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I1L-ky-MXA">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWp-pK-tKa">
@@ -788,6 +788,63 @@
         <image name="orant_logo.png" width="375" height="60"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
+    <classes>
+        <class className="CreateNewUserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewUserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelProcess:"/>
+                <relationship kind="action" name="createNewUser:"/>
+                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="initialPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userType" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FIUFamilyMemberViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUFamilyMemberViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="patientSearchButton:"/>
+                <relationship kind="outlet" name="familyMembersTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="patientSearchField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientSearchTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FIULoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIULoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButton:"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FIUPatientRegistrationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUPatientRegistrationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="giveMedicineButton:"/>
+                <relationship kind="action" name="patientPictureButton:"/>
+                <relationship kind="action" name="patientSexSegment:"/>
+                <relationship kind="action" name="registerPatientButton:"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPictureImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FIUSearchPatientNfcViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientNfcViewController.h"/>
+        </class>
+        <class className="FIUSearchPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

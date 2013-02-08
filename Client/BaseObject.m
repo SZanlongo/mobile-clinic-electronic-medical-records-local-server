@@ -48,4 +48,20 @@
 -(void)CommonExecution{
     NSLog(@"CommonExecution Not implemented.");
 }
+
+-(void)ActionSuccessfull
+{
+    // Remove event listener
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    StatusObject* obj = tempObject;
+    if (obj.status == kSuccess) {
+        // Reset this object with the information brought back through the server
+        [self unpackageFileForUser:obj.data];
+        // Activate the callback so user knows it was successful
+        respondToEvent(self, nil);
+    }else{
+        respondToEvent(nil,[self createErrorWithDescription:obj.errorMessage andErrorCodeNumber:10 inDomain:@"BaseObject"] );
+    }
+    
+}
 @end
