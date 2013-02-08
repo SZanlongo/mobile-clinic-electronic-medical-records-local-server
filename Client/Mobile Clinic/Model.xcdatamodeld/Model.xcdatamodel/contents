@@ -4,8 +4,6 @@
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="family_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="patient_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -13,6 +11,7 @@
         <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Treatment" syncable="YES">
+        <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="diagnosis" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note_type" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,7 +24,6 @@
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="usertype" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
