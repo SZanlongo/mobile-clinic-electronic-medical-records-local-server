@@ -28,6 +28,7 @@
 		4677413716BD9386002FD4A5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4677413516BD9386002FD4A5 /* Model.xcdatamodeld */; };
 		4677413A16BDBA2F002FD4A5 /* FIUSearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */; };
 		4677413D16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */; };
+		6D32A39B16C840E1000CA89A /* FIUDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D32A39A16C840E1000CA89A /* FIUDiagnosisViewController.m */; };
 		6D68B5E516BD97BD003F895D /* FIULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68B5E416BD97BD003F895D /* FIULoginViewController.m */; };
 		6D68B5E916BD9864003F895D /* FIUPatientRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */; };
 		EA38569F16C0844C00FA83FD /* black-ui-kit.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38569E16C0844C00FA83FD /* black-ui-kit.png */; };
@@ -140,6 +141,8 @@
 		4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUSearchPatientViewController.m; sourceTree = "<group>"; };
 		4677413B16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUFamilyMemberViewController.h; sourceTree = "<group>"; };
 		4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUFamilyMemberViewController.m; sourceTree = "<group>"; };
+		6D32A39916C840E1000CA89A /* FIUDiagnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUDiagnosisViewController.h; sourceTree = "<group>"; };
+		6D32A39A16C840E1000CA89A /* FIUDiagnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUDiagnosisViewController.m; sourceTree = "<group>"; };
 		6D68B5E316BD97BD003F895D /* FIULoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIULoginViewController.h; sourceTree = "<group>"; };
 		6D68B5E416BD97BD003F895D /* FIULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIULoginViewController.m; sourceTree = "<group>"; };
 		6D68B5E716BD9864003F895D /* FIUPatientRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUPatientRegistrationViewController.h; sourceTree = "<group>"; };
@@ -257,6 +260,10 @@
 		4614288516BF7EDB00802410 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA3856A216C08BD200FA83FD /* CreateNewUserViewController.h */,
+				EA3856A316C08BD200FA83FD /* CreateNewUserViewController.m */,
+				6D32A39916C840E1000CA89A /* FIUDiagnosisViewController.h */,
+				6D32A39A16C840E1000CA89A /* FIUDiagnosisViewController.m */,
 				4677413B16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.h */,
 				4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */,
 				6D68B5E316BD97BD003F895D /* FIULoginViewController.h */,
@@ -265,8 +272,6 @@
 				6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */,
 				4677413816BDBA2F002FD4A5 /* FIUSearchPatientViewController.h */,
 				4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */,
-				EA3856A216C08BD200FA83FD /* CreateNewUserViewController.h */,
-				EA3856A316C08BD200FA83FD /* CreateNewUserViewController.m */,
 				EAA7AC2916C3882C00B3B911 /* Triage.h */,
 				EAA7AC2A16C3882C00B3B911 /* Triage.m */,
 			);
@@ -646,6 +651,7 @@
 				EA3856A816C0E80D00FA83FD /* NSObject+CustomTools.m in Sources */,
 				EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */,
 				EAA7AC2B16C3882C00B3B911 /* Triage.m in Sources */,
+				6D32A39B16C840E1000CA89A /* FIUDiagnosisViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
