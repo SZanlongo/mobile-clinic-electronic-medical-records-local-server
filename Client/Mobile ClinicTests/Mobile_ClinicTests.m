@@ -67,13 +67,13 @@ FIUPatientRegistrationViewController *pReg;
     
     //all of this below checks for empty input
     STAssertFalse([pReg validateRegistration], @"family name empty");
-    [pReg.familyNameField setText:@"family name"];
+    [pReg.familyNameField setText:@"last"];
     
     STAssertFalse([pReg validateRegistration], @"patient name empty");
-    [pReg.patientNameField setText:@"patient name"];
+    [pReg.patientNameField setText:@"first"];
     
     STAssertFalse([pReg validateRegistration], @"village name empty");
-    [pReg.villageNameField setText:@"village name"];
+    [pReg.villageNameField setText:@"village"];
     
     STAssertFalse([pReg validateRegistration], @"patient weight empty");
     [pReg.patientWeightField setText:@"weight"];
@@ -90,9 +90,10 @@ FIUPatientRegistrationViewController *pReg;
     
     //check that all of the above tests completed successfuly, and that we return true
     STAssertTrue([pReg validateRegistration], @"validate registration works");
+    
+    
+    
     [self tearDown];
 }
-
-
 
 @end

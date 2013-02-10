@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="d7a-7X-uU2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="d7a-7X-uU2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Login View Controller - Login-->
@@ -336,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qtb-TW-JCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3838" y="-857"/>
+            <point key="canvasLocation" x="3244" y="-973"/>
         </scene>
         <!--Patient Registration View Controller - Patient Registration-->
         <scene sceneID="ftL-M6-aXM">
@@ -430,15 +430,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VQJ-at-1PL">
-                                <segments>
-                                    <segment title="M"/>
-                                    <segment title="F"/>
-                                </segments>
-                                <connections>
-                                    <action selector="patientSexSegment:" destination="GIS-Lm-b96" eventType="valueChanged" id="NZe-pU-S4r"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Family Member(s):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Kz-J1-qYx">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="148" id="ayZ-Gw-XS9"/>
@@ -517,14 +508,23 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RRd-YM-hps">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="mue-d1-FIw"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="F"/>
+                                    <segment title="M"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.89792798910000005" green="0.89792798910000005" blue="0.89792798910000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="leading" secondItem="LbE-ur-Hxz" secondAttribute="leading" type="default" id="0Z8-FL-P4H"/>
                             <constraint firstItem="ni4-E1-F4h" firstAttribute="leading" secondItem="Bku-2K-kat" secondAttribute="leading" type="default" id="1uG-CH-zWj"/>
                             <constraint firstItem="uHj-wU-uRc" firstAttribute="top" secondItem="d49-S8-wv7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5E5-fI-3QQ"/>
                             <constraint firstItem="asq-kW-dA9" firstAttribute="centerY" secondItem="dIW-sO-NAm" secondAttribute="centerY" type="default" id="9TS-XK-S1j"/>
                             <constraint firstItem="Xju-gc-O4K" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="50" id="9ck-o8-D8G"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="baseline" secondItem="6CY-iH-DDl" secondAttribute="baseline" type="default" id="B7c-yg-4h2"/>
                             <constraint firstItem="P8T-tH-gE8" firstAttribute="top" secondItem="NvQ-oo-fcW" secondAttribute="top" type="default" id="BUm-Mg-s3C"/>
                             <constraint firstItem="Xju-gc-O4K" firstAttribute="baseline" secondItem="87t-7d-RMX" secondAttribute="baseline" type="default" id="CFG-2a-85j"/>
                             <constraint firstItem="FNG-g1-L2m" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="145" id="CIm-dw-ZCe"/>
@@ -538,38 +538,37 @@
                             <constraint firstItem="IhQ-Yc-XR2" firstAttribute="top" secondItem="yBe-YZ-gPH" secondAttribute="top" type="default" id="Lkc-YU-KbR"/>
                             <constraint firstItem="dIW-sO-NAm" firstAttribute="trailing" secondItem="LbE-ur-Hxz" secondAttribute="trailing" type="default" id="MRy-xa-isf"/>
                             <constraint firstItem="cES-bn-3OW" firstAttribute="leading" secondItem="6CY-iH-DDl" secondAttribute="leading" type="default" id="MbJ-5U-0Wh"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="302" id="Moa-0t-RIl"/>
                             <constraint firstItem="lZ9-E8-7ZV" firstAttribute="trailing" secondItem="Xju-gc-O4K" secondAttribute="trailing" type="default" id="Muf-F2-fpS"/>
-                            <constraint firstItem="yBe-YZ-gPH" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="177" id="Nwr-Db-n4T"/>
                             <constraint firstItem="lZ9-E8-7ZV" firstAttribute="baseline" secondItem="P8T-tH-gE8" secondAttribute="baseline" type="default" id="OMe-OI-9lh"/>
                             <constraint firstItem="87t-7d-RMX" firstAttribute="trailing" secondItem="P8T-tH-gE8" secondAttribute="trailing" type="default" id="ONK-5Z-6M7"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="302" id="OcY-t3-k23"/>
                             <constraint firstAttribute="bottom" secondItem="yBe-YZ-gPH" secondAttribute="bottom" constant="198" id="PLL-iK-IZl"/>
                             <constraint firstItem="Bku-2K-kat" firstAttribute="trailing" secondItem="yBe-YZ-gPH" secondAttribute="trailing" type="default" id="PvB-aP-70I"/>
                             <constraint firstItem="6kw-zF-p27" firstAttribute="centerX" secondItem="Xju-gc-O4K" secondAttribute="centerX" type="default" id="QUg-B1-O9O"/>
                             <constraint firstItem="4Kz-J1-qYx" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="15" id="SDt-lq-jNA"/>
                             <constraint firstItem="uHj-wU-uRc" firstAttribute="leading" secondItem="d49-S8-wv7" secondAttribute="leading" type="default" id="SLu-MX-wlF"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="leading" secondItem="d49-S8-wv7" secondAttribute="leading" type="default" id="SSe-0T-HjQ"/>
                             <constraint firstItem="6CY-iH-DDl" firstAttribute="trailing" secondItem="IhQ-Yc-XR2" secondAttribute="trailing" type="default" id="TgF-CN-DYj"/>
-                            <constraint firstItem="6CY-iH-DDl" firstAttribute="centerY" secondItem="VQJ-at-1PL" secondAttribute="centerY" type="default" id="U9U-KR-2dR"/>
                             <constraint firstItem="FNG-g1-L2m" firstAttribute="leading" secondItem="dIW-sO-NAm" secondAttribute="leading" type="default" id="VoE-mb-PcZ"/>
                             <constraint firstItem="87t-7d-RMX" firstAttribute="leading" secondItem="P8T-tH-gE8" secondAttribute="leading" type="default" id="W1A-WZ-qxh"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="177" id="W3Z-Os-6XL"/>
                             <constraint firstItem="FNG-g1-L2m" firstAttribute="leading" secondItem="87t-7d-RMX" secondAttribute="leading" type="default" id="YZZ-xW-mYc"/>
                             <constraint firstAttribute="trailing" secondItem="NvQ-oo-fcW" secondAttribute="trailing" constant="37" id="aR9-gM-EJa"/>
                             <constraint firstItem="SEx-ZV-1Nc" firstAttribute="centerX" secondItem="6CY-iH-DDl" secondAttribute="centerX" type="default" id="at9-Iv-pYE"/>
                             <constraint firstItem="LbE-ur-Hxz" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="253" id="bzj-JM-8rs"/>
                             <constraint firstItem="d49-S8-wv7" firstAttribute="trailing" secondItem="ni4-E1-F4h" secondAttribute="trailing" type="default" id="cYI-6X-bGS"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="baseline" secondItem="6CY-iH-DDl" secondAttribute="baseline" type="default" id="eZb-MO-pa7"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="centerY" secondItem="6CY-iH-DDl" secondAttribute="centerY" type="default" id="eic-0B-Aff"/>
                             <constraint firstItem="87t-7d-RMX" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="90" id="f2c-tV-Dfi"/>
                             <constraint firstAttribute="bottom" secondItem="SEx-ZV-1Nc" secondAttribute="bottom" constant="34" id="gdA-OM-vpo"/>
                             <constraint firstItem="asq-kW-dA9" firstAttribute="trailing" secondItem="cES-bn-3OW" secondAttribute="trailing" type="default" id="hT1-rW-BIC"/>
                             <constraint firstItem="P8T-tH-gE8" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="35" id="l3X-bc-R1v"/>
                             <constraint firstItem="4Kz-J1-qYx" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="419" id="o3V-jE-PxP"/>
+                            <constraint firstItem="LbE-ur-Hxz" firstAttribute="leading" secondItem="d49-S8-wv7" secondAttribute="leading" type="default" id="pAD-C7-YEr"/>
                             <constraint firstItem="6kw-zF-p27" firstAttribute="baseline" secondItem="FNG-g1-L2m" secondAttribute="baseline" type="default" id="pnN-VJ-OVh"/>
                             <constraint firstItem="cES-bn-3OW" firstAttribute="baseline" secondItem="LbE-ur-Hxz" secondAttribute="baseline" type="default" id="rLX-hO-R1l"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="trailing" secondItem="LbE-ur-Hxz" secondAttribute="trailing" type="default" id="s0M-bU-cpe"/>
                             <constraint firstItem="asq-kW-dA9" firstAttribute="baseline" secondItem="dIW-sO-NAm" secondAttribute="baseline" type="default" id="sIy-vO-76M"/>
                             <constraint firstItem="6kw-zF-p27" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="149" id="tSd-e2-GE1"/>
                             <constraint firstItem="ni4-E1-F4h" firstAttribute="top" secondItem="NvQ-oo-fcW" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="v0t-ls-zXd"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="leading" secondItem="yBe-YZ-gPH" secondAttribute="leading" type="default" id="zTy-gf-ZWn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Patient Registration" id="iVj-4n-XPS"/>
@@ -578,13 +577,14 @@
                         <outlet property="patientAgeField" destination="LbE-ur-Hxz" id="b99-rX-Ede"/>
                         <outlet property="patientNameField" destination="87t-7d-RMX" id="3xV-lC-Vgx"/>
                         <outlet property="patientPictureImage" destination="NvQ-oo-fcW" id="ucz-AZ-vPb"/>
+                        <outlet property="patientSexSegment" destination="RRd-YM-hps" id="tRb-fC-3wu"/>
                         <outlet property="patientWeightField" destination="dIW-sO-NAm" id="G0K-pe-ssf"/>
                         <outlet property="villageNameField" destination="FNG-g1-L2m" id="UTv-QZ-drw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hms-hJ-aJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4371" y="-126"/>
+            <point key="canvasLocation" x="4373" y="-134"/>
         </scene>
         <!--Quick Checkout View Controller-->
         <scene sceneID="76G-Am-594">
@@ -665,7 +665,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4N-oq-VFS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3271" y="1081"/>
+            <point key="canvasLocation" x="3221" y="1067"/>
         </scene>
         <!--Family Member View Controller - Add Family Members-->
         <scene sceneID="gTo-zn-m5i">
@@ -998,10 +998,10 @@
             </objects>
             <point key="canvasLocation" x="3207" y="-142"/>
         </scene>
-        <!--Search Patient Nfc View Controller - Patient Search-->
+        <!--Search Patient View Controller - Patient Search-->
         <scene sceneID="KDi-Db-Qbi">
             <objects>
-                <viewController id="JsA-iA-Kg5" customClass="FIUSearchPatientNfcViewController" sceneMemberID="viewController">
+                <viewController id="JsA-iA-Kg5" customClass="FIUSearchPatientViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I1L-ky-MXA">
                         <rect key="frame" x="0.0" y="20" width="460" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1015,7 +1015,7 @@
                                             <constraint firstAttribute="height" constant="370" id="KSH-Bm-UoT"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="111" id="H6b-Xq-hhf" customClass="FIUSearchPatientNfcViewControllerCell">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="111" id="H6b-Xq-hhf" customClass="FIUSearchPatientViewControllerCell">
                                                 <rect key="frame" x="0.0" y="22" width="420" height="111"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1057,21 +1057,21 @@
                                                     <constraint firstItem="Ua3-cY-XNF" firstAttribute="top" secondItem="lFb-MI-dUW" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="r3m-LX-r8W"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="PatientName" destination="lFb-MI-dUW" id="jN1-1V-RZE"/>
-                                                    <outlet property="PatientPic" destination="9up-Dk-Fah" id="YVH-vR-9jY"/>
-                                                    <outlet property="dateLbl" destination="Ua3-cY-XNF" id="H3i-qn-Aoi"/>
+                                                    <outlet property="PatientName" destination="lFb-MI-dUW" id="cbZ-BV-5rJ"/>
+                                                    <outlet property="PatientPic" destination="9up-Dk-Fah" id="bC0-1X-fZZ"/>
+                                                    <outlet property="dateLbl" destination="Ua3-cY-XNF" id="0jM-Jx-mMf"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
-                                            <outlet property="dataSource" destination="JsA-iA-Kg5" id="mKS-hV-BTD"/>
+                                            <outlet property="dataSource" destination="JsA-iA-Kg5" id="AWd-LL-4Tq"/>
                                             <outlet property="delegate" destination="JsA-iA-Kg5" id="7fX-Cu-gmk"/>
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyZ-es-qED">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="172" id="0jU-ug-H4H"/>
-                                            <constraint firstAttribute="height" constant="43" id="P8S-xV-0wi"/>
+                                            <constraint firstAttribute="height" constant="39" id="Q6x-vo-DXF"/>
+                                            <constraint firstAttribute="width" constant="160" id="hgf-EZ-eBL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Search">
@@ -1081,8 +1081,14 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="searchByNameButton:" destination="JsA-iA-Kg5" eventType="touchUpInside" id="boC-mk-OSy"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEB-Bk-veX">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="K0k-02-rl7"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Seach via NFC">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1091,25 +1097,33 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="searchByNFCButton:" destination="JsA-iA-Kg5" eventType="touchUpInside" id="gX3-i3-hMm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abj-L2-fRU">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="172" id="N2l-kk-RyZ"/>
+                                            <constraint firstAttribute="width" constant="180" id="Mo1-EZ-6vX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Search via FIngerprint">
+                                        <state key="normal" title="Search via Fingerprint">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="searchByFingerprintButton:" destination="JsA-iA-Kg5" eventType="touchUpInside" id="lAV-EM-Nfw"/>
+                                        </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="First and/or Last Name" minimumFontSize="17" background="clearSearchBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="o2G-Jw-Spa">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First and/or Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o2G-Jw-Spa">
+                                        <color key="backgroundColor" red="0.52404691229956479" green="0.53022775069373562" blue="0.55821508290816324" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="f82-04-R9q"/>
+                                            <constraint firstAttribute="width" constant="250" id="usT-Tm-bgJ"/>
                                         </constraints>
-                                        <attributedString key="attributedText"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B52-uX-Rgl">
@@ -1126,27 +1140,27 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="o2G-Jw-Spa" firstAttribute="top" secondItem="Oal-gL-VHo" secondAttribute="top" constant="73" id="1eS-Ka-4VM"/>
                                     <constraint firstItem="Zmk-pJ-otQ" firstAttribute="bottom" secondItem="Oal-gL-VHo" secondAttribute="bottom" type="default" id="333-Qa-Enp"/>
                                     <constraint firstItem="B52-uX-Rgl" firstAttribute="top" secondItem="Oal-gL-VHo" secondAttribute="top" type="default" id="92W-eh-uNJ"/>
-                                    <constraint firstItem="hEB-Bk-veX" firstAttribute="leading" secondItem="Oal-gL-VHo" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Egr-QB-457"/>
-                                    <constraint firstItem="uyZ-es-qED" firstAttribute="top" secondItem="Oal-gL-VHo" secondAttribute="top" constant="71" id="I38-Ct-1ID"/>
+                                    <constraint firstItem="o2G-Jw-Spa" firstAttribute="top" secondItem="Oal-gL-VHo" secondAttribute="top" constant="75" id="Hsg-U8-jF5"/>
                                     <constraint firstItem="o2G-Jw-Spa" firstAttribute="baseline" secondItem="uyZ-es-qED" secondAttribute="baseline" type="default" id="KCY-Ji-8wq"/>
-                                    <constraint firstItem="o2G-Jw-Spa" firstAttribute="leading" secondItem="uyZ-es-qED" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="LXL-Cc-49I"/>
-                                    <constraint firstItem="uyZ-es-qED" firstAttribute="leading" secondItem="Oal-gL-VHo" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="VpT-Pp-BmM"/>
-                                    <constraint firstItem="uyZ-es-qED" firstAttribute="trailing" secondItem="hEB-Bk-veX" secondAttribute="trailing" type="default" id="YO1-2O-Phk"/>
+                                    <constraint firstItem="hEB-Bk-veX" firstAttribute="bottom" secondItem="abj-L2-fRU" secondAttribute="bottom" type="default" id="Nwn-Mk-5tM"/>
+                                    <constraint firstItem="hEB-Bk-veX" firstAttribute="top" secondItem="Oal-gL-VHo" secondAttribute="top" constant="119" id="O2x-6h-YP0"/>
+                                    <constraint firstItem="y5X-CP-dZc" firstAttribute="top" secondItem="Oal-gL-VHo" secondAttribute="top" constant="173" id="TES-Hj-WER"/>
+                                    <constraint firstItem="uyZ-es-qED" firstAttribute="top" secondItem="Oal-gL-VHo" secondAttribute="top" constant="70" id="UuJ-4Z-GZy"/>
+                                    <constraint firstItem="uyZ-es-qED" firstAttribute="leading" secondItem="Oal-gL-VHo" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="V29-yQ-HuK"/>
+                                    <constraint firstItem="hEB-Bk-veX" firstAttribute="top" secondItem="abj-L2-fRU" secondAttribute="top" type="default" id="YxI-pn-kAn"/>
                                     <constraint firstItem="Zmk-pJ-otQ" firstAttribute="leading" secondItem="Oal-gL-VHo" secondAttribute="leading" type="default" id="c0O-cl-bNu"/>
+                                    <constraint firstItem="hEB-Bk-veX" firstAttribute="leading" secondItem="Oal-gL-VHo" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dAt-Xk-tkv"/>
+                                    <constraint firstItem="hEB-Bk-veX" firstAttribute="trailing" secondItem="uyZ-es-qED" secondAttribute="trailing" type="default" id="dUG-xg-Qwv"/>
                                     <constraint firstItem="Zmk-pJ-otQ" firstAttribute="trailing" secondItem="Oal-gL-VHo" secondAttribute="trailing" type="default" id="isk-ZK-7rp"/>
                                     <constraint firstItem="B52-uX-Rgl" firstAttribute="leading" secondItem="Oal-gL-VHo" secondAttribute="leading" type="default" id="j6j-Kh-PTp"/>
-                                    <constraint firstAttribute="trailing" secondItem="abj-L2-fRU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lOD-xE-DoT"/>
-                                    <constraint firstItem="y5X-CP-dZc" firstAttribute="top" secondItem="hEB-Bk-veX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qud-A9-4ll"/>
-                                    <constraint firstItem="abj-L2-fRU" firstAttribute="baseline" secondItem="hEB-Bk-veX" secondAttribute="baseline" type="default" id="r4Z-Vd-BAz"/>
-                                    <constraint firstAttribute="trailing" secondItem="o2G-Jw-Spa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="t12-Kl-pX6"/>
+                                    <constraint firstAttribute="trailing" secondItem="abj-L2-fRU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="rTf-0f-EKk"/>
                                     <constraint firstItem="B52-uX-Rgl" firstAttribute="trailing" secondItem="Oal-gL-VHo" secondAttribute="trailing" type="default" id="tT0-Zs-sYn"/>
                                     <constraint firstAttribute="trailing" secondItem="y5X-CP-dZc" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="vg6-Xc-92R"/>
-                                    <constraint firstItem="hEB-Bk-veX" firstAttribute="top" secondItem="uyZ-es-qED" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vuL-Xk-zdJ"/>
                                     <constraint firstItem="y5X-CP-dZc" firstAttribute="leading" secondItem="Oal-gL-VHo" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="yG6-Ms-DaP"/>
                                     <constraint firstItem="Zmk-pJ-otQ" firstAttribute="top" secondItem="B52-uX-Rgl" secondAttribute="bottom" type="default" id="yec-m9-266"/>
+                                    <constraint firstAttribute="trailing" secondItem="o2G-Jw-Spa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="yhJ-pt-Ovr"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1161,10 +1175,14 @@
                     <tabBarItem key="tabBarItem" title="Search" id="E6r-wX-qyk"/>
                     <navigationItem key="navigationItem" title="Patient Search" id="Gzb-H4-TXX"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="patientNameField" destination="o2G-Jw-Spa" id="7Fm-K9-VpD"/>
+                        <outlet property="patientResultTableView" destination="y5X-CP-dZc" id="MI2-j6-YeL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfQ-Zf-pKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4255" y="-857"/>
+            <point key="canvasLocation" x="3695" y="-1083"/>
         </scene>
     </scenes>
     <resources>
@@ -1173,74 +1191,6 @@
         <image name="orant_logo.png" width="375" height="60"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
-    <classes>
-        <class className="CreateNewUserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewUserViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelProcess:"/>
-                <relationship kind="action" name="createNewUser:"/>
-                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="initialPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="userType" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FIUFamilyMemberViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUFamilyMemberViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="patientSearchButton:"/>
-                <relationship kind="outlet" name="familyMembersTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="patientSearchField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientSearchTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FIULoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIULoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButton:"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="userNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FIUPatientRegistrationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUPatientRegistrationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="giveMedicineButton:"/>
-                <relationship kind="action" name="patientPictureButton:"/>
-                <relationship kind="action" name="patientSexSegment:"/>
-                <relationship kind="action" name="registerPatientButton:"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPictureImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FIUSearchPatientNfcViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientNfcViewController.h"/>
-        </class>
-        <class className="FIUSearchPatientNfcViewControllerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientNfcViewControllerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="PatientName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PatientPic" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="Triage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Triage.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

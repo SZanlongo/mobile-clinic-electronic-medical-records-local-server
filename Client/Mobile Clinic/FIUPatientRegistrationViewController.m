@@ -14,7 +14,7 @@
 
 @implementation FIUPatientRegistrationViewController
 
-@synthesize familyNameField, patientNameField, villageNameField, patientWeightField, patientAgeField, patientPictureImage;
+@synthesize familyNameField, patientNameField, villageNameField, patientWeightField, patientAgeField, patientPictureImage, patientSexSegment;
 - (id)init
 {
     self = [super init];
@@ -51,21 +51,13 @@
 - (IBAction)registerPatientButton:(id)sender {
     //before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
-        //NSManagedObjectContext *context = [self managedObjectContext];
-        //NSManagedObject *patientInfo = [NSEntityDescription insertNewObjectForEntityForName:@"Patients" inManagedObjectContext:context];
+        _patient.familyName = familyNameField.text;
+        _patient.firstName = patientNameField.text;
+        _patient.village = villageNameField.text;
+        //_patient.age = patientAgeField.text;
+        _patient.sex = patientSexSegment.selectedSegmentIndex;
         
-        //[patientInfo setValue:familyNameField.text forKey:@"family_name"];
-        //[patientInfo setValue:patientNameField.text forKey:@"firstname"];
-        // [patientInfo setValue:@"H" forKey:@"lastname"];
-        // [patientInfo setValue:villageNameField.text forKey:@"village_name"];
-        // [patientInfo setValue:[NSNumber numberWithInt:[patientWeightField.text intValue]] forKey:@"weight"];
-        // [patientInfo setValue:[NSNumber numberWithInt:[patientAgeField.text intValue]] forKey:@"age"];
-        // [patientInfo setValue:[NSNumber numberWithInt:1] forKey:@"sex"];
-        // [patientInfo setValue:[NSNumber numberWithBool:YES] forKey:@"status"];
-        
-        //[self saveContext];
-        
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        handler(self, nil);
     }
 }
 
@@ -94,7 +86,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    appDelegate = (FIUAppDelegate *)[[UIApplication sharedApplication] delegate];
+    _patient = [[PatientObject alloc]init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,9 +96,14 @@
 }
 
 - (void)viewDidUnload {
+    [self setPatientSexSegment:nil];
     [super viewDidUnload];
 }
 - (IBAction)patientSexSegment:(id)sender {
+}
+
+-(void)setScreenHandler:(ScreenHandler)setHandler{
+    handler = setHandler;
 }
 
 //checks the registration form for empty fields, or incorrect data (text in number field)
