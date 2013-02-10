@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 #define ARCHIVER    @"archiver"
+
 #import "ServerCore.h"
 #import "ObjectFactory.h"
-#import "StatusObject.h"
-#import "BaseObjectProtocol.h"
+
 
 @interface ServerCore (Private)
 - (void)connectToNextAddress;
@@ -166,11 +166,9 @@
     
     NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:data] copyItems:YES];
     
-    id obj;
-    
     if(data) {
         // ObjectFactory: Used to instatiate the proper class but returns it generically
-        obj = [ObjectFactory createObjectForType:myDictionary];
+        id obj = [ObjectFactory createObjectForType:myDictionary];
         
         // setup the object to use the dictionary values
         [obj unpackageFileForUser:myDictionary];
@@ -180,9 +178,6 @@
         [obj CommonExecution];
     } else {
         NSLog(@"Write Error in Log: Recieved No data");
-        obj = [[StatusObject alloc]init];
-        [obj setStatus: kError];
-        [obj setErrorMessage:@"There was an error"];
     }
 }
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
