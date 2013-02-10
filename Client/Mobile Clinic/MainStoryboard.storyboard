@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="d7a-7X-uU2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="d7a-7X-uU2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Login View Controller - Login-->
@@ -430,15 +430,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VQJ-at-1PL">
-                                <segments>
-                                    <segment title="M"/>
-                                    <segment title="F"/>
-                                </segments>
-                                <connections>
-                                    <action selector="patientSexSegment:" destination="GIS-Lm-b96" eventType="valueChanged" id="NZe-pU-S4r"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Family Member(s):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Kz-J1-qYx">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="148" id="ayZ-Gw-XS9"/>
@@ -517,14 +508,23 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RRd-YM-hps">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="mue-d1-FIw"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="F"/>
+                                    <segment title="M"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.89792798910000005" green="0.89792798910000005" blue="0.89792798910000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="leading" secondItem="LbE-ur-Hxz" secondAttribute="leading" type="default" id="0Z8-FL-P4H"/>
                             <constraint firstItem="ni4-E1-F4h" firstAttribute="leading" secondItem="Bku-2K-kat" secondAttribute="leading" type="default" id="1uG-CH-zWj"/>
                             <constraint firstItem="uHj-wU-uRc" firstAttribute="top" secondItem="d49-S8-wv7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5E5-fI-3QQ"/>
                             <constraint firstItem="asq-kW-dA9" firstAttribute="centerY" secondItem="dIW-sO-NAm" secondAttribute="centerY" type="default" id="9TS-XK-S1j"/>
                             <constraint firstItem="Xju-gc-O4K" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="50" id="9ck-o8-D8G"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="baseline" secondItem="6CY-iH-DDl" secondAttribute="baseline" type="default" id="B7c-yg-4h2"/>
                             <constraint firstItem="P8T-tH-gE8" firstAttribute="top" secondItem="NvQ-oo-fcW" secondAttribute="top" type="default" id="BUm-Mg-s3C"/>
                             <constraint firstItem="Xju-gc-O4K" firstAttribute="baseline" secondItem="87t-7d-RMX" secondAttribute="baseline" type="default" id="CFG-2a-85j"/>
                             <constraint firstItem="FNG-g1-L2m" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="145" id="CIm-dw-ZCe"/>
@@ -538,38 +538,37 @@
                             <constraint firstItem="IhQ-Yc-XR2" firstAttribute="top" secondItem="yBe-YZ-gPH" secondAttribute="top" type="default" id="Lkc-YU-KbR"/>
                             <constraint firstItem="dIW-sO-NAm" firstAttribute="trailing" secondItem="LbE-ur-Hxz" secondAttribute="trailing" type="default" id="MRy-xa-isf"/>
                             <constraint firstItem="cES-bn-3OW" firstAttribute="leading" secondItem="6CY-iH-DDl" secondAttribute="leading" type="default" id="MbJ-5U-0Wh"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="302" id="Moa-0t-RIl"/>
                             <constraint firstItem="lZ9-E8-7ZV" firstAttribute="trailing" secondItem="Xju-gc-O4K" secondAttribute="trailing" type="default" id="Muf-F2-fpS"/>
-                            <constraint firstItem="yBe-YZ-gPH" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="177" id="Nwr-Db-n4T"/>
                             <constraint firstItem="lZ9-E8-7ZV" firstAttribute="baseline" secondItem="P8T-tH-gE8" secondAttribute="baseline" type="default" id="OMe-OI-9lh"/>
                             <constraint firstItem="87t-7d-RMX" firstAttribute="trailing" secondItem="P8T-tH-gE8" secondAttribute="trailing" type="default" id="ONK-5Z-6M7"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="302" id="OcY-t3-k23"/>
                             <constraint firstAttribute="bottom" secondItem="yBe-YZ-gPH" secondAttribute="bottom" constant="198" id="PLL-iK-IZl"/>
                             <constraint firstItem="Bku-2K-kat" firstAttribute="trailing" secondItem="yBe-YZ-gPH" secondAttribute="trailing" type="default" id="PvB-aP-70I"/>
                             <constraint firstItem="6kw-zF-p27" firstAttribute="centerX" secondItem="Xju-gc-O4K" secondAttribute="centerX" type="default" id="QUg-B1-O9O"/>
                             <constraint firstItem="4Kz-J1-qYx" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="15" id="SDt-lq-jNA"/>
                             <constraint firstItem="uHj-wU-uRc" firstAttribute="leading" secondItem="d49-S8-wv7" secondAttribute="leading" type="default" id="SLu-MX-wlF"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="leading" secondItem="d49-S8-wv7" secondAttribute="leading" type="default" id="SSe-0T-HjQ"/>
                             <constraint firstItem="6CY-iH-DDl" firstAttribute="trailing" secondItem="IhQ-Yc-XR2" secondAttribute="trailing" type="default" id="TgF-CN-DYj"/>
-                            <constraint firstItem="6CY-iH-DDl" firstAttribute="centerY" secondItem="VQJ-at-1PL" secondAttribute="centerY" type="default" id="U9U-KR-2dR"/>
                             <constraint firstItem="FNG-g1-L2m" firstAttribute="leading" secondItem="dIW-sO-NAm" secondAttribute="leading" type="default" id="VoE-mb-PcZ"/>
                             <constraint firstItem="87t-7d-RMX" firstAttribute="leading" secondItem="P8T-tH-gE8" secondAttribute="leading" type="default" id="W1A-WZ-qxh"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="leading" secondItem="i65-tm-MmM" secondAttribute="leading" constant="177" id="W3Z-Os-6XL"/>
                             <constraint firstItem="FNG-g1-L2m" firstAttribute="leading" secondItem="87t-7d-RMX" secondAttribute="leading" type="default" id="YZZ-xW-mYc"/>
                             <constraint firstAttribute="trailing" secondItem="NvQ-oo-fcW" secondAttribute="trailing" constant="37" id="aR9-gM-EJa"/>
                             <constraint firstItem="SEx-ZV-1Nc" firstAttribute="centerX" secondItem="6CY-iH-DDl" secondAttribute="centerX" type="default" id="at9-Iv-pYE"/>
                             <constraint firstItem="LbE-ur-Hxz" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="253" id="bzj-JM-8rs"/>
                             <constraint firstItem="d49-S8-wv7" firstAttribute="trailing" secondItem="ni4-E1-F4h" secondAttribute="trailing" type="default" id="cYI-6X-bGS"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="baseline" secondItem="6CY-iH-DDl" secondAttribute="baseline" type="default" id="eZb-MO-pa7"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="centerY" secondItem="6CY-iH-DDl" secondAttribute="centerY" type="default" id="eic-0B-Aff"/>
                             <constraint firstItem="87t-7d-RMX" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="90" id="f2c-tV-Dfi"/>
                             <constraint firstAttribute="bottom" secondItem="SEx-ZV-1Nc" secondAttribute="bottom" constant="34" id="gdA-OM-vpo"/>
                             <constraint firstItem="asq-kW-dA9" firstAttribute="trailing" secondItem="cES-bn-3OW" secondAttribute="trailing" type="default" id="hT1-rW-BIC"/>
                             <constraint firstItem="P8T-tH-gE8" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="35" id="l3X-bc-R1v"/>
                             <constraint firstItem="4Kz-J1-qYx" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="419" id="o3V-jE-PxP"/>
+                            <constraint firstItem="LbE-ur-Hxz" firstAttribute="leading" secondItem="d49-S8-wv7" secondAttribute="leading" type="default" id="pAD-C7-YEr"/>
                             <constraint firstItem="6kw-zF-p27" firstAttribute="baseline" secondItem="FNG-g1-L2m" secondAttribute="baseline" type="default" id="pnN-VJ-OVh"/>
                             <constraint firstItem="cES-bn-3OW" firstAttribute="baseline" secondItem="LbE-ur-Hxz" secondAttribute="baseline" type="default" id="rLX-hO-R1l"/>
-                            <constraint firstItem="VQJ-at-1PL" firstAttribute="trailing" secondItem="LbE-ur-Hxz" secondAttribute="trailing" type="default" id="s0M-bU-cpe"/>
                             <constraint firstItem="asq-kW-dA9" firstAttribute="baseline" secondItem="dIW-sO-NAm" secondAttribute="baseline" type="default" id="sIy-vO-76M"/>
                             <constraint firstItem="6kw-zF-p27" firstAttribute="top" secondItem="i65-tm-MmM" secondAttribute="top" constant="149" id="tSd-e2-GE1"/>
                             <constraint firstItem="ni4-E1-F4h" firstAttribute="top" secondItem="NvQ-oo-fcW" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="v0t-ls-zXd"/>
+                            <constraint firstItem="RRd-YM-hps" firstAttribute="leading" secondItem="yBe-YZ-gPH" secondAttribute="leading" type="default" id="zTy-gf-ZWn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Patient Registration" id="iVj-4n-XPS"/>
@@ -578,6 +577,7 @@
                         <outlet property="patientAgeField" destination="LbE-ur-Hxz" id="b99-rX-Ede"/>
                         <outlet property="patientNameField" destination="87t-7d-RMX" id="3xV-lC-Vgx"/>
                         <outlet property="patientPictureImage" destination="NvQ-oo-fcW" id="ucz-AZ-vPb"/>
+                        <outlet property="patientSexSegment" destination="RRd-YM-hps" id="tRb-fC-3wu"/>
                         <outlet property="patientWeightField" destination="dIW-sO-NAm" id="G0K-pe-ssf"/>
                         <outlet property="villageNameField" destination="FNG-g1-L2m" id="UTv-QZ-drw"/>
                     </connections>
@@ -1173,74 +1173,6 @@
         <image name="orant_logo.png" width="375" height="60"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
-    <classes>
-        <class className="CreateNewUserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewUserViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelProcess:"/>
-                <relationship kind="action" name="createNewUser:"/>
-                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="initialPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="userType" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FIUFamilyMemberViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUFamilyMemberViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="patientSearchButton:"/>
-                <relationship kind="outlet" name="familyMembersTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="patientSearchField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientSearchTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FIULoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIULoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButton:"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="userNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FIUPatientRegistrationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUPatientRegistrationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="giveMedicineButton:"/>
-                <relationship kind="action" name="patientPictureButton:"/>
-                <relationship kind="action" name="patientSexSegment:"/>
-                <relationship kind="action" name="registerPatientButton:"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPictureImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FIUSearchPatientNfcViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientNfcViewController.h"/>
-        </class>
-        <class className="FIUSearchPatientNfcViewControllerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientNfcViewControllerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="PatientName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PatientPic" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="Triage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Triage.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

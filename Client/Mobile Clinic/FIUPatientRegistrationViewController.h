@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FIUAppDelegate.h"
+#import "PatientObject.h"
 
 @interface FIUPatientRegistrationViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     UIImagePickerController *pCtrl;
-    FIUAppDelegate *appDelegate;
 }
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
@@ -20,7 +19,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *patientAgeField;
 @property (strong, nonatomic) IBOutlet UIImageView *patientPictureImage;
 
-- (IBAction)patientSexSegment:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *patientSexSegment;
+
+@property (strong, nonatomic) PatientObject *patient;
+
 - (IBAction)patientPictureButton:(id)sender;
 - (IBAction)giveMedicineButton:(id)sender;
 - (IBAction)registerPatientButton:(id)sender;
