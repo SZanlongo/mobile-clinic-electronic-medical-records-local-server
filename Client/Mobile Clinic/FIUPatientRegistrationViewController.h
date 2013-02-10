@@ -11,6 +11,7 @@
 
 @interface FIUPatientRegistrationViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     UIImagePickerController *pCtrl;
+    ScreenHandler handler;
 }
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
@@ -26,5 +27,9 @@
 - (IBAction)patientPictureButton:(id)sender;
 - (IBAction)giveMedicineButton:(id)sender;
 - (IBAction)registerPatientButton:(id)sender;
+
 - (BOOL)validateRegistration;
+
+- (void)setScreenHandler:(ScreenHandler)setHandler;
+
 @end

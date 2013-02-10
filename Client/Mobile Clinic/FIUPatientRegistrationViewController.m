@@ -57,7 +57,7 @@
         //_patient.age = patientAgeField.text;
         _patient.sex = patientSexSegment.selectedSegmentIndex;
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        handler(self, nil);
     }
 }
 
@@ -100,6 +100,10 @@
     [super viewDidUnload];
 }
 - (IBAction)patientSexSegment:(id)sender {
+}
+
+-(void)setScreenHandler:(ScreenHandler)setHandler{
+    handler = setHandler;
 }
 
 //checks the registration form for empty fields, or incorrect data (text in number field)
