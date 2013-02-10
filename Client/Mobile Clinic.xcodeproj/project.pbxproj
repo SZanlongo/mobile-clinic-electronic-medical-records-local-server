@@ -28,8 +28,6 @@
 		4677413716BD9386002FD4A5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4677413516BD9386002FD4A5 /* Model.xcdatamodeld */; };
 		4677413A16BDBA2F002FD4A5 /* FIUSearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */; };
 		4677413D16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */; };
-		4677414016BDBCD6002FD4A5 /* FIUSearchPatientNfcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413F16BDBCD6002FD4A5 /* FIUSearchPatientNfcViewController.m */; };
-		4677414316BDBCE9002FD4A5 /* FIUSearchPatientFingerPrintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677414216BDBCE9002FD4A5 /* FIUSearchPatientFingerPrintViewController.m */; };
 		6D68B5E516BD97BD003F895D /* FIULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68B5E416BD97BD003F895D /* FIULoginViewController.m */; };
 		6D68B5E916BD9864003F895D /* FIUPatientRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */; };
 		EA38569F16C0844C00FA83FD /* black-ui-kit.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38569E16C0844C00FA83FD /* black-ui-kit.png */; };
@@ -142,10 +140,6 @@
 		4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUSearchPatientViewController.m; sourceTree = "<group>"; };
 		4677413B16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUFamilyMemberViewController.h; sourceTree = "<group>"; };
 		4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUFamilyMemberViewController.m; sourceTree = "<group>"; };
-		4677413E16BDBCD6002FD4A5 /* FIUSearchPatientNfcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUSearchPatientNfcViewController.h; sourceTree = "<group>"; };
-		4677413F16BDBCD6002FD4A5 /* FIUSearchPatientNfcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUSearchPatientNfcViewController.m; sourceTree = "<group>"; };
-		4677414116BDBCE9002FD4A5 /* FIUSearchPatientFingerPrintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUSearchPatientFingerPrintViewController.h; sourceTree = "<group>"; };
-		4677414216BDBCE9002FD4A5 /* FIUSearchPatientFingerPrintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUSearchPatientFingerPrintViewController.m; sourceTree = "<group>"; };
 		6D68B5E316BD97BD003F895D /* FIULoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIULoginViewController.h; sourceTree = "<group>"; };
 		6D68B5E416BD97BD003F895D /* FIULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIULoginViewController.m; sourceTree = "<group>"; };
 		6D68B5E716BD9864003F895D /* FIUPatientRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUPatientRegistrationViewController.h; sourceTree = "<group>"; };
@@ -269,10 +263,6 @@
 				6D68B5E416BD97BD003F895D /* FIULoginViewController.m */,
 				6D68B5E716BD9864003F895D /* FIUPatientRegistrationViewController.h */,
 				6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */,
-				4677414116BDBCE9002FD4A5 /* FIUSearchPatientFingerPrintViewController.h */,
-				4677414216BDBCE9002FD4A5 /* FIUSearchPatientFingerPrintViewController.m */,
-				4677413E16BDBCD6002FD4A5 /* FIUSearchPatientNfcViewController.h */,
-				4677413F16BDBCD6002FD4A5 /* FIUSearchPatientNfcViewController.m */,
 				4677413816BDBA2F002FD4A5 /* FIUSearchPatientViewController.h */,
 				4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */,
 				EA3856A216C08BD200FA83FD /* CreateNewUserViewController.h */,
@@ -629,8 +619,6 @@
 				6D68B5E916BD9864003F895D /* FIUPatientRegistrationViewController.m in Sources */,
 				4677413A16BDBA2F002FD4A5 /* FIUSearchPatientViewController.m in Sources */,
 				4677413D16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m in Sources */,
-				4677414016BDBCD6002FD4A5 /* FIUSearchPatientNfcViewController.m in Sources */,
-				4677414316BDBCE9002FD4A5 /* FIUSearchPatientFingerPrintViewController.m in Sources */,
 				EAE6CDB516BE4683008949DC /* ASIAuthenticationDialog.m in Sources */,
 				EAE6CDB716BE4683008949DC /* ASIDataCompressor.m in Sources */,
 				EAE6CDB916BE4683008949DC /* ASIDataDecompressor.m in Sources */,
