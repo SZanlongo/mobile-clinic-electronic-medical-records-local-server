@@ -5,6 +5,7 @@
 //  Created by sebastian a zanlongo on 2/2/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
+
 #import "ServerCore.h"
 #import "FIULoginViewController.h"
 #import "CreateNewUserViewController.h"
@@ -71,7 +72,7 @@
 
         if (!error) {
             id navCtrl = [self getViewControllerFromiPadStoryboardWithName:@"mainNavigationController"];
-            
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
             [self presentViewController:navCtrl animated:YES completion:^{
                 
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeGreen Animation:AJLinedBackgroundTypeAnimated WithMessage:@"You Succesfully Logged In"];
@@ -102,5 +103,9 @@
             dvc.user = user;
         }
     }
+}
+
+-(void)LogOffDevice{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

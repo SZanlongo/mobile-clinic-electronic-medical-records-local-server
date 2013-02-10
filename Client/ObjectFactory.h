@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
+#import "BaseObjectProtocol.h"
 @interface ObjectFactory : NSObject
 +(id)createObjectForType:(NSDictionary*)data;
 @end

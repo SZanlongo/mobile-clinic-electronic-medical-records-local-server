@@ -26,7 +26,7 @@ FIUAppDelegate* appDelegate;
 #pragma mark -
 -(NSDictionary *)consolidateForTransmitting{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:4];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:5];
     [consolidate setValue:_errorMessage forKey:ERRORMSG];
     [consolidate setValue:_data forKey:DATA];
     [consolidate setValue:[NSNumber numberWithInt:_status] forKey:STATUS];

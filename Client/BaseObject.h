@@ -16,11 +16,11 @@
     * Its type can be found int he BaseObjectProtocol
     */
     ObjectResponse respondToEvent;
-    id tempObject;
 }
 
 @property(nonatomic, weak)      id client;
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;
+
 
 @end

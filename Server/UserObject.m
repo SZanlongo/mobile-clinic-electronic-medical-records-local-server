@@ -100,6 +100,7 @@
  */
 -(void)saveObject:(ObjectResponse)eventResponse
 {
+
     if (databaseObject){
  
         [super saveObject:^(id<BaseObjectProtocol> data, NSError* error) {
@@ -128,7 +129,9 @@
     
     return text;
 }
--(BOOL)CompleteServerSideValidation:(StatusObject*)status{
+
+-(BOOL)CompleteServerSideValidation:(StatusObject*)status
+{
     BOOL isValid = YES;
     [status setStatus:kSuccess];
     
@@ -171,7 +174,9 @@
     
     [status CommonExecution];
 }
--(BOOL)isValidEmail{
+
+-(BOOL)isValidEmail
+{
 
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
@@ -179,6 +184,7 @@
         return [emailTest evaluateWithObject:_email];
     
 }
+
 -(BOOL)isUsernameValid
 {
     // Username must be between 5 - 20 chars
@@ -192,13 +198,6 @@
 
 return YES;
 }
--(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key{
-    // Check if it exists in database
-    if ([self FindObjectInTable:DATABASE withName:obj forAttribute:key].count > 0) {
-        return NO;
-    }
-    return YES;
-}
 
 -(BOOL)isPasswordValid
 {
@@ -208,6 +207,15 @@ return YES;
     }
     // Check if contains any symbols
     if (![_username isAlphaNumeric]) {
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key
+{
+    // Check if it exists in database
+    if ([self FindObjectInTable:DATABASE withName:obj forAttribute:key].count > 0) {
         return NO;
     }
     return YES;
@@ -254,6 +262,7 @@ return YES;
         return;
     }
     
+    [self unpackageDatabaseFileForUser:user];
     // status will hold a copy of this user data
     [status setData:[self consolidateForTransmitting]];
     // Indicates that this was a success

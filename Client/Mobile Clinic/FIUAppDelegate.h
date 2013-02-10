@@ -5,6 +5,7 @@
 //  Created by Steven Berlanga on 2/2/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
+
 #define GLOBAL_STATUS_LISTENER @"listen for my message"
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
@@ -12,8 +13,9 @@
 #import "AJNotificationView.h"
 #import "RNBlurModalView.h"
 #import "UIViewControllerExt.h"
-@interface FIUAppDelegate : UIResponder <UIApplicationDelegate>
 
+
+@interface FIUAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) id<ServerProtocol> ServerManager;
 @property (strong, nonatomic) UIWindow *window;
@@ -24,8 +26,7 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
-
 +(AJNotificationView*)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString*)msg;
-
 +(AJNotificationView*)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString*)msg inView:(UIView*)view;
+
 @end

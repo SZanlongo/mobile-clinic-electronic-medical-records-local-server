@@ -9,21 +9,54 @@
 #import "FIUAppDelegate.h"
 #import "ServerCore.h"
 
-
 @implementation FIUAppDelegate
 @synthesize ServerManager;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
 +(AJNotificationView *)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString *)msg{
     UIView *topMostView = [[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0];
-    return [AJNotificationView showNoticeInView:topMostView type:color title:msg linedBackground:animate hideAfter:0];
+    return [AJNotificationView showNoticeInView:topMostView type:color title:msg linedBackground:animate hideAfter:10];
 }
+
 +(AJNotificationView *)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString *)msg inView:(UIView *)view{
-    return [AJNotificationView showNoticeInView:view type:color title:msg linedBackground:animate hideAfter:0];
+    return [AJNotificationView showNoticeInView:view type:color title:msg linedBackground:animate hideAfter:10];
 }
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    //////////////////////////////////
+//    //RIGO - FOR TESTING PURPOSES ONLY
+//    //MANUALLY ENTERS DATA INTO THE DATABASE
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    NSManagedObject *patientInfo = [NSEntityDescription
+//                                    insertNewObjectForEntityForName:@"Patients"
+//                                    inManagedObjectContext:context];
+//    [patientInfo setValue:@"Hernandez" forKey:@"family_name"];
+//    [patientInfo setValue:@"Rigo" forKey:@"firstname"];
+//    [patientInfo setValue:@"H" forKey:@"lastname"];
+//    [patientInfo setValue:[NSNumber numberWithInt:100] forKey:@"patient_id"];
+//    [patientInfo setValue:@"Miami" forKey:@"village_name"];
+//    [patientInfo setValue:[NSNumber numberWithInt:180] forKey:@"weight"];
+//    [patientInfo setValue:[NSNumber numberWithInt:32] forKey:@"age"];
+//    [patientInfo setValue:[NSNumber numberWithInt:1] forKey:@"sex"];
+//    [patientInfo setValue:[NSNumber numberWithBool:YES] forKey:@"status"];
+//    
+//    //    NSManagedObject *patientHistory = [NSEntityDescription
+//    //                                          insertNewObjectForEntityForName:@"PatientHistory"
+//    //                                          inManagedObjectContext:context];
+//    //
+//    //    [patientHistory setValue:@"test" forKey:@"condition"];
+//    //    [patientHistory setValue:[NSNumber numberWithInt:100] forKey:@"patient_id"];
+//    //    [patientHistory setValue:@"test" forKey:@"treatment"];
+//    //    [patientInfo setValue:patientHistory forKey:@"history"];
+//    
+//    [self saveContext];
+//    //RIGO - TEST END
+//    /////////////////
+    
+    
     // Override point for customization after application launch.
     ServerManager = [ServerCore sharedInstance];
     [ServerManager startClient];
@@ -114,9 +147,12 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Mobile_Clinic.sqlite"];
     
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     NSError *error = nil;
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -140,6 +176,7 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
+        
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }

@@ -38,10 +38,7 @@
 }
 
 -(void)CommonExecution{
-    if (self.status == kError) {
-        [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:_errorMessage];
-        return;
-    }
+
     switch (self.commands) {
         case kStatusClientWillRecieve:
             [self SendDataToTheWhoeverIsExpecting];
@@ -53,6 +50,6 @@
 }
 -(void)SendDataToTheWhoeverIsExpecting{
     NSLog(@"---Sending Notification---");
-    [[NSNotificationCenter defaultCenter]postNotificationName:GLOBAL_STATUS_LISTENER object:self];
+    [[NSNotificationCenter defaultCenter]postNotificationName:GLOBAL_STATUS_LISTENER object:self userInfo:_data];
 }
 @end

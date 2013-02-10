@@ -1,18 +1,18 @@
 //
-//  FIUSearchViewController.m
+//  Triage.m
 //  Mobile Clinic
 //
-//  Created by Steven Berlanga on 2/2/13.
+//  Created by Michael Montaque on 2/7/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "FIUSearchPatientViewController.h"
+#import "Triage.h"
 
-@interface FIUSearchPatientViewController ()
+@interface Triage ()
 
 @end
 
-@implementation FIUSearchPatientViewController
+@implementation Triage
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,8 +35,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-
-    [super viewDidUnload];
+- (IBAction)logout:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:LOGOFF object:nil];
 }
 @end
