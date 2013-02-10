@@ -24,8 +24,8 @@
 -(id)getValueForKey:(NSString *)key fromObject:(NSManagedObject*) obj;
 -(void)SaveCurrentObjectToDatabase;
 
-// ** DEPRECIATED ** //
--(NSArray*)getListFromTable:(NSString*)tableName sortByAttr:(NSString*)sortAttr;
+
+-(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSString *)predicateString andSortByAttribute:(NSString*)attribute;
 
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute;
 @end
