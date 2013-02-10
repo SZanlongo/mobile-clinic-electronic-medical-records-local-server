@@ -8,6 +8,9 @@
 
 #import "FIUSearchPatientViewController.h"
 
+@implementation FIUSearchPatientViewControllerCell
+@end
+
 //Global Variable Declarations
 FIUAppDelegate *appDelegate;
 NSMutableArray *patientResultsArray;
@@ -37,6 +40,15 @@ NSMutableArray *patientResultsArray;
     patientResultsArray = [[NSMutableArray alloc] init];
 }
 
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    // Responsible for dismissing the screen
+    handler = myHandler;
+}
+
+-(CGSize)contentSizeForViewInPopover{
+    return CGSizeMake(460, 600);
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -44,13 +56,9 @@ NSMutableArray *patientResultsArray;
 }
 
 - (void)viewDidUnload {
-    [self setPatientNameField:nil];
-    [self setPatientResultTableView:nil];
+
     [super viewDidUnload];
 }
-
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
 
 // Determines the number of rows that appear in the table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -61,18 +69,18 @@ NSMutableArray *patientResultsArray;
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"SearchCell";
+    FIUSearchPatientViewControllerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
+        cell = [[FIUSearchPatientViewControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     }
     
     NSManagedObject * obj = [patientResultsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [obj valueForKey:@"firstname"];
-    //    cell.textLabel.text = [obj valueForKey:@"family_name"];
-    cell.textLabel.text = [obj valueForKey:@"age"];
-    //    cell.textLabel.text = [obj valueForKey:@"sex"];
+    cell.PatientName.text = [obj valueForKey:@"firstname"];
+//    cell.textLabel.text = [obj valueForKey:@"family_name"];
+//    cell.textLabel.text = [obj valueForKey:@"age"];
+//    cell.textLabel.text = [obj valueForKey:@"sex"];
     
     return cell;
 }
@@ -83,11 +91,9 @@ NSMutableArray *patientResultsArray;
     return 1;
 }
 
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
 // Search manually by patient name
 - (IBAction)searchByNameButton:(id)sender {
+//    _patientData FindObjectInTable:<#(NSString *)#> withName:<#(id)#> forAttribute:<#(NSString *)#>
     
     NSError *error;
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
