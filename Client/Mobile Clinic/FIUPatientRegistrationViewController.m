@@ -8,6 +8,7 @@
 
 #import "FIUPatientRegistrationViewController.h"
 
+
 @interface FIUPatientRegistrationViewController ()
 
 @end
@@ -31,21 +32,15 @@
 
 //set up the camera source and view controller
 -(IBAction)patientPictureButton:(id)sender{
+    [facade TakePictureWithCompletion:^(id img) {
+        [patientPictureImage setImage:img];
+    }];
+   
     pCtrl = [[UIImagePickerController alloc] init];
     pCtrl.delegate = self;
     [pCtrl setSourceType:UIImagePickerControllerSourceTypeCamera];
     
     [self presentViewController:pCtrl animated:YES completion:nil];
-}
-
-- (IBAction)giveMedicineButton:(id)sender {
-    //before doing anything else, check that all of the fields have been completed
-    if(self.validateRegistration) {
-        UIStoryboard * mStory = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        
-        [[mStory instantiateViewControllerWithIdentifier:@"Register"] performSegueWithIdentifier:@"checkout" sender:self];
-        
-    }
 }
 
 - (IBAction)registerPatientButton:(id)sender {
@@ -87,6 +82,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _patient = [[PatientObject alloc]init];
+    facade = [[CameraFacade alloc]initWithView:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,6 +95,7 @@
     [self setPatientSexSegment:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)patientSexSegment:(id)sender {
 }
 
@@ -145,4 +142,5 @@
     
     return inputIsValid;
 }
+
 @end
