@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
+#import "CameraFacade.h"
 
 @interface FIUPatientRegistrationViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     UIImagePickerController *pCtrl;
     ScreenHandler handler;
+    CameraFacade *facade;
 }
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
@@ -25,7 +27,7 @@
 @property (strong, nonatomic) PatientObject *patient;
 
 - (IBAction)patientPictureButton:(id)sender;
-- (IBAction)giveMedicineButton:(id)sender;
+
 - (IBAction)registerPatientButton:(id)sender;
 
 - (BOOL)validateRegistration;
