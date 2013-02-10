@@ -77,10 +77,11 @@ NSMutableArray *patientResultsArray;
     }
     
     NSManagedObject * obj = [patientResultsArray objectAtIndex:indexPath.row];
-    cell.PatientName.text = [obj valueForKey:@"firstname"];
-//    cell.textLabel.text = [obj valueForKey:@"family_name"];
-//    cell.textLabel.text = [obj valueForKey:@"age"];
-//    cell.textLabel.text = [obj valueForKey:@"sex"];
+    
+    [_patientData unpackageDatabaseFileForUser:obj];
+
+    cell.PatientName.text =  _patientData.firstName;
+    [cell.PatientPic setImage:_patientData.picture];
     
     return cell;
 }
@@ -93,24 +94,11 @@ NSMutableArray *patientResultsArray;
 
 // Search manually by patient name
 - (IBAction)searchByNameButton:(id)sender {
-//    _patientData FindObjectInTable:<#(NSString *)#> withName:<#(id)#> forAttribute:<#(NSString *)#>
+ 
+    patientResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstname"]];
     
-    NSError *error;
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
-    [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-    [request setPredicate:[NSPredicate predicateWithFormat:
-                           @"(firstname contains[cd] %@) OR (family_name contains[cd] %@)", _patientNameField.text, _patientNameField.text]];
-    
-    patientResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
     [_patientResultTableView reloadData];
     
-    for(NSManagedObject *patients in patientResultsArray){
-        NSLog(@"Name: %@", [patients valueForKey:@"firstname"]);
-        NSLog(@"Age: %@", [patients valueForKey:@"age"]);
-        NSLog(@"Sex: %@", [patients valueForKey:@"sex"]);
-    }
 }
 
 - (IBAction)searchByNFCButton:(id)sender {

@@ -12,7 +12,7 @@
 #import "MBProgressHUD.h"
 #import "UIImage+ImageVerification.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "ALAssetsLibrary+CustomPhotoAlbum.h"
+
 
 //Block Method declaration
 typedef void (^TakePicture)(id img);

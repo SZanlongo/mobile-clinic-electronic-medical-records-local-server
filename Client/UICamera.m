@@ -92,8 +92,6 @@ BOOL isPhoto;
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                // Show image picker
-                [MBProgressHUD hideHUDForView:view.view animated:YES];
                 
                 if (!usePopover) {
                     [view presentModalViewController:imagePicker animated:YES];
@@ -179,6 +177,7 @@ camera(nil);
     }else {
         [view dismissModalViewControllerAnimated:YES];
     }
+
       //multithread to speed up saving
     dispatch_async(multiThread, ^{
         

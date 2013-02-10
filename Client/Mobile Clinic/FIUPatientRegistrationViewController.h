@@ -10,7 +10,7 @@
 #import "PatientObject.h"
 #import "CameraFacade.h"
 
-@interface FIUPatientRegistrationViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface FIUPatientRegistrationViewController : UIViewController {
     UIImagePickerController *pCtrl;
     ScreenHandler handler;
     CameraFacade *facade;

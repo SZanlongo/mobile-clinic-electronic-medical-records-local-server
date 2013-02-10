@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Patients" syncable="YES">
-        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="family_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="age" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="familyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="village_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="villageName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Treatment" syncable="YES">
         <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>

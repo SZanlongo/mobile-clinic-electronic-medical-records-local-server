@@ -49,6 +49,14 @@
 		EA3856AF16C0EA8000FA83FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CDF816BE496E008949DC /* CFNetwork.framework */; };
 		EA3856B016C0EA8C00FA83FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467740FC16BD931E002FD4A5 /* CoreGraphics.framework */; };
 		EA3856B116C0EA9200FA83FD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4677413316BD936F002FD4A5 /* CoreData.framework */; };
+		EA3F45D416C84CB80000AED9 /* UIImage+ImageVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3F45D316C84CB80000AED9 /* UIImage+ImageVerification.m */; };
+		EA3F45D516C84CB80000AED9 /* UIImage+ImageVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3F45D316C84CB80000AED9 /* UIImage+ImageVerification.m */; };
+		EA3F45D816C84D350000AED9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3F45D716C84D350000AED9 /* MBProgressHUD.m */; };
+		EA3F45D916C84D350000AED9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3F45D716C84D350000AED9 /* MBProgressHUD.m */; };
+		EA3F45DB16C84D6A0000AED9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */; };
+		EA8BB92B16C866E300A4BC6E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */; };
+		EA9AC88416C8606C00493485 /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9AC88316C8606C00493485 /* DataProcessor.m */; };
+		EA9AC88516C8606C00493485 /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9AC88316C8606C00493485 /* DataProcessor.m */; };
 		EA9C2F3B16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
 		EA9C2F3C16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
 		EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
@@ -162,6 +170,14 @@
 		EA3856A616C0E80D00FA83FD /* NSObject+CustomTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CustomTools.h"; sourceTree = "<group>"; };
 		EA3856A716C0E80D00FA83FD /* NSObject+CustomTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CustomTools.m"; sourceTree = "<group>"; };
 		EA3F45D016C7F3C80000AED9 /* ScreenNavigationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenNavigationDelegate.h; sourceTree = "<group>"; };
+		EA3F45D116C84C7B0000AED9 /* SCOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCOperationDelegate.h; sourceTree = "<group>"; };
+		EA3F45D216C84CB80000AED9 /* UIImage+ImageVerification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageVerification.h"; sourceTree = "<group>"; };
+		EA3F45D316C84CB80000AED9 /* UIImage+ImageVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageVerification.m"; sourceTree = "<group>"; };
+		EA3F45D616C84D350000AED9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EA3F45D716C84D350000AED9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EA9AC88216C8606C00493485 /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcessor.h; sourceTree = "<group>"; };
+		EA9AC88316C8606C00493485 /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcessor.m; sourceTree = "<group>"; };
 		EA9C2F3916BF624F000F38CD /* UIViewControllerExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerExt.h; sourceTree = "<group>"; };
 		EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerExt.m; sourceTree = "<group>"; };
 		EAA7AC2516C33D8700B3B911 /* PatientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObject.m; sourceTree = "<group>"; };
@@ -231,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3F45DB16C84D6A0000AED9 /* QuartzCore.framework in Frameworks */,
 				EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */,
 				EAE6CE0116BE4A60008949DC /* Security.framework in Frameworks */,
 				EAE6CDFF16BE4998008949DC /* libz.dylib in Frameworks */,
@@ -248,6 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8BB92B16C866E300A4BC6E /* QuartzCore.framework in Frameworks */,
 				EA3856B116C0EA9200FA83FD /* CoreData.framework in Frameworks */,
 				EA3856B016C0EA8C00FA83FD /* CoreGraphics.framework in Frameworks */,
 				EA3856AF16C0EA8000FA83FD /* CFNetwork.framework in Frameworks */,
@@ -298,11 +316,13 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				EA3F45D616C84D350000AED9 /* MBProgressHUD.h */,
+				EA3F45D716C84D350000AED9 /* MBProgressHUD.m */,
+				EA9AC88616C860D500493485 /* Interfaces */,
 				6D3A635916C8472D003B79F7 /* CameraFacade.h */,
 				6D3A635A16C8472D003B79F7 /* CameraFacade.m */,
 				6D3A635B16C8472D003B79F7 /* UICamera.h */,
 				6D3A635C16C8472D003B79F7 /* UICamera.m */,
-				EA3F45D016C7F3C80000AED9 /* ScreenNavigationDelegate.h */,
 				EA38569E16C0844C00FA83FD /* black-ui-kit.png */,
 				EA3856A016C089AF00FA83FD /* clearSearchBar.png */,
 				EA952F1816BEF1EC006A9AF9 /* Categories */,
@@ -330,6 +350,7 @@
 		467740F716BD931E002FD4A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */,
 				EACEB53B16BECEB700685AE8 /* Accelerate.framework */,
 				EAE6CE0016BE4A60008949DC /* Security.framework */,
 				EAE6CDFE16BE4998008949DC /* libz.dylib */,
@@ -395,6 +416,10 @@
 		EA952F1816BEF1EC006A9AF9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EA3F45D216C84CB80000AED9 /* UIImage+ImageVerification.h */,
+				EA3F45D316C84CB80000AED9 /* UIImage+ImageVerification.m */,
+				EA9AC88216C8606C00493485 /* DataProcessor.h */,
+				EA9AC88316C8606C00493485 /* DataProcessor.m */,
 				EA9C2F3916BF624F000F38CD /* UIViewControllerExt.h */,
 				EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */,
 				EAE6CE0416BE552B008949DC /* NSString+Validation.h */,
@@ -412,6 +437,15 @@
 				EAE6CDCE16BE46CC008949DC /* ServerWrapper.m */,
 			);
 			name = "Old Server Code (Do not delete though)";
+			sourceTree = "<group>";
+		};
+		EA9AC88616C860D500493485 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				EA3F45D116C84C7B0000AED9 /* SCOperationDelegate.h */,
+				EA3F45D016C7F3C80000AED9 /* ScreenNavigationDelegate.h */,
+			);
+			name = Interfaces;
 			sourceTree = "<group>";
 		};
 		EAE6CDC516BE468C008949DC /* HTTP API */ = {
@@ -666,6 +700,9 @@
 				6D32A39B16C840E1000CA89A /* FIUDiagnosisViewController.m in Sources */,
 				6D3A635D16C8472D003B79F7 /* CameraFacade.m in Sources */,
 				6D3A635F16C8472D003B79F7 /* UICamera.m in Sources */,
+				EA3F45D416C84CB80000AED9 /* UIImage+ImageVerification.m in Sources */,
+				EA3F45D816C84D350000AED9 /* MBProgressHUD.m in Sources */,
+				EA9AC88416C8606C00493485 /* DataProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +739,9 @@
 				EAA7AC2816C33D8700B3B911 /* PatientObject.m in Sources */,
 				6D3A635E16C8472D003B79F7 /* CameraFacade.m in Sources */,
 				6D3A636016C8472D003B79F7 /* UICamera.m in Sources */,
+				EA3F45D516C84CB80000AED9 /* UIImage+ImageVerification.m in Sources */,
+				EA3F45D916C84D350000AED9 /* MBProgressHUD.m in Sources */,
+				EA9AC88516C8606C00493485 /* DataProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,15 +32,17 @@
 
 //set up the camera source and view controller
 -(IBAction)patientPictureButton:(id)sender{
+    
+    //Added Indeterminate Loader
+   MBProgressHUD* progress = [MBProgressHUD showHUDAddedTo:[patientPictureImage.subviews objectAtIndex:0] animated:YES];
+    [progress setMode:MBProgressHUDModeIndeterminate];
+    
     [facade TakePictureWithCompletion:^(id img) {
         [patientPictureImage setImage:img];
+        [_patient setPicture:img];
+        [progress hide:YES];
     }];
-   
-    pCtrl = [[UIImagePickerController alloc] init];
-    pCtrl.delegate = self;
-    [pCtrl setSourceType:UIImagePickerControllerSourceTypeCamera];
-    
-    [self presentViewController:pCtrl animated:YES completion:nil];
+
 }
 
 - (IBAction)registerPatientButton:(id)sender {
@@ -52,21 +54,17 @@
         //_patient.age = patientAgeField.text;
         _patient.sex = patientSexSegment.selectedSegmentIndex;
         
-        handler(self, nil);
+        [_patient saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            if (error) {
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
+                 ];
+            }else{
+              handler(self, nil);  
+            }
+        }];
     }
 }
 
-//dismiss the controller and gui
--(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [patientPictureImage setImage:img];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-//cancel the camera
--(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,10 +79,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    _patient = [[PatientObject alloc]init];
     facade = [[CameraFacade alloc]initWithView:self];
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if (!_patient)
+        _patient = [[PatientObject alloc]init];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -120,16 +122,7 @@
     } else if([villageNameField.text isEqualToString:@""] || villageNameField.text == nil){
         errorMsg = @"Missing Village Name";
         inputIsValid = NO;
-    }else if ([patientWeightField.text isEqualToString:@""] || patientWeightField.text == nil){
-        errorMsg = @"Missing Patient Weight";
-        inputIsValid = NO;
-    }else if(![[NSScanner scannerWithString:patientWeightField.text] scanFloat:NULL]) {
-        errorMsg = @"Patient Weight is not Numeric";
-        inputIsValid = NO;
-    }else if([patientAgeField.text isEqualToString:@""] || patientAgeField.text == nil){
-        errorMsg = @"Missing Patient Age";
-        inputIsValid = NO;
-    } else if(![[NSScanner scannerWithString:patientAgeField.text] scanFloat:NULL]) {
+    }else if(![[NSScanner scannerWithString:patientAgeField.text] scanFloat:NULL]) {
         errorMsg = @"Patient Age is not Numeric";
         inputIsValid = NO;
     }
