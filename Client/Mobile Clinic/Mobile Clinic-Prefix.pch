@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>
 #define LOGOFF @"Log off"
     #import <CoreData/CoreData.h>
+    #import "FIUAppDelegate.h"
 #endif
