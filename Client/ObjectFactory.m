@@ -9,6 +9,7 @@
 #import "ObjectFactory.h"
 #import "UserObject.h"
 #import "StatusObject.h"
+#import "PatientObject.h"
 
 @implementation ObjectFactory
 
@@ -24,6 +25,8 @@
             return [[UserObject alloc]init];
         case kStatusType:
             return [[StatusObject alloc]init];
+        case kPatientType:
+            return [[PatientObject alloc]init];
         default:
             return nil;
     }

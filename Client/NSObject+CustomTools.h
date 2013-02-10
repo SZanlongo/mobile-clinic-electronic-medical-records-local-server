@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^ScreenHandler)(id object, NSError* error);
+
 @interface NSObject (CustomTools)
 -(NSError *)createErrorWithDescription:(NSString *)description andErrorCodeNumber:(int)code inDomain:(NSString*)domain;
 @end

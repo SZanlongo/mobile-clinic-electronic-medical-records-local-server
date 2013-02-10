@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PatientObject.h"
+@interface FIUSearchPatientNfcViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+    ScreenHandler handler;
+    NSArray* patientSearchResultsArray;
+}
 
-@interface FIUSearchPatientNfcViewController : UIViewController
+@property(nonatomic, strong)PatientObject* patientData;
+-(void)setScreenHandler:(ScreenHandler)myHandler;
+@end
 
+@interface FIUSearchPatientNfcViewControllerCell : UITableViewCell{
+
+}
+
+@property (weak, nonatomic) IBOutlet UILabel *PatientName;
+@property (weak, nonatomic) IBOutlet UIImageView *PatientPic;
+@property (weak, nonatomic) IBOutlet UILabel *dateLbl;
 @end
