@@ -38,4 +38,29 @@
 - (IBAction)logout:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:LOGOFF object:nil];
 }
+
+- (IBAction)CreateNewPatient:(id)sender {
+    
+    UIButton* button = sender;
+    
+    FIUPatientRegistrationViewController* vc = [self getViewControllerFromiPadStoryboardWithName:@"Registration"];
+    [vc setScreenHandler:^(id object, NSError *error) {
+        //Should check for when the error is true
+        [popover dismissPopoverAnimated:YES];
+        
+        // if there was no error and there is an object
+        // redisplay information
+        if (object) {
+            //Redisplay Method here
+        }
+    }];
+   // when creating a new patient, it needs to be nil
+    [vc setPatient:nil];
+    
+    popover = [[UIPopoverController alloc]initWithContentViewController:vc];
+    
+    [popover setDelegate:vc];
+    
+    [popover presentPopoverFromRect:button.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
 @end

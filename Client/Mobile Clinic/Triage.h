@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FIUPatientRegistrationViewController.h"
+@interface Triage : UIViewController{
+    UIPopoverController* popover;
 
-@interface Triage : UIViewController
+}
+@property(nonatomic, strong)PatientObject* patient;
 
 - (IBAction)logout:(id)sender;
+- (IBAction)CreateNewPatient:(id)sender;
 @end

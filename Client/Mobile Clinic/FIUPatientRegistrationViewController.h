@@ -10,10 +10,11 @@
 #import "PatientObject.h"
 #import "CameraFacade.h"
 
-@interface FIUPatientRegistrationViewController : UIViewController {
+@interface FIUPatientRegistrationViewController : UITableViewController<UIPopoverControllerDelegate> {
     UIImagePickerController *pCtrl;
     ScreenHandler handler;
     CameraFacade *facade;
+    BOOL shouldDismiss;
 }
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
@@ -31,6 +32,7 @@
 - (IBAction)registerPatientButton:(id)sender;
 
 - (BOOL)validateRegistration;
+- (IBAction)cancelRegistration:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)setHandler;
 

@@ -34,7 +34,7 @@
 -(IBAction)patientPictureButton:(id)sender{
     
     //Added Indeterminate Loader
-   MBProgressHUD* progress = [MBProgressHUD showHUDAddedTo:[patientPictureImage.subviews objectAtIndex:0] animated:YES];
+   MBProgressHUD* progress = [MBProgressHUD showHUDAddedTo:patientPictureImage.superview animated:YES];
     [progress setMode:MBProgressHUDModeIndeterminate];
     
     [facade TakePictureWithCompletion:^(id img) {
@@ -92,7 +92,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController{
+    return  shouldDismiss;
+}
 - (void)viewDidUnload {
     [self setPatientSexSegment:nil];
     [super viewDidUnload];
@@ -103,6 +105,7 @@
 
 -(void)setScreenHandler:(ScreenHandler)setHandler{
     handler = setHandler;
+    shouldDismiss = NO;
 }
 
 //checks the registration form for empty fields, or incorrect data (text in number field)
@@ -122,9 +125,6 @@
     } else if([villageNameField.text isEqualToString:@""] || villageNameField.text == nil){
         errorMsg = @"Missing Village Name";
         inputIsValid = NO;
-    }else if(![[NSScanner scannerWithString:patientAgeField.text] scanFloat:NULL]) {
-        errorMsg = @"Patient Age is not Numeric";
-        inputIsValid = NO;
     }
     
     //display error message on invlaid input
@@ -134,6 +134,11 @@
     }
     
     return inputIsValid;
+}
+
+- (IBAction)cancelRegistration:(id)sender {
+    shouldDismiss= YES;
+    handler(self, nil);
 }
 
 @end

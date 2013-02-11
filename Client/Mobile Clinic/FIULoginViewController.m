@@ -5,13 +5,15 @@
 //  Created by sebastian a zanlongo on 2/2/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
+#define USERNAME @"username"
+#define PASSWORD @"password"
 
 #import "ServerCore.h"
 #import "FIULoginViewController.h"
 #import "CreateNewUserViewController.h"
 #import "UserObject.h"
 
-
+NSUserDefaults* userDefaults;
 @interface FIULoginViewController ()
 
 @end
@@ -24,6 +26,7 @@
     if (self) {
         if (!user) {
             user = [[UserObject alloc]init];
+            userDefaults = [NSUserDefaults standardUserDefaults];
         }
     }
     return self;
@@ -40,11 +43,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    userDefaults = [NSUserDefaults standardUserDefaults];
 	// Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
     user = [[UserObject alloc]init];
+    
+    NSString* username = [userDefaults stringForKey:USERNAME];
+    NSString* password = [userDefaults stringForKey:PASSWORD];
+    
+    [_userNameField setText:username];
+    [_passwordField setText:password];
 
 }
 - (void)didReceiveMemoryWarning
@@ -72,7 +81,16 @@
 
         if (!error) {
             id navCtrl = [self getViewControllerFromiPadStoryboardWithName:@"mainNavigationController"];
+            
+            // LIstens for the logout button
             [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
+            
+            //Caches the Username & password for quick Login
+            [userDefaults setObject:user.username forKey:USERNAME];
+            [userDefaults setObject:user.password forKey:PASSWORD];
+            
+            [userDefaults synchronize];
+            // Shows the new screen
             [self presentViewController:navCtrl animated:YES completion:^{
                 
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeGreen Animation:AJLinedBackgroundTypeAnimated WithMessage:@"You Succesfully Logged In"];

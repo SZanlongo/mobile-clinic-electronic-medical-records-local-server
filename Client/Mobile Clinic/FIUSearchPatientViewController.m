@@ -12,9 +12,6 @@
 @end
 
 //Global Variable Declarations
-FIUAppDelegate *appDelegate;
-NSMutableArray *patientResultsArray;
-
 @interface FIUSearchPatientViewController ()
 
 @end
@@ -34,10 +31,7 @@ NSMutableArray *patientResultsArray;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    // Instantiate Global Variables
-    appDelegate = (FIUAppDelegate *)[[UIApplication sharedApplication] delegate];
-    patientResultsArray = [[NSMutableArray alloc] init];
+
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{
@@ -63,7 +57,7 @@ NSMutableArray *patientResultsArray;
 // Determines the number of rows that appear in the table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return patientResultsArray.count;
+    return patientSearchResultsArray.count;
 }
 
 //
@@ -76,7 +70,7 @@ NSMutableArray *patientResultsArray;
         cell = [[FIUSearchPatientViewControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     }
     
-    NSManagedObject * obj = [patientResultsArray objectAtIndex:indexPath.row];
+    NSManagedObject * obj = [patientSearchResultsArray objectAtIndex:indexPath.row];
     
     [_patientData unpackageDatabaseFileForUser:obj];
 
@@ -95,10 +89,13 @@ NSMutableArray *patientResultsArray;
 // Search manually by patient name
 - (IBAction)searchByNameButton:(id)sender {
  
-    patientResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstname"]];
+    patientSearchResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstname"]];
     
     [_patientResultTableView reloadData];
     
+    for (NSManagedObject* obj in patientSearchResultsArray) {
+        NSLog(@"Patients: %@",obj.description);
+    }
 }
 
 - (IBAction)searchByNFCButton:(id)sender {
