@@ -35,7 +35,7 @@ return self;
 
 
 
--(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute{
+-(NSArray*)FindObjectInTable:(NSString*)table withName:(NSString*)name forAttribute:(NSString*)attribute{
     
     NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
 
@@ -45,6 +45,11 @@ return self;
     
     [fetch setSortDescriptors:sortDescriptors];
     
+    
+    if (name.length > 3) {
+        NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",attribute,name];
+        [fetch setPredicate:pred];
+    }
     return [self fetchElementsUsingFetchRequest:fetch withTable:table];
 
 }

@@ -9,19 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
 
-@interface FIUSearchPatientViewController :  UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface FIUSearchPatientViewController :  UIViewController<UITableViewDataSource,UITableViewDelegate,UIPopoverControllerDelegate>{
     ScreenHandler handler;
     NSArray* patientSearchResultsArray;
+    BOOL shouldDismiss;
 }
 
 @property(nonatomic, strong)PatientObject * patientData;
--(void)setScreenHandler:(ScreenHandler) myHandler;
-
 @property (weak, nonatomic) IBOutlet UITextField *patientNameField;
+@property (weak, nonatomic) IBOutlet UITableView *patientResultTableView;
+
+
+-(void)setScreenHandler:(ScreenHandler) myHandler;
 - (IBAction)searchByNameButton:(id)sender;
 - (IBAction)searchByNFCButton:(id)sender;
 - (IBAction)searchByFingerprintButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UITableView *patientResultTableView;
+- (IBAction)cancelSearching:(id)sender;
+
 @end
 
 

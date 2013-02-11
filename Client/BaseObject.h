@@ -11,6 +11,7 @@
 #import "DatabaseDriver.h"
 #import "BaseObjectProtocol.h"
 #import "DataProcessor.h"
+#import "NSString+StringExt.h"
 @interface BaseObject : DatabaseDriver <BaseObjectProtocol>{
    /* This is a callback block variable 
     * Its type can be found int he BaseObjectProtocol

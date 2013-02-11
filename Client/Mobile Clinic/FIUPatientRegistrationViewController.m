@@ -25,7 +25,7 @@
         patientNameField = [[UITextField alloc] init];
         villageNameField = [[UITextField alloc] init];
         patientWeightField = [[UITextField alloc] init];
-        patientAgeField = [[UITextField alloc] init];
+        patientAgeField = [[UIButton alloc] init];
     }
     return self;
 }
@@ -38,8 +38,10 @@
     [progress setMode:MBProgressHUDModeIndeterminate];
     
     [facade TakePictureWithCompletion:^(id img) {
-        [patientPictureImage setImage:img];
-        [_patient setPicture:img];
+        if (img) {
+            [patientPictureImage setImage:img];
+            [_patient setPicture:img];
+        }
         [progress hide:YES];
     }];
 
@@ -53,13 +55,18 @@
         _patient.village = villageNameField.text;
         //_patient.age = patientAgeField.text;
         _patient.sex = patientSexSegment.selectedSegmentIndex;
-        
-        [_patient saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            if (error) {
+       
+        // Even if the user file is being edited this method will
+        // know the difference
+        [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
+            if (error)
+            {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
                  ];
-            }else{
-              handler(self, nil);  
+            }
+            else
+            {
+                handler(self, nil);
             }
         }];
     }
@@ -86,6 +93,9 @@
     
     if (!_patient)
         _patient = [[PatientObject alloc]init];
+    else{
+        [self Redisplay];
+    }
 }
 - (void)didReceiveMemoryWarning
 {
@@ -97,10 +107,20 @@
 }
 - (void)viewDidUnload {
     [self setPatientSexSegment:nil];
+    [self setSaveButton:nil];
     [super viewDidUnload];
 }
 
 - (IBAction)patientSexSegment:(id)sender {
+}
+-(void)Redisplay{
+    [patientNameField setText:_patient.firstName];
+    [patientPictureImage setImage:_patient.picture];
+    [familyNameField setText:_patient.familyName];
+    [villageNameField setText:_patient.village];
+    [patientSexSegment setSelectedSegmentIndex:_patient.sex];
+    NSString* age = [NSString stringWithFormat:@"%i Years Old",_patient.getAge];
+    [patientAgeField setTitle:age forState:UIControlStateNormal];
 }
 
 -(void)setScreenHandler:(ScreenHandler)setHandler{

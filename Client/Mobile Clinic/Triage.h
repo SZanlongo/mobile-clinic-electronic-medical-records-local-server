@@ -13,7 +13,14 @@
 
 }
 @property(nonatomic, strong)PatientObject* patient;
+@property (weak, nonatomic) IBOutlet UITextView *PatientSummary;
+@property (weak, nonatomic) IBOutlet UIImageView *patientPicture;
+@property (weak, nonatomic) IBOutlet UILabel *patientName;
+@property (weak, nonatomic) IBOutlet UISwitch *passportSwitch;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchPatientBtn;
 
 - (IBAction)logout:(id)sender;
 - (IBAction)CreateNewPatient:(id)sender;
+- (IBAction)searchForPatients:(id)sender;
+- (IBAction)EditPatientInfo:(id)sender;
 @end

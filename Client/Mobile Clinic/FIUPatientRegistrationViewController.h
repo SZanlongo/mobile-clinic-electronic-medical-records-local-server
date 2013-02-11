@@ -20,8 +20,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
 @property (strong, nonatomic) IBOutlet UITextField *villageNameField;
 @property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
-@property (strong, nonatomic) IBOutlet UITextField *patientAgeField;
+@property (strong, nonatomic) IBOutlet UIButton *patientAgeField;
 @property (strong, nonatomic) IBOutlet UIImageView *patientPictureImage;
+@property (weak, nonatomic) IBOutlet UIButton *SaveButton;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *patientSexSegment;
 

@@ -33,10 +33,18 @@
 	// Do any additional setup after loading the view.
 
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    if (!_patientData)
+        _patientData = [[PatientObject alloc]init];
+    
+}
 -(void)setScreenHandler:(ScreenHandler)myHandler{
     // Responsible for dismissing the screen
     handler = myHandler;
+    shouldDismiss = NO;
 }
 
 -(CGSize)contentSizeForViewInPopover{
@@ -85,16 +93,25 @@
 {
     return 1;
 }
-
+-(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController{
+    return shouldDismiss;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    shouldDismiss = YES;
+    // Gets the object at the corresponding index
+    NSManagedObject* obj = [patientSearchResultsArray objectAtIndex:indexPath.row];
+    // Unpackage the object for use
+    [_patientData unpackageDatabaseFileForUser:obj];
+    // Return object to main screen and dismiss view
+    handler(_patientData, nil);
+}
 // Search manually by patient name
 - (IBAction)searchByNameButton:(id)sender {
  
-    patientSearchResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstname"]];
-    
-    [_patientResultTableView reloadData];
-    
-    for (NSManagedObject* obj in patientSearchResultsArray) {
-        NSLog(@"Patients: %@",obj.description);
+    if (_patientNameField.text.isNotEmpty) {
+        patientSearchResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
+        
+        [_patientResultTableView reloadData];
     }
 }
 
@@ -102,5 +119,10 @@
 }
 
 - (IBAction)searchByFingerprintButton:(id)sender {
+}
+
+- (IBAction)cancelSearching:(id)sender {
+    shouldDismiss = YES;
+    handler(nil,nil);
 }
 @end
