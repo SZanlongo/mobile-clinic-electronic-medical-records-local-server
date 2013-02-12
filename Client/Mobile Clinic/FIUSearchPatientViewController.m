@@ -54,8 +54,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-    
+- (void)viewDidUnload{
     [super viewDidUnload];
 }
 
@@ -77,7 +76,8 @@
     NSManagedObject * obj = [patientSearchResultsArray objectAtIndex:indexPath.row];
     
     [_patientData unpackageDatabaseFileForUser:obj];
-    
+    //cell.PatientName.text = _patientData.firstName;
+    cell.PatientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.firstName, _patientData.familyName];
     cell.PatientName.text =  _patientData.firstName;
     [cell.PatientPic setImage:_patientData.picture];
     
@@ -110,8 +110,9 @@
 - (IBAction)searchByNameButton:(id)sender {
     
     if (_patientNameField.text.isNotEmpty) {
-        
-        patientSearchResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
+        // Gather results form firstName & familyName
+        NSMutableArray *firstNameArray = [NSMutableArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
+        NSMutableArray *lastNameArray = [NSMutableArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"familyName"]];
         
         // Merge both arrays
         NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[firstNameArray count] + [lastNameArray count]];

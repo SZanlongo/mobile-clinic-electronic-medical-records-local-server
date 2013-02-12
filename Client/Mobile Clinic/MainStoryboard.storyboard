@@ -1675,6 +1675,110 @@
         <image name="orant_logo.png" width="375" height="60"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
+    <classes>
+        <class className="CreateNewUserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewUserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelProcess:"/>
+                <relationship kind="action" name="createNewUser:"/>
+                <relationship kind="outlet" name="confirmPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="initialPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userType" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FIUDiagnosisViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUDiagnosisViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="checkoutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="diagnosisText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="familyNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientAgeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientPicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="symptomsText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="treatmentsText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="villageNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FIUFamilyMemberViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUFamilyMemberViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="patientSearchButton:"/>
+                <relationship kind="outlet" name="familyMembersTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="patientSearchField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientSearchTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FIULoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIULoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButton:"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="userNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FIUPatientRegistrationViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUPatientRegistrationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelRegistration:"/>
+                <relationship kind="action" name="patientPictureButton:"/>
+                <relationship kind="action" name="patientSexSegment:"/>
+                <relationship kind="action" name="registerPatientButton:"/>
+                <relationship kind="outlet" name="SaveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPictureImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FIUSearchPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelSearching:"/>
+                <relationship kind="action" name="searchByFingerprintButton:"/>
+                <relationship kind="action" name="searchByNFCButton:"/>
+                <relationship kind="action" name="searchByNameButton:"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientResultTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FIUSearchPatientViewControllerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIUSearchPatientViewControllerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="PatientName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PatientPic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="Triage" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Triage.h"/>
+            <relationships>
+                <relationship kind="action" name="CreateNewPatient:"/>
+                <relationship kind="action" name="EditPatientInfo:"/>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="action" name="searchForPatients:"/>
+                <relationship kind="outlet" name="PatientSummary" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="passportSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="patientName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientPicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="searchPatientBtn" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
