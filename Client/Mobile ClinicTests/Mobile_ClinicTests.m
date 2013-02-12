@@ -11,8 +11,11 @@
 #import "Mobile_ClinicTests.h"
 #import "UIViewControllerExt.h"
 #import "FIUPatientRegistrationViewController.h"
+#import "FIUSearchPatientViewController.h"
 
 FIUPatientRegistrationViewController *pReg;
+FIUSearchPatientViewController *search;
+
 @implementation Mobile_ClinicTests
 
 - (void)setUp
@@ -20,8 +23,10 @@ FIUPatientRegistrationViewController *pReg;
     [super setUp];
     loginScreen = [UIViewController getViewControllerFromiPadStoryboardWithName:LOGIN_SCREEN];
     pReg = [[FIUPatientRegistrationViewController alloc] init];
+    search = [[FIUSearchPatientViewController alloc]init];
     user = [[UserObject alloc]init];
     // Set-up code here.
+    
 }
 
 - (void)tearDown
@@ -61,7 +66,7 @@ FIUPatientRegistrationViewController *pReg;
 }
 
 
--(void)testValidateRegistration {
+-(void) testValidateRegistration {
     [self setUp];
     
     [pReg view];

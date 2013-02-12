@@ -29,6 +29,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -75,9 +76,9 @@
     NSManagedObject * obj = [patientSearchResultsArray objectAtIndex:indexPath.row];
     
     [_patientData unpackageDatabaseFileForUser:obj];
-    
     //cell.PatientName.text = _patientData.firstName;
     cell.PatientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.firstName, _patientData.familyName];
+    cell.PatientName.text =  _patientData.firstName;
     [cell.PatientPic setImage:_patientData.picture];
     
     return cell;
@@ -107,7 +108,7 @@
 
 // Search manually by patient name
 - (IBAction)searchByNameButton:(id)sender {
- 
+    
     if (_patientNameField.text.isNotEmpty) {
         // Gather results form firstName & familyName
         NSMutableArray *firstNameArray = [NSMutableArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
