@@ -63,6 +63,7 @@ FIUPatientRegistrationViewController *pReg;
 
 -(void)testValidateRegistration {
     [self setUp];
+    
     [pReg view];
     
     //all of this below checks for empty input
@@ -82,17 +83,9 @@ FIUPatientRegistrationViewController *pReg;
     STAssertFalse([pReg validateRegistration], @"patient weight is not a number");
     [pReg.patientWeightField setText:@"150"];
     
-    STAssertFalse([pReg validateRegistration], @"patient age empty");
-    [pReg.patientAgeField setText:@"age"];
-    
-    STAssertFalse([pReg validateRegistration], @"patient age is not a number");
-    [pReg.patientAgeField setText:@"50"];
-    
     //check that all of the above tests completed successfuly, and that we return true
     STAssertTrue([pReg validateRegistration], @"validate registration works");
-    
-    
-    
+
     [self tearDown];
 }
 

@@ -89,6 +89,8 @@
         [fiu setPatient:_patient];
         [[fiu SaveButton]setTitle:@"Save" forState:UIControlStateNormal];
         [self setupView:fiu ForPopoverByButton:sender hasController:vc];
+    }else{
+        [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:@"Please find and select a patient first" inView:self.view];
     }
 }
 
