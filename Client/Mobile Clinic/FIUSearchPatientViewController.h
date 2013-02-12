@@ -14,24 +14,19 @@
     NSArray* patientSearchResultsArray;
     BOOL shouldDismiss;
 }
-
-@property(nonatomic, strong)PatientObject * patientData;
+@property (nonatomic, strong) PatientObject *patientData;
 @property (weak, nonatomic) IBOutlet UITextField *patientNameField;
 @property (weak, nonatomic) IBOutlet UITableView *patientResultTableView;
 
-
--(void)setScreenHandler:(ScreenHandler) myHandler;
+- (void)setScreenHandler:(ScreenHandler) myHandler;
 - (IBAction)searchByNameButton:(id)sender;
 - (IBAction)searchByNFCButton:(id)sender;
 - (IBAction)searchByFingerprintButton:(id)sender;
 - (IBAction)cancelSearching:(id)sender;
-
 @end
-
 
 @interface FIUSearchPatientViewControllerCell : UITableViewCell{
 }
-
 @property (weak, nonatomic) IBOutlet UILabel *PatientName;
 @property (weak, nonatomic) IBOutlet UIImageView *PatientPic;
 @property (weak, nonatomic) IBOutlet UILabel *dateLbl;
