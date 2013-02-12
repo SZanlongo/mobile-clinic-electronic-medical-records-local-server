@@ -11,4 +11,6 @@
 @protocol ScreenNavigationDelegate <NSObject>
 
 typedef void(^ScreenHandler)(id object, NSError* error);
+
+-(void)setScreenHandler:(ScreenHandler)myHandler;
 @end

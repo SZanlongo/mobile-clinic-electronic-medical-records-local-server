@@ -12,6 +12,12 @@
 
 @implementation BaseObject
 
+-(id)init{
+    if (self = [super init]) {
+       
+    }
+    return self;
+}
 
 -(NSDictionary *)consolidateForTransmitting{
     /* Setup some of variables that are common to all the 

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
+#import "ScreenNavigationDelegate.h"
 
-@interface FIUSearchPatientViewController :  UIViewController<UITableViewDataSource,UITableViewDelegate,UIPopoverControllerDelegate>{
+@interface FIUSearchPatientViewController :  UIViewController<UITableViewDataSource,UITableViewDelegate,UIPopoverControllerDelegate,ScreenNavigationDelegate>{
     ScreenHandler handler;
     NSArray* patientSearchResultsArray;
     BOOL shouldDismiss;

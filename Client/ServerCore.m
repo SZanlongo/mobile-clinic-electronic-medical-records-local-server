@@ -71,6 +71,7 @@
                moreComing:(BOOL)moreServicesComing
 {
 	NSLog(@"DidRemoveService: %@", [netService name]);
+    
 }
 
 - (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)sender
@@ -81,6 +82,7 @@
 - (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict
 {
 	NSLog(@"DidNotResolve");
+    [self startClient];
 }
 
 - (void)netServiceDidResolveAddress:(NSNetService *)sender
@@ -161,6 +163,7 @@
     
     
 }
+
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
     NSLog(@"Server did accept data %i",data.length);
     
@@ -180,9 +183,10 @@
         NSLog(@"Write Error in Log: Recieved No data");
     }
 }
+
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
     NSLog(@"Completed Writing");
-    [asyncSocket readDataWithTimeout:-1 tag:tag];
+    [asyncSocket readDataWithTimeout:7 tag:tag];
 }
 
 -(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data{
