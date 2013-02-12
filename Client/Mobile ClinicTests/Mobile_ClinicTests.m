@@ -89,8 +89,17 @@ FIUSearchPatientViewController *search;
     [pReg.patientWeightField setText:@"150"];
     
     //check that all of the above tests completed successfuly, and that we return true
-    STAssertTrue([pReg validateRegistration], @"validate registration works");
+    STAssertTrue([pReg validateRegistration], @"validate registration works");      
+    
+    [self tearDown];
+}
 
+-(void) testPatientSearch {
+    [self setUp];
+    
+    [search.patientNameField setText:@"sebastian"];
+    
+    
     [self tearDown];
 }
 
