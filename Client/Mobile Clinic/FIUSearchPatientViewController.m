@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -58,7 +58,7 @@
 }
 
 - (void)viewDidUnload {
-
+    
     [super viewDidUnload];
 }
 
@@ -81,7 +81,7 @@
     NSManagedObject * obj = [patientSearchResultsArray objectAtIndex:indexPath.row];
     
     [_patientData unpackageDatabaseFileForUser:obj];
-
+    
     cell.PatientName.text =  _patientData.firstName;
     [cell.PatientPic setImage:_patientData.picture];
     
@@ -107,8 +107,9 @@
 }
 // Search manually by patient name
 - (IBAction)searchByNameButton:(id)sender {
- 
+    
     if (_patientNameField.text.isNotEmpty) {
+        
         patientSearchResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
         
         [_patientResultTableView reloadData];
