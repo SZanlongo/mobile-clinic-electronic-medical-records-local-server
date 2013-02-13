@@ -11,11 +11,21 @@
 @implementation FIUSearchPatientViewControllerCell
 @end
 
-//Global Variable Declarations
 @interface FIUSearchPatientViewController ()
 @end
 
 @implementation FIUSearchPatientViewController
+
+/*
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _patientNameField = [[UITextField alloc] init];
+    }
+    return self;
+}
+ */
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,7 +70,7 @@
 
 // Determines the number of rows that appear in the table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return patientSearchResultsArray.count;
+    return _patientSearchResultsArray.count;
 }
 
 // Specifes contents of each cell
@@ -73,7 +83,7 @@
         cell = [[FIUSearchPatientViewControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     }
     
-    NSManagedObject * obj = [patientSearchResultsArray objectAtIndex:indexPath.row];
+    NSManagedObject * obj = [_patientSearchResultsArray objectAtIndex:indexPath.row];
     
     [_patientData unpackageDatabaseFileForUser:obj];
     //cell.PatientName.text = _patientData.firstName;
@@ -97,7 +107,7 @@
     shouldDismiss = YES;
     
     // Gets the object at the corresponding index
-    NSManagedObject* obj = [patientSearchResultsArray objectAtIndex:indexPath.row];
+    NSManagedObject* obj = [_patientSearchResultsArray objectAtIndex:indexPath.row];
     
     // Unpackage the object for use
     [_patientData unpackageDatabaseFileForUser:obj];
@@ -110,18 +120,27 @@
 - (IBAction)searchByNameButton:(id)sender {
     
     if (_patientNameField.text.isNotEmpty) {
-        // Gather results form firstName & familyName
-        NSMutableArray *firstNameArray = [NSMutableArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
-        NSMutableArray *lastNameArray = [NSMutableArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"familyName"]];
+        // Gather results from firstName only
+        // patientSearchResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
         
-        // Merge both arrays
-        NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[firstNameArray count] + [lastNameArray count]];
-        [tempArray addObjectsFromArray:firstNameArray];
-        [tempArray addObjectsFromArray:lastNameArray];
-        patientSearchResultsArray = (NSArray *)tempArray;
+        // Gather results from firstName & familyName
+        NSMutableOrderedSet *firstNameArray = [NSMutableOrderedSet orderedSetWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
+        NSMutableOrderedSet *lastNameArray = [NSMutableOrderedSet orderedSetWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"familyName"]];
         
-        // Need to sort new results
-        // ----------------------//
+        // Sort & union both arrays
+        [firstNameArray unionOrderedSet:lastNameArray];
+        [firstNameArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+
+            NSManagedObject *first = obj1;
+            NSManagedObject *second = obj2;
+            
+            NSString *name1 = [first valueForKey:@"firstName"];
+            NSString *name2 = [second valueForKey:@"firstName"];
+            
+            return [name1 compare:name2];
+        }];
+        
+        _patientSearchResultsArray = [NSArray arrayWithArray:firstNameArray.array];
         
         // Display as cells in table view
         [_patientResultTableView reloadData];
@@ -138,15 +157,4 @@
     shouldDismiss = YES;
     handler(nil,nil);
 }
-
-    //TESTING
-
-
-
-
-
-
-
-
-
 @end
