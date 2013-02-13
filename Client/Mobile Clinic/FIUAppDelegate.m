@@ -41,29 +41,17 @@
 //    NSManagedObjectContext *context = [self managedObjectContext];
 //    
 //    /*
-//    // Create an entry into DB
-//    NSManagedObject *patientInfo = [NSEntityDescription insertNewObjectForEntityForName:@"Patients" inManagedObjectContext:context];
-//
-//    [patientInfo setValue:[NSNumber numberWithInt:32] forKey:@"age"];
-//    [patientInfo setValue:@"Hernandez" forKey:@"family_name"];
-//    [patientInfo setValue:@"Rigo" forKey:@"firstname"];
-//    [patientInfo setValue:@"male" forKey:@"sex"];
-//    [patientInfo setValue:[NSNumber numberWithBool:YES] forKey:@"status"];
-//    [patientInfo setValue:@"Miami" forKey:@"village_name"];
-//     */
-//    
-//    /*
 //    // Delete all entries in the Core Data table (ex. Patients)
 //    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
 //    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-//    
+//
 //    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
-//    
-//    for (NSManagedObject *entries in currentRecords) {
-//        [context deleteObject:entries];
+//     
+//    for(NSManagedObject *entries in currentRecords) {
+//    [context deleteObject:entries];
 //    }
 //    */
-//     
+//    
 //    // Print (to NSLog) content of table (ex. Patients)
 //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 //    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
@@ -71,14 +59,13 @@
 //    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
 //    
 //    for (NSManagedObject *info in fetchedObjects) {
-//        NSLog(@"Name: %@ %@", [info valueForKey:@"firstname"], [info valueForKey:@"family_name"]);
+//        NSLog(@"Name: %@ %@", [info valueForKey:@"firstName"], [info valueForKey:@"familyName"]);
 //        NSLog(@"Age: %@", [info valueForKey:@"age"]);
 //        NSLog(@"Sex: %@", [info valueForKey:@"sex"]);
-//        NSLog(@"Village Name: %@", [info valueForKey:@"village_name"]);
+//        NSLog(@"Village Name: %@", [info valueForKey:@"villageName"]);
 //    }
 //    
 //    [self saveContext];
-//    //RIGO - TEST END
     
     // Override point for customization after application launch.
     ServerManager = [ServerCore sharedInstance];

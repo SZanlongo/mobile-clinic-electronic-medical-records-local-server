@@ -11,8 +11,11 @@
 #import "Mobile_ClinicTests.h"
 #import "UIViewControllerExt.h"
 #import "FIUPatientRegistrationViewController.h"
+#import "FIUSearchPatientViewController.h"
 
 FIUPatientRegistrationViewController *pReg;
+FIUSearchPatientViewController *search;
+
 @implementation Mobile_ClinicTests
 
 - (void)setUp
@@ -20,8 +23,10 @@ FIUPatientRegistrationViewController *pReg;
     [super setUp];
     loginScreen = [UIViewController getViewControllerFromiPadStoryboardWithName:LOGIN_SCREEN];
     pReg = [[FIUPatientRegistrationViewController alloc] init];
+    search = [[FIUSearchPatientViewController alloc]init];
     user = [[UserObject alloc]init];
     // Set-up code here.
+    
 }
 
 - (void)tearDown
@@ -61,8 +66,9 @@ FIUPatientRegistrationViewController *pReg;
 }
 
 
--(void)testValidateRegistration {
+-(void) testValidateRegistration {
     [self setUp];
+    
     [pReg view];
     
     //all of this below checks for empty input
@@ -82,15 +88,16 @@ FIUPatientRegistrationViewController *pReg;
     STAssertFalse([pReg validateRegistration], @"patient weight is not a number");
     [pReg.patientWeightField setText:@"150"];
     
-    STAssertFalse([pReg validateRegistration], @"patient age empty");
-    [pReg.patientAgeField setText:@"age"];
-    
-    STAssertFalse([pReg validateRegistration], @"patient age is not a number");
-    [pReg.patientAgeField setText:@"50"];
-    
     //check that all of the above tests completed successfuly, and that we return true
-    STAssertTrue([pReg validateRegistration], @"validate registration works");
+    STAssertTrue([pReg validateRegistration], @"validate registration works");      
     
+    [self tearDown];
+}
+
+-(void) testPatientSearch {
+    [self setUp];
+    
+    [search.patientNameField setText:@"sebastian"];
     
     
     [self tearDown];

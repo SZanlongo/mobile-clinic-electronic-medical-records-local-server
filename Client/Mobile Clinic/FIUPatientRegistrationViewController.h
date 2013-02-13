@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
 #import "CameraFacade.h"
-
-@interface FIUPatientRegistrationViewController : UITableViewController<UIPopoverControllerDelegate> {
+#import "ScreenNavigationDelegate.h"
+@interface FIUPatientRegistrationViewController : UITableViewController<UIPopoverControllerDelegate,ScreenNavigationDelegate> {
     UIImagePickerController *pCtrl;
     ScreenHandler handler;
     CameraFacade *facade;
@@ -35,6 +35,6 @@
 - (BOOL)validateRegistration;
 - (IBAction)cancelRegistration:(id)sender;
 
-- (void)setScreenHandler:(ScreenHandler)setHandler;
+- (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end

@@ -40,6 +40,12 @@
 		6D68B5E916BD9864003F895D /* FIUPatientRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */; };
 		EA1EE19B16C8877F00E263D2 /* NSString+StringExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */; };
 		EA1EE19C16C8877F00E263D2 /* NSString+StringExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */; };
+		EA1EE19F16C982DB00E263D2 /* DateController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19E16C982DB00E263D2 /* DateController.m */; };
+		EA1EE1A016C982DB00E263D2 /* DateController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19E16C982DB00E263D2 /* DateController.m */; };
+		EA1EE1A316C9B7C300E263D2 /* VisitationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */; };
+		EA1EE1A416C9B7C300E263D2 /* VisitationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */; };
+		EA1EE1A716C9BAEF00E263D2 /* PatientVisitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */; };
+		EA1EE1A816C9BAEF00E263D2 /* PatientVisitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */; };
 		EA38569F16C0844C00FA83FD /* black-ui-kit.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38569E16C0844C00FA83FD /* black-ui-kit.png */; };
 		EA3856A116C089AF00FA83FD /* clearSearchBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3856A016C089AF00FA83FD /* clearSearchBar.png */; };
 		EA3856A416C08BD200FA83FD /* CreateNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3856A316C08BD200FA83FD /* CreateNewUserViewController.m */; };
@@ -174,6 +180,12 @@
 		6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUPatientRegistrationViewController.m; sourceTree = "<group>"; };
 		EA1EE19916C8877F00E263D2 /* NSString+StringExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringExt.h"; sourceTree = "<group>"; };
 		EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringExt.m"; sourceTree = "<group>"; };
+		EA1EE19D16C982DB00E263D2 /* DateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateController.h; sourceTree = "<group>"; };
+		EA1EE19E16C982DB00E263D2 /* DateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateController.m; sourceTree = "<group>"; };
+		EA1EE1A116C9B7C300E263D2 /* VisitationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitationObject.h; sourceTree = "<group>"; };
+		EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitationObject.m; sourceTree = "<group>"; };
+		EA1EE1A516C9BAEF00E263D2 /* PatientVisitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientVisitation.h; sourceTree = "<group>"; };
+		EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientVisitation.m; sourceTree = "<group>"; };
 		EA38569E16C0844C00FA83FD /* black-ui-kit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-ui-kit.png"; sourceTree = "<group>"; };
 		EA3856A016C089AF00FA83FD /* clearSearchBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearSearchBar.png; sourceTree = "<group>"; };
 		EA3856A216C08BD200FA83FD /* CreateNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewUserViewController.h; sourceTree = "<group>"; };
@@ -312,6 +324,10 @@
 				4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */,
 				EAA7AC2916C3882C00B3B911 /* Triage.h */,
 				EAA7AC2A16C3882C00B3B911 /* Triage.m */,
+				EA1EE19D16C982DB00E263D2 /* DateController.h */,
+				EA1EE19E16C982DB00E263D2 /* DateController.m */,
+				EA1EE1A516C9BAEF00E263D2 /* PatientVisitation.h */,
+				EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -556,6 +572,8 @@
 				EAE6CDD916BE46CC008949DC /* UserObject.m */,
 				EAA7AC2616C33D8700B3B911 /* PatientObject.h */,
 				EAA7AC2516C33D8700B3B911 /* PatientObject.m */,
+				EA1EE1A116C9B7C300E263D2 /* VisitationObject.h */,
+				EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -764,6 +782,9 @@
 				EA3F45D816C84D350000AED9 /* MBProgressHUD.m in Sources */,
 				EA9AC88416C8606C00493485 /* DataProcessor.m in Sources */,
 				EA1EE19B16C8877F00E263D2 /* NSString+StringExt.m in Sources */,
+				EA1EE19F16C982DB00E263D2 /* DateController.m in Sources */,
+				EA1EE1A316C9B7C300E263D2 /* VisitationObject.m in Sources */,
+				EA1EE1A716C9BAEF00E263D2 /* PatientVisitation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +825,9 @@
 				EA3F45D916C84D350000AED9 /* MBProgressHUD.m in Sources */,
 				EA9AC88516C8606C00493485 /* DataProcessor.m in Sources */,
 				EA1EE19C16C8877F00E263D2 /* NSString+StringExt.m in Sources */,
+				EA1EE1A016C982DB00E263D2 /* DateController.m in Sources */,
+				EA1EE1A416C9B7C300E263D2 /* VisitationObject.m in Sources */,
+				EA1EE1A816C9BAEF00E263D2 /* PatientVisitation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

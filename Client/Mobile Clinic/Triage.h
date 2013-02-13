@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FIUPatientRegistrationViewController.h"
+#import "ScreenNavigationDelegate.h"
 @interface Triage : UIViewController{
     UIPopoverController* popover;
 
@@ -23,4 +24,5 @@
 - (IBAction)CreateNewPatient:(id)sender;
 - (IBAction)searchForPatients:(id)sender;
 - (IBAction)EditPatientInfo:(id)sender;
+- (IBAction)commitPatient:(id)sender;
 @end

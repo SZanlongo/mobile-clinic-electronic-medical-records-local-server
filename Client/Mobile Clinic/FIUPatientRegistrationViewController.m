@@ -7,7 +7,7 @@
 //
 
 #import "FIUPatientRegistrationViewController.h"
-
+#import "DateController.h"
 
 @interface FIUPatientRegistrationViewController ()
 
@@ -29,7 +29,25 @@
     }
     return self;
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    id vc = segue.destinationViewController;
+    
+    if ([vc isKindOfClass:[DateController class]]) {
+        DateController* dvc = vc;
+        
+        [dvc view];
+        
+        [dvc setScreenHandler:^(id object, NSError *error) {
+            // This method will return the age
+            if (object) {
+                _patient.dob = object;
+                [patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
+            }
+         [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
+}
 //set up the camera source and view controller
 -(IBAction)patientPictureButton:(id)sender{
     
@@ -87,15 +105,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     facade = [[CameraFacade alloc]initWithView:self];
-}
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
     if (!_patient)
         _patient = [[PatientObject alloc]init];
     else{
         [self Redisplay];
     }
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -123,8 +142,8 @@
     [patientAgeField setTitle:age forState:UIControlStateNormal];
 }
 
--(void)setScreenHandler:(ScreenHandler)setHandler{
-    handler = setHandler;
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
     shouldDismiss = NO;
 }
 

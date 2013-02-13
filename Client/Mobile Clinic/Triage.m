@@ -55,29 +55,27 @@
 
 - (IBAction)CreateNewPatient:(id)sender {
     
-    FIUPatientRegistrationViewController* vc = [self getViewControllerFromiPadStoryboardWithName:@"Registration"];
-    
-    [vc setScreenHandler:^(id object, NSError *error) {
+    UINavigationController* vc = [self getViewControllerFromiPadStoryboardWithName:@"Registration"];
+    FIUPatientRegistrationViewController* fiu = vc.viewControllers.lastObject;
+    [fiu setScreenHandler:^(id object, NSError *error) {
         //Should check for when the error is true
         [popover dismissPopoverAnimated:YES];
         
         // if there was no error and there is an object
-        // redisplay information
-        if (object) {
-            //Redisplay Method here
-        }
+
     }];
    // when creating a new patient, it needs to be nil
-    [vc setPatient:nil];
+    [fiu setPatient:nil];
     
-        [self setupView:vc ForPopoverByButton:sender];
+        [self setupView:fiu ForPopoverByButton:sender hasController:vc];
 }
 
 - (IBAction)EditPatientInfo:(id)sender {
     if (_patient) {
-        FIUPatientRegistrationViewController* vc = [self getViewControllerFromiPadStoryboardWithName:@"Registration"];
+        UINavigationController* vc = [self getViewControllerFromiPadStoryboardWithName:@"Registration"];
+        FIUPatientRegistrationViewController* fiu = vc.viewControllers.lastObject;
         
-        [vc setScreenHandler:^(id object, NSError *error) {
+        [fiu setScreenHandler:^(id object, NSError *error) {
             //Should check for when the error is true
             [popover dismissPopoverAnimated:YES];
             
@@ -88,10 +86,32 @@
             }
         }];
         
-        [vc setPatient:_patient];
-        [[vc SaveButton]setTitle:@"Save" forState:UIControlStateNormal];
-        [self setupView:vc ForPopoverByButton:sender];
+        [fiu setPatient:_patient];
+        [[fiu SaveButton]setTitle:@"Save" forState:UIControlStateNormal];
+        [self setupView:fiu ForPopoverByButton:sender hasController:vc];
+    }else{
+        [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:@"Please find and select a patient first" inView:self.view];
     }
+}
+
+- (IBAction)commitPatient:(id)sender {
+    
+    UINavigationController* vc = [self getViewControllerFromiPadStoryboardWithName:@"Visitation"];
+    
+    UIViewController<ScreenNavigationDelegate,UIPopoverControllerDelegate>* fiu = vc.viewControllers.lastObject;
+    
+    [fiu setScreenHandler:^(id object, NSError *error) {
+        //Should check for when the error is true
+        [popover dismissPopoverAnimated:YES];
+        
+        // if there was no error and there is an object
+        // redisplay information
+        if (object) {
+            //Redisplay Method here
+        }
+    }];
+    
+    [self setupView:fiu ForPopoverByButton:sender hasController:vc];
 }
 
 - (IBAction)searchForPatients:(id)sender {
@@ -111,13 +131,20 @@
         }
     }];
     
-    [self setupView:vc ForPopoverByButton:sender];
+    [self setupView:vc ForPopoverByButton:sender hasController:nil];
 }
 
--(void)setupView:(UIViewController<UIPopoverControllerDelegate>*)vc ForPopoverByButton:(id)btn{
+-(void)setupView:(UIViewController<UIPopoverControllerDelegate>*)vc ForPopoverByButton:(id)btn hasController:(id)controller{
     
+    id ctrl;
     
-    popover = [[UIPopoverController alloc]initWithContentViewController:vc];
+    if (controller) {
+        ctrl = controller;
+    }else{
+        ctrl = vc;
+    }
+    
+    popover = [[UIPopoverController alloc]initWithContentViewController:ctrl];
     
     [popover setDelegate:vc];
     
