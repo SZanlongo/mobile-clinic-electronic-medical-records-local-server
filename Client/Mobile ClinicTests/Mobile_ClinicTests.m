@@ -68,6 +68,7 @@ FIUSearchPatientViewController *search;
 
 -(void) testValidateRegistration {
     [self setUp];
+    
     [pReg view];
     
     //all of this below checks for empty input

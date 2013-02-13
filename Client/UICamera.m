@@ -65,7 +65,8 @@ BOOL isPhoto;
 
 -(void)initiateVideo{
     //check for working camera
-    if ([self checkCameraStatus]) {
+    if ([self checkCameraStatus])
+    {
         
 
         isPhoto=NO;
@@ -103,6 +104,9 @@ BOOL isPhoto;
                 }
             });
         });
+    }
+    else {
+        camera(nil);
     }
     
 }
@@ -142,6 +146,8 @@ BOOL isPhoto;
                 }
             });
         });
+    }else {
+        camera(nil);
     }
 }
 
