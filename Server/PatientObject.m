@@ -78,7 +78,7 @@
             [self CreateANewPatient:nil];
             break;
         case kUpdatePatient:
-            [self UpdateANewPatient];
+            [self UpdateANewPatient: nil];
             break;
         case kLogoutUser:
             

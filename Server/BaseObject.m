@@ -68,7 +68,7 @@
 
 -(void)queryWithPartialURL:(NSString *)partialURL parameters: (NSDictionary *)param completion:(void(^)(NSError *error, NSDictionary *result)) completion
 {
-    [[NSApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+//    [[NSApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
     
     NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@%@", kURL, partialURL]];
     NSData *data;
@@ -100,7 +100,7 @@
         completion(error, nil);
     }];
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+//    [[NSApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
     
 }
 
