@@ -24,6 +24,8 @@ typedef enum {
     kLogoutUser     = 2,
     kStatusClientWillRecieve     = 3,
     kStatusServerWillRecieve     = 4,
+    kCreateNewPatient            = 5,
+    kUpdatePatient               = 6,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>

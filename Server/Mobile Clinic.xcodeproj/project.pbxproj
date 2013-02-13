@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		463294A216C9B97B00C57DCE /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 463294A116C9B97B00C57DCE /* PatientObject.m */; };
+		463294A516C9BB3400C57DCE /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 463294A416C9BB3400C57DCE /* Patient.m */; };
 		EA172D3616B50A9C00F00C61 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3516B50A9C00F00C61 /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA172D3716B50A9C00F00C61 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3516B50A9C00F00C61 /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA172D3C16B56AEE00F00C61 /* ServerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3B16B56AEE00F00C61 /* ServerWrapper.m */; };
@@ -77,6 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		463294A016C9B97B00C57DCE /* PatientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObject.h; sourceTree = "<group>"; };
+		463294A116C9B97B00C57DCE /* PatientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObject.m; sourceTree = "<group>"; };
+		463294A316C9BB3400C57DCE /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
+		463294A416C9BB3400C57DCE /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		EA172D3416B50A9C00F00C61 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		EA172D3516B50A9C00F00C61 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		EA172D3A16B56AEE00F00C61 /* ServerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerWrapper.h; sourceTree = "<group>"; };
@@ -293,6 +299,8 @@
 				EA8D860616B0C9C000256495 /* Mobile_Clinic.xcdatamodeld */,
 				EAA7AC2216C31B6400B3B911 /* Users.h */,
 				EAA7AC2316C31B6400B3B911 /* Users.m */,
+				463294A316C9BB3400C57DCE /* Patient.h */,
+				463294A416C9BB3400C57DCE /* Patient.m */,
 				EA8D85F516B0C9BF00256495 /* Supporting Files */,
 			);
 			path = "Mobile Clinic";
@@ -368,6 +376,8 @@
 				EA172D5B16B60A6B00F00C61 /* UserObject.m */,
 				EA172D7816B6371D00F00C61 /* StatusObject.h */,
 				EA172D7916B6371D00F00C61 /* StatusObject.m */,
+				463294A016C9B97B00C57DCE /* PatientObject.h */,
+				463294A116C9B97B00C57DCE /* PatientObject.m */,
 			);
 			name = "Object Types (USE THESE ONLY)";
 			sourceTree = "<group>";
@@ -553,6 +563,8 @@
 				EA9372AB16BC6D6300D3D617 /* DatabaseDriver.m in Sources */,
 				EAE6CD9F16BE29B9008949DC /* NSString+Validation.m in Sources */,
 				EAA7AC2416C31B6400B3B911 /* Users.m in Sources */,
+				463294A216C9B97B00C57DCE /* PatientObject.m in Sources */,
+				463294A516C9BB3400C57DCE /* Patient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
