@@ -80,14 +80,7 @@ FIUSearchPatientViewController *search;
     
     STAssertFalse([pReg validateRegistration], @"village name empty");
     [pReg.villageNameField setText:@"village"];
-    
-    STAssertFalse([pReg validateRegistration], @"patient weight empty");
-    [pReg.patientWeightField setText:@"weight"];
-    
-    //now that the weight and age are non null, check that they are numbers
-    STAssertFalse([pReg validateRegistration], @"patient weight is not a number");
-    [pReg.patientWeightField setText:@"150"];
-    
+        
     //check that all of the above tests completed successfuly, and that we return true
     STAssertTrue([pReg validateRegistration], @"validate registration works");      
     
@@ -98,9 +91,15 @@ FIUSearchPatientViewController *search;
     [self setUp];
     
     [search.patientNameField setText:@"sebastian"];
+    [search searchByNameButton:nil];
     
+    NSManagedObject * obj = [search.patientSearchResultsArray objectAtIndex:0];
+    
+    [search.patientData unpackageDatabaseFileForUser:obj];
+    NSString *patientName = search.patientData.firstName;
+    
+    STAssertEquals(search.patientNameField, patientName, @"Search results are not related to initial search");
     
     [self tearDown];
 }
-
 @end

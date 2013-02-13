@@ -28,6 +28,9 @@
 		4677413716BD9386002FD4A5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4677413516BD9386002FD4A5 /* Model.xcdatamodeld */; };
 		4677413A16BDBA2F002FD4A5 /* FIUSearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */; };
 		4677413D16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */; };
+		46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E773D416CB0BFB00242454 /* libTestFlight.a */; };
+		46E773D916CB0BFB00242454 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D516CB0BFB00242454 /* README.md */; };
+		46E773DA16CB0BFB00242454 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D616CB0BFB00242454 /* release_notes.md */; };
 		6D32A39B16C840E1000CA89A /* FIUDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D32A39A16C840E1000CA89A /* FIUDiagnosisViewController.m */; };
 		6D3A635D16C8472D003B79F7 /* CameraFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635A16C8472D003B79F7 /* CameraFacade.m */; };
 		6D3A635E16C8472D003B79F7 /* CameraFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635A16C8472D003B79F7 /* CameraFacade.m */; };
@@ -161,6 +164,10 @@
 		4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUSearchPatientViewController.m; sourceTree = "<group>"; };
 		4677413B16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUFamilyMemberViewController.h; sourceTree = "<group>"; };
 		4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUFamilyMemberViewController.m; sourceTree = "<group>"; };
+		46E773D416CB0BFB00242454 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		46E773D516CB0BFB00242454 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		46E773D616CB0BFB00242454 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		46E773D716CB0BFB00242454 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		6D32A39916C840E1000CA89A /* FIUDiagnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUDiagnosisViewController.h; sourceTree = "<group>"; };
 		6D32A39A16C840E1000CA89A /* FIUDiagnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUDiagnosisViewController.m; sourceTree = "<group>"; };
 		6D3A635916C8472D003B79F7 /* CameraFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFacade.h; sourceTree = "<group>"; };
@@ -263,10 +270,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE6CDFF16BE4998008949DC /* libz.dylib in Frameworks */,
 				EA3F45DB16C84D6A0000AED9 /* QuartzCore.framework in Frameworks */,
 				EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */,
 				EAE6CE0116BE4A60008949DC /* Security.framework in Frameworks */,
-				EAE6CDFF16BE4998008949DC /* libz.dylib in Frameworks */,
 				EAE6CDFD16BE4989008949DC /* SystemConfiguration.framework in Frameworks */,
 				EAE6CDFB16BE4981008949DC /* MobileCoreServices.framework in Frameworks */,
 				EAE6CDF916BE496E008949DC /* CFNetwork.framework in Frameworks */,
@@ -274,6 +281,7 @@
 				467740F916BD931E002FD4A5 /* UIKit.framework in Frameworks */,
 				467740FB16BD931E002FD4A5 /* Foundation.framework in Frameworks */,
 				467740FD16BD931E002FD4A5 /* CoreGraphics.framework in Frameworks */,
+				46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +344,7 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				46E773D316CB0BFB00242454 /* TestFlightSDK1.1 */,
 				EA8BB92E16C8798600A4BC6E /* HUD */,
 				EA9AC88616C860D500493485 /* Interfaces */,
 				EA8BB92C16C8794200A4BC6E /* Camera API */,
@@ -384,6 +393,7 @@
 		467740FE16BD931E002FD4A5 /* Mobile Clinic */ = {
 			isa = PBXGroup;
 			children = (
+				46E773C716CAF9E800242454 /* API */,
 				4614288616BF7EE600802410 /* Resources */,
 				4614288516BF7EDB00802410 /* Controllers */,
 				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
@@ -426,6 +436,24 @@
 				4677412516BD931E002FD4A5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46E773C716CAF9E800242454 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		46E773D316CB0BFB00242454 /* TestFlightSDK1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				46E773D416CB0BFB00242454 /* libTestFlight.a */,
+				46E773D516CB0BFB00242454 /* README.md */,
+				46E773D616CB0BFB00242454 /* release_notes.md */,
+				46E773D716CB0BFB00242454 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.1;
 			sourceTree = "<group>";
 		};
 		EA8BB92C16C8794200A4BC6E /* Camera API */ = {
@@ -677,6 +705,8 @@
 				4614288A16BF7F2900802410 /* userImage.jpeg in Resources */,
 				EA38569F16C0844C00FA83FD /* black-ui-kit.png in Resources */,
 				EA3856A116C089AF00FA83FD /* clearSearchBar.png in Resources */,
+				46E773D916CB0BFB00242454 /* README.md in Resources */,
+				46E773DA16CB0BFB00242454 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +926,10 @@
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -905,10 +939,15 @@
 		4677412F16BD931E002FD4A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

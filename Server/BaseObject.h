@@ -21,4 +21,7 @@
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;
 
+-(id)init;
+-(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion;
+
 @end

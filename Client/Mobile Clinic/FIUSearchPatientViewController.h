@@ -12,11 +12,11 @@
 
 @interface FIUSearchPatientViewController :  UIViewController<UITableViewDataSource,UITableViewDelegate,UIPopoverControllerDelegate,ScreenNavigationDelegate>{
     ScreenHandler handler;
-    NSArray* patientSearchResultsArray;
     BOOL shouldDismiss;
 }
+@property (nonatomic, strong) NSArray* patientSearchResultsArray;
 @property (nonatomic, strong) PatientObject *patientData;
-@property (weak, nonatomic) IBOutlet UITextField *patientNameField;
+@property (strong, nonatomic) IBOutlet UITextField *patientNameField;
 @property (weak, nonatomic) IBOutlet UITableView *patientResultTableView;
 
 - (void)setScreenHandler:(ScreenHandler) myHandler;
