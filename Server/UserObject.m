@@ -155,6 +155,43 @@
     return isValid;
 }
 
+-(BOOL)isValidEmail
+{
+    
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:_email];
+    
+}
+
+-(BOOL)isUsernameValid
+{
+    // Username must be between 5 - 20 chars
+    if (_username.length < 5 || _username.length > 20) {
+        return NO;
+    }
+    // Check if contains any symbols
+    if (![_username isAlphaNumeric]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)isPasswordValid
+{
+    // Username must be between 5 - 20 chars
+    if (_password.length < 5 || _password.length > 20) {
+        return NO;
+    }
+    // Check if contains any symbols
+    if (![_username isAlphaNumeric]) {
+        return NO;
+    }
+    return YES;
+}
+
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler
 {
     // Find and return object if it exists
@@ -171,45 +208,7 @@
         [self saveObject:nil];
         [status setErrorMessage:@"Your profile has been created. Contact your Application Administrator for approval"];
     }
-    
     [status CommonExecution];
-}
-
--(BOOL)isValidEmail
-{
-
-        NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
-        NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-        
-        return [emailTest evaluateWithObject:_email];
-    
-}
-
--(BOOL)isUsernameValid
-{
-    // Username must be between 5 - 20 chars
-    if (_username.length < 5 || _username.length > 20) {
-        return NO;
-    }
-    // Check if contains any symbols
-    if (![_username isAlphaNumeric]) {
-        return NO;
-    }
-
-return YES;
-}
-
--(BOOL)isPasswordValid
-{
-    // Username must be between 5 - 20 chars
-    if (_password.length < 5 || _password.length > 20) {
-        return NO;
-    }
-    // Check if contains any symbols
-    if (![_username isAlphaNumeric]) {
-        return NO;
-    }
-    return YES;
 }
 
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key

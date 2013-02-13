@@ -124,6 +124,9 @@ NSUserDefaults* userDefaults;
 }
 
 -(void)LogOffDevice{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        // Stops listening
+        [[NSNotificationCenter defaultCenter]removeObserver:self];
+    }];
 }
 @end
