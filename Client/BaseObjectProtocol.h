@@ -16,6 +16,8 @@ typedef enum {
     kUserType       = 1,
     kStatusType     = 2,
     kPatientType    = 3,
+    kVisitationType = 4,
+    kPharmacyType   = 5,
 }ObjectTypes;
 
 /* These are all the commands the server and client will understand */
