@@ -14,113 +14,91 @@ FIUAppDelegate* appDelegate;
 -(id)init{
     if (self = [super init]) {
         appDelegate = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
-        self.objID = [[NSManagedObjectID alloc]init];
     }
 return self;
 }
 
--(void)addObjectToDatabaseObject:(id)obj forKey:(NSString*)key{
-    [databaseObject setValue:obj forKey:key];
-}
--(id)getValueForKey:(NSString *)key{
+
+-(id)getValueForKey:(NSString *)key FromObject:(NSManagedObject*)databaseObject{
    return [databaseObject valueForKey:key];
 }
--(BOOL)doesDatabaseObjectExists{
-    if (databaseObject) {
-        return YES;
-    }
-    return NO;
+
+
+-(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:appDelegate.managedObjectContext];
+   
+   return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
+
 }
 
--(BOOL)FindDataBaseObjectWithID{
-    
-    if (self.objID && !databaseObject) {
-        databaseObject = [appDelegate.managedObjectContext objectWithID:self.objID];
-    }
-    return  [self doesDatabaseObjectExists];
+-(void)SaveCurrentObjectToDatabase:(NSManagedObject*)databaseObject{
+    [appDelegate saveAction:nil];
+    [appDelegate.managedObjectContext refreshObject:databaseObject mergeChanges:YES];
 }
 
--(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute{
+
+-(NSArray*)FindObjectInTable:(NSString*)table withName:(NSString*)name forAttribute:(NSString*)attribute{
     
-    NSManagedObjectContext* ctx = appDelegate.managedObjectContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:table inManagedObjectContext:ctx];
-    
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:10];
-    
-    //Narrows down list to classes in current semester
-    if (name && attribute.length >0) {
-        NSPredicate *sort = [NSPredicate predicateWithFormat:@"%K == %@",attribute, name];
-        [fetchRequest setPredicate:sort];
-    }
-    
-    // Edit the sort key as appropriate.
+    NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:attribute ascending:YES];
+    
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetch setSortDescriptors:sortDescriptors];
     
-	NSError *error = nil;
     
-    NSArray* array = [ctx executeFetchRequest:fetchRequest error:&error];
-    
-    if (!error) {
-        return array;
+    if (name.length > 3) {
+        NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",attribute,name];
+        [fetch setPredicate:pred];
     }
-    //Address Error
+    return [self fetchElementsUsingFetchRequest:fetch withTable:table];
+    
+}
+
+-(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSString *)predicateString andSortByAttribute:(NSString*)attribute{
+    
+    
+    if (predicateString.length > 0) {
+        
+        NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:attribute ascending:YES];
+        
+        NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+        
+        [fetch setSortDescriptors:sortDescriptors];
+        
+        NSPredicate *sort = [NSPredicate predicateWithFormat:predicateString];
+        
+        [fetch setPredicate:sort];
+        
+        return [self fetchElementsUsingFetchRequest:fetch withTable:table];
+    }
     return nil;
 }
 
--(BOOL)CreateANewObjectFromClass:(NSString *)name{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:appDelegate.managedObjectContext];
-    databaseObject =[[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
-    self.objID = databaseObject.objectID;
-    return [self doesDatabaseObjectExists];
-}
 
--(void)SaveCurrentObjectToDatabase{
-    [appDelegate saveAction:nil];
-    [appDelegate.managedObjectContext refreshObject:databaseObject mergeChanges:YES];
-    self.objID = databaseObject.objectID;
-}
-
-
-
--(NSArray*)getListFromTable:(NSString*)tableName sortByAttr:(NSString*)sortAttr
-{
+-(NSArray*)fetchElementsUsingFetchRequest:(NSFetchRequest*)request withTable:(NSString*)tableName{
+    
     NSManagedObjectContext* ctx = appDelegate.managedObjectContext;
     
     if (ctx) {
         NSEntityDescription* semesterEntity = [NSEntityDescription entityForName:tableName inManagedObjectContext: ctx];
         
-        NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
-        [fetch setEntity:semesterEntity];
-        [fetch setFetchBatchSize:15];
+        [request setEntity:semesterEntity];
         
-        //Creates a method to sort information
-        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortAttr ascending:NO];
-        NSArray* sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-        
-        [fetch setSortDescriptors:sortDescriptors];
+        [request setFetchBatchSize:15];
         
         NSError *error  = nil;
-        NSArray*  temp = [NSArray arrayWithArray: [ctx executeFetchRequest:fetch error:&error]];
+        
+        NSArray*  temp = [NSArray arrayWithArray: [ctx executeFetchRequest:request error:&error]];
         
         if (error) {
-            NSLog(@"ERROR: DATAMODEL COULD NOT FETCH %@ MANAGE OBJECT",tableName);
+            NSLog(@"ERROR: DATAMODEL COULD NOT FETCH");
             return nil;
         }
-        
-        NSLog(@"Number of items from table %@: %li",tableName,temp.count);
-        
         return temp;
-
     }
     return nil;
 }

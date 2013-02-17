@@ -8,19 +8,15 @@
 #define OBJECTID          @"objectId"
 #import <Foundation/Foundation.h>
 
-@interface DatabaseDriver : NSObject {
-    NSManagedObject* databaseObject;
-}
-
-@property(nonatomic, strong) NSManagedObjectID* objID;
-
+@interface DatabaseDriver : NSObject
 
 -(id)init;
--(BOOL)FindDataBaseObjectWithID;
--(void)addObjectToDatabaseObject:(id)obj forKey:(NSString*)key;
--(id)getValueForKey:(NSString*)key;
--(BOOL)CreateANewObjectFromClass:(NSString *)name;
--(void)SaveCurrentObjectToDatabase;
--(NSArray*)getListFromTable:(NSString*)tableName sortByAttr:(NSString*)sortAttr;
+
+-(id)getValueForKey:(NSString *)key FromObject:(NSManagedObject*)databaseObject;
+-(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name;
+-(void)SaveCurrentObjectToDatabase:(NSManagedObject*)databaseObject;
+
+-(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSString *)predicateString andSortByAttribute:(NSString*)attribute;
+
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute;
 @end

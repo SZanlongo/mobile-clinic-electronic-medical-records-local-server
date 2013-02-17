@@ -8,16 +8,15 @@
 
 #define SAVE_USER @"savedUser"
 #import <Foundation/Foundation.h>
+
 #import "BaseObject.h"
+#import "VisitationObject.h"
+#import "Patients.h"
+@interface PatientObject : BaseObject
 
-@interface PatientObject : BaseObject<BaseObjectProtocol>
+//----> 0 = Female, 1 = Male <---//
+@property(nonatomic, strong)        Patients* patient;
+@property(nonatomic, strong)        NSMutableArray* visits;
 
-@property(nonatomic, weak)      NSString* firstName;
-@property(nonatomic, weak)      NSString* lastName;
-@property(nonatomic, weak)      NSString* villiage;
-@property(nonatomic, weak)      NSNumber* age;
-@property(nonatomic, weak)      NSNumber* weight;
-@property(nonatomic, weak)      NSNumber* sex;
-@property(nonatomic, assign)    BOOL      status;
-
+-(void)addVisitToPatient:(VisitationObject*)visit;
 @end

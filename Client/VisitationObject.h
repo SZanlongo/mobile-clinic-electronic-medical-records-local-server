@@ -12,6 +12,7 @@
 
 @property(weak,nonatomic)NSDate* checkInTime;
 @property(weak,nonatomic)NSDate* checkOutTime;
+@property(weak,nonatomic)NSString* visitationId;
 @property(weak,nonatomic)NSString* diagnosisNotes;
 @property(weak,nonatomic)NSString* diagnosisTitle;
 @property(weak,nonatomic)NSString* complaint;

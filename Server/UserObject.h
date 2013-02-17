@@ -9,7 +9,7 @@
 #define SAVE_USER @"savedUser"
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
-
+#import "Users.h"
 typedef enum {
     kTriageNurse    = 0,
     kDoctor         = 1,
@@ -22,6 +22,7 @@ typedef enum {
 
 @interface UserObject : BaseObject<BaseObjectProtocol>
 
+@property(nonatomic, strong)      Users* user;
 @property(nonatomic, weak)      NSString* lastname;
 @property(nonatomic, weak)      NSString* firstname;
 @property(nonatomic, weak)      NSString* email;
@@ -31,4 +32,6 @@ typedef enum {
 @property(nonatomic, assign)    UserTypes type;
 
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
+
+-(BOOL)loadUserWithUsername:(NSString*)usersName;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "BaseObject.h"
-#define MAX_NUMBER_ITEMS 10
+#define MAX_NUMBER_ITEMS 4
 #import "StatusObject.h"
 
 @interface BaseObject()
@@ -27,32 +27,27 @@
     return self;
 }
 
--(NSDictionary *)consolidateForTransmitting{
+-(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
- 
+    
+    [consolidate setValue:[object dictionaryWithValuesForKeys:object.entity.attributeKeys] forKey:DATABASEOBJECT];
     return consolidate;
 }
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
-    self.objID = [data objectForKey:OBJECTID];
-    self.objectType = [[data objectForKey:OBJECTTYPE]intValue];
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
 }
 
 -(NSString *)description{
-    NSString* text = [NSString stringWithFormat:@"\nObjectType: %i\nObject ID: %@",self.objectType,self.objID.description];
+    NSString* text = [NSString stringWithFormat:@"\nObjectType: %i",self.objectType];
     return text;
 }
 
 -(void)saveObject:(ObjectResponse)eventResponse{
     //Do not save the objectID, That is automatically saved and generated
     eventResponse(self, nil);
-    [self SaveCurrentObjectToDatabase];
 }
--(void)unpackageDatabaseFileForUser:(NSManagedObject *)object{
-    databaseObject = object;
-    self.objID = databaseObject.objectID;
-}
+
 -(void)CommonExecution{
     
 }

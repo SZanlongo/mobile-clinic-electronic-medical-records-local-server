@@ -9,19 +9,21 @@
 #import "PatientObject.h"
 
 
-#define STATUS      @"status"
-#define LASTNAME    @"lastname"
-#define FIRSTNAME   @"firstname"
+#define FIRSTNAME   @"firstName"
+#define FAMILYNAME  @"familyName"
+#define VILLAGE     @"villageName"
+#define HEIGHT      @"height"
 #define SEX         @"sex"
-#define WEIGHT      @"weight"
-#define AGE         @"age"
-#define VILLIAGE    @"villiage" //The different user types (look at enum)
+#define DOB         @"age"
+#define PICTURE     @"photo"
+#define VISITS      @"visits"
+#define PATIENTID   @"patientId"
 #define DATABASE    @"Patients"
 
-#import "Patient.h"
+
 #import "StatusObject.h"
 #import "NSString+Validation.h"
-
+#import "Patients.h"
 @implementation PatientObject
 
 
@@ -29,45 +31,21 @@
 #pragma mark -
 
 /* The super needs to be called first */
--(NSDictionary *)consolidateForTransmitting{
+-(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
-    
-    [consolidate setValue:_firstName forKey:FIRSTNAME];
-    [consolidate setValue:_lastName forKey:LASTNAME];
-    [consolidate setValue:_villiage forKey:VILLIAGE];
-    [consolidate setValue:_sex forKey:SEX];
-    [consolidate setValue:_weight  forKey:WEIGHT];
-    [consolidate setValue:[NSNumber numberWithBool:_status] forKey:STATUS];
-    [consolidate setValue:_age forKey:AGE];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
 
-    
+    [consolidate setValue:[self packagedVisits] forKey:VISITS];
+    [consolidate setValue:[NSNumber numberWithInt:kPatientType] forKey:OBJECTTYPE];
     return consolidate;
 }
-/* The super needs to be called first */
+
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
+    [_patient setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
     
-    _lastName = [data objectForKey:LASTNAME];
-    _firstName = [data objectForKey:FIRSTNAME];
-    _villiage = [data objectForKey:VILLIAGE];
-    _sex = [NSNumber numberWithInt:[[data objectForKey:SEX]intValue]];
-    _weight = [NSNumber numberWithInt:[[data objectForKey:WEIGHT]intValue]];
-    _age = [NSNumber numberWithInt:[[data objectForKey:AGE]intValue]];
-    _status = [[data objectForKey:STATUS]boolValue];
-    self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
-}
-/* The super needs to be called first */
--(void)unpackageDatabaseFileForUser:(NSManagedObject *)object{
-    [super unpackageDatabaseFileForUser:object];
-
-    _lastName = [self getValueForKey:LASTNAME];
-    _firstName = [self getValueForKey:FIRSTNAME];
-    _villiage = [self getValueForKey:VILLIAGE];
-    _sex = [NSNumber numberWithInt:[[self getValueForKey:SEX]intValue]];
-    _weight = [NSNumber numberWithInt:[[self getValueForKey:WEIGHT]intValue]];
-    _age = [NSNumber numberWithInt:[[self getValueForKey:AGE]intValue]];
-    _status = [[self getValueForKey:STATUS]intValue];
+   // [self unpackageVisits:[data objectForKey:VISITS]];
+    
 }
 
 /* Depending on the RemoteCommands it will execute a different Command */
@@ -79,9 +57,6 @@
             break;
         case kUpdatePatient:
             [self UpdateANewPatient: nil];
-            break;
-        case kLogoutUser:
-            
             break;
         default:
             break;
@@ -97,20 +72,15 @@
  */
 -(void)saveObject:(ObjectResponse)eventResponse
 {
-    
-    if (databaseObject){
+    if (_patient){
         
-        [super saveObject:^(id<BaseObjectProtocol> data, NSError* error) {
-            [self addObjectToDatabaseObject:_firstName forKey:FIRSTNAME];
-            [self addObjectToDatabaseObject:_lastName forKey:LASTNAME];
-            [self addObjectToDatabaseObject:_villiage forKey:VILLIAGE];
-            [self addObjectToDatabaseObject:_sex forKey:SEX];
-            [self addObjectToDatabaseObject:_weight forKey:WEIGHT];
-            [self addObjectToDatabaseObject:[NSNumber numberWithBool:_status] forKey:STATUS];
-            [self addObjectToDatabaseObject:_age forKey:AGE];
-        }];
+        [self SaveCurrentObjectToDatabase:_patient];
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:SAVE_USER object:self];
+        if (eventResponse)
+            eventResponse(self, nil);
+    }else{
+        //        if (eventResponse)
+        //            eventResponse(self, nil);
     }
 }
 
@@ -119,8 +89,8 @@
 
 -(NSString *)description
 {
-    NSString* text = [NSString stringWithFormat:@"\nFirst Name: %@ \nLast Name: %@ \nVillage %@\nObjectType: %i\nSex: %@ \nWeight: %@ \nAge %@\n",_firstName,_lastName,_villiage, self.objectType, _sex,_weight,_age];
-    return text;
+   
+   
 }
 
 
@@ -128,17 +98,20 @@
 {
     // Find and return object if it exists
     StatusObject* status = [[StatusObject alloc]init];
+    
     // Need to set client so it can go the correct device
     [status setClient:self.client];
+
+    // Create new Patient database object
+    [self CreateANewObjectFromClass:DATABASE];
     
-    // Run Complete validation on the information given
-    // if there is an error it will be stored in the status var
-        if (![self FindDataBaseObjectWithID]){
-            [self CreateANewObjectFromClass:DATABASE];
-        }
-        [self saveObject:nil];
-        [status setErrorMessage:@"Patient has been created."];
+    // Save internal information to the patient object
+    [self saveObject:nil];
     
+    // Create message
+    [status setErrorMessage:@"Patient has been created."];
+    
+    // send status back to requested client
     [status CommonExecution];
 }
 
@@ -156,20 +129,46 @@
 {
     // Find and return object if it exists
     StatusObject* status = [[StatusObject alloc]init];
+    
     // Need to set client so it can go the correct device
     [status setClient:self.client];
-    
-    // Run Complete validation on the information given
-    // if there is an error it will be stored in the status var
-    if (![self FindDataBaseObjectWithID]){
-        [self CreateANewObjectFromClass:DATABASE];
+
+    if (_patient) {
+        [self saveObject:nil];
+        [status setStatus:kSuccess];
+        [status setErrorMessage:@"Patient has been updated."];
+    }else{
+        [status setStatus:kError];
+        [status setErrorMessage:@"Patient doesnt exist"];
     }
-    [self saveObject:nil];
-    [status setErrorMessage:@"Patient has been updated."];
+    
     
     [status CommonExecution];
 
     
+}
+-(void)addVisitToPatient:(Visitation *)visit{
+    [_patient addVisitationObject:visit];
+}
+-(NSMutableArray*)packagedVisits{
+    NSMutableArray* completeVisits = [[NSMutableArray alloc]initWithCapacity:_visits.count];
+//    for (VisitationObject* visit in _visits) {
+//        [completeVisits addObject:[visit consolidateForTransmitting]];
+//    }
+    return completeVisits;
+}
+// Used to unpack all the visits
+-(NSArray*)unpackageVisits:(NSArray*)packagedVists
+{
+    if (!_visits) {
+        _visits = [[NSMutableArray alloc]initWithCapacity:packagedVists.count];
+    }
+    
+    for (NSDictionary* visitInformation in packagedVists) {
+        VisitationObject* visit = [[VisitationObject alloc]initWithVisit:visitInformation];
+        [_visits addObject:visit];
+    }
+    return _visits;
 }
 
 @end

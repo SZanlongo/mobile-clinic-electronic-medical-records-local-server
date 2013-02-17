@@ -1,24 +1,25 @@
 //
-//  Users.m
+//  Patients.m
 //  Mobile Clinic
 //
 //  Created by Michael Montaque on 2/17/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
-#import "Users.h"
 #import "Patients.h"
+#import "Visitation.h"
 
 
-@implementation Users
+@implementation Patients
 
-@dynamic email;
+@dynamic age;
+@dynamic familyName;
 @dynamic firstname;
-@dynamic lastname;
-@dynamic password;
+@dynamic patientId;
+@dynamic photo;
+@dynamic sex;
 @dynamic status;
-@dynamic username;
-@dynamic usertype;
-@dynamic patient;
+@dynamic villageName;
+@dynamic visitation;
 
 @end

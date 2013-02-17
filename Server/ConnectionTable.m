@@ -53,7 +53,7 @@ DatabaseDriver* userDatabaseDriver;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     UserObject* user = [[UserObject alloc]init];
-    [user unpackageDatabaseFileForUser:[listOfUsers objectAtIndex:rowIndex]];
+    user.user = [listOfUsers objectAtIndex:rowIndex];
 	return [user username];
 }
 
@@ -65,7 +65,7 @@ DatabaseDriver* userDatabaseDriver;
 }
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
     UserObject* user = [[UserObject alloc]init];
-    [user unpackageDatabaseFileForUser:[listOfUsers objectAtIndex:row]];
+        user.user = [listOfUsers objectAtIndex:row];
     [[NSNotificationCenter defaultCenter]postNotificationName:SELECTED_A_USER object:user];
     return YES;
 }
@@ -78,11 +78,11 @@ DatabaseDriver* userDatabaseDriver;
 -(void)refreshServer:(id)sender{
     [self beginUpdates];
     
-    id arr= [userDatabaseDriver getListFromTable:@"Users" sortByAttr:@"username"];    
+    id arr= [userDatabaseDriver FindObjectInTable:@"Users" withName:@"" forAttribute:@"username"];
     //Sometimes the database doesnt initialze first so this tries to get a new one
     if (!arr) {
         userDatabaseDriver = [[DatabaseDriver alloc]init];
-        arr = [userDatabaseDriver getListFromTable:@"Users" sortByAttr:@"username"];
+        arr =  [userDatabaseDriver FindObjectInTable:@"Users" withName:@"" forAttribute:@"username"];
     }
     listOfUsers = [NSMutableArray arrayWithArray:arr];
     [self endUpdates];

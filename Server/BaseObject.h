@@ -6,12 +6,13 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
+// OTHER OBJECTS MAY NEED THESE TWO VARIABLES //
+
+#define DATABASEOBJECT @"Database Object"
 
 #import <Foundation/Foundation.h>
 #import "DatabaseDriver.h"
 #import "BaseObjectProtocol.h"
-
-
 
 
 @interface BaseObject : DatabaseDriver <BaseObjectProtocol>{

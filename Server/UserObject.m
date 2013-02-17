@@ -20,6 +20,7 @@
 #define USERNAME    @"username"
 #define PASSWORD    @"password"
 #define USERTYPE    @"usertype" //The different user types (look at enum)
+
 #define DATABASE    @"Users"
 
 #import "Users.h"
@@ -33,45 +34,21 @@
 #pragma mark -
 
 /* The super needs to be called first */
--(NSDictionary *)consolidateForTransmitting{
+-(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
     
-    [consolidate setValue:_email forKey:EMAIL];
-    [consolidate setValue:_firstname forKey:FIRSTNAME];
-    [consolidate setValue:_lastname forKey:LASTNAME];
-    [consolidate setValue:_username forKey:USERNAME];
-    [consolidate setValue:_password forKey:PASSWORD];
-    [consolidate setValue:[NSNumber numberWithBool:_status] forKey:STATUS];
-    [consolidate setValue:[NSNumber numberWithInt:_type] forKey:USERTYPE];
     [consolidate setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
 
     return consolidate;
 }
+
 /* The super needs to be called first */
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    
-    _email = [data objectForKey:EMAIL];
-    _lastname = [data objectForKey:LASTNAME];
-    _firstname = [data objectForKey:FIRSTNAME];
-    _password = [data objectForKey:PASSWORD];
-    _username = [data objectForKey:USERNAME];
-    _status = [[data objectForKey:STATUS]boolValue];
-    _type = [[data objectForKey:USERTYPE]intValue];
-    self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
+    [_user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
-/* The super needs to be called first */
--(void)unpackageDatabaseFileForUser:(NSManagedObject *)object{
-    [super unpackageDatabaseFileForUser:object];
-    _email = [self getValueForKey:EMAIL];
-    _lastname = [self getValueForKey:LASTNAME];
-    _firstname = [self getValueForKey:FIRSTNAME];
-    _password = [self getValueForKey:PASSWORD];
-    _username = [self getValueForKey:USERNAME];
-    _status = [[self getValueForKey:STATUS]intValue];
-    _type = [[self getValueForKey:USERTYPE]intValue];
-}
+
 
 /* Depending on the RemoteCommands it will execute a different Command */
 -(void)CommonExecution
@@ -101,19 +78,16 @@
 -(void)saveObject:(ObjectResponse)eventResponse
 {
 
-    if (databaseObject){
+    if (_user){
  
-        [super saveObject:^(id<BaseObjectProtocol> data, NSError* error) {
-            [self addObjectToDatabaseObject:_username forKey:USERNAME];
-            [self addObjectToDatabaseObject:_password forKey:PASSWORD];
-            [self addObjectToDatabaseObject:_firstname forKey:FIRSTNAME];
-            [self addObjectToDatabaseObject:_lastname forKey:LASTNAME];
-            [self addObjectToDatabaseObject:_email forKey:EMAIL];
-            [self addObjectToDatabaseObject:[NSNumber numberWithBool:_status] forKey:STATUS];
-            [self addObjectToDatabaseObject:[NSNumber numberWithInt:_type] forKey:USERTYPE];
-        }];
+        [self SaveCurrentObjectToDatabase:_user];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:SAVE_USER object:self];
+        if (eventResponse) 
+            eventResponse(self, nil);
+    }else{
+//        if (eventResponse)
+//            eventResponse(self, nil);
     }
 }
 
@@ -202,12 +176,14 @@
     // Run Complete validation on the information given
     // if there is an error it will be stored in the status var
     if ([self CompleteServerSideValidation:status]) {
-        if (![self FindDataBaseObjectWithID]){
-            [self CreateANewObjectFromClass:DATABASE];
-        }
+        // If validation passes a new user is create
+        [self CreateANewObjectFromClass:DATABASE];
+        // Save the new user
         [self saveObject:nil];
+        // store a message that the user has been created
         [status setErrorMessage:@"Your profile has been created. Contact your Application Administrator for approval"];
     }
+    
     [status CommonExecution];
 }
 
@@ -241,9 +217,9 @@
     }
    
     // Validate with information inside database
-    Users* user = [userArray objectAtIndex:0];
+    _user = [userArray objectAtIndex:0];
    
-    if (![user.password isEqualToString:_password]) {
+    if (![_user.password isEqualToString:_password]) {
         // Its good to send a message
         [status setErrorMessage:@"User Password is incorrect"];
         // Let the status object send this information
@@ -252,7 +228,7 @@
         return;
         }
     
-    if (!user.status.boolValue) {
+    if (!_user.status.boolValue) {
         // Its good to send a message
         [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
         // Let the status object send this information
@@ -261,9 +237,8 @@
         return;
     }
     
-    [self unpackageDatabaseFileForUser:user];
     // status will hold a copy of this user data
-    [status setData:[self consolidateForTransmitting]];
+    [status setData:[self consolidateForTransmitting:_user]];
     // Indicates that this was a success
     [status setStatus:kSuccess];
     // Its good to send a message 
@@ -271,5 +246,17 @@
     // Let the status object send this information
     [status CommonExecution];
     
+}
+
+-(BOOL)loadUserWithUsername:(NSString *)usersName{
+    
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:DATABASE withName:usersName forAttribute:USERNAME];
+
+    if (arr.count == 1) {
+       _user = [arr objectAtIndex:0];
+        return  YES;
+    }
+    return  NO;
 }
 @end

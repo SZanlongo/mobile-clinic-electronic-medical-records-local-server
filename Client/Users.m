@@ -2,8 +2,8 @@
 //  Users.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/17/13.
-//  Copyright (c) 2013 Florida International University. All rights reserved.
+//  Created by Michael Montaque on 2/14/13.
+//  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
 #import "Users.h"
@@ -19,6 +19,6 @@
 @dynamic status;
 @dynamic username;
 @dynamic usertype;
-@dynamic patient;
+@dynamic seenPatient;
 
 @end
