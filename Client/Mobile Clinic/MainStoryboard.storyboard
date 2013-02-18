@@ -1694,7 +1694,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <relationships>
                 <relationship kind="action" name="cancelRegistration:"/>
                 <relationship kind="action" name="patientPictureButton:"/>
-                <relationship kind="action" name="patientSexSegment:"/>
                 <relationship kind="action" name="registerPatientButton:"/>
                 <relationship kind="outlet" name="SaveButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
