@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
+		0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */; };
 		4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4614288316BF7EBB00802410 /* MainStoryboard.storyboard */; };
 		4614288916BF7F2900802410 /* orant_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4614288716BF7F2900802410 /* orant_logo.png */; };
 		4614288A16BF7F2900802410 /* userImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4614288816BF7F2900802410 /* userImage.jpeg */; };
@@ -141,6 +143,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewStoryboard.storyboard; sourceTree = "<group>"; };
+		0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clinicLogo.jpg; sourceTree = "<group>"; };
 		4614288316BF7EBB00802410 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4614288716BF7F2900802410 /* orant_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orant_logo.png; sourceTree = "<group>"; };
 		4614288816BF7F2900802410 /* userImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = userImage.jpeg; sourceTree = "<group>"; };
@@ -318,6 +322,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F9E6BA816D1E41F008AFB49 /* NewViews */ = {
+			isa = PBXGroup;
+			children = (
+				0F9E6BA916D1E44A008AFB49 /* Images */,
+			);
+			name = NewViews;
+			sourceTree = "<group>";
+		};
+		0F9E6BA916D1E44A008AFB49 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		4614288516BF7EDB00802410 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,12 +424,14 @@
 		467740FE16BD931E002FD4A5 /* Mobile Clinic */ = {
 			isa = PBXGroup;
 			children = (
+				0F9E6BA816D1E41F008AFB49 /* NewViews */,
 				46E773C716CAF9E800242454 /* API */,
 				4614288616BF7EE600802410 /* Resources */,
 				4614288516BF7EDB00802410 /* Controllers */,
 				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
 				4677410716BD931E002FD4A5 /* FIUAppDelegate.h */,
 				4677410816BD931E002FD4A5 /* FIUAppDelegate.m */,
+				0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */,
 				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
 				EA1EE20116D149E700E263D2 /* Visitation.h */,
 				EA1EE20216D149E700E263D2 /* Visitation.m */,
@@ -724,6 +746,8 @@
 				EA3856A116C089AF00FA83FD /* clearSearchBar.png in Resources */,
 				46E773D916CB0BFB00242454 /* README.md in Resources */,
 				46E773DA16CB0BFB00242454 /* release_notes.md in Resources */,
+				0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */,
+				0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
