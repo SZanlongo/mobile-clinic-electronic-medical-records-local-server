@@ -24,7 +24,7 @@ FIUAppDelegate* appDelegate;
 
 #pragma mark - BaseObjectProtocol Method
 #pragma mark -
--(NSDictionary *)consolidateForTransmitting{
+-(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:5];
     [consolidate setValue:_errorMessage forKey:ERRORMSG];
@@ -57,7 +57,7 @@ FIUAppDelegate* appDelegate;
 #pragma mark - Private Methods
 #pragma mark -
 -(void)SendDataToClient{
-    [appDelegate.server sendData:[self consolidateForTransmitting] toClient:_client];
+    [appDelegate.server sendData:[self consolidateForTransmitting:nil] toClient:_client];
 }
 
 -(NSString *)description{

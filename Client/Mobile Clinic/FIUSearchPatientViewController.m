@@ -83,13 +83,13 @@
         cell = [[FIUSearchPatientViewControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     }
     
-    NSManagedObject * obj = [_patientSearchResultsArray objectAtIndex:indexPath.row];
+    _patientData.patient = (Patients*)[_patientSearchResultsArray objectAtIndex:indexPath.row];
     
-    [_patientData unpackageDatabaseFileForUser:obj];
     //cell.PatientName.text = _patientData.firstName;
-    cell.PatientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.firstName, _patientData.familyName];
-    cell.PatientName.text =  _patientData.firstName;
-    [cell.PatientPic setImage:_patientData.picture];
+    cell.PatientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName];
+    cell.PatientName.text =  _patientData.patient.firstName;
+    
+    [cell.PatientPic setImage:_patientData.getPhoto];
     
     return cell;
 }
@@ -107,11 +107,8 @@
     shouldDismiss = YES;
     
     // Gets the object at the corresponding index
-    NSManagedObject* obj = [_patientSearchResultsArray objectAtIndex:indexPath.row];
-    
-    // Unpackage the object for use
-    [_patientData unpackageDatabaseFileForUser:obj];
-    
+    _patientData.patient= (Patients*)[_patientSearchResultsArray objectAtIndex:indexPath.row];
+     
     // Return object to main screen and dismiss view
     handler(_patientData, nil);
 }

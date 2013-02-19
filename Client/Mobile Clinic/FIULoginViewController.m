@@ -47,7 +47,6 @@ NSUserDefaults* userDefaults;
 	// Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
-    user = [[UserObject alloc]init];
     
     NSString* username = [userDefaults stringForKey:USERNAME];
     NSString* password = [userDefaults stringForKey:PASSWORD];
@@ -74,32 +73,34 @@ NSUserDefaults* userDefaults;
  * Password: 616
  */
 - (IBAction)loginButton:(id)sender {
-    [user setUsername: _userNameField.text];
-    [user setPassword:_passwordField.text];
 
-    [user login:^(id<BaseObjectProtocol> data, NSError* error) {
-
-        if (!error) {
-            id navCtrl = [self getViewControllerFromiPadStoryboardWithName:@"mainNavigationController"];
-            
-            // LIstens for the logout button
-            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
-            
-            //Caches the Username & password for quick Login
-            [userDefaults setObject:user.username forKey:USERNAME];
-            [userDefaults setObject:user.password forKey:PASSWORD];
-            
-            [userDefaults synchronize];
-            // Shows the new screen
-            [self presentViewController:navCtrl animated:YES completion:^{
-                
-                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeGreen Animation:AJLinedBackgroundTypeAnimated WithMessage:@"You Succesfully Logged In"];
-            }];
-        }else{
-            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        }
+    if (!user) 
+        user = [[UserObject alloc]init];
+    
+    
+    [user loginWithUsername:_userNameField.text andPassword:_passwordField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+    
+    if (!error) {
+        id navCtrl = [self getViewControllerFromiPadStoryboardWithName:@"mainNavigationController"];
         
-    }];
+        // Listens for the logout button
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
+        
+        //Caches the Username & password for quick Login
+        [userDefaults setObject:_userNameField.text forKey:USERNAME];
+        [userDefaults setObject:_passwordField.text forKey:PASSWORD];
+        [userDefaults synchronize];
+        
+        // Shows the new screen
+        [self presentViewController:navCtrl animated:YES completion:^{
+            
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeGreen Animation:AJLinedBackgroundTypeAnimated WithMessage:@"You Succesfully Logged In"];
+        }];
+    }else{
+        [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+    }
+
+}];
 
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -117,8 +118,6 @@ NSUserDefaults* userDefaults;
                     }
                 }];
             }];
-            
-            dvc.user = user;
         }
     }
 }

@@ -7,7 +7,7 @@
 //
 
 #import "BaseObject.h"
-#define MAX_NUMBER_ITEMS 10
+#define MAX_NUMBER_ITEMS 4
 #import "StatusObject.h"
 
 @implementation BaseObject
@@ -19,11 +19,14 @@
     return self;
 }
 
--(NSDictionary *)consolidateForTransmitting{
+-(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     /* Setup some of variables that are common to all the 
      * the object that inherit from this base class
      */
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
+
+    [consolidate setValue:[object dictionaryWithValuesForKeys:object.entity.attributesByName.allKeys] forKey:DATABASEOBJECT];
+    
     return consolidate;
 }
 
@@ -31,8 +34,6 @@
     /* Setup some of variables that are common to all the
      * the object that inherit from this base class
      */
-
-    self.objectType = [[data objectForKey:OBJECTTYPE]intValue];
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
 }
 
@@ -46,9 +47,7 @@
     eventResponse(nil, nil);
     [self SaveCurrentObjectToDatabase];
 }
--(void)unpackageDatabaseFileForUser:(NSManagedObject *)object{
-    databaseObject = object;
-}
+
 -(void)CommonExecution{
     NSLog(@"CommonExecution Not implemented.");
 }

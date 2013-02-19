@@ -17,22 +17,10 @@
 return self;
 }
 
--(void)addObjectToDatabaseObject:(id)obj forKey:(NSString*)key{
-    [databaseObject setValue:obj forKey:key];
-}
--(id)getValueForKey:(NSString *)key{
-   return [databaseObject valueForKey:key];
-}
+
 -(id)getValueForKey:(NSString *)key fromObject:(NSManagedObject *)obj{
     return [obj valueForKey:key];
 }
--(BOOL)doesDatabaseObjectExists{
-    if (databaseObject) {
-        return YES;
-    }
-    return NO;
-}
-
 
 
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(NSString*)name forAttribute:(NSString*)attribute{
@@ -54,10 +42,9 @@ return self;
 
 }
 
--(BOOL)CreateANewObjectFromClass:(NSString *)name{
+-(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name{
     NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:appDelegate.managedObjectContext];
-    databaseObject =[[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
-    return [self doesDatabaseObjectExists];
+return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
 }
 
 -(void)SaveCurrentObjectToDatabase{

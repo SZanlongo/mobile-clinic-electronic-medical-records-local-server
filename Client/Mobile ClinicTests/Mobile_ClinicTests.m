@@ -39,24 +39,24 @@ FIUSearchPatientViewController *search;
 - (void)testUserObjectSendingValidInformation
 {
     [self setUp];
-    user.username = TEST_CHAR;
-    user.password = @"";
+    user.user.username = TEST_CHAR;
+    user.user.password = @"";
     
     [user CreateANewUser:^(id<BaseObjectProtocol> data, NSError *error) {
         STAssertNil(data, @"There should be no data passed when an error is thrown");
         STAssertNotNil(error, error.localizedDescription);
     }];
     
-    user.username = @"!@($*#&@@";
-    user.password = TEST_CHAR_PW;
+    user.user.username = @"!@($*#&@@";
+    user.user.password = TEST_CHAR_PW;
     
     [user CreateANewUser:^(id<BaseObjectProtocol> data, NSError *error) {
         STAssertNil(data, @"There should be no data passed when an error is thrown");
         STAssertNotNil(error, error.localizedDescription);
     }];
     
-    user.username = TEST_CHAR;
-    user.password = TEST_CHAR_PW;
+    user.user.username = TEST_CHAR;
+    user.user.password = TEST_CHAR_PW;
     
     [user CreateANewUser:^(id<BaseObjectProtocol> data, NSError *error) {
         STAssertNil(data, @"There should be no data passed when an error is thrown");
@@ -93,10 +93,9 @@ FIUSearchPatientViewController *search;
     [search.patientNameField setText:@"sebastian"];
     [search searchByNameButton:nil];
     
-    NSManagedObject * obj = [search.patientSearchResultsArray objectAtIndex:0];
-    
-    [search.patientData unpackageDatabaseFileForUser:obj];
-    NSString *patientName = search.patientData.firstName;
+    search.patientData.patient = [search.patientSearchResultsArray objectAtIndex:0];
+
+    NSString *patientName = search.patientData.patient.firstName;
     
     STAssertEquals(search.patientNameField, patientName, @"Search results are not related to initial search");
     

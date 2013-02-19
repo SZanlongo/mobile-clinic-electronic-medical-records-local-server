@@ -30,7 +30,11 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    _username.text = _user.username;
+    _username.text = _user.user.username;
+   
+    if (!_user) {
+        _user = [[UserObject alloc]initWithNewUser];
+    }
 }
 - (void)didReceiveMemoryWarning
 {
@@ -53,14 +57,15 @@
 }
 
 - (IBAction)createNewUser:(id)sender {
+    
     if ([_initialPassword.text isEqualToString:_confirmPassword.text]) {
-        _user.username = _username.text;
-        _user.password = _confirmPassword.text;
-        _user.email = _email.text;
-        _user.firstname = _firstname.text;
-        _user.lastname = _lastname.text;
-        _user.status = NO;
-        _user.type = [self getUserType];
+        _user.user.username = _username.text;
+        _user.user.password = _confirmPassword.text;
+        _user.user.email = _email.text;
+        _user.user.firstname = _firstname.text;
+        _user.user.lastname = _lastname.text;
+        _user.user.status = NO;
+        _user.user.usertype = [NSNumber numberWithInt:_userType.selectedSegmentIndex];
         
         [_user CreateANewUser:^(id<BaseObjectProtocol> data, NSError* error) {
             if (!error) {
@@ -80,28 +85,7 @@
 -(void)displayErrorWithMessage:(NSString*)message{
     [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:message];
 }
--(UserTypes)getUserType{
-    switch (_userType.selectedSegmentIndex) {
-        case kTriageNurse:
-            return kTriageNurse;
-            break;
-        case kDoctor:
-            return kDoctor;
-            break;
-        case kAppAdmin:
-            return kAppAdmin;
-            break;
-        case kPharmacist:
-            return kPharmacist;
-            break;
-        case kRecordKeeper:
-            return kRecordKeeper;
-            break;
-        default:
-            return kTriageNurse;
-            break;
-    }
-}
+
 - (IBAction)cancelProcess:(id)sender {
     returnHandler(NO);
 }

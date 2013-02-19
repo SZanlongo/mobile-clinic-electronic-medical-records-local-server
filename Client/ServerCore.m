@@ -71,6 +71,11 @@
                moreComing:(BOOL)moreServicesComing
 {
 	NSLog(@"DidRemoveService: %@", [netService name]);
+   
+    if ([serverService.name isEqualToString:netService.name]) {
+        serverService = nil;
+        asyncSocket = nil;
+    }
     
 }
 
@@ -186,7 +191,7 @@
 
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
     NSLog(@"Completed Writing");
-    [asyncSocket readDataWithTimeout:7 tag:tag];
+    [asyncSocket readDataWithTimeout:-1 tag:tag];
 }
 
 -(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data{

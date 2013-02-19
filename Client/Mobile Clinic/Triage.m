@@ -38,13 +38,13 @@
 
 -(void)Redisplay{
     //set picture
-    [_patientPicture setImage:_patient.picture];
+    [_patientPicture setImage:_patient.getPhoto];
    
-    NSString* text = [NSString stringWithFormat:@"%@ %@",_patient.firstName,_patient.familyName];
+    NSString* text = [NSString stringWithFormat:@"%@ %@",_patient.patient.firstName,_patient.patient.familyName];
     // set first and lastname
     [_patientName setText:text];
     
-    NSString* summary = [NSString stringWithFormat:@"Date of Birth: %@\n Age: %i \nSex: %@ \nVillage: %@\n",_patient.dob.convertNSDateToString, _patient.getAge,(_patient.sex==0)?@"Female":@"Male",_patient.village];
+    NSString* summary = [NSString stringWithFormat:@"Date of Birth: %@\n Age: %i \nSex: %@ \nVillage: %@\n",_patient.patient.age.convertNSDateToString, _patient.getAge,(_patient.patient.sex==0)?@"Female":@"Male",_patient.patient.villageName];
     [_PatientSummary setText:summary];
     
 }

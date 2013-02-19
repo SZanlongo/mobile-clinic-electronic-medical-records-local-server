@@ -13,7 +13,7 @@ typedef void (^HowToReturn)(BOOL succesfull);
     HowToReturn returnHandler;
 }
 
-@property (weak, nonatomic) UserObject* user;
+@property (strong, nonatomic) UserObject* user;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *userType;
 @property (weak, nonatomic) IBOutlet UITextField *firstname;
 @property (weak, nonatomic) IBOutlet UITextField *lastname;
