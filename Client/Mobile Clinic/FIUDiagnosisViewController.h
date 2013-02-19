@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FIUPatientRegistrationViewController.h"
 
-@interface FIUDiagnosisViewController : UIViewController
+@interface FIUDiagnosisViewController : UIViewController {UIPopoverController* popover;}
 
 @property (weak, nonatomic) IBOutlet UIImageView *patientPicture;
+
+@property(nonatomic, strong)PatientObject* patient;
 
 @property (weak, nonatomic) IBOutlet UILabel *familyNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *patientNameLabel;
@@ -18,13 +21,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *patientAgeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *patientSexLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
 
-@property (weak, nonatomic) IBOutlet UITextView *symptomsText;
 @property (weak, nonatomic) IBOutlet UITextView *diagnosisText;
-@property (weak, nonatomic) IBOutlet UITextView *treatmentsText;
 
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UIButton *checkoutButton;
-@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+- (IBAction)checkoutButton:(id)sender;
+- (IBAction)submitButton:(id)sender;
+- (IBAction)searchForPatients:(id)sender;
 
 @end
