@@ -62,7 +62,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3gz-ix-z3Q" kind="modal" id="rF9-0N-dyT"/>
+                                    <segue destination="QXw-lH-2IZ" kind="push" id="cMj-Na-ZeP"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Welcome!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FkS-Dw-jBB">
@@ -99,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0o8-64-UtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1851" y="-164"/>
+            <point key="canvasLocation" x="-3095" y="-1525"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2q5-aH-yjl">
@@ -115,12 +115,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KnR-8B-DxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-515" y="-1525"/>
+            <point key="canvasLocation" x="-335" y="-2333"/>
         </scene>
-        <!--View Controller-->
+        <!--Triage View Controller-->
         <scene sceneID="9AU-72-2cf">
             <objects>
-                <viewController id="Esk-OK-KZe" sceneMemberID="viewController">
+                <viewController id="Esk-OK-KZe" customClass="TriageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p7O-sa-QWZ">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -161,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCc-du-cdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808" y="-1519"/>
+            <point key="canvasLocation" x="988" y="-2327"/>
         </scene>
         <!--Search Patient View Controller - Search-->
         <scene sceneID="N6E-Bk-1aJ">
@@ -337,12 +337,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sPv-ra-j8U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1201" y="-3012"/>
+            <point key="canvasLocation" x="1161" y="-4188"/>
         </scene>
-        <!--View Controller-->
+        <!--Triage Patient View Controller-->
         <scene sceneID="txZ-LV-K3r">
             <objects>
-                <viewController id="AVH-dK-ZLC" sceneMemberID="viewController">
+                <viewController id="AVH-dK-ZLC" customClass="TriagePatientViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wAH-xf-itA">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -541,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzH-Z3-sJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="-1525"/>
+            <point key="canvasLocation" x="2356" y="-2333"/>
         </scene>
         <!--Previous Visits View Controller - Previous Visit-->
         <scene sceneID="6VF-Cz-cgB">
@@ -718,7 +718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhU-xK-0WO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="-3413"/>
+            <point key="canvasLocation" x="2136" y="-4589"/>
         </scene>
         <!--Current Visit View Controller - Current Visit-->
         <scene sceneID="vfe-ac-97b">
@@ -828,12 +828,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhc-ST-MPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="-2464"/>
+            <point key="canvasLocation" x="2136" y="-3640"/>
         </scene>
-        <!--Change Station View Controller - Change Station-->
+        <!--Station View Controller - Change Station-->
         <scene sceneID="48z-Ya-HO0">
             <objects>
-                <viewController id="QXw-lH-2IZ" customClass="ChangeStationViewController" sceneMemberID="viewController">
+                <viewController id="QXw-lH-2IZ" customClass="StationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DFK-9L-djK">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -852,6 +852,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="3gz-ix-z3Q" kind="push" id="WEJ-T4-wMX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ln0-Hc-eJY">
                                 <color key="backgroundColor" red="0.09769700726473253" green="0.087624058220265463" blue="0.82206632653061229" alpha="1" colorSpace="calibratedRGB"/>
@@ -902,25 +905,26 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ln0-Hc-eJY" firstAttribute="trailing" secondItem="7rj-kP-dkB" secondAttribute="trailing" type="default" id="5Uj-y3-Gu2"/>
+                            <constraint firstItem="ln0-Hc-eJY" firstAttribute="centerX" secondItem="DFK-9L-djK" secondAttribute="centerX" type="default" id="Kyv-J0-gwt"/>
                             <constraint firstItem="3Yq-Eo-8li" firstAttribute="trailing" secondItem="ln0-Hc-eJY" secondAttribute="trailing" type="default" id="MGY-XD-2bR"/>
                             <constraint firstItem="kM2-Ba-k8L" firstAttribute="trailing" secondItem="onp-LV-qZ0" secondAttribute="trailing" type="default" id="Ocj-UQ-Ix2"/>
-                            <constraint firstAttribute="bottom" secondItem="ln0-Hc-eJY" secondAttribute="bottom" constant="336" id="Tg3-2o-cbL"/>
-                            <constraint firstItem="7rj-kP-dkB" firstAttribute="top" secondItem="DFK-9L-djK" secondAttribute="top" constant="356" id="U9C-eO-7d0"/>
                             <constraint firstItem="kM2-Ba-k8L" firstAttribute="top" secondItem="DFK-9L-djK" secondAttribute="top" constant="215" id="U9u-pz-bF4"/>
+                            <constraint firstAttribute="bottom" secondItem="3Yq-Eo-8li" secondAttribute="bottom" constant="315" id="YBd-pV-gca"/>
                             <constraint firstItem="onp-LV-qZ0" firstAttribute="top" secondItem="kM2-Ba-k8L" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Z0c-YD-6Eg"/>
-                            <constraint firstAttribute="bottom" secondItem="3Yq-Eo-8li" secondAttribute="bottom" constant="215" id="ZY7-Ia-us9"/>
                             <constraint firstItem="onp-LV-qZ0" firstAttribute="centerX" secondItem="7rj-kP-dkB" secondAttribute="centerX" type="default" id="imQ-xS-iTd"/>
                             <constraint firstItem="onp-LV-qZ0" firstAttribute="leading" secondItem="kM2-Ba-k8L" secondAttribute="leading" type="default" id="klQ-G6-YzY"/>
-                            <constraint firstItem="7rj-kP-dkB" firstAttribute="centerX" secondItem="DFK-9L-djK" secondAttribute="centerX" type="default" id="nEH-ys-uXp"/>
+                            <constraint firstItem="ln0-Hc-eJY" firstAttribute="top" secondItem="DFK-9L-djK" secondAttribute="top" constant="477" id="pbj-yZ-57k"/>
                             <constraint firstItem="ln0-Hc-eJY" firstAttribute="leading" secondItem="7rj-kP-dkB" secondAttribute="leading" type="default" id="rfh-FK-T7o"/>
+                            <constraint firstItem="7rj-kP-dkB" firstAttribute="top" secondItem="DFK-9L-djK" secondAttribute="top" constant="358" id="v3G-CU-8G3"/>
                             <constraint firstItem="3Yq-Eo-8li" firstAttribute="leading" secondItem="ln0-Hc-eJY" secondAttribute="leading" type="default" id="vNS-V6-MyA"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Change Station" id="hyq-9W-gFK"/>
+                    <navigationItem key="navigationItem" id="56E-6K-I5V"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1np-HY-Zx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369" y="-36"/>
+            <point key="canvasLocation" x="-1723" y="-1525"/>
         </scene>
         <!--Register Patient View Controller - Register Patient-->
         <scene sceneID="GBf-St-TNM">
@@ -1088,13 +1092,42 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vwe-Ft-fgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="-3012"/>
+            <point key="canvasLocation" x="187" y="-4188"/>
         </scene>
     </scenes>
     <resources>
         <image name="clinicLogo.jpg" width="325" height="260"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
+    <classes>
+        <class className="CurrentVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentVisitViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PreviousVisitsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousVisitsViewController.h"/>
+        </class>
+        <class className="RegisterPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterPatientViewController.h"/>
+        </class>
+        <class className="SearchPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchPatientViewController.h"/>
+        </class>
+        <class className="StationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StationViewController.h"/>
+        </class>
+        <class className="TriagePatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriagePatientViewController.h"/>
+        </class>
+        <class className="TriageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriageViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

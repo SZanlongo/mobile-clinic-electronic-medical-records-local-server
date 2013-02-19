@@ -1,18 +1,18 @@
 //
-//  ChangeStationViewController.m
+//  TriageViewController.m
 //  Mobile Clinic
 //
 //  Created by sebastian a zanlongo on 2/18/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "ChangeStationViewController.h"
+#import "TriageViewController.h"
 
-@interface ChangeStationViewController ()
+@interface TriageViewController ()
 
 @end
 
-@implementation ChangeStationViewController
+@implementation TriageViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -1,18 +1,18 @@
 //
-//  EditPatientViewController.m
+//  TriagePatientViewController.m
 //  Mobile Clinic
 //
 //  Created by sebastian a zanlongo on 2/18/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "EditPatientViewController.h"
+#import "TriagePatientViewController.h"
 
-@interface EditPatientViewController ()
+@interface TriagePatientViewController ()
 
 @end
 
-@implementation EditPatientViewController
+@implementation TriagePatientViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

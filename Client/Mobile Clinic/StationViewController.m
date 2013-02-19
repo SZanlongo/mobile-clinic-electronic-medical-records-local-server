@@ -1,18 +1,18 @@
 //
-//  PreviousVisitsViewController.m
+//  StationViewController.m
 //  Mobile Clinic
 //
 //  Created by sebastian a zanlongo on 2/18/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PreviousVisitsViewController.h"
+#import "StationViewController.h"
 
-@interface PreviousVisitsViewController ()
+@interface StationViewController ()
 
 @end
 
-@implementation PreviousVisitsViewController
+@implementation StationViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

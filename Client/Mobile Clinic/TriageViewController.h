@@ -1,5 +1,5 @@
 //
-//  ChangeStationViewController.h
+//  TriageViewController.h
 //  Mobile Clinic
 //
 //  Created by sebastian a zanlongo on 2/18/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChangeStationViewController : UIViewController
+@interface TriageViewController : UIViewController
 
 @end
