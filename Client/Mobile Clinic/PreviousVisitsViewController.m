@@ -35,4 +35,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setPatientHistoryTableView:nil];
+    [super viewDidUnload];
+}
 @end

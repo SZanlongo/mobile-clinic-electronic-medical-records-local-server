@@ -10,4 +10,6 @@
 
 @interface PreviousVisitsViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *patientHistoryTableView;
+
 @end

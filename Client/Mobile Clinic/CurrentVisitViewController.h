@@ -10,4 +10,10 @@
 
 @interface CurrentVisitViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
+@property (strong, nonatomic) IBOutlet UITextField *patientBPField;
+@property (strong, nonatomic) IBOutlet UITextView *patientConditionsTextbox;
+
+- (IBAction)submitButton:(id)sender;
+
 @end

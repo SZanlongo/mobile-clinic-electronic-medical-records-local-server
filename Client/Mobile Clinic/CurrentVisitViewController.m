@@ -35,4 +35,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setPatientWeightField:nil];
+    [self setPatientBPField:nil];
+    [self setPatientConditionsTextbox:nil];
+    [super viewDidUnload];
+}
+
+- (IBAction)submitButton:(id)sender {
+}
 @end
