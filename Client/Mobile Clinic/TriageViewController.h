@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TriageViewController : UIViewController
+@interface TriageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewSelectorSegment;
 
 @end
