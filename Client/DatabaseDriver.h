@@ -9,18 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "FIUAppDelegate.h"
 
-@interface DatabaseDriver : NSObject {
-    NSManagedObject* databaseObject;
-}
+@interface DatabaseDriver : NSObject 
 
 @property(nonatomic, strong) FIUAppDelegate* appDelegate;
 
 
 
 -(id)init;
--(void)addObjectToDatabaseObject:(id)obj forKey:(NSString*)key;
--(id)getValueForKey:(NSString*)key;
--(BOOL)CreateANewObjectFromClass:(NSString *)name;
+
+-(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name;
 -(id)getValueForKey:(NSString *)key fromObject:(NSManagedObject*) obj;
 -(void)SaveCurrentObjectToDatabase;
 

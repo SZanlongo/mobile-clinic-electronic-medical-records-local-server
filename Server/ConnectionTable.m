@@ -54,7 +54,7 @@ DatabaseDriver* userDatabaseDriver;
 {
     UserObject* user = [[UserObject alloc]init];
     user.user = [listOfUsers objectAtIndex:rowIndex];
-	return [user username];
+	return [user.user username];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView

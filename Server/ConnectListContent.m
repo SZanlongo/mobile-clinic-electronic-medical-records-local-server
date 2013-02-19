@@ -31,15 +31,15 @@
 }
 
 -(void)displayUserInformation:(UserObject*)theUser{
-    [_titleText setStringValue:theUser.username];
+    [_titleText setStringValue:theUser.user.username];
     [_info setString:theUser.description];
-    [_Password setStringValue:theUser.password];
-    [_userTypeBox selectItemAtIndex:theUser.type];
-    [_isActiveSegment setSelectedSegment:(theUser.status)?1:0];
+    [_Password setStringValue:theUser.user.password];
+    [_userTypeBox selectItemAtIndex:theUser.user.usertype.integerValue];
+    [_isActiveSegment setSelectedSegment:(theUser.user.status.boolValue)?1:0];
 }
 -(void)AuthorizeUser:(id)sender{
     NSSegmentedControl* seg = sender;
-    user.status = (seg.selectedSegment == 1)?YES:NO;
+    user.user.status = [NSNumber numberWithBool:(seg.selectedSegment == 1)?YES:NO];
     [self displayUserInformation:user];
 }
 -(void)CommitNewUserInfo:(id)sender{

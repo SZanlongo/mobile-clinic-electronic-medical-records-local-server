@@ -19,6 +19,7 @@
 #define LASTNAME    @"lastname"
 #define USERNAME    @"username"
 #define PASSWORD    @"password"
+#define ALL_USERS   @"all users"
 #define USERTYPE    @"usertype" //The different user types (look at enum)
 
 #define DATABASE    @"Users"
@@ -57,11 +58,13 @@
         case kCreateNewUser:
             [self CreateANewUser:nil];
             break;
+        case kPullAllUsers:
+            [self PushToClient];
+            break;
         case kLoginUser:
             [self ValidateAndLoginUser];
             break;
         case kLogoutUser:
-            
             break;
         default:
             break;
@@ -97,7 +100,7 @@
 -(NSString *)description
 {
     
-    NSString* text = [NSString stringWithFormat:@"\nFirstname: %@ \nLastname: %@\nUsername: %@ \nPassword: %@ \nEmail: %@ \nStatus: %@ \nUsertype: %i ",_firstname,_lastname,_username,_password,_email,(_status)?@"Active":@"Inactive",_type];
+    NSString* text = [NSString stringWithFormat:@"\nFirstname: %@ \nLastname: %@\nUsername: %@ \nPassword: %@ \nEmail: %@ \nStatus: %@ \nUsertype: %i ",_user.firstname,_user.lastname,_user.username,_user.password,_user.email,(_user.status)?@"Active":@"Inactive",_user.usertype.intValue];
     
     [text stringByAppendingString:[super description]];
     
@@ -117,11 +120,11 @@
         [status setStatus:kError];
         [status setErrorMessage:@"Please enter a valid email address"];
         isValid=NO;
-    }else if(![self isObject:_username UniqueForKey:USERNAME]){
+    }else if(![self isObject:_user.username UniqueForKey:USERNAME]){
         [status setStatus:kError];
         [status setErrorMessage:@"Username Already Exists"];
         isValid=NO;
-    }else if(![self isObject:_email UniqueForKey:EMAIL]){
+    }else if(![self isObject:_user.email UniqueForKey:EMAIL]){
         [status setStatus:kError];
         [status setErrorMessage:@"Email Already Exists"];
         isValid=NO;
@@ -135,18 +138,18 @@
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     
-    return [emailTest evaluateWithObject:_email];
+    return [emailTest evaluateWithObject:_user.email];
     
 }
 
 -(BOOL)isUsernameValid
 {
     // Username must be between 5 - 20 chars
-    if (_username.length < 5 || _username.length > 20) {
+    if (_user.username.length < 5 || _user.username.length > 20) {
         return NO;
     }
     // Check if contains any symbols
-    if (![_username isAlphaNumeric]) {
+    if (![_user.username isAlphaNumeric]) {
         return NO;
     }
     
@@ -156,11 +159,7 @@
 -(BOOL)isPasswordValid
 {
     // Username must be between 5 - 20 chars
-    if (_password.length < 5 || _password.length > 20) {
-        return NO;
-    }
-    // Check if contains any symbols
-    if (![_username isAlphaNumeric]) {
+    if (_user.password.length < 5 || _user.password.length > 20) {
         return NO;
     }
     return YES;
@@ -204,7 +203,7 @@
     // Initially set it to an error, for efficiency.
     [status setStatus:kError];
     
-    NSArray* userArray = [self FindObjectInTable:DATABASE withName:_username forAttribute:USERNAME];
+    NSArray* userArray = [self FindObjectInTable:DATABASE withName:_user.username forAttribute:USERNAME];
     
     // Checks if username exists (should return 1 or 0 value)
     if (userArray.count == 0) {
@@ -219,7 +218,7 @@
     // Validate with information inside database
     _user = [userArray objectAtIndex:0];
    
-    if (![_user.password isEqualToString:_password]) {
+    if (![_user.password isEqualToString:_user.password]) {
         // Its good to send a message
         [status setErrorMessage:@"User Password is incorrect"];
         // Let the status object send this information
@@ -258,5 +257,33 @@
         return  YES;
     }
     return  NO;
+}
+
+-(void)PushToClient{
+    
+    NSArray* arr = [self FindObjectInTable:DATABASE withName:@"" forAttribute:USERNAME];
+    
+    NSMutableArray* arrayToSend = [[NSMutableArray alloc]initWithCapacity:arr.count];
+    
+    for (Users* obj in arr) {
+        [arrayToSend addObject:[obj dictionaryWithValuesForKeys:obj.attributeKeys]];
+    }
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc]initWithCapacity:3];
+
+    [dict setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
+    [dict setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
+    [dict setValue:arrayToSend forKey:ALL_USERS];
+    
+    StatusObject* status = [[StatusObject alloc]init];
+    // Need to set client so it can go the correct device
+    [status setClient:self.client];
+    // status will hold a copy of this user data
+    [status setData:dict];
+    // Indicates that this was a success
+    [status setStatus:kSuccess];
+    // Its good to send a message
+    [status setErrorMessage:@"Synced All users to device from server. Please Try logging in."];
+    // Let the status object send this information
+    [status CommonExecution];
 }
 @end

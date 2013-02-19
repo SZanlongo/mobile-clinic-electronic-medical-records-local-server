@@ -22,14 +22,15 @@ typedef enum {
 
 /* These are all the commands the server and client will understand */
 typedef enum {
-    kCreateNewUser  = 0,
-    kLoginUser      = 1,
-    kLogoutUser     = 2,
-    kStatusClientWillRecieve    = 3,
-    kStatusServerWillRecieve    = 4,
-    kCreateNewPatient           = 5,
-    kUpdatePatient              = 6,
-    kCreateNewVisit             = 7,
+    kCreateNewUser,
+    kPullAllUsers,
+    kLoginUser, 
+    kLogoutUser,
+    kStatusClientWillRecieve,  
+    kStatusServerWillRecieve,
+    kCreateNewPatient,
+    kUpdatePatient,
+    kCreateNewVisit,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>

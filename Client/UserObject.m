@@ -12,6 +12,7 @@
 #define LASTNAME    @"lastname"
 #define USERNAME    @"username"
 #define PASSWORD    @"password"
+#define ALL_USERS   @"all users"
 #define USERTYPE    @"usertype" //The different user types (look at enum)
 #define DATABASE    @"Users"
 
@@ -20,80 +21,59 @@
 #import "NSString+Validation.h"
 
 StatusObject* tempObject;
+NSString* tempUsername;
+NSString* tempPassword;
 @implementation UserObject
 
-- (id)init
+#pragma mark - Default Methods
+#pragma mark -
+
+- (id)initWithNewUser
 {
     self = [super init];
     if (self) {
-        _password = [[NSString alloc]init];
-        _username = [[NSString alloc]init];
-        _firstname = [[NSString alloc]init];
-        _lastname = [[NSString alloc]init];
-        _email = [[NSString alloc]init];
+       _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
     }
     return self;
 }
 
--(NSDictionary *)consolidateForTransmitting{
+-(NSString *)description
+{
+    NSString* text = [NSString stringWithFormat:@"\nUsername: %@ \nPassword: %@ \nUsertype: %i ",_user.username,_user.password,_user.usertype.intValue];
+    return text;
+}
+
+#pragma mark - Protocol Methods
+#pragma mark -
+
+-(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object
+{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:4];
-    [consolidate setValue:_email forKey:EMAIL];
-    [consolidate setValue:_firstname forKey:FIRSTNAME];
-    [consolidate setValue:_lastname forKey:LASTNAME];
-    [consolidate setValue:_username forKey:USERNAME];
-    [consolidate setValue:_password forKey:PASSWORD];
-    [consolidate setValue:[NSNumber numberWithBool:_status] forKey:STATUS];
-    [consolidate setValue:[NSNumber numberWithInt:_type] forKey:USERTYPE];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
+
     [consolidate setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
+    
     return consolidate;
 }
 
--(void)unpackageFileForUser:(NSDictionary *)data{
+-(void)unpackageFileForUser:(NSDictionary *)data
+{
     [super unpackageFileForUser:data];
-    self.email = [data objectForKey:EMAIL];
-    self.lastname = [data objectForKey:LASTNAME];
-    self.firstname = [data objectForKey:FIRSTNAME];
-    self.password = [data objectForKey:PASSWORD];
-    self.username = [data objectForKey:USERNAME];
-    self.status = [[data objectForKey:STATUS]boolValue];
-    self.type = [[data objectForKey:USERTYPE]intValue];
+    [_user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
-/* The super needs to be called first */
--(void)unpackageDatabaseFileForUser:(NSManagedObject *)object{
-    [super unpackageDatabaseFileForUser:object];
-    _email = [self getValueForKey:EMAIL];
-    _lastname = [self getValueForKey:LASTNAME];
-    _firstname = [self getValueForKey:FIRSTNAME];
-    _password = [self getValueForKey:PASSWORD];
-    _username = [self getValueForKey:USERNAME];
-    _status = [[self getValueForKey:STATUS]boolValue];
-    _type = [[self getValueForKey:USERTYPE]intValue];
-}
 
 -(void)saveObject:(ObjectResponse)eventResponse
 {
     // First check to see if a databaseObject is present
-    if (!databaseObject)
-        if ([self isObject:_username UniqueForKey:USERNAME]) 
-            // Otherwise create a new object from scratch
-            [self CreateANewObjectFromClass:DATABASE];
-    
-        [super saveObject:^(id<BaseObjectProtocol> data, NSError* error) {
-            [self addObjectToDatabaseObject:_username forKey:USERNAME];
-            [self addObjectToDatabaseObject:_password forKey:PASSWORD];
-            [self addObjectToDatabaseObject:_firstname forKey:FIRSTNAME];
-            [self addObjectToDatabaseObject:_lastname forKey:LASTNAME];
-            [self addObjectToDatabaseObject:_email forKey:EMAIL];
-            [self addObjectToDatabaseObject:[NSNumber numberWithBool:_status] forKey:STATUS];
-            [self addObjectToDatabaseObject:[NSNumber numberWithInt:_type] forKey:USERTYPE];
-        }];
+    if (_user){
+
+        [self SaveCurrentObjectToDatabase];
+    }
     
     if (eventResponse != nil) {
         eventResponse(self,nil);
     }
-    
 
 }
 
@@ -102,63 +82,26 @@ StatusObject* tempObject;
     NSLog(@"Doesn't need to be implemented Client-side");
 }
 
--(NSString *)description
-{
-    NSString* text = [NSString stringWithFormat:@"\nUsername: %@ \nPassword: %@ \nUsertype: %i \nObjectType: %i",_username,_password,_type,self.objectType];
-    return text;
-}
 
--(BOOL)isUsernameValid
+#pragma mark - User Validation
+#pragma mark -
+
+-(BOOL)usernameAndPasswordValidation
 {
     // Username must be between 5 - 20 chars
-    if (_username.length < 5 || _username.length > 20) {
+    if (_user.password.length < 5 || _user.password.length > 20) {
+        return NO;
+    }
+    // Username must be between 5 - 20 chars
+    else if (_user.username.length < 5 || _user.username.length > 20) {
         return NO;
     }
     // Check if contains any symbols
-    if (![_username isAlphaNumeric]) {
+   else if (![_user.username isAlphaNumeric]) {
         return NO;
     }
     
     return YES;
-}
-
--(BOOL)isPasswordValid
-{
-    // Username must be between 5 - 20 chars
-    if (_password.length < 5 || _password.length > 20) {
-        return NO;
-    }
-    // Check if contains any symbols
-    if (![_username isAlphaNumeric]) {
-        return NO;
-    }
-    return YES;
-}
-
--(void)login:(ObjectResponse)onSuccessHandler
-{
-    //Call back method that the caller is expecting
-    respondToEvent = onSuccessHandler;
-    
-    
-    
-    if (![self userExistInCache])
-    {
-        // Any methods that makes calls and expects information back
-        // you have to listen for the GLOBAL_STATUS_LISTENER
-        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self selector:@selector(ActionSuccessfull:) name:GLOBAL_STATUS_LISTENER object:tempObject];
-        
-        //storing internal variables to be sent to the client
-        NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-        
-        //** SETTING THE COMMAND YOU WANT THE SERVER TO EXECUTE WITH YOUR INFORMATION **
-        [dataToSend setValue:[NSNumber numberWithInt:kLoginUser] forKey:OBJECTCOMMAND];
-        
-        // Sending information to the server
-        [self.appDelegate.ServerManager sendData:dataToSend];
-    }
-
 }
 
 -(BOOL)isObject:(NSString*)obj UniqueForKey:(NSString*)key
@@ -170,31 +113,110 @@ StatusObject* tempObject;
     return YES;
 }
 
--(BOOL)userExistInCache{
-   
-    // Find user by username
-    NSArray* users =[self FindObjectInTable:DATABASE withName:_username forAttribute:USERNAME];
+#pragma mark - User Login & Creation
+#pragma mark -
+
+-(void)loginWithUsername:(NSString*)username andPassword:(NSString*)password onCompletion:(ObjectResponse)onSuccessHandler{
     
-    // Check if there is a user
-    if (users.count >= 1) {
-        
-        NSString* pass = [self getValueForKey:PASSWORD fromObject:users.lastObject];
-        // Compare password
-        if ([pass isEqualToString:_password]) {
-            // Return that login is successful
-            respondToEvent(self,nil);
+    //Call back method that the caller is expecting
+    respondToEvent = onSuccessHandler;
+    
+    tempUsername = username;
+    // Check if the user exists in local
+    if ([self loadUserWithUsername:username])
+    {
+        // Check if the user has permissions
+        if (_user.status.boolValue)
+        {
+            // Check if password is valid
+            if ([_user.password isEqualToString:password])
+            {
+                respondToEvent(self,nil);
+            }
+            else
+            {
+                respondToEvent(Nil,[self createErrorWithDescription:@"Username/Password needs to be longer than 6 characters and contain no symbols" andErrorCodeNumber:0 inDomain:@"User Object"]);
+            }
         }
         else
         {
-            // Return that password has failed
-          respondToEvent(Nil,[self createErrorWithDescription:@"Username/Password needs to be longer than 6 characters and contain no symbols" andErrorCodeNumber:0 inDomain:@"User Object"]);  
+            [self sendLoginRequestToServer];
         }
-        // Acknowledge that a user exists
-        return YES;
     }
-    // if user doesn't exist, return no and check against server
-    return NO;
+    else
+    {
+        [self getUsersFromServer];
+    }
 }
+
+-(void)sendLoginRequestToServer{
+    // Any methods that makes calls and expects information back
+    // you have to listen for the GLOBAL_STATUS_LISTENER
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(ActionSuccessfull:) name:GLOBAL_STATUS_LISTENER object:tempObject];
+    
+    //storing internal variables to be sent to the client
+    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:_user]];
+    
+    //** SETTING THE COMMAND YOU WANT THE SERVER TO EXECUTE WITH YOUR INFORMATION **
+    [dataToSend setValue:[NSNumber numberWithInt:kLoginUser] forKey:OBJECTCOMMAND];
+    
+    // Sending information to the server
+    [self.appDelegate.ServerManager sendData:dataToSend];
+}
+
+-(void)CreateANewUser:(ObjectResponse)onSuccessHandler
+{
+    // Handle callback
+    respondToEvent = onSuccessHandler;
+    
+    // client side validation
+    if ([self usernameAndPasswordValidation]) {
+        
+        //Repackage data to be sent
+        NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:_user]];
+        
+        // adding Command to tell the server to create a new user
+        // with the information provided
+        [dataToSend setValue:[NSNumber numberWithInt:kCreateNewUser] forKey:OBJECTCOMMAND];
+        
+        // Create a listener for when the server sends a responses
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(ActionSuccessfull) name:GLOBAL_STATUS_LISTENER object:tempObject];
+        
+        // Send data to server
+        [self.appDelegate.ServerManager sendData:dataToSend];
+        
+    }
+}
+
+-(BOOL)loadUserWithUsername:(NSString *)usersName
+{
+    
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:DATABASE withName:usersName forAttribute:USERNAME];
+    
+    if (arr.count == 1) {
+        _user = [arr objectAtIndex:0];
+        return  YES;
+    }
+    return  NO;
+}
+
+-(void)getUsersFromServer
+{
+    // Create a listener for when the server sends a responses
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(PullAllUsers:) name:GLOBAL_STATUS_LISTENER object:tempObject];
+    NSMutableDictionary* dataToSend = [[NSMutableDictionary alloc]initWithCapacity:2];
+    [dataToSend setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
+    [dataToSend setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
+    // Send data to server
+    [self.appDelegate.ServerManager sendData:dataToSend];
+}
+
+#pragma mark - Listen & Respond Methods
+#pragma mark -
 
 -(void)ActionSuccessfull:(NSNotification *)notification
 {
@@ -216,25 +238,31 @@ StatusObject* tempObject;
     
    
 }
-
--(void)CreateANewUser:(ObjectResponse)onSuccessHandler{
-    // Handle callback
-    respondToEvent = onSuccessHandler;
+-(void)PullAllUsers:(NSNotification *)notification{
+    // Get information that was returned from server
+    tempObject = notification.object;
     
-    // client side validation
-    if ([self isUsernameValid] && [self isPasswordValid]) {
-        //Repackage data to be sent
-        NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-        // adding Command to tell the server to create a new user
-        // with the information provided
-        [dataToSend setValue:[NSNumber numberWithInt:kCreateNewUser] forKey:OBJECTCOMMAND];
-        // Create a listener for when the server sends a responses
-        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self selector:@selector(ActionSuccessfull) name:GLOBAL_STATUS_LISTENER object:tempObject];
-        // Send data to server
-        [self.appDelegate.ServerManager sendData:dataToSend];
-        
+    // get all the users returned from server
+    NSArray* arr = [tempObject.data objectForKey:ALL_USERS];
+    
+    // Go through all users in array
+    for (NSDictionary* dict in arr) {
+        // If the user doesnt exists in the database currently then add it in
+        if ([self isObject:[dict objectForKey:USERNAME] UniqueForKey:USERNAME]) {
+            Users* temp = (Users*)[self CreateANewObjectFromClass:DATABASE];
+            [temp setValuesForKeysWithDictionary:dict];
+            [self SaveCurrentObjectToDatabase];
+        }
     }
+    respondToEvent(nil,[self createErrorWithDescription:tempObject.errorMessage andErrorCodeNumber:10 inDomain:@"UserObject"] );
+    
+    if ([self loadUserWithUsername:tempUsername]) {
+        [self loginWithUsername:tempUsername andPassword:tempPassword onCompletion:respondToEvent];
+    }else{
+        respondToEvent(nil,[self createErrorWithDescription:@"User doesnt exist. Please a valid user or create a new one" andErrorCodeNumber:10 inDomain:@"UserObject"] );
+    }
+    
+    
+    
 }
-
 @end

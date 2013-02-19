@@ -8,17 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
+#import "Visitation.h"
 @interface VisitationObject : BaseObject
 
-@property(weak,nonatomic)NSDate* checkInTime;
-@property(weak,nonatomic)NSDate* checkOutTime;
-@property(weak,nonatomic)NSString* visitationId;
-@property(weak,nonatomic)NSString* diagnosisNotes;
-@property(weak,nonatomic)NSString* diagnosisTitle;
-@property(weak,nonatomic)NSString* complaint;
-@property(weak,nonatomic)NSString* physicianUsername;
-@property(assign,nonatomic)double weight;
-@property(assign,nonatomic)BOOL isGraphic;
+@property(weak,nonatomic)Visitation* visit;
 
 -(id)initWithVisit:(NSDictionary*)info;
+-(BOOL)loadVisitWithVisitationID:(NSString *)visitID;
 @end

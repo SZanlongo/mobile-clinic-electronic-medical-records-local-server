@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
-
+#import "Users.h"
 /* Users of the system */
 typedef enum {
     kTriageNurse    = 0,
@@ -27,16 +27,14 @@ typedef enum {
 }UserTypes;
 
 @interface UserObject : BaseObject
-@property(nonatomic, strong)      NSString* lastname;
-@property(nonatomic, strong)      NSString* firstname;
-@property(nonatomic, strong)      NSString* email;
-@property(nonatomic, assign)    BOOL      status;
-@property(nonatomic, strong)      NSString* username;
-@property(nonatomic, strong)      NSString* password;
-@property(nonatomic, assign)    UserTypes type;
+@property(nonatomic, strong)      Users* user;
+
+-(id)initWithNewUser;
 /* call to send this object to be verified by the server */
--(void)login:(ObjectResponse)onSuccessHandler;
+-(void)loginWithUsername:(NSString*)username andPassword:(NSString*)password onCompletion:(ObjectResponse)onSuccessHandler;
 
 /* call to send this object to be create a new user to be authorized */
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
+
+-(BOOL)loadUserWithUsername:(NSString *)usersName;
 @end

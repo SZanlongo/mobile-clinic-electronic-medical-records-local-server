@@ -41,7 +41,7 @@
         [dvc setScreenHandler:^(id object, NSError *error) {
             // This method will return the age
             if (object) {
-                _patient.dob = object;
+                _patient.patient.age = object;
                 [patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
             }
          [self.navigationController popViewControllerAnimated:YES];
@@ -58,7 +58,7 @@
     [facade TakePictureWithCompletion:^(id img) {
         if (img) {
             [patientPictureImage setImage:img];
-            [_patient setPicture:img];
+            [_patient.patient setPhoto:[img convertImageToPNGBinaryData]];
         }
         [progress hide:YES];
     }];
@@ -68,11 +68,10 @@
 - (IBAction)registerPatientButton:(id)sender {
     //before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
-        _patient.familyName = familyNameField.text;
-        _patient.firstName = patientNameField.text;
-        _patient.village = villageNameField.text;
-        //_patient.age = patientAgeField.text;
-        _patient.sex = patientSexSegment.selectedSegmentIndex;
+        _patient.patient.familyName = familyNameField.text;
+        _patient.patient.firstName = patientNameField.text;
+        _patient.patient.villageName = villageNameField.text;
+        _patient.patient.sex = [NSNumber numberWithInt:patientSexSegment.selectedSegmentIndex];
        
         // Even if the user file is being edited this method will
         // know the difference
@@ -106,7 +105,7 @@
 	// Do any additional setup after loading the view.
     facade = [[CameraFacade alloc]initWithView:self];
     if (!_patient)
-        _patient = [[PatientObject alloc]init];
+        _patient = [[PatientObject alloc]initWithNewPatient];
     else{
         [self Redisplay];
     }
@@ -133,11 +132,11 @@
 - (IBAction)patientSexSegment:(id)sender {
 }
 -(void)Redisplay{
-    [patientNameField setText:_patient.firstName];
-    [patientPictureImage setImage:_patient.picture];
-    [familyNameField setText:_patient.familyName];
-    [villageNameField setText:_patient.village];
-    [patientSexSegment setSelectedSegmentIndex:_patient.sex];
+    [patientNameField setText:_patient.patient.firstName];
+    [patientPictureImage setImage:_patient.getPhoto];
+    [familyNameField setText:_patient.patient.familyName];
+    [villageNameField setText:_patient.patient.villageName];
+    [patientSexSegment setSelectedSegmentIndex:_patient.patient.sex.integerValue];
     NSString* age = [NSString stringWithFormat:@"%i Years Old",_patient.getAge];
     [patientAgeField setTitle:age forState:UIControlStateNormal];
 }
