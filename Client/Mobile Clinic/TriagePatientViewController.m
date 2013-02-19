@@ -35,4 +35,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setPatientNameLabel:nil];
+    [self setFamilyNameLabel:nil];
+    [self setVillageNameLabel:nil];
+    [self setPatientAgeLabel:nil];
+    [self setPatientSexLabel:nil];
+    [self setPatientWeightLabel:nil];
+    [self setPatientBPLabel:nil];
+    [super viewDidUnload];
+}
 @end

@@ -10,4 +10,15 @@
 
 @interface TriagePatientViewController : UIViewController
 
+//Patient Info Labels
+@property (weak, nonatomic) IBOutlet UILabel *patientNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *familyNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *villageNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientAgeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientSexLabel;
+
+//Vitals Labels
+@property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
+
 @end
