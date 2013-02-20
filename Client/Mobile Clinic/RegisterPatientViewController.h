@@ -12,7 +12,6 @@
 #import "ScreenNavigationDelegate.h"
 
 @interface RegisterPatientViewController : UIViewController{
-    UIImagePickerController *pCtrl;
     ScreenHandler handler;
     CameraFacade *facade;
     BOOL shouldDismiss;
@@ -25,15 +24,14 @@
 // ADD AGE FIELD HERE //
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *patientSexSegment;
+@property (weak, nonatomic) IBOutlet UIButton *createPatientButton;
 
 @property (strong, nonatomic) PatientObject *patient;
 
 - (IBAction)patientPhotoButton:(id)sender;
-- (IBAction)createPatientButton:(id)sender;
+- (PatientObject *)createPatient;
 
 - (BOOL)validateRegistration;
-//- (IBAction)cancelRegistration:(id)sender;
-
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end

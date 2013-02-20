@@ -10,7 +10,7 @@
 #import "PatientObject.h"
 #import "ScreenNavigationDelegate.h"
 
-@interface SearchPatientViewController : UIViewController {
+@interface SearchPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     ScreenHandler handler;
     BOOL shouldDismiss;
 }
@@ -22,12 +22,15 @@
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
 @property (weak, nonatomic) IBOutlet UITableView *searchResultTableView;
 
+@property (strong, nonatomic) UIButton * patientFound;
+
 - (void)setScreenHandler:(ScreenHandler) myHandler;
 //- (IBAction)cancelSearching:(id)sender;
 
 - (IBAction)searchByNameButton:(id)sender;
 - (IBAction)searchByNFCButton:(id)sender;
 - (IBAction)searchByFingerprintButton:(id)sender;
+- (PatientObject *) selectPatient;
 @end
 
 @interface SearchPatientViewControllerCell : UITableViewCell{

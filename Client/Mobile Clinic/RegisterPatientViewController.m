@@ -15,20 +15,6 @@
 
 @implementation RegisterPatientViewController
 
--(id)init
-{
-    self = [super init];
-    if (self) {
-        //initialize these fields
-        _patientNameField = [[UITextField alloc] init];
-        _familyNameField = [[UITextField alloc] init];
-        _villageNameField = [[UITextField alloc] init];
-        _dobDatePicker = [[UIDatePicker alloc] init];
-        _patientSexSegment = [[UISegmentedControl alloc] init];
-    }
-    return self;
-}
-
 //-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 //    
 //    id vc = segue.destinationViewController;
@@ -97,6 +83,7 @@
     [self setDobDatePicker:nil];
     [self setPatientPhoto:nil];
     [self setPatientSexSegment:nil];
+    [self setCreatePatientButton:nil];
     [super viewDidUnload];
 }
 
@@ -116,7 +103,7 @@
 }
 
 // Create a patient in the DB
-- (IBAction)createPatientButton:(id)sender {
+- (PatientObject *)createPatient {
     // Before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
         _patient.patient.firstName = _patientNameField.text;
@@ -139,6 +126,8 @@
             }
         }];
     }
+    
+    return _patient;
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{
@@ -174,8 +163,4 @@
     return inputIsValid;
 }
 
-//- (IBAction)cancelRegistration:(id)sender {
-//    shouldDismiss= YES;
-//    handler(self, nil);
-//}
 @end

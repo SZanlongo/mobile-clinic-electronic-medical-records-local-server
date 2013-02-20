@@ -16,17 +16,6 @@
 
 @implementation SearchPatientViewController
 
-/*
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _patientNameField = [[UITextField alloc] init];
-    }
-    return self;
-}
- */
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,22 +34,11 @@
         _patientData = [[PatientObject alloc]init];
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    
-//    if (!_patientData)
-//        _patientData = [[PatientObject alloc]init];
-//}
-
 - (void)setScreenHandler:(ScreenHandler)myHandler{
     // Responsible for dismissing the screen
     handler = myHandler;
     shouldDismiss = NO;
 }
-
-//- (CGSize)contentSizeForViewInPopover{
-//    return CGSizeMake(460, 600);
-//}
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -119,6 +97,8 @@
     
     // Return object to main screen and dismiss view
     handler(_patientData, nil);
+    
+    [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -152,6 +132,11 @@
         // Display as cells in table view
         [_searchResultTableView reloadData];
     }
+}
+
+
+-(PatientObject *)selectPatient{
+    
 }
 
 - (IBAction)searchByNFCButton:(id)sender {
