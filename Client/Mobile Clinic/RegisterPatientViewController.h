@@ -18,11 +18,10 @@
     BOOL shouldDismiss;
 }
 
-@property (strong, nonatomic) IBOutlet UITextField *patientNameField;
-@property (strong, nonatomic) IBOutlet UITextField *familyNameField;
-@property (strong, nonatomic) IBOutlet UITextField *villageNameField;
-@property (strong, nonatomic) IBOutlet UIDatePicker *dobDatePicker;
-// ADD AGE FIELD HERE //
+@property (weak, nonatomic) IBOutlet UITextField *patientNameField;
+@property (weak, nonatomic) IBOutlet UITextField *familyNameField;
+@property (weak, nonatomic) IBOutlet UITextField *villageNameField;
+@property (weak, nonatomic) IBOutlet UIButton *patientAgeField;
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *patientSexSegment;
 
@@ -33,6 +32,7 @@
 
 - (BOOL)validateRegistration;
 //- (IBAction)cancelRegistration:(id)sender;
+- (IBAction)getAgeOfPatient:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 

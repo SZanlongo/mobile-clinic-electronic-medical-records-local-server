@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Medication" syncable="YES">
+    <entity name="Medication" representedClassName="Medication" syncable="YES">
         <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="expiration" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medId" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,12 +14,13 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="physician" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="villageName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hasVisitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visitation" syncable="YES"/>
     </entity>
-    <entity name="Prescription" syncable="YES">
+    <entity name="Prescription" representedClassName="Prescription" syncable="YES">
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medicationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prescribedTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,7 +53,7 @@
     </entity>
     <elements>
         <element name="Medication" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Patients" positionX="160" positionY="261" width="128" height="180"/>
+        <element name="Patients" positionX="160" positionY="261" width="128" height="195"/>
         <element name="Prescription" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Users" positionX="160" positionY="18" width="128" height="165"/>
         <element name="Visitation" positionX="-63" positionY="369" width="128" height="210"/>

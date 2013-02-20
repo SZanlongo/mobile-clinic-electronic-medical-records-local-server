@@ -1041,8 +1041,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rj-kP-dkB">
                                 <color key="backgroundColor" red="0.88360969387755106" green="0.41827362915972305" blue="0.034783189866394157" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="391" id="fUk-2D-6bV"/>
-                                    <constraint firstAttribute="height" constant="95" id="tre-qr-QA6"/>
+                                    <constraint firstAttribute="height" constant="184" id="wpd-iE-R3c"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="40"/>
                                 <state key="normal" title="Triage">
@@ -1058,9 +1057,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ln0-Hc-eJY">
                                 <color key="backgroundColor" red="0.09769700726473253" green="0.087624058220265463" blue="0.82206632653061229" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="MEF-Tg-i0Z"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="40"/>
                                 <state key="normal" title="Doctor">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1073,7 +1069,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yq-Eo-8li">
                                 <color key="backgroundColor" red="0.20538799219916321" green="0.7299107142857143" blue="0.35875381141351281" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="POe-fc-cO8"/>
+                                    <constraint firstAttribute="height" constant="134" id="8bi-nw-asm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="40"/>
                                 <state key="normal" title="Pharmacy">
@@ -1084,39 +1080,39 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Choose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kM2-Ba-k8L">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="312" translatesAutoresizingMaskIntoConstraints="NO" id="kM2-Ba-k8L">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="hiT-eq-BnS"/>
-                                    <constraint firstAttribute="width" constant="250" id="qei-nm-vfe"/>
+                                    <constraint firstAttribute="height" constant="129" id="JV7-za-PZJ"/>
+                                    <constraint firstAttribute="width" constant="312" id="wWd-cc-0ad"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="50"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Choose Station">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="50" name="GillSans-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Station" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onp-LV-qZ0">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Qb6-i4-n4F"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="50"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ln0-Hc-eJY" firstAttribute="trailing" secondItem="7rj-kP-dkB" secondAttribute="trailing" type="default" id="5Uj-y3-Gu2"/>
-                            <constraint firstAttribute="bottom" secondItem="3Yq-Eo-8li" secondAttribute="bottom" constant="265" id="BEo-0c-3ZN"/>
-                            <constraint firstItem="kM2-Ba-k8L" firstAttribute="top" secondItem="DFK-9L-djK" secondAttribute="top" constant="265" id="Hk5-M6-oZF"/>
-                            <constraint firstItem="3Yq-Eo-8li" firstAttribute="trailing" secondItem="ln0-Hc-eJY" secondAttribute="trailing" type="default" id="MGY-XD-2bR"/>
-                            <constraint firstItem="kM2-Ba-k8L" firstAttribute="trailing" secondItem="onp-LV-qZ0" secondAttribute="trailing" type="default" id="Ocj-UQ-Ix2"/>
-                            <constraint firstItem="onp-LV-qZ0" firstAttribute="top" secondItem="kM2-Ba-k8L" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Z0c-YD-6Eg"/>
-                            <constraint firstItem="3Yq-Eo-8li" firstAttribute="centerX" secondItem="DFK-9L-djK" secondAttribute="centerX" type="default" id="Z2b-VV-JJ3"/>
-                            <constraint firstItem="onp-LV-qZ0" firstAttribute="centerX" secondItem="7rj-kP-dkB" secondAttribute="centerX" type="default" id="imQ-xS-iTd"/>
-                            <constraint firstItem="onp-LV-qZ0" firstAttribute="leading" secondItem="kM2-Ba-k8L" secondAttribute="leading" type="default" id="klQ-G6-YzY"/>
-                            <constraint firstAttribute="bottom" secondItem="ln0-Hc-eJY" secondAttribute="bottom" constant="382" id="mQy-Ym-QrP"/>
-                            <constraint firstItem="ln0-Hc-eJY" firstAttribute="leading" secondItem="7rj-kP-dkB" secondAttribute="leading" type="default" id="rfh-FK-T7o"/>
-                            <constraint firstItem="7rj-kP-dkB" firstAttribute="top" secondItem="DFK-9L-djK" secondAttribute="top" constant="408" id="uLA-vt-5KG"/>
-                            <constraint firstItem="3Yq-Eo-8li" firstAttribute="leading" secondItem="ln0-Hc-eJY" secondAttribute="leading" type="default" id="vNS-V6-MyA"/>
+                            <constraint firstAttribute="trailing" secondItem="3Yq-Eo-8li" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="0E5-g6-A3N"/>
+                            <constraint firstItem="kM2-Ba-k8L" firstAttribute="leading" secondItem="DFK-9L-djK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4CA-Qg-DIb"/>
+                            <constraint firstItem="ln0-Hc-eJY" firstAttribute="leading" secondItem="7rj-kP-dkB" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9QL-U8-0Pr"/>
+                            <constraint firstItem="kM2-Ba-k8L" firstAttribute="top" secondItem="DFK-9L-djK" secondAttribute="top" constant="181" id="Kcf-eC-WqC"/>
+                            <constraint firstItem="3Yq-Eo-8li" firstAttribute="top" secondItem="7rj-kP-dkB" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="QjD-kb-1Qy"/>
+                            <constraint firstItem="7rj-kP-dkB" firstAttribute="top" secondItem="kM2-Ba-k8L" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="WMU-Zy-60T"/>
+                            <constraint firstAttribute="trailing" secondItem="ln0-Hc-eJY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="bfo-U5-cLf"/>
+                            <constraint firstItem="7rj-kP-dkB" firstAttribute="leading" secondItem="DFK-9L-djK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gYW-QS-Ly6"/>
+                            <constraint firstItem="3Yq-Eo-8li" firstAttribute="top" secondItem="ln0-Hc-eJY" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="kfw-Tq-45j"/>
+                            <constraint firstItem="3Yq-Eo-8li" firstAttribute="leading" secondItem="DFK-9L-djK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ki5-rm-Pwh"/>
+                            <constraint firstItem="ln0-Hc-eJY" firstAttribute="leading" secondItem="kM2-Ba-k8L" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="mW5-fl-4xb"/>
+                            <constraint firstItem="ln0-Hc-eJY" firstAttribute="top" secondItem="kM2-Ba-k8L" secondAttribute="top" type="default" id="oq6-vt-7oy"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Change Station" id="hyq-9W-gFK"/>
@@ -1196,7 +1192,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Age:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-w7-UlV">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="SAl-Ac-qSO"/>
+                                    <constraint firstAttribute="height" constant="55" id="AGV-T4-waX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1225,9 +1221,136 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <action selector="patientPhotoButton:" destination="Vvd-v2-eiv" eventType="touchUpInside" id="FAS-A2-eVC"/>
                                 </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="SEd-rc-xkj">
-                                <date key="date" timeIntervalSinceReferenceDate="382902977.84510702">
-                                    <!--2013-02-18 17:56:17 +0000-->
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSt-S4-KfU">
+                                <color key="backgroundColor" red="1" green="0.40946562450000001" blue="0.31148246959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="Iv1-qK-u58"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Create Patient">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createPatientButton:" destination="Vvd-v2-eiv" eventType="touchUpInside" id="oQ1-Pe-syi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Register Patient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZg-eg-xaw">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="gjT-Hp-wkj"/>
+                                    <constraint firstAttribute="width" constant="374" id="iAa-hJ-6ad"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="43"/>
+                                <color key="textColor" red="0.39096380739999997" green="0.39096380739999997" blue="0.39096380739999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDH-Rk-reB">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                <state key="normal" title="Tap to set Age">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getAgeOfPatient:" destination="Vvd-v2-eiv" eventType="touchUpInside" id="Buc-la-NgF"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eF-cV-XBR">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdV-Fr-L3L">
+                                <color key="backgroundColor" red="0.43066079679396663" green="0.41896565149757448" blue="0.43803810586734693" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXs-vS-md6">
+                                <color key="backgroundColor" red="0.83394191579999999" green="0.83394191579999999" blue="0.83394191579999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3qv-LF-C7e" firstAttribute="leading" secondItem="Dze-l5-oJx" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1rl-ou-WjZ"/>
+                            <constraint firstItem="q7L-w7-UlV" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="223" id="4PD-ND-TiR"/>
+                            <constraint firstItem="zEQ-LK-14H" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="leading" type="default" id="5gK-es-SRi"/>
+                            <constraint firstItem="MDH-Rk-reB" firstAttribute="top" secondItem="q7L-w7-UlV" secondAttribute="top" type="default" id="5zW-KO-lve"/>
+                            <constraint firstItem="wyD-mG-RBf" firstAttribute="bottom" secondItem="gtL-1U-yIB" secondAttribute="bottom" type="default" id="6ec-X0-05S"/>
+                            <constraint firstItem="XOh-N9-5Kg" firstAttribute="bottom" secondItem="qaI-WC-PPv" secondAttribute="bottom" type="default" id="7vX-fu-RPb"/>
+                            <constraint firstItem="MDH-Rk-reB" firstAttribute="leading" secondItem="qaI-WC-PPv" secondAttribute="leading" type="default" id="9xo-1u-tLe"/>
+                            <constraint firstItem="qaI-WC-PPv" firstAttribute="leading" secondItem="gtL-1U-yIB" secondAttribute="leading" type="default" id="ByV-jO-aUL"/>
+                            <constraint firstItem="3qv-LF-C7e" firstAttribute="baseline" secondItem="Dze-l5-oJx" secondAttribute="baseline" type="default" id="CIt-Od-CZ7"/>
+                            <constraint firstAttribute="bottom" secondItem="EdV-Fr-L3L" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Cg1-gO-p53"/>
+                            <constraint firstItem="pZg-eg-xaw" firstAttribute="centerX" secondItem="a1N-ht-X1k" secondAttribute="centerX" type="default" id="DCC-A8-ubg"/>
+                            <constraint firstItem="Dze-l5-oJx" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="120" id="F2y-Gp-5uJ"/>
+                            <constraint firstItem="zxe-2W-IqS" firstAttribute="trailing" secondItem="zEQ-LK-14H" secondAttribute="trailing" type="default" id="Fd9-Nc-iiP"/>
+                            <constraint firstItem="MDH-Rk-reB" firstAttribute="leading" secondItem="q7L-w7-UlV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="GQ4-Ji-llQ"/>
+                            <constraint firstItem="qaI-WC-PPv" firstAttribute="top" secondItem="XOh-N9-5Kg" secondAttribute="top" type="default" id="JwR-18-O0R"/>
+                            <constraint firstItem="qaI-WC-PPv" firstAttribute="leading" secondItem="XOh-N9-5Kg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MvO-QS-erW"/>
+                            <constraint firstItem="MDH-Rk-reB" firstAttribute="bottom" secondItem="q7L-w7-UlV" secondAttribute="bottom" type="default" id="NKd-rR-Ljd"/>
+                            <constraint firstItem="gtL-1U-yIB" firstAttribute="leading" secondItem="wyD-mG-RBf" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="QK2-sT-goW"/>
+                            <constraint firstItem="BSt-S4-KfU" firstAttribute="top" secondItem="zEQ-LK-14H" secondAttribute="top" type="default" id="SFS-XG-jBC"/>
+                            <constraint firstItem="BSt-S4-KfU" firstAttribute="trailing" secondItem="MDH-Rk-reB" secondAttribute="trailing" type="default" id="TBd-i3-gud"/>
+                            <constraint firstItem="3qv-LF-C7e" firstAttribute="trailing" secondItem="gtL-1U-yIB" secondAttribute="trailing" type="default" id="TSf-aK-Uhj"/>
+                            <constraint firstItem="gtL-1U-yIB" firstAttribute="leading" secondItem="3qv-LF-C7e" secondAttribute="leading" type="default" id="Ubt-iu-9oI"/>
+                            <constraint firstItem="EdV-Fr-L3L" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="650" id="V2x-ii-UKD"/>
+                            <constraint firstItem="3eF-cV-XBR" firstAttribute="top" secondItem="0m8-fF-kvJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="V3m-6M-Rg5"/>
+                            <constraint firstItem="Dze-l5-oJx" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="VBy-Uj-rRk"/>
+                            <constraint firstAttribute="bottom" secondItem="3eF-cV-XBR" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="VvQ-kx-kaA"/>
+                            <constraint firstItem="0m8-fF-kvJ" firstAttribute="leading" secondItem="3eF-cV-XBR" secondAttribute="leading" type="default" id="WtL-43-yxz"/>
+                            <constraint firstItem="XXs-vS-md6" firstAttribute="top" secondItem="3eF-cV-XBR" secondAttribute="top" type="default" id="XC6-zs-bpR"/>
+                            <constraint firstItem="EdV-Fr-L3L" firstAttribute="trailing" secondItem="XXs-vS-md6" secondAttribute="trailing" type="default" id="XWl-70-hlh"/>
+                            <constraint firstItem="qaI-WC-PPv" firstAttribute="trailing" secondItem="gtL-1U-yIB" secondAttribute="trailing" type="default" id="XiX-Qm-cek"/>
+                            <constraint firstItem="3qv-LF-C7e" firstAttribute="bottom" secondItem="Dze-l5-oJx" secondAttribute="bottom" type="default" id="Y8h-YZ-SQc"/>
+                            <constraint firstItem="XXs-vS-md6" firstAttribute="leading" secondItem="3eF-cV-XBR" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="b9l-9e-xEa"/>
+                            <constraint firstItem="zxe-2W-IqS" firstAttribute="leading" secondItem="a1N-ht-X1k" secondAttribute="leading" constant="62" id="bHu-XW-8ea"/>
+                            <constraint firstItem="zEQ-LK-14H" firstAttribute="leading" secondItem="0m8-fF-kvJ" secondAttribute="leading" type="default" id="bLw-rr-881"/>
+                            <constraint firstItem="XXs-vS-md6" firstAttribute="trailing" secondItem="BSt-S4-KfU" secondAttribute="trailing" type="default" id="c6k-9l-aES"/>
+                            <constraint firstItem="MDH-Rk-reB" firstAttribute="leading" secondItem="BSt-S4-KfU" secondAttribute="leading" type="default" id="dux-AB-CZ9"/>
+                            <constraint firstItem="pZg-eg-xaw" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="28" id="ejf-4e-gBV"/>
+                            <constraint firstItem="q7L-w7-UlV" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="fhe-fR-d6m"/>
+                            <constraint firstItem="wyD-mG-RBf" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="154" id="fnx-jb-Z1v"/>
+                            <constraint firstItem="EdV-Fr-L3L" firstAttribute="leading" secondItem="3eF-cV-XBR" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="gqq-vy-hi4"/>
+                            <constraint firstItem="XOh-N9-5Kg" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="189" id="iKg-ID-ChX"/>
+                            <constraint firstItem="EdV-Fr-L3L" firstAttribute="top" secondItem="XXs-vS-md6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lOy-NY-WFo"/>
+                            <constraint firstItem="qaI-WC-PPv" firstAttribute="trailing" secondItem="MDH-Rk-reB" secondAttribute="trailing" type="default" id="mu9-kg-x8C"/>
+                            <constraint firstItem="0m8-fF-kvJ" firstAttribute="trailing" secondItem="zEQ-LK-14H" secondAttribute="trailing" type="default" id="nio-lm-sKG"/>
+                            <constraint firstItem="wyD-mG-RBf" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="oNW-YW-90J"/>
+                            <constraint firstItem="zxe-2W-IqS" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="103" id="obb-i7-OnZ"/>
+                            <constraint firstItem="gtL-1U-yIB" firstAttribute="top" secondItem="wyD-mG-RBf" secondAttribute="top" type="default" id="p2w-kx-zHA"/>
+                            <constraint firstItem="BSt-S4-KfU" firstAttribute="top" secondItem="MDH-Rk-reB" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qeM-3V-F0l"/>
+                            <constraint firstItem="XOh-N9-5Kg" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="riE-6b-JWn"/>
+                            <constraint firstItem="XXs-vS-md6" firstAttribute="leading" secondItem="BSt-S4-KfU" secondAttribute="leading" type="default" id="s9S-LJ-bI1"/>
+                            <constraint firstItem="XXs-vS-md6" firstAttribute="top" secondItem="BSt-S4-KfU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vC7-eB-dX7"/>
+                            <constraint firstItem="Dze-l5-oJx" firstAttribute="top" secondItem="3qv-LF-C7e" secondAttribute="top" type="default" id="xp2-4g-9Y3"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Register Patient" id="x3q-Y9-GKx"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="familyNameField" destination="gtL-1U-yIB" id="1tv-Db-1Qo"/>
+                        <outlet property="patientAgeField" destination="MDH-Rk-reB" id="g6E-TZ-EkH"/>
+                        <outlet property="patientNameField" destination="3qv-LF-C7e" id="Ahw-ND-zzI"/>
+                        <outlet property="patientPhoto" destination="zxe-2W-IqS" id="dhZ-hH-GA3"/>
+                        <outlet property="patientSexSegment" destination="0m8-fF-kvJ" id="40N-fx-gm0"/>
+                        <outlet property="villageNameField" destination="qaI-WC-PPv" id="6Ku-Uq-x3y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vwe-Ft-fgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="295" y="-4188"/>
+        </scene>
+        <!--Date Controller-->
+        <scene sceneID="FQf-4H-R94">
+            <objects>
+                <viewController storyboardIdentifier="datePicker" id="PB0-3G-ALN" customClass="DateController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1YG-Hf-ASz">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="360"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cO4-v5-Vhs">
+                                <date key="date" timeIntervalSinceReferenceDate="382298448.77608001">
+                                    <!--2013-02-11 18:00:48 +0000-->
                                 </date>
                                 <timeZone key="timeZone" name="America/Los_Angeles">
                                     <data key="data">
@@ -1251,86 +1374,71 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                 </timeZone>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSt-S4-KfU">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Create Patient">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Age:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbV-V1-ZEa">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="L9d-b5-d7r"/>
+                                    <constraint firstAttribute="height" constant="36" id="O12-dp-4eG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Enter Date of Birth" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLG-xA-9db">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0o-EN-q9w">
+                                <color key="backgroundColor" red="1" green="0.40946562450000001" blue="0.31148246959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="PeH-NU-oXA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="1" green="0.90356186080986467" blue="0.98652461062043595" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createPatientButton:" destination="Vvd-v2-eiv" eventType="touchUpInside" id="oQ1-Pe-syi"/>
+                                    <action selector="saveNewDate:" destination="PB0-3G-ALN" eventType="touchUpInside" id="bQT-cq-Y6v"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Register Patient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZg-eg-xaw">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="59" id="gjT-Hp-wkj"/>
-                                    <constraint firstAttribute="width" constant="374" id="iAa-hJ-6ad"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="43"/>
-                                <color key="textColor" red="0.39096380739999997" green="0.39096380739999997" blue="0.39096380739999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3qv-LF-C7e" firstAttribute="leading" secondItem="Dze-l5-oJx" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1rl-ou-WjZ"/>
-                            <constraint firstItem="qaI-WC-PPv" firstAttribute="leading" secondItem="SEd-rc-xkj" secondAttribute="leading" type="default" id="22R-7d-BGq"/>
-                            <constraint firstItem="q7L-w7-UlV" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="223" id="4PD-ND-TiR"/>
-                            <constraint firstItem="zEQ-LK-14H" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="leading" type="default" id="5gK-es-SRi"/>
-                            <constraint firstItem="wyD-mG-RBf" firstAttribute="bottom" secondItem="gtL-1U-yIB" secondAttribute="bottom" type="default" id="6ec-X0-05S"/>
-                            <constraint firstItem="XOh-N9-5Kg" firstAttribute="bottom" secondItem="qaI-WC-PPv" secondAttribute="bottom" type="default" id="7vX-fu-RPb"/>
-                            <constraint firstItem="zEQ-LK-14H" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="286" id="Bh9-TT-bW5"/>
-                            <constraint firstItem="qaI-WC-PPv" firstAttribute="leading" secondItem="gtL-1U-yIB" secondAttribute="leading" type="default" id="ByV-jO-aUL"/>
-                            <constraint firstItem="3qv-LF-C7e" firstAttribute="baseline" secondItem="Dze-l5-oJx" secondAttribute="baseline" type="default" id="CIt-Od-CZ7"/>
-                            <constraint firstItem="pZg-eg-xaw" firstAttribute="centerX" secondItem="a1N-ht-X1k" secondAttribute="centerX" type="default" id="DCC-A8-ubg"/>
-                            <constraint firstItem="Dze-l5-oJx" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="120" id="F2y-Gp-5uJ"/>
-                            <constraint firstItem="zxe-2W-IqS" firstAttribute="trailing" secondItem="zEQ-LK-14H" secondAttribute="trailing" type="default" id="Fd9-Nc-iiP"/>
-                            <constraint firstItem="BSt-S4-KfU" firstAttribute="top" secondItem="SEd-rc-xkj" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Jqy-cP-ap4"/>
-                            <constraint firstItem="qaI-WC-PPv" firstAttribute="top" secondItem="XOh-N9-5Kg" secondAttribute="top" type="default" id="JwR-18-O0R"/>
-                            <constraint firstItem="XOh-N9-5Kg" firstAttribute="trailing" secondItem="q7L-w7-UlV" secondAttribute="trailing" type="default" id="Kb0-Rq-Dnn"/>
-                            <constraint firstItem="qaI-WC-PPv" firstAttribute="leading" secondItem="XOh-N9-5Kg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MvO-QS-erW"/>
-                            <constraint firstItem="gtL-1U-yIB" firstAttribute="leading" secondItem="wyD-mG-RBf" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="QK2-sT-goW"/>
-                            <constraint firstItem="3qv-LF-C7e" firstAttribute="trailing" secondItem="gtL-1U-yIB" secondAttribute="trailing" type="default" id="TSf-aK-Uhj"/>
-                            <constraint firstItem="gtL-1U-yIB" firstAttribute="leading" secondItem="3qv-LF-C7e" secondAttribute="leading" type="default" id="Ubt-iu-9oI"/>
-                            <constraint firstItem="Dze-l5-oJx" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="VBy-Uj-rRk"/>
-                            <constraint firstItem="qaI-WC-PPv" firstAttribute="trailing" secondItem="gtL-1U-yIB" secondAttribute="trailing" type="default" id="XiX-Qm-cek"/>
-                            <constraint firstItem="3qv-LF-C7e" firstAttribute="bottom" secondItem="Dze-l5-oJx" secondAttribute="bottom" type="default" id="Y8h-YZ-SQc"/>
-                            <constraint firstItem="zxe-2W-IqS" firstAttribute="leading" secondItem="a1N-ht-X1k" secondAttribute="leading" constant="62" id="bHu-XW-8ea"/>
-                            <constraint firstItem="zEQ-LK-14H" firstAttribute="leading" secondItem="0m8-fF-kvJ" secondAttribute="leading" type="default" id="bLw-rr-881"/>
-                            <constraint firstItem="pZg-eg-xaw" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="28" id="ejf-4e-gBV"/>
-                            <constraint firstItem="q7L-w7-UlV" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="fhe-fR-d6m"/>
-                            <constraint firstItem="wyD-mG-RBf" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="154" id="fnx-jb-Z1v"/>
-                            <constraint firstItem="0m8-fF-kvJ" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="338" id="foH-OA-Mam"/>
-                            <constraint firstItem="XOh-N9-5Kg" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="189" id="iKg-ID-ChX"/>
-                            <constraint firstItem="SEd-rc-xkj" firstAttribute="trailing" secondItem="BSt-S4-KfU" secondAttribute="trailing" type="default" id="kwe-Uy-lqh"/>
-                            <constraint firstItem="SEd-rc-xkj" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="263" id="lff-xe-H9r"/>
-                            <constraint firstItem="0m8-fF-kvJ" firstAttribute="trailing" secondItem="zEQ-LK-14H" secondAttribute="trailing" type="default" id="nio-lm-sKG"/>
-                            <constraint firstItem="wyD-mG-RBf" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="oNW-YW-90J"/>
-                            <constraint firstItem="zxe-2W-IqS" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="103" id="obb-i7-OnZ"/>
-                            <constraint firstItem="gtL-1U-yIB" firstAttribute="top" secondItem="wyD-mG-RBf" secondAttribute="top" type="default" id="p2w-kx-zHA"/>
-                            <constraint firstItem="XOh-N9-5Kg" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="riE-6b-JWn"/>
-                            <constraint firstItem="Dze-l5-oJx" firstAttribute="top" secondItem="3qv-LF-C7e" secondAttribute="top" type="default" id="xp2-4g-9Y3"/>
-                            <constraint firstItem="qaI-WC-PPv" firstAttribute="trailing" secondItem="SEd-rc-xkj" secondAttribute="trailing" type="default" id="zKG-Eo-zF6"/>
+                            <constraint firstItem="aLG-xA-9db" firstAttribute="leading" secondItem="UbV-V1-ZEa" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7Kj-te-fBe"/>
+                            <constraint firstAttribute="trailing" secondItem="d0o-EN-q9w" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="CSE-UM-Kba"/>
+                            <constraint firstItem="aLG-xA-9db" firstAttribute="top" secondItem="d0o-EN-q9w" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="FU7-AV-oGs"/>
+                            <constraint firstAttribute="trailing" secondItem="aLG-xA-9db" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Jmd-zn-LZa"/>
+                            <constraint firstItem="d0o-EN-q9w" firstAttribute="leading" secondItem="1YG-Hf-ASz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="RVb-qg-3ZI"/>
+                            <constraint firstItem="UbV-V1-ZEa" firstAttribute="leading" secondItem="1YG-Hf-ASz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="f19-2V-75C"/>
+                            <constraint firstItem="cO4-v5-Vhs" firstAttribute="trailing" secondItem="1YG-Hf-ASz" secondAttribute="trailing" type="default" id="fPF-BX-661"/>
+                            <constraint firstItem="aLG-xA-9db" firstAttribute="baseline" secondItem="UbV-V1-ZEa" secondAttribute="baseline" type="default" id="fg1-W5-ue3"/>
+                            <constraint firstItem="cO4-v5-Vhs" firstAttribute="bottom" secondItem="1YG-Hf-ASz" secondAttribute="bottom" type="default" id="lam-fK-71S"/>
+                            <constraint firstItem="cO4-v5-Vhs" firstAttribute="leading" secondItem="1YG-Hf-ASz" secondAttribute="leading" type="default" id="ohn-xA-Soq"/>
+                            <constraint firstItem="UbV-V1-ZEa" firstAttribute="top" secondItem="d0o-EN-q9w" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="unZ-lf-E7J"/>
+                            <constraint firstItem="d0o-EN-q9w" firstAttribute="top" secondItem="1YG-Hf-ASz" secondAttribute="top" constant="20" symbolic="YES" type="default" id="vNk-IM-4YH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Register Patient" id="x3q-Y9-GKx"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" id="aVb-RH-Vl6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="adX-rs-Izd">
+                            <connections>
+                                <action selector="saveNewDate:" destination="PB0-3G-ALN" id="IT1-78-Duc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="dobDatePicker" destination="SEd-rc-xkj" id="TYf-0Z-D7n"/>
-                        <outlet property="familyNameField" destination="gtL-1U-yIB" id="1tv-Db-1Qo"/>
-                        <outlet property="patientNameField" destination="3qv-LF-C7e" id="Ahw-ND-zzI"/>
-                        <outlet property="patientPhoto" destination="zxe-2W-IqS" id="dhZ-hH-GA3"/>
-                        <outlet property="patientSexSegment" destination="0m8-fF-kvJ" id="40N-fx-gm0"/>
-                        <outlet property="villageNameField" destination="qaI-WC-PPv" id="6Ku-Uq-x3y"/>
+                        <outlet property="dateLbl" destination="aLG-xA-9db" id="kvH-vf-8yg"/>
+                        <outlet property="datePicker" destination="cO4-v5-Vhs" id="KxE-pA-8Kh"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vwe-Ft-fgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VAd-l6-bLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="295" y="-4188"/>
+            <point key="canvasLocation" x="1058" y="-5052"/>
         </scene>
     </scenes>
     <resources>
@@ -1345,6 +1453,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="patientBPField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientConditionsTextbox" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="DateController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveNewDate:"/>
+                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
             </relationships>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
@@ -1368,9 +1484,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterPatientViewController.h"/>
             <relationships>
                 <relationship kind="action" name="createPatientButton:"/>
+                <relationship kind="action" name="getAgeOfPatient:"/>
                 <relationship kind="action" name="patientPhotoButton:"/>
-                <relationship kind="outlet" name="dobDatePicker" candidateClass="UIDatePicker"/>
                 <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>

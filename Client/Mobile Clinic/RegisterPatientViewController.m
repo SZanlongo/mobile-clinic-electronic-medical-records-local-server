@@ -9,6 +9,7 @@
 #import "RegisterPatientViewController.h"
 #import "DateController.h"
 
+UIPopoverController* pop;
 @interface RegisterPatientViewController ()
 
 @end
@@ -20,34 +21,12 @@
     self = [super init];
     if (self) {
         //initialize these fields
-        _patientNameField = [[UITextField alloc] init];
-        _familyNameField = [[UITextField alloc] init];
-        _villageNameField = [[UITextField alloc] init];
-        _dobDatePicker = [[UIDatePicker alloc] init];
-        _patientSexSegment = [[UISegmentedControl alloc] init];
+       
     }
     return self;
 }
 
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    
-//    id vc = segue.destinationViewController;
-//    
-//    if ([vc isKindOfClass:[DateController class]]) {
-//        DateController* dvc = vc;
-//        
-//        [dvc view];
-//        
-//        [dvc setScreenHandler:^(id object, NSError *error) {
-//            // This method will return the age
-//            if (object) {
-//                _patient.patient.age = object;
-//                [patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
-//            }
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }];
-//    }
-//}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -91,12 +70,7 @@
 }
 
 - (void)viewDidUnload {
-    [self setPatientNameField:nil];
-    [self setFamilyNameField:nil];
-    [self setVillageNameField:nil];
-    [self setDobDatePicker:nil];
-    [self setPatientPhoto:nil];
-    [self setPatientSexSegment:nil];
+
     [super viewDidUnload];
 }
 
@@ -119,10 +93,10 @@
 - (IBAction)createPatientButton:(id)sender {
     // Before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
+        /* Age is set when the moment the user sets it through the Popover */
         _patient.patient.firstName = _patientNameField.text;
         _patient.patient.familyName = _familyNameField.text;
         _patient.patient.villageName = _villageNameField.text;
-        _patient.patient.age = _dobDatePicker.date;
         _patient.patient.sex = [NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex];
         
         // Even if the user file is being edited this method will
@@ -139,6 +113,37 @@
             }
         }];
     }
+}
+
+- (IBAction)getAgeOfPatient:(id)sender {
+    
+    // get datepicker view
+    DateController* datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
+    
+    // Instatiate popover if not available
+    if (!pop) {
+        pop = [[UIPopoverController alloc]initWithContentViewController:datepicker];
+    }
+    
+    // Set Date if it is available
+    if (_patient.patient.age) {
+        [datepicker.datePicker setDate:_patient.patient.age];
+    }
+    
+    // set how the screen should return
+    // set the age to the date the screen returns
+    [datepicker setScreenHandler:^(id object, NSError *error) {
+        // This method will return the age
+        if (object) {
+            _patient.patient.age = object;
+            [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
+            
+        }
+        [pop dismissPopoverAnimated:YES];
+    }];
+    
+    // show the screen beside the button
+    [pop presentPopoverFromRect:_patientAgeField.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{
@@ -174,8 +179,8 @@
     return inputIsValid;
 }
 
-//- (IBAction)cancelRegistration:(id)sender {
-//    shouldDismiss= YES;
-//    handler(self, nil);
-//}
+- (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender {
+    shouldDismiss= YES;
+    handler(self, nil);
+}
 @end

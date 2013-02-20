@@ -37,4 +37,7 @@
 - (IBAction)logout:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:LOGOFF object:nil];
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+#warning Create validation for users that have the potential to go into areas they are not allowed
+}
 @end

@@ -78,12 +78,6 @@ NSString* tempPassword;
     
 }
 
--(void)CommonExecution
-{
-    NSLog(@"Doesn't need to be implemented Client-side");
-}
-
-
 #pragma mark - User Validation
 #pragma mark -
 

@@ -58,9 +58,6 @@
 		EA1EE1A416C9B7C300E263D2 /* VisitationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */; };
 		EA1EE1A716C9BAEF00E263D2 /* PatientVisitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */; };
 		EA1EE1A816C9BAEF00E263D2 /* PatientVisitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */; };
-		EA1EE1B716CD100100E263D2 /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1B616CD100100E263D2 /* Patients.m */; };
-		EA1EE1B816CD100100E263D2 /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1B616CD100100E263D2 /* Patients.m */; };
-		EA1EE20316D149E800E263D2 /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE20216D149E700E263D2 /* Visitation.m */; };
 		EA38569F16C0844C00FA83FD /* black-ui-kit.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38569E16C0844C00FA83FD /* black-ui-kit.png */; };
 		EA3856A116C089AF00FA83FD /* clearSearchBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3856A016C089AF00FA83FD /* clearSearchBar.png */; };
 		EA3856A416C08BD200FA83FD /* CreateNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3856A316C08BD200FA83FD /* CreateNewUserViewController.m */; };
@@ -93,7 +90,11 @@
 		EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
 		EACEB53F16BED11B00685AE8 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */; };
 		EACEB54016BED11B00685AE8 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */; };
-		EAD015D416D48006002A8B3B /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015D316D48006002A8B3B /* Users.m */; };
+		EAD015D716D57C4F002A8B3B /* Prescription.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015D616D57C4F002A8B3B /* Prescription.m */; };
+		EAD015DA16D57C51002A8B3B /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015D916D57C51002A8B3B /* Users.m */; };
+		EAD015DD16D57C52002A8B3B /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015DC16D57C52002A8B3B /* Visitation.m */; };
+		EAD015E016D57C52002A8B3B /* Medication.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015DF16D57C52002A8B3B /* Medication.m */; };
+		EAD015E616D57E09002A8B3B /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015E516D57E09002A8B3B /* Patients.m */; };
 		EAE6CDB516BE4683008949DC /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDA216BE4682008949DC /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAE6CDB616BE4683008949DC /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDA216BE4682008949DC /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAE6CDB716BE4683008949DC /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDA516BE4682008949DC /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -224,10 +225,6 @@
 		EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitationObject.m; sourceTree = "<group>"; };
 		EA1EE1A516C9BAEF00E263D2 /* PatientVisitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientVisitation.h; sourceTree = "<group>"; };
 		EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientVisitation.m; sourceTree = "<group>"; };
-		EA1EE1B516CD100000E263D2 /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Patients.h; path = ../Patients.h; sourceTree = "<group>"; };
-		EA1EE1B616CD100100E263D2 /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Patients.m; path = ../Patients.m; sourceTree = "<group>"; };
-		EA1EE20116D149E700E263D2 /* Visitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visitation.h; path = ../Visitation.h; sourceTree = "<group>"; };
-		EA1EE20216D149E700E263D2 /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Visitation.m; path = ../Visitation.m; sourceTree = "<group>"; };
 		EA38569E16C0844C00FA83FD /* black-ui-kit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-ui-kit.png"; sourceTree = "<group>"; };
 		EA3856A016C089AF00FA83FD /* clearSearchBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearSearchBar.png; sourceTree = "<group>"; };
 		EA3856A216C08BD200FA83FD /* CreateNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewUserViewController.h; sourceTree = "<group>"; };
@@ -254,8 +251,16 @@
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		EACEB53D16BED11B00685AE8 /* DatabaseDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDriver.h; sourceTree = "<group>"; };
 		EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseDriver.m; sourceTree = "<group>"; };
-		EAD015D216D48006002A8B3B /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
-		EAD015D316D48006002A8B3B /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		EAD015D516D57C4F002A8B3B /* Prescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prescription.h; sourceTree = "<group>"; };
+		EAD015D616D57C4F002A8B3B /* Prescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prescription.m; sourceTree = "<group>"; };
+		EAD015D816D57C51002A8B3B /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		EAD015D916D57C51002A8B3B /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		EAD015DB16D57C52002A8B3B /* Visitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Visitation.h; sourceTree = "<group>"; };
+		EAD015DC16D57C52002A8B3B /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visitation.m; sourceTree = "<group>"; };
+		EAD015DE16D57C52002A8B3B /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medication.h; sourceTree = "<group>"; };
+		EAD015DF16D57C52002A8B3B /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medication.m; sourceTree = "<group>"; };
+		EAD015E416D57E09002A8B3B /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patients.h; sourceTree = "<group>"; };
+		EAD015E516D57E09002A8B3B /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patients.m; sourceTree = "<group>"; };
 		EAE6CDA116BE4682008949DC /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		EAE6CDA216BE4682008949DC /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		EAE6CDA316BE4682008949DC /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -374,6 +379,8 @@
 				6DD5D8F516D31412007C3F74 /* StationViewController.m */,
 				6DD5D8F116D313E7007C3F74 /* LoginViewController.h */,
 				6DD5D8F216D313E7007C3F74 /* LoginViewController.m */,
+				EA1EE19D16C982DB00E263D2 /* DateController.h */,
+				EA1EE19E16C982DB00E263D2 /* DateController.m */,
 				0F9E6BA916D1E44A008AFB49 /* Images */,
 			);
 			name = NewViews;
@@ -404,8 +411,6 @@
 				4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */,
 				EAA7AC2916C3882C00B3B911 /* Triage.h */,
 				EAA7AC2A16C3882C00B3B911 /* Triage.m */,
-				EA1EE19D16C982DB00E263D2 /* DateController.h */,
-				EA1EE19E16C982DB00E263D2 /* DateController.m */,
 				EA1EE1A516C9BAEF00E263D2 /* PatientVisitation.h */,
 				EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */,
 			);
@@ -482,12 +487,16 @@
 				4677410716BD931E002FD4A5 /* FIUAppDelegate.h */,
 				4677410816BD931E002FD4A5 /* FIUAppDelegate.m */,
 				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
-				EAD015D216D48006002A8B3B /* Users.h */,
-				EAD015D316D48006002A8B3B /* Users.m */,
-				EA1EE20116D149E700E263D2 /* Visitation.h */,
-				EA1EE20216D149E700E263D2 /* Visitation.m */,
-				EA1EE1B516CD100000E263D2 /* Patients.h */,
-				EA1EE1B616CD100100E263D2 /* Patients.m */,
+				EAD015E416D57E09002A8B3B /* Patients.h */,
+				EAD015E516D57E09002A8B3B /* Patients.m */,
+				EAD015DE16D57C52002A8B3B /* Medication.h */,
+				EAD015DF16D57C52002A8B3B /* Medication.m */,
+				EAD015DB16D57C52002A8B3B /* Visitation.h */,
+				EAD015DC16D57C52002A8B3B /* Visitation.m */,
+				EAD015D816D57C51002A8B3B /* Users.h */,
+				EAD015D916D57C51002A8B3B /* Users.m */,
+				EAD015D516D57C4F002A8B3B /* Prescription.h */,
+				EAD015D616D57C4F002A8B3B /* Prescription.m */,
 				467740FF16BD931E002FD4A5 /* Supporting Files */,
 			);
 			path = "Mobile Clinic";
@@ -875,8 +884,6 @@
 				EA1EE19F16C982DB00E263D2 /* DateController.m in Sources */,
 				EA1EE1A316C9B7C300E263D2 /* VisitationObject.m in Sources */,
 				EA1EE1A716C9BAEF00E263D2 /* PatientVisitation.m in Sources */,
-				EA1EE1B716CD100100E263D2 /* Patients.m in Sources */,
-				EA1EE20316D149E800E263D2 /* Visitation.m in Sources */,
 				6DD5D8F316D313E7007C3F74 /* LoginViewController.m in Sources */,
 				6DD5D8F616D31412007C3F74 /* StationViewController.m in Sources */,
 				6DD5D8F916D314B9007C3F74 /* TriageViewController.m in Sources */,
@@ -887,7 +894,11 @@
 				6DD5D90816D315F3007C3F74 /* PreviousVisitsViewController.m in Sources */,
 				0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */,
 				0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */,
-				EAD015D416D48006002A8B3B /* Users.m in Sources */,
+				EAD015D716D57C4F002A8B3B /* Prescription.m in Sources */,
+				EAD015DA16D57C51002A8B3B /* Users.m in Sources */,
+				EAD015DD16D57C52002A8B3B /* Visitation.m in Sources */,
+				EAD015E016D57C52002A8B3B /* Medication.m in Sources */,
+				EAD015E616D57E09002A8B3B /* Patients.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,7 +942,6 @@
 				EA1EE1A016C982DB00E263D2 /* DateController.m in Sources */,
 				EA1EE1A416C9B7C300E263D2 /* VisitationObject.m in Sources */,
 				EA1EE1A816C9BAEF00E263D2 /* PatientVisitation.m in Sources */,
-				EA1EE1B816CD100100E263D2 /* Patients.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,7 @@ typedef enum {
     kStatusClientWillRecieve,
     kStatusServerWillRecieve,
     kCreateNewPatient,
+    kFindPatientsByName,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>

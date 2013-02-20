@@ -59,7 +59,7 @@
             [self CreateANewUser:nil];
             break;
         case kPullAllUsers:
-            [self PushToClient];
+            [self PushAllUsersToClient];
             break;
         case kLoginUser:
             [self ValidateAndLoginUser];
@@ -93,6 +93,72 @@
 //            eventResponse(self, nil);
     }
 }
+
+
+#pragma mark- Public Methods
+#pragma mark-
+
+-(void)CreateANewUser:(ObjectResponse)onSuccessHandler
+{
+    // Find and return object if it exists
+    StatusObject* status = [[StatusObject alloc]init];
+    // Need to set client so it can go the correct device
+    [status setClient:self.client];
+    
+    // Run Complete validation on the information given
+    // if there is an error it will be stored in the status var
+    if ([self CompleteServerSideValidation:status]) {
+        // If validation passes a new user is create
+        [self CreateANewObjectFromClass:DATABASE];
+        // Save the new user
+        [self saveObject:nil];
+        // store a message that the user has been created
+        [status setErrorMessage:@"Your profile has been created. Contact your Application Administrator for approval"];
+    }
+    
+    [status CommonExecution];
+}
+
+
+-(BOOL)loadUserWithUsername:(NSString *)usersName
+{
+    
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:DATABASE withName:usersName forAttribute:USERNAME];
+    
+    if (arr.count == 1) {
+        _user = [arr objectAtIndex:0];
+        return  YES;
+    }
+    return  NO;
+}
+
+-(NSArray *)getAllUsersFromDatabase
+{
+    
+    return [self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:USERNAME];
+}
+
+-(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder
+{
+    
+    
+    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
+    
+    //TODO: Remove Hard Dependencies
+    [mDic setObject:@"1" forKey:@"created_at"];
+    
+    [self query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+        if (!error) {
+            [self storeMultipleCloudUsers:result];
+            responder(self,nil);
+        }else{
+            responder(nil,error);
+        }
+    }];
+}
+
+
 
 #pragma mark - Private Methods
 #pragma mark -
@@ -165,26 +231,6 @@
     return YES;
 }
 
--(void)CreateANewUser:(ObjectResponse)onSuccessHandler
-{
-    // Find and return object if it exists
-    StatusObject* status = [[StatusObject alloc]init];
-    // Need to set client so it can go the correct device
-    [status setClient:self.client];
-    
-    // Run Complete validation on the information given
-    // if there is an error it will be stored in the status var
-    if ([self CompleteServerSideValidation:status]) {
-        // If validation passes a new user is create
-        [self CreateANewObjectFromClass:DATABASE];
-        // Save the new user
-        [self saveObject:nil];
-        // store a message that the user has been created
-        [status setErrorMessage:@"Your profile has been created. Contact your Application Administrator for approval"];
-    }
-    
-    [status CommonExecution];
-}
 
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key
 {
@@ -195,71 +241,31 @@
     return YES;
 }
 
--(void)ValidateAndLoginUser{
-   
-    StatusObject* status = [[StatusObject alloc]init];
-    // Need to set client so it can go the correct device
-    [status setClient:self.client];
-    // Initially set it to an error, for efficiency.
-    [status setStatus:kError];
-    
-    NSArray* userArray = [self FindObjectInTable:DATABASE withName:_user.username forAttribute:USERNAME];
-    
-    // Checks if username exists (should return 1 or 0 value)
-    if (userArray.count == 0) {
-        // Its good to send a message
-        [status setErrorMessage:@"Username doesnt Exist or was incorrect"];
-        // Let the status object send this information
-        [status CommonExecution];
-            NSLog(@"Username doesnt Exist or was incorrect");
-        return;
-    }
-   
-    // Validate with information inside database
-    _user = [userArray objectAtIndex:0];
-   
-    if (![_user.password isEqualToString:_user.password]) {
-        // Its good to send a message
-        [status setErrorMessage:@"User Password is incorrect"];
-        // Let the status object send this information
-        [status CommonExecution];
-            NSLog(@"User Password is incorrect");
-        return;
+-(void)storeMultipleCloudUsers:(NSDictionary*)cloudUsers
+{
+    //TODO: Remove Hard Dependencies
+    NSArray* users = [cloudUsers objectForKey:@"data"];
+    for (NSDictionary* userInfo in users) {
+        if (![self loadUserWithUsername:[userInfo objectForKey:@"userLogin"]]) {
+            _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
         }
-    
-    if (!_user.status.boolValue) {
-        // Its good to send a message
-        [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
-        // Let the status object send this information
-        [status CommonExecution];
-        NSLog(@"User is inactive");
-        return;
+#warning incorrect implementation
+        //TODO: Convert UserObject to have proper values
+        _user.username = [userInfo objectForKey:@"userLogin"];
+        _user.password = @"000000";
+        _user.firstname = [userInfo objectForKey:@"firstName"];
+        _user.lastname = [userInfo objectForKey:@"lastName"];
+        _user.email = [userInfo objectForKey:EMAIL];
+        //TODO: number values need to be returned as numbers
+        _user.status = [[userInfo objectForKey:STATUS]isEqualToString:@"active"]?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
+        _user.usertype = [NSNumber numberWithInt:1];
+        [self SaveCurrentObjectToDatabase:_user];
+        _user = nil;
     }
-    
-    // status will hold a copy of this user data
-    [status setData:[self consolidateForTransmitting:_user]];
-    // Indicates that this was a success
-    [status setStatus:kSuccess];
-    // Its good to send a message 
-    [status setErrorMessage:@"Login Successfull"];
-    // Let the status object send this information
-    [status CommonExecution];
-    
 }
 
--(BOOL)loadUserWithUsername:(NSString *)usersName{
-    
-    // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:DATABASE withName:usersName forAttribute:USERNAME];
-
-    if (arr.count == 1) {
-       _user = [arr objectAtIndex:0];
-        return  YES;
-    }
-    return  NO;
-}
-
--(void)PushToClient{
+-(void)PushAllUsersToClient
+{
     
     NSArray* arr = [self FindObjectInTable:DATABASE withName:@"" forAttribute:USERNAME];
     
@@ -269,8 +275,8 @@
         [arrayToSend addObject:[obj dictionaryWithValuesForKeys:obj.attributeKeys]];
     }
     NSMutableDictionary* dict = [[NSMutableDictionary alloc]initWithCapacity:3];
-
-    [dict setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
+    
+    //[dict setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dict setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
     [dict setValue:arrayToSend forKey:ALL_USERS];
     
@@ -286,46 +292,58 @@
     // Let the status object send this information
     [status CommonExecution];
 }
--(void)storeMultipleCloudUsers:(NSDictionary*)cloudUsers{
-//TODO: Remove Hard Dependencies
-    NSArray* users = [cloudUsers objectForKey:@"data"];
-    for (NSDictionary* userInfo in users) {
-        if (![self loadUserWithUsername:[userInfo objectForKey:@"userLogin"]]) {
-            _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
-        }
-#warning incorrect implementation
-        //TODO: Convert UserObject to have proper values
-            _user.username = [userInfo objectForKey:@"userLogin"];
-            _user.password = @"000000";
-            _user.firstname = [userInfo objectForKey:@"firstName"];
-            _user.lastname = [userInfo objectForKey:@"lastName"];
-            _user.email = [userInfo objectForKey:EMAIL];
-            //TODO: number values need to be returned as numbers
-            _user.status = [[userInfo objectForKey:STATUS]isEqualToString:@"active"]?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
-            _user.usertype = [NSNumber numberWithInt:1];
-        [self SaveCurrentObjectToDatabase:_user];
-        _user = nil;
+
+-(void)ValidateAndLoginUser
+{
+    
+    StatusObject* status = [[StatusObject alloc]init];
+    // Need to set client so it can go the correct device
+    [status setClient:self.client];
+    // Initially set it to an error, for efficiency.
+    [status setStatus:kError];
+    
+    NSArray* userArray = [self FindObjectInTable:DATABASE withName:_user.username forAttribute:USERNAME];
+    
+    // Checks if username exists (should return 1 or 0 value)
+    if (userArray.count == 0) {
+        // Its good to send a message
+        [status setErrorMessage:@"Username doesnt Exist or was incorrect"];
+        // Let the status object send this information
+        [status CommonExecution];
+        NSLog(@"Username doesnt Exist or was incorrect");
+        return;
     }
-}
--(NSArray *)getAllUsersFromDatabase{
-   
-  return [self FindObjectInTable:DATABASE withCustomPredicate:@"" andSortByAttribute:USERNAME];
-}
--(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder{
-
-
-    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
     
-//TODO: Remove Hard Dependencies
-    [mDic setObject:@"1" forKey:@"created_at"];
+    // Validate with information inside database
+    _user = [userArray objectAtIndex:0];
     
-    [self query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-        if (!error) {
-            [self storeMultipleCloudUsers:result];
-            responder(self,nil);
-        }else{
-            responder(nil,error);
-        }
-    }];
+    if (![_user.password isEqualToString:_user.password]) {
+        // Its good to send a message
+        [status setErrorMessage:@"User Password is incorrect"];
+        // Let the status object send this information
+        [status CommonExecution];
+        NSLog(@"User Password is incorrect");
+        return;
+    }
+    
+    if (!_user.status.boolValue) {
+        // Its good to send a message
+        [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
+        // Let the status object send this information
+        [status CommonExecution];
+        NSLog(@"User is inactive");
+        return;
+    }
+    
+    // status will hold a copy of this user data
+    [status setData:[self consolidateForTransmitting:_user]];
+    // Indicates that this was a success
+    [status setStatus:kSuccess];
+    // Its good to send a message
+    [status setErrorMessage:@"Login Successfull"];
+    // Let the status object send this information
+    [status CommonExecution];
+    
 }
+
 @end

@@ -2,7 +2,7 @@
 //  Patients.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/14/13.
+//  Created by Michael Montaque on 2/20/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -15,10 +15,12 @@
 @dynamic age;
 @dynamic familyName;
 @dynamic firstName;
+@dynamic patientId;
 @dynamic photo;
 @dynamic sex;
 @dynamic status;
 @dynamic villageName;
+@dynamic physician;
 @dynamic hasVisitations;
 
 @end

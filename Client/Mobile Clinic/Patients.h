@@ -2,7 +2,7 @@
 //  Patients.h
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/14/13.
+//  Created by Michael Montaque on 2/20/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -16,10 +16,12 @@
 @property (nonatomic, retain) NSDate * age;
 @property (nonatomic, retain) NSString * familyName;
 @property (nonatomic, retain) NSString * firstName;
+@property (nonatomic, retain) NSString * patientId;
 @property (nonatomic, retain) NSData * photo;
 @property (nonatomic, retain) NSNumber * sex;
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSString * villageName;
+@property (nonatomic, retain) NSString * physician;
 @property (nonatomic, retain) NSSet *hasVisitations;
 @end
 
