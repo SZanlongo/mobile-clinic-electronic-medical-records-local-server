@@ -11,7 +11,11 @@
 #import "SearchPatientViewController.h"
 #import "SearchPatientTableCell.h"
 
-@interface TriageViewController ()
+@interface TriageViewController (){
+    PatientObject * p;
+    RegisterPatientViewController * control;
+    SearchPatientViewController * control_2;
+}
 
 @end
 
@@ -35,7 +39,31 @@
     _tableView.rowHeight = 768;
     _tableView.transform = transform;
     [_tableView setShowsVerticalScrollIndicator:NO];
+    
+    control = [([UIStoryboard storyboardWithName:@"NewStoryboard"
+                                          bundle: nil]) instantiateViewControllerWithIdentifier:@"registerViewController"];
+    if([control view]){
+        [control.createPatientButton addTarget:self action:@selector(createPatient) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    control_2 = [([UIStoryboard storyboardWithName:@"NewStoryboard"
+                                            bundle: nil]) instantiateViewControllerWithIdentifier:@"searchViewController"];
+    
+    if([control_2 view]){
+        [control_2.patientFound addTarget:self action:@selector(searchPatient) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
+
+-(void)createPatient{
+    PatientObject * bob = [control createPatient];
+    [self performSegueWithIdentifier:@"someIden" sender:bob];
+}
+
+-(void)searchPatient{
+    PatientObject * bob = control_2.patientData;
+    [self performSegueWithIdentifier:@"semeIden" sender:bob];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -70,8 +98,7 @@
         if(!cell){
             cell = [[RegisterPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:registerCellIdentifier];
             
-            cell.viewController = [([UIStoryboard storyboardWithName:@"NewStoryboard"
-                                              bundle: nil]) instantiateViewControllerWithIdentifier:@"registerViewController"];
+            cell.viewController = control;
         }
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
@@ -92,8 +119,7 @@
         if(!cell){
             cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
                 
-            cell.viewController = [([UIStoryboard storyboardWithName:@"NewStoryboard"
-                                                bundle: nil]) instantiateViewControllerWithIdentifier:@"searchViewController"];
+            cell.viewController = control_2;
         }
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
@@ -109,4 +135,6 @@
         return cell;
     }
 }
+
+
 @end

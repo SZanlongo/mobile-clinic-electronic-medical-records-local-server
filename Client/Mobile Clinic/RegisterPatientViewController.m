@@ -90,7 +90,7 @@ UIPopoverController* pop;
 }
 
 // Create a patient in the DB
-- (IBAction)createPatientButton:(id)sender {
+- (PatientObject *)createPatient {
     // Before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
         /* Age is set when the moment the user sets it through the Popover */
@@ -113,6 +113,8 @@ UIPopoverController* pop;
             }
         }];
     }
+    
+    return _patient;
 }
 
 - (IBAction)getAgeOfPatient:(id)sender {
