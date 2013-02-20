@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G63b" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Medication" syncable="YES">
+        <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expiration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="medId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="medName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numContainers" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tabletsContainter" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Patients" representedClassName="Patients" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="familyName" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,6 +18,14 @@
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="villageName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hasVisitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visitation" syncable="YES"/>
+    </entity>
+    <entity name="Prescription" syncable="YES">
+        <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="medicationId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescribedTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tabletPerDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeOfDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="visitId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,12 +38,14 @@
         <relationship name="seenPatient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patients" syncable="YES"/>
     </entity>
     <entity name="Visitation" representedClassName="Visitation" syncable="YES">
+        <attribute name="bloodPressure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="checkInTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="checkOutTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="complaint" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="diagnosisNotes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="diagnosisTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isGraphic" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="physicianUsername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visitationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
@@ -35,6 +53,8 @@
     <elements>
         <element name="Patients" positionX="160" positionY="261" width="128" height="180"/>
         <element name="Users" positionX="160" positionY="18" width="128" height="165"/>
-        <element name="Visitation" positionX="-63" positionY="369" width="128" height="180"/>
+        <element name="Visitation" positionX="-63" positionY="369" width="128" height="210"/>
+        <element name="Prescription" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Medication" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>

@@ -1,18 +1,18 @@
 //
-//  PreviousVisitsViewController.m
+//  TriagePatientViewController.m
 //  Mobile Clinic
 //
 //  Created by sebastian a zanlongo on 2/18/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PreviousVisitsViewController.h"
+#import "TriagePatientViewController.h"
 
-@interface PreviousVisitsViewController ()
+@interface TriagePatientViewController ()
 
 @end
 
-@implementation PreviousVisitsViewController
+@implementation TriagePatientViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +36,13 @@
 }
 
 - (void)viewDidUnload {
-    [self setPatientHistoryTableView:nil];
+    [self setPatientNameLabel:nil];
+    [self setFamilyNameLabel:nil];
+    [self setVillageNameLabel:nil];
+    [self setPatientAgeLabel:nil];
+    [self setPatientSexLabel:nil];
+    [self setPatientWeightLabel:nil];
+    [self setPatientBPLabel:nil];
     [super viewDidUnload];
 }
 @end

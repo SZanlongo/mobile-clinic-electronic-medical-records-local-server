@@ -457,7 +457,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="hjR-vv-b9D"/>
-                    <navigationItem key="navigationItem" title="Diagnosis" id="hnv-n6-Joa"/>
+                    <navigationItem key="navigationItem" title="Diagnosis" id="hnv-n6-Joa">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="T4i-hu-svT"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="xx5-Ij-VFU" id="6At-an-GkO"/>
                         <outlet property="checkoutButton" destination="nV6-Ht-m60" id="3Ou-W6-BxV"/>
@@ -468,6 +470,7 @@
                         <outlet property="patientPicture" destination="cDR-uC-yof" id="fXH-YO-Hxj"/>
                         <outlet property="patientSexLabel" destination="EEG-lY-JJA" id="pXc-bM-a7D"/>
                         <outlet property="patientWeightLabel" destination="mXy-L7-hR0" id="ZYe-v4-jFF"/>
+                        <outlet property="searchButton" destination="T4i-hu-svT" id="iDt-TR-uRb"/>
                         <outlet property="submitButton" destination="WXX-l5-TtO" id="cQY-fL-pS9"/>
                         <outlet property="symptomsText" destination="KqN-cz-8Hn" id="P3W-k9-hby"/>
                         <outlet property="treatmentsText" destination="jEb-ag-bzQ" id="qUg-qj-R8d"/>

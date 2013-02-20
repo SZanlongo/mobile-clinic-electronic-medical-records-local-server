@@ -7,6 +7,7 @@
 //
 
 #import "FIUAppDelegate.h"
+#import "BaseObject.h"
 
 @implementation FIUAppDelegate
 
@@ -19,6 +20,17 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
  [[NSNotificationCenter defaultCenter]postNotificationName:APPDELEGATE_STARTED object:self];
+    
+    BaseObject *obj = [[BaseObject alloc]init];
+    
+    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
+    
+    [mDic setObject:@"1" forKey:@"created_at"];
+    
+    [obj query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+        NSLog(@"%@",[result description]);
+        
+    }];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.
