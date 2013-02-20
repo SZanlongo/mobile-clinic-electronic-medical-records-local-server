@@ -20,19 +20,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "UserObject.m"
-         timestampString = "382864624.087893"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
-         landmarkName = "-loginWithUsername:andPassword:onCompletion:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Mobile Clinic/FIULoginViewController.m"
          timestampString = "382856958.53986"
          startingColumnNumber = "9223372036854775807"
@@ -40,6 +27,19 @@
          startingLineNumber = "77"
          endingLineNumber = "77"
          landmarkName = "-loginButton:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "UserObject.m"
+         timestampString = "383038201.160977"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
+         landmarkName = "-loginWithUsername:andPassword:onCompletion:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -15,4 +15,5 @@
     #import <CoreData/CoreData.h>
     #import "FIUAppDelegate.h"
     #import "TestFlight.h"
+    #import"NSObject+CustomTools.h"
 #endif

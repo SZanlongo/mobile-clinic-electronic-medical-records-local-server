@@ -61,6 +61,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButton:" destination="4V1-xg-f76" eventType="touchUpInside" id="ZnE-ty-IU4"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Welcome!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FkS-Dw-jBB">
                                 <color key="backgroundColor" red="0.21014030612244894" green="0.21014030612244894" blue="0.21014030612244894" alpha="1" colorSpace="calibratedRGB"/>
@@ -93,10 +96,14 @@
                             <constraint firstAttribute="bottom" secondItem="izW-J9-kRl" secondAttribute="bottom" constant="307" id="zdk-8b-UZO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="F1l-FR-70h" id="FzG-Oh-Z0Q"/>
+                        <outlet property="usernameTextField" destination="2Mo-44-xPO" id="k1D-Zx-xW6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0o8-64-UtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3095" y="-1525"/>
+            <point key="canvasLocation" x="-3375" y="-2029"/>
         </scene>
         <!--Navigation Controller - Triage-->
         <scene sceneID="2q5-aH-yjl">
@@ -747,14 +754,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhU-xK-0WO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3605" y="-1849"/>
+            <point key="canvasLocation" x="2288" y="-4713"/>
         </scene>
         <!--View Controller - Edit Patient-->
         <scene sceneID="S46-P2-cVP">
             <objects>
                 <viewController id="K26-sO-0FW" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qfl-3y-uRm">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="userImage.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="n8s-6S-ecy">
@@ -1026,9 +1033,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Station View Controller - Change Station-->
         <scene sceneID="48z-Ya-HO0">
             <objects>
-                <viewController id="QXw-lH-2IZ" customClass="StationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" id="QXw-lH-2IZ" customClass="StationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DFK-9L-djK">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rj-kP-dkB">
@@ -1113,11 +1120,32 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Change Station" id="hyq-9W-gFK"/>
-                    <navigationItem key="navigationItem" id="56E-6K-I5V"/>
+                    <navigationItem key="navigationItem" id="56E-6K-I5V">
+                        <barButtonItem key="leftBarButtonItem" title="Logoff" id="yG2-dE-rxU">
+                            <connections>
+                                <action selector="logout:" destination="QXw-lH-2IZ" id="UVf-1e-Uq3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1np-HY-Zx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-495" y="-280"/>
+            <point key="canvasLocation" x="-1685" y="-2029"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0qa-8z-TKD">
+            <objects>
+                <navigationController storyboardIdentifier="userSelectScreen" definesPresentationContext="YES" id="46E-14-ERQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZJS-QJ-EKY">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QXw-lH-2IZ" kind="relationship" relationship="rootViewController" id="Dp1-yq-NB2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="omo-f8-06g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2536" y="-2029"/>
         </scene>
         <!--Register Patient View Controller - Register Patient-->
         <scene sceneID="GBf-St-TNM">
@@ -1310,26 +1338,81 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
     <classes>
-        <class className="ChangeStationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChangeStationViewController.h"/>
-        </class>
         <class className="CurrentVisitViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentVisitViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitButton:"/>
+                <relationship kind="outlet" name="patientBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientConditionsTextbox" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButton:"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
         <class className="PreviousVisitsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousVisitsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientHistoryTableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="RegisterPatientViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createPatientButton:"/>
+                <relationship kind="action" name="patientPhotoButton:"/>
+                <relationship kind="outlet" name="dobDatePicker" candidateClass="UIDatePicker"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="SearchPatientViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="searchByFingerprintButton:"/>
+                <relationship kind="action" name="searchByNFCButton:"/>
+                <relationship kind="action" name="searchByNameButton:"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="searchResultTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="StationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+            </relationships>
+        </class>
+        <class className="TriagePatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriagePatientViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="familyNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientAgeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientSexLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="villageNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TriageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriageViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="viewSelectorSegment" candidateClass="UIBarButtonItem"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

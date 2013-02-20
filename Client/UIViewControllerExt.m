@@ -5,7 +5,7 @@
 //  Created by Michael Montaque on 1/22/12.
 //  Copyright (c) 2012 Florida International University. All rights reserved.
 //
-
+#define STORYBOARDNAME @"NewStoryboard"
 #import "UIViewControllerExt.h"
 
 @implementation UIViewController (Extended)
@@ -95,15 +95,15 @@
 */
 
 -(id)getViewControllerFromiPadStoryboardWithName:(NSString *)viewName{
-    UIStoryboard* story = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    UIStoryboard* story = [UIStoryboard storyboardWithName:STORYBOARDNAME bundle:[NSBundle mainBundle]];
     return [story instantiateViewControllerWithIdentifier:viewName];
 }
 -(id)getViewControllerFromiPhoneStoryboardWithName:(NSString *)viewName{
-    UIStoryboard* story = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIStoryboard* story = [UIStoryboard storyboardWithName:STORYBOARDNAME bundle:nil];
     return [story instantiateViewControllerWithIdentifier:viewName];
 }
 +(id)getViewControllerFromiPadStoryboardWithName:(NSString *)viewName{
-    UIStoryboard* story = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIStoryboard* story = [UIStoryboard storyboardWithName:STORYBOARDNAME bundle:nil];
     return [story instantiateViewControllerWithIdentifier:viewName];
 }
 -(double)convertBytesToMegaBytes:(long)byte{

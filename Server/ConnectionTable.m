@@ -12,7 +12,7 @@
 id connection;
 
 DatabaseDriver* userDatabaseDriver;
-
+UserObject* users;
 @implementation ConnectionTable
 @synthesize listOfUsers;
 #pragma mark -
@@ -22,33 +22,43 @@ DatabaseDriver* userDatabaseDriver;
     if (!appDelegate) {
         appDelegate = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
         userDatabaseDriver = [[DatabaseDriver alloc]init];
+        users = [[UserObject alloc]init];
         listOfUsers = [[NSMutableArray alloc]init];
         [self setDelegate:self];
         [self setDataSource:self];
-        
-       // connection = [ServerWrapper sharedServerManager];
-        connection = [ServerCore sharedInstance];
-        [connection startServer];
         
          NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
         
         // Normally the appdelegate starts first but in this case it doesnt, so
         // we listen for when the appdelegate says its up and running
-        [center addObserverForName:APPDELEGATE_STARTED object:nil queue:nil usingBlock:^(NSNotification *note) {
-            appDelegate = note.object;
-            appDelegate.server = connection;
-        }];
+        [center addObserver:self selector:@selector(SetupAnythingThatNeedsCoreData:) name:APPDELEGATE_STARTED object:appDelegate];
         
         // listen for when users add themselves to the database
         [center addObserverForName:SAVE_USER object:nil queue:nil usingBlock:^(NSNotification *note) {
             [self refreshServer:nil];
         }];
         
-        [self refreshServer:nil];
+        // connection = [ServerWrapper sharedServerManager];
+        connection = [ServerCore sharedInstance];
+        
+        [connection startServer];
     }
 }
 
-
+-(void)SetupAnythingThatNeedsCoreData:(NSNotification*)note{
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:APPDELEGATE_STARTED object:appDelegate];
+    
+    // On First load, Sync Users from cloud to local server
+    UserObject* updateUserList = [[UserObject alloc]init];
+    
+    [updateUserList SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
+        appDelegate = note.object;
+        appDelegate.server = connection;
+        [self refreshServer:nil];
+    }];
+    
+}
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
@@ -77,14 +87,7 @@ DatabaseDriver* userDatabaseDriver;
 
 -(void)refreshServer:(id)sender{
     [self beginUpdates];
-    
-    id arr= [userDatabaseDriver FindObjectInTable:@"Users" withName:@"" forAttribute:@"username"];
-    //Sometimes the database doesnt initialze first so this tries to get a new one
-    if (!arr) {
-        userDatabaseDriver = [[DatabaseDriver alloc]init];
-        arr =  [userDatabaseDriver FindObjectInTable:@"Users" withName:@"" forAttribute:@"username"];
-    }
-    listOfUsers = [NSMutableArray arrayWithArray:arr];
+    listOfUsers = [NSArray arrayWithArray:[users getAllUsersFromDatabase]];
     [self endUpdates];
     [self reloadData];
     

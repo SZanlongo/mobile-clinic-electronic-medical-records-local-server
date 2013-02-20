@@ -23,30 +23,28 @@
         }];
 
         // Called when the user taps a user Row
-        [center addObserverForName:SELECTED_A_USER object:nil queue:nil usingBlock:^(NSNotification *note) {
-            user = note.object;
-            [self displayUserInformation:note.object];
-        }];
+        [center addObserver:self selector:@selector(displayUserInformation:) name:SELECTED_A_USER object:user];
     }
 }
 
--(void)displayUserInformation:(UserObject*)theUser{
-    [_titleText setStringValue:theUser.user.username];
-    [_info setString:theUser.description];
-    [_Password setStringValue:theUser.user.password];
-    [_userTypeBox selectItemAtIndex:theUser.user.usertype.integerValue];
-    [_isActiveSegment setSelectedSegment:(theUser.user.status.boolValue)?1:0];
+-(void)displayUserInformation:(NSNotification*)note{
+    user = note.object;
+    [_username setStringValue:user.user.username];
+    [_email setStringValue:user.user.email];
+    [_Password setStringValue:user.user.password];
+    [_userTypeBox selectItemAtIndex:user.user.usertype.integerValue];
+    [_isActiveSegment setSelectedSegment:(user.user.status.boolValue)?1:0];
 }
 -(void)AuthorizeUser:(id)sender{
     NSSegmentedControl* seg = sender;
     user.user.status = [NSNumber numberWithBool:(seg.selectedSegment == 1)?YES:NO];
-    [self displayUserInformation:user];
+    [_isActiveSegment setSelectedSegment:(user.user.status.boolValue)?1:0];
 }
+
 -(void)CommitNewUserInfo:(id)sender{
    [user saveObject:^(id<BaseObjectProtocol> data, NSError* error) {
+#warning Create an error;
        if (!error) {
-           [self displayUserInformation:user];
-       }else {
            NSLog(@"ERROR: %@",error.localizedDescription);
        }
    }];

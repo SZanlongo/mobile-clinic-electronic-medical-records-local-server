@@ -33,7 +33,7 @@
 
 #pragma mark - BaseObjectProtocol Methods
 #pragma mark -
-
+//TODO: Add error creator to base object
 /* The super needs to be called first */
 -(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     
@@ -285,5 +285,47 @@
     [status setErrorMessage:@"Synced All users to device from server. Please Try logging in."];
     // Let the status object send this information
     [status CommonExecution];
+}
+-(void)storeMultipleCloudUsers:(NSDictionary*)cloudUsers{
+//TODO: Remove Hard Dependencies
+    NSArray* users = [cloudUsers objectForKey:@"data"];
+    for (NSDictionary* userInfo in users) {
+        if (![self loadUserWithUsername:[userInfo objectForKey:@"userLogin"]]) {
+            _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
+        }
+#warning incorrect implementation
+        //TODO: Convert UserObject to have proper values
+            _user.username = [userInfo objectForKey:@"userLogin"];
+            _user.password = @"000000";
+            _user.firstname = [userInfo objectForKey:@"firstName"];
+            _user.lastname = [userInfo objectForKey:@"lastName"];
+            _user.email = [userInfo objectForKey:EMAIL];
+            //TODO: number values need to be returned as numbers
+            _user.status = [[userInfo objectForKey:STATUS]isEqualToString:@"active"]?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
+            _user.usertype = [NSNumber numberWithInt:1];
+        [self SaveCurrentObjectToDatabase:_user];
+        _user = nil;
+    }
+}
+-(NSArray *)getAllUsersFromDatabase{
+   
+  return [self FindObjectInTable:DATABASE withCustomPredicate:@"" andSortByAttribute:USERNAME];
+}
+-(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder{
+
+
+    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
+    
+//TODO: Remove Hard Dependencies
+    [mDic setObject:@"1" forKey:@"created_at"];
+    
+    [self query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+        if (!error) {
+            [self storeMultipleCloudUsers:result];
+            responder(self,nil);
+        }else{
+            responder(nil,error);
+        }
+    }];
 }
 @end

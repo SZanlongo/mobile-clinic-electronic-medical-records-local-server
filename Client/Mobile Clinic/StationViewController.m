@@ -34,5 +34,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (IBAction)logout:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:LOGOFF object:nil];
+}
 @end

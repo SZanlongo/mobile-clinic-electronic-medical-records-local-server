@@ -16,7 +16,7 @@
 -(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name;
 -(void)SaveCurrentObjectToDatabase:(NSManagedObject*)databaseObject;
 
--(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSString *)predicateString andSortByAttribute:(NSString*)attribute;
+-(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute;
 
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute;
 @end

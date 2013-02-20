@@ -24,8 +24,8 @@ typedef enum {
 
 @property(nonatomic, strong)      Users* user;
 
-
+-(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder;
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
-
+-(NSArray*)getAllUsersFromDatabase;
 -(BOOL)loadUserWithUsername:(NSString*)usersName;
 @end

@@ -34,7 +34,7 @@ return self;
     [fetch setSortDescriptors:sortDescriptors];
     
     
-    if (name.length > 3) {
+    if (name.length > 0) {
         NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",attribute,name];
         [fetch setPredicate:pred];
     }
@@ -51,26 +51,21 @@ return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectCont
     [appDelegate saveContext];
 }
 
--(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSString *)predicateString andSortByAttribute:(NSString*)attribute{
+-(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute{
 
+    NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
     
-    if (predicateString.length > 0) {
-      
-        NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
-        
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:attribute ascending:YES];
-        
-        NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-        
-        [fetch setSortDescriptors:sortDescriptors];
-
-        NSPredicate *sort = [NSPredicate predicateWithFormat:predicateString];
-        
-        [fetch setPredicate:sort];
-       
-        return [self fetchElementsUsingFetchRequest:fetch withTable:table];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:attribute ascending:YES];
+    
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    [fetch setSortDescriptors:sortDescriptors];
+   
+    if (predicateString) {
+        [fetch setPredicate:predicateString];
     }
-    return nil;
+    
+    return [self fetchElementsUsingFetchRequest:fetch withTable:table];
 }
 
 

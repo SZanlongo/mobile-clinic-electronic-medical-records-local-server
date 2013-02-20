@@ -15,7 +15,10 @@
 @property (nonatomic,strong)  UserObject *user;
 @property (nonatomic,strong) IBOutlet NSTextView *info;
 @property (nonatomic,strong) IBOutlet NSTextField *titleText;
-@property (nonatomic,strong) IBOutlet NSTextField *Password;
+@property (nonatomic,strong) IBOutlet NSTextField *username;
+@property (nonatomic,strong)
+IBOutlet NSTextField *Password;
+@property (nonatomic,strong) IBOutlet NSTextField *email;
 @property (nonatomic,strong) IBOutlet NSComboBox *userTypeBox;
 @property (nonatomic,strong) IBOutlet NSSegmentedControl *isActiveSegment;
 -(IBAction)AuthorizeUser:(id)sender;

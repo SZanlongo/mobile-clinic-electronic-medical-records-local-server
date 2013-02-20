@@ -21,6 +21,7 @@
 #import "NSString+Validation.h"
 
 StatusObject* tempObject;
+ObjectResponse classResponder;
 NSString* tempUsername;
 NSString* tempPassword;
 @implementation UserObject
@@ -32,7 +33,7 @@ NSString* tempPassword;
 {
     self = [super init];
     if (self) {
-       _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
+        _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
     }
     return self;
 }
@@ -50,7 +51,7 @@ NSString* tempPassword;
 {
     
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
-
+    
     [consolidate setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
     
     return consolidate;
@@ -67,14 +68,14 @@ NSString* tempPassword;
 {
     // First check to see if a databaseObject is present
     if (_user){
-
+        
         [self SaveCurrentObjectToDatabase];
     }
     
     if (eventResponse != nil) {
         eventResponse(self,nil);
     }
-
+    
 }
 
 -(void)CommonExecution
@@ -97,7 +98,7 @@ NSString* tempPassword;
         return NO;
     }
     // Check if contains any symbols
-   else if (![_user.username isAlphaNumeric]) {
+    else if (![_user.username isAlphaNumeric]) {
         return NO;
     }
     
@@ -121,32 +122,42 @@ NSString* tempPassword;
     //Call back method that the caller is expecting
     respondToEvent = onSuccessHandler;
     
-    tempUsername = username;
-    // Check if the user exists in local
-    if ([self loadUserWithUsername:username])
-    {
-        // Check if the user has permissions
-        if (_user.status.boolValue)
-        {
-            // Check if password is valid
-            if ([_user.password isEqualToString:password])
+    // Sync all the users from server to the client
+    [self getUsersFromServer:^(id<BaseObjectProtocol> data, NSError *error) {
+
+        // Try to find user from username in local DB
+        BOOL didFindUser = [self loadUserWithUsername:username];
+        
+        // if we find the user locally then....
+        if (didFindUser) {
+            
+            // Check if the user has permissions
+            if (_user.status.boolValue)
             {
-                respondToEvent(self,nil);
+                // Check credentials against the found user
+                if ([_user.password isEqualToString:password])
+                {
+                    respondToEvent(self,nil);
+                }
+                // If incorrect password then throw an error
+                else
+                {
+                    respondToEvent(Nil,[self createErrorWithDescription:@"Username & Password combination is incorrect" andErrorCodeNumber:0 inDomain:@"User Object"]);
+                }
             }
+            // If the user doesn't have permission, throw an error
             else
             {
-                respondToEvent(Nil,[self createErrorWithDescription:@"Username/Password needs to be longer than 6 characters and contain no symbols" andErrorCodeNumber:0 inDomain:@"User Object"]);
+                respondToEvent(Nil,[self createErrorWithDescription:@"You do not have permission to login. Please contact you application administrator" andErrorCodeNumber:0 inDomain:@"User Object"]);
             }
         }
+        // if we cannot find the user, throw an error
         else
         {
-            [self sendLoginRequestToServer];
+            respondToEvent(Nil,[self createErrorWithDescription:@"The user does not exists" andErrorCodeNumber:0 inDomain:@"User Object"]);
         }
-    }
-    else
-    {
-        [self getUsersFromServer];
-    }
+    }];
+    
 }
 
 -(void)sendLoginRequestToServer{
@@ -192,9 +203,10 @@ NSString* tempPassword;
 
 -(BOOL)loadUserWithUsername:(NSString *)usersName
 {
-    
+
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K ==[cd] %@",USERNAME,usersName];
     // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:DATABASE withName:usersName forAttribute:USERNAME];
+    NSArray* arr = [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:USERNAME];
     
     if (arr.count == 1) {
         _user = [arr objectAtIndex:0];
@@ -203,8 +215,9 @@ NSString* tempPassword;
     return  NO;
 }
 
--(void)getUsersFromServer
+-(void)getUsersFromServer:(ObjectResponse)withResponse
 {
+    classResponder = withResponse;
     // Create a listener for when the server sends a responses
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(PullAllUsers:) name:GLOBAL_STATUS_LISTENER object:tempObject];
@@ -220,7 +233,7 @@ NSString* tempPassword;
 
 -(void)ActionSuccessfull:(NSNotification *)notification
 {
-
+    
     // Remove event listener
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     tempObject = notification.object;
@@ -236,7 +249,7 @@ NSString* tempPassword;
         respondToEvent(nil,[self createErrorWithDescription:tempObject.errorMessage andErrorCodeNumber:10 inDomain:@"BaseObject"] );
     }
     
-   
+    
 }
 -(void)PullAllUsers:(NSNotification *)notification{
     // Get information that was returned from server
@@ -248,21 +261,14 @@ NSString* tempPassword;
     // Go through all users in array
     for (NSDictionary* dict in arr) {
         // If the user doesnt exists in the database currently then add it in
-        if ([self isObject:[dict objectForKey:USERNAME] UniqueForKey:USERNAME]) {
-            Users* temp = (Users*)[self CreateANewObjectFromClass:DATABASE];
-            [temp setValuesForKeysWithDictionary:dict];
-            [self SaveCurrentObjectToDatabase];
+        if (![self loadUserWithUsername:[dict objectForKey:USERNAME]]) {
+           _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
         }
-    }
-    respondToEvent(nil,[self createErrorWithDescription:tempObject.errorMessage andErrorCodeNumber:10 inDomain:@"UserObject"] );
-    
-    if ([self loadUserWithUsername:tempUsername]) {
-        [self loginWithUsername:tempUsername andPassword:tempPassword onCompletion:respondToEvent];
-    }else{
-        respondToEvent(nil,[self createErrorWithDescription:@"User doesnt exist. Please a valid user or create a new one" andErrorCodeNumber:10 inDomain:@"UserObject"] );
+        
+        [_user setValuesForKeysWithDictionary:dict];
+        [self SaveCurrentObjectToDatabase];
     }
     
-    
-    
+    classResponder(nil,nil);
 }
 @end

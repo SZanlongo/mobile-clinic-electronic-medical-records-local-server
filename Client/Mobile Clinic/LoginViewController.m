@@ -13,6 +13,7 @@
 @end
 
 @implementation LoginViewController
+@synthesize usernameTextField,passwordTextField,user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,5 +37,41 @@
 }
 
 - (IBAction)loginButton:(id)sender {
+    
+    // if user doesn't exist, instantiate the user
+    if (!user)
+        user = [[UserObject alloc]initWithNewUser];
+    
+    // Attempt to login the user based on username and password
+    [user loginWithUsername:usernameTextField.text andPassword:passwordTextField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+        if (error) {
+            
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        }else{
+            // Listens for the logout button
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
+            [self navigateToMainScreen];
+        }
+    }];
+    
+}
+-(void)LogOffDevice{
+    [self dismissViewControllerAnimated:YES completion:^{
+        // Stops listening
+        [[NSNotificationCenter defaultCenter]removeObserver:self];
+    }];
+}
+-(void)navigateToMainScreen{
+    
+    id screen = [self getViewControllerFromiPadStoryboardWithName:@"userSelectScreen"];
+    
+    [self presentViewController:screen animated:YES completion:^{
+        
+    }];
+}
+- (void)viewDidUnload {
+    [self setUsernameTextField:nil];
+    [self setPasswordTextField:nil];
+    [super viewDidUnload];
 }
 @end

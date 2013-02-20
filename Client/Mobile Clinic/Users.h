@@ -2,7 +2,7 @@
 //  Users.h
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/14/13.
+//  Created by Michael Montaque on 2/19/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -20,14 +20,14 @@
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSNumber * usertype;
-@property (nonatomic, retain) NSSet *seenPatient;
+@property (nonatomic, retain) NSSet *patient;
 @end
 
 @interface Users (CoreDataGeneratedAccessors)
 
-- (void)addSeenPatientObject:(Patients *)value;
-- (void)removeSeenPatientObject:(Patients *)value;
-- (void)addSeenPatient:(NSSet *)values;
-- (void)removeSeenPatient:(NSSet *)values;
+- (void)addPatientObject:(Patients *)value;
+- (void)removePatientObject:(Patients *)value;
+- (void)addPatient:(NSSet *)values;
+- (void)removePatient:(NSSet *)values;
 
 @end

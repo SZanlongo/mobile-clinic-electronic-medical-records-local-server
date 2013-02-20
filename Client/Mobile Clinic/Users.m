@@ -2,7 +2,7 @@
 //  Users.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/14/13.
+//  Created by Michael Montaque on 2/19/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -19,6 +19,6 @@
 @dynamic status;
 @dynamic username;
 @dynamic usertype;
-@dynamic seenPatient;
+@dynamic patient;
 
 @end
