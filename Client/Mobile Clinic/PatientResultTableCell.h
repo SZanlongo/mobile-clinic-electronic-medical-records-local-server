@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PatientResultViewController.h"
 
 @interface PatientResultTableCell : UIViewController
-
+@property (nonatomic, strong) PatientResultViewController* viewController;
 @end

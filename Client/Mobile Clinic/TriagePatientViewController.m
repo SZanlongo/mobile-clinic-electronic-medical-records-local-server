@@ -23,24 +23,32 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    _patientNameField.text = _patientData.patient.firstName;
+    _familyNameField.text = _patientData.patient.familyName;
+    _villageNameField.text = _patientData.patient.villageName;
+    _patientSexField.text = [_patientData getSex:_patientData.patient.sex];
+    
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
-    [self setPatientNameLabel:nil];
-    [self setFamilyNameLabel:nil];
-    [self setVillageNameLabel:nil];
-    [self setPatientAgeLabel:nil];
-    [self setPatientSexLabel:nil];
+    [self setPatientNameField:nil];
+    [self setFamilyNameField:nil];
+    [self setVillageNameField:nil];
+    [self setPatientAgeButton:nil];
+    [self setPatientSexField:nil];
     [self setPatientWeightLabel:nil];
     [self setPatientBPLabel:nil];
     [super viewDidUnload];

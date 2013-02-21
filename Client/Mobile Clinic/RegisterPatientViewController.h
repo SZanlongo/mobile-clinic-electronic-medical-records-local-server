@@ -23,17 +23,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *patientAgeField;
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *patientSexSegment;
-@property (weak, nonatomic) IBOutlet UIButton *createPatientButton;
 
 @property (strong, nonatomic) PatientObject *patient;
 
 - (IBAction)patientPhotoButton:(id)sender;
-- (PatientObject *)createPatient;
+- (IBAction)createPatient:(id)sender;
 
 - (BOOL)validateRegistration;
-//- (IBAction)cancelRegistration:(id)sender;
 - (IBAction)getAgeOfPatient:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
+- (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender;
 
 @end

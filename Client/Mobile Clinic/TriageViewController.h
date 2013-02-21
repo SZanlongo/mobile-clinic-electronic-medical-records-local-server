@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RegisterPatientTableCell.h"
+#import "SearchPatientTableCell.h"
+//#import "SearchPatientViewController.h"
 
 @interface TriageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) SearchPatientViewController * viewController;
+@property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) RegisterPatientViewController * control1;
+@property (strong, nonatomic) SearchPatientViewController * control2;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;

@@ -7,15 +7,9 @@
 //
 
 #import "TriageViewController.h"
-#import "RegisterPatientTableCell.h"
-#import "SearchPatientViewController.h"
-#import "SearchPatientTableCell.h"
+#import "TriagePatientViewController.h"
 
-@interface TriageViewController (){
-    PatientObject * p;
-    RegisterPatientViewController * control;
-    SearchPatientViewController * control_2;
-}
+@interface TriageViewController ()
 
 @end
 
@@ -35,33 +29,42 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Rotate table horizontally (90 degrees)
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
     _tableView.rowHeight = 768;
     _tableView.transform = transform;
     [_tableView setShowsVerticalScrollIndicator:NO];
     
-    control = [([UIStoryboard storyboardWithName:@"NewStoryboard"
-                                          bundle: nil]) instantiateViewControllerWithIdentifier:@"registerViewController"];
-    if([control view]){
-        [control.createPatientButton addTarget:self action:@selector(createPatient) forControlEvents:UIControlEventTouchUpInside];
-    }
+    // Create controllers for each view (Search & Register)
+//    _control2 = [([UIStoryboard storyboardWithName:@"NewStoryboard" bundle: nil]) instantiateViewControllerWithIdentifier:@"searchPatientViewController"];
     
-    control_2 = [([UIStoryboard storyboardWithName:@"NewStoryboard"
-                                            bundle: nil]) instantiateViewControllerWithIdentifier:@"searchViewController"];
+    _control1 = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
+    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
     
-    if([control_2 view]){
-        [control_2.patientFound addTarget:self action:@selector(searchPatient) forControlEvents:UIControlEventTouchUpInside];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createPatient:) name:CREATE_NEW_PATIENT object:_patientData];
+//    if([_control1 view])
+//        [_control1.createPatientButton addTarget:self action:@selector(createPatient) forControlEvents:UIControlEventTouchUpInside];
+    
+    if([_control2 view])
+        [_control2.patientFound addTarget:self action:@selector(searchPatient) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)createPatient{
-    PatientObject * bob = [control createPatient];
-    [self performSegueWithIdentifier:@"someIden" sender:bob];
+-(void)createPatient:(NSNotification *)note {
+    _patientData = note.object;
+    
+    TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
+    
+    newView.patientData = _patientData;
+    
+    [self.navigationController pushViewController:newView animated:YES];
+    
+//    PatientObject * newPatient = [_control1 createPatient];
+//    [self performSegueWithIdentifier:@"triagePatientViewController" sender:_patientData];
 }
 
 -(void)searchPatient{
-    PatientObject * bob = control_2.patientData;
-    [self performSegueWithIdentifier:@"semeIden" sender:bob];
+    PatientObject * newPatient = _control2.patientData;
+    [self performSegueWithIdentifier:@"triagePatientViewController" sender:newPatient];
 }
 
 
@@ -92,13 +95,13 @@
     static NSString * registerCellIdentifier = @"registerCell";
     static NSString * searchCellIdentifier = @"searchCell";
     
-    if(indexPath.item == 0){
+    if(indexPath.item == 0) {
         RegisterPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:registerCellIdentifier];
         
         if(!cell){
             cell = [[RegisterPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:registerCellIdentifier];
             
-            cell.viewController = control;
+            cell.viewController = _control1;
         }
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
@@ -113,13 +116,13 @@
         
         return cell;
     }
-    else{
+    else {
         SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
             
         if(!cell){
             cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
                 
-            cell.viewController = control_2;
+            cell.viewController = _control2;
         }
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
@@ -135,6 +138,5 @@
         return cell;
     }
 }
-
 
 @end

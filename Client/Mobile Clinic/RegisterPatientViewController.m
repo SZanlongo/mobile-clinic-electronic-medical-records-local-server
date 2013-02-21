@@ -65,12 +65,11 @@ UIPopoverController* pop;
     [_familyNameField setText:_patient.patient.familyName];
     [_villageNameField setText:_patient.patient.villageName];
     [_patientSexSegment setSelectedSegmentIndex:_patient.patient.sex.integerValue];
-//    NSString* age = [NSString stringWithFormat:@"%i Years Old",_patient.getAge];
-//    [_patientAgeField setTitle:age forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload {
 
+//    [self setCreatePatient:nil];
     [super viewDidUnload];
 }
 
@@ -89,8 +88,7 @@ UIPopoverController* pop;
     }];
 }
 
-// Create a patient in the DB
-- (PatientObject *)createPatient {
+- (IBAction)createPatient:(id)sender {
     // Before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
         /* Age is set when the moment the user sets it through the Popover */
@@ -109,12 +107,10 @@ UIPopoverController* pop;
             }
             else
             {
-                handler(self, nil);
+                [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_NEW_PATIENT object:data];
             }
         }];
     }
-    
-    return _patient;
 }
 
 - (IBAction)getAgeOfPatient:(id)sender {
