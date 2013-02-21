@@ -18,12 +18,16 @@
 #define PICTURE     @"photo"
 #define VISITS      @"visits"
 #define PATIENTID   @"patientId"
+#define ALL_PATIENTS @"all patients"
 #define DATABASE    @"Patients"
 
 
 #import "StatusObject.h"
 #import "NSString+Validation.h"
 #import "Patients.h"
+
+NSString* firstname;
+NSString* lastname;
 @implementation PatientObject
 
 
@@ -42,10 +46,21 @@
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    [_patient setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
     
-   // [self unpackageVisits:[data objectForKey:VISITS]];
-    
+    // Possible that not all values may be set
+    // so depending on the command the appropriate action is taken
+    switch (self.commands) {
+        case kFindPatientsByName:
+            firstname = [data objectForKey:FIRSTNAME];
+            lastname = [data objectForKey:FAMILYNAME];
+            break;
+        default:
+            if (!_patient) {
+                _patient = (Patients*)[self CreateANewObjectFromClass:DATABASE];
+            }
+         [_patient setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
+            break;
+    }
 }
 
 /* Depending on the RemoteCommands it will execute a different Command */
@@ -57,6 +72,9 @@
             break;
         case kUpdatePatient:
             [self UpdateANewPatient: nil];
+            break;
+        case kFindPatientsByName:
+            [self FindPatientByName];
             break;
         default:
             break;
@@ -76,11 +94,9 @@
         
         [self SaveCurrentObjectToDatabase:_patient];
         
-        if (eventResponse)
-            eventResponse(self, nil);
+        eventResponse(self, nil);
     }else{
-        //        if (eventResponse)
-        //            eventResponse(self, nil);
+        eventResponse(nil, [self createErrorWithDescription:@"No Patient has been selected" andErrorCodeNumber:0 inDomain:@"Patient Object"]);
     }
 }
 
@@ -102,17 +118,20 @@
     // Need to set client so it can go the correct device
     [status setClient:self.client];
 
-    // Create new Patient database object
-    [self CreateANewObjectFromClass:DATABASE];
-    
     // Save internal information to the patient object
-    [self saveObject:nil];
-    
-    // Create message
-    [status setErrorMessage:@"Patient has been created."];
-    
-    // send status back to requested client
-    [status CommonExecution];
+    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        if (error) {
+            // Create message
+            [status setErrorMessage:@"Patient could not be created."];
+            [status setStatus:kError];
+        }else{
+            // Create message
+            [status setErrorMessage:@"Patient has been created."];
+            [status setStatus:kSuccess];
+        }
+        // send status back to requested client
+        [status CommonExecution];
+    }];
 }
 
 
@@ -156,6 +175,40 @@
 //        [completeVisits addObject:[visit consolidateForTransmitting]];
 //    }
     return completeVisits;
+}
+
+-(NSArray *)FindAllPatientsLocallyWithFirstName:(NSString *)firstname andWithLastName:(NSString *)lastname
+{
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ || %K contains[cd] %@",FIRSTNAME,firstname,FAMILYNAME,lastname];
+    
+    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:FIRSTNAME];
+}
+
+-(void)FindPatientByName{
+    
+    NSArray* arr = [self FindAllPatientsLocallyWithFirstName:firstname andWithLastName:lastname];
+    
+    NSMutableArray* arrayToSend = [[NSMutableArray alloc]initWithCapacity:arr.count];
+    
+    for (Patients* obj in arr) {
+        [arrayToSend addObject:[obj dictionaryWithValuesForKeys:obj.attributeKeys]];
+    }
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    [dict setValue:[NSNumber numberWithInt:kPatientType] forKey:OBJECTTYPE];
+    [dict setValue:arrayToSend forKey:ALL_PATIENTS];
+    
+    StatusObject* status = [[StatusObject alloc]init];
+    // Need to set client so it can go the correct device
+    [status setClient:self.client];
+    // status will hold a copy of this user data
+    [status setData:dict];
+    // Indicates that this was a success
+    [status setStatus:kSuccess];
+    // Its good to send a message
+    [status setErrorMessage:@"Search Completed"];
+    // Let the status object send this information
+    [status CommonExecution];
 }
 // Used to unpack all the visits
 -(NSArray*)unpackageVisits:(NSArray*)packagedVists

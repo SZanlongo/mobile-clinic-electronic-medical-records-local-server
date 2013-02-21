@@ -148,9 +148,12 @@ UIPopoverController* pop;
     [pop presentPopoverFromRect:_patientAgeField.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
+- (IBAction)goBackToChangeStation:(id)sender {
+    handler(self, nil);
+}
+
 -(void)setScreenHandler:(ScreenHandler)myHandler{
     handler = myHandler;
-    shouldDismiss = NO;
 }
 
 // Checks the registration form for empty fields, or incorrect data (text in number field)
@@ -182,7 +185,11 @@ UIPopoverController* pop;
 }
 
 - (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender {
-    shouldDismiss= YES;
-    handler(self, nil);
+    _patient = [[PatientObject alloc]initWithNewPatient];
+    _patientNameField.text =@"";
+    [_patientPhoto setImage: [UIImage imageNamed:@"userImage.jpeg"]];
+    _familyNameField.text =@"";
+    [_patientAgeField setTitle:@"Tap to Set Age" forState:UIControlStateNormal];
+    _villageNameField.text = @"";
 }
 @end

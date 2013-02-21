@@ -12,6 +12,8 @@
 #import "BaseObject.h"
 #import "VisitationObject.h"
 #import "Patients.h"
+
+
 @interface PatientObject : BaseObject
 
 //----> 0 = Female, 1 = Male <---//

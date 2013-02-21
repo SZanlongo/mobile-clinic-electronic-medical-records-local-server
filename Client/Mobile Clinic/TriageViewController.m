@@ -110,7 +110,7 @@
         }
         
         [cell addSubview: cell.viewController.view];
-        
+        [cell.viewController setScreenHandler:handler];
         return cell;
     }
     else{
@@ -136,5 +136,8 @@
     }
 }
 
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
+}
 
 @end

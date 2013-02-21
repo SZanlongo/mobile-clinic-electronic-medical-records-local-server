@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
 #import "CameraFacade.h"
-#import "ScreenNavigationDelegate.h"
+#import "StationViewHandlerProtocol.h"
 
 @interface RegisterPatientViewController : UIViewController{
     ScreenHandler handler;
@@ -33,7 +33,7 @@
 - (BOOL)validateRegistration;
 //- (IBAction)cancelRegistration:(id)sender;
 - (IBAction)getAgeOfPatient:(id)sender;
-
-- (void)setScreenHandler:(ScreenHandler)myHandler;
-
+- (IBAction)goBackToChangeStation:(id)sender;
+-(void)setScreenHandler:(ScreenHandler)myHandler;
+- (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender;
 @end

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TriageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#import "StationViewHandlerProtocol.h"
+@interface TriageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    ScreenHandler handler;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewSelectorSegment;
 
+-(void)setScreenHandler:(ScreenHandler)myHandler;
 @end

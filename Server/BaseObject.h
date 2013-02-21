@@ -9,6 +9,7 @@
 // OTHER OBJECTS MAY NEED THESE TWO VARIABLES //
 
 #define DATABASEOBJECT @"Database Object"
+#import "NSObject+CustomTools.h"
 
 #import <Foundation/Foundation.h>
 #import "DatabaseDriver.h"

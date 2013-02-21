@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
-		0F428B8716D43A9900E25B4B /* PatientResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8616D43A9800E25B4B /* PatientResultViewController.m */; };
-		0F428B8A16D43AD200E25B4B /* PatientHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8916D43AD200E25B4B /* PatientHistoryViewController.m */; };
-		0F428B8D16D43BE800E25B4B /* PatientHistoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8C16D43BE800E25B4B /* PatientHistoryTableCell.m */; };
-		0F428B9016D43C8A00E25B4B /* PatientResultTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8F16D43C8A00E25B4B /* PatientResultTableCell.m */; };
 		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
 		0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */; };
 		4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4614288316BF7EBB00802410 /* MainStoryboard.storyboard */; };
@@ -273,6 +269,7 @@
 		EAD015DF16D57C52002A8B3B /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medication.m; sourceTree = "<group>"; };
 		EAD015E416D57E09002A8B3B /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patients.h; sourceTree = "<group>"; };
 		EAD015E516D57E09002A8B3B /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patients.m; sourceTree = "<group>"; };
+		EAD015E716D5AF12002A8B3B /* StationViewHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationViewHandlerProtocol.h; sourceTree = "<group>"; };
 		EAE6CDA116BE4682008949DC /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		EAE6CDA216BE4682008949DC /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		EAE6CDA316BE4682008949DC /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -410,6 +407,7 @@
 				6DD5D8F216D313E7007C3F74 /* LoginViewController.m */,
 				EA1EE19D16C982DB00E263D2 /* DateController.h */,
 				EA1EE19E16C982DB00E263D2 /* DateController.m */,
+				EAD015E716D5AF12002A8B3B /* StationViewHandlerProtocol.h */,
 				0F9E6BA916D1E44A008AFB49 /* Images */,
 			);
 			name = NewViews;

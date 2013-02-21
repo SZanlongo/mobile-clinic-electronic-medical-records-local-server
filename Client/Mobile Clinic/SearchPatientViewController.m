@@ -37,7 +37,6 @@
 - (void)setScreenHandler:(ScreenHandler)myHandler{
     // Responsible for dismissing the screen
     handler = myHandler;
-    shouldDismiss = NO;
 }
 
 - (void)didReceiveMemoryWarning{
@@ -72,12 +71,13 @@
     
     _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
     
-    //cell.PatientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName];
-    
     // Display contents of cells
-    cell.patientName.text = _patientData.patient.firstName;
+    cell.patientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName];
+    
     [cell.patientPic setImage:_patientData.getPhoto];
+    
     cell.ageLabel.text =  [NSString stringWithFormat:@"%d", _patientData.patient.age.getNumberOfYearsElapseFromDate];
+    
     cell.dateLabel.text = _patientData.patient.age.convertNSDateToString;
     
     return cell;
@@ -106,37 +106,16 @@
 
 - (IBAction)searchByNameButton:(id)sender {
     
-    if (_patientNameField.text.isNotEmpty) {
-        // Gather results from firstName only
-        // patientSearchResultsArray = [NSArray arrayWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
-        
-        // Gather results from firstName & familyName
-        NSMutableOrderedSet *firstNameArray = [NSMutableOrderedSet orderedSetWithArray:[_patientData FindObjectInTable:@"Patients" withName:_patientNameField.text forAttribute:@"firstName"]];
-        NSMutableOrderedSet *familyNameArray = [NSMutableOrderedSet orderedSetWithArray:[_patientData FindObjectInTable:@"Patients" withName:_familyNameField.text forAttribute:@"familyName"]];
-        
-        // Sort & union both arrays
-        [firstNameArray unionOrderedSet:familyNameArray];
-        [firstNameArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            
-            NSManagedObject *first = obj1;
-            NSManagedObject *second = obj2;
-            
-            NSString *name1 = [first valueForKey:@"firstName"];
-            NSString *name2 = [second valueForKey:@"firstName"];
-            
-            return [name1 compare:name2];
+    // Check if there is at least one name 
+    if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
+        //Search the server and save all the results to the Clients database
+        [_patientData FindAllPatientsOnServerWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+            // Get all the result from the query
+            _patientSearchResultsArray  = [NSArray arrayWithArray:[_patientData FindAllPatientsLocallyWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text]];
+            // Redisplay the information
+            [_searchResultTableView reloadData];
         }];
-        
-        _patientSearchResultsArray = [NSArray arrayWithArray:firstNameArray.array];
-        
-        // Display as cells in table view
-        [_searchResultTableView reloadData];
     }
-}
-
-
--(PatientObject *)selectPatient{
-    
 }
 
 - (IBAction)searchByNFCButton:(id)sender {

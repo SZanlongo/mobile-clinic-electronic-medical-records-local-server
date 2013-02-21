@@ -60,6 +60,8 @@
 		EA8D863916B0C9C000256495 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D863816B0C9C000256495 /* MySpotlightImporter.m */; };
 		EA9372AB16BC6D6300D3D617 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
 		EA9372AC16BC6D6300D3D617 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
+		EAD015EA16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */; };
+		EAD015EB16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */; };
 		EAE6CD9F16BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
 		EAE6CDA016BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
 /* End PBXBuildFile section */
@@ -151,6 +153,8 @@
 		EA9372A716BC622C00D3D617 /* BaseObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseObjectProtocol.h; sourceTree = "<group>"; };
 		EA9372A916BC6D6300D3D617 /* DatabaseDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDriver.h; sourceTree = "<group>"; };
 		EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseDriver.m; sourceTree = "<group>"; };
+		EAD015E816D5E524002A8B3B /* NSObject+CustomTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CustomTools.h"; sourceTree = "<group>"; };
+		EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CustomTools.m"; sourceTree = "<group>"; };
 		EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -416,6 +420,8 @@
 			children = (
 				EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */,
 				EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */,
+				EAD015E816D5E524002A8B3B /* NSObject+CustomTools.h */,
+				EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				EA1EE22E16D1582C00E263D2 /* Patients.m in Sources */,
 				EA1EE23116D1582D00E263D2 /* Users.m in Sources */,
 				EA1EE23416D1582D00E263D2 /* Visitation.m in Sources */,
+				EAD015EA16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +606,7 @@
 				EA9372AC16BC6D6300D3D617 /* DatabaseDriver.m in Sources */,
 				EAE6CDA016BE29B9008949DC /* NSString+Validation.m in Sources */,
 				EA1EE1C016D0A02100E263D2 /* VisitationObject.m in Sources */,
+				EAD015EB16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
