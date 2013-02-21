@@ -26,4 +26,7 @@
 
 @property (weak, nonatomic) PatientObject *patientData;
 
+@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
+-(IBAction) segmentedControlIndexChanged;
+
 @end

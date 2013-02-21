@@ -144,8 +144,8 @@
                                             <rect key="frame" x="303" y="8" width="161" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
-                                                <segment title="Search"/>
                                                 <segment title="Register"/>
+                                                <segment title="Search"/>
                                             </segments>
                                             <connections>
                                                 <action selector="segmentedControlIndexChanged" destination="Esk-OK-KZe" eventType="valueChanged" id="Ygc-lf-Vea"/>
@@ -409,6 +409,9 @@
                                                 <segment title="Current Visit"/>
                                                 <segment title="Prior Visits"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="segmentedControlIndexChanged" destination="AVH-dK-ZLC" eventType="valueChanged" id="xve-dk-JE3"/>
+                                            </connections>
                                         </segmentedControl>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RJh-uG-mla"/>
@@ -608,6 +611,7 @@
                         <outlet property="patientNameField" destination="4kA-hW-Fcb" id="v1C-pc-AgZ"/>
                         <outlet property="patientSexField" destination="z4W-Lt-KEj" id="zbr-1B-M2T"/>
                         <outlet property="patientWeightLabel" destination="vYn-bI-nda" id="kvr-nT-asx"/>
+                        <outlet property="segmentedControl" destination="Qal-01-5GA" id="t3G-aN-gtq"/>
                         <outlet property="villageNameField" destination="cas-7x-74w" id="WZL-A6-6fH"/>
                     </connections>
                 </viewController>
@@ -1484,6 +1488,103 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="clinicLogo.jpg" width="325" height="260"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
+    <classes>
+        <class className="CurrentVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentVisitViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitButton:"/>
+                <relationship kind="outlet" name="patientBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientConditionsTextbox" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="DateController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveNewDate:"/>
+                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButton:"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PatientHistoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientHistoryViewController.h"/>
+        </class>
+        <class className="PatientResultViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientResultViewController.h"/>
+        </class>
+        <class className="PreviousVisitsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousVisitsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientHistoryTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RegisterPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelRegistrationClearScreenAndCreateNewPatient:"/>
+                <relationship kind="action" name="createPatient:"/>
+                <relationship kind="action" name="getAgeOfPatient:"/>
+                <relationship kind="action" name="patientPhotoButton:"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SearchPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="searchByFingerprintButton:"/>
+                <relationship kind="action" name="searchByNFCButton:"/>
+                <relationship kind="action" name="searchByNameButton:"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="searchResultTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="StationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logout:"/>
+            </relationships>
+        </class>
+        <class className="TriagePatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriagePatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedControlIndexChanged"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TriageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriageViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedControlIndexChanged"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
