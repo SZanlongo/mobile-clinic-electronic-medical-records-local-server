@@ -15,6 +15,8 @@
 
 @implementation TriageViewController
 
+@synthesize segmentedControl;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -77,10 +79,7 @@
 - (void)viewDidUnload {
     [self setTableView:nil];
     [self setToolBar:nil];
-    [self setViewSelectorSegment:nil];
     [super viewDidUnload];
-}
-- (IBAction)viewSelectorSegment:(id)sender {
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -137,6 +136,22 @@
         
         return cell;
     }
+}
+
+- (IBAction) segmentedControlIndexChanged {
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        case 1:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        default:
+            break;
+
+    }
+    [self.tableView reloadData];
+
 }
 
 @end

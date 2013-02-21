@@ -11,7 +11,9 @@
 #import "SearchPatientTableCell.h"
 //#import "SearchPatientViewController.h"
 
-@interface TriageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TriageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    UISegmentedControl *segmentedControl;
+}
 
 @property (strong, nonatomic) SearchPatientViewController * viewController;
 @property (strong, nonatomic) PatientObject * patientData;
@@ -20,6 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewSelectorSegment;
+
+@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
+-(IBAction) segmentedControlIndexChanged;
 
 @end

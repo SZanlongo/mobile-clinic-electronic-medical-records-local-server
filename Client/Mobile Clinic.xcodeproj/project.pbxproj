@@ -434,10 +434,10 @@
 				6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */,
 				4677413816BDBA2F002FD4A5 /* FIUSearchPatientViewController.h */,
 				4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */,
-				EAA7AC2916C3882C00B3B911 /* Triage.h */,
-				EAA7AC2A16C3882C00B3B911 /* Triage.m */,
 				EA1EE1A516C9BAEF00E263D2 /* PatientVisitation.h */,
 				EA1EE1A616C9BAEF00E263D2 /* PatientVisitation.m */,
+				EAA7AC2916C3882C00B3B911 /* Triage.h */,
+				EAA7AC2A16C3882C00B3B911 /* Triage.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -503,26 +503,26 @@
 		467740FE16BD931E002FD4A5 /* Mobile Clinic */ = {
 			isa = PBXGroup;
 			children = (
-				0F9E6BA816D1E41F008AFB49 /* NewViews */,
 				46E773C716CAF9E800242454 /* API */,
-				4614288616BF7EE600802410 /* Resources */,
 				4614288516BF7EDB00802410 /* Controllers */,
-				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
-				0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */,
 				4677410716BD931E002FD4A5 /* FIUAppDelegate.h */,
 				4677410816BD931E002FD4A5 /* FIUAppDelegate.m */,
-				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
-				0F4E4F4816D59EB000992B7F /* Users.h */,
-				0F4E4F4916D59EB000992B7F /* Users.m */,
-				0F4E4F4216D59D2F00992B7F /* Prescription.h */,
-				0F4E4F4316D59D2F00992B7F /* Prescription.m */,
-				0F4E4F3F16D59D2F00992B7F /* Visitation.h */,
-				0F4E4F4016D59D2F00992B7F /* Visitation.m */,
-				0F4E4F3C16D59D2F00992B7F /* Patients.h */,
-				0F4E4F3D16D59D2F00992B7F /* Patients.m */,
+				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
 				0F4E4F3616D59D2F00992B7F /* Medication.h */,
 				0F4E4F3716D59D2F00992B7F /* Medication.m */,
+				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
+				0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */,
+				0F9E6BA816D1E41F008AFB49 /* NewViews */,
+				0F4E4F3C16D59D2F00992B7F /* Patients.h */,
+				0F4E4F3D16D59D2F00992B7F /* Patients.m */,
+				0F4E4F4216D59D2F00992B7F /* Prescription.h */,
+				0F4E4F4316D59D2F00992B7F /* Prescription.m */,
+				4614288616BF7EE600802410 /* Resources */,
 				467740FF16BD931E002FD4A5 /* Supporting Files */,
+				0F4E4F4816D59EB000992B7F /* Users.h */,
+				0F4E4F4916D59EB000992B7F /* Users.m */,
+				0F4E4F3F16D59D2F00992B7F /* Visitation.h */,
+				0F4E4F4016D59D2F00992B7F /* Visitation.m */,
 			);
 			path = "Mobile Clinic";
 			sourceTree = "<group>";
