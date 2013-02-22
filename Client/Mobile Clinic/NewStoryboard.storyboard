@@ -1683,10 +1683,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-695" y="-2029"/>
         </scene>
-        <!--View Controller-->
+        <!--Doctor View Controller-->
         <scene sceneID="8JC-k2-jhR">
             <objects>
-                <viewController id="OyF-lB-Bdx" sceneMemberID="viewController">
+                <viewController id="OyF-lB-Bdx" customClass="DoctorViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3DJ-pk-TL9">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1717,10 +1717,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="772" y="-2029"/>
         </scene>
-        <!--View Controller-->
+        <!--Doctor Patient View Controller-->
         <scene sceneID="Zxn-w8-3Gs">
             <objects>
-                <viewController storyboardIdentifier="" id="QNc-5a-0ec" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" id="QNc-5a-0ec" customClass="DoctorPatientViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dry-w1-HSs">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1992,10 +1992,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-695" y="-461"/>
         </scene>
-        <!--View Controller-->
+        <!--Pharmacy View Controller-->
         <scene sceneID="3Kg-7T-Loy">
             <objects>
-                <viewController id="cI6-xi-Gzl" sceneMemberID="viewController">
+                <viewController id="cI6-xi-Gzl" customClass="PharmacyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmS-MD-n75">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2052,10 +2052,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="772" y="-461"/>
         </scene>
-        <!--View Controller - Current Visit-->
+        <!--Current Diagnosis View Controller - Current Visit-->
         <scene sceneID="S2i-vt-yhA">
             <objects>
-                <viewController storyboardIdentifier="" id="sge-1Q-Jsy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" id="sge-1Q-Jsy" customClass="CurrentDiagnosisViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q7Q-sO-I1i">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="685"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2114,10 +2114,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="3585" y="-2029"/>
         </scene>
-        <!--View Controller - Register Patient-->
+        <!--Prescribe Patient View Controller - Register Patient-->
         <scene sceneID="VAe-rb-JcT">
             <objects>
-                <viewController storyboardIdentifier="" id="zmr-Uh-gLo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" id="zmr-Uh-gLo" customClass="PrescribePatientViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gYU-cx-lQc">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="916"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2299,6 +2299,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
     <classes>
+        <class className="CurrentDiagnosisViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentDiagnosisViewController.h"/>
+        </class>
         <class className="CurrentVisitViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentVisitViewController.h"/>
             <relationships>
@@ -2316,6 +2319,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
             </relationships>
         </class>
+        <class className="DoctorPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorPatientViewController.h"/>
+        </class>
+        <class className="DoctorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorViewController.h"/>
+        </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
@@ -2332,6 +2341,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </class>
         <class className="PatientResultViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientResultViewController.h"/>
+        </class>
+        <class className="PharmacyViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PharmacyViewController.h"/>
+        </class>
+        <class className="PrescribePatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrescribePatientViewController.h"/>
         </class>
         <class className="PreviousVisitsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousVisitsViewController.h"/>

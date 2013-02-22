@@ -1,5 +1,5 @@
 //
-//  Current DiagnosisViewController.h
+//  PrescribePatientViewController.h
 //  Mobile Clinic
 //
 //  Created by sebastian a zanlongo on 2/22/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Current_DiagnosisViewController : UIViewController
+@interface PrescribePatientViewController : UIViewController
 
 @end
