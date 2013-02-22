@@ -52,5 +52,14 @@
     NSLog(@"CommonExecution Not implemented.");
 }
 
+-(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse{
+    
+    if ([self.appDelegate.ServerManager isClientConntectToServer]) {
+        // Sending information to the server
+        [self.appDelegate.ServerManager sendData:data];
+    }else{
+        negativeResponse(nil,[self createErrorWithDescription:@"Server is Down, Please contact you Application Administrator" andErrorCodeNumber:10 inDomain:@"BaseObject"]);
+    }
+}
 
 @end

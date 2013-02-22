@@ -13,4 +13,5 @@
 - (void) startClient;
 - (void) stopClient;
 - (void) sendData:(NSDictionary*)dataToBeSent;
+- (BOOL) isClientConntectToServer;
 @end

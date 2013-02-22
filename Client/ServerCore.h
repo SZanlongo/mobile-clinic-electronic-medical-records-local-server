@@ -20,6 +20,7 @@
 	BOOL connected;
 }
 +(id)sharedInstance;
+-(BOOL)isClientConntectToServer;
 -(NSString*)getCurrentConnectionName;
 - (NSInteger)numberOfConnections;
 @end

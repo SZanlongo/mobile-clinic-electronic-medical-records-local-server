@@ -37,6 +37,7 @@
     return self;
 }
 -(void)startClient{
+    NSLog(@"Started ServerCore: Searching for Servers...");
     [netServiceBrowser searchForServicesOfType:@"_MC-EMR._tcp." inDomain:@"local."]; 
 }
 - (void)netServiceBrowser:(NSNetServiceBrowser *)sender didNotSearch:(NSDictionary *)errorInfo
@@ -70,11 +71,13 @@
          didRemoveService:(NSNetService *)netService
                moreComing:(BOOL)moreServicesComing
 {
-	NSLog(@"DidRemoveService: %@", [netService name]);
+	NSLog(@"Removing Service: %@", [netService name]);
    
     if ([serverService.name isEqualToString:netService.name]) {
-        serverService = nil;
-        asyncSocket = nil;
+        NSLog(@"Removed Current Service that was in use");
+        connected = NO;
+        [self stopClient];
+        [self startClient];
     }
     
 }
@@ -87,6 +90,7 @@
 - (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict
 {
 	NSLog(@"DidNotResolve");
+    	connected = NO;
     [self startClient];
 }
 
@@ -160,12 +164,9 @@
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
 	NSLog(@"SocketDidDisconnect:WithError: %@", err);
-	
-	if (!connected)
-	{
+
 		[self connectToNextAddress];
-	}
-    
+
     
 }
 
@@ -223,12 +224,16 @@
 -(void)stopClient{
     [netServiceBrowser stop];
     [asyncSocket disconnect];
-    [serverService stop];
+    asyncSocket = nil;
+    serverService = nil;
+    serverAddresses = nil;
 }
 -(NSInteger)numberOfConnections{
     return serverAddresses.count;
 }
-
+-(BOOL)isClientConntectToServer{
+    return connected;
+}
 -(NSString *)getCurrentConnectionName{
     return asyncSocket.connectedHost;
 }

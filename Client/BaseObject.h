@@ -23,5 +23,5 @@
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;
 
-
+-(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse;
 @end

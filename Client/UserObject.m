@@ -166,8 +166,8 @@ NSString* tempPassword;
     //** SETTING THE COMMAND YOU WANT THE SERVER TO EXECUTE WITH YOUR INFORMATION **
     [dataToSend setValue:[NSNumber numberWithInt:kLoginUser] forKey:OBJECTCOMMAND];
     
-    // Sending information to the server
-    [self.appDelegate.ServerManager sendData:dataToSend];
+    
+    
 }
 
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler
@@ -190,7 +190,10 @@ NSString* tempPassword;
         [center addObserver:self selector:@selector(ActionSuccessfull) name:GLOBAL_STATUS_LISTENER object:tempObject];
         
         // Send data to server
-        [self.appDelegate.ServerManager sendData:dataToSend];
+        [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+            [self ActionSuccessfull:nil];
+        }];
+
         
     }
 }
@@ -219,7 +222,9 @@ NSString* tempPassword;
     [dataToSend setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dataToSend setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
     // Send data to server
-    [self.appDelegate.ServerManager sendData:dataToSend];
+    [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+        [self PullAllUsers:nil];
+    }];
 }
 
 #pragma mark - Listen & Respond Methods
