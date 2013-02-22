@@ -14,7 +14,9 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewSelectorSegment;
+
+@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
+-(IBAction) segmentedControlIndexChanged;
 
 -(void)setScreenHandler:(ScreenHandler)myHandler;
 @end

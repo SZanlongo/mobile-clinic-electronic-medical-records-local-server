@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PatientHistoryViewController.h"
 
-@interface PatientHistoryTableCell : UIViewController
-
+@interface PatientHistoryTableCell : UITableViewCell 
+@property (strong, nonatomic) PatientHistoryViewController * viewController;
 @end
