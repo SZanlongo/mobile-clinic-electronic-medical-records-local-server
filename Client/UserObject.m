@@ -170,6 +170,7 @@ NSString* tempPassword;
     
 }
 
+/*
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler
 {
     // Handle callback
@@ -197,6 +198,7 @@ NSString* tempPassword;
         
     }
 }
+*/
 
 -(BOOL)loadUserWithUsername:(NSString *)usersName
 {
@@ -206,7 +208,7 @@ NSString* tempPassword;
     NSArray* arr = [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:USERNAME];
     
     if (arr.count == 1) {
-        _user = [arr objectAtIndex:0];
+        _user = arr.lastObject;
         return  YES;
     }
     return  NO;
@@ -223,7 +225,7 @@ NSString* tempPassword;
     [dataToSend setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
     // Send data to server
     [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        [self PullAllUsers:nil];
+            classResponder(nil,error);
     }];
 }
 

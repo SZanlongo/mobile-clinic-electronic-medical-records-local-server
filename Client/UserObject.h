@@ -34,7 +34,7 @@ typedef enum {
 -(void)loginWithUsername:(NSString*)username andPassword:(NSString*)password onCompletion:(ObjectResponse)onSuccessHandler;
 
 /* call to send this object to be create a new user to be authorized */
--(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
+//-(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
 
 -(BOOL)loadUserWithUsername:(NSString *)usersName;
 @end

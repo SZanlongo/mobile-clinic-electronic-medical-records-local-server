@@ -13,7 +13,7 @@
 -(NSString*)convertNSDateToString;
 
 -(NSString*)convertNSDateToMonthNumDayString;
-
+-(NSString*)convertNSDateFullBirthdayString;
 -(NSString*)convertNSDateToTimeString;
 
 +(NSDate*)convertStringToNSDate:(NSString*)string;

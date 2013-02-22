@@ -76,9 +76,9 @@
     
     [cell.patientPic setImage:_patientData.getPhoto];
     
-    cell.ageLabel.text =  [NSString stringWithFormat:@"%d", _patientData.patient.age.getNumberOfYearsElapseFromDate];
+    cell.ageLabel.text =  [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate];
     
-    cell.dateLabel.text = _patientData.patient.age.convertNSDateToString;
+    cell.dateLabel.text = _patientData.patient.age.convertNSDateFullBirthdayString;
     
     return cell;
 }
@@ -90,13 +90,11 @@
 
 // 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    shouldDismiss = YES;
-    
     // Gets the object at the corresponding index
     _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
     
     // Return object to main screen and dismiss view
-    handler(_patientData, nil);
+   // handler(_patientData, nil);
     
     [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
@@ -110,6 +108,9 @@
     if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
         //Search the server and save all the results to the Clients database
         [_patientData FindAllPatientsOnServerWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+            if (error) {
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+            }
             // Get all the result from the query
             _patientSearchResultsArray  = [NSArray arrayWithArray:[_patientData FindAllPatientsLocallyWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text]];
             // Redisplay the information

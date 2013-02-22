@@ -34,4 +34,5 @@
 - (IBAction)goBackToChangeStation:(id)sender;
 -(void)setScreenHandler:(ScreenHandler)myHandler;
 - (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender;
+
 @end

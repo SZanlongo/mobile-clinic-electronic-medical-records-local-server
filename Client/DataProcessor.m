@@ -29,6 +29,12 @@
     
 }
 
+-(NSString*)convertNSDateFullBirthdayString{
+    
+    NSDateFormatter *format =[[NSDateFormatter alloc]init];
+    [format setDateFormat:@"MMMM dd, yyyy"];
+    return [format stringFromDate:self];
+}
 
 -(NSString*)convertNSDateToTimeString{
     

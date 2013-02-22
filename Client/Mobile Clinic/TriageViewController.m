@@ -141,5 +141,20 @@
 -(void)setScreenHandler:(ScreenHandler)myHandler{
     handler = myHandler;
 }
+- (IBAction) segmentedControlIndexChanged {
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        case 1:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        default:
+            break;
+
+    }
+    [self.tableView reloadData];
+
+}
 
 @end

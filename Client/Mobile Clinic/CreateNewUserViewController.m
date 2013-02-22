@@ -67,15 +67,15 @@
         _user.user.status = NO;
         _user.user.usertype = [NSNumber numberWithInt:_userType.selectedSegmentIndex];
         
-        [_user CreateANewUser:^(id<BaseObjectProtocol> data, NSError* error) {
-            if (!error) {
-                // Exit off the page
-                 returnHandler(YES);
-            }else{
-                // Create error Message 
-                [self displayErrorWithMessage:error.localizedDescription];
-            }
-        }];
+//        [_user CreateANewUser:^(id<BaseObjectProtocol> data, NSError* error) {
+//            if (!error) {
+//                // Exit off the page
+//                 returnHandler(YES);
+//            }else{
+//                // Create error Message 
+//                [self displayErrorWithMessage:error.localizedDescription];
+//            }
+//        }];
     }else{
         [self displayErrorWithMessage:@"Passwords are not the same"];
     }
