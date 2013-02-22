@@ -18,6 +18,8 @@
 @property (strong, nonatomic) PatientObject * patientData;
 @property (strong, nonatomic) SearchPatientViewController * control2;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 -(void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end
