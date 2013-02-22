@@ -31,6 +31,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    UINavigationBar *bar =[self.navigationController navigationBar];
+    [bar setTintColor:[UIColor orangeColor]];
+    
     // Rotate table horizontally (90 degrees)
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
     _tableView.rowHeight = 768;

@@ -10,4 +10,9 @@
 
 @interface CurrentDiagnosisViewController : UIViewController
 
+
+@property (weak, nonatomic) IBOutlet UITextView *diagnosisTextbox;
+
+- (IBAction)submitButton:(id)sender;
+
 @end

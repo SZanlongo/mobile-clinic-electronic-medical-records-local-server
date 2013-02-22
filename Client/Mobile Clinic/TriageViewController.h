@@ -28,9 +28,3 @@
 -(void)setScreenHandler:(ScreenHandler)myHandler;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @end
-
-
-
-
-
-
