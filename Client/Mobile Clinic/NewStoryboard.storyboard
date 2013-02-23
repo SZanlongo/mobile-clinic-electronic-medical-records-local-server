@@ -1197,7 +1197,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="imE-E2-1Jx" kind="push" id="Xit-lA-UKm"/>
+                                    <segue destination="MC9-V7-gRo" kind="push" id="QLQ-6M-oXp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yq-Eo-8li">
@@ -1264,35 +1264,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1np-HY-Zx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1685" y="-2029"/>
-        </scene>
-        <!--Doctor View Controller - Doctor-->
-        <scene sceneID="zsL-IN-udh">
-            <objects>
-                <viewController id="imE-E2-1Jx" customClass="DoctorViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="63c-mO-lvd">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="12w-1u-ljX">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="12w-1u-ljX" firstAttribute="trailing" secondItem="63c-mO-lvd" secondAttribute="trailing" type="default" id="8Bb-yj-zBr"/>
-                            <constraint firstItem="12w-1u-ljX" firstAttribute="top" secondItem="63c-mO-lvd" secondAttribute="top" type="default" id="8Jy-Hl-JGd"/>
-                            <constraint firstItem="12w-1u-ljX" firstAttribute="leading" secondItem="63c-mO-lvd" secondAttribute="leading" type="default" id="CSO-i5-m6e"/>
-                            <constraint firstItem="12w-1u-ljX" firstAttribute="bottom" secondItem="63c-mO-lvd" secondAttribute="bottom" type="default" id="Muw-Fn-y37"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Doctor" id="py4-As-iZf"/>
-                    <connections>
-                        <outlet property="tableView" destination="12w-1u-ljX" id="ik4-hY-Xh3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dn5-Gj-iih" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-604" y="-2029"/>
         </scene>
         <!--Pharmacy View Controller - Pharmacy-->
         <scene sceneID="JfQ-uh-uJr">
@@ -1417,9 +1388,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEQ-LK-14H">
                                 <color key="backgroundColor" red="1" green="0.87521409431651631" blue="0.36458637503753455" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0Rm-aF-ApK"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Take Photo">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1434,6 +1402,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSt-S4-KfU">
                                 <color key="backgroundColor" red="1" green="0.40946562450000001" blue="0.31148246959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="c9E-eB-GnK"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="28"/>
                                 <state key="normal" title="Create Patient">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1486,6 +1457,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0m8-fF-kvJ" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="337" id="0Rw-GR-1fd"/>
                             <constraint firstItem="3qv-LF-C7e" firstAttribute="leading" secondItem="Dze-l5-oJx" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1rl-ou-WjZ"/>
                             <constraint firstItem="zEQ-LK-14H" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="leading" type="default" id="5gK-es-SRi"/>
                             <constraint firstItem="MDH-Rk-reB" firstAttribute="top" secondItem="q7L-w7-UlV" secondAttribute="top" type="default" id="5zW-KO-lve"/>
@@ -1495,12 +1467,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="MDH-Rk-reB" firstAttribute="leading" secondItem="qaI-WC-PPv" secondAttribute="leading" type="default" id="9xo-1u-tLe"/>
                             <constraint firstItem="qaI-WC-PPv" firstAttribute="leading" secondItem="gtL-1U-yIB" secondAttribute="leading" type="default" id="ByV-jO-aUL"/>
                             <constraint firstItem="3qv-LF-C7e" firstAttribute="baseline" secondItem="Dze-l5-oJx" secondAttribute="baseline" type="default" id="CIt-Od-CZ7"/>
-                            <constraint firstItem="03U-UR-1pM" firstAttribute="top" secondItem="BSt-S4-KfU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="CLd-Sq-RwL"/>
                             <constraint firstItem="pZg-eg-xaw" firstAttribute="centerX" secondItem="a1N-ht-X1k" secondAttribute="centerX" type="default" id="DCC-A8-ubg"/>
                             <constraint firstItem="Dze-l5-oJx" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="120" id="F2y-Gp-5uJ"/>
                             <constraint firstItem="zxe-2W-IqS" firstAttribute="trailing" secondItem="zEQ-LK-14H" secondAttribute="trailing" type="default" id="Fd9-Nc-iiP"/>
                             <constraint firstItem="MDH-Rk-reB" firstAttribute="leading" secondItem="q7L-w7-UlV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="GQ4-Ji-llQ"/>
-                            <constraint firstItem="q7L-w7-UlV" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="222" id="JeA-Pu-xHs"/>
                             <constraint firstItem="qaI-WC-PPv" firstAttribute="top" secondItem="XOh-N9-5Kg" secondAttribute="top" type="default" id="JwR-18-O0R"/>
                             <constraint firstItem="qaI-WC-PPv" firstAttribute="leading" secondItem="XOh-N9-5Kg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MvO-QS-erW"/>
                             <constraint firstItem="MDH-Rk-reB" firstAttribute="bottom" secondItem="q7L-w7-UlV" secondAttribute="bottom" type="default" id="NKd-rR-Ljd"/>
@@ -1509,9 +1479,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="BSt-S4-KfU" firstAttribute="trailing" secondItem="MDH-Rk-reB" secondAttribute="trailing" type="default" id="TBd-i3-gud"/>
                             <constraint firstItem="3qv-LF-C7e" firstAttribute="trailing" secondItem="gtL-1U-yIB" secondAttribute="trailing" type="default" id="TSf-aK-Uhj"/>
                             <constraint firstItem="gtL-1U-yIB" firstAttribute="leading" secondItem="3qv-LF-C7e" secondAttribute="leading" type="default" id="Ubt-iu-9oI"/>
+                            <constraint firstItem="BSt-S4-KfU" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="285" id="V6m-29-PtU"/>
                             <constraint firstItem="Dze-l5-oJx" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="VBy-Uj-rRk"/>
                             <constraint firstItem="qaI-WC-PPv" firstAttribute="trailing" secondItem="gtL-1U-yIB" secondAttribute="trailing" type="default" id="XiX-Qm-cek"/>
                             <constraint firstItem="3qv-LF-C7e" firstAttribute="bottom" secondItem="Dze-l5-oJx" secondAttribute="bottom" type="default" id="Y8h-YZ-SQc"/>
+                            <constraint firstItem="03U-UR-1pM" firstAttribute="top" secondItem="a1N-ht-X1k" secondAttribute="top" constant="374" id="Zj3-dy-TyR"/>
                             <constraint firstItem="zxe-2W-IqS" firstAttribute="leading" secondItem="a1N-ht-X1k" secondAttribute="leading" constant="62" id="bHu-XW-8ea"/>
                             <constraint firstItem="zEQ-LK-14H" firstAttribute="leading" secondItem="0m8-fF-kvJ" secondAttribute="leading" type="default" id="bLw-rr-881"/>
                             <constraint firstItem="MDH-Rk-reB" firstAttribute="leading" secondItem="BSt-S4-KfU" secondAttribute="leading" type="default" id="dux-AB-CZ9"/>
@@ -1529,7 +1501,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="BSt-S4-KfU" firstAttribute="top" secondItem="MDH-Rk-reB" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qeM-3V-F0l"/>
                             <constraint firstItem="XOh-N9-5Kg" firstAttribute="leading" secondItem="zxe-2W-IqS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="riE-6b-JWn"/>
                             <constraint firstItem="Dze-l5-oJx" firstAttribute="top" secondItem="3qv-LF-C7e" secondAttribute="top" type="default" id="xp2-4g-9Y3"/>
-                            <constraint firstItem="0m8-fF-kvJ" firstAttribute="bottom" secondItem="BSt-S4-KfU" secondAttribute="bottom" type="default" id="zwh-L1-A0z"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Register Patient" id="x3q-Y9-GKx"/>
@@ -1910,6 +1881,39 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9s-f4-ADg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944" y="-2029"/>
+        </scene>
+        <!--Doctor View Controller - Doctor-->
+        <scene sceneID="vXv-hb-ZEX">
+            <objects>
+                <viewController id="MC9-V7-gRo" customClass="DoctorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CtZ-Uu-sWq">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RXn-fJ-lEi">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="MC9-V7-gRo" id="672-em-Zpv"/>
+                                    <outlet property="delegate" destination="MC9-V7-gRo" id="DKa-x3-bv5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RXn-fJ-lEi" firstAttribute="trailing" secondItem="CtZ-Uu-sWq" secondAttribute="trailing" type="default" id="3Ok-6G-Pmk"/>
+                            <constraint firstItem="RXn-fJ-lEi" firstAttribute="bottom" secondItem="CtZ-Uu-sWq" secondAttribute="bottom" type="default" id="odC-2q-zhM"/>
+                            <constraint firstItem="RXn-fJ-lEi" firstAttribute="top" secondItem="CtZ-Uu-sWq" secondAttribute="top" type="default" id="thd-ZX-b34"/>
+                            <constraint firstItem="RXn-fJ-lEi" firstAttribute="leading" secondItem="CtZ-Uu-sWq" secondAttribute="leading" type="default" id="zxq-jK-cVh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Doctor" id="MWz-Mt-khZ"/>
+                    <connections>
+                        <outlet property="tableView" destination="RXn-fJ-lEi" id="qac-gE-n9d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ou6-Co-NZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-570" y="-2029"/>
         </scene>
     </scenes>
     <resources>

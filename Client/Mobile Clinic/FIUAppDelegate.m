@@ -26,53 +26,53 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    #define TESTING 1
-//    #ifdef TESTING
-//        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-//    #endif
+    //    #define TESTING 1
+    //    #ifdef TESTING
+    //        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    //    #endif
     
-//    [TestFlight takeOff:@"afc6ff4013b9e807e5a97743e2a8d270_MTg2NjAwMjAxMy0wMi0xMiAxODozOTozOS41NzU1OTk"];
+    //    [TestFlight takeOff:@"afc6ff4013b9e807e5a97743e2a8d270_MTg2NjAwMjAxMy0wMi0xMiAxODozOTozOS41NzU1OTk"];
     
     
     //RIGO - FOR TESTING PURPOSES ONLY
     //MANUALLY ENTERS DATA INTO THE DATABASE
-//    
-//    NSError *error;
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    
-//    /*
-//    // Delete all entries in the Core Data table (ex. Patients)
-//    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
-//    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-//
-//    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
-//     
-//    for(NSManagedObject *entries in currentRecords) {
-//    [context deleteObject:entries];
-//    }
-//    */
-//    
-//    // Print (to NSLog) content of table (ex. Patients)
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-//    
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    
-//    for (NSManagedObject *info in fetchedObjects) {
-//        NSLog(@"Name: %@ %@", [info valueForKey:@"firstName"], [info valueForKey:@"familyName"]);
-//        NSLog(@"Age: %@", [info valueForKey:@"age"]);
-//        NSLog(@"Sex: %@", [info valueForKey:@"sex"]);
-//        NSLog(@"Village Name: %@", [info valueForKey:@"villageName"]);
-//    }
-//    
-//    [self saveContext];
+    //
+    //    NSError *error;
+    //    NSManagedObjectContext *context = [self managedObjectContext];
+    //
+    //    /*
+    //    // Delete all entries in the Core Data table (ex. Patients)
+    //    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
+    //    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+    //
+    //    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
+    //
+    //    for(NSManagedObject *entries in currentRecords) {
+    //    [context deleteObject:entries];
+    //    }
+    //    */
+    //
+    //    // Print (to NSLog) content of table (ex. Patients)
+    //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    //    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+    //
+    //    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    //
+    //    for (NSManagedObject *info in fetchedObjects) {
+    //        NSLog(@"Name: %@ %@", [info valueForKey:@"firstName"], [info valueForKey:@"familyName"]);
+    //        NSLog(@"Age: %@", [info valueForKey:@"age"]);
+    //        NSLog(@"Sex: %@", [info valueForKey:@"sex"]);
+    //        NSLog(@"Village Name: %@", [info valueForKey:@"villageName"]);
+    //    }
+    //
+    //    [self saveContext];
     
     // Override point for customization after application launch.
     ServerManager = [ServerCore sharedInstance];
     [ServerManager startClient];
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -81,7 +81,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
