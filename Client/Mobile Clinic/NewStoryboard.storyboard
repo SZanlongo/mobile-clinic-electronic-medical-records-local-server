@@ -1913,7 +1913,69 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ou6-Co-NZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-570" y="-2029"/>
+            <point key="canvasLocation" x="-604" y="-2029"/>
+        </scene>
+        <!--Current Diagnosis View Controller - Current Visit-->
+        <scene sceneID="KDw-ae-L0R">
+            <objects>
+                <viewController storyboardIdentifier="" id="RLO-G1-QsP" customClass="CurrentDiagnosisViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Ee-cl-wwe">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="685"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Conditions:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuA-q2-W9g">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Udb-Ee-NHE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urE-Wb-rU2">
+                                <color key="backgroundColor" red="0.89835778060000004" green="0.89835778060000004" blue="0.89835778060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="398" id="xVr-ve-haN"/>
+                                    <constraint firstAttribute="width" constant="567" id="xYD-Ru-KwF"/>
+                                </constraints>
+                                <string key="text">Patient is a type I diabetic complaining of chest pains that began approximately 2 weeks ago.  Chest pains coincide with exertion and pass with rest.  Patient describes the pain as a tight, squeezing sensation in the middle of the chest, rating the pain an 8 on a scale of 1 to 10.  Patient reports that yesterday (2/21/04) the pain spread to his left shoulder, arm, and hand, alarming him—bringing him here today.  The patient has had four episodes of chest pain (one with arm pain), each episode occurring while shoveling the snow.  Patient reports that the pain lasts “no more than a couple of minutes,” with the exception of this last episode which “seemed to last just a little bit longer.”  Each time the pain subsided on its own, although after the last episode the patient took an aspirin after the advice of his wife.  This scare, combined with his pressing diabetes complications, has brought the patient in today. </string>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-L5-dBQ">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButton:" destination="RLO-G1-QsP" eventType="touchUpInside" id="TLI-b6-D2m"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zuA-q2-W9g" firstAttribute="top" secondItem="0Ee-cl-wwe" secondAttribute="top" constant="117" id="6TZ-dx-gV2"/>
+                            <constraint firstItem="rMb-L5-dBQ" firstAttribute="trailing" secondItem="urE-Wb-rU2" secondAttribute="trailing" type="default" id="NZ7-e8-fWX"/>
+                            <constraint firstItem="urE-Wb-rU2" firstAttribute="top" secondItem="0Ee-cl-wwe" secondAttribute="top" constant="149" id="Qt6-aG-9v6"/>
+                            <constraint firstItem="urE-Wb-rU2" firstAttribute="leading" secondItem="zuA-q2-W9g" secondAttribute="leading" type="default" id="RHo-vE-CID"/>
+                            <constraint firstItem="rMb-L5-dBQ" firstAttribute="top" secondItem="urE-Wb-rU2" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="XJv-DX-Ztg"/>
+                            <constraint firstItem="urE-Wb-rU2" firstAttribute="centerX" secondItem="0Ee-cl-wwe" secondAttribute="centerX" type="default" id="eNZ-Uf-rne"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Current Visit" id="XxZ-jJ-HJi"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="diagnosisTextbox" destination="urE-Wb-rU2" id="fTp-4e-GXt"/>
+                        <outlet property="patientConditionsTextbox" destination="urE-Wb-rU2" id="arZ-kc-jvG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3PX-Xc-8X2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2146" y="-2014"/>
         </scene>
     </scenes>
     <resources>
