@@ -42,6 +42,8 @@
 		46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E773D416CB0BFB00242454 /* libTestFlight.a */; };
 		46E773D916CB0BFB00242454 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D516CB0BFB00242454 /* README.md */; };
 		46E773DA16CB0BFB00242454 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D616CB0BFB00242454 /* release_notes.md */; };
+		6D0D701B16D97611005A8C1F /* CurrentVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */; };
+		6D0D701E16D97EE4005A8C1F /* PreviousVisitsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */; };
 		6D2D28B816D7DCE9007FB79F /* DoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */; };
 		6D2D28BC16D7DCF5007FB79F /* PharmacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28BB16D7DCF5007FB79F /* PharmacyViewController.m */; };
 		6D2D28BF16D7DD10007FB79F /* DoctorPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28BE16D7DD10007FB79F /* DoctorPatientViewController.m */; };
@@ -221,6 +223,10 @@
 		46E773D516CB0BFB00242454 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		46E773D616CB0BFB00242454 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		46E773D716CB0BFB00242454 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentVisitTableCell.h; sourceTree = "<group>"; };
+		6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitTableCell.m; sourceTree = "<group>"; };
+		6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitsTableCell.h; sourceTree = "<group>"; };
+		6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitsTableCell.m; sourceTree = "<group>"; };
 		6D2D28B616D7DCE9007FB79F /* DoctorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorViewController.h; sourceTree = "<group>"; };
 		6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorViewController.m; sourceTree = "<group>"; };
 		6D2D28BA16D7DCF5007FB79F /* PharmacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyViewController.h; sourceTree = "<group>"; };
@@ -415,16 +421,9 @@
 				0F1A597216D893F400C121BA /* PatientHistoryViewController.h */,
 				0F1A597316D893F400C121BA /* PatientHistoryViewController.m */,
 				0F428B9116D5215600E25B4B /* Cells */,
-				6DB0676816D7DDF000D177E7 /* CurrentDiagnosisViewController.h */,
-				6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */,
-				6DD5D90316D315DD007C3F74 /* CurrentVisitViewController.h */,
-				6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */,
 				EA1EE19D16C982DB00E263D2 /* DateController.h */,
 				EA1EE19E16C982DB00E263D2 /* DateController.m */,
-				6D2D28BD16D7DD10007FB79F /* DoctorPatientViewController.h */,
-				6D2D28BE16D7DD10007FB79F /* DoctorPatientViewController.m */,
-				6D2D28B616D7DCE9007FB79F /* DoctorViewController.h */,
-				6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */,
+				6D1CD5F616DA6A8C00FA5AC0 /* Doctor */,
 				0F9E6BA916D1E44A008AFB49 /* Images */,
 				6DD5D8F116D313E7007C3F74 /* LoginViewController.h */,
 				6DD5D8F216D313E7007C3F74 /* LoginViewController.m */,
@@ -434,17 +433,12 @@
 				6DF905ED16D7EABB0054CAAF /* PrescribePatientViewController.m */,
 				6DD5D90616D315F3007C3F74 /* PreviousVisitsViewController.h */,
 				6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */,
-				6DD5D8FD16D3157F007C3F74 /* RegisterPatientViewController.h */,
-				6DD5D8FE16D3157F007C3F74 /* RegisterPatientViewController.m */,
 				6DD5D90016D3158E007C3F74 /* SearchPatientViewController.h */,
 				6DD5D90116D3158E007C3F74 /* SearchPatientViewController.m */,
 				6DD5D8F416D31412007C3F74 /* StationViewController.h */,
 				6DD5D8F516D31412007C3F74 /* StationViewController.m */,
 				EAD015E716D5AF12002A8B3B /* StationViewHandlerProtocol.h */,
-				6DD5D8FA16D3155D007C3F74 /* TriagePatientViewController.h */,
-				6DD5D8FB16D3155D007C3F74 /* TriagePatientViewController.m */,
-				6DD5D8F716D314B9007C3F74 /* TriageViewController.h */,
-				6DD5D8F816D314B9007C3F74 /* TriageViewController.m */,
+				6D1CD5F416DA6A8500FA5AC0 /* Triage */,
 				6DD5D8F416D31412007C3F74 /* StationViewController.h */,
 				6DD5D8F516D31412007C3F74 /* StationViewController.m */,
 				6DD5D8F116D313E7007C3F74 /* LoginViewController.h */,
@@ -621,6 +615,45 @@
 				46E773D716CB0BFB00242454 /* TestFlight.h */,
 			);
 			path = TestFlightSDK1.1;
+			sourceTree = "<group>";
+		};
+		6D1CD5F416DA6A8500FA5AC0 /* Triage */ = {
+			isa = PBXGroup;
+			children = (
+				6DD5D8FD16D3157F007C3F74 /* RegisterPatientViewController.h */,
+				6DD5D8FE16D3157F007C3F74 /* RegisterPatientViewController.m */,
+				6DD5D8FA16D3155D007C3F74 /* TriagePatientViewController.h */,
+				6DD5D8FB16D3155D007C3F74 /* TriagePatientViewController.m */,
+				6DD5D8F716D314B9007C3F74 /* TriageViewController.h */,
+				6DD5D8F816D314B9007C3F74 /* TriageViewController.m */,
+				6DD5D90316D315DD007C3F74 /* CurrentVisitViewController.h */,
+				6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */,
+			);
+			name = Triage;
+			sourceTree = "<group>";
+		};
+		6D1CD5F616DA6A8C00FA5AC0 /* Doctor */ = {
+			isa = PBXGroup;
+			children = (
+				6DB0676816D7DDF000D177E7 /* CurrentDiagnosisViewController.h */,
+				6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */,
+				6D2D28BD16D7DD10007FB79F /* DoctorPatientViewController.h */,
+				6D2D28BE16D7DD10007FB79F /* DoctorPatientViewController.m */,
+				6D2D28B616D7DCE9007FB79F /* DoctorViewController.h */,
+				6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */,
+			);
+			name = Doctor;
+			sourceTree = "<group>";
+		};
+		6D1CD5F716DA6A9400FA5AC0 /* Pharmacy */ = {
+			isa = PBXGroup;
+			children = (
+				6D2D28BA16D7DCF5007FB79F /* PharmacyViewController.h */,
+				6D2D28BB16D7DCF5007FB79F /* PharmacyViewController.m */,
+				6DF905EC16D7EABB0054CAAF /* PrescribePatientViewController.h */,
+				6DF905ED16D7EABB0054CAAF /* PrescribePatientViewController.m */,
+			);
+			name = Pharmacy;
 			sourceTree = "<group>";
 		};
 		EA8BB92C16C8794200A4BC6E /* Camera API */ = {

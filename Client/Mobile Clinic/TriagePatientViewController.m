@@ -7,12 +7,15 @@
 //
 
 #import "TriagePatientViewController.h"
+#import "TriageViewController.h"
 
 @interface TriagePatientViewController ()
 
 @end
 
 @implementation TriagePatientViewController
+
+@synthesize segmentedControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,13 +26,10 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     
     //Populate the patient's data to the static text fields (top of screen)
     _patientNameField.text = _patientData.patient.firstName;
@@ -49,7 +49,8 @@
 
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

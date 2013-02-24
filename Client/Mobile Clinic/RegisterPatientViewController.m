@@ -91,7 +91,7 @@ UIPopoverController * pop;
         _patient.patient.familyName = _familyNameField.text;
         _patient.patient.villageName = _villageNameField.text;
         _patient.patient.sex = [NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex];
-        
+                
         // Even if the user file is being edited this method will
         // know the difference
         [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {

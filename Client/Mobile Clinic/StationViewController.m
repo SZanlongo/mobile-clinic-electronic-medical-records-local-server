@@ -27,6 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    UINavigationBar *bar =[self.navigationController navigationBar];
+    [bar setTintColor:[UIColor lightGrayColor]];
 }
 
 - (void)didReceiveMemoryWarning {
