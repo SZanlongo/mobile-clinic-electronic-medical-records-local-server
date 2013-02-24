@@ -35,25 +35,30 @@
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
     _tableView.rowHeight = 768;
     _tableView.transform = transform;
+    _tableView.frame = self.view.frame;
     [_tableView setShowsVerticalScrollIndicator:NO];
     
     // Create controllers for each view (Search & Register)
     _registerControl = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
+//    [_registerControl view];
     _searchControl = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
+//    [_searchControl view];
     
     // Notifications that receive patient data from registration & search view controllers
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
     
-    [_registerControl.createPatientButton addTarget:self action:@selector(moveKay) forControlEvents:UIControlEventTouchUpInside];
+//    [_registerControl.createPatientButton addTarget:self action:@selector(moveKay) forControlEvents:UIControlEventTouchUpInside];
     
     // Create a button that returns to root view controller
 //    UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.navigationController.self action:@selector(popToRootViewControllerAnimated:)];
 //    [self.navigationItem setLeftBarButtonItem:backButton];
+    
 }
 
--(void)moveKay{
-    [self performSegueWithIdentifier:@"iWin" sender:_registerControl.patient];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 // Transfers the patient's data to the next view controller
@@ -110,7 +115,7 @@
         // Rotate view vertically on the screen
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
         
         // Removes previous view (for memory mgmt)
         for(UIView *mView in [cell.contentView subviews]){
@@ -136,7 +141,7 @@
         // Rotate view vertically on the screen
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
         
         // Removes previous view (for memory mgmt)
         for(UIView *mView in [cell.contentView subviews]){

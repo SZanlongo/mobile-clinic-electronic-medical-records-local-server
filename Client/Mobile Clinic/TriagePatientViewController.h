@@ -8,34 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "CurrentVisitTableCell.h"
-#import "PreviousVisitTableCell.h"
-//#import "StationViewHandlerProtocol.h"
-
-#import "PatientObject.h"           // MAY NOT NEED THIS (RIGO).  NEED TO TEST COMMENTED OUT.
+#import "PreviousVisitsTableCell.h"
 
 @interface TriagePatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-//{
-//    ScreenHandler handler;
-//}
+{
+    ScreenHandler handler;
+}
+    
+@property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) CurrentVisitViewController * control1;
+@property (strong, nonatomic) PreviousVisitsViewController * control2;
+@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
 
-@property (strong, nonatomic) PatientObject *patientData;
-@property (strong, nonatomic) CurrentVisitViewController *currentVisitControl;
-@property (strong, nonatomic) PreviousVisitsViewController *previousVisitControl;
-
-// Patient Info Labels
-@property (weak, nonatomic) IBOutlet UITextField *patientNameField;
-@property (weak, nonatomic) IBOutlet UITextField *familyNameField;
-@property (weak, nonatomic) IBOutlet UITextField *villageNameField;
-@property (weak, nonatomic) IBOutlet UIButton *patientAgeButton;
-@property (weak, nonatomic) IBOutlet UITextField *patientSexField;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
 // Vitals Labels :: WE MAY END UP DELETING THESE FOR TRIAGE
 @property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
-@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
 
 // Objects on View
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 
 //- (void)setScreenHandler:(ScreenHandler)myHandler;

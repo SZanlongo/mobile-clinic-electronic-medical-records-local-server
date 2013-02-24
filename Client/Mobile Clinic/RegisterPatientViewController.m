@@ -96,13 +96,13 @@ UIPopoverController * pop;
         // know the difference
         [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
             
-//            if (error) {
-//                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
-//                 ];
-//            }
-//            else {
-//                [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_NEW_PATIENT object:data];
-//            }
+            if (error) {
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
+                 ];
+            }
+            else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_NEW_PATIENT object:data];
+            }
         }];
     }
 }

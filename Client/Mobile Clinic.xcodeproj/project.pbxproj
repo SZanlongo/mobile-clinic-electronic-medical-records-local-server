@@ -7,16 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F1A596816D8327600C121BA /* CurrentVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */; };
-		0F1A596B16D8329F00C121BA /* PreviousVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596A16D8329F00C121BA /* PreviousVisitTableCell.m */; };
-		0F1A596E16D8354F00C121BA /* PatientResultTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */; };
-		0F1A597116D8356B00C121BA /* PatientHistoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */; };
-		0F1A597416D893F400C121BA /* PatientHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597316D893F400C121BA /* PatientHistoryViewController.m */; };
-		0F1A597716D8B03100C121BA /* PatientResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597616D8B03000C121BA /* PatientResultViewController.m */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
 		0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */; };
 		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
+		0FECD55B16DA9295008B4041 /* PatientResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597616D8B03000C121BA /* PatientResultViewController.m */; };
+		0FECD55D16DA92A6008B4041 /* PatientResultTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */; };
 		0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */; };
 		4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4614288316BF7EBB00802410 /* MainStoryboard.storyboard */; };
 		4614288916BF7F2900802410 /* orant_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4614288716BF7F2900802410 /* orant_logo.png */; };
@@ -396,6 +392,10 @@
 		0F428B9116D5215600E25B4B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
+				6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */,
+				6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */,
+				6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */,
 				0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */,
 				0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */,
 				0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */,
@@ -431,6 +431,7 @@
 				6D2D28BB16D7DCF5007FB79F /* PharmacyViewController.m */,
 				6DF905EC16D7EABB0054CAAF /* PrescribePatientViewController.h */,
 				6DF905ED16D7EABB0054CAAF /* PrescribePatientViewController.m */,
+				6D1CD5F716DA6A9400FA5AC0 /* Pharmacy */,
 				6DD5D90616D315F3007C3F74 /* PreviousVisitsViewController.h */,
 				6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */,
 				6DD5D90016D3158E007C3F74 /* SearchPatientViewController.h */,
@@ -944,6 +945,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FECD55D16DA92A6008B4041 /* PatientResultTableCell.m in Sources */,
+				0FECD55B16DA9295008B4041 /* PatientResultViewController.m in Sources */,
 				4677410516BD931E002FD4A5 /* main.m in Sources */,
 				4677410916BD931E002FD4A5 /* FIUAppDelegate.m in Sources */,
 				4677413716BD9386002FD4A5 /* Model.xcdatamodeld in Sources */,
@@ -1003,12 +1006,8 @@
 				6D2D28BF16D7DD10007FB79F /* DoctorPatientViewController.m in Sources */,
 				6DB0676A16D7DDF000D177E7 /* CurrentDiagnosisViewController.m in Sources */,
 				6DF905EE16D7EABB0054CAAF /* PrescribePatientViewController.m in Sources */,
-				0F1A596816D8327600C121BA /* CurrentVisitTableCell.m in Sources */,
-				0F1A596B16D8329F00C121BA /* PreviousVisitTableCell.m in Sources */,
-				0F1A596E16D8354F00C121BA /* PatientResultTableCell.m in Sources */,
-				0F1A597116D8356B00C121BA /* PatientHistoryTableCell.m in Sources */,
-				0F1A597416D893F400C121BA /* PatientHistoryViewController.m in Sources */,
-				0F1A597716D8B03100C121BA /* PatientResultViewController.m in Sources */,
+				6D0D701B16D97611005A8C1F /* CurrentVisitTableCell.m in Sources */,
+				6D0D701E16D97EE4005A8C1F /* PreviousVisitsTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

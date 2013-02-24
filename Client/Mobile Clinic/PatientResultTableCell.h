@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PatientResultViewController.h"
+//#import "PatientResultViewController.h"
 
 @interface PatientResultTableCell : UITableViewCell
 

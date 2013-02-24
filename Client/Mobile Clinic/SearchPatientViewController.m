@@ -9,8 +9,8 @@
 #import "SearchPatientViewController.h"
 #import "FIUAppDelegate.h"
 
-@implementation SearchPatientViewControllerCell
-@end
+//@implementation SearchPatientViewControllerCell
+//@end
 
 @interface SearchPatientViewController ()
 
@@ -63,7 +63,6 @@
 
 // Defines number of row in the table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"DB COUNT: %d", _patientSearchResultsArray.count);
     return _patientSearchResultsArray.count;
 }
 
@@ -73,7 +72,7 @@
 // RIGO IMPLEMENTATION
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"TEST-IN");
+//    NSLog(@"TEST-IN");
     
     static NSString * CellIdentifier = @"resultCell";
     
@@ -87,12 +86,13 @@
     
     _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
     
-    //PRINT
-    NSLog(@"!!!!!!!!!");
-    NSLog(@"Name: %@", [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName]);
-    NSLog(@"DOB: %@", [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate]);
-    NSLog(@"Age: %@", _patientData.patient.age.convertNSDateFullBirthdayString);
-    NSLog(@"!!!!!!!!!");
+    
+//    // TESTING SOMETHING (RIGO)
+//    NSLog(@"!!!!!!!!!");
+//    NSLog(@"Name: %@", [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName]);
+//    NSLog(@"DOB: %@", [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate]);
+//    NSLog(@"Age: %@", _patientData.patient.age.convertNSDateFullBirthdayString);
+//    NSLog(@"!!!!!!!!!");
     
 
     // Display contents of cells
@@ -101,7 +101,7 @@
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate];
     cell.patientDOB.text = _patientData.patient.age.convertNSDateFullBirthdayString;
 
-    NSLog(@"TEST-OUT");
+//    NSLog(@"TEST-OUT");
     
     return cell;
 }
@@ -132,17 +132,17 @@
 //}
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    // Gets the object at the corresponding index
-    _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
-    
-    // Return object to main screen and dismiss view
-    // handler(_patientData, nil);
-    
-//    [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
-    
-    
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    // Gets the object at the corresponding index
+//    _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
+//    
+//    // Return object to main screen and dismiss view
+//    // handler(_patientData, nil);
+//    
+////    [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
+//    
+//    
+//}
 
 
 /* Logic for search buttons */
@@ -197,8 +197,6 @@
             NSLog(@"NAME: %@ %@", obj.firstName, obj.familyName);
         }
     }
-
-
 }
 
 - (IBAction)searchByNFCButton:(id)sender {
