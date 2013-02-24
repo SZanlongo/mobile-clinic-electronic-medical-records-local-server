@@ -17,7 +17,7 @@
         <attribute name="sex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="villageName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hasVisitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visitation" syncable="YES"/>
+        <relationship name="visit" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visitation" syncable="YES"/>
     </entity>
     <entity name="Prescription" representedClassName="Prescription" syncable="YES">
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
@@ -51,10 +51,10 @@
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Medication" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Medication" positionX="-164" positionY="279" width="128" height="135"/>
         <element name="Patients" positionX="160" positionY="261" width="128" height="180"/>
-        <element name="Prescription" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Users" positionX="160" positionY="18" width="128" height="165"/>
-        <element name="Visitation" positionX="-63" positionY="369" width="128" height="210"/>
+        <element name="Prescription" positionX="-108" positionY="108" width="128" height="135"/>
+        <element name="Users" positionX="160" positionY="18" width="128" height="163"/>
+        <element name="Visitation" positionX="-18" positionY="369" width="128" height="210"/>
     </elements>
 </model>

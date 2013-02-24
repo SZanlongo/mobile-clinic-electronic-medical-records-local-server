@@ -13,6 +13,7 @@
 
 @property(weak,nonatomic)Visitation* visit;
 
--(id)initWithVisit:(NSDictionary*)info;
+-(id)initWithNewVisit;
+-(id)initWithVisit:(Visitation*)info;
 -(BOOL)loadVisitWithVisitationID:(NSString *)visitID;
 @end

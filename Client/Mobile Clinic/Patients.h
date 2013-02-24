@@ -2,7 +2,7 @@
 //  Patients.h
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/20/13.
+//  Created by Michael Montaque on 2/22/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -18,18 +18,17 @@
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * patientId;
 @property (nonatomic, retain) NSData * photo;
-@property (nonatomic, retain) NSString * physician;
 @property (nonatomic, retain) NSNumber * sex;
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSString * villageName;
-@property (nonatomic, retain) NSSet *hasVisitations;
+@property (nonatomic, retain) NSSet *visit;
 @end
 
 @interface Patients (CoreDataGeneratedAccessors)
 
-- (void)addHasVisitationsObject:(Visitation *)value;
-- (void)removeHasVisitationsObject:(Visitation *)value;
-- (void)addHasVisitations:(NSSet *)values;
-- (void)removeHasVisitations:(NSSet *)values;
+- (void)addVisitObject:(Visitation *)value;
+- (void)removeVisitObject:(Visitation *)value;
+- (void)addVisit:(NSSet *)values;
+- (void)removeVisit:(NSSet *)values;
 
 @end

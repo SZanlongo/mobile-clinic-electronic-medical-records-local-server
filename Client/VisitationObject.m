@@ -21,12 +21,18 @@
 #import "StatusObject.h"
 #import "Visitation.h"
 @implementation VisitationObject
-
-- (id)initWithVisit:(NSDictionary *)info
+-(id)initWithNewVisit{
+    self = [super init];
+    if (self) {
+        _visit = (Visitation*)[self CreateANewObjectFromClass:DATABASE];
+    }
+    return self;
+}
+- (id)initWithVisit:(Visitation *)info
 {
     self = [super init];
     if (self) {
-        [self unpackageFileForUser:info];
+        _visit = info;
     }
     return self;
 }
