@@ -44,4 +44,8 @@
     
 }
 
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
+}
+
 @end
