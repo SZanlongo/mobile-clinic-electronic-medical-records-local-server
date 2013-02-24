@@ -28,6 +28,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    UINavigationBar *bar =[self.navigationController navigationBar];
+    [bar setTintColor:[UIColor lightGrayColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,21 +46,21 @@
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    #warning Create validation for users that have the potential to go into areas they are not allowed
-    
-    id potentialDestination = segue.destinationViewController;
-    id <StationViewHandlerProtocol>destination;
-    
-    if ([potentialDestination isKindOfClass:[UINavigationController class]]) {
-        UINavigationController* navCtrl = potentialDestination;
-        destination = [navCtrl.viewControllers lastObject];
-    }else{
-        destination = potentialDestination;
-    }
-    
-    [destination setScreenHandler:^(id object, NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+//    #warning Create validation for users that have the potential to go into areas they are not allowed
+//    
+//    id potentialDestination = segue.destinationViewController;
+//    id <StationViewHandlerProtocol>destination;
+//    
+//    if ([potentialDestination isKindOfClass:[UINavigationController class]]) {
+//        UINavigationController* navCtrl = potentialDestination;
+//        destination = [navCtrl.viewControllers lastObject];
+//    }else{
+//        destination = potentialDestination;
+//    }
+//    
+//    [destination setScreenHandler:^(id object, NSError *error) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }];
 }
 
 @end

@@ -31,6 +31,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    UINavigationBar *bar =[self.navigationController navigationBar];
+    [bar setTintColor:[UIColor orangeColor]];
+    
     // Rotate table horizontally (90 degrees)
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
     _tableView.rowHeight = 768;
@@ -49,7 +52,17 @@
     
     if([_control2 view])
         [_control2.patientFound addTarget:self action:@selector(searchPatient) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+//    UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.navigationController.self action:@selector(popToRootViewControllerAnimated:)];
+//    
+//    [self.navigationItem setLeftBarButtonItem:backButton];
+    
 }
+
+//-(void)back{
+//    [self.navigationController popToRootViewControllerAnimated:YES]
+//}
 
 -(void)createPatient:(NSNotification *)note {
     _patientData = note.object;

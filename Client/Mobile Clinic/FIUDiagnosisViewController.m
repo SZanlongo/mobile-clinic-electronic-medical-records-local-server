@@ -101,7 +101,7 @@
 
 -(void)Redisplay{
     //set picture
-    [_patientPicture setImage:_patient.patient.photo];
+    [_patientPicture setImage: [UIImage imageWithData:_patient.patient.photo]];
     
     _familyNameLabel.text = _patient.patient.familyName;
     _patientNameLabel.text = _patient.patient.firstName;
