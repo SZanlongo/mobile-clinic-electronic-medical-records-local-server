@@ -70,9 +70,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * searchCellIdentifier = @"searchCell";
     
-    
     SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
-    
     
     cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
     
@@ -80,8 +78,7 @@
     
     [cell addSubview: cell.viewController.view];
     
-    return cell;
-    
+    return cell;    
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{

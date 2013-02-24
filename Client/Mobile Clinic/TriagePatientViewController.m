@@ -7,12 +7,15 @@
 //
 
 #import "TriagePatientViewController.h"
+#import "TriageViewController.h"
 
 @interface TriagePatientViewController ()
 
 @end
 
 @implementation TriagePatientViewController
+
+@synthesize segmentedControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,34 +26,114 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    UINavigationBar *bar =[self.navigationController navigationBar];
+    [bar setTintColor:[UIColor orangeColor]];
+    
+    // Rotate table horizontally (90 degrees)
+    CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
+    _tableView.rowHeight = 768;
+    _tableView.transform = transform;
+    [_tableView setShowsVerticalScrollIndicator:NO];
+    
+    // Create controllers for each view (Previous Visits & current visit)
+    
+    _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentVisitViewController"];
+    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    _patientNameField.text = _patientData.patient.firstName;
-    _familyNameField.text = _patientData.patient.familyName;
-    _villageNameField.text = _patientData.patient.villageName;
-    _patientSexField.text = [_patientData getSex:_patientData.patient.sex];
-    
-}
-
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
-    [self setPatientNameField:nil];
-    [self setFamilyNameField:nil];
-    [self setVillageNameField:nil];
-    [self setPatientAgeButton:nil];
-    [self setPatientSexField:nil];
-    [self setPatientWeightLabel:nil];
-    [self setPatientBPLabel:nil];
+    [self setTableView:nil];
+    [self setToolBar:nil];
     [super viewDidUnload];
 }
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * currentVisitCellIdentifier = @"currentVisitCell";
+    static NSString * previousVisitsCellIdentifier = @"previousVisitsCell";
+    
+    if(indexPath.item == 0) {
+        CurrentVisitTableCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
+        
+        if (!cell) {
+            cell = [[CurrentVisitTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
+            
+            cell.viewController = _control1;
+        }
+        
+        CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+        cell.viewController.view.transform = transform;
+        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        
+        for(UIView *mView in [cell.contentView subviews]){
+            [mView removeFromSuperview];
+        }
+        
+        [cell addSubview:cell.viewController.view];
+        [cell.viewController setScreenHandler:handler];
+        
+        return cell;        
+    }
+    else {
+        PreviousVisitsTableCell * cell = [tableView dequeueReusableCellWithIdentifier:previousVisitsCellIdentifier];
+        
+        if(!cell){
+            cell = [[PreviousVisitsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:previousVisitsCellIdentifier];
+            
+            cell.viewController = _control2;
+        }
+        
+        CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+        cell.viewController.view.transform = transform;
+        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        
+        for(UIView *mView in [cell.contentView subviews]){
+            [mView removeFromSuperview];
+        }
+        
+        [cell addSubview: cell.viewController.view];
+        
+        return cell;
+    }
+}
+
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
+}
+
+- (IBAction) segmentedControlIndexChanged {
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        case 1:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        default:
+            break;
+            
+    }
+    [self.tableView reloadData];
+    
+}
+
 @end

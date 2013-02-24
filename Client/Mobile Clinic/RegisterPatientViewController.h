@@ -31,8 +31,7 @@
 
 - (BOOL)validateRegistration;
 - (IBAction)getAgeOfPatient:(id)sender;
-- (IBAction)goBackToChangeStation:(id)sender;
--(void)setScreenHandler:(ScreenHandler)myHandler;
+- (void)setScreenHandler:(ScreenHandler)myHandler;
 - (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender;
 
 @end

@@ -35,6 +35,8 @@
 		46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E773D416CB0BFB00242454 /* libTestFlight.a */; };
 		46E773D916CB0BFB00242454 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D516CB0BFB00242454 /* README.md */; };
 		46E773DA16CB0BFB00242454 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D616CB0BFB00242454 /* release_notes.md */; };
+		6D0D701B16D97611005A8C1F /* CurrentVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */; };
+		6D0D701E16D97EE4005A8C1F /* PreviousVisitsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */; };
 		6D2D28B816D7DCE9007FB79F /* DoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */; };
 		6D2D28BC16D7DCF5007FB79F /* PharmacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28BB16D7DCF5007FB79F /* PharmacyViewController.m */; };
 		6D2D28BF16D7DD10007FB79F /* DoctorPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28BE16D7DD10007FB79F /* DoctorPatientViewController.m */; };
@@ -209,6 +211,10 @@
 		46E773D516CB0BFB00242454 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		46E773D616CB0BFB00242454 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		46E773D716CB0BFB00242454 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentVisitTableCell.h; sourceTree = "<group>"; };
+		6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitTableCell.m; sourceTree = "<group>"; };
+		6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitsTableCell.h; sourceTree = "<group>"; };
+		6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitsTableCell.m; sourceTree = "<group>"; };
 		6D2D28B616D7DCE9007FB79F /* DoctorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorViewController.h; sourceTree = "<group>"; };
 		6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorViewController.m; sourceTree = "<group>"; };
 		6D2D28BA16D7DCF5007FB79F /* PharmacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyViewController.h; sourceTree = "<group>"; };
@@ -378,6 +384,10 @@
 		0F428B9116D5215600E25B4B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
+				6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */,
+				6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */,
+				6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */,
 				0F428B8B16D43BE700E25B4B /* PatientHistoryTableCell.h */,
 				0F428B8C16D43BE800E25B4B /* PatientHistoryTableCell.m */,
 				0F428B8E16D43C8A00E25B4B /* PatientResultTableCell.h */,
@@ -952,6 +962,8 @@
 				6D2D28BF16D7DD10007FB79F /* DoctorPatientViewController.m in Sources */,
 				6DB0676A16D7DDF000D177E7 /* CurrentDiagnosisViewController.m in Sources */,
 				6DF905EE16D7EABB0054CAAF /* PrescribePatientViewController.m in Sources */,
+				6D0D701B16D97611005A8C1F /* CurrentVisitTableCell.m in Sources */,
+				6D0D701E16D97EE4005A8C1F /* PreviousVisitsTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

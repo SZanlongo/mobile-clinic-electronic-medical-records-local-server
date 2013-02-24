@@ -44,4 +44,9 @@
 
 - (IBAction)submitButton:(id)sender {
 }
+
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
+}
+
 @end

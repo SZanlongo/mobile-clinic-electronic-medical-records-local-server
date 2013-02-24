@@ -34,9 +34,12 @@
 @end
 
 @interface SearchPatientViewControllerCell : UITableViewCell{
+    
 }
+
 @property (weak, nonatomic) IBOutlet UILabel *patientName;
 @property (weak, nonatomic) IBOutlet UIImageView *patientPic;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;        //dob
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;         //patient age
+
 @end

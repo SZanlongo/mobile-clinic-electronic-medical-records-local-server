@@ -39,4 +39,9 @@
     [self setDiagnosisTextbox:nil];
     [super viewDidUnload];
 }
+
+- (IBAction)submitButton:(id)sender {
+    
+}
+
 @end
