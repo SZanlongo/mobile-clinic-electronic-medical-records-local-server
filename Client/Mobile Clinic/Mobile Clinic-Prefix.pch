@@ -16,5 +16,6 @@
     #import "FIUAppDelegate.h"
     #import "TestFlight.h"
     #import "NSObject+CustomTools.h"
-    #define CREATE_NEW_PATIENT  @"creating a new patient"
+    #define CREATE_NEW_PATIENT  @"Creating a new patient"
+    #define SEARCH_FOR_PATIENT  @"Searching for a patient"
 #endif

@@ -1,14 +1,14 @@
 //
-//  PatientResultTableCell.m
+//  PreviousVisitTableCell.m
 //  Mobile Clinic
 //
 //  Created by Rigo Hernandez on 2/22/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PatientResultTableCell.h"
+#import "PreviousVisitTableCell.h"
 
-@implementation PatientResultTableCell
+@implementation PreviousVisitTableCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

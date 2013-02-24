@@ -9,34 +9,36 @@
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
 #import "ScreenNavigationDelegate.h"
+#import "PatientResultTableCell.h"
 
 @interface SearchPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     ScreenHandler handler;
     BOOL shouldDismiss;
 }
 
-@property (nonatomic, strong) NSArray* patientSearchResultsArray;
-@property (nonatomic, strong) PatientObject *patientData;
+@property (nonatomic, strong) PatientObject * patientData;
+@property (nonatomic, strong) NSArray * patientSearchResultsArray;
+@property (nonatomic, strong) PatientResultViewController * resultControl;
 
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
 @property (weak, nonatomic) IBOutlet UITableView *searchResultTableView;
 
-@property (strong, nonatomic) UIButton * patientFound;
+@property (strong, nonatomic) UIButton *patientFound;
 
-- (void)setScreenHandler:(ScreenHandler) myHandler;
-//- (IBAction)cancelSearching:(id)sender;
+//- (PatientObject *)selectPatient;
 
 - (IBAction)searchByNameButton:(id)sender;
 - (IBAction)searchByNFCButton:(id)sender;
 - (IBAction)searchByFingerprintButton:(id)sender;
-- (PatientObject *) selectPatient;
+
+- (void)setScreenHandler:(ScreenHandler) myHandler;
 @end
 
-@interface SearchPatientViewControllerCell : UITableViewCell{
+@interface SearchPatientViewControllerCell : UITableViewCell {
 }
 @property (weak, nonatomic) IBOutlet UILabel *patientName;
 @property (weak, nonatomic) IBOutlet UIImageView *patientPic;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;        //dob
-@property (weak, nonatomic) IBOutlet UILabel *ageLabel;         //patient age
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;        // Patient's DOB
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;         // Patient's Age
 @end

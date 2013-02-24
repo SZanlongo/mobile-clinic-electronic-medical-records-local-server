@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1A596816D8327600C121BA /* CurrentVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */; };
+		0F1A596B16D8329F00C121BA /* PreviousVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596A16D8329F00C121BA /* PreviousVisitTableCell.m */; };
+		0F1A596E16D8354F00C121BA /* PatientResultTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */; };
+		0F1A597116D8356B00C121BA /* PatientHistoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */; };
+		0F1A597416D893F400C121BA /* PatientHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597316D893F400C121BA /* PatientHistoryViewController.m */; };
+		0F1A597716D8B03100C121BA /* PatientResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597616D8B03000C121BA /* PatientResultViewController.m */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
+		0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */; };
 		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
 		0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */; };
 		4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4614288316BF7EBB00802410 /* MainStoryboard.storyboard */; };
@@ -153,18 +160,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F1A596616D8327600C121BA /* CurrentVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentVisitTableCell.h; sourceTree = "<group>"; };
+		0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitTableCell.m; sourceTree = "<group>"; };
+		0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitTableCell.h; sourceTree = "<group>"; };
+		0F1A596A16D8329F00C121BA /* PreviousVisitTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitTableCell.m; sourceTree = "<group>"; };
+		0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientResultTableCell.h; sourceTree = "<group>"; };
+		0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientResultTableCell.m; sourceTree = "<group>"; };
+		0F1A596F16D8356A00C121BA /* PatientHistoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientHistoryTableCell.h; sourceTree = "<group>"; };
+		0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientHistoryTableCell.m; sourceTree = "<group>"; };
+		0F1A597216D893F400C121BA /* PatientHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientHistoryViewController.h; path = ../PatientHistoryViewController.h; sourceTree = "<group>"; };
+		0F1A597316D893F400C121BA /* PatientHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientHistoryViewController.m; path = ../PatientHistoryViewController.m; sourceTree = "<group>"; };
+		0F1A597516D8B03000C121BA /* PatientResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientResultViewController.h; path = ../PatientResultViewController.h; sourceTree = "<group>"; };
+		0F1A597616D8B03000C121BA /* PatientResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientResultViewController.m; path = ../PatientResultViewController.m; sourceTree = "<group>"; };
 		0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPatientTableCell.h; sourceTree = "<group>"; };
 		0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPatientTableCell.m; sourceTree = "<group>"; };
 		0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPatientTableCell.h; sourceTree = "<group>"; };
 		0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPatientTableCell.m; sourceTree = "<group>"; };
-		0F428B8516D43A9800E25B4B /* PatientResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientResultViewController.h; sourceTree = "<group>"; };
-		0F428B8616D43A9800E25B4B /* PatientResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientResultViewController.m; sourceTree = "<group>"; };
-		0F428B8816D43AD100E25B4B /* PatientHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientHistoryViewController.h; sourceTree = "<group>"; };
-		0F428B8916D43AD200E25B4B /* PatientHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientHistoryViewController.m; sourceTree = "<group>"; };
-		0F428B8B16D43BE700E25B4B /* PatientHistoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientHistoryTableCell.h; sourceTree = "<group>"; };
-		0F428B8C16D43BE800E25B4B /* PatientHistoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientHistoryTableCell.m; sourceTree = "<group>"; };
-		0F428B8E16D43C8A00E25B4B /* PatientResultTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientResultTableCell.h; sourceTree = "<group>"; };
-		0F428B8F16D43C8A00E25B4B /* PatientResultTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientResultTableCell.m; sourceTree = "<group>"; };
 		0F4E4F3616D59D2F00992B7F /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medication.h; sourceTree = "<group>"; };
 		0F4E4F3716D59D2F00992B7F /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medication.m; sourceTree = "<group>"; };
 		0F4E4F3C16D59D2F00992B7F /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patients.h; sourceTree = "<group>"; };
@@ -175,6 +186,7 @@
 		0F4E4F4316D59D2F00992B7F /* Prescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prescription.m; sourceTree = "<group>"; };
 		0F4E4F4816D59EB000992B7F /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
 		0F4E4F4916D59EB000992B7F /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientResultTableCellView.xib; sourceTree = "<group>"; };
 		0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewStoryboard.storyboard; sourceTree = "<group>"; };
 		0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clinicLogo.jpg; sourceTree = "<group>"; };
 		4614288316BF7EBB00802410 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -378,14 +390,19 @@
 		0F428B9116D5215600E25B4B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				0F428B8B16D43BE700E25B4B /* PatientHistoryTableCell.h */,
-				0F428B8C16D43BE800E25B4B /* PatientHistoryTableCell.m */,
-				0F428B8E16D43C8A00E25B4B /* PatientResultTableCell.h */,
-				0F428B8F16D43C8A00E25B4B /* PatientResultTableCell.m */,
 				0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */,
 				0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */,
 				0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */,
 				0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */,
+				0F1A596616D8327600C121BA /* CurrentVisitTableCell.h */,
+				0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */,
+				0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */,
+				0F1A596A16D8329F00C121BA /* PreviousVisitTableCell.m */,
+				0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */,
+				0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */,
+				0F1A596F16D8356A00C121BA /* PatientHistoryTableCell.h */,
+				0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */,
+				0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -393,6 +410,10 @@
 		0F9E6BA816D1E41F008AFB49 /* NewViews */ = {
 			isa = PBXGroup;
 			children = (
+				0F1A597516D8B03000C121BA /* PatientResultViewController.h */,
+				0F1A597616D8B03000C121BA /* PatientResultViewController.m */,
+				0F1A597216D893F400C121BA /* PatientHistoryViewController.h */,
+				0F1A597316D893F400C121BA /* PatientHistoryViewController.m */,
 				0F428B9116D5215600E25B4B /* Cells */,
 				6DB0676816D7DDF000D177E7 /* CurrentDiagnosisViewController.h */,
 				6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */,
@@ -407,10 +428,6 @@
 				0F9E6BA916D1E44A008AFB49 /* Images */,
 				6DD5D8F116D313E7007C3F74 /* LoginViewController.h */,
 				6DD5D8F216D313E7007C3F74 /* LoginViewController.m */,
-				0F428B8816D43AD100E25B4B /* PatientHistoryViewController.h */,
-				0F428B8916D43AD200E25B4B /* PatientHistoryViewController.m */,
-				0F428B8516D43A9800E25B4B /* PatientResultViewController.h */,
-				0F428B8616D43A9800E25B4B /* PatientResultViewController.m */,
 				6D2D28BA16D7DCF5007FB79F /* PharmacyViewController.h */,
 				6D2D28BB16D7DCF5007FB79F /* PharmacyViewController.m */,
 				6DF905EC16D7EABB0054CAAF /* PrescribePatientViewController.h */,
@@ -859,6 +876,7 @@
 				46E773DA16CB0BFB00242454 /* release_notes.md in Resources */,
 				0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */,
 				0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */,
+				0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +970,12 @@
 				6D2D28BF16D7DD10007FB79F /* DoctorPatientViewController.m in Sources */,
 				6DB0676A16D7DDF000D177E7 /* CurrentDiagnosisViewController.m in Sources */,
 				6DF905EE16D7EABB0054CAAF /* PrescribePatientViewController.m in Sources */,
+				0F1A596816D8327600C121BA /* CurrentVisitTableCell.m in Sources */,
+				0F1A596B16D8329F00C121BA /* PreviousVisitTableCell.m in Sources */,
+				0F1A596E16D8354F00C121BA /* PatientResultTableCell.m in Sources */,
+				0F1A597116D8356B00C121BA /* PatientHistoryTableCell.m in Sources */,
+				0F1A597416D893F400C121BA /* PatientHistoryViewController.m in Sources */,
+				0F1A597716D8B03100C121BA /* PatientResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

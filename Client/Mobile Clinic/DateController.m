@@ -23,28 +23,30 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     [_datePicker addTarget:self action:@selector(dateChanged) forControlEvents:UIControlEventValueChanged];
-	// Do any additional setup after loading the view.
 }
+
 - (IBAction)saveNewDate:(id)sender {
     handler(_datePicker.date,nil);
     [_datePicker removeTarget:self action:@selector(dateChanged) forControlEvents:UIControlEventValueChanged];
 }
 
--(void)setScreenHandler:(ScreenHandler)screenDelegate{
+-(void)setScreenHandler:(ScreenHandler)screenDelegate {
     handler = screenDelegate;
 }
-- (void)didReceiveMemoryWarning
-{
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)dateChanged{
+
+-(void)dateChanged {
     [_dateLbl setText:[NSString stringWithFormat:@"%i Years Old",_datePicker.date.getNumberOfYearsElapseFromDate]];
 }
+
 - (void)viewDidUnload {
     [self setDatePicker:nil];
     [self setDateLbl:nil];

@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PatientHistoryTableCell.h"
-#import "PatientResultTableCell.h"
 #import "PatientObject.h"
 
 @interface DoctorPatientViewController : UIViewController

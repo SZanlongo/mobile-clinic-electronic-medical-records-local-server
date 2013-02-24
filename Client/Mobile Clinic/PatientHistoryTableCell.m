@@ -2,37 +2,28 @@
 //  PatientHistoryTableCell.m
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/19/13.
+//  Created by Rigo Hernandez on 2/22/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
 #import "PatientHistoryTableCell.h"
 
-@interface PatientHistoryTableCell ()
-
-@end
-
 @implementation PatientHistoryTableCell
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Custom initialization
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+    [super setSelected:selected animated:animated];
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Configure the view for the selected state
 }
 
 @end

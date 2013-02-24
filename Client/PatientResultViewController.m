@@ -1,18 +1,18 @@
 //
-//  PreviousVisitsViewController.m
+//  PatientResultViewController.m
 //  Mobile Clinic
 //
-//  Created by sebastian a zanlongo on 2/18/13.
+//  Created by Rigo Hernandez on 2/23/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PreviousVisitsViewController.h"
+#import "PatientResultViewController.h"
 
-@interface PreviousVisitsViewController ()
+@interface PatientResultViewController ()
 
 @end
 
-@implementation PreviousVisitsViewController
+@implementation PatientResultViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,30 +29,21 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+//    _patientNameLabel.text = @"rigo";
+//    _patientAgeLabel.text = @"32";
+//    _patientDOBLabel.text = @"Feb. 27, 1980";
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
-    [self setPatientHistoryTableView:nil];
+//    [self setPatientPhoto:nil];
+//    [self setPatientNameLabel:nil];
+//    [self setPatientDOBLabel:nil];
+//    [self setPatientAgeLabel:nil];
     [super viewDidUnload];
 }
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
-    
-}
-
 @end

@@ -13,6 +13,7 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *dateLbl;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 - (IBAction)saveNewDate:(id)sender;
--(void)setScreenHandler:(ScreenHandler)screenDelegate;
+- (void)setScreenHandler:(ScreenHandler)screenDelegate;
 @end
