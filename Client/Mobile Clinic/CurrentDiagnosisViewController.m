@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -41,7 +42,9 @@
 }
 
 - (IBAction)submitButton:(id)sender {
+    //set visitiation diag
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{

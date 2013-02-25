@@ -16,5 +16,7 @@
 - (IBAction)findDrugs:(id)sender;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *timeOfDayButtons;
 - (IBAction)newTimeOfDay:(id)sender;
+- (IBAction)savePrescription:(id)sender;
+
 
 @end

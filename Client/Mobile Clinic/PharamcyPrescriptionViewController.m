@@ -53,4 +53,8 @@
             [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setAlpha:0.5];
     }
 }
+
+- (IBAction)savePrescription:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:nil];
+}
 @end
