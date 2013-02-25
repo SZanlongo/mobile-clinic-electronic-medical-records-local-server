@@ -69,6 +69,10 @@
     
     newView.patientData = _patientData;
     
+//    NSLog(@"P NAME: %@", _patientData.patient.firstName);
+//    NSLog(@"P FAMILY: %@", _patientData.patient.familyName);
+//    NSLog(@"P VILLAGE: %@", _patientData.patient.villageName);
+    
     [self.navigationController pushViewController:newView animated:YES];
 }
 

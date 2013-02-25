@@ -9,9 +9,6 @@
 #import "SearchPatientViewController.h"
 #import "FIUAppDelegate.h"
 
-//@implementation SearchPatientViewControllerCell
-//@end
-
 @interface SearchPatientViewController ()
 
 @end
@@ -33,11 +30,12 @@
     
     if (!_patientData)
         _patientData = [[PatientObject alloc]init];
+    
+    // Set height of rows of result table
+    _searchResultTableView.rowHeight = 75;
 }
 
 - (void)viewWillAppear:(BOOL)animated {    
-//    // Create controllers for each view (Search & Register)
-//    _resultControl = [self getViewControllerFromiPadStoryboardWithName:@"patientResultViewController"];
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
@@ -66,84 +64,64 @@
     return _patientSearchResultsArray.count;
 }
 
-
 // Defines content of cells
-
-// RIGO IMPLEMENTATION
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"TEST-IN");
-    
     static NSString * CellIdentifier = @"resultCell";
     
     PatientResultTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(!cell) {
         cell = [[PatientResultTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        UINib * mNib = [UINib nibWithNibName:@"PatientResultTableCellView" bundle:nil];
-        cell = [mNib instantiateWithOwner:nil options:nil][0];
+        UINib * nib = [UINib nibWithNibName:@"PatientResultTableCellView" bundle:nil];
+        cell = [nib instantiateWithOwner:nil options:nil][0];
     }
     
     _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
-    
-    
-//    // TESTING SOMETHING (RIGO)
-//    NSLog(@"!!!!!!!!!");
-//    NSLog(@"Name: %@", [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName]);
-//    NSLog(@"DOB: %@", [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate]);
-//    NSLog(@"Age: %@", _patientData.patient.age.convertNSDateFullBirthdayString);
-//    NSLog(@"!!!!!!!!!");
-    
 
     // Display contents of cells
     [cell.patientImage setImage:_patientData.getPhoto];
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName];
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate];
     cell.patientDOB.text = _patientData.patient.age.convertNSDateFullBirthdayString;
-
-//    NSLog(@"TEST-OUT");
+    
+    NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
     
     return cell;
 }
 
+// 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+        // TEMPORARY SEARCH (ASK RIGO IF YOU NEED TO KNOW WHY)
+        NSError *error;
+        NSManagedObjectContext *context = [[FIUAppDelegate alloc] managedObjectContext];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+        [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName contains[cd] %@)", _patientNameField.text]];
+    
+        _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
+        // -- END OF TEMPORARY SEARCH --
+    
+    // Gets the object at the corresponding index
+    _patientData.patient = [_patientSearchResultsArray objectAtIndex:indexPath.row];
+    
+//    NSLog(@"P NAME: %@", _patientData.patient.firstName);
+//    NSLog(@"P FAMILY: %@", _patientData.patient.familyName);
+//    NSLog(@"P VILLAGE: %@", _patientData.patient.villageName);
+    
+    // Sets color of cell when selected
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor grayColor];
+    
+    // Select patient and post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_FOR_PATIENT object:_patientData];
 
-
-
-//// MIKE'S IMPLEMENTATION
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"SearchCell";
-//    
-//    SearchPatientViewControllerCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//    if (cell == nil) {
-//        cell = [[SearchPatientViewControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    
-//    _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
-//    
-//    // Display contents of cells
-//    cell.patientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName];
-//    [cell.patientPic setImage:_patientData.getPhoto];
-//    cell.ageLabel.text = [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate];
-//    cell.dateLabel.text = _patientData.patient.age.convertNSDateFullBirthdayString;
-//    
-//    return cell;
-//}
-
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    // Gets the object at the corresponding index
-//    _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
-//    
+//// NOT SURE WHAT THIS IS FOR ...................
 //    // Return object to main screen and dismiss view
-//    // handler(_patientData, nil);
-//    
-////    [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
-//    
-//    
-//}
-
+//    handler(_patientData, nil);
+//    [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
 
 /* Logic for search buttons */
 
@@ -166,8 +144,8 @@
         [_searchResultTableView reloadData];
     }
     
-// MIKE'S STUFF
-//    // Check if there is at least one name 
+//// MIKE'S SEARCH (WILL EVENTUALLY IMPLEMENT WHEN ITS WORKING) ( DO NO DELETE!)
+//    // Check if there is at least one name
 //    if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
 //        
 //        //Search the server and save all the results to the Clients database
@@ -183,9 +161,9 @@
 //            [_searchResultTableView reloadData];
 //        }];
 //    }
-
     
-
+    
+    
 // FOR MY OWN TESTING (RIGO)
     if([_patientSearchResultsArray count] == 0) {
         NSLog(@"ARRAY IS EMPTY!!!!!!!!!");
@@ -209,4 +187,5 @@
     shouldDismiss = YES;
     handler(nil,nil);
 }
+
 @end

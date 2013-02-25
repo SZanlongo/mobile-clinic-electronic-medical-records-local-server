@@ -71,7 +71,7 @@ UIPopoverController * pop;
 // Set up the camera source and view controller
 - (IBAction)patientPhotoButton:(id)sender {
     // Added Indeterminate Loader
-    MBProgressHUD* progress = [MBProgressHUD showHUDAddedTo:_patientPhoto.superview animated:YES];
+    MBProgressHUD *progress = [MBProgressHUD showHUDAddedTo:_patientPhoto.superview animated:YES];
     [progress setMode:MBProgressHUDModeIndeterminate];
     
     [facade TakePictureWithCompletion:^(id img) {
@@ -95,7 +95,6 @@ UIPopoverController * pop;
         // Even if the user file is being edited this method will
         // know the difference
         [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
-            
             if (error) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
                  ];
@@ -110,7 +109,7 @@ UIPopoverController * pop;
 - (IBAction)getAgeOfPatient:(id)sender
 {    
     // get datepicker view
-    DateController* datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
+    DateController *datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
     
     // Instatiate popover if not available
     if (!pop) {
@@ -129,7 +128,6 @@ UIPopoverController * pop;
         if (object) {
             _patient.patient.age = object;
             [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
-            
         }
         [pop dismissPopoverAnimated:YES];
     }];

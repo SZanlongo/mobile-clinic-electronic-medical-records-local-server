@@ -45,7 +45,18 @@
     
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentVisitViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
-    
+    if([_control1 view]){
+//    _control1.visitationObject.triageIn = timestamp;
+//    _control1.visitationObject.patientId = self.patientData.patient.patientId;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    _patientNameField.text = _patientData.patient.firstName;
+    _familyNameField.text = _patientData.patient.familyName;
+    _villageNameField.text = _patientData.patient.villageName;
+//    _patientAgeField.text = ;
+    _patientSexField.text = [_patientData getSex:_patientData.patient.sex];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +68,11 @@
 - (void)viewDidUnload {
     [self setTableView:nil];
     [self setToolBar:nil];
+    [self setPatientNameField:nil];
+    [self setFamilyNameField:nil];
+    [self setVillageNameField:nil];
+    [self setPatientAgeField:nil];
+    [self setPatientSexField:nil];
     [super viewDidUnload];
 }
 
@@ -83,7 +99,9 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(0, 0, 768, 685);
+//        cell.viewController.view.frame = CGRectMake(0, 0, 685, 768);
+//        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -105,7 +123,8 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(0, 0, 768, 685);
+//        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -115,11 +134,7 @@
         
         return cell;
     }
-
 }
-
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//}
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{
     handler = myHandler;
@@ -138,7 +153,6 @@
             
     }
     [self.tableView reloadData];
-    
 }
 
 @end
