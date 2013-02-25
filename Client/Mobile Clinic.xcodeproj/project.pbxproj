@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F3F338316DB254700585293 /* PatientHistoryTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
 		0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */; };
@@ -171,6 +172,7 @@
 		0F1A597316D893F400C121BA /* PatientHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientHistoryViewController.m; path = ../PatientHistoryViewController.m; sourceTree = "<group>"; };
 		0F1A597516D8B03000C121BA /* PatientResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientResultViewController.h; path = ../PatientResultViewController.h; sourceTree = "<group>"; };
 		0F1A597616D8B03000C121BA /* PatientResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientResultViewController.m; path = ../PatientResultViewController.m; sourceTree = "<group>"; };
+		0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientHistoryTableCellView.xib; sourceTree = "<group>"; };
 		0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPatientTableCell.h; sourceTree = "<group>"; };
 		0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPatientTableCell.m; sourceTree = "<group>"; };
 		0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPatientTableCell.h; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */,
 				0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */,
 				0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */,
+				0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */,
 				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
 				6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */,
 				0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */,
@@ -918,6 +921,7 @@
 				0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */,
 				0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */,
 				0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */,
+				0F3F338316DB254700585293 /* PatientHistoryTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

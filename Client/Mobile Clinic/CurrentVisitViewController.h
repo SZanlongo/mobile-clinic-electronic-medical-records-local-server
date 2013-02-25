@@ -9,20 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "StationViewHandlerProtocol.h"
 #import "PatientObject.h"
+#import "VisitationObject.h"
 
 @interface CurrentVisitViewController : UIViewController {
     ScreenHandler handler;
 }
 
-@property (strong, nonatomic) PatientObject *patient;
+@property (strong, nonatomic) PatientObject *patientData;
+@property (strong, nonatomic) VisitationObject *currentVisit;
 
 @property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
 @property (strong, nonatomic) IBOutlet UITextField *patientBPField;
-@property (strong, nonatomic) IBOutlet UITextView *patientConditionsTextbox;
+@property (strong, nonatomic) IBOutlet UITextView *conditionsTextbox;
 
-- (IBAction)submitButton:(id)sender;
+- (IBAction)checkInButton:(id)sender;
+- (IBAction)quickCheckOutButton:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end
-

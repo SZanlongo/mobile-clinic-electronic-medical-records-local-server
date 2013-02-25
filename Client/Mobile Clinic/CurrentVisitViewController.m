@@ -23,14 +23,23 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Pass in the patient's data thru notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(assignPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
+    
+    // Instantiate visitation object
+    _currentVisit = [[VisitationObject alloc] init];
 }
 
-- (void)didReceiveMemoryWarning
-{
+// Assigns patientData from Notification
+- (void)assignPatientData:(NSNotification *)note {
+    _patientData = note.object;
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -38,11 +47,18 @@
 - (void)viewDidUnload {
     [self setPatientWeightField:nil];
     [self setPatientBPField:nil];
-    [self setPatientConditionsTextbox:nil];
+    [self setConditionsTextbox:nil];
     [super viewDidUnload];
 }
 
-- (IBAction)submitButton:(id)sender {
+// Creates a visit for the patient and checks them in
+- (IBAction)checkInButton:(id)sender {
+    
+}
+
+// Allows nurse to check-out a patient without going thru doctor/pharmacy
+- (IBAction)quickCheckOutButton:(id)sender {
+    
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{

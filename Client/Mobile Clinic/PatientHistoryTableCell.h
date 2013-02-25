@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PatientHistoryViewController.h"
 
 @interface PatientHistoryTableCell : UITableViewCell
 
-@property (nonatomic, strong) PatientHistoryViewController *viewController;
+@property (weak, nonatomic) IBOutlet UILabel *patientDOBLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientAgeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
+@property (weak, nonatomic) IBOutlet UITextView *patientConditionsTextView;
+@property (weak, nonatomic) IBOutlet UITextView *patientMedicationTextView;
 
 @end

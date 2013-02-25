@@ -42,21 +42,24 @@
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    // Create controllers for each view (Previous Visits & current visit)
+
+    // Pass patient data to CurrentVisitViewController
+    [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_NEW_DIAGNOSIS object:_patientData];
     
+    // Create controllers for each view (Previous Visits & current visit)
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentVisitViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
-    if([_control1 view]){
+//    if([_control1 view]){
 //    _control1.visitationObject.triageIn = timestamp;
 //    _control1.visitationObject.patientId = self.patientData.patient.patientId;
-    }
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     _patientNameField.text = _patientData.patient.firstName;
     _familyNameField.text = _patientData.patient.familyName;
     _villageNameField.text = _patientData.patient.villageName;
-//    _patientAgeField.text = ;
+    _patientAgeField.text = [NSString stringWithFormat:@"%d", [_patientData getAge]];
     _patientSexField.text = [_patientData getSex:_patientData.patient.sex];
 }
 
@@ -100,9 +103,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 685);
-//        cell.viewController.view.frame = CGRectMake(0, 0, 685, 768);
-//        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 685);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -124,8 +125,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 685);
-//        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 685);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
