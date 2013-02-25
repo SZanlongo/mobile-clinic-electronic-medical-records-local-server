@@ -32,7 +32,10 @@
     UINavigationBar *bar =[self.navigationController navigationBar];
     [bar setTintColor:[UIColor blueColor]];
     
-    _tableView.rowHeight = 960;
+    CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
+    _tableView.rowHeight = 768;
+    _tableView.transform = transform;
+    _tableView.frame = self.view.frame;
     [_tableView setShowsVerticalScrollIndicator:NO];
     
     // Create controller for search
@@ -78,9 +81,22 @@
     
     SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
     
-    cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
+    if(!cell){
+        cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
+        cell.viewController = _control;
+    }
     
-    cell.viewController = _control;
+    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+    cell.viewController.view.transform = transform;
+
+    cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
+    
+    // Removes previous view (for memory mgmt)
+    for(UIView *mView in [cell.contentView subviews]){
+        [mView removeFromSuperview];
+    }
+
+    
     
     [cell addSubview: cell.viewController.view];
     

@@ -35,6 +35,7 @@
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
     _tableView.rowHeight = 768;
     _tableView.transform = transform;
+        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _tableView.frame = self.view.frame;
     [_tableView setShowsVerticalScrollIndicator:NO];
     
@@ -180,6 +181,20 @@
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset {
+    int cellHeight = 768;
+
+    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+    }
+    else
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
 }
 
 @end
