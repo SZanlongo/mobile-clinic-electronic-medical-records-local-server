@@ -34,6 +34,9 @@
     _currentVisit = [[VisitationObject alloc] init];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+}
+
 // Assigns patientData from Notification
 - (void)assignPatientData:(NSNotification *)note {
     _patientData = note.object;
@@ -53,7 +56,13 @@
 
 // Creates a visit for the patient and checks them in
 - (IBAction)checkInButton:(id)sender {
+    // Assigning vitals & condition
+    _currentVisit.visit.weight = [NSNumber numberWithInt:[_patientWeightField.text intValue]];
+    _currentVisit.visit.bloodPressure = _patientWeightField.text;
+    _currentVisit.visit.complaint = _conditionsTextbox.text;
     
+    // Adding visitation to patient object
+    [_patientData.patient addVisitObject:_currentVisit.visit];
 }
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy

@@ -170,8 +170,8 @@
     {
         *targetContentOffset = CGPointMake(targetContentOffset->x,
                                            targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
-    self.segmentedControl.selectedSegmentIndex = 0;
-}
+        self.segmentedControl.selectedSegmentIndex = 0;
+    }
 }
 
 @end

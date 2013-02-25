@@ -29,11 +29,25 @@
     
     // Define row height
     _patientHistoryTableView.rowHeight = 150;
+    
+    _visitData = [[Visitation alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // Put logic to retriving patient history and isplayingit
+    // Retrieve patientData
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
     
+    // Search database with patientId
+    
+    
+    // Populate cells
+    
+    
+}
+
+// Assigns patientData from Notification
+- (void)assignPatientData:(NSNotification *)note {
+    _patientData = note.object;
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,26 +71,26 @@
     return _patientHistoryArray.count;
 }
 
-//// Defines content of cells
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString * CellIdentifier = @"visitationCell";
-//    
-//    PatientHistoryTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//    if(!cell) {
+// Defines content of cells
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * CellIdentifier = @"visitationCell";
+    
+    PatientHistoryTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if(!cell) {
 //        cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        UINib * nib = [UINib nibWithNibName:@"PatientHistoryTableCellView" bundle:nil];
-//        cell = [nib instantiateWithOwner:nil options:nil][0];
-//    }
-//
-//    _patientData.patient = (Patients *)[_patientHistoryArray objectAtIndex:indexPath.row];
-//    
-//    // Display contents of cells
-//    // NEED CODE TO RETRIEVE PATIENT HISTORY FROM THE DB ...
-//    
-//    return cell;
-//}
+        UINib * nib = [UINib nibWithNibName:@"PatientHistoryTableCellView" bundle:nil];
+        cell = [nib instantiateWithOwner:nil options:nil][0];
+    }
+
+    _patientData.patient = (Patients *)[_patientHistoryArray objectAtIndex:indexPath.row];
+    
+    // Display contents of cells
+    // NEED CODE TO RETRIEVE PATIENT HISTORY FROM THE DB ...
+    
+    return cell;
+}
 
 @end
 
