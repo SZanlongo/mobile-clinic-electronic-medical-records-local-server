@@ -1,14 +1,14 @@
 //
-//  PatientResultTableCell.m
+//  CurrentDiagnosisTableCell.m
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/22/13.
+//  Created by sebastian a zanlongo on 2/24/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PatientResultTableCell.h"
+#import "CurrentDiagnosisTableCell.h"
 
-@implementation PatientResultTableCell
+@implementation CurrentDiagnosisTableCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -22,7 +22,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

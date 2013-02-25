@@ -48,6 +48,7 @@
 		6D3A635E16C8472D003B79F7 /* CameraFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635A16C8472D003B79F7 /* CameraFacade.m */; };
 		6D3A635F16C8472D003B79F7 /* UICamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635C16C8472D003B79F7 /* UICamera.m */; };
 		6D3A636016C8472D003B79F7 /* UICamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635C16C8472D003B79F7 /* UICamera.m */; };
+		6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */; };
 		6D68B5E516BD97BD003F895D /* FIULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68B5E416BD97BD003F895D /* FIULoginViewController.m */; };
 		6D68B5E916BD9864003F895D /* FIUPatientRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D68B5E816BD9864003F895D /* FIUPatientRegistrationViewController.m */; };
 		6DB0676A16D7DDF000D177E7 /* CurrentDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */; };
@@ -235,6 +236,8 @@
 		6D3A635A16C8472D003B79F7 /* CameraFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFacade.m; sourceTree = "<group>"; };
 		6D3A635B16C8472D003B79F7 /* UICamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICamera.h; sourceTree = "<group>"; };
 		6D3A635C16C8472D003B79F7 /* UICamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICamera.m; sourceTree = "<group>"; };
+		6D522C9616DADAA3004FFC21 /* CurrentDiagnosisTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentDiagnosisTableCell.h; sourceTree = "<group>"; };
+		6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDiagnosisTableCell.m; sourceTree = "<group>"; };
 		6D68B5E316BD97BD003F895D /* FIULoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIULoginViewController.h; sourceTree = "<group>"; };
 		6D68B5E416BD97BD003F895D /* FIULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIULoginViewController.m; sourceTree = "<group>"; };
 		6D68B5E716BD9864003F895D /* FIUPatientRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUPatientRegistrationViewController.h; sourceTree = "<group>"; };
@@ -392,23 +395,25 @@
 		0F428B9116D5215600E25B4B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
-				6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */,
+				6D522C9616DADAA3004FFC21 /* CurrentDiagnosisTableCell.h */,
+				6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */,
 				6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */,
 				6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */,
+				0F1A596F16D8356A00C121BA /* PatientHistoryTableCell.h */,
+				0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */,
+				0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */,
+				0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */,
+				0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */,
+				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
+				6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */,
+				0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */,
+				0F1A596A16D8329F00C121BA /* PreviousVisitTableCell.m */,
 				0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */,
 				0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */,
 				0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */,
 				0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */,
 				0F1A596616D8327600C121BA /* CurrentVisitTableCell.h */,
 				0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */,
-				0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */,
-				0F1A596A16D8329F00C121BA /* PreviousVisitTableCell.m */,
-				0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */,
-				0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */,
-				0F1A596F16D8356A00C121BA /* PatientHistoryTableCell.h */,
-				0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */,
-				0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1008,6 +1013,7 @@
 				6DF905EE16D7EABB0054CAAF /* PrescribePatientViewController.m in Sources */,
 				6D0D701B16D97611005A8C1F /* CurrentVisitTableCell.m in Sources */,
 				6D0D701E16D97EE4005A8C1F /* PreviousVisitsTableCell.m in Sources */,
+				6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

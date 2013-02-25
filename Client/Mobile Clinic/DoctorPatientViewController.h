@@ -7,24 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PatientObject.h"
+#import "CurrentDiagnosisTableCell.h"
+#import "PreviousVisitsTableCell.h"
 
-@interface DoctorPatientViewController : UIViewController
+@interface DoctorPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    ScreenHandler handler;
+}
 
-//Patient Info Labels
-@property (weak, nonatomic) IBOutlet UITextField *patientNameField;
-@property (weak, nonatomic) IBOutlet UITextField *familyNameField;
-@property (weak, nonatomic) IBOutlet UITextField *villageNameField;
-@property (weak, nonatomic) IBOutlet UIButton *patientAgeButton;
-@property (weak, nonatomic) IBOutlet UITextField *patientSexField;
+@property (strong, nonatomic) PatientObject *  patientData;
+@property (strong, nonatomic) CurrentDiagnosisViewController * control1;
+@property (strong, nonatomic) PreviousVisitsViewController * control2;
 
-//Vitals Labels
-@property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
-@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) PatientObject *patientData;
-
-@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
--(IBAction) segmentedControlIndexChanged;
+@property (weak, nonatomic) IBOutlet UIToolbar * toolBar;
+@property (nonatomic, retain) IBOutlet UISegmentedControl * segmentedControl;
 
 @end
