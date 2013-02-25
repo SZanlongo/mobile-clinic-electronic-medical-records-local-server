@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "RegisterPatientViewController.h"
 #import "DateController.h"
+#import "RegisterPatientViewController.h"
 
-UIPopoverController* pop;
+UIPopoverController * pop;
+
 @interface RegisterPatientViewController ()
 
 @end
@@ -21,12 +22,9 @@ UIPopoverController* pop;
     self = [super init];
     if (self) {
         //initialize these fields
-       
     }
     return self;
 }
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,8 +35,7 @@ UIPopoverController* pop;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -49,17 +46,16 @@ UIPopoverController* pop;
         [self Redisplay];
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)Redisplay{
+-(void)Redisplay {
     [_patientNameField setText:_patient.patient.firstName];
     [_patientPhoto setImage:_patient.getPhoto];
     [_familyNameField setText:_patient.patient.familyName];
@@ -68,15 +64,14 @@ UIPopoverController* pop;
 }
 
 - (void)viewDidUnload {
-
-//    [self setCreatePatient:nil];
+    [self setCreatePatientButton:nil];
     [super viewDidUnload];
 }
 
 // Set up the camera source and view controller
 - (IBAction)patientPhotoButton:(id)sender {
     // Added Indeterminate Loader
-    MBProgressHUD* progress = [MBProgressHUD showHUDAddedTo:_patientPhoto.superview animated:YES];
+    MBProgressHUD *progress = [MBProgressHUD showHUDAddedTo:_patientPhoto.superview animated:YES];
     [progress setMode:MBProgressHUDModeIndeterminate];
     
     [facade TakePictureWithCompletion:^(id img) {
@@ -96,27 +91,25 @@ UIPopoverController* pop;
         _patient.patient.familyName = _familyNameField.text;
         _patient.patient.villageName = _villageNameField.text;
         _patient.patient.sex = [NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex];
-        
+                
         // Even if the user file is being edited this method will
         // know the difference
         [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
-            if (error)
-            {
+            if (error) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
                  ];
             }
-            else
-            {
+            else {
                 [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_NEW_PATIENT object:data];
             }
         }];
     }
 }
 
-- (IBAction)getAgeOfPatient:(id)sender {
-    
+- (IBAction)getAgeOfPatient:(id)sender
+{    
     // get datepicker view
-    DateController* datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
+    DateController *datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
     
     // Instatiate popover if not available
     if (!pop) {
@@ -135,7 +128,6 @@ UIPopoverController* pop;
         if (object) {
             _patient.patient.age = object;
             [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
-            
         }
         [pop dismissPopoverAnimated:YES];
     }];
@@ -144,16 +136,12 @@ UIPopoverController* pop;
     [pop presentPopoverFromRect:_patientAgeField.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
-- (IBAction)goBackToChangeStation:(id)sender {
-    handler(self, nil);
-}
-
--(void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
 
 // Checks the registration form for empty fields, or incorrect data (text in number field)
--(BOOL)validateRegistration{
+- (BOOL)validateRegistration {
     BOOL inputIsValid = YES;
     NSString *errorMsg;
     
@@ -180,12 +168,21 @@ UIPopoverController* pop;
     return inputIsValid;
 }
 
+/*
+// Change Station Button
+- (IBAction)goBackToChangeStation:(id)sender {
+    handler(self, nil);
+}
+
+// Start Over Button
 - (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender {
     _patient = [[PatientObject alloc]initWithNewPatient];
-    _patientNameField.text =@"";
+    _patientNameField.text = @"";
     [_patientPhoto setImage: [UIImage imageNamed:@"userImage.jpeg"]];
-    _familyNameField.text =@"";
-    [_patientAgeField setTitle:@"Tap to Set Age" forState:UIControlStateNormal];
+    _familyNameField.text = @"";
+    [_patientAgeField setTitle:@"Tap to set Age" forState:UIControlStateNormal];
     _villageNameField.text = @"";
 }
+*/
+
 @end

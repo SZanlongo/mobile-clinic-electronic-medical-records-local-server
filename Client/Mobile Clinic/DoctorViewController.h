@@ -22,4 +22,5 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 -(void)setScreenHandler:(ScreenHandler)myHandler;
+
 @end

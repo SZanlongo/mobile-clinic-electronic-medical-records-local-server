@@ -10,5 +10,7 @@
 #import "RegisterPatientViewController.h"
 
 @interface RegisterPatientTableCell : UITableViewCell
-@property (nonatomic, strong) RegisterPatientViewController* viewController;
+
+@property (nonatomic, strong) RegisterPatientViewController *viewController;
+
 @end

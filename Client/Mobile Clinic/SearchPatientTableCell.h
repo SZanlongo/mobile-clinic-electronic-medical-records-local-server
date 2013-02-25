@@ -10,5 +10,7 @@
 #import "SearchPatientViewController.h"
 
 @interface SearchPatientTableCell : UITableViewCell
-@property (strong, nonatomic) SearchPatientViewController * viewController;
+
+@property (nonatomic, strong) SearchPatientViewController * viewController;
+
 @end

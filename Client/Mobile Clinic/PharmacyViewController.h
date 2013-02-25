@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchPatientTableCell.h"
+#import "StationViewHandlerProtocol.h"
 
-@interface PharmacyViewController : UIViewController
+@interface PharmacyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    ScreenHandler handler;
+}
+
+@property (strong, nonatomic) SearchPatientViewController * viewController;
+@property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) SearchPatientViewController * control;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+-(void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end

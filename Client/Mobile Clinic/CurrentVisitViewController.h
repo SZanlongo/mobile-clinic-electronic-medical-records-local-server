@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StationViewHandlerProtocol.h"
+#import "PatientObject.h"
 
-@interface CurrentVisitViewController : UIViewController
+@interface CurrentVisitViewController : UIViewController {
+    ScreenHandler handler;
+}
+
+@property (strong, nonatomic) PatientObject *patient;
 
 @property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
 @property (strong, nonatomic) IBOutlet UITextField *patientBPField;
@@ -16,4 +22,7 @@
 
 - (IBAction)submitButton:(id)sender;
 
+- (void)setScreenHandler:(ScreenHandler)myHandler;
+
 @end
+

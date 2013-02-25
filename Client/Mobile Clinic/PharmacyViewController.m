@@ -2,11 +2,12 @@
 //  PharmacyViewController.m
 //  Mobile Clinic
 //
-//  Created by sebastian a zanlongo on 2/22/13.
+//  Created by sebastian a zanlongo on 2/18/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
 #import "PharmacyViewController.h"
+#import "PharmacyPatientViewController.h"
 
 @interface PharmacyViewController ()
 
@@ -29,13 +30,81 @@
 	// Do any additional setup after loading the view.
     
     UINavigationBar *bar =[self.navigationController navigationBar];
-    [bar setTintColor:[UIColor greenColor]];
+    [bar setTintColor:[UIColor colorWithRed:52.0/225 green:186.0/225 blue:91.0/225 alpha:.7]];
+    
+    CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
+    _tableView.rowHeight = 768;
+    _tableView.transform = transform;
+    _tableView.frame = self.view.frame;
+    [_tableView setShowsVerticalScrollIndicator:NO];
+    
+    // Create controller for search
+    _control = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
+    
 }
+
+// Transfers the patient's data to the next view controller
+- (void)transferPatientData:(NSNotification *)note {
+    _patientData = note.object;
+    
+    PharmacyPatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
+    
+    //newView.patientData = _patientData;
+    
+    [self.navigationController pushViewController:newView animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidUnload {
+    [self setTableView:nil];
+    [super viewDidUnload];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * searchCellIdentifier = @"searchCell";
+    
+    SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
+    
+    if(!cell){
+        cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
+        cell.viewController = _control;
+    }
+    
+    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+    cell.viewController.view.transform = transform;
+    
+    cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
+    
+    // Removes previous view (for memory mgmt)
+    for(UIView *mView in [cell.contentView subviews]){
+        [mView removeFromSuperview];
+    }
+    
+    
+    
+    [cell addSubview: cell.viewController.view];
+    
+    return cell;
+}
+
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
 }
 
 @end

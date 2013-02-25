@@ -9,34 +9,27 @@
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
 #import "ScreenNavigationDelegate.h"
+#import "PatientResultTableCell.h"
 
 @interface SearchPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     ScreenHandler handler;
     BOOL shouldDismiss;
 }
 
-@property (nonatomic, strong) NSArray* patientSearchResultsArray;
-@property (nonatomic, strong) PatientObject *patientData;
+@property (nonatomic, strong) PatientObject * patientData;
+@property (nonatomic, strong) NSArray * patientSearchResultsArray;
+@property (nonatomic, strong) NSArray * resultArray;                // JUST TESTING (RIGO)
 
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
 @property (weak, nonatomic) IBOutlet UITableView *searchResultTableView;
 
-@property (strong, nonatomic) UIButton * patientFound;
-
-- (void)setScreenHandler:(ScreenHandler) myHandler;
-//- (IBAction)cancelSearching:(id)sender;
+@property (strong, nonatomic) UIButton *patientFound;
 
 - (IBAction)searchByNameButton:(id)sender;
 - (IBAction)searchByNFCButton:(id)sender;
 - (IBAction)searchByFingerprintButton:(id)sender;
-- (PatientObject *) selectPatient;
-@end
 
-@interface SearchPatientViewControllerCell : UITableViewCell{
-}
-@property (weak, nonatomic) IBOutlet UILabel *patientName;
-@property (weak, nonatomic) IBOutlet UIImageView *patientPic;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;        //dob
-@property (weak, nonatomic) IBOutlet UILabel *ageLabel;         //patient age
+- (void)setScreenHandler:(ScreenHandler) myHandler;
+
 @end

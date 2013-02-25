@@ -1,18 +1,18 @@
 //
-//  PatientHistoryViewController.m
+//  PharmacyPatientViewController.m
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/19/13.
+//  Created by sebastian a zanlongo on 2/24/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PatientHistoryViewController.h"
+#import "PharmacyPatientViewController.h"
 
-@interface PatientHistoryViewController ()
+@interface PharmacyPatientViewController ()
 
 @end
 
-@implementation PatientHistoryViewController
+@implementation PharmacyPatientViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,4 +35,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setPatientName:nil];
+    [self setFamilyName:nil];
+    [self setVillageName:nil];
+    [self setPatientAge:nil];
+    [self setPatientSex:nil];
+    [self setPatientDiagnosis:nil];
+    [self setPatientPrescription:nil];
+    [super viewDidUnload];
+}
+- (IBAction)submitPrescription:(id)sender {
+}
 @end

@@ -23,10 +23,13 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,4 +42,17 @@
     [self setPatientHistoryTableView:nil];
     [super viewDidUnload];
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
+    
+}
+
 @end

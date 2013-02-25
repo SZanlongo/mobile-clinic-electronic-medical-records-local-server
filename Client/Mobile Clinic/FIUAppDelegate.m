@@ -36,36 +36,36 @@
     
     //RIGO - FOR TESTING PURPOSES ONLY
     //MANUALLY ENTERS DATA INTO THE DATABASE
-    //
-    //    NSError *error;
-    //    NSManagedObjectContext *context = [self managedObjectContext];
-    //
-    //    /*
-    //    // Delete all entries in the Core Data table (ex. Patients)
-    //    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
-    //    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-    //
-    //    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
-    //
-    //    for(NSManagedObject *entries in currentRecords) {
-    //    [context deleteObject:entries];
-    //    }
-    //    */
-    //
-    //    // Print (to NSLog) content of table (ex. Patients)
-    //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    //    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-    //
-    //    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    //
-    //    for (NSManagedObject *info in fetchedObjects) {
-    //        NSLog(@"Name: %@ %@", [info valueForKey:@"firstName"], [info valueForKey:@"familyName"]);
-    //        NSLog(@"Age: %@", [info valueForKey:@"age"]);
-    //        NSLog(@"Sex: %@", [info valueForKey:@"sex"]);
-    //        NSLog(@"Village Name: %@", [info valueForKey:@"villageName"]);
-    //    }
-    //
-    //    [self saveContext];
+    
+    NSError *error;
+    NSManagedObjectContext *context = [self managedObjectContext];
+//
+//    /*
+//    // Delete all entries in the Core Data table (ex. Patients)
+//    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
+//    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+//
+//    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
+//     
+//    for(NSManagedObject *entries in currentRecords) {
+//    [context deleteObject:entries];
+//    }
+//    */
+//    
+    // Print (to NSLog) content of table (ex. Patients)
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+    
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *info in fetchedObjects) {
+        NSLog(@"Name: %@ %@", [info valueForKey:@"firstName"], [info valueForKey:@"familyName"]);
+        NSLog(@"Age: %@", [info valueForKey:@"age"]);
+        NSLog(@"Sex: %@", [info valueForKey:@"sex"]);
+        NSLog(@"Village Name: %@", [info valueForKey:@"villageName"]);
+    }
+    
+    [self saveContext];
     
     
     // Override point for customization after application launch.

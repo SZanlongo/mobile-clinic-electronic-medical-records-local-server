@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PatientHistoryTableCell.h"
 
-@interface PreviousVisitsViewController : UIViewController
+@interface PreviousVisitsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *patientHistoryTableView;
 

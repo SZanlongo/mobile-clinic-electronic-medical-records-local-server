@@ -32,19 +32,28 @@
     UINavigationBar *bar =[self.navigationController navigationBar];
     [bar setTintColor:[UIColor blueColor]];
     
-    _tableView.rowHeight = 960;
+    CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
+    _tableView.rowHeight = 768;
+    _tableView.transform = transform;
+    _tableView.frame = self.view.frame;
     [_tableView setShowsVerticalScrollIndicator:NO];
     
     // Create controller for search
     _control = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
     
-    [_control.patientFound addTarget:self action:@selector(searchPatient) forControlEvents:UIControlEventTouchUpInside];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
     
 }
 
--(void)searchPatient{
-    PatientObject * newPatient = _control.patientData;
-    [self performSegueWithIdentifier:@"doctorPatientViewController" sender:newPatient];
+// Transfers the patient's data to the next view controller
+- (void)transferPatientData:(NSNotification *)note {
+    _patientData = note.object;
+    
+    DoctorPatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
+    
+    newView.patientData = _patientData;
+    
+    [self.navigationController pushViewController:newView animated:YES];
 }
 
 
@@ -70,18 +79,28 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * searchCellIdentifier = @"searchCell";
     
-    
     SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
     
+    if(!cell){
+        cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
+        cell.viewController = _control;
+    }
     
-    cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
+    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+    cell.viewController.view.transform = transform;
+
+    cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
     
-    cell.viewController = _control;
+    // Removes previous view (for memory mgmt)
+    for(UIView *mView in [cell.contentView subviews]){
+        [mView removeFromSuperview];
+    }
+
+    
     
     [cell addSubview: cell.viewController.view];
     
-    return cell;
-    
+    return cell;    
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{

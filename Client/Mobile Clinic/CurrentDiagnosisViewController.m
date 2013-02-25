@@ -39,4 +39,13 @@
     [self setDiagnosisTextbox:nil];
     [super viewDidUnload];
 }
+
+- (IBAction)submitButton:(id)sender {
+    
+}
+
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
+}
+
 @end

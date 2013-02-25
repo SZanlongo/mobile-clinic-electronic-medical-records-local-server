@@ -1,14 +1,18 @@
 //
-//  PatientResultTableCell.m
+//  PreviousVisitsTableCell.m
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/22/13.
+//  Created by sebastian a zanlongo on 2/23/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PatientResultTableCell.h"
+#import "PreviousVisitsTableCell.h"
 
-@implementation PatientResultTableCell
+@interface PreviousVisitsTableCell ()
+
+@end
+
+@implementation PreviousVisitsTableCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -22,7 +26,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

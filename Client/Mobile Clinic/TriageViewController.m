@@ -15,8 +15,6 @@
 
 @implementation TriageViewController
 
-@synthesize segmentedControl;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,62 +24,62 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UINavigationBar *bar =[self.navigationController navigationBar];
+    UINavigationBar *bar = [self.navigationController navigationBar];
     [bar setTintColor:[UIColor orangeColor]];
     
-    // Rotate table horizontally (90 degrees)
+    // Rotate table horizontally (-90 degrees)
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
     _tableView.rowHeight = 768;
     _tableView.transform = transform;
+        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    _tableView.frame = self.view.frame;
     [_tableView setShowsVerticalScrollIndicator:NO];
     
     // Create controllers for each view (Search & Register)
-//    _control2 = [([UIStoryboard storyboardWithName:@"NewStoryboard" bundle: nil]) instantiateViewControllerWithIdentifier:@"searchPatientViewController"];
+    _registerControl = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
+//    [_registerControl view];
+    _searchControl = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
+//    [_searchControl view];
     
-    _control1 = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
-    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
+    // Notifications that receive patient data from registration & search view controllers
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createPatient:) name:CREATE_NEW_PATIENT object:_patientData];
-//    if([_control1 view])
-//        [_control1.createPatientButton addTarget:self action:@selector(createPatient) forControlEvents:UIControlEventTouchUpInside];
+//    [_registerControl.createPatientButton addTarget:self action:@selector(moveKay) forControlEvents:UIControlEventTouchUpInside];
     
-    if([_control2 view])
-        [_control2.patientFound addTarget:self action:@selector(searchPatient) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+    // Create a button that returns to root view controller
 //    UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.navigationController.self action:@selector(popToRootViewControllerAnimated:)];
-//    
 //    [self.navigationItem setLeftBarButtonItem:backButton];
     
 }
 
-//-(void)back{
-//    [self.navigationController popToRootViewControllerAnimated:YES]
-//}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
 
--(void)createPatient:(NSNotification *)note {
+// Transfers the patient's data to the next view controller
+- (void)transferPatientData:(NSNotification *)note {
     _patientData = note.object;
     
     TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
     
     newView.patientData = _patientData;
     
-    [self.navigationController pushViewController:newView animated:YES];
+//    NSLog(@"P NAME: %@", _patientData.patient.firstName);
+//    NSLog(@"P FAMILY: %@", _patientData.patient.familyName);
+//    NSLog(@"P VILLAGE: %@", _patientData.patient.villageName);
     
-//    PatientObject * newPatient = [_control1 createPatient];
-//    [self performSegueWithIdentifier:@"triagePatientViewController" sender:_patientData];
+    [self.navigationController pushViewController:newView animated:YES];
 }
 
--(void)searchPatient{
-    PatientObject * newPatient = _control2.patientData;
-    [self performSegueWithIdentifier:@"triagePatientViewController" sender:newPatient];
-}
-
+//- (void)back {
+//    [self.navigationController popToRootViewControllerAnimated:YES]
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -96,65 +94,77 @@
     [super viewDidUnload];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+// Defines number of sections
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+// Defines number of cells in table
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+// Defines the cells
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //
     static NSString * registerCellIdentifier = @"registerCell";
     static NSString * searchCellIdentifier = @"searchCell";
     
     if(indexPath.item == 0) {
         RegisterPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:registerCellIdentifier];
         
-        if(!cell){
+        if(!cell) {
             cell = [[RegisterPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:registerCellIdentifier];
-            
-            cell.viewController = _control1;
+            cell.viewController = _registerControl;
         }
         
+        // Rotate view vertically on the screen
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
         
+        // Removes previous view (for memory mgmt)
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
         }
         
+        // Populate view in cell
         [cell addSubview: cell.viewController.view];
-        [cell.viewController setScreenHandler:handler];
+        [cell.viewController setScreenHandler:handler];         // NOT SURE WHAT THIS DOES
+        
+        _segmentedControl.selectedSegmentIndex = 0;
+        
         return cell;
     }
     else {
         SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
-            
-        if(!cell){
+        
+        if(!cell) {
             cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
-                
-            cell.viewController = _control2;
+            cell.viewController = _searchControl;
         }
         
+        // Rotate view vertically on the screen
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
-
+        cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
+        
+        // Removes previous view (for memory mgmt)
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
         }
         
+        // Populate view in cell
         [cell addSubview: cell.viewController.view];
+        [cell.viewController setScreenHandler:handler];         // NOT SURE WHAT THIS DOES
+        
+        _segmentedControl.selectedSegmentIndex = 1;
         
         return cell;
     }
 }
 
--(void)setScreenHandler:(ScreenHandler)myHandler{
-    handler = myHandler;
-}
+// Allows user to user segment to switch views (cells)
 - (IBAction) segmentedControlIndexChanged {
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
@@ -165,10 +175,27 @@
             break;
         default:
             break;
-
     }
+    
     [self.tableView reloadData];
+}
 
+- (void)setScreenHandler:(ScreenHandler)myHandler {
+    handler = myHandler;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset {
+    int cellHeight = 768;
+
+    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+    }
+    else
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
 }
 
 @end
