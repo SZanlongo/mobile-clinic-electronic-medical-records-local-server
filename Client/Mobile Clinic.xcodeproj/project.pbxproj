@@ -43,6 +43,7 @@
 		46B11A4216DB5290008CD600 /* evening.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A3E16DB5290008CD600 /* evening.png */; };
 		46B11A4316DB5290008CD600 /* morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A3F16DB5290008CD600 /* morning.png */; };
 		46B11A4416DB5290008CD600 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A4016DB5290008CD600 /* night.png */; };
+		46B11A4616DB693F008CD600 /* MedicineSearchResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A4516DB693F008CD600 /* MedicineSearchResultView.xib */; };
 		46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E773D416CB0BFB00242454 /* libTestFlight.a */; };
 		46E773D916CB0BFB00242454 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D516CB0BFB00242454 /* README.md */; };
 		46E773DA16CB0BFB00242454 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D616CB0BFB00242454 /* release_notes.md */; };
@@ -235,6 +236,7 @@
 		46B11A3E16DB5290008CD600 /* evening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evening.png; sourceTree = "<group>"; };
 		46B11A3F16DB5290008CD600 /* morning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = morning.png; sourceTree = "<group>"; };
 		46B11A4016DB5290008CD600 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night.png; sourceTree = "<group>"; };
+		46B11A4516DB693F008CD600 /* MedicineSearchResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicineSearchResultView.xib; sourceTree = "<group>"; };
 		46E773D416CB0BFB00242454 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		46E773D516CB0BFB00242454 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		46E773D616CB0BFB00242454 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				46B11A3816DB24EC008CD600 /* PharamcyPrescriptionCell.m */,
 				46B11A3A16DB266B008CD600 /* MedicineSearchCell.h */,
 				46B11A3B16DB266C008CD600 /* MedicineSearchCell.m */,
+				46B11A4516DB693F008CD600 /* MedicineSearchResultView.xib */,
 			);
 			name = Pharmacy;
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				46B11A4216DB5290008CD600 /* evening.png in Resources */,
 				46B11A4316DB5290008CD600 /* morning.png in Resources */,
 				46B11A4416DB5290008CD600 /* night.png in Resources */,
+				46B11A4616DB693F008CD600 /* MedicineSearchResultView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

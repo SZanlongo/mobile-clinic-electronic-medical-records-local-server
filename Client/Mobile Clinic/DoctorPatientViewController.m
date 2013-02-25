@@ -50,7 +50,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
     
-    
+    _patientNameLabel.text = _patientData.patient.firstName;
+    _patientFamilyNameLabel.text = _patientData.patient.familyName;
+    _patientAgeLabel.titleLabel.text = [NSString stringWithFormat:@"%i", _patientData.getAge ];
+    _patientSexLabel.text =  [_patientData.patient.sex isEqualToNumber:[NSNumber numberWithInt:0]] ? @"Male" : @"Female";
+//
 }
 
 -(void)saveVisitation{
@@ -67,6 +71,12 @@
 - (void)viewDidUnload {
     [self setTableView:nil];
     [self setToolBar:nil];
+    [self setPatientNameLabel:nil];
+    [self setPatientFamilyNameLabel:nil];
+    [self setPatientVillageLabel:nil];
+    [self setPatientAgeLabel:nil];
+    [self setPatientSexLabel:nil];
+    [self setPatientSexLabel:nil];
     [super viewDidUnload];
 }
 

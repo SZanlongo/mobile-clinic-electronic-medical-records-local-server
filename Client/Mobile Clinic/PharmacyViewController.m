@@ -51,7 +51,7 @@
     
     PharmacyPatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
     
-    //newView.patientData = _patientData;
+    newView.patientData = _patientData;
     
     [self.navigationController pushViewController:newView animated:YES];
 }

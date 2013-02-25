@@ -23,5 +23,11 @@
 
 @property (weak, nonatomic) IBOutlet UIToolbar * toolBar;
 @property (nonatomic, retain) IBOutlet UISegmentedControl * segmentedControl;
+@property (weak, nonatomic) IBOutlet UITextField *patientNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *patientFamilyNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *patientVillageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *patientAgeLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *patientSexLabel;
 
 @end

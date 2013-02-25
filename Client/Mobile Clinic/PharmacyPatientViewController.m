@@ -45,6 +45,11 @@
     
     [_medicineViewController view];
     
+    _patientName.text = _patientData.patient.firstName;
+    _familyName.text = _patientData.patient.familyName;
+    _patientAge.titleLabel.text = [NSString stringWithFormat:@"%i", _patientData.getAge ];
+    _patientSex.text =  [_patientData.patient.sex isEqualToNumber:[NSNumber numberWithInt:0]] ? @"Male" : @"Female";
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];

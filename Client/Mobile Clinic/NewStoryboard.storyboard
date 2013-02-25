@@ -835,6 +835,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="patientFamilyNameLabel" destination="544-79-o9i" id="3Ew-Xr-HNh"/>
+                        <outlet property="patientNameLabel" destination="vYb-tF-bqW" id="v0m-Yr-o7h"/>
+                        <outlet property="patientVillageLabel" destination="pef-pz-6xS" id="ykr-Hi-2Rx"/>
                         <outlet property="segmentedControl" destination="KVN-d1-eap" id="NSR-DP-Le7"/>
                         <outlet property="tableView" destination="2cd-7c-AGO" id="bsK-kX-eso"/>
                         <outlet property="toolBar" destination="ocm-wc-NlD" id="v6J-dr-4oI"/>
@@ -1603,37 +1606,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="rSj-NZ-rAx">
                                 <rect key="frame" x="56" y="139" width="657" height="490"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="59" id="sjj-eJ-gcy" customClass="MedicineSearchResultCell">
-                                        <rect key="frame" x="0.0" y="22" width="657" height="59"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="657" height="58"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Advil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vLT-Ma-lYE">
-                                                    <rect key="frame" x="33" y="18" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="500mg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PR3-SX-DmO">
-                                                    <rect key="frame" x="527" y="17" width="58" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="medicineDose" destination="PR3-SX-DmO" id="RuM-zM-YRP"/>
-                                            <outlet property="medicineName" destination="vLT-Ma-lYE" id="xMm-fh-D0v"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BFJ-qB-Mtr" id="kXU-vR-cg9"/>
+                                    <outlet property="delegate" destination="BFJ-qB-Mtr" id="Brs-iC-q99"/>
+                                </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="INl-p8-f6J">
                                 <rect key="frame" x="326" y="82" width="259" height="30"/>
