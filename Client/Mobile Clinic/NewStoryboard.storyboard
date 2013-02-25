@@ -1413,6 +1413,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="savePrescription:" destination="hcs-ty-94e" eventType="touchUpInside" id="Wid-uM-KCg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UUM-3o-2I2">
                                 <rect key="frame" x="13" y="50" width="174" height="138"/>
@@ -1602,7 +1605,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </scenes>
     <resources>
         <image name="afternoon.png" width="174" height="138"/>
-        <image name="clinicLogo.jpg" width="325" height="260"/>
+        <image name="clinicLogo.jpg" width="16" height="16"/>
         <image name="evening.png" width="176" height="138"/>
         <image name="morning.png" width="176" height="142"/>
         <image name="night.png" width="176" height="134"/>

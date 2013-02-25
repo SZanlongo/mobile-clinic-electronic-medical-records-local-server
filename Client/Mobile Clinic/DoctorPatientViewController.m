@@ -46,6 +46,16 @@
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
     
+    _visitationData = [[VisitationObject alloc] initWithNewVisit];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
+    
+    
+}
+
+-(void)saveVisitation{
+    [_patientData addVisitToCurrentPatient:_visitationData];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
