@@ -35,6 +35,15 @@
 		4677413716BD9386002FD4A5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4677413516BD9386002FD4A5 /* Model.xcdatamodeld */; };
 		4677413A16BDBA2F002FD4A5 /* FIUSearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */; };
 		4677413D16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */; };
+		46B11A2816DB1C0E008CD600 /* PharamcyPrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A2716DB1C0E008CD600 /* PharamcyPrescriptionViewController.m */; };
+		46B11A2D16DB1D0F008CD600 /* afternoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A2916DB1D0F008CD600 /* afternoon.png */; };
+		46B11A2E16DB1D0F008CD600 /* evening.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A2A16DB1D0F008CD600 /* evening.png */; };
+		46B11A2F16DB1D0F008CD600 /* morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A2B16DB1D0F008CD600 /* morning.png */; };
+		46B11A3016DB1D0F008CD600 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A2C16DB1D0F008CD600 /* night.png */; };
+		46B11A3316DB2195008CD600 /* MedicineSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3216DB2195008CD600 /* MedicineSearchResultCell.m */; };
+		46B11A3616DB21E5008CD600 /* MedicineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3516DB21E4008CD600 /* MedicineSearchViewController.m */; };
+		46B11A3916DB24ED008CD600 /* PharamcyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3816DB24EC008CD600 /* PharamcyPrescriptionCell.m */; };
+		46B11A3C16DB266C008CD600 /* MedicineSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3B16DB266C008CD600 /* MedicineSearchCell.m */; };
 		46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E773D416CB0BFB00242454 /* libTestFlight.a */; };
 		46E773D916CB0BFB00242454 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D516CB0BFB00242454 /* README.md */; };
 		46E773DA16CB0BFB00242454 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D616CB0BFB00242454 /* release_notes.md */; };
@@ -216,6 +225,20 @@
 		4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUSearchPatientViewController.m; sourceTree = "<group>"; };
 		4677413B16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUFamilyMemberViewController.h; sourceTree = "<group>"; };
 		4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUFamilyMemberViewController.m; sourceTree = "<group>"; };
+		46B11A2616DB1C0E008CD600 /* PharamcyPrescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharamcyPrescriptionViewController.h; sourceTree = "<group>"; };
+		46B11A2716DB1C0E008CD600 /* PharamcyPrescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharamcyPrescriptionViewController.m; sourceTree = "<group>"; };
+		46B11A2916DB1D0F008CD600 /* afternoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = afternoon.png; path = ../../../../afternoon.png; sourceTree = "<group>"; };
+		46B11A2A16DB1D0F008CD600 /* evening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = evening.png; path = ../../../../evening.png; sourceTree = "<group>"; };
+		46B11A2B16DB1D0F008CD600 /* morning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = morning.png; path = ../../../../morning.png; sourceTree = "<group>"; };
+		46B11A2C16DB1D0F008CD600 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = night.png; path = ../../../../night.png; sourceTree = "<group>"; };
+		46B11A3116DB2195008CD600 /* MedicineSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicineSearchResultCell.h; sourceTree = "<group>"; };
+		46B11A3216DB2195008CD600 /* MedicineSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicineSearchResultCell.m; sourceTree = "<group>"; };
+		46B11A3416DB21E4008CD600 /* MedicineSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicineSearchViewController.h; sourceTree = "<group>"; };
+		46B11A3516DB21E4008CD600 /* MedicineSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicineSearchViewController.m; sourceTree = "<group>"; };
+		46B11A3716DB24EC008CD600 /* PharamcyPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharamcyPrescriptionCell.h; sourceTree = "<group>"; };
+		46B11A3816DB24EC008CD600 /* PharamcyPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharamcyPrescriptionCell.m; sourceTree = "<group>"; };
+		46B11A3A16DB266B008CD600 /* MedicineSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicineSearchCell.h; sourceTree = "<group>"; };
+		46B11A3B16DB266C008CD600 /* MedicineSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicineSearchCell.m; sourceTree = "<group>"; };
 		46E773D416CB0BFB00242454 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		46E773D516CB0BFB00242454 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		46E773D616CB0BFB00242454 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -262,8 +285,6 @@
 		6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitViewController.m; sourceTree = "<group>"; };
 		6DD5D90616D315F3007C3F74 /* PreviousVisitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitsViewController.h; sourceTree = "<group>"; };
 		6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitsViewController.m; sourceTree = "<group>"; };
-		6DF905EC16D7EABB0054CAAF /* PrescribePatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrescribePatientViewController.h; path = "/home/szanl001/Documents/mcemr/Client/Mobile Clinic/PrescribePatientViewController.h"; sourceTree = "<absolute>"; };
-		6DF905ED16D7EABB0054CAAF /* PrescribePatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrescribePatientViewController.m; path = "/home/szanl001/Documents/mcemr/Client/Mobile Clinic/PrescribePatientViewController.m"; sourceTree = "<absolute>"; };
 		EA1EE19916C8877F00E263D2 /* NSString+StringExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringExt.h"; sourceTree = "<group>"; };
 		EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringExt.m"; sourceTree = "<group>"; };
 		EA1EE19D16C982DB00E263D2 /* DateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateController.h; sourceTree = "<group>"; };
@@ -459,6 +480,10 @@
 		0F9E6BA916D1E44A008AFB49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				46B11A2916DB1D0F008CD600 /* afternoon.png */,
+				46B11A2A16DB1D0F008CD600 /* evening.png */,
+				46B11A2B16DB1D0F008CD600 /* morning.png */,
+				46B11A2C16DB1D0F008CD600 /* night.png */,
 				0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */,
 			);
 			name = Images;
@@ -658,8 +683,16 @@
 				6DC75C5C16DAED47000F527A /* PharmacyPatientViewController.m */,
 				6D2D28BA16D7DCF5007FB79F /* PharmacyViewController.h */,
 				6D2D28BB16D7DCF5007FB79F /* PharmacyViewController.m */,
-				6DF905EC16D7EABB0054CAAF /* PrescribePatientViewController.h */,
-				6DF905ED16D7EABB0054CAAF /* PrescribePatientViewController.m */,
+				46B11A2616DB1C0E008CD600 /* PharamcyPrescriptionViewController.h */,
+				46B11A2716DB1C0E008CD600 /* PharamcyPrescriptionViewController.m */,
+				46B11A3116DB2195008CD600 /* MedicineSearchResultCell.h */,
+				46B11A3216DB2195008CD600 /* MedicineSearchResultCell.m */,
+				46B11A3416DB21E4008CD600 /* MedicineSearchViewController.h */,
+				46B11A3516DB21E4008CD600 /* MedicineSearchViewController.m */,
+				46B11A3716DB24EC008CD600 /* PharamcyPrescriptionCell.h */,
+				46B11A3816DB24EC008CD600 /* PharamcyPrescriptionCell.m */,
+				46B11A3A16DB266B008CD600 /* MedicineSearchCell.h */,
+				46B11A3B16DB266C008CD600 /* MedicineSearchCell.m */,
 			);
 			name = Pharmacy;
 			sourceTree = "<group>";
@@ -918,6 +951,10 @@
 				0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */,
 				0FFA78D916D1E64500F04E15 /* clinicLogo.jpg in Resources */,
 				0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */,
+				46B11A2D16DB1D0F008CD600 /* afternoon.png in Resources */,
+				46B11A2E16DB1D0F008CD600 /* evening.png in Resources */,
+				46B11A2F16DB1D0F008CD600 /* morning.png in Resources */,
+				46B11A3016DB1D0F008CD600 /* night.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1053,11 @@
 				6D0D701E16D97EE4005A8C1F /* PreviousVisitsTableCell.m in Sources */,
 				6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */,
 				6DC75C5D16DAED47000F527A /* PharmacyPatientViewController.m in Sources */,
+				46B11A2816DB1C0E008CD600 /* PharamcyPrescriptionViewController.m in Sources */,
+				46B11A3316DB2195008CD600 /* MedicineSearchResultCell.m in Sources */,
+				46B11A3616DB21E5008CD600 /* MedicineSearchViewController.m in Sources */,
+				46B11A3916DB24ED008CD600 /* PharamcyPrescriptionCell.m in Sources */,
+				46B11A3C16DB266C008CD600 /* MedicineSearchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

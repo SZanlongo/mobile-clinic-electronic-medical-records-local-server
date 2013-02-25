@@ -107,4 +107,19 @@
     handler = myHandler;
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset {
+    int cellHeight = 768;
+    
+    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+    }
+    else
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+}
+
+
 @end
