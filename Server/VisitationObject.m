@@ -65,10 +65,7 @@
 -(void)CommonExecution
 {
     switch (self.commands) {
-        case kCreateNewVisit:
-            [self createANewVisitForPatientWithId];
-            break;
-        default:
+               default:
             break;
     }
 }

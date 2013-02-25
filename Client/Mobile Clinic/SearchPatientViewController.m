@@ -106,9 +106,9 @@
     // Gets the object at the corresponding index
     _patientData.patient = [_patientSearchResultsArray objectAtIndex:indexPath.row];
     
-//    NSLog(@"P NAME: %@", _patientData.patient.firstName);
-//    NSLog(@"P FAMILY: %@", _patientData.patient.familyName);
-//    NSLog(@"P VILLAGE: %@", _patientData.patient.villageName);
+    // Return object to main screen and dismiss view
+   // handler(_patientData, nil);
+ 
     
     // Sets color of cell when selected
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];

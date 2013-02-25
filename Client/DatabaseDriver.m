@@ -38,6 +38,7 @@ return self;
         NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K contains[cd] %@",attribute,name];
         [fetch setPredicate:pred];
     }
+    
     return [self fetchElementsUsingFetchRequest:fetch withTable:table];
 
 }

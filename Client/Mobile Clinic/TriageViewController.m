@@ -88,6 +88,7 @@
 }
 
 - (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self setTableView:nil];
     [self setToolBar:nil];
     [super viewDidUnload];
