@@ -70,7 +70,7 @@ NSString* lastname;
         case kCreateNewPatient:
             [self CreateANewPatient:nil];
             break;
-        case kUpdatePatient:
+        case kUpdatePatients:
             [self UpdateANewPatient: nil];
             break;
         case kFindPatientsByName:
@@ -102,12 +102,6 @@ NSString* lastname;
 
 #pragma mark - Private Methods
 #pragma mark -
-
--(NSString *)description
-{
-   
-   
-}
 
 
 -(void)CreateANewPatient:(ObjectResponse)onSuccessHandler
@@ -166,9 +160,11 @@ NSString* lastname;
 
     
 }
+
 -(void)addVisitToPatient:(Visitation *)visit{
     [_patient addVisitationObject:visit];
 }
+
 -(NSMutableArray*)packagedVisits{
     NSMutableArray* completeVisits = [[NSMutableArray alloc]initWithCapacity:_visits.count];
 //    for (VisitationObject* visit in _visits) {

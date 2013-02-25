@@ -24,5 +24,11 @@
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;
 
+/**
+ * <<This method SHOULD NOT be used by anyone. This method will be hidden in future releases.>>
+ This method checks to see if the device is connected to the server before it attempts to send data. 
+ @param data the data that should be sent to the server
+ @param negativeResponse if the client is not connect to the server then the methods wihin this block will be fired. This will give the user a chance to run their method even if the server is unable to respond to the request.
+ */
 -(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse;
 @end

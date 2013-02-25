@@ -5,7 +5,7 @@
 //  Created by sebastian a zanlongo on 2/18/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
-
+#import "PatientObject.h"
 #import "StationViewController.h"
 #import "StationViewHandlerProtocol.h"
 
@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
     
 }
@@ -34,7 +35,30 @@
     UINavigationBar *bar =[self.navigationController navigationBar];
     [bar setTintColor:[UIColor lightGrayColor]];
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+//    PatientObject* myPatient = [[PatientObject alloc]initWithNewPatient];
+//    
+//    VisitationObject* myVisit = [[VisitationObject alloc]initWithNewVisit];
+//    
+//    [myVisit setObject:@"Fake Diagnosis Notes" withAttribute:DNOTES];
+//    [myVisit setObject:@"Fake Diagnosis Title" withAttribute:DTITLE];
+//    [myVisit setObject:@"Fake Complaint" withAttribute:COMPLAINT];
+//    [myVisit setObject:[NSDate date] withAttribute:CHECKIN];
+//    [myVisit setObject:[NSDate date] withAttribute:CHECKOUT];
+//    [myVisit setObject:@"FakeVisitID" withAttribute:VISITID];
+//    
+//    [myPatient setObject:@"Tuba" withAttribute:FIRSTNAME];
+//    [myPatient setObject:@"Jubu" withAttribute:FAMILYNAME];
+//    [myPatient setObject:@"Pufu" withAttribute:VILLAGE];
+//    
+//    [myPatient addVisitToCurrentPatient:myVisit];
+//    
+//    [myPatient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
+//        PatientObject* p = data;
+//        NSLog(@"Save Complete: %@",[p description]);
+//    }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

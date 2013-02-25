@@ -64,14 +64,15 @@
 -(void)navigateToMainScreen{
     
     id screen = [self getViewControllerFromiPadStoryboardWithName:@"userSelectScreen"];
-    
-    [self presentViewController:screen animated:YES completion:^{
-        
-    }];
+    [self presentViewController:screen animated:YES completion:nil];
 }
 - (void)viewDidUnload {
     [self setUsernameTextField:nil];
     [self setPasswordTextField:nil];
     [super viewDidUnload];
+}
+- (IBAction)move:(id)sender {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
+    [self navigateToMainScreen];
 }
 @end
