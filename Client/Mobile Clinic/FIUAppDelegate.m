@@ -67,9 +67,13 @@
     //
     //    [self saveContext];
     
+    
     // Override point for customization after application launch.
     ServerManager = [ServerCore sharedInstance];
     [ServerManager startClient];
+    
+    
+    
     return YES;
 }
 

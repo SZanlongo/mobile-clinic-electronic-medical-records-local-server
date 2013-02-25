@@ -64,10 +64,7 @@
 -(void)navigateToMainScreen{
     
     id screen = [self getViewControllerFromiPadStoryboardWithName:@"userSelectScreen"];
-    
-    [self presentViewController:screen animated:YES completion:^{
-        
-    }];
+    [self presentViewController:screen animated:YES completion:nil];
 }
 - (void)viewDidUnload {
     [self setUsernameTextField:nil];

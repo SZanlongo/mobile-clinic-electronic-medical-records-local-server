@@ -62,6 +62,7 @@
 		EA9372AC16BC6D6300D3D617 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
 		EAD015EA16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */; };
 		EAD015EB16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */; };
+		EAD015F316DAB086002A8B3B /* PatientScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD015F216DAB086002A8B3B /* PatientScreen.xib */; };
 		EAE6CD9F16BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
 		EAE6CDA016BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
 /* End PBXBuildFile section */
@@ -155,6 +156,7 @@
 		EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseDriver.m; sourceTree = "<group>"; };
 		EAD015E816D5E524002A8B3B /* NSObject+CustomTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CustomTools.h"; sourceTree = "<group>"; };
 		EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CustomTools.m"; sourceTree = "<group>"; };
+		EAD015F216DAB086002A8B3B /* PatientScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientScreen.xib; sourceTree = "<group>"; };
 		EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -315,6 +317,7 @@
 				EA1EE22C16D1582C00E263D2 /* Patients.h */,
 				EA1EE22D16D1582C00E263D2 /* Patients.m */,
 				EA8D85F516B0C9BF00256495 /* Supporting Files */,
+				EAD015F216DAB086002A8B3B /* PatientScreen.xib */,
 			);
 			path = "Mobile Clinic";
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				EA8D85FF16B0C9BF00256495 /* Credits.rtf in Resources */,
 				EA8D860516B0C9C000256495 /* MainMenu.xib in Resources */,
 				EA8D862416B0C9C000256495 /* Mobile ClinicImporter.mdimporter in Resources */,
+				EAD015F316DAB086002A8B3B /* PatientScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,7 +776,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -786,7 +790,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

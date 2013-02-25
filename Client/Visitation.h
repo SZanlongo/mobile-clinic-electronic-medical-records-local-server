@@ -2,7 +2,7 @@
 //  Visitation.h
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/22/13.
+//  Created by Michael Montaque on 2/24/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSString * diagnosisTitle;
 @property (nonatomic, retain) NSNumber * isGraphic;
 @property (nonatomic, retain) NSString * patientId;
-@property (nonatomic, retain) NSString * physicianUsername;
+@property (nonatomic, retain) NSString * physician;
 @property (nonatomic, retain) NSString * visitationId;
 @property (nonatomic, retain) NSNumber * weight;
 

@@ -24,14 +24,13 @@ typedef enum {
 typedef enum {
     kCreateNewUser,
     kPullAllUsers,
-    kLoginUser, 
+    kLoginUser,
     kLogoutUser,
-    kStatusClientWillRecieve,  
+    kStatusClientWillRecieve,
     kStatusServerWillRecieve,
     kCreateNewPatient,
-    kUpdatePatient,
-    kCreateNewVisit,
     kFindPatientsByName,
+    kUpdatePatients,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>

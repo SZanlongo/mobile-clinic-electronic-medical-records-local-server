@@ -95,6 +95,7 @@
     
     // Return object to main screen and dismiss view
    // handler(_patientData, nil);
+ 
     
     [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
 }

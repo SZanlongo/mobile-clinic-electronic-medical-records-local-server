@@ -7,78 +7,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/FIULoginViewController.m"
-         timestampString = "382856958.53986"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "77"
-         endingLineNumber = "77"
-         landmarkName = "-loginButton:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "PatientObject.m"
-         timestampString = "383190397.448"
+         timestampString = "383440636.337655"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "136"
-         endingLineNumber = "136"
-         landmarkName = "-createNewPatient:"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
+         landmarkName = "-CreatePatientActionSuccessfull:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "383190891.868601"
+         filePath = "ServerCore.m"
+         timestampString = "383457712.908266"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "96"
-         endingLineNumber = "96"
-         landmarkName = "-FindAllPatientsOnServerWithFirstName:andWithLastName:onCompletion:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "383190958.454046"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "111"
-         endingLineNumber = "111"
-         landmarkName = "-FindAllPatientsOnServerWithFirstName:andWithLastName:onCompletion:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "383191355.794431"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "88"
-         endingLineNumber = "88"
-         landmarkName = "-FindAllPatientsLocallyWithFirstName:andWithLastName:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/TriageViewController.m"
-         timestampString = "383192091.747345"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
-         landmarkName = "-createPatient:"
+         startingLineNumber = "176"
+         endingLineNumber = "176"
+         landmarkName = "-socket:didReadData:withTag:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

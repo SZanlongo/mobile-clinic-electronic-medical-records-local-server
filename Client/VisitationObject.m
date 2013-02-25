@@ -7,15 +7,6 @@
 //
 
 #import "VisitationObject.h"
-#define CHECKIN     @"checkInTime"
-#define CHECKOUT    @"checkOutTime"
-#define PHYSICIAN   @"physicianUsername"
-#define DNOTES      @"diagnosisNotes"
-#define DTITLE      @"diagnosisTitle"
-#define GRAPHIC     @"isGraphic"
-#define WEIGHT      @"weight" //The different user types (look at enum)
-#define COMPLAINT   @"complaint"
-#define VISITID     @"visitationId"
 #define DATABASE    @"Visitation"
 
 #import "StatusObject.h"
@@ -52,55 +43,17 @@
 }
 
 
+
 -(void)saveObject:(ObjectResponse)eventResponse
 {
-    // First check to see if a databaseObject is present
-    if (_visit){
-        
-        [self SaveCurrentObjectToDatabase];
-    }
-    
-    if (eventResponse != nil) {
-        eventResponse(self,nil);
-    }
-    
+    NSLog(@"This does nothing. Please use the PatientObject's <addVisitToCurrentPatient:(VisitationObject *)visitation> method");
 }
 
 -(void)CommonExecution
 {
-    NSLog(@"Doesn't need to be implemented Client-side");
+    NSLog(@"This does nothing client-side");
 }
 
--(void)createANewVisit
-{
-    // Find and return object if it exists
-    StatusObject* status = [[StatusObject alloc]init];
-    
-    // Need to set client so it can go the correct device
-    [status setClient:self.client];
-    
-    // Check For duplicate Visits
-    if ([self isVisitUniqueForVisitID]) {
-        // Create new Patient database object
-        [self CreateANewObjectFromClass:DATABASE];
-        
-        // Save internal information to the patient object
-        [self saveObject:nil];
-        
-        //set server status
-        [status setStatus:kSuccess];
-        
-        // Create message
-        [status setErrorMessage:@"Visit has been created"];
-    }else {
-        //Visit aleardy Exists
-        [status setStatus:kError];
-        [status setErrorMessage:@"Internal Coding Error: Cannot create a new visit from an existing visit"];
-    }
-    
-    // send status back to requested client
-    [status CommonExecution];
-}
 
 -(BOOL)isVisitUniqueForVisitID
 {
@@ -121,5 +74,15 @@
         return  YES;
     }
     return  NO;
+}
+
+-(void)setObject:(id)object withAttribute:(NSString *)attribute{
+    if (_visit) {
+        [_visit setValue:object forKey:attribute];
+    }
+}
+
+-(id)getObjectForAttribute:(NSString *)attribute{
+    return [self getValueForKey:attribute fromObject:_visit];
 }
 @end
