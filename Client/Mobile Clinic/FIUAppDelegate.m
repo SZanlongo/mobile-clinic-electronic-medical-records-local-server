@@ -26,12 +26,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //    #define TESTING 1
-    //    #ifdef TESTING
-    //        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    //    #endif
+    #define TESTING 1
+    #ifdef TESTING
+        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    #endif
     
-    //    [TestFlight takeOff:@"afc6ff4013b9e807e5a97743e2a8d270_MTg2NjAwMjAxMy0wMi0xMiAxODozOTozOS41NzU1OTk"];
+    [TestFlight takeOff:@"afc6ff4013b9e807e5a97743e2a8d270_MTg2NjAwMjAxMy0wMi0xMiAxODozOTozOS41NzU1OTk"];
     
     
     //RIGO - FOR TESTING PURPOSES ONLY
