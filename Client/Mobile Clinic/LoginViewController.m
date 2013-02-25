@@ -71,4 +71,8 @@
     [self setPasswordTextField:nil];
     [super viewDidUnload];
 }
+- (IBAction)move:(id)sender {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
+    [self navigateToMainScreen];
+}
 @end

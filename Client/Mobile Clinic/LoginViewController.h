@@ -15,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+- (IBAction)move:(id)sender;
+
 @end
