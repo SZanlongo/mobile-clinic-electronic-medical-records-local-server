@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F3F338316DB254700585293 /* PatientHistoryTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
 		0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */; };
 		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
+		0FB2B9C516DB54E100F334F7 /* afternoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C116DB54E100F334F7 /* afternoon.png */; };
+		0FB2B9C616DB54E100F334F7 /* evening.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C216DB54E100F334F7 /* evening.png */; };
+		0FB2B9C716DB54E100F334F7 /* morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C316DB54E100F334F7 /* morning.png */; };
+		0FB2B9C816DB54E100F334F7 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C416DB54E100F334F7 /* night.png */; };
 		0FECD55B16DA9295008B4041 /* PatientResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A597616D8B03000C121BA /* PatientResultViewController.m */; };
 		0FECD55D16DA92A6008B4041 /* PatientResultTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */; };
 		4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4614288316BF7EBB00802410 /* MainStoryboard.storyboard */; };
@@ -182,6 +187,7 @@
 		0F1A597316D893F400C121BA /* PatientHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientHistoryViewController.m; path = ../PatientHistoryViewController.m; sourceTree = "<group>"; };
 		0F1A597516D8B03000C121BA /* PatientResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientResultViewController.h; path = ../PatientResultViewController.h; sourceTree = "<group>"; };
 		0F1A597616D8B03000C121BA /* PatientResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientResultViewController.m; path = ../PatientResultViewController.m; sourceTree = "<group>"; };
+		0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientHistoryTableCellView.xib; sourceTree = "<group>"; };
 		0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPatientTableCell.h; sourceTree = "<group>"; };
 		0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPatientTableCell.m; sourceTree = "<group>"; };
 		0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPatientTableCell.h; sourceTree = "<group>"; };
@@ -194,6 +200,11 @@
 		0F4E4F4916D59EB000992B7F /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 		0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientResultTableCellView.xib; sourceTree = "<group>"; };
 		0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewStoryboard.storyboard; sourceTree = "<group>"; };
+		0FB2B9C116DB54E100F334F7 /* afternoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = afternoon.png; sourceTree = "<group>"; };
+		0FB2B9C216DB54E100F334F7 /* evening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evening.png; sourceTree = "<group>"; };
+		0FB2B9C316DB54E100F334F7 /* morning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = morning.png; sourceTree = "<group>"; };
+		0FB2B9C416DB54E100F334F7 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night.png; sourceTree = "<group>"; };
+		0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clinicLogo.jpg; sourceTree = "<group>"; };
 		4614288316BF7EBB00802410 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4614288716BF7F2900802410 /* orant_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orant_logo.png; sourceTree = "<group>"; };
 		4614288816BF7F2900802410 /* userImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = userImage.jpeg; sourceTree = "<group>"; };
@@ -429,6 +440,7 @@
 				0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */,
 				0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */,
 				0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */,
+				0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */,
 				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
 				6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */,
 				0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */,
@@ -482,10 +494,11 @@
 		0F9E6BA916D1E44A008AFB49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				46B11A3D16DB5290008CD600 /* afternoon.png */,
-				46B11A3E16DB5290008CD600 /* evening.png */,
-				46B11A3F16DB5290008CD600 /* morning.png */,
-				46B11A4016DB5290008CD600 /* night.png */,
+				0FB2B9C116DB54E100F334F7 /* afternoon.png */,
+				0FB2B9C216DB54E100F334F7 /* evening.png */,
+				0FB2B9C316DB54E100F334F7 /* morning.png */,
+				0FB2B9C416DB54E100F334F7 /* night.png */,
+				0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";

@@ -22,8 +22,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *patientNameField;
 @property (weak, nonatomic) IBOutlet UITextField *familyNameField;
 @property (weak, nonatomic) IBOutlet UITextField *villageNameField;
-@property (weak, nonatomic) IBOutlet UIButton *patientAgeField;
+@property (weak, nonatomic) IBOutlet UITextField *patientAgeField;
 @property (weak, nonatomic) IBOutlet UITextField *patientSexField;
+
+//@property (weak, nonatomic) IBOutlet UIButton *patientAgeField;
 
 // Vitals Labels :: WE MAY END UP DELETING THESE FOR TRIAGE
 @property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;

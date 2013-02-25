@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "PatientResultViewController.h"
 
 @interface PatientResultTableCell : UITableViewCell
 
-//@property (nonatomic, strong) PatientResultViewController *viewController;
 @property (weak, nonatomic) IBOutlet UIImageView *patientImage;
 @property (weak, nonatomic) IBOutlet UILabel *patientName;
 @property (weak, nonatomic) IBOutlet UILabel *patientDOB;
