@@ -77,6 +77,8 @@
     [self setPatientAgeLabel:nil];
     [self setPatientSexLabel:nil];
     [self setPatientSexLabel:nil];
+    [self setPatientWeightLabel:nil];
+    [self setPatientBPLabel:nil];
     [super viewDidUnload];
 }
 

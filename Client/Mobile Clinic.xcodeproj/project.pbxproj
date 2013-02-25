@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0172A316DBE8BE000A7F3B /* PatientHistoryTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F0172A216DBE8BE000A7F3B /* PatientHistoryTableCellView.xib */; };
+		0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
 		0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */; };
@@ -171,19 +173,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F0172A216DBE8BE000A7F3B /* PatientHistoryTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientHistoryTableCellView.xib; sourceTree = "<group>"; };
+		0F0172A416DBEBC1000A7F3B /* PatientHistoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientHistoryTableCell.h; path = ../PatientHistoryTableCell.h; sourceTree = "<group>"; };
+		0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientHistoryTableCell.m; path = ../PatientHistoryTableCell.m; sourceTree = "<group>"; };
 		0F1A596616D8327600C121BA /* CurrentVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentVisitTableCell.h; sourceTree = "<group>"; };
 		0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitTableCell.m; sourceTree = "<group>"; };
 		0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitTableCell.h; sourceTree = "<group>"; };
 		0F1A596A16D8329F00C121BA /* PreviousVisitTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitTableCell.m; sourceTree = "<group>"; };
 		0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientResultTableCell.h; sourceTree = "<group>"; };
 		0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientResultTableCell.m; sourceTree = "<group>"; };
-		0F1A596F16D8356A00C121BA /* PatientHistoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientHistoryTableCell.h; sourceTree = "<group>"; };
-		0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientHistoryTableCell.m; sourceTree = "<group>"; };
 		0F1A597216D893F400C121BA /* PatientHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientHistoryViewController.h; path = ../PatientHistoryViewController.h; sourceTree = "<group>"; };
 		0F1A597316D893F400C121BA /* PatientHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientHistoryViewController.m; path = ../PatientHistoryViewController.m; sourceTree = "<group>"; };
 		0F1A597516D8B03000C121BA /* PatientResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientResultViewController.h; path = ../PatientResultViewController.h; sourceTree = "<group>"; };
 		0F1A597616D8B03000C121BA /* PatientResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientResultViewController.m; path = ../PatientResultViewController.m; sourceTree = "<group>"; };
-		0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientHistoryTableCellView.xib; sourceTree = "<group>"; };
 		0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPatientTableCell.h; sourceTree = "<group>"; };
 		0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPatientTableCell.m; sourceTree = "<group>"; };
 		0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPatientTableCell.h; sourceTree = "<group>"; };
@@ -427,12 +429,12 @@
 				6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */,
 				6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */,
 				6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */,
-				0F1A596F16D8356A00C121BA /* PatientHistoryTableCell.h */,
-				0F1A597016D8356A00C121BA /* PatientHistoryTableCell.m */,
+				0F0172A416DBEBC1000A7F3B /* PatientHistoryTableCell.h */,
+				0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */,
 				0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */,
 				0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */,
 				0F8C26C016DA82F300EA3AEB /* PatientResultTableCellView.xib */,
-				0F3F338216DB254700585293 /* PatientHistoryTableCellView.xib */,
+				0F0172A216DBE8BE000A7F3B /* PatientHistoryTableCellView.xib */,
 				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
 				6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */,
 				0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */,
@@ -530,21 +532,21 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
-				46E773D316CB0BFB00242454 /* TestFlightSDK1.1 */,
-				EA8BB92E16C8798600A4BC6E /* HUD */,
-				EA9AC88616C860D500493485 /* Interfaces */,
-				EA8BB92C16C8794200A4BC6E /* Camera API */,
-				EA8BB92D16C8795100A4BC6E /* Images */,
-				EA952F1816BEF1EC006A9AF9 /* Categories */,
-				EAE6CDED16BE4743008949DC /* Server API */,
 				EAE6CDEE16BE4754008949DC /* Animated Notifications  */,
+				EA8BB92C16C8794200A4BC6E /* Camera API */,
+				EA952F1816BEF1EC006A9AF9 /* Categories */,
 				EAE6CDEA16BE46E6008949DC /* Factory Pattern */,
-				EAE6CDEB16BE4701008949DC /* Objects */,
+				467740F716BD931E002FD4A5 /* Frameworks */,
 				EAE6CDC516BE468C008949DC /* HTTP API */,
+				EA8BB92E16C8798600A4BC6E /* HUD */,
+				EA8BB92D16C8795100A4BC6E /* Images */,
+				EA9AC88616C860D500493485 /* Interfaces */,
 				467740FE16BD931E002FD4A5 /* Mobile Clinic */,
 				4677412216BD931E002FD4A5 /* Mobile ClinicTests */,
-				467740F716BD931E002FD4A5 /* Frameworks */,
+				EAE6CDEB16BE4701008949DC /* Objects */,
 				467740F616BD931E002FD4A5 /* Products */,
+				EAE6CDED16BE4743008949DC /* Server API */,
+				46E773D316CB0BFB00242454 /* TestFlightSDK1.1 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -963,6 +965,7 @@
 				0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */,
 				0F8C26C116DA82F400EA3AEB /* PatientResultTableCellView.xib in Resources */,
 				46B11A4616DB693F008CD600 /* MedicineSearchResultView.xib in Resources */,
+				0F0172A316DBE8BE000A7F3B /* PatientHistoryTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,6 +1071,7 @@
 				46B11A3616DB21E5008CD600 /* MedicineSearchViewController.m in Sources */,
 				46B11A3916DB24ED008CD600 /* PharamcyPrescriptionCell.m in Sources */,
 				46B11A3C16DB266C008CD600 /* MedicineSearchCell.m in Sources */,
+				0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

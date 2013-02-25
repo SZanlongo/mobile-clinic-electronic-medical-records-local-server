@@ -15,7 +15,7 @@
     ScreenHandler handler;
 }
 
-@property (strong, nonatomic) SearchPatientViewController * viewController;
+//@property (strong, nonatomic) SearchPatientViewController * viewController;
 @property (strong, nonatomic) PatientObject * patientData;
 @property (strong, nonatomic) RegisterPatientViewController * registerControl;
 @property (strong, nonatomic) SearchPatientViewController * searchControl;

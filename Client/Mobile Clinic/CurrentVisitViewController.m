@@ -63,6 +63,8 @@
     
     // Adding visitation to patient object
     [_patientData.patient addVisitObject:_currentVisit.visit];
+    
+    // NEED LOGIC TO RESET EVERYTHING AND START A NEW PATIENT
 }
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy

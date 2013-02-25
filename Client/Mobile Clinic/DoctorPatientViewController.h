@@ -19,15 +19,17 @@
 @property (strong, nonatomic) CurrentDiagnosisViewController * control1;
 @property (strong, nonatomic) PreviousVisitsViewController * control2;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (weak, nonatomic) IBOutlet UIToolbar * toolBar;
-@property (nonatomic, retain) IBOutlet UISegmentedControl * segmentedControl;
 @property (weak, nonatomic) IBOutlet UITextField *patientNameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *patientFamilyNameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *patientVillageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *patientAgeLabel;
-
 @property (weak, nonatomic) IBOutlet UITextField *patientSexLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIToolbar * toolBar;
+@property (nonatomic, retain) IBOutlet UISegmentedControl * segmentedControl;
 
 @end

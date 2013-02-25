@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) PatientObject * patientData;
 @property (nonatomic, strong) NSArray * patientSearchResultsArray;
-@property (nonatomic, strong) NSArray * resultArray;                // JUST TESTING (RIGO)
+//@property (nonatomic, strong) NSArray * resultArray;                // JUST TESTING (RIGO)
 
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;

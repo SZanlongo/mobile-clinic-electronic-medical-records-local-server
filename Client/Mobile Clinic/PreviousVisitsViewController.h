@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PatientHistoryTableCell.h"
 #import "PatientObject.h"
 #import "VisitationObject.h"
+#import "PatientHistoryTableCell.h"
 
 @interface PreviousVisitsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

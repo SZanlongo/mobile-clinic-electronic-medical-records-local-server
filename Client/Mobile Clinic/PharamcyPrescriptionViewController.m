@@ -23,14 +23,12 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -42,9 +40,11 @@
     [self setTimeOfDayButtons:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)findDrugs:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
 }
+
 - (IBAction)newTimeOfDay:(id)sender {
     for(int i = 0; i < [_timeOfDayButtons count]; i++){
         if([[_timeOfDayButtons objectAtIndex:i] isEqual:sender])
