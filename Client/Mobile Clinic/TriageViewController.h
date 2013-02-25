@@ -23,8 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
--(void)setScreenHandler:(ScreenHandler)myHandler;
-
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;

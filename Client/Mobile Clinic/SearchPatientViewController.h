@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) PatientObject * patientData;
 @property (nonatomic, strong) NSArray * patientSearchResultsArray;
-//@property (nonatomic, strong) PatientResultViewController * resultControl;
+@property (nonatomic, strong) NSArray * resultArray;                // JUST TESTING (RIGO)
 
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;
 @property (strong, nonatomic) IBOutlet UITextField *familyNameField;
@@ -26,21 +26,10 @@
 
 @property (strong, nonatomic) UIButton *patientFound;
 
-//- (PatientObject *)selectPatient;
-
 - (IBAction)searchByNameButton:(id)sender;
 - (IBAction)searchByNFCButton:(id)sender;
 - (IBAction)searchByFingerprintButton:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler) myHandler;
-@end
 
-//@interface SearchPatientViewControllerCell : UITableViewCell {
-//}
-//
-//@property (weak, nonatomic) IBOutlet UILabel *patientName;
-//@property (weak, nonatomic) IBOutlet UIImageView *patientPic;
-//@property (weak, nonatomic) IBOutlet UILabel *dateLabel;        //dob
-//@property (weak, nonatomic) IBOutlet UILabel *ageLabel;         //patient age
-//
-//@end
+@end

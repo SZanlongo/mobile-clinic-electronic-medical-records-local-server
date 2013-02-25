@@ -18,15 +18,20 @@
 @property (strong, nonatomic) PatientObject * patientData;
 @property (strong, nonatomic) CurrentVisitViewController * control1;
 @property (strong, nonatomic) PreviousVisitsViewController * control2;
-@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UITextField *patientNameField;
+@property (weak, nonatomic) IBOutlet UITextField *familyNameField;
+@property (weak, nonatomic) IBOutlet UITextField *villageNameField;
+@property (weak, nonatomic) IBOutlet UIButton *patientAgeField;
+@property (weak, nonatomic) IBOutlet UITextField *patientSexField;
 
 // Vitals Labels :: WE MAY END UP DELETING THESE FOR TRIAGE
 @property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
 
 // Objects on View
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 
 //- (void)setScreenHandler:(ScreenHandler)myHandler;

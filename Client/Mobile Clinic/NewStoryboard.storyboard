@@ -1453,9 +1453,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <navigationItem key="navigationItem" title="Triage" id="ObB-xa-n2R"/>
                     <connections>
+                        <outlet property="familyNameField" destination="y8o-xn-JCv" id="6Fk-db-mYA"/>
+                        <outlet property="patientAgeField" destination="o4F-jC-gZ4" id="eLP-fH-sZD"/>
+                        <outlet property="patientBPLabel" destination="Sts-tU-DZD" id="y86-Tm-jbG"/>
+                        <outlet property="patientNameField" destination="OcF-NF-Q78" id="VWh-rG-tvj"/>
+                        <outlet property="patientSexField" destination="ccP-ag-fc6" id="xQI-Ps-UIc"/>
+                        <outlet property="patientWeightLabel" destination="GUd-2L-BJY" id="vo3-dV-UtP"/>
                         <outlet property="segmentedControl" destination="5H4-h8-Vj9" id="ePj-NR-pMo"/>
                         <outlet property="tableView" destination="AQ4-xt-yTb" id="Gvr-Ks-Kdj"/>
                         <outlet property="toolBar" destination="Hm5-SL-hav" id="iCH-9Y-BRv"/>
+                        <outlet property="villageNameField" destination="Bcx-Nm-HP3" id="UeT-Ey-zP9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAE-l1-sXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1585,11 +1592,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TriagePatientViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TriagePatientViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="TriageViewController" superclassName="UIViewController">
