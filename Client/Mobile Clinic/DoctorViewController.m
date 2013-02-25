@@ -38,13 +38,19 @@
     // Create controller for search
     _control = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
     
-    [_control.patientFound addTarget:self action:@selector(searchPatient) forControlEvents:UIControlEventTouchUpInside];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
     
 }
 
--(void)searchPatient{
-    PatientObject * newPatient = _control.patientData;
-    [self performSegueWithIdentifier:@"doctorPatientViewController" sender:newPatient];
+// Transfers the patient's data to the next view controller
+- (void)transferPatientData:(NSNotification *)note {
+    _patientData = note.object;
+    
+    DoctorPatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
+    
+    newView.patientData = _patientData;
+    
+    [self.navigationController pushViewController:newView animated:YES];
 }
 
 

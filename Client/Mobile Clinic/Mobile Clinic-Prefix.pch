@@ -18,4 +18,5 @@
     #import "NSObject+CustomTools.h"
     #define CREATE_NEW_PATIENT  @"Creating a new patient"
     #define SEARCH_FOR_PATIENT  @"Searching for a patient"
+    #define CREATE_NEW_DIAGNOSIS  @"Creating a new diagnosis"
 #endif
