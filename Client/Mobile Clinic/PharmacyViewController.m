@@ -86,19 +86,59 @@
         cell.viewController = _control;
     }
     
-    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
-    cell.viewController.view.transform = transform;
+//    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+//    cell.viewController.view.transform = transform;
+//    
+//    cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
+//    
+//    // Removes previous view (for memory mgmt)
+//    for(UIView *mView in [cell.contentView subviews]){
+//        [mView removeFromSuperview];
+//    }
+//    
+//    
+//    
+//    [cell addSubview: cell.viewController.view];
     
-    cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
+    return [self setupCell:cell forRow:indexPath];
+    //    return cell;
+}
+
+-(UITableViewCell*)setupCell:(id)cell forRow:(NSIndexPath*)path{
+    // Rotate view vertically on the screen
+    
+    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+    [cell viewController].view.transform = transform;
+    [cell viewController].view.frame = CGRectMake(50, 0, 916, 768);
     
     // Removes previous view (for memory mgmt)
-    for(UIView *mView in [cell.contentView subviews]){
+    for(UIView *mView in [[cell contentView] subviews]){
         [mView removeFromSuperview];
     }
     
+    // Populate view in cell
+    [cell addSubview: [cell viewController].view];
     
-    
-    [cell addSubview: cell.viewController.view];
+    //
+    [[cell viewController] setScreenHandler:^(id object, NSError *error) {
+        _patientData = object;
+        
+        PharamcyPrescriptionViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
+        
+        newView.patientData = _patientData;
+        
+        [newView setScreenHandler:^(id object, NSError *error) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        [self.navigationController pushViewController:newView animated:YES];
+        
+        if (error) {
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:newView.view
+             ];
+        }
+        
+    }];
     
     return cell;
 }

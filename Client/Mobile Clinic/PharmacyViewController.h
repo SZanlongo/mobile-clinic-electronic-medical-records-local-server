@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SearchPatientTableCell.h"
 #import "StationViewHandlerProtocol.h"
+#import "PrescriptionObject.h"
 
 @interface PharmacyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     ScreenHandler handler;
@@ -16,6 +17,7 @@
 
 @property (strong, nonatomic) SearchPatientViewController * viewController;
 @property (strong, nonatomic) PatientObject * patientData;
+
 @property (strong, nonatomic) SearchPatientViewController * control;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
