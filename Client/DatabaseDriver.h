@@ -21,6 +21,7 @@
 
 -(void)SaveCurrentObjectToDatabase;
 
+-(void)SaveAndRefreshObjectToDatabase:(NSManagedObject*)object;
 
 -(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute;
 
