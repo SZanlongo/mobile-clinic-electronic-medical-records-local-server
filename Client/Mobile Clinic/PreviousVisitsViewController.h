@@ -12,7 +12,7 @@
 #import "PatientHistoryTableCell.h"
 
 @interface PreviousVisitsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
-    Visitation * visitData;
+
 }
 
 @property (nonatomic, strong) PatientObject * patientData;

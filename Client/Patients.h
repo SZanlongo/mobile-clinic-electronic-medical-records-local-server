@@ -2,7 +2,7 @@
 //  Patients.h
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/24/13.
+//  Created by Rigo Hernandez on 2/26/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 

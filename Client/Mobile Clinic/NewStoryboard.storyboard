@@ -37,7 +37,7 @@
                                 <rect key="frame" x="245" y="614" width="280" height="30"/>
                                 <color key="textColor" red="0.41639429210000001" green="0.41639429210000001" blue="0.41639429210000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="izW-J9-kRl">
                                 <rect key="frame" x="245" y="652" width="280" height="45"/>
@@ -200,7 +200,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="tj6-7o-xTy">
                                 <rect key="frame" x="188" y="87" width="259" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="EDf-hA-96k">
                                 <rect key="frame" x="188" y="122" width="259" height="30"/>
@@ -563,7 +563,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="nHy-7l-RjE">
                                 <rect key="frame" x="164" y="64" width="126" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d5F-WY-PLN">
                                 <rect key="frame" x="298" y="68" width="27" height="21"/>
@@ -586,7 +586,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="100" y="156" width="567" height="398"/>
                                 <color key="backgroundColor" red="0.89835778061224492" green="0.89835778061224492" blue="0.89835778061224492" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d1Y-wm-7dQ">
                                 <rect key="frame" x="579" y="562" width="88" height="44"/>
@@ -1015,7 +1015,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="768" height="916"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="userImage.jpeg" id="zxe-2W-IqS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="userImage.jpeg" id="zxe-2W-IqS">
                                 <rect key="frame" x="62" y="103" width="200" height="183"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Patient Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dze-l5-oJx">
@@ -1361,7 +1361,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <view contentMode="scaleToFill" id="NbG-4X-iQe">
                                 <rect key="frame" x="47" y="30" width="441" height="168"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="userImage.jpeg" id="XzT-5q-r8s">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="userImage.jpeg" id="XzT-5q-r8s">
                                         <rect key="frame" x="9" y="10" width="150" height="150"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rigo Hernandez" minimumFontSize="17" id="OcF-NF-Q78">
@@ -1482,6 +1482,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="patientAgeField" destination="KZh-hR-RdA" id="VYR-dw-hsw"/>
                         <outlet property="patientBPLabel" destination="Sts-tU-DZD" id="y86-Tm-jbG"/>
                         <outlet property="patientNameField" destination="OcF-NF-Q78" id="VWh-rG-tvj"/>
+                        <outlet property="patientPhoto" destination="XzT-5q-r8s" id="5UA-Vd-kdx"/>
                         <outlet property="patientSexField" destination="ccP-ag-fc6" id="xQI-Ps-UIc"/>
                         <outlet property="patientWeightLabel" destination="GUd-2L-BJY" id="vo3-dV-UtP"/>
                         <outlet property="segmentedControl" destination="5H4-h8-Vj9" id="ePj-NR-pMo"/>
@@ -1878,6 +1879,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>

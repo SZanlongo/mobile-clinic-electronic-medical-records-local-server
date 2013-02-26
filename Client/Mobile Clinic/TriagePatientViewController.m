@@ -51,8 +51,9 @@
     _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
     _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
     _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
     _patientSexField.text = [_patientData getSex];
-    
+    [_patientPhoto setImage:_patientData.getPhoto];
     [_control1 view];    
     [_control1 setPatientData:_patientData];
     [_control2 view];
@@ -72,6 +73,7 @@
     [self setVillageNameField:nil];
     [self setPatientAgeField:nil];
     [self setPatientSexField:nil];
+    [self setPatientPhoto:nil];
     [super viewDidUnload];
 }
 

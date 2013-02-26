@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *villageNameField;
 @property (weak, nonatomic) IBOutlet UITextField *patientAgeField;
 @property (weak, nonatomic) IBOutlet UITextField *patientSexField;
+@property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 
 //@property (weak, nonatomic) IBOutlet UIButton *patientAgeField;
 

@@ -139,7 +139,7 @@
         _patientData = object;
         
         TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
-        
+
         newView.patientData = _patientData;
         
         [newView setScreenHandler:^(id object, NSError *error) {
