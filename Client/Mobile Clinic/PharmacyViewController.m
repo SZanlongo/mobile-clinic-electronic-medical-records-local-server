@@ -24,8 +24,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -57,8 +56,7 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -68,15 +66,15 @@
     [super viewDidUnload];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * searchCellIdentifier = @"searchCell";
     
     SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
@@ -95,24 +93,21 @@
 //    for(UIView *mView in [cell.contentView subviews]){
 //        [mView removeFromSuperview];
 //    }
-//    
-//    
-//    
+//
 //    [cell addSubview: cell.viewController.view];
     
     return [self setupCell:cell forRow:indexPath];
     //    return cell;
 }
 
--(UITableViewCell*)setupCell:(id)cell forRow:(NSIndexPath*)path{
+- (UITableViewCell*)setupCell:(id)cell forRow:(NSIndexPath*)path {
     // Rotate view vertically on the screen
-    
     CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
     [cell viewController].view.transform = transform;
     [cell viewController].view.frame = CGRectMake(50, 0, 916, 768);
     
     // Removes previous view (for memory mgmt)
-    for(UIView *mView in [[cell contentView] subviews]){
+    for(UIView *mView in [[cell contentView] subviews]) {
         [mView removeFromSuperview];
     }
     
@@ -122,6 +117,8 @@
     //
     [[cell viewController] setScreenHandler:^(id object, NSError *error) {
         _patientData = object;
+        
+//        PharamcyPrescriptionViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
         
         PharamcyPrescriptionViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
         
@@ -137,13 +134,12 @@
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:newView.view
              ];
         }
-        
     }];
     
     return cell;
 }
 
--(void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
 
@@ -160,6 +156,5 @@
         *targetContentOffset = CGPointMake(targetContentOffset->x,
                                            targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
 }
-
 
 @end

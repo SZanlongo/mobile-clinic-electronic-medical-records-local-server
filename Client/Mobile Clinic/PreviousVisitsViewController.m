@@ -76,7 +76,7 @@
     
     // Display contents of cells
     cell.patientDOBLabel.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
-    cell.patientAgeLabel.text = _patientData.getDateOfBirth;
+//    cell.patientAgeLabel.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
     cell.patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[visitData getObjectForAttribute:WEIGHT]doubleValue]];
     cell.patientBPLabel.text = [visitData getObjectForAttribute:BLOODPRESSURE];
     [cell.patientConditionsTextView setText:[visitData getObjectForAttribute:CONDITION]];

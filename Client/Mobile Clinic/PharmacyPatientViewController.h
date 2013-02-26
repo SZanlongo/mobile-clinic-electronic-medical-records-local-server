@@ -18,16 +18,18 @@
 
 @property (strong, nonatomic) PatientObject * patientData;
 @property (strong, nonatomic) PrescriptionObject * prescriptionData;
-@property (weak, nonatomic) IBOutlet UITextField *patientName;
-@property (weak, nonatomic) IBOutlet UITextField *familyName;
-@property (weak, nonatomic) IBOutlet UITextField *villageName;
-@property (weak, nonatomic) IBOutlet UIButton *patientAge;
-@property (weak, nonatomic) IBOutlet UITextField *patientSex;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSString * medName;
-
 @property (nonatomic, strong) PharamcyPrescriptionViewController * precriptionViewController;
 @property (nonatomic, strong) MedicineSearchViewController * medicineViewController;
 
+@property (strong, nonatomic) NSString * medName;
+
+@property (weak, nonatomic) IBOutlet UITextField *patientNameField;
+@property (weak, nonatomic) IBOutlet UITextField *familyNameField;
+@property (weak, nonatomic) IBOutlet UITextField *villageNameField;
+@property (weak, nonatomic) IBOutlet UITextField *patientAgeField;
+@property (weak, nonatomic) IBOutlet UITextField *patientSexField;
+@property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -103,7 +103,7 @@
             cell = [[RegisterPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:registerCellIdentifier];
             cell.viewController = _registerControl;
         }
-
+        
         return [self setupCell:cell forRow:indexPath];
         
     }

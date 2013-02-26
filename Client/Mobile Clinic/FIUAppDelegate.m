@@ -8,6 +8,7 @@
 
 #import "FIUAppDelegate.h"
 #import "ServerCore.h"
+#import "PatientObject.h"
 
 @implementation FIUAppDelegate
 @synthesize ServerManager;
@@ -39,7 +40,7 @@
     
     NSError *error;
     NSManagedObjectContext *context = [self managedObjectContext];
-//
+
 //    /*
 //    // Delete all entries in the Core Data table (ex. Patients)
 //    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
@@ -51,7 +52,7 @@
 //    [context deleteObject:entries];
 //    }
 //    */
-//    
+
     // Print (to NSLog) content of table (ex. Patients)
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
@@ -65,14 +66,35 @@
         NSLog(@"Village Name: %@", [info valueForKey:@"villageName"]);
     }
     
-    [self saveContext];
     
+    // ADD SAMPLE PATIENTS INTO DB
+    PatientObject pData = [[PatientObject alloc] init];
+    VisitationObject vData = [VisitationObject alloc init];
+    
+    [pData setObject:<#(id)#> withAttribute:FIRSTNAME];
+    [pData setObject:<#(id)#> withAttribute:FAMILYNAME];
+    [pData setObject:<#(id)#> withAttribute:VILLAGE];
+    [pData setObject:<#(id)#> withAttribute:DOB];
+    [pData setObject:<#(id)#> withAttribute:SEX];
+    
+    [vData setObject:<#(id)#> withAttribute:WEIGHT];
+    [vData setObject:<#(id)#> withAttribute:BLOODPRESSURE];
+    [vData setObject:<#(id)#> withAttribute:CONDITION];
+    [vData setObject:<#(id)#> withAttribute:<#(NSString *)#>];
+    [vData setObject:<#(id)#> withAttribute:<#(NSString *)#>];
+    
+
+    
+    
+    
+    
+    
+    
+    [self saveContext];
     
     // Override point for customization after application launch.
     ServerManager = [ServerCore sharedInstance];
     [ServerManager startClient];
-    
-    
     
     return YES;
 }

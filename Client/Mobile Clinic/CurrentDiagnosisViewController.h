@@ -15,11 +15,13 @@
     ScreenHandler handler;
 }
 
-@property (weak, nonatomic) IBOutlet UITextView *diagnosisTextbox;
 @property (strong, nonatomic) PatientObject * patientData;
 @property (strong, nonatomic) VisitationObject * visitationData;
-- (IBAction)submitButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextView *conditionsTextbox;
+@property (weak, nonatomic) IBOutlet UITextView *diagnosisTextbox;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+
+- (IBAction)submitButton:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 

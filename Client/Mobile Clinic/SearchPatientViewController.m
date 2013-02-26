@@ -81,11 +81,8 @@
 
     // Display contents of cells
     [cell.patientImage setImage:_patientData.getPhoto];
-    
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [_patientData getObjectForAttribute:FIRSTNAME], [_patientData getObjectForAttribute:FAMILYNAME]];
-    
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",_patientData.getAge];
-   
     cell.patientDOB.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
     
     NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);

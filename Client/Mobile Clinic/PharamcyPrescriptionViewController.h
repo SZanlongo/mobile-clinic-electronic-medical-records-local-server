@@ -15,13 +15,16 @@
 }
 
 @property (strong, nonatomic) PatientObject * patientData;
+@property (weak, nonatomic) IBOutlet UITextView *doctorsDiagnosis;
 @property (weak, nonatomic) IBOutlet UITextField *tabletsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *timeOfDayTextFields;
 @property (weak, nonatomic) IBOutlet UITextField *drugTextField;
-- (IBAction)findDrugs:(id)sender;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *timeOfDayButtons;
+
+- (IBAction)findDrugs:(id)sender;
 - (IBAction)newTimeOfDay:(id)sender;
 - (IBAction)savePrescription:(id)sender;
+
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end

@@ -54,7 +54,8 @@
     _patientAgeField.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
     _patientSexField.text = [_patientData getSex];
     [_patientPhoto setImage:_patientData.getPhoto];
-    [_control1 view];    
+    
+    [_control1 view];
     [_control1 setPatientData:_patientData];
     [_control2 view];
     [_control2 setPatientData:_patientData];
@@ -99,7 +100,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 685);
+        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 700);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -107,6 +108,8 @@
         
         [cell addSubview:cell.viewController.view];
         [cell.viewController setScreenHandler:handler];
+        
+        [segmentedControl setEnabled:YES forSegmentAtIndex:0];
         
         return cell;
     }
@@ -120,13 +123,16 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 685);
+        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 700);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
         }
         
         [cell addSubview: cell.viewController.view];
+        
+        [segmentedControl setEnabled:YES forSegmentAtIndex:1];
+        
         return cell;
     }
 }

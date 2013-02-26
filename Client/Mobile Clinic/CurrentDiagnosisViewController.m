@@ -23,20 +23,31 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     _visitationData = [[VisitationObject alloc]initWithNewVisit];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)viewWillAppear:(BOOL)animated {
+    
+//    // Populate condition for doctor to see
+//    NSArray * arr = [[NSArray alloc] init];
+//    arr = [_patientData getAllVisitsForCurrentPatient];
+//    VisitationObject * tempVisit = [arr objectAtIndex:(arr.count - 1)];
+//    
+//    if (arr.count > 0) {
+//        _conditionsTextbox.text = [tempVisit getObjectForAttribute:CONDITION];
+//    }
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
+    [self setConditionsTextbox:nil];
     [self setDiagnosisTextbox:nil];
     [self setSubmitButton:nil];
     [super viewDidUnload];
