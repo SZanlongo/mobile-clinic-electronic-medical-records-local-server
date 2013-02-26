@@ -45,7 +45,10 @@ return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectCont
 -(void)SaveCurrentObjectToDatabase{
     [appDelegate saveContext];
 }
-
+-(void)SaveAndRefreshObjectToDatabase:(NSManagedObject *)object{
+    [self SaveCurrentObjectToDatabase];
+    [appDelegate.managedObjectContext refreshObject:object mergeChanges:YES];
+}
 -(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute{
 
     NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
