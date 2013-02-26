@@ -77,13 +77,16 @@
         cell = [nib instantiateWithOwner:nil options:nil][0];
     }
     
-    _patientData.patient = (Patients *)[_patientSearchResultsArray objectAtIndex:indexPath.row];
+    [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
 
     // Display contents of cells
     [cell.patientImage setImage:_patientData.getPhoto];
-    cell.patientName.text = [NSString stringWithFormat:@"%@ %@", _patientData.patient.firstName, _patientData.patient.familyName];
-    cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old", _patientData.patient.age.getNumberOfYearsElapseFromDate];
-    cell.patientDOB.text = _patientData.patient.age.convertNSDateFullBirthdayString;
+    
+    cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [_patientData getObjectForAttribute:FIRSTNAME], [_patientData getObjectForAttribute:FAMILYNAME]];
+    
+    cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",_patientData.getAge];
+   
+    cell.patientDOB.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
     
     NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
     
@@ -104,7 +107,7 @@
         // -- END OF TEMPORARY SEARCH --
     
     // Gets the object at the corresponding index
-    _patientData.patient = [_patientSearchResultsArray objectAtIndex:indexPath.row];
+    [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
     
     // Return object to main screen and dismiss view
    // handler(_patientData, nil);

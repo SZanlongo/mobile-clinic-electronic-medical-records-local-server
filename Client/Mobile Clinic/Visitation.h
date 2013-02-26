@@ -2,13 +2,14 @@
 //  Visitation.h
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/24/13.
+//  Created by Michael Montaque on 2/25/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Prescription;
 
 @interface Visitation : NSManagedObject
 
@@ -23,5 +24,14 @@
 @property (nonatomic, retain) NSString * physician;
 @property (nonatomic, retain) NSString * visitationId;
 @property (nonatomic, retain) NSNumber * weight;
+@property (nonatomic, retain) NSSet *prescription;
+@end
+
+@interface Visitation (CoreDataGeneratedAccessors)
+
+- (void)addPrescriptionObject:(Prescription *)value;
+- (void)removePrescriptionObject:(Prescription *)value;
+- (void)addPrescription:(NSSet *)values;
+- (void)removePrescription:(NSSet *)values;
 
 @end

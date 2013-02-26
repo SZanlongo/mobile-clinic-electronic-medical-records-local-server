@@ -8,8 +8,8 @@
 #define OBJECTID          @"objectId"
 #import <Foundation/Foundation.h>
 #import "FIUAppDelegate.h"
-
-@interface DatabaseDriver : NSObject 
+#import "DatabaseDriverProtocol.h"
+@interface DatabaseDriver : NSObject<DatabaseDriverProtocol>
 
 @property(nonatomic, strong) FIUAppDelegate* appDelegate;
 
@@ -18,11 +18,12 @@
 -(id)init;
 
 -(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name;
--(id)getValueForKey:(NSString *)key fromObject:(NSManagedObject*) obj;
+
 -(void)SaveCurrentObjectToDatabase;
 
 
 -(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute;
 
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute;
+
 @end

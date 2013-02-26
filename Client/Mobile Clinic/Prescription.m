@@ -2,7 +2,7 @@
 //  Prescription.m
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/20/13.
+//  Created by Michael Montaque on 2/25/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -17,5 +17,6 @@
 @dynamic tabletPerDay;
 @dynamic timeOfDay;
 @dynamic visitId;
+@dynamic prescriptionId;
 
 @end

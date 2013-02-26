@@ -17,12 +17,6 @@
 return self;
 }
 
-
--(id)getValueForKey:(NSString *)key fromObject:(NSManagedObject *)obj{
-    return [obj valueForKey:key];
-}
-
-
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(NSString*)name forAttribute:(NSString*)attribute{
     
     NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
@@ -92,5 +86,12 @@ return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectCont
         return temp;
     }
     return nil;
+}
+
+-(void)setObject:(id)object withAttribute:(NSString*)attribute inDatabaseObject:(NSManagedObject*)DBObject{
+    [DBObject setValue:object forKey:attribute];
+}
+-(id)getObjectForAttribute:(NSString*)attribute inDatabaseObject:(NSManagedObject*)DBObject{
+   return [DBObject valueForKey:attribute];
 }
 @end

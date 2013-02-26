@@ -56,11 +56,11 @@ UIPopoverController * pop;
 }
 
 -(void)Redisplay {
-    [_patientNameField setText:_patient.patient.firstName];
+    [_patientNameField setText:[_patient getObjectForAttribute:FIRSTNAME]];
     [_patientPhoto setImage:_patient.getPhoto];
-    [_familyNameField setText:_patient.patient.familyName];
-    [_villageNameField setText:_patient.patient.villageName];
-    [_patientSexSegment setSelectedSegmentIndex:_patient.patient.sex.integerValue];
+    [_familyNameField setText:[_patient getObjectForAttribute:FAMILYNAME]];
+    [_villageNameField setText:[_patient getObjectForAttribute:VILLAGE]];
+    [_patientSexSegment setSelectedSegmentIndex:[[_patient getObjectForAttribute:SEX]integerValue]];
 }
 
 - (void)viewDidUnload {
@@ -77,7 +77,7 @@ UIPopoverController * pop;
     [facade TakePictureWithCompletion:^(id img) {
         if(img) {
             [_patientPhoto setImage:img];
-            [_patient.patient setPhoto:[img convertImageToPNGBinaryData]];
+            [_patient setPhoto:img];
         }
         [progress hide:YES];
     }];
@@ -87,10 +87,10 @@ UIPopoverController * pop;
     // Before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
         /* Age is set when the moment the user sets it through the Popover */
-        _patient.patient.firstName = _patientNameField.text;
-        _patient.patient.familyName = _familyNameField.text;
-        _patient.patient.villageName = _villageNameField.text;
-        _patient.patient.sex = [NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex];
+        [_patient setObject:_patientNameField.text withAttribute:FIRSTNAME];
+        [_patient setObject:_familyNameField.text withAttribute:FAMILYNAME];
+        [_patient setObject:_villageNameField.text withAttribute:VILLAGE];
+        [_patient setObject: [NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex] withAttribute:SEX];
                 
         // Even if the user file is being edited this method will
         // know the difference
@@ -117,8 +117,8 @@ UIPopoverController * pop;
     }
     
     // Set Date if it is available
-    if (_patient.patient.age) {
-        [datepicker.datePicker setDate:_patient.patient.age];
+    if (_patient.getAge) {
+        [datepicker.datePicker setDate:[_patient getObjectForAttribute:DOB]];
     }
     
     // set how the screen should return
@@ -126,7 +126,7 @@ UIPopoverController * pop;
     [datepicker setScreenHandler:^(id object, NSError *error) {
         // This method will return the age
         if (object) {
-            _patient.patient.age = object;
+            [_patient setObject:object withAttribute:DOB];
             [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
         }
         [pop dismissPopoverAnimated:YES];

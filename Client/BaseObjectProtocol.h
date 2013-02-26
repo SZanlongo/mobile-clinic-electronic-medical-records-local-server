@@ -18,6 +18,7 @@ typedef enum {
     kPatientType    = 3,
     kVisitationType = 4,
     kPharmacyType   = 5,
+    kPrescriptionType = 6,
 }ObjectTypes;
 
 /* These are all the commands the server and client will understand */
@@ -38,7 +39,7 @@ typedef enum {
 typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 @required
-/* This method should take all the objects important information
+/** This method should take all the objects important information
  * and place them inside a dictionary with keys that should be 
  * reflected in the server.
  *
@@ -46,7 +47,7 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  */
 -(NSDictionary*) consolidateForTransmitting:(NSManagedObject*)object;
 
-/* This should only take in a dictionary that contains information
+/** This should only take in a dictionary that contains information
  * for the object that is unpackaging it.
  *
  * This means that the if a Class called Face is unpackaging the 
@@ -61,7 +62,7 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  */
 -(void)saveObject:(ObjectResponse)eventResponse;
 
-/* This needs to be implemented at all times. This is responsible for
+/** This needs to be implemented at all times. This is responsible for
  * carrying out the instructions that it was given.
  *
  * Instruction should be determined using switch statement on the 
@@ -78,7 +79,7 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  */
 -(void)CommonExecution;
 
-/* This needs to be set everytime information is recieved
+/** This needs to be set everytime information is recieved
  * by the serverCore, so it knows how to send information
  * back
  */
@@ -89,11 +90,31 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  * information
  */
 @property(nonatomic, assign)    ObjectTypes objectType;
-/* This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
  * method so the recieving device knows how to execute the request via
  * the CommonExecution method
  */
 @property(nonatomic, assign)    RemoteCommands commands;
 
+/** 
+ This is the setter for the databaseObject that all objects that implement this protocal must have
+ @param databaseObject the coredata object that you want to manipulate
+ */
+-(void)setDBObject:(NSManagedObject*)DatabaseObject;
+
+/**
+ * Use this to retrieve objects/values from the Patient object.
+ *@param attribute the name of the attribute you want to retrieve.
+ */
+-(id)getObjectForAttribute:(NSString*)attribute;
+
+/**
+ * Use this to save attributes of the object. For instance, to the Patient's Firstname can be saved by passing the string of his name and the Attribute FIRSTNAME
+ *@param object object that needs to be stored in the database
+ *@param attribute the name of the attribute or the key to which the object needs to be saved
+ */
+-(void)setObject:(id)object withAttribute:(NSString*)attribute;
+
+@property(strong, nonatomic)NSManagedObject* databaseObject;
 @end
 

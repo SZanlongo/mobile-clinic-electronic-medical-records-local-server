@@ -2,7 +2,7 @@
 //  Prescription.h
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/20/13.
+//  Created by Michael Montaque on 2/25/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSNumber * tabletPerDay;
 @property (nonatomic, retain) NSNumber * timeOfDay;
 @property (nonatomic, retain) NSString * visitId;
+@property (nonatomic, retain) NSString * prescriptionId;
 
 @end

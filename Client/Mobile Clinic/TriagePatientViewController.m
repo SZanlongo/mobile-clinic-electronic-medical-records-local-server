@@ -53,11 +53,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    _patientNameField.text = _patientData.patient.firstName;
-    _familyNameField.text = _patientData.patient.familyName;
-    _villageNameField.text = _patientData.patient.villageName;
-//    _patientAgeField.text = ;
-    _patientSexField.text = [_patientData getSex:_patientData.patient.sex];
+    _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
+    
+    _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
+    
+    _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
+
+    _patientSexField.text = [_patientData getSex];
 }
 
 - (void)didReceiveMemoryWarning

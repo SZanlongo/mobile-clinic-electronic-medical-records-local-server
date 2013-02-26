@@ -11,7 +11,7 @@
 #import "StatusObject.h"
 
 @implementation BaseObject
-
+@synthesize databaseObject;
 -(id)init{
     if (self = [super init]) {
        
@@ -62,4 +62,15 @@
     }
 }
 
+-(void)setDBObject:(NSManagedObject *)DatabaseObject{
+    databaseObject = DatabaseObject;
+}
+
+-(void)setObject:(id)object withAttribute:(NSString *)attribute{
+    [super setObject:object withAttribute:attribute inDatabaseObject:databaseObject];
+}
+
+-(id)getObjectForAttribute:(NSString *)attribute{
+   return [super getObjectForAttribute:attribute inDatabaseObject:databaseObject];
+}
 @end

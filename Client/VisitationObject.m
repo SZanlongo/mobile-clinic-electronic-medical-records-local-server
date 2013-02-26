@@ -15,7 +15,7 @@
 -(id)initWithNewVisit{
     self = [super init];
     if (self) {
-        _visit = (Visitation*)[self CreateANewObjectFromClass:DATABASE];
+        visit = (Visitation*)[self CreateANewObjectFromClass:DATABASE];
     }
     return self;
 }
@@ -23,7 +23,7 @@
 {
     self = [super init];
     if (self) {
-        _visit = info;
+        visit = info;
     }
     return self;
 }
@@ -39,7 +39,7 @@
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    [_visit setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
+    [visit setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
 
@@ -57,7 +57,7 @@
 
 -(BOOL)isVisitUniqueForVisitID
 {
-    NSArray* pastVisits = [self FindObjectInTable:DATABASE withName:_visit.visitationId forAttribute:VISITID];
+    NSArray* pastVisits = [self FindObjectInTable:DATABASE withName:visit.visitationId forAttribute:VISITID];
     
     if (pastVisits.count > 0) {
         return NO;
@@ -65,24 +65,22 @@
     
     return YES;
 }
+
+-(void)addPrescriptionToCurrentVisit:(PrescriptionObject *)prescription{
+    visit = (Visitation*)self.databaseObject;
+    _currentPrescription = prescription;
+    [visit addPrescriptionObject:(Prescription*)_currentPrescription.databaseObject];
+    [_currentPrescription setObject:visit.visitationId withAttribute:PATIENTID];
+}
+
 -(BOOL)loadVisitWithVisitationID:(NSString *)visitID{
     // checks to see if object exists
     NSArray* arr = [self FindObjectInTable:DATABASE withName:visitID forAttribute:VISITID];
     
     if (arr.count == 1) {
-        _visit = [arr objectAtIndex:0];
+        visit = [arr objectAtIndex:0];
         return  YES;
     }
     return  NO;
-}
-
--(void)setObject:(id)object withAttribute:(NSString *)attribute{
-    if (_visit) {
-        [_visit setValue:object forKey:attribute];
-    }
-}
-
--(id)getObjectForAttribute:(NSString *)attribute{
-    return [self getValueForKey:attribute fromObject:_visit];
 }
 @end

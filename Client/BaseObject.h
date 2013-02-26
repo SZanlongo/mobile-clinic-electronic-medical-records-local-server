@@ -23,7 +23,7 @@
 @property(nonatomic, weak)      id client;
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;
-
+@property(strong, nonatomic)    NSManagedObject* databaseObject;
 /**
  * <<This method SHOULD NOT be used by anyone. This method will be hidden in future releases.>>
  This method checks to see if the device is connected to the server before it attempts to send data. 

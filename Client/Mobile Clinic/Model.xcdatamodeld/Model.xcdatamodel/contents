@@ -23,6 +23,7 @@
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medicationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prescribedTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescriptionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tabletPerDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="timeOfDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="visitId" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,12 +50,13 @@
         <attribute name="physician" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visitationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <relationship name="prescription" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Prescription" syncable="YES"/>
     </entity>
     <elements>
         <element name="Medication" positionX="396" positionY="666" width="128" height="135"/>
         <element name="Patients" positionX="-11" positionY="468" width="128" height="180"/>
-        <element name="Prescription" positionX="403" positionY="450" width="128" height="135"/>
+        <element name="Prescription" positionX="403" positionY="450" width="128" height="150"/>
         <element name="Users" positionX="205" positionY="402" width="128" height="165"/>
-        <element name="Visitation" positionX="-182" positionY="564" width="128" height="210"/>
+        <element name="Visitation" positionX="-182" positionY="564" width="128" height="225"/>
     </elements>
 </model>

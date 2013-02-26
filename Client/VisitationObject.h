@@ -18,11 +18,12 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
+#import "PrescriptionObject.h"
 #import "Visitation.h"
-@interface VisitationObject : BaseObject
-
-@property(weak,nonatomic)Visitation* visit;
-
+@interface VisitationObject : BaseObject{
+    Visitation* visit;
+}
+@property(nonatomic, strong)    PrescriptionObject* currentPrescription;
 /**
  * Initializes the object while creating a new visitation object in the database
  * at the same time. Use this method if the object is expected to be a brand new entry 
@@ -43,16 +44,10 @@
  */
 -(BOOL)loadVisitWithVisitationID:(NSString *)visitID;
 
-/**
- * Use this to save attributes of the object. For instance, to the Doctor's Diagnosis can be saved by passing the string and the Attribute DNOTES
- *@param object object that needs to be stored in the database
- *@param attribute the name of the attribute or the key to which the object needs to be saved
- */
--(void)setObject:(id)object withAttribute:(NSString*)attribute;
 
 /**
- * Use this to retrieve objects/values from the visitation object. 
- *@param attribute the name of the attribute you want to retrieve.
+ * Adds a prescription to the visit of the patient. Call this method when you have a brand new prescription for the visit and you are going to save it for the first time. This method will add the visit's ID to the prescription and associate the prescription with the visit by adding it to the visit's relationship. NOTE: This method does not save the prescription. You will have to call SaveObject method still in the patient object
+ @param prescription the prescription you want to associate with the visit
  */
--(id)getObjectForAttribute:(NSString*)attribute;
+-(void)addPrescriptionToCurrentVisit:(PrescriptionObject*)prescription;
 @end
