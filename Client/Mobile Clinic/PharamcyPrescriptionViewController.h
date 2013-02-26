@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StationViewHandlerProtocol.h"
+#import "PatientObject.h"
 
-@interface PharamcyPrescriptionViewController : UIViewController
+@interface PharamcyPrescriptionViewController : UIViewController{
+    ScreenHandler handler;
+}
 
+@property (strong, nonatomic) PatientObject * patientData;
 @property (weak, nonatomic) IBOutlet UITextField *tabletsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *timeOfDayTextFields;
 @property (weak, nonatomic) IBOutlet UITextField *drugTextField;
@@ -17,6 +22,6 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *timeOfDayButtons;
 - (IBAction)newTimeOfDay:(id)sender;
 - (IBAction)savePrescription:(id)sender;
-
+- (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end

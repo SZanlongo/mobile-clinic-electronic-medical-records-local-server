@@ -16,6 +16,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITextView *diagnosisTextbox;
+@property (strong, nonatomic) PatientObject * patientData;
 @property (strong, nonatomic) VisitationObject * visitationData;
 - (IBAction)submitButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
