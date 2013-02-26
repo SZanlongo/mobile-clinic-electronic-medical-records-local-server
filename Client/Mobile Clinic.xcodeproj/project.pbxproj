@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */; };
+		0F25B87216DC87A600406C0D /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F25B87116DC87A500406C0D /* Patients.m */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
 		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
@@ -94,7 +95,6 @@
 		EA9AC88516C8606C00493485 /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9AC88316C8606C00493485 /* DataProcessor.m */; };
 		EA9C2F3B16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
 		EA9C2F3C16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
-		EA9E98DC16DAC9D6002BEB87 /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E98DB16DAC9D6002BEB87 /* Patients.m */; };
 		EA9E98E616DC475D002BEB87 /* PrescriptionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */; };
 		EA9E98E916DC58AF002BEB87 /* Prescription.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E98E816DC58AF002BEB87 /* Prescription.m */; };
 		EA9E98EC16DC58F1002BEB87 /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E98EB16DC58F1002BEB87 /* Visitation.m */; };
@@ -175,6 +175,8 @@
 		0F1A597316D893F400C121BA /* PatientHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientHistoryViewController.m; path = ../PatientHistoryViewController.m; sourceTree = "<group>"; };
 		0F1A597516D8B03000C121BA /* PatientResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientResultViewController.h; path = ../PatientResultViewController.h; sourceTree = "<group>"; };
 		0F1A597616D8B03000C121BA /* PatientResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientResultViewController.m; path = ../PatientResultViewController.m; sourceTree = "<group>"; };
+		0F25B87016DC87A500406C0D /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patients.h; sourceTree = "<group>"; };
+		0F25B87116DC87A500406C0D /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patients.m; sourceTree = "<group>"; };
 		0F428B7E16D4073C00E25B4B /* RegisterPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPatientTableCell.h; sourceTree = "<group>"; };
 		0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPatientTableCell.m; sourceTree = "<group>"; };
 		0F428B8216D40AA800E25B4B /* SearchPatientTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPatientTableCell.h; sourceTree = "<group>"; };
@@ -285,8 +287,6 @@
 		EA9AC88316C8606C00493485 /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcessor.m; sourceTree = "<group>"; };
 		EA9C2F3916BF624F000F38CD /* UIViewControllerExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerExt.h; sourceTree = "<group>"; };
 		EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerExt.m; sourceTree = "<group>"; };
-		EA9E98DA16DAC9D6002BEB87 /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Patients.h; path = ../Patients.h; sourceTree = "<group>"; };
-		EA9E98DB16DAC9D6002BEB87 /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Patients.m; path = ../Patients.m; sourceTree = "<group>"; };
 		EA9E98E016DBF7BA002BEB87 /* DatabaseDriverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDriverProtocol.h; sourceTree = "<group>"; };
 		EA9E98E416DC475D002BEB87 /* PrescriptionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionObject.h; sourceTree = "<group>"; };
 		EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionObject.m; sourceTree = "<group>"; };
@@ -536,6 +536,8 @@
 				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
 				0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */,
 				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
+				0F25B87016DC87A500406C0D /* Patients.h */,
+				0F25B87116DC87A500406C0D /* Patients.m */,
 				EA9E98EA16DC58F1002BEB87 /* Visitation.h */,
 				EA9E98EB16DC58F1002BEB87 /* Visitation.m */,
 				EA9E98E716DC58AF002BEB87 /* Prescription.h */,
@@ -544,8 +546,6 @@
 				4677410816BD931E002FD4A5 /* FIUAppDelegate.m */,
 				0F4E4F3616D59D2F00992B7F /* Medication.h */,
 				0F4E4F3716D59D2F00992B7F /* Medication.m */,
-				EA9E98DA16DAC9D6002BEB87 /* Patients.h */,
-				EA9E98DB16DAC9D6002BEB87 /* Patients.m */,
 				0F4E4F4816D59EB000992B7F /* Users.h */,
 				0F4E4F4916D59EB000992B7F /* Users.m */,
 				4614288616BF7EE600802410 /* Resources */,
@@ -1006,7 +1006,6 @@
 				6D0D701E16D97EE4005A8C1F /* PreviousVisitsTableCell.m in Sources */,
 				6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */,
 				6DC75C5D16DAED47000F527A /* PharmacyPatientViewController.m in Sources */,
-				EA9E98DC16DAC9D6002BEB87 /* Patients.m in Sources */,
 				EA9E98E616DC475D002BEB87 /* PrescriptionObject.m in Sources */,
 				EA9E98E916DC58AF002BEB87 /* Prescription.m in Sources */,
 				EA9E98EC16DC58F1002BEB87 /* Visitation.m in Sources */,
@@ -1016,6 +1015,7 @@
 				46B11A3916DB24ED008CD600 /* PharamcyPrescriptionCell.m in Sources */,
 				46B11A3C16DB266C008CD600 /* MedicineSearchCell.m in Sources */,
 				0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */,
+				0F25B87216DC87A600406C0D /* Patients.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

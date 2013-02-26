@@ -51,6 +51,7 @@
     _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
     _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
     _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
     _patientSexField.text = [_patientData getSex];
     
     [_control1 view];    
