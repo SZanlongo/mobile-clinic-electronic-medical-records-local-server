@@ -57,4 +57,8 @@
 - (IBAction)savePrescription:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:nil];
 }
+
+-(void)setScreenHandler:(ScreenHandler)myHandler{
+    handler = myHandler;
+}
 @end
