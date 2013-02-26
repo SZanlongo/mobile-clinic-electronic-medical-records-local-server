@@ -38,6 +38,7 @@
 
 - (void)viewDidUnload {
     [self setDiagnosisTextbox:nil];
+    [self setSubmitButton:nil];
     [super viewDidUnload];
 }
 

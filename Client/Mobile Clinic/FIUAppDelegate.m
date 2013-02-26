@@ -26,7 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-        #define TESTING 1
+    #define TESTING 1
         #ifdef TESTING
             [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
         #endif

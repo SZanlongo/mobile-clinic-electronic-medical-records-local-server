@@ -44,11 +44,16 @@
     // Create controllers for each view
     
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
+    
+    [_control1 view];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
+    [_control2 view];
     
     _visitationData = [[VisitationObject alloc] initWithNewVisit];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
+    
+    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
     
     _patientNameLabel.text = _patientData.patient.firstName;
     _patientFamilyNameLabel.text = _patientData.patient.familyName;
@@ -58,7 +63,7 @@
 }
 
 -(void)saveVisitation{
-    [_patientData addVisitToCurrentPatient:_visitationData];
+    [_patientData addVisitToCurrentPatient:_control1.visitationData];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
