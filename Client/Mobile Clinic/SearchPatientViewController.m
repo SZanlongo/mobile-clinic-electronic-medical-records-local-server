@@ -100,22 +100,13 @@
         
     // Gets the object at the corresponding index
     [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
-    
-    // Return object to main screen and dismiss view
-   // handler(_patientData, nil);
- 
-    
-    // Sets color of cell when selected
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor grayColor];
-    
-    // Select patient and post notification
-    [[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_FOR_PATIENT object:_patientData];
 
-//// NOT SURE WHAT THIS IS FOR ...................
-//    // Return object to main screen and dismiss view
-//    handler(_patientData, nil);
-//    [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
+    // Sets color of cell when selected
+    [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor grayColor]];
+   
+    handler(_patientData, nil);
+    // Select patient and post notification
+    //[[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_FOR_PATIENT object:_patientData];
 }
 
 /* Logic for search buttons */
