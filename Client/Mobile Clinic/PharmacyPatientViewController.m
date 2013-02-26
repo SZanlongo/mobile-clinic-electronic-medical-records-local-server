@@ -61,7 +61,13 @@
 }
 
 -(void)savePrescription{
+    VisitationObject *mObject = [[VisitationObject alloc] initWithNewVisit];
+    PrescriptionObject *presc = [[PrescriptionObject alloc]initWithNewPrescription];
+    [presc setObject:@"Advil" withAttribute:INSTRUCTIONS];
+    [mObject addPrescriptionToCurrentVisit:presc];
+    [_patientData addVisitToCurrentPatient:mObject];
     
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)slideToSearchMedicine{
