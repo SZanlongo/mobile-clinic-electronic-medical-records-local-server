@@ -13,11 +13,10 @@
 
 @interface CurrentVisitViewController : UIViewController {
     ScreenHandler handler;
+    VisitationObject *currentVisit;
 }
 
 @property (strong, nonatomic) PatientObject *patientData;
-@property (strong, nonatomic) VisitationObject *currentVisit;
-
 @property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
 @property (strong, nonatomic) IBOutlet UITextField *patientBPField;
 @property (strong, nonatomic) IBOutlet UITextView *conditionsTextbox;

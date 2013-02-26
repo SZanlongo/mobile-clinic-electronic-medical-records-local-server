@@ -31,7 +31,7 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(assignPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
     
     // Instantiate visitation object
-    _currentVisit = [[VisitationObject alloc] init];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,19 +57,20 @@
 // Creates a visit for the patient and checks them in
 - (IBAction)checkInButton:(id)sender {
     // Assigning vitals & condition
-    [_currentVisit setObject:[NSNumber numberWithInt:[_patientWeightField.text intValue]] withAttribute:WEIGHT];
-    [_currentVisit setObject:_patientBPField.text withAttribute:BLOODPRESSURE];
-    [_currentVisit setObject:_conditionsTextbox.text withAttribute:CONDITION];
+    currentVisit = [[VisitationObject alloc] initWithNewVisit];
+    
+    [currentVisit setObject:[NSNumber numberWithInt:[_patientWeightField.text intValue]] withAttribute:WEIGHT];
+    [currentVisit setObject:_patientBPField.text withAttribute:BLOODPRESSURE];
+    [currentVisit setObject:_conditionsTextbox.text withAttribute:CONDITION];
     
     // Adding visitation to patient object
-    [_patientData addVisitToCurrentPatient:_currentVisit];
+    [_patientData addVisitToCurrentPatient:currentVisit];
     
     [_patientData saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
         if (!error) {
-           [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view]; 
-        }else{
-            handler(self,nil);
+           [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
         }
+            handler(self,nil);
     }];
     // NEED LOGIC TO RESET EVERYTHING AND START A NEW PATIENT
 }
