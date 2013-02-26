@@ -28,7 +28,7 @@
 	// Do any additional setup after loading the view.
     
     // Pass in the patient's data thru notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(assignPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(assignPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
     
     // Instantiate visitation object
     _currentVisit = [[VisitationObject alloc] init];
@@ -57,13 +57,20 @@
 // Creates a visit for the patient and checks them in
 - (IBAction)checkInButton:(id)sender {
     // Assigning vitals & condition
-    _currentVisit.visit.weight = [NSNumber numberWithInt:[_patientWeightField.text intValue]];
-    _currentVisit.visit.bloodPressure = _patientWeightField.text;
-    _currentVisit.visit.complaint = _conditionsTextbox.text;
+    [_currentVisit setObject:[NSNumber numberWithInt:[_patientWeightField.text intValue]] withAttribute:WEIGHT];
+    [_currentVisit setObject:_patientBPField.text withAttribute:BLOODPRESSURE];
+    [_currentVisit setObject:_conditionsTextbox.text withAttribute:COMPLAINT];
     
     // Adding visitation to patient object
-    [_patientData.patient addVisitObject:_currentVisit.visit];
+    [_patientData addVisitToCurrentPatient:_currentVisit];
     
+    [_patientData saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        if (!error) {
+            
+        }else{
+            handler(self,nil);
+        }
+    }];
     // NEED LOGIC TO RESET EVERYTHING AND START A NEW PATIENT
 }
 

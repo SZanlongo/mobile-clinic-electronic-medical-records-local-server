@@ -35,15 +35,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // Retrieve patientData
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
-    
-    // Search database with patientId
-    NSError *error;
-    NSManagedObjectContext *context = [[FIUAppDelegate alloc] managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-
-    [request setEntity:[NSEntityDescription entityForName:@"Visitation" inManagedObjectContext:context]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"(patientId like[cd] %@)", _patientData.patient.patientId]];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
+//    
+//    // Search database with patientId
+//    NSError *error;
+//    NSManagedObjectContext *context = [[FIUAppDelegate alloc] managedObjectContext];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//
+//    [request setEntity:[NSEntityDescription entityForName:@"Visitation" inManagedObjectContext:context]];
+//    
+//    [request setPredicate:[NSPredicate predicateWithFormat:@"(patientId like[cd] %@)", _patientData.patient.patientId]];
 
 //    _patientHistoryArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
 //
@@ -90,7 +91,7 @@
         cell = [nib instantiateWithOwner:nil options:nil][0];
     }
 
-    _patientData.patient = (Patients *)[_patientHistoryArray objectAtIndex:indexPath.row];
+    [_patientData setDBObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
     
     // Display contents of cells
 //    cell.patientDOBLabel = [_patientData getDOB];

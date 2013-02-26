@@ -34,6 +34,19 @@
 		4677412A16BD931E002FD4A5 /* Mobile_ClinicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677412916BD931E002FD4A5 /* Mobile_ClinicTests.m */; };
 		4677413416BD936F002FD4A5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4677413316BD936F002FD4A5 /* CoreData.framework */; };
 		4677413716BD9386002FD4A5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4677413516BD9386002FD4A5 /* Model.xcdatamodeld */; };
+		4677413A16BDBA2F002FD4A5 /* FIUSearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */; };
+		4677413D16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */; };
+		46B11A2816DB1C0E008CD600 /* PharamcyPrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A2716DB1C0E008CD600 /* PharamcyPrescriptionViewController.m */; };
+		46B11A3316DB2195008CD600 /* MedicineSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3216DB2195008CD600 /* MedicineSearchResultCell.m */; };
+		46B11A3616DB21E5008CD600 /* MedicineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3516DB21E4008CD600 /* MedicineSearchViewController.m */; };
+		46B11A3916DB24ED008CD600 /* PharamcyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3816DB24EC008CD600 /* PharamcyPrescriptionCell.m */; };
+		46B11A3C16DB266C008CD600 /* MedicineSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3B16DB266C008CD600 /* MedicineSearchCell.m */; };
+		46B11A4616DB693F008CD600 /* MedicineSearchResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B11A4516DB693F008CD600 /* MedicineSearchResultView.xib */; };
+		46B11A4716DB6DA8008CD600 /* afternoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C116DB54E100F334F7 /* afternoon.png */; };
+		46B11A4816DB6DA8008CD600 /* evening.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C216DB54E100F334F7 /* evening.png */; };
+		46B11A4916DB6DA8008CD600 /* morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C316DB54E100F334F7 /* morning.png */; };
+		46B11A4A16DB6DA8008CD600 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2B9C416DB54E100F334F7 /* night.png */; };
+		46B11A4B16DB6DA8008CD600 /* clinicLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */; };
 		46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E773D416CB0BFB00242454 /* libTestFlight.a */; };
 		46E773D916CB0BFB00242454 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D516CB0BFB00242454 /* README.md */; };
 		46E773DA16CB0BFB00242454 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 46E773D616CB0BFB00242454 /* release_notes.md */; };
@@ -206,6 +219,21 @@
 		4677412916BD931E002FD4A5 /* Mobile_ClinicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mobile_ClinicTests.m; sourceTree = "<group>"; };
 		4677413316BD936F002FD4A5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4677413616BD9386002FD4A5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4677413816BDBA2F002FD4A5 /* FIUSearchPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUSearchPatientViewController.h; sourceTree = "<group>"; };
+		4677413916BDBA2F002FD4A5 /* FIUSearchPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUSearchPatientViewController.m; sourceTree = "<group>"; };
+		4677413B16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIUFamilyMemberViewController.h; sourceTree = "<group>"; };
+		4677413C16BDBA8C002FD4A5 /* FIUFamilyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIUFamilyMemberViewController.m; sourceTree = "<group>"; };
+		46B11A2616DB1C0E008CD600 /* PharamcyPrescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharamcyPrescriptionViewController.h; sourceTree = "<group>"; };
+		46B11A2716DB1C0E008CD600 /* PharamcyPrescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharamcyPrescriptionViewController.m; sourceTree = "<group>"; };
+		46B11A3116DB2195008CD600 /* MedicineSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicineSearchResultCell.h; sourceTree = "<group>"; };
+		46B11A3216DB2195008CD600 /* MedicineSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicineSearchResultCell.m; sourceTree = "<group>"; };
+		46B11A3416DB21E4008CD600 /* MedicineSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicineSearchViewController.h; sourceTree = "<group>"; };
+		46B11A3516DB21E4008CD600 /* MedicineSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicineSearchViewController.m; sourceTree = "<group>"; };
+		46B11A3716DB24EC008CD600 /* PharamcyPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharamcyPrescriptionCell.h; sourceTree = "<group>"; };
+		46B11A3816DB24EC008CD600 /* PharamcyPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharamcyPrescriptionCell.m; sourceTree = "<group>"; };
+		46B11A3A16DB266B008CD600 /* MedicineSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicineSearchCell.h; sourceTree = "<group>"; };
+		46B11A3B16DB266C008CD600 /* MedicineSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicineSearchCell.m; sourceTree = "<group>"; };
+		46B11A4516DB693F008CD600 /* MedicineSearchResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicineSearchResultView.xib; sourceTree = "<group>"; };
 		46E773D416CB0BFB00242454 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		46E773D516CB0BFB00242454 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		46E773D616CB0BFB00242454 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -996,6 +1024,13 @@
 				EA9E98E616DC475D002BEB87 /* PrescriptionObject.m in Sources */,
 				EA9E98E916DC58AF002BEB87 /* Prescription.m in Sources */,
 				EA9E98EC16DC58F1002BEB87 /* Visitation.m in Sources */,
+				EA9E98DF16DAC9D7002BEB87 /* Visitation.m in Sources */,
+				46B11A2816DB1C0E008CD600 /* PharamcyPrescriptionViewController.m in Sources */,
+				46B11A3316DB2195008CD600 /* MedicineSearchResultCell.m in Sources */,
+				46B11A3616DB21E5008CD600 /* MedicineSearchViewController.m in Sources */,
+				46B11A3916DB24ED008CD600 /* PharamcyPrescriptionCell.m in Sources */,
+				46B11A3C16DB266C008CD600 /* MedicineSearchCell.m in Sources */,
+				0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

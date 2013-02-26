@@ -55,10 +55,13 @@
     
     [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
     
-    _patientNameLabel.text = _patientData.patient.firstName;
-    _patientFamilyNameLabel.text = _patientData.patient.familyName;
-    _patientAgeLabel.titleLabel.text = [NSString stringWithFormat:@"%i", _patientData.getAge ];
-    _patientSexLabel.text =  [_patientData.patient.sex isEqualToNumber:[NSNumber numberWithInt:0]] ? @"Male" : @"Female";
+    _patientNameLabel.text = [_patientData getObjectForAttribute:FIRSTNAME];
+
+    _patientFamilyNameLabel.text = [_patientData getObjectForAttribute:FAMILYNAME];
+    
+    _patientAgeLabel.titleLabel.text = [NSString stringWithFormat:@"%i Years Old", _patientData.getAge];
+    
+    _patientSexLabel.text = _patientData.getSex;
 //
 }
 

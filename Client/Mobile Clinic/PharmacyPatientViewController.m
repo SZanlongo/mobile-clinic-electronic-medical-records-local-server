@@ -45,10 +45,13 @@
     
     [_medicineViewController view];
     
-    _patientName.text = _patientData.patient.firstName;
-    _familyName.text = _patientData.patient.familyName;
-    _patientAge.titleLabel.text = [NSString stringWithFormat:@"%i", _patientData.getAge ];
-    _patientSex.text =  [_patientData.patient.sex isEqualToNumber:[NSNumber numberWithInt:0]] ? @"Male" : @"Female";
+    _patientName.text = [_patientData getObjectForAttribute:FIRSTNAME];
+    
+    _familyName.text = [_patientData getObjectForAttribute:FAMILYNAME];
+    
+    _patientAge.titleLabel.text = [NSString stringWithFormat:@"%i Years Old", _patientData.getAge];
+    
+    _patientSex.text =  _patientData.getSex;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
     

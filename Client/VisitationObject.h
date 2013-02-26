@@ -14,6 +14,7 @@
 #define GRAPHIC     @"isGraphic"
 #define WEIGHT      @"weight" //The different user types (look at enum)
 #define COMPLAINT   @"complaint"
+#define BLOODPRESSURE @"bloodPressure"
 #define VISITID     @"visitationId"
 
 #import <Foundation/Foundation.h>
