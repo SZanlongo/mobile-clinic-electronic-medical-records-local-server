@@ -26,8 +26,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -43,22 +42,15 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
 
-    // Pass patient data to CurrentVisitViewController
-
-    
     // Create controllers for each view (Previous Visits & current visit)
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentVisitViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
-    
     _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
-    
     _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
-
     _patientSexField.text = [_patientData getSex];
     
     [_control1 view];    
@@ -67,8 +59,7 @@
     [_control2 setPatientData:_patientData];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -101,7 +92,6 @@
         
         if (!cell) {
             cell = [[CurrentVisitTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
-            
             cell.viewController = _control1;
         }
         
@@ -123,7 +113,6 @@
         
         if(!cell){
             cell = [[PreviousVisitsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:previousVisitsCellIdentifier];
-            
             cell.viewController = _control2;
         }
         

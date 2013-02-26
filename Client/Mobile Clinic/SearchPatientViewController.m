@@ -75,22 +75,15 @@
     
     if(!cell) {
         cell = [[PatientResultTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        UINib * nib = [UINib nibWithNibName:@"PatientResultTableCellView" bundle:nil];
-        cell = [nib instantiateWithOwner:nil options:nil][0];
     }
     
     [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
 
     // Display contents of cells
     [cell.patientImage setImage:_patientData.getPhoto];
-    
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [_patientData getObjectForAttribute:FIRSTNAME], [_patientData getObjectForAttribute:FAMILYNAME]];
-    
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",_patientData.getAge];
-   
     cell.patientDOB.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
-    
-    NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
     
     return cell;
 }
@@ -102,20 +95,14 @@
     [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
     
     // Return object to main screen and dismiss view
-   // handler(_patientData, nil);
+    // handler(_patientData, nil);
  
-    
     // Sets color of cell when selected
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor grayColor];
     
     // Select patient and post notification
     [[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_FOR_PATIENT object:_patientData];
-
-//// NOT SURE WHAT THIS IS FOR ...................
-//    // Return object to main screen and dismiss view
-//    handler(_patientData, nil);
-//    [_patientFound sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 
 /* Logic for search buttons */
@@ -156,7 +143,6 @@
 //            [_searchResultTableView reloadData];
 //        }];
 //    }
-    
     
     
 //// FOR MY OWN TESTING (RIGO)
