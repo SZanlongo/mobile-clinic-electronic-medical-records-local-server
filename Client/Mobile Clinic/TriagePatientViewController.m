@@ -44,15 +44,12 @@
     _tableView.dataSource = self;
 
     // Pass patient data to CurrentVisitViewController
-    [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_NEW_DIAGNOSIS object:_patientData];
+
     
     // Create controllers for each view (Previous Visits & current visit)
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentVisitViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
-//    if([_control1 view]){
-//    _control1.visitationObject.triageIn = timestamp;
-//    _control1.visitationObject.patientId = self.patientData.patient.patientId;
-//    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,6 +60,11 @@
     _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
 
     _patientSexField.text = [_patientData getSex];
+    
+    [_control1 view];    
+    [_control1 setPatientData:_patientData];
+    [_control2 view];
+    [_control2 setPatientData:_patientData];
 }
 
 - (void)didReceiveMemoryWarning
