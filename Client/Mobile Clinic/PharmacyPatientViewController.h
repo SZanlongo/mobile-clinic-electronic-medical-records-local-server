@@ -11,10 +11,13 @@
 #import "PharamcyPrescriptionViewController.h"
 #import "PharamcyPrescriptionCell.h"
 #import "MedicineSearchViewController.h"
+#import "StationViewHandlerProtocol.h"
 #import "PrescriptionObject.h"
 #import "MedicineSearchCell.h"
 
-@interface PharmacyPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PharmacyPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    ScreenHandler handler;
+}
 
 @property (strong, nonatomic) PatientObject * patientData;
 @property (strong, nonatomic) PrescriptionObject * prescriptionData;
@@ -31,5 +34,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+- (void)setScreenHandler:(ScreenHandler)myHandler;
 @end
