@@ -15,6 +15,8 @@
 }
 
 @property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) PrescriptionObject * prescriptionData;
+
 @property (weak, nonatomic) IBOutlet UITextView *doctorsDiagnosis;
 @property (weak, nonatomic) IBOutlet UITextField *tabletsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *timeOfDayTextFields;

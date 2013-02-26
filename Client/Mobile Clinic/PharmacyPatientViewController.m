@@ -52,6 +52,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideFromSearchMedicine) name:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
+    
+    [_precriptionViewController setPatientData:_patientData];
 }
 
 -(void)savePrescription {
@@ -113,7 +115,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 685, 768);
+        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 700);
         
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];
@@ -133,8 +135,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 685, 768);
-//        cell.viewController.view.frame = CGRectMake(0, 0, 916, 768);
+        cell.viewController.view.frame = CGRectMake(-50, 40, 768, 700);
         
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];

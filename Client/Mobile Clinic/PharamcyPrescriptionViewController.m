@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -68,6 +70,8 @@
 }
 
 - (IBAction)savePrescription:(id)sender {
+    // NEED LOGIC OF SAVING MEDICATION
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:nil];
 }
 
