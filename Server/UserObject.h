@@ -5,7 +5,13 @@
 //  Created by Michael Montaque on 1/27/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
-
+#define STATUS      @"status"
+#define EMAIL       @"email"
+#define FIRSTNAME   @"firstName"
+#define LASTNAME    @"lastName"
+#define USERNAME    @"userName"
+#define PASSWORD    @"password"
+#define USERTYPE    @"userType" //The different user types (look at enum)
 #define SAVE_USER @"savedUser"
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
@@ -20,10 +26,12 @@ typedef enum {
 
 
 
-@interface UserObject : BaseObject
+@interface UserObject : BaseObject{
+    Users* user;
+}
 
-@property(nonatomic, strong)      Users* user;
-
+//@property(nonatomic, strong)      Users* user;
+-(id)init;
 -(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder;
 -(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
 -(NSArray*)getAllUsersFromDatabase;

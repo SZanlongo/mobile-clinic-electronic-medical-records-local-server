@@ -22,7 +22,7 @@
 @property(nonatomic, weak)      id client;
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;
-
+@property(strong, nonatomic)    NSManagedObject* databaseObject;
 -(id)init;
 -(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion;
 -(void)queryWithPartialURL:(NSString *)partialURL parameters: (NSDictionary *)params imageData:(NSData *)imageData completion:(void(^)(NSError *error, NSDictionary *result)) completion;

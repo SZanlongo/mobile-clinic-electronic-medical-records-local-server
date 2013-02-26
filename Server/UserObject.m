@@ -13,15 +13,8 @@
 
 // These are elements within the database
 // This prevents hardcoding
-#define STATUS      @"status"
-#define EMAIL       @"email"
-#define FIRSTNAME   @"firstname"
-#define LASTNAME    @"lastname"
-#define USERNAME    @"username"
-#define PASSWORD    @"password"
-#define ALL_USERS   @"all users"
-#define USERTYPE    @"usertype" //The different user types (look at enum)
 
+#define ALL_USERS   @"all users"
 #define DATABASE    @"Users"
 
 #import "Users.h"
@@ -30,6 +23,15 @@
 #import "NSString+Validation.h"
 
 @implementation UserObject
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        user = (Users*)self.databaseObject;
+    }
+    return self;
+}
 
 #pragma mark - BaseObjectProtocol Methods
 #pragma mark -
@@ -47,7 +49,7 @@
 /* The super needs to be called first */
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    [_user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
+    [user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
 
@@ -81,9 +83,9 @@
 -(void)saveObject:(ObjectResponse)eventResponse
 {
 
-    if (_user){
+    if (user){
  
-        [self SaveCurrentObjectToDatabase:_user];
+        [self SaveCurrentObjectToDatabase:user];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:SAVE_USER object:self];
         if (eventResponse) 
@@ -127,7 +129,7 @@
     NSArray* arr = [self FindObjectInTable:DATABASE withName:usersName forAttribute:USERNAME];
     
     if (arr.count == 1) {
-        _user = [arr objectAtIndex:0];
+        user = [arr objectAtIndex:0];
         return  YES;
     }
     return  NO;
@@ -158,20 +160,14 @@
     }];
 }
 
-
+-(void)setDBObject:(NSManagedObject *)DatabaseObject{
+    [super setDBObject:DatabaseObject];
+    user = (Users*)self.databaseObject;
+}
 
 #pragma mark - Private Methods
 #pragma mark -
 
--(NSString *)description
-{
-    
-    NSString* text = [NSString stringWithFormat:@"\nFirstname: %@ \nLastname: %@\nUsername: %@ \nPassword: %@ \nEmail: %@ \nStatus: %@ \nUsertype: %i ",_user.firstname,_user.lastname,_user.username,_user.password,_user.email,(_user.status)?@"Active":@"Inactive",_user.usertype.intValue];
-    
-    [text stringByAppendingString:[super description]];
-    
-    return text;
-}
 
 -(BOOL)CompleteServerSideValidation:(StatusObject*)status
 {
@@ -186,11 +182,11 @@
         [status setStatus:kError];
         [status setErrorMessage:@"Please enter a valid email address"];
         isValid=NO;
-    }else if(![self isObject:_user.username UniqueForKey:USERNAME]){
+    }else if(![self isObject:user.userName UniqueForKey:USERNAME]){
         [status setStatus:kError];
         [status setErrorMessage:@"Username Already Exists"];
         isValid=NO;
-    }else if(![self isObject:_user.email UniqueForKey:EMAIL]){
+    }else if(![self isObject:user.email UniqueForKey:EMAIL]){
         [status setStatus:kError];
         [status setErrorMessage:@"Email Already Exists"];
         isValid=NO;
@@ -204,18 +200,18 @@
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     
-    return [emailTest evaluateWithObject:_user.email];
+    return [emailTest evaluateWithObject:user.email];
     
 }
 
 -(BOOL)isUsernameValid
 {
     // Username must be between 5 - 20 chars
-    if (_user.username.length < 5 || _user.username.length > 20) {
+    if (user.userName.length < 5 || user.userName.length > 20) {
         return NO;
     }
     // Check if contains any symbols
-    if (![_user.username isAlphaNumeric]) {
+    if (![user.userName isAlphaNumeric]) {
         return NO;
     }
     
@@ -225,7 +221,7 @@
 -(BOOL)isPasswordValid
 {
     // Username must be between 5 - 20 chars
-    if (_user.password.length < 5 || _user.password.length > 20) {
+    if (user.password.length < 5 || user.password.length > 20) {
         return NO;
     }
     return YES;
@@ -245,22 +241,22 @@
 {
     //TODO: Remove Hard Dependencies
     NSArray* users = [cloudUsers objectForKey:@"data"];
+    
     for (NSDictionary* userInfo in users) {
-        if (![self loadUserWithUsername:[userInfo objectForKey:@"userLogin"]]) {
-            _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
+        if (![self loadUserWithUsername:[userInfo objectForKey:USERNAME]]) {
+            user = (Users*)[self CreateANewObjectFromClass:DATABASE];
         }
-#warning incorrect implementation
-        //TODO: Convert UserObject to have proper values
-        _user.username = [userInfo objectForKey:@"userLogin"];
-        _user.password = @"000000";
-        _user.firstname = [userInfo objectForKey:@"firstName"];
-        _user.lastname = [userInfo objectForKey:@"lastName"];
-        _user.email = [userInfo objectForKey:EMAIL];
-        //TODO: number values need to be returned as numbers
-        _user.status = [[userInfo objectForKey:STATUS]isEqualToString:@"active"]?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
-        _user.usertype = [NSNumber numberWithInt:1];
-        [self SaveCurrentObjectToDatabase:_user];
-        _user = nil;
+
+        user.userName = [userInfo objectForKey:USERNAME];
+        //TODO: How to deal with password
+        user.password = @"000000";
+        user.firstName = [userInfo objectForKey:FIRSTNAME];
+        user.lastName = [userInfo objectForKey:LASTNAME];
+        user.email = [userInfo objectForKey:EMAIL];
+        user.status = [userInfo objectForKey:STATUS];
+        user.userType = [userInfo objectForKey:USERTYPE];
+        [self SaveCurrentObjectToDatabase:user];
+        user = nil;
     }
 }
 
@@ -302,7 +298,7 @@
     // Initially set it to an error, for efficiency.
     [status setStatus:kError];
     
-    NSArray* userArray = [self FindObjectInTable:DATABASE withName:_user.username forAttribute:USERNAME];
+    NSArray* userArray = [self FindObjectInTable:DATABASE withName:user.userName forAttribute:USERNAME];
     
     // Checks if username exists (should return 1 or 0 value)
     if (userArray.count == 0) {
@@ -315,9 +311,9 @@
     }
     
     // Validate with information inside database
-    _user = [userArray objectAtIndex:0];
+    user = [userArray objectAtIndex:0];
     
-    if (![_user.password isEqualToString:_user.password]) {
+    if (![user.password isEqualToString:user.password]) {
         // Its good to send a message
         [status setErrorMessage:@"User Password is incorrect"];
         // Let the status object send this information
@@ -326,7 +322,7 @@
         return;
     }
     
-    if (!_user.status.boolValue) {
+    if (!user.status.boolValue) {
         // Its good to send a message
         [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
         // Let the status object send this information
@@ -336,7 +332,7 @@
     }
     
     // status will hold a copy of this user data
-    [status setData:[self consolidateForTransmitting:_user]];
+    [status setData:[self consolidateForTransmitting:user]];
     // Indicates that this was a success
     [status setStatus:kSuccess];
     // Its good to send a message

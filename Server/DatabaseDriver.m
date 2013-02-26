@@ -97,4 +97,10 @@ return self;
     }
     return nil;
 }
+-(void)setObject:(id)object withAttribute:(NSString*)attribute inDatabaseObject:(NSManagedObject*)DBObject{
+    [DBObject setValue:object forKey:attribute];
+}
+-(id)getObjectForAttribute:(NSString*)attribute inDatabaseObject:(NSManagedObject*)DBObject{
+    return [DBObject valueForKey:attribute];
+}
 @end
