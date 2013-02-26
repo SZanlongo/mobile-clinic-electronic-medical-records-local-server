@@ -136,7 +136,6 @@
         }
         
         [cell addSubview: cell.viewController.view];
-        
         return cell;
     }
 }
