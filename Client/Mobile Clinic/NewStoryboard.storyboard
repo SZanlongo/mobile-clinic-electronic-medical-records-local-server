@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="4V1-xg-f76">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4V1-xg-f76">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -70,6 +70,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="move:" destination="4V1-xg-f76" eventType="touchUpInside" id="BYF-cC-DBf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -81,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0o8-64-UtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4181" y="-2029"/>
+            <point key="canvasLocation" x="-4201" y="-2082"/>
         </scene>
         <!--Triage View Controller - Triage-->
         <scene sceneID="9AU-72-2cf">
@@ -242,115 +245,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sPv-ra-j8U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="-4746"/>
-        </scene>
-        <!--Patient History View Controller-->
-        <scene sceneID="zKW-N9-OaR">
-            <objects>
-                <viewController storyboardIdentifier="patientHistoryVC" id="WyU-8z-MqR" customClass="PatientHistoryViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="20q-HZ-YeP">
-                        <rect key="frame" x="0.0" y="0.0" width="665" height="150"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Visit Date:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="agf-lg-4KV">
-                                <rect key="frame" x="20" y="22" width="80" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Jan 1, 2013" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s8W-vx-3xc">
-                                <rect key="frame" x="108" y="22" width="125" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Weight:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dYk-jV-9JJ">
-                                <rect key="frame" x="287" y="22" width="80" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="180.0 lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PV6-Zm-Ddc">
-                                <rect key="frame" x="375" y="22" width="82" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Blood Pressure:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f4r-hM-LFN">
-                                <rect key="frame" x="465" y="22" width="110" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Conditions:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mZr-FU-x8n">
-                                <rect key="frame" x="25" y="50" width="80" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="120/80" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sWa-ma-ZRA">
-                                <rect key="frame" x="583" y="22" width="73" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="bdw-CS-1ux">
-                                <rect key="frame" x="108" y="42" width="542" height="46"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Patient is a type I diabetic complaining of chest pains that began approximately 2 weeks ago.  Chest pains coincide with exertion and pass with rest. </string>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Medication:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EHq-U3-2My">
-                                <rect key="frame" x="25" y="97" width="80" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="LqP-nj-X0p">
-                                <rect key="frame" x="108" y="86" width="542" height="52"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Acebutolol, 200mg, 2x/day, as well as aspirin, 150mg/day.  For patient’s hypercholesterolemia he has been prescribed Lovastatin, 40mg/day.</string>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Age:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CAD-Kg-lya">
-                                <rect key="frame" x="171" y="22" width="80" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="32" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kuG-2w-alD">
-                                <rect key="frame" x="259" y="22" width="34" height="20"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="patientAgeLabel" destination="kuG-2w-alD" id="JzR-TE-wqY"/>
-                        <outlet property="patientBPLabel" destination="sWa-ma-ZRA" id="FQU-4q-H4t"/>
-                        <outlet property="patientConditionsTextView" destination="bdw-CS-1ux" id="rUb-Ar-dS1"/>
-                        <outlet property="patientDOBLabel" destination="s8W-vx-3xc" id="tnI-gp-jVK"/>
-                        <outlet property="patientMedicationTextView" destination="LqP-nj-X0p" id="AeY-37-Ucl"/>
-                        <outlet property="patientWeightLabel" destination="PV6-Zm-Ddc" id="LhU-1C-wAe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nnB-kW-gPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2402" y="-4844"/>
+            <point key="canvasLocation" x="432" y="-4746"/>
         </scene>
         <!--Previous Visits View Controller - Previous Visit-->
         <scene sceneID="6VF-Cz-cgB">
             <objects>
                 <viewController storyboardIdentifier="previousVisitsViewController" id="y7x-0q-CGd" customClass="PreviousVisitsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dy-nV-lWg">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="685"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="700"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Previous Visits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wJZ-Sg-wwI">
@@ -360,7 +262,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="194" sectionHeaderHeight="22" sectionFooterHeight="22" id="sJb-8J-oeM">
-                                <rect key="frame" x="52" y="91" width="665" height="540"/>
+                                <rect key="frame" x="52" y="100" width="665" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="y7x-0q-CGd" id="4Qk-jF-lt0"/>
@@ -502,7 +404,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <objects>
                 <viewController storyboardIdentifier="currentVisitViewController" id="dgP-ac-6fq" customClass="CurrentVisitViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cgU-5r-ytO">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="685"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="700"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Vitals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fjK-a5-oLr">
@@ -512,49 +414,49 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Conditions:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nIm-Lq-mr1">
-                                <rect key="frame" x="100" y="117" width="122" height="33"/>
+                                <rect key="frame" x="100" y="119" width="122" height="33"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Weight: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WuN-4M-B0H">
-                                <rect key="frame" x="100" y="60" width="122" height="33"/>
+                                <rect key="frame" x="100" y="61" width="122" height="33"/>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="nHy-7l-RjE">
-                                <rect key="frame" x="164" y="63" width="126" height="30"/>
+                                <rect key="frame" x="164" y="64" width="126" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d5F-WY-PLN">
-                                <rect key="frame" x="298" y="67" width="27" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="298" y="68" width="27" height="21"/>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Blood Pressure:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1vi-s5-Cdk">
-                                <rect key="frame" x="388" y="61" width="129" height="33"/>
+                                <rect key="frame" x="388" y="62" width="129" height="33"/>
                                 <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="P9G-az-ycy">
-                                <rect key="frame" x="508" y="63" width="159" height="30"/>
+                                <rect key="frame" x="508" y="64" width="159" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="hwo-A1-3dz">
-                                <rect key="frame" x="100" y="149" width="567" height="398"/>
+                                <rect key="frame" x="100" y="156" width="567" height="398"/>
                                 <color key="backgroundColor" red="0.89835778061224492" green="0.89835778061224492" blue="0.89835778061224492" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d1Y-wm-7dQ">
-                                <rect key="frame" x="592" y="555" width="75" height="44"/>
+                                <rect key="frame" x="579" y="562" width="88" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Submit">
+                                <state key="normal" title="Check-In">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -562,7 +464,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="submitButton:" destination="dgP-ac-6fq" eventType="touchUpInside" id="dV3-gM-QlU"/>
+                                    <action selector="checkInButton:" destination="dgP-ac-6fq" eventType="touchUpInside" id="JNU-0y-DrI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3CB-G9-OVR">
+                                <rect key="frame" x="100" y="562" width="144" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Quick Check-out">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="quickCheckOutButton:" destination="dgP-ac-6fq" eventType="touchUpInside" id="bVi-MW-ldY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -572,8 +488,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="conditionsTextbox" destination="hwo-A1-3dz" id="aUQ-IO-Vie"/>
                         <outlet property="patientBPField" destination="P9G-az-ycy" id="TRg-JO-FX2"/>
-                        <outlet property="patientConditionsTextbox" destination="hwo-A1-3dz" id="8vG-BK-uP3"/>
                         <outlet property="patientWeightField" destination="nHy-7l-RjE" id="a1i-Aj-vb0"/>
                     </connections>
                 </viewController>
@@ -634,7 +550,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <segue destination="8SV-sA-6Lb" kind="push" id="Cm3-dh-Q0N"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Choose Station" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="281" id="kM2-Ba-k8L">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Choose Station" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kM2-Ba-k8L">
                                 <rect key="frame" x="244" y="169" width="281" height="144"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="55"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -655,7 +571,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1np-HY-Zx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1811" y="-2082"/>
+            <point key="canvasLocation" x="-1815" y="-2082"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0qa-8z-TKD">
@@ -670,7 +586,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omo-f8-06g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2791" y="-2029"/>
+            <point key="canvasLocation" x="-2895" y="-2082"/>
         </scene>
         <!--Doctor Patient View Controller-->
         <scene sceneID="9hY-Te-Soj">
@@ -815,23 +731,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="33t-9I-UdH">
                                 <rect key="frame" x="282" y="121" width="188" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="32">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="15" name="GillSans"/>
-                                                <font key="NSOriginalFont" size="15" name="GillSans"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="patientBPLabel" destination="Mfh-bu-gV0" id="D7Y-za-NnE"/>
+                        <outlet property="patientFamilyNameLabel" destination="544-79-o9i" id="3Ew-Xr-HNh"/>
+                        <outlet property="patientNameLabel" destination="vYb-tF-bqW" id="v0m-Yr-o7h"/>
+                        <outlet property="patientSexLabel" destination="5ZT-rC-l6B" id="uNE-Kv-zNl"/>
+                        <outlet property="patientVillageLabel" destination="pef-pz-6xS" id="ykr-Hi-2Rx"/>
+                        <outlet property="patientWeightLabel" destination="KtU-dg-iVs" id="7Cb-t6-M16"/>
                         <outlet property="segmentedControl" destination="KVN-d1-eap" id="NSR-DP-Le7"/>
                         <outlet property="tableView" destination="2cd-7c-AGO" id="bsK-kX-eso"/>
                         <outlet property="toolBar" destination="ocm-wc-NlD" id="v6J-dr-4oI"/>
@@ -933,43 +843,28 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </attributedString>
                                 </state>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="hip-wp-aAk">
-                                <rect key="frame" x="34" y="716" width="682" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K29-cP-C4N">
-                                <rect key="frame" x="608" y="909" width="75" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GRB-Mz-pdJ">
+                                <rect key="frame" x="0.0" y="213" width="768" height="755"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="submitPrescription:" destination="Iw3-0E-8E0" eventType="touchUpInside" id="f6G-jZ-QUw"/>
+                                    <outlet property="dataSource" destination="Iw3-0E-8E0" id="zUM-ZR-UBC"/>
+                                    <outlet property="delegate" destination="Iw3-0E-8E0" id="dOx-zF-5Ed"/>
                                 </connections>
-                            </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="JJP-el-alc">
-                                <rect key="frame" x="54" y="334" width="655" height="281"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </scrollView>
+                            </tableView>
+                            <view contentMode="scaleToFill" id="vCr-C2-GbX">
+                                <rect key="frame" x="496" y="20" width="225" height="168"/>
+                                <color key="backgroundColor" red="0.4993223852" green="0.4993223852" blue="0.4993223852" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="familyName" destination="Czi-4X-XWk" id="iPW-oo-wZW"/>
                         <outlet property="patientAge" destination="iwf-sl-1oW" id="sQD-mH-WeC"/>
-                        <outlet property="patientDiagnosis" destination="JJP-el-alc" id="Tbt-ms-5ex"/>
                         <outlet property="patientName" destination="qgi-IM-y89" id="3yn-3k-Hm9"/>
-                        <outlet property="patientPrescription" destination="hip-wp-aAk" id="W1I-om-0jh"/>
                         <outlet property="patientSex" destination="Z1f-Mj-REM" id="oMy-AP-g1v"/>
+                        <outlet property="tableView" destination="GRB-Mz-pdJ" id="N0f-FK-CSi"/>
                         <outlet property="villageName" destination="yIO-rf-HUw" id="moS-sP-gz9"/>
                     </connections>
                 </viewController>
@@ -1275,7 +1170,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="dUy-rm-V1F">
                                 <rect key="frame" x="86" y="111" width="567" height="398"/>
                                 <color key="backgroundColor" red="0.89835778060000004" green="0.89835778060000004" blue="0.89835778060000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Patient is a type I diabetic complaining of chest pains that began approximately 2 weeks ago.  Chest pains coincide with exertion and pass with rest.  Patient describes the pain as a tight, squeezing sensation in the middle of the chest, rating the pain an 8 on a scale of 1 to 10.  Patient reports that yesterday (2/21/04) the pain spread to his left shoulder, arm, and hand, alarming him—bringing him here today.  The patient has had four episodes of chest pain (one with arm pain), each episode occurring while shoveling the snow.  Patient reports that the pain lasts “no more than a couple of minutes,” with the exception of this last episode which “seemed to last just a little bit longer.”  Each time the pain subsided on its own, although after the last episode the patient took an aspirin after the advice of his wife.  This scare, combined with his pressing diabetes complications, has brought the patient in today. </string>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1286,13 +1180,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="diagnosisTextbox" destination="dUy-rm-V1F" id="7D9-Ma-O4v"/>
+                        <outlet property="submitButton" destination="PuO-Tb-i3B" id="Vps-jb-qt4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxl-6X-EOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2895" y="-1996"/>
+            <point key="canvasLocation" x="2350" y="-2082"/>
         </scene>
-        <!--Triage Patient View Controller - Triage-->
+        <!--Triage Patient View Controller - Visit-->
         <scene sceneID="n9R-pB-Rwb">
             <objects>
                 <viewController storyboardIdentifier="triagePatientViewController" id="Hf5-oa-1pu" customClass="TriagePatientViewController" sceneMemberID="viewController">
@@ -1301,7 +1196,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AQ4-xt-yTb">
-                                <rect key="frame" x="0.0" y="206" width="768" height="709"/>
+                                <rect key="frame" x="0.0" y="216" width="768" height="700"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Hm5-SL-hav">
@@ -1328,7 +1224,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" id="NbG-4X-iQe">
-                                <rect key="frame" x="47" y="20" width="441" height="168"/>
+                                <rect key="frame" x="47" y="30" width="441" height="168"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="userImage.jpeg" id="XzT-5q-r8s">
                                         <rect key="frame" x="9" y="10" width="150" height="150"/>
@@ -1339,11 +1235,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="32" minimumFontSize="17" id="KZh-hR-RdA">
+                                        <rect key="frame" x="233" y="104" width="188" height="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.4993223852" green="0.4993223852" blue="0.4993223852" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="07l-Po-tew">
-                                <rect key="frame" x="496" y="20" width="225" height="168"/>
+                                <rect key="frame" x="496" y="30" width="225" height="168"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Weight:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Keh-JJ-FTd">
                                         <rect key="frame" x="39" y="75" width="54" height="21"/>
@@ -1366,14 +1268,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="180.0 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GUd-2L-BJY">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GUd-2L-BJY">
                                         <rect key="frame" x="101" y="75" width="65" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="120/80" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sts-tU-DZD">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sts-tU-DZD">
                                         <rect key="frame" x="144" y="101" width="55" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1384,81 +1286,65 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="backgroundColor" red="0.4993223852" green="0.4993223852" blue="0.4993223852" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hTw-td-nOt">
-                                <rect key="frame" x="224" y="36" width="50" height="21"/>
+                                <rect key="frame" x="224" y="46" width="50" height="21"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Family:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jdz-bY-N9U">
-                                <rect key="frame" x="224" y="66" width="50" height="20"/>
+                                <rect key="frame" x="224" y="76" width="50" height="20"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Village:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oex-vB-cHc">
-                                <rect key="frame" x="224" y="93" width="50" height="21"/>
+                                <rect key="frame" x="224" y="103" width="50" height="21"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Age:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i7s-jM-Bk5">
-                                <rect key="frame" x="224" y="122" width="50" height="21"/>
+                                <rect key="frame" x="224" y="132" width="50" height="21"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sex:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oNL-Aj-1mh">
-                                <rect key="frame" x="224" y="152" width="50" height="21"/>
+                                <rect key="frame" x="224" y="162" width="50" height="21"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hernandez" minimumFontSize="17" id="y8o-xn-JCv">
-                                <rect key="frame" x="282" y="66" width="188" height="20"/>
+                                <rect key="frame" x="282" y="76" width="188" height="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Miami" minimumFontSize="17" id="Bcx-Nm-HP3">
-                                <rect key="frame" x="282" y="95" width="188" height="18"/>
+                                <rect key="frame" x="282" y="105" width="188" height="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Male" minimumFontSize="17" id="ccP-ag-fc6">
-                                <rect key="frame" x="282" y="153" width="188" height="18"/>
+                                <rect key="frame" x="282" y="164" width="188" height="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="o4F-jC-gZ4">
-                                <rect key="frame" x="282" y="116" width="188" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="32">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="15" name="GillSans"/>
-                                                <font key="NSOriginalFont" size="15" name="GillSans"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Triage" id="ObB-xa-n2R"/>
+                    <navigationItem key="navigationItem" title="Visit" id="ObB-xa-n2R"/>
                     <connections>
                         <outlet property="familyNameField" destination="y8o-xn-JCv" id="6Fk-db-mYA"/>
-                        <outlet property="patientAgeField" destination="o4F-jC-gZ4" id="eLP-fH-sZD"/>
+                        <outlet property="patientAgeField" destination="KZh-hR-RdA" id="VYR-dw-hsw"/>
                         <outlet property="patientBPLabel" destination="Sts-tU-DZD" id="y86-Tm-jbG"/>
                         <outlet property="patientNameField" destination="OcF-NF-Q78" id="VWh-rG-tvj"/>
                         <outlet property="patientSexField" destination="ccP-ag-fc6" id="xQI-Ps-UIc"/>
@@ -1473,150 +1359,229 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1436" y="-3537"/>
         </scene>
+        <!--Pharamcy Prescription View Controller-->
+        <scene sceneID="EDj-98-lUl">
+            <objects>
+                <viewController storyboardIdentifier="prescriptionFormViewController" id="hcs-ty-94e" customClass="PharamcyPrescriptionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Mk-Xa-yEG">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="685"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="tablets" minimumFontSize="17" id="Cen-pj-qnU">
+                                <rect key="frame" x="228" y="209" width="313" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="time of day" minimumFontSize="17" id="th7-GH-spJ">
+                                <rect key="frame" x="228" y="263" width="313" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="drug" minimumFontSize="17" id="BZN-qm-bTe">
+                                <rect key="frame" x="228" y="321" width="313" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F7H-a0-LJi">
+                                <rect key="frame" x="326" y="365" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Find Drug">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="findDrugs:" destination="hcs-ty-94e" eventType="touchUpInside" id="ZRF-Nf-0O5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ftw-vW-aHP">
+                                <rect key="frame" x="628" y="607" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePrescription:" destination="hcs-ty-94e" eventType="touchUpInside" id="Wid-uM-KCg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UUM-3o-2I2">
+                                <rect key="frame" x="13" y="50" width="174" height="138"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="morning.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="newTimeOfDay:" destination="hcs-ty-94e" eventType="touchUpInside" id="CbJ-ns-fD0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bzf-g4-icP">
+                                <rect key="frame" x="202" y="50" width="174" height="138"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="afternoon.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="newTimeOfDay:" destination="hcs-ty-94e" eventType="touchUpInside" id="J0a-H0-ABl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="e5U-04-fg5">
+                                <rect key="frame" x="395" y="50" width="174" height="138"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="evening.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="newTimeOfDay:" destination="hcs-ty-94e" eventType="touchUpInside" id="YRX-iC-4YZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W80-dJ-Gcv">
+                                <rect key="frame" x="577" y="50" width="174" height="138"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="night.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="newTimeOfDay:" destination="hcs-ty-94e" eventType="touchUpInside" id="jEW-Th-INE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="drugTextField" destination="BZN-qm-bTe" id="FTd-eT-MCy"/>
+                        <outlet property="tabletsTextField" destination="Cen-pj-qnU" id="qdT-cp-ych"/>
+                        <outlet property="timeOfDayTextFields" destination="th7-GH-spJ" id="zoG-Vu-EfM"/>
+                        <outletCollection property="timeOfDayButtons" destination="W80-dJ-Gcv" id="lUB-UX-i3l"/>
+                        <outletCollection property="timeOfDayButtons" destination="e5U-04-fg5" id="Pne-3S-ot9"/>
+                        <outletCollection property="timeOfDayButtons" destination="Bzf-g4-icP" id="xBJ-Ty-IUQ"/>
+                        <outletCollection property="timeOfDayButtons" destination="UUM-3o-2I2" id="NTD-TU-F6b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CwY-KQ-xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2350" y="-693"/>
+        </scene>
+        <!--Medicine Search View Controller - Search-->
+        <scene sceneID="cYc-vb-L8X">
+            <objects>
+                <viewController storyboardIdentifier="searchMedicineViewController" id="BFJ-qB-Mtr" customClass="MedicineSearchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ymB-43-UGA">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="685"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="rSj-NZ-rAx">
+                                <rect key="frame" x="56" y="139" width="657" height="490"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BFJ-qB-Mtr" id="kXU-vR-cg9"/>
+                                    <outlet property="delegate" destination="BFJ-qB-Mtr" id="Brs-iC-q99"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="INl-p8-f6J">
+                                <rect key="frame" x="326" y="82" width="259" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IgQ-7J-B2g">
+                                <rect key="frame" x="597" y="62" width="116" height="69"/>
+                                <color key="backgroundColor" red="0.50243144129999995" green="0.50243144129999995" blue="0.50243144129999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchMedicine:" destination="BFJ-qB-Mtr" eventType="touchUpInside" id="5iy-zh-7y2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Medicine Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7S-g8-FW4">
+                                <rect key="frame" x="188" y="86" width="121" height="21"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Search for Medicine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pGo-Zg-ge4">
+                                <rect key="frame" x="197" y="13" width="374" height="59"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="43"/>
+                                <color key="textColor" red="0.39096380739999997" green="0.39096380739999997" blue="0.39096380739999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SIc-cy-EOy">
+                                <rect key="frame" x="56" y="62" width="116" height="69"/>
+                                <color key="backgroundColor" red="0.50243144129999995" green="0.50243144129999995" blue="0.50243144129999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="moveBackToPrescription:" destination="BFJ-qB-Mtr" eventType="touchUpInside" id="JFd-8Q-DED"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" id="WwK-4g-uWP"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="medicineField" destination="INl-p8-f6J" id="fps-4O-BkK"/>
+                        <outlet property="tableView" destination="rSj-NZ-rAx" id="paW-wf-Mw3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nck-as-ZrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3256" y="-688"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="afternoon.png" width="174" height="138"/>
         <image name="clinicLogo.jpg" width="325" height="260"/>
+        <image name="evening.png" width="176" height="138"/>
+        <image name="morning.png" width="176" height="142"/>
+        <image name="night.png" width="176" height="134"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
-    <classes>
-        <class className="CurrentDiagnosisViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentDiagnosisViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitButton:"/>
-                <relationship kind="outlet" name="diagnosisTextbox" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="CurrentVisitViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentVisitViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitButton:"/>
-                <relationship kind="outlet" name="patientBPField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientConditionsTextbox" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="DateController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveNewDate:"/>
-                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="DoctorPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorPatientViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="DoctorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButton:"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PatientHistoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientHistoryViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="patientAgeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientConditionsTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="patientDOBLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientMedicationTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PharmacyPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PharmacyPatientViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitPrescription:"/>
-                <relationship kind="outlet" name="familyName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAge" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="patientDiagnosis" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="patientName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPrescription" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="patientSex" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="villageName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PharmacyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PharmacyViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PreviousVisitsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousVisitsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="patientHistoryTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RegisterPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterPatientViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPatient:"/>
-                <relationship kind="action" name="getAgeOfPatient:"/>
-                <relationship kind="action" name="patientPhotoButton:"/>
-                <relationship kind="outlet" name="createPatientButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SearchPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchPatientViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="searchByFingerprintButton:"/>
-                <relationship kind="action" name="searchByNFCButton:"/>
-                <relationship kind="action" name="searchByNameButton:"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="searchResultTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="StationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-            </relationships>
-        </class>
-        <class className="TriagePatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriagePatientViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="TriageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriageViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

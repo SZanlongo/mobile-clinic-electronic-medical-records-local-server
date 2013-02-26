@@ -101,7 +101,7 @@
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
     
         [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName contains[cd] %@)", _patientNameField.text]];
+        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName beginswith[cd] %@) OR (familyName beginswith[cd] %@)", _patientNameField.text, _familyNameField.text]];
     
         _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
         // -- END OF TEMPORARY SEARCH --
@@ -139,7 +139,7 @@
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         
         [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName contains[cd] %@)", _patientNameField.text]];
+        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName beginswith[cd] %@) OR (familyName beginswith[cd] %@)", _patientNameField.text, _familyNameField.text]];
         
         _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
         
@@ -167,17 +167,17 @@
     
     
     
-// FOR MY OWN TESTING (RIGO)
-    if([_patientSearchResultsArray count] == 0) {
-        NSLog(@"ARRAY IS EMPTY!!!!!!!!!");
-    }
-    else{
-        NSLog(@"ARRAY HAS STUFF INSIDE IT!!!!!!!!");
-    
-        for(Patients * obj in _patientSearchResultsArray) {
-            NSLog(@"NAME: %@ %@", obj.firstName, obj.familyName);
-        }
-    }
+//// FOR MY OWN TESTING (RIGO)
+//    if([_patientSearchResultsArray count] == 0) {
+//        NSLog(@"ARRAY IS EMPTY!!!!!!!!!");
+//    }
+//    else{
+//        NSLog(@"ARRAY HAS STUFF INSIDE IT!!!!!!!!");
+//    
+//        for(Patients * obj in _patientSearchResultsArray) {
+//            NSLog(@"NAME: %@ %@", obj.firstName, obj.familyName);
+//        }
+//    }
 }
 
 - (IBAction)searchByNFCButton:(id)sender {

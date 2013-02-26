@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -37,11 +38,14 @@
 
 - (void)viewDidUnload {
     [self setDiagnosisTextbox:nil];
+    [self setSubmitButton:nil];
     [super viewDidUnload];
 }
 
 - (IBAction)submitButton:(id)sender {
+    //set visitiation diag
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{

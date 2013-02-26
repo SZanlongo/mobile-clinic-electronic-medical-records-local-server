@@ -1,14 +1,14 @@
 //
-//  PatientHistoryTableCell.m
+//  MedicineSearchCell.m
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/22/13.
+//  Created by Steven Berlanga on 2/24/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PatientHistoryTableCell.h"
+#import "MedicineSearchResultCell.h"
 
-@implementation PatientHistoryTableCell
+@implementation MedicineSearchResultCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

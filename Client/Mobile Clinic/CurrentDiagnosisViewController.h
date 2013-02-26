@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "StationViewHandlerProtocol.h"
 #import "PatientObject.h"
+#import "VisitationObject.h"
 
 @interface CurrentDiagnosisViewController : UIViewController {
     ScreenHandler handler;
 }
 
 @property (weak, nonatomic) IBOutlet UITextView *diagnosisTextbox;
-
+@property (strong, nonatomic) VisitationObject * visitationData;
 - (IBAction)submitButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 

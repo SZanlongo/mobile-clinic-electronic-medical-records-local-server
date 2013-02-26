@@ -44,8 +44,27 @@
     // Create controllers for each view
     
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
-    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
     
+    [_control1 view];
+    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
+    [_control2 view];
+    
+    _visitationData = [[VisitationObject alloc] initWithNewVisit];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
+    
+    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
+    
+    _patientNameLabel.text = _patientData.patient.firstName;
+    _patientFamilyNameLabel.text = _patientData.patient.familyName;
+    _patientAgeLabel.titleLabel.text = [NSString stringWithFormat:@"%i", _patientData.getAge ];
+    _patientSexLabel.text =  [_patientData.patient.sex isEqualToNumber:[NSNumber numberWithInt:0]] ? @"Male" : @"Female";
+//
+}
+
+-(void)saveVisitation{
+    [_patientData addVisitToCurrentPatient:_control1.visitationData];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +76,14 @@
 - (void)viewDidUnload {
     [self setTableView:nil];
     [self setToolBar:nil];
+    [self setPatientNameLabel:nil];
+    [self setPatientFamilyNameLabel:nil];
+    [self setPatientVillageLabel:nil];
+    [self setPatientAgeLabel:nil];
+    [self setPatientSexLabel:nil];
+    [self setPatientSexLabel:nil];
+    [self setPatientWeightLabel:nil];
+    [self setPatientBPLabel:nil];
     [super viewDidUnload];
 }
 
@@ -142,6 +169,23 @@
     }
     [self.tableView reloadData];
     
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset {
+    int cellHeight = 768;
+    
+    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+        self.segmentedControl.selectedSegmentIndex = 1;
+    }
+    else{
+        *targetContentOffset = CGPointMake(targetContentOffset->x,
+                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+        self.segmentedControl.selectedSegmentIndex = 0;
+    }
 }
 
 @end
