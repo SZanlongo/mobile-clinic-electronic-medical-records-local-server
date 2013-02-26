@@ -98,9 +98,9 @@
     // handler(_patientData, nil);
  
     // Sets color of cell when selected
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor grayColor];
-    
+    [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor grayColor]];
+   
+    handler(_patientData, nil);
     // Select patient and post notification
     [[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_FOR_PATIENT object:_patientData];
 }

@@ -40,6 +40,7 @@ UIPopoverController * pop;
 	// Do any additional setup after loading the view.
     
     facade = [[CameraFacade alloc]initWithView:self];
+    
     if (!_patient)
         _patient = [[PatientObject alloc]initWithNewPatient];
     else
@@ -95,13 +96,7 @@ UIPopoverController * pop;
         // Even if the user file is being edited this method will
         // know the difference
         [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
-            if (error) {
-                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
-                 ];
-            }
-            else {
-                [[NSNotificationCenter defaultCenter] postNotificationName:CREATE_NEW_PATIENT object:data];
-            }
+                handler(data,error);
         }];
     }
 }

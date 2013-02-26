@@ -36,7 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 
-//- (void)setScreenHandler:(ScreenHandler)myHandler;
+- (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end
 

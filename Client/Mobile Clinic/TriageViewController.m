@@ -47,8 +47,8 @@
 //    [_searchControl view];
     
     // Notifications that receive patient data from registration & search view controllers
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -57,8 +57,8 @@
 }
 
 // Transfers the patient's data to the next view controller
-- (void)transferPatientData:(NSNotification *)note {
-    _patientData = note.object;
+- (void)transferPatientData:(PatientObject *)note {
+    _patientData = note;
     
     TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
     
@@ -103,7 +103,7 @@
             cell = [[RegisterPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:registerCellIdentifier];
             cell.viewController = _registerControl;
         }
-        
+  /*
         // Rotate view vertically on the screen
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
@@ -116,11 +116,24 @@
         
         // Populate view in cell
         [cell addSubview: cell.viewController.view];
-        [cell.viewController setScreenHandler:handler];         // NOT SURE WHAT THIS DOES
+        [cell.viewController setScreenHandler:^(id object, NSError *error) {
+            _patientData = object;
+            
+            TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
+            
+            newView.patientData = _patientData;
+            
+            [self.navigationController pushViewController:newView animated:YES];
+            
+            if (error) {
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:newView.view
+                 ];
+            }
+            
+        }];       // NOT SURE WHAT THIS DOES
+        */
+        return [self setupCell:cell forRow:indexPath];
         
-        _segmentedControl.selectedSegmentIndex = 0;
-        
-        return cell;
     }
     else {
         SearchPatientTableCell * cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
@@ -129,7 +142,7 @@
             cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
             cell.viewController = _searchControl;
         }
-        
+        /*
         // Rotate view vertically on the screen
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
@@ -142,14 +155,73 @@
         
         // Populate view in cell
         [cell addSubview: cell.viewController.view];
-        [cell.viewController setScreenHandler:handler];         // NOT SURE WHAT THIS DOES
+        
+        //
+        [cell.viewController setScreenHandler:^(id object, NSError *error) {
+            _patientData = object;
+            
+            TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
+            
+            newView.patientData = _patientData;
+            
+            [self.navigationController pushViewController:newView animated:YES];
+            
+            if (error) {
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:newView.view
+                 ];
+            }
+   
+        }];
+        // NOT SURE WHAT THIS DOES
         
         _segmentedControl.selectedSegmentIndex = 1;
         
-        return cell;
+        */
+        return [self setupCell:cell forRow:indexPath];
     }
 }
 
+-(UITableViewCell*)setupCell:(id)cell forRow:(NSIndexPath*)path{
+    // Rotate view vertically on the screen
+   
+    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+    [cell viewController].view.transform = transform;
+    [cell viewController].view.frame = CGRectMake(50, 0, 916, 768);
+    
+    // Removes previous view (for memory mgmt)
+    for(UIView *mView in [[cell contentView] subviews]){
+        [mView removeFromSuperview];
+    }
+    
+    // Populate view in cell
+    [cell addSubview: [cell viewController].view];
+    
+    //
+    [[cell viewController] setScreenHandler:^(id object, NSError *error) {
+        _patientData = object;
+        
+        TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
+        
+        newView.patientData = _patientData;
+        
+        [newView setScreenHandler:^(id object, NSError *error) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        [self.navigationController pushViewController:newView animated:YES];
+        
+        if (error) {
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:newView.view
+             ];
+        }
+        
+    }];
+    // NOT SURE WHAT THIS DOES
+    
+    _segmentedControl.selectedSegmentIndex = 1;
+    
+    return cell;
+}
 // Allows user to user segment to switch views (cells)
 - (IBAction) segmentedControlIndexChanged {
     switch (self.segmentedControl.selectedSegmentIndex) {

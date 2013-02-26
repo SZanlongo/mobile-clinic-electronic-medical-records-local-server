@@ -11,11 +11,13 @@
 #import "PharamcyPrescriptionViewController.h"
 #import "PharamcyPrescriptionCell.h"
 #import "MedicineSearchViewController.h"
+#import "PrescriptionObject.h"
 #import "MedicineSearchCell.h"
 
 @interface PharmacyPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) PrescriptionObject * prescriptionData;
 @property (weak, nonatomic) IBOutlet UITextField *patientName;
 @property (weak, nonatomic) IBOutlet UITextField *familyName;
 @property (weak, nonatomic) IBOutlet UITextField *villageName;
