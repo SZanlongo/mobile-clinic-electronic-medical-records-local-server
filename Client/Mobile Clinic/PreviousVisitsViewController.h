@@ -18,6 +18,6 @@
 @property (nonatomic, strong) PatientObject * patientData;
 @property (nonatomic, strong) NSArray * patientHistoryArray;
 
-@property (weak, nonatomic) IBOutlet UITableView *patientHistoryTableView;
+@property (weak, nonatomic) IBOutlet UITableView * patientHistoryTableView;
 
 @end

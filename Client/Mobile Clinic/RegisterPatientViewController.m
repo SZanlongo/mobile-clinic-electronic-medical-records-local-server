@@ -162,22 +162,4 @@ UIPopoverController * pop;
     
     return inputIsValid;
 }
-
-/*
-// Change Station Button
-- (IBAction)goBackToChangeStation:(id)sender {
-    handler(self, nil);
-}
-
-// Start Over Button
-- (IBAction)cancelRegistrationClearScreenAndCreateNewPatient:(id)sender {
-    _patient = [[PatientObject alloc]initWithNewPatient];
-    _patientNameField.text = @"";
-    [_patientPhoto setImage: [UIImage imageNamed:@"userImage.jpeg"]];
-    _familyNameField.text = @"";
-    [_patientAgeField setTitle:@"Tap to set Age" forState:UIControlStateNormal];
-    _villageNameField.text = @"";
-}
-*/
-
 @end

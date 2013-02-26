@@ -8,8 +8,9 @@
 
 #import "PreviousVisitsViewController.h"
 
-@interface PreviousVisitsViewController ()
-
+@interface PreviousVisitsViewController (){
+    NSManagedObjectContext *context;
+}
 @end
 
 @implementation PreviousVisitsViewController
@@ -31,27 +32,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // Retrieve patientData
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
-//    
-//    // Search database with patientId
-//    NSError *error;
-//    NSManagedObjectContext *context = [[FIUAppDelegate alloc] managedObjectContext];
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//
-//    [request setEntity:[NSEntityDescription entityForName:@"Visitation" inManagedObjectContext:context]];
-//    
-//    [request setPredicate:[NSPredicate predicateWithFormat:@"(patientId like[cd] %@)", _patientData.patient.patientId]];
 
-//    _patientHistoryArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
-//
-//    // Populate cells
-//    [_patientHistoryTableView reloadData];
-}
-
-// Assigns patientData from Notification
-- (void)assignPatientData:(NSNotification *)note {
-    _patientData = note.object;
+    // Search database with patientId
+    _patientHistoryArray = [_patientData getAllVisitsForCurrentPatient];
+    
+    // Populate cells
+    [_patientHistoryTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,21 +70,33 @@
     
     if(!cell) {
         cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        UINib * nib = [UINib nibWithNibName:@"PatientHistoryTableCellView" bundle:nil];
-        cell = [nib instantiateWithOwner:nil options:nil][0];
     }
-
-    [_patientData setDBObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
+    
+    VisitationObject * visitData = [_patientHistoryArray objectAtIndex:indexPath.row];
     
     // Display contents of cells
-//    cell.patientDOBLabel = [_patientData getDOB];
-//    cell.patientAgeLabel = [_patientData getAge];
-//    cell.patientWeightLabel = [NSNumber numberWithInt:_visitData.weight];
-//    cell.patientBPLabel = [NSNumber numberWithInt:_visitData.bloodPressure];
-//    cell.patientConditionsTextView = _visitData.complaint;
-//    cell.patientMedicationTextView = ;
+    cell.patientDOBLabel.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
+    cell.patientAgeLabel.text = [_patientData getObjectForAttribute:DOB];
+    cell.patientWeightLabel.text = [visitData getObjectForAttribute:WEIGHT];
+    cell.patientBPLabel.text = [visitData getObjectForAttribute:BLOODPRESSURE];
+    [cell.patientConditionsTextView setText:[visitData getObjectForAttribute:CONDITION]];
+//    cell.patientMedicationTextView setText:[visitData getObjectForAttribute:MEDICATIONID]];
     
     return cell;
+}
+
+//
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // Gets the object at the corresponding index
+    [_patientData setDatabaseObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
+    
+    // Sets color of cell when selected
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor grayColor];
+    
+    // Select patient and post notification
+//    [[NSNotificationCenter defaultCenter] postNotificationName:<#(NSString *)#> object:_patientData];
 }
 
 @end
