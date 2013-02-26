@@ -34,7 +34,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 
     // Search database with patientId
-    _patientHistoryArray = [_patientData getAllVisitsForCurrentPatient];
+    _patientHistoryArray = [[NSMutableArray alloc]initWithArray:[_patientData getAllVisitsForCurrentPatient]];
     
     // Populate cells
     [_patientHistoryTableView reloadData];
@@ -72,12 +72,12 @@
         cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    VisitationObject * visitData = [_patientHistoryArray objectAtIndex:indexPath.row];
+    VisitationObject * visitData = [[VisitationObject alloc]initWithVisit:[_patientHistoryArray objectAtIndex:indexPath.row]];
     
     // Display contents of cells
     cell.patientDOBLabel.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
-    cell.patientAgeLabel.text = [_patientData getObjectForAttribute:DOB];
-    cell.patientWeightLabel.text = [visitData getObjectForAttribute:WEIGHT];
+    cell.patientAgeLabel.text = _patientData.getDateOfBirth;
+    cell.patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[visitData getObjectForAttribute:WEIGHT]doubleValue]];
     cell.patientBPLabel.text = [visitData getObjectForAttribute:BLOODPRESSURE];
     [cell.patientConditionsTextView setText:[visitData getObjectForAttribute:CONDITION]];
 //    cell.patientMedicationTextView setText:[visitData getObjectForAttribute:MEDICATIONID]];

@@ -17,7 +17,7 @@
         <attribute name="sex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="villageName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="visit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Visitation" syncable="YES"/>
+        <relationship name="visit" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visitation" syncable="YES"/>
     </entity>
     <entity name="Prescription" representedClassName="Prescription" syncable="YES">
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
