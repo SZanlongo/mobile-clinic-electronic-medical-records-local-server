@@ -37,8 +37,6 @@
     _searchResultTableView.rowHeight = 75;
 }
 
-- (void)viewWillAppear:(BOOL)animated {    
-}
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
     // Responsible for dismissing the screen
@@ -75,15 +73,22 @@
     
     if(!cell) {
         cell = [[PatientResultTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        UINib * nib = [UINib nibWithNibName:@"PatientResultTableCellView" bundle:nil];
+        cell = [nib instantiateWithOwner:nil options:nil][0];
     }
     
     [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
 
     // Display contents of cells
     [cell.patientImage setImage:_patientData.getPhoto];
+    
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [_patientData getObjectForAttribute:FIRSTNAME], [_patientData getObjectForAttribute:FAMILYNAME]];
+    
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",_patientData.getAge];
+   
     cell.patientDOB.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
+    
+    NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
     
     return cell;
 }
@@ -93,16 +98,11 @@
         
     // Gets the object at the corresponding index
     [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
-    
-    // Return object to main screen and dismiss view
-    // handler(_patientData, nil);
- 
+
     // Sets color of cell when selected
     [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor grayColor]];
    
     handler(_patientData, nil);
-    // Select patient and post notification
-    [[NSNotificationCenter defaultCenter] postNotificationName:SEARCH_FOR_PATIENT object:_patientData];
 }
 
 /* Logic for search buttons */
@@ -111,38 +111,39 @@
 - (IBAction)searchByNameButton:(id)sender {
     // TEMPORARY CODE TO DO SEARCH
     // Check if there is at least one name
+//    if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
+//
+//        NSError *error;
+//        context = [[FIUAppDelegate alloc] managedObjectContext];
+//        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//        
+//        [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+//        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName beginswith[cd] %@) OR (familyName beginswith[cd] %@)", _patientNameField.text, _familyNameField.text]];
+//        
+//        _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
+//        
+//        // Redisplay the information
+//        [_searchResultTableView reloadData];
+//    }
+    
+// MIKE'S SEARCH (WILL EVENTUALLY IMPLEMENT WHEN ITS WORKING) ( DO NO DELETE!)
+    // Check if there is at least one name
     if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
-
-        NSError *error;
-        context = [[FIUAppDelegate alloc] managedObjectContext];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
         
-        [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName beginswith[cd] %@) OR (familyName beginswith[cd] %@)", _patientNameField.text, _familyNameField.text]];
-        
-        _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
-        
-        // Redisplay the information
-        [_searchResultTableView reloadData];
+        //Search the server and save all the results to the Clients database
+        [_patientData FindAllPatientsOnServerWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+            if (error) {
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+            }
+            
+            // Get all the result from the query
+            _patientSearchResultsArray  = [NSArray arrayWithArray:[_patientData FindAllPatientsLocallyWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text]];
+            
+            // Redisplay the information
+            [_searchResultTableView reloadData];
+        }];
     }
     
-//// MIKE'S SEARCH (WILL EVENTUALLY IMPLEMENT WHEN ITS WORKING) ( DO NO DELETE!)
-//    // Check if there is at least one name
-//    if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
-//        
-//        //Search the server and save all the results to the Clients database
-//        [_patientData FindAllPatientsOnServerWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
-//            if (error) {
-//                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-//            }
-//            
-//            // Get all the result from the query
-//            _patientSearchResultsArray  = [NSArray arrayWithArray:[_patientData FindAllPatientsLocallyWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text]];
-//            
-//            // Redisplay the information
-//            [_searchResultTableView reloadData];
-//        }];
-//    }
     
     
 //// FOR MY OWN TESTING (RIGO)
