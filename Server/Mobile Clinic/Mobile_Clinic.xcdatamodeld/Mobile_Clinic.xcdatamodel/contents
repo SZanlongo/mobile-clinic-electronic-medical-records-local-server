@@ -13,12 +13,12 @@
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="usertype" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="patient" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Patients" syncable="YES"/>
     </entity>
     <entity name="Visitation" representedClassName="Visitation" syncable="YES">

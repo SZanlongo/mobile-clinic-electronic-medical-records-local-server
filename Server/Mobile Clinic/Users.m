@@ -2,7 +2,7 @@
 //  Users.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/17/13.
+//  Created by Michael Montaque on 2/26/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
@@ -13,12 +13,12 @@
 @implementation Users
 
 @dynamic email;
-@dynamic firstname;
-@dynamic lastname;
+@dynamic firstName;
+@dynamic lastName;
 @dynamic password;
 @dynamic status;
-@dynamic username;
-@dynamic usertype;
+@dynamic userName;
+@dynamic userType;
 @dynamic patient;
 
 @end

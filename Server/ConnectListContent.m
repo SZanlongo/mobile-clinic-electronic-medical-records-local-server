@@ -29,16 +29,18 @@
 
 -(void)displayUserInformation:(NSNotification*)note{
     user = note.object;
-    [_username setStringValue:user.user.username];
-    [_email setStringValue:user.user.email];
-    [_Password setStringValue:user.user.password];
-    [_userTypeBox selectItemAtIndex:user.user.usertype.integerValue];
-    [_isActiveSegment setSelectedSegment:(user.user.status.boolValue)?1:0];
+    
+    [_username setStringValue:[user getObjectForAttribute:USERNAME]];
+    [_email setStringValue:[user getObjectForAttribute:EMAIL]];
+    [_Password setStringValue:[user getObjectForAttribute:PASSWORD]];
+    [_userTypeBox selectItemAtIndex:[[user getObjectForAttribute:USERNAME]integerValue]];
+    [_isActiveSegment setSelectedSegment:([[user getObjectForAttribute:USERNAME]boolValue])?1:0];
 }
 -(void)AuthorizeUser:(id)sender{
     NSSegmentedControl* seg = sender;
-    user.user.status = [NSNumber numberWithBool:(seg.selectedSegment == 1)?YES:NO];
-    [_isActiveSegment setSelectedSegment:(user.user.status.boolValue)?1:0];
+    
+    [user setObject:[NSNumber numberWithBool:(seg.selectedSegment == 1)?YES:NO] withAttribute:STATUS ];
+    [_isActiveSegment setSelectedSegment:([[user getObjectForAttribute:USERNAME]boolValue])?1:0];
 }
 
 -(void)CommitNewUserInfo:(id)sender{

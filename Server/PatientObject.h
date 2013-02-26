@@ -20,5 +20,4 @@
 @property(nonatomic, strong)        Patients* patient;
 @property(nonatomic, strong)        NSMutableArray* visits;
 
--(void)addVisitToPatient:(VisitationObject*)visit;
 @end

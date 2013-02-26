@@ -63,8 +63,8 @@ UserObject* users;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     UserObject* user = [[UserObject alloc]init];
-    user.user = [listOfUsers objectAtIndex:rowIndex];
-	return [user.user username];
+    [user setDBObject:[listOfUsers objectAtIndex:rowIndex]];
+	return [user getObjectForAttribute:USERNAME];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -75,7 +75,7 @@ UserObject* users;
 }
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
     UserObject* user = [[UserObject alloc]init];
-        user.user = [listOfUsers objectAtIndex:row];
+       [user setDBObject:[listOfUsers objectAtIndex:row]];
     [[NSNotificationCenter defaultCenter]postNotificationName:SELECTED_A_USER object:user];
     return YES;
 }

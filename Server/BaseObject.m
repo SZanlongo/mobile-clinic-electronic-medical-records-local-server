@@ -17,7 +17,9 @@
 @end
 
 @implementation BaseObject
-
+@synthesize databaseObject;
+#pragma mark - Public Methods
+#pragma mark-
 -(id)init{
     self = [super init];
     if(self)
@@ -28,6 +30,8 @@
     return self;
 }
 
+#pragma mark - BaseObject Protocol Methods
+#pragma mark-
 -(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
     
@@ -53,6 +57,20 @@
     
 }
 
+-(void)setObject:(id)object withAttribute:(NSString *)attribute{
+    [super setObject:object withAttribute:attribute inDatabaseObject:databaseObject];
+}
+
+-(id)getObjectForAttribute:(NSString *)attribute{
+    return [super getObjectForAttribute:attribute inDatabaseObject:databaseObject];
+}
+
+-(void)setDBObject:(NSManagedObject *)DatabaseObject{
+    databaseObject = DatabaseObject;
+}
+
+#pragma mark - Cloud API
+#pragma mark-
 -(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -131,7 +149,7 @@
     [request setHTTPBody:body];
     
     // set the content-length
-    NSString *postLength = [NSString stringWithFormat:@"%d", [body length]];
+    NSString *postLength = [NSString stringWithFormat:@"%li", (unsigned long)[body length]];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     
     // set URL
@@ -198,7 +216,8 @@
     
 }
 
-#pragma Mark Utilities
+#pragma mark- Cloud API Utilities
+#pragma mark-
 -(NSString *)convertDictionaryToString:(NSDictionary *) jsonParams
 {
     NSData *jsonParamsData = [NSJSONSerialization dataWithJSONObject:jsonParams options:NSJSONWritingPrettyPrinted error:nil];

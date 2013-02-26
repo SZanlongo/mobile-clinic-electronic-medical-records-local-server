@@ -94,4 +94,27 @@ typedef void (^ObjectResponse)(id<BaseObjectProtocol> data, NSError* error);
  * the CommonExecution method
  */
 @property(nonatomic, assign)    RemoteCommands commands;
+
+/**
+ * Use this to retrieve objects/values from the Patient object.
+ *@param attribute the name of the attribute you want to retrieve.
+ */
+-(id)getObjectForAttribute:(NSString*)attribute;
+
+/**
+ * Use this to save attributes of the object. For instance, to the Patient's Firstname can be saved by passing the string of his name and the Attribute FIRSTNAME
+ *@param object object that needs to be stored in the database
+ *@param attribute the name of the attribute or the key to which the object needs to be saved
+ */
+-(void)setObject:(id)object withAttribute:(NSString*)attribute;
+
+/**
+ This is the setter for the databaseObject that all objects that implement this protocal must have
+ @param databaseObject the coredata object that you want to manipulate
+ */
+-(void)setDBObject:(NSManagedObject*)DatabaseObject;
+
+@property(strong, nonatomic)NSManagedObject* databaseObject;
+
+
 @end

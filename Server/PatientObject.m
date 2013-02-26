@@ -39,7 +39,6 @@ NSString* lastname;
     
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
 
-    [consolidate setValue:[self packagedVisits] forKey:VISITS];
     [consolidate setValue:[NSNumber numberWithInt:kPatientType] forKey:OBJECTTYPE];
     return consolidate;
 }
@@ -54,11 +53,10 @@ NSString* lastname;
             firstname = [data objectForKey:FIRSTNAME];
             lastname = [data objectForKey:FAMILYNAME];
             break;
+        case kCreateNewPatient:
         default:
-            if (!_patient) {
-                _patient = (Patients*)[self CreateANewObjectFromClass:DATABASE];
-            }
-         [_patient setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
+            _patient = (Patients*)[self CreateANewObjectFromClass:DATABASE];
+            [_patient setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
             break;
     }
 }
@@ -68,10 +66,10 @@ NSString* lastname;
 {
     switch (self.commands) {
         case kCreateNewPatient:
-            [self CreateANewPatient:nil];
+            [self UpdatePatientWithErrorMessage:@"Patient could not be saved on the server" andSuccessMessage:@"Patient was saved on the server"];
             break;
         case kUpdatePatients:
-            [self UpdateANewPatient: nil];
+            [self UpdatePatientWithErrorMessage:@"Patient could not be updated on the server" andSuccessMessage:@"Patient was succesfully updated on the server"];
             break;
         case kFindPatientsByName:
             [self FindPatientByName];
@@ -103,32 +101,6 @@ NSString* lastname;
 #pragma mark - Private Methods
 #pragma mark -
 
-
--(void)CreateANewPatient:(ObjectResponse)onSuccessHandler
-{
-    // Find and return object if it exists
-    StatusObject* status = [[StatusObject alloc]init];
-    
-    // Need to set client so it can go the correct device
-    [status setClient:self.client];
-
-    // Save internal information to the patient object
-    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        if (error) {
-            // Create message
-            [status setErrorMessage:@"Patient could not be created."];
-            [status setStatus:kError];
-        }else{
-            // Create message
-            [status setErrorMessage:@"Patient has been created."];
-            [status setStatus:kSuccess];
-        }
-        // send status back to requested client
-        [status CommonExecution];
-    }];
-}
-
-
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key
 {
     // Check if it exists in database
@@ -138,39 +110,28 @@ NSString* lastname;
     return YES;
 }
 
--(void)UpdateANewPatient:(ObjectResponse)onSuccessHandler
-{
+-(void)UpdatePatientWithErrorMessage:(NSString*)errorMessage andSuccessMessage:(NSString*)success{
     // Find and return object if it exists
     StatusObject* status = [[StatusObject alloc]init];
     
     // Need to set client so it can go the correct device
     [status setClient:self.client];
-
-    if (_patient) {
-        [self saveObject:nil];
-        [status setStatus:kSuccess];
-        [status setErrorMessage:@"Patient has been updated."];
-    }else{
-        [status setStatus:kError];
-        [status setErrorMessage:@"Patient doesnt exist"];
-    }
     
-    
-    [status CommonExecution];
+    // Save internal information to the patient object
+    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        if (error) {
+            // Create message
+            [status setErrorMessage:errorMessage];
+            [status setStatus:kError];
+        }else{
+            // Create message
+            [status setErrorMessage:success];
+            [status setStatus:kSuccess];
+        }
+        // send status back to requested client
+        [status CommonExecution];
+    }];
 
-    
-}
-
--(void)addVisitToPatient:(Visitation *)visit{
-    [_patient addVisitationObject:visit];
-}
-
--(NSMutableArray*)packagedVisits{
-    NSMutableArray* completeVisits = [[NSMutableArray alloc]initWithCapacity:_visits.count];
-//    for (VisitationObject* visit in _visits) {
-//        [completeVisits addObject:[visit consolidateForTransmitting]];
-//    }
-    return completeVisits;
 }
 
 -(NSArray *)FindAllPatientsLocallyWithFirstName:(NSString *)firstname andWithLastName:(NSString *)lastname
@@ -206,18 +167,6 @@ NSString* lastname;
     // Let the status object send this information
     [status CommonExecution];
 }
-// Used to unpack all the visits
--(NSArray*)unpackageVisits:(NSArray*)packagedVists
-{
-    if (!_visits) {
-        _visits = [[NSMutableArray alloc]initWithCapacity:packagedVists.count];
-    }
-    
-    for (NSDictionary* visitInformation in packagedVists) {
-        VisitationObject* visit = [[VisitationObject alloc]initWithVisit:visitInformation];
-        [_visits addObject:visit];
-    }
-    return _visits;
-}
+
 
 @end
