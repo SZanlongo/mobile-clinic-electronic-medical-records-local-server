@@ -11,10 +11,11 @@
 #import "VisitationObject.h"
 #import "PatientHistoryTableCell.h"
 
-@interface PreviousVisitsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PreviousVisitsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    Visitation * visitData;
+}
 
 @property (nonatomic, strong) PatientObject * patientData;
-@property (nonatomic, strong) Visitation * visitData;
 @property (nonatomic, strong) NSArray * patientHistoryArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *patientHistoryTableView;
