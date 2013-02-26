@@ -67,21 +67,21 @@
     }
     
     
-    // ADD SAMPLE PATIENTS INTO DB
-    PatientObject pData = [[PatientObject alloc] init];
-    VisitationObject vData = [VisitationObject alloc init];
-    
-    [pData setObject:<#(id)#> withAttribute:FIRSTNAME];
-    [pData setObject:<#(id)#> withAttribute:FAMILYNAME];
-    [pData setObject:<#(id)#> withAttribute:VILLAGE];
-    [pData setObject:<#(id)#> withAttribute:DOB];
-    [pData setObject:<#(id)#> withAttribute:SEX];
-    
-    [vData setObject:<#(id)#> withAttribute:WEIGHT];
-    [vData setObject:<#(id)#> withAttribute:BLOODPRESSURE];
-    [vData setObject:<#(id)#> withAttribute:CONDITION];
-    [vData setObject:<#(id)#> withAttribute:<#(NSString *)#>];
-    [vData setObject:<#(id)#> withAttribute:<#(NSString *)#>];
+//    // ADD SAMPLE PATIENTS INTO DB
+//    PatientObject pData = [[PatientObject alloc] init];
+//    VisitationObject vData = [VisitationObject alloc init];
+//    
+//    [pData setObject:<#(id)#> withAttribute:FIRSTNAME];
+//    [pData setObject:<#(id)#> withAttribute:FAMILYNAME];
+//    [pData setObject:<#(id)#> withAttribute:VILLAGE];
+//    [pData setObject:<#(id)#> withAttribute:DOB];
+//    [pData setObject:<#(id)#> withAttribute:SEX];
+//    
+//    [vData setObject:<#(id)#> withAttribute:WEIGHT];
+//    [vData setObject:<#(id)#> withAttribute:BLOODPRESSURE];
+//    [vData setObject:<#(id)#> withAttribute:CONDITION];
+//    [vData setObject:<#(id)#> withAttribute:<#(NSString *)#>];
+//    [vData setObject:<#(id)#> withAttribute:<#(NSString *)#>];
     
 
     
