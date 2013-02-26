@@ -40,14 +40,17 @@
     </entity>
     <entity name="Visitation" representedClassName="Visitation" syncable="YES">
         <attribute name="bloodPressure" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="checkInTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="checkOutTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="complaint" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="diagnosisNotes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="diagnosisTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doctorId" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="doctorIn" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="doctorOut" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isGraphic" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="nurseId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="observation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="physician" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="triageIn" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="triageOut" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="visitationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <relationship name="prescription" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Prescription" syncable="YES"/>
@@ -57,6 +60,6 @@
         <element name="Patients" positionX="-11" positionY="468" width="128" height="180"/>
         <element name="Prescription" positionX="403" positionY="450" width="128" height="150"/>
         <element name="Users" positionX="205" positionY="402" width="128" height="165"/>
-        <element name="Visitation" positionX="-182" positionY="564" width="128" height="225"/>
+        <element name="Visitation" positionX="-182" positionY="564" width="128" height="270"/>
     </elements>
 </model>

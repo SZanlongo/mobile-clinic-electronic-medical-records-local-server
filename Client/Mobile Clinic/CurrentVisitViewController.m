@@ -59,14 +59,14 @@
     // Assigning vitals & condition
     [_currentVisit setObject:[NSNumber numberWithInt:[_patientWeightField.text intValue]] withAttribute:WEIGHT];
     [_currentVisit setObject:_patientBPField.text withAttribute:BLOODPRESSURE];
-    [_currentVisit setObject:_conditionsTextbox.text withAttribute:COMPLAINT];
+    [_currentVisit setObject:_conditionsTextbox.text withAttribute:CONDITION];
     
     // Adding visitation to patient object
     [_patientData addVisitToCurrentPatient:_currentVisit];
     
     [_patientData saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
         if (!error) {
-            
+           [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view]; 
         }else{
             handler(self,nil);
         }

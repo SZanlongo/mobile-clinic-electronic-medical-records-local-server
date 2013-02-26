@@ -9,7 +9,9 @@
 #import "SearchPatientViewController.h"
 #import "FIUAppDelegate.h"
 
-@interface SearchPatientViewController ()
+@interface SearchPatientViewController (){
+    NSManagedObjectContext *context;
+}
 
 @end
 
@@ -95,17 +97,7 @@
 
 // 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-        // TEMPORARY SEARCH (ASK RIGO IF YOU NEED TO KNOW WHY)
-        NSError *error;
-        NSManagedObjectContext *context = [[FIUAppDelegate alloc] managedObjectContext];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
-        [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName beginswith[cd] %@) OR (familyName beginswith[cd] %@)", _patientNameField.text, _familyNameField.text]];
-    
-        _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
-        // -- END OF TEMPORARY SEARCH --
-    
+        
     // Gets the object at the corresponding index
     [_patientData setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
     
@@ -135,7 +127,7 @@
     if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
 
         NSError *error;
-        NSManagedObjectContext *context = [[FIUAppDelegate alloc] managedObjectContext];
+        context = [[FIUAppDelegate alloc] managedObjectContext];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         
         [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
