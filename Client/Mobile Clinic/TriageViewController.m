@@ -35,7 +35,8 @@
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
     _tableView.rowHeight = 768;
     _tableView.transform = transform;
-        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     _tableView.frame = self.view.frame;
     [_tableView setShowsVerticalScrollIndicator:NO];
     
@@ -48,13 +49,6 @@
     // Notifications that receive patient data from registration & search view controllers
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
-    
-//    [_registerControl.createPatientButton addTarget:self action:@selector(moveKay) forControlEvents:UIControlEventTouchUpInside];
-    
-    // Create a button that returns to root view controller
-//    UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.navigationController.self action:@selector(popToRootViewControllerAnimated:)];
-//    [self.navigationItem setLeftBarButtonItem:backButton];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -72,10 +66,6 @@
     
     [self.navigationController pushViewController:newView animated:YES];
 }
-
-//- (void)back {
-//    [self.navigationController popToRootViewControllerAnimated:YES]
-//}
 
 - (void)didReceiveMemoryWarning
 {

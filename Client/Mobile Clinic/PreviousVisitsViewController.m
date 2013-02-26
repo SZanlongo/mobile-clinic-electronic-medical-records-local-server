@@ -38,11 +38,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
     
     // Search database with patientId
-    
-    
-    // Populate cells
-    
-    
+    NSError *error;
+    NSManagedObjectContext *context = [[FIUAppDelegate alloc] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+
+    [request setEntity:[NSEntityDescription entityForName:@"Visitation" inManagedObjectContext:context]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(patientId like[cd] %@)", _patientData.patient.patientId]];
+
+//    _patientHistoryArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
+//
+//    // Populate cells
+//    [_patientHistoryTableView reloadData];
 }
 
 // Assigns patientData from Notification
@@ -79,7 +85,7 @@
     PatientHistoryTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(!cell) {
-//        cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         UINib * nib = [UINib nibWithNibName:@"PatientHistoryTableCellView" bundle:nil];
         cell = [nib instantiateWithOwner:nil options:nil][0];
     }
@@ -87,7 +93,12 @@
     _patientData.patient = (Patients *)[_patientHistoryArray objectAtIndex:indexPath.row];
     
     // Display contents of cells
-    // NEED CODE TO RETRIEVE PATIENT HISTORY FROM THE DB ...
+//    cell.patientDOBLabel = [_patientData getDOB];
+//    cell.patientAgeLabel = [_patientData getAge];
+//    cell.patientWeightLabel = [NSNumber numberWithInt:_visitData.weight];
+//    cell.patientBPLabel = [NSNumber numberWithInt:_visitData.bloodPressure];
+//    cell.patientConditionsTextView = _visitData.complaint;
+//    cell.patientMedicationTextView = ;
     
     return cell;
 }

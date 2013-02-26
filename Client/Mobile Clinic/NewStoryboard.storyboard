@@ -731,26 +731,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="33t-9I-UdH">
                                 <rect key="frame" x="282" y="121" width="188" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="32">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="15" name="GillSans"/>
-                                                <font key="NSOriginalFont" size="15" name="GillSans"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="patientBPLabel" destination="Mfh-bu-gV0" id="D7Y-za-NnE"/>
                         <outlet property="patientFamilyNameLabel" destination="544-79-o9i" id="3Ew-Xr-HNh"/>
                         <outlet property="patientNameLabel" destination="vYb-tF-bqW" id="v0m-Yr-o7h"/>
+                        <outlet property="patientSexLabel" destination="5ZT-rC-l6B" id="uNE-Kv-zNl"/>
                         <outlet property="patientVillageLabel" destination="pef-pz-6xS" id="ykr-Hi-2Rx"/>
+                        <outlet property="patientWeightLabel" destination="KtU-dg-iVs" id="7Cb-t6-M16"/>
                         <outlet property="segmentedControl" destination="KVN-d1-eap" id="NSR-DP-Le7"/>
                         <outlet property="tableView" destination="2cd-7c-AGO" id="bsK-kX-eso"/>
                         <outlet property="toolBar" destination="ocm-wc-NlD" id="v6J-dr-4oI"/>
@@ -861,6 +852,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <outlet property="delegate" destination="Iw3-0E-8E0" id="dOx-zF-5Ed"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" id="vCr-C2-GbX">
+                                <rect key="frame" x="496" y="20" width="225" height="168"/>
+                                <color key="backgroundColor" red="0.4993223852" green="0.4993223852" blue="0.4993223852" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1175,7 +1170,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="dUy-rm-V1F">
                                 <rect key="frame" x="86" y="111" width="567" height="398"/>
                                 <color key="backgroundColor" red="0.89835778060000004" green="0.89835778060000004" blue="0.89835778060000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Patient is a type I diabetic complaining of chest pains that began approximately 2 weeks ago.  Chest pains coincide with exertion and pass with rest.  Patient describes the pain as a tight, squeezing sensation in the middle of the chest, rating the pain an 8 on a scale of 1 to 10.  Patient reports that yesterday (2/21/04) the pain spread to his left shoulder, arm, and hand, alarming him—bringing him here today.  The patient has had four episodes of chest pain (one with arm pain), each episode occurring while shoveling the snow.  Patient reports that the pain lasts “no more than a couple of minutes,” with the exception of this last episode which “seemed to last just a little bit longer.”  Each time the pain subsided on its own, although after the last episode the patient took an aspirin after the advice of his wife.  This scare, combined with his pressing diabetes complications, has brought the patient in today. </string>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1190,7 +1184,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxl-6X-EOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2807" y="-1908"/>
+            <point key="canvasLocation" x="2350" y="-2082"/>
         </scene>
         <!--Triage Patient View Controller - Visit-->
         <scene sceneID="n9R-pB-Rwb">
@@ -1273,14 +1267,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="180.0 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GUd-2L-BJY">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GUd-2L-BJY">
                                         <rect key="frame" x="101" y="75" width="65" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="120/80" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sts-tU-DZD">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sts-tU-DZD">
                                         <rect key="frame" x="144" y="101" width="55" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1338,7 +1332,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Male" minimumFontSize="17" id="ccP-ag-fc6">
-                                <rect key="frame" x="282" y="163" width="188" height="18"/>
+                                <rect key="frame" x="282" y="164" width="188" height="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1497,7 +1491,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CwY-KQ-xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2589" y="-440"/>
+            <point key="canvasLocation" x="2350" y="-693"/>
         </scene>
         <!--Medicine Search View Controller - Search-->
         <scene sceneID="cYc-vb-L8X">
@@ -1576,12 +1570,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nck-as-ZrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3792" y="-684"/>
+            <point key="canvasLocation" x="3256" y="-688"/>
         </scene>
     </scenes>
     <resources>
         <image name="afternoon.png" width="174" height="138"/>
-        <image name="clinicLogo.jpg" width="16" height="16"/>
+        <image name="clinicLogo.jpg" width="325" height="260"/>
         <image name="evening.png" width="176" height="138"/>
         <image name="morning.png" width="176" height="142"/>
         <image name="night.png" width="176" height="134"/>
@@ -1600,7 +1594,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <relationships>
                 <relationship kind="action" name="checkInButton:"/>
                 <relationship kind="action" name="quickCheckOutButton:"/>
-                <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="conditionsTextbox" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="patientBPField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
@@ -1617,6 +1610,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="DoctorPatientViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorPatientViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="patientAgeLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientFamilyNameLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientSexLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientVillageLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
@@ -1637,16 +1637,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="MedicineSearchResultCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicineSearchResultCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="medicineDose" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="medicineName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
         <class className="MedicineSearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicineSearchViewController.h"/>
             <relationships>
+                <relationship kind="action" name="back:"/>
                 <relationship kind="action" name="moveBackToPrescription:"/>
                 <relationship kind="action" name="searchMedicine:"/>
                 <relationship kind="outlet" name="medicineField" candidateClass="UITextField"/>
@@ -1658,6 +1652,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <relationships>
                 <relationship kind="action" name="findDrugs:"/>
                 <relationship kind="action" name="newTimeOfDay:"/>
+                <relationship kind="action" name="savePrescription:"/>
                 <relationship kind="outlet" name="drugTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="tabletsTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="timeOfDayTextFields" candidateClass="UITextField"/>
