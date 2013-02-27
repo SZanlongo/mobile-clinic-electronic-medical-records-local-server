@@ -43,26 +43,25 @@
     _tableView.dataSource = self;
     // Create controllers for each view
     
-    _control1 = [self getViewControllerFromiPadStoryboardWithName:@"prescriptionFormViewController"];
-    
-    [_control1 view];
-    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
-    [_control2 view];
+    _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
+    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
     
     _visitationData = [[VisitationObject alloc] initWithNewVisit];
     
+    _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
+    _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
+    _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
+    _patientSexField.text = [_patientData getSex];
+    [_patientPhoto setImage:_patientData.getPhoto];
+    
+    [_control1 view];
+    [_control1 setPatientData:_patientData];
+    [_control2 view];
+    [_control2 setPatientData:_patientData];
+    
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
-    
-   // [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
-    
-    _patientNameLabel.text = [_patientData getObjectForAttribute:FIRSTNAME];
-
-    _patientFamilyNameLabel.text = [_patientData getObjectForAttribute:FAMILYNAME];
-    
-    _patientAgeLabel.titleLabel.text = [NSString stringWithFormat:@"%i Years Old", _patientData.getAge];
-    
-    _patientSexLabel.text = _patientData.getSex;
-//
+//    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)saveVisitation{
@@ -77,28 +76,28 @@
 }
 
 - (void)viewDidUnload {
-    [self setTableView:nil];
-    [self setToolBar:nil];
-    [self setPatientNameLabel:nil];
-    [self setPatientFamilyNameLabel:nil];
-    [self setPatientVillageLabel:nil];
-    [self setPatientAgeLabel:nil];
-    [self setPatientSexLabel:nil];
-    [self setPatientSexLabel:nil];
+    [self setPatientNameField:nil];
+    [self setFamilyNameField:nil];
+    [self setVillageNameField:nil];
+    [self setPatientAgeField:nil];
+    [self setPatientSexField:nil];
+    [self setPatientPhoto:nil];
     [self setPatientWeightLabel:nil];
     [self setPatientBPLabel:nil];
+    [self setTableView:nil];
+    [self setToolBar:nil];
     [super viewDidUnload];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 2;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * currentDiagnosisCellIdentifier = @"currentDiagnosisCell";
     static NSString * previousVisitsCellIdentifier = @"previousVisitsCell";
     
@@ -113,17 +112,16 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 685);
+        cell.viewController.view.frame = CGRectMake(0, 0, 768, 700);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
         }
         
         [cell addSubview:cell.viewController.view];
-        
-        
-        
         [cell.viewController setScreenHandler:handler];
+        
+        [segmentedControl setEnabled:YES forSegmentAtIndex:0];
         
         return cell;
     }
@@ -138,13 +136,15 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 685);
+        cell.viewController.view.frame = CGRectMake(0, 0, 768, 700);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
         }
         
         [cell addSubview: cell.viewController.view];
+        
+        [segmentedControl setEnabled:YES forSegmentAtIndex:1];
         
         return cell;
     }
@@ -154,7 +154,7 @@
 //-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 //}
 
--(void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler{
     handler = myHandler;
 }
 
@@ -170,8 +170,8 @@
             break;
             
     }
-    [self.tableView reloadData];
     
+    [self.tableView reloadData];
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView

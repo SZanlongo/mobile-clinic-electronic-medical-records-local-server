@@ -10,12 +10,14 @@
 #import "MedicineSearchResultCell.h"
 
 @interface MedicineSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-- (IBAction)moveBackToPrescription:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITextField *medicineField;
-- (IBAction)searchMedicine:(id)sender;
-- (IBAction)back:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray * data;
 @property (strong, nonatomic) NSMutableArray * data2;
+
+- (IBAction)moveBackToPrescription:(id)sender;
+- (IBAction)searchMedicine:(id)sender;
+- (IBAction)back:(id)sender;
 
 @end

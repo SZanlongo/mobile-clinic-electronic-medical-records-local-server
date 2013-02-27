@@ -19,11 +19,12 @@
 @property (strong, nonatomic) CurrentDiagnosisViewController * control1;
 @property (strong, nonatomic) PreviousVisitsViewController * control2;
 
-@property (weak, nonatomic) IBOutlet UITextField *patientNameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *patientFamilyNameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *patientVillageLabel;
-@property (weak, nonatomic) IBOutlet UIButton *patientAgeLabel;
-@property (weak, nonatomic) IBOutlet UITextField *patientSexLabel;
+@property (weak, nonatomic) IBOutlet UITextField *patientNameField;
+@property (weak, nonatomic) IBOutlet UITextField *familyNameField;
+@property (weak, nonatomic) IBOutlet UITextField *villageNameField;
+@property (weak, nonatomic) IBOutlet UITextField *patientAgeField;
+@property (weak, nonatomic) IBOutlet UITextField *patientSexField;
+@property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 
 @property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
