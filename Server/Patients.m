@@ -2,7 +2,7 @@
 //  Patients.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/17/13.
+//  Created by Michael Montaque on 2/26/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
@@ -14,12 +14,12 @@
 
 @dynamic age;
 @dynamic familyName;
-@dynamic firstname;
+@dynamic firstName;
 @dynamic patientId;
 @dynamic photo;
 @dynamic sex;
 @dynamic status;
 @dynamic villageName;
-@dynamic visitation;
+@dynamic visit;
 
 @end

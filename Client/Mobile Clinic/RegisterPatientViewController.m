@@ -162,4 +162,14 @@ UIPopoverController * pop;
     
     return inputIsValid;
 }
+
+-(void)resetData{
+    [_patientAgeField setTitle:@"Tap to Set Age" forState:UIControlStateNormal];
+    [_familyNameField setText:@""];
+    [_patientNameField setText:@""];
+    [_villageNameField setText:@""];
+    [_patientPhoto setImage:[UIImage imageNamed:@"userImage.jpeg"]];
+    [_patientSexSegment setSelectedSegmentIndex:0];
+    _patient = [[PatientObject alloc]initWithNewPatient];
+}
 @end

@@ -12,11 +12,18 @@
 #import "StatusObject.h"
 #import "Visitation.h"
 @implementation VisitationObject
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self linkVisit];
+    }
+    return self;
+}
 -(id)initWithNewVisit{
     self = [super init];
     if (self) {
-        
-        self.databaseObject = (Visitation*)[self CreateANewObjectFromClass:DATABASE];
+        self.databaseObject = (Visitation*)[super CreateANewObjectFromClass:DATABASE];
         [self linkVisit];
     }
     return self;
@@ -24,8 +31,7 @@
 - (id)initWithVisit:(Visitation *)info
 {
     self = [super init];
-    if (self) {
-        
+    if (self) {        
         self.databaseObject = info;
         [self linkVisit];
     }
@@ -33,36 +39,20 @@
 }
 
 -(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
-   
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
-    
     [consolidate setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
-
     return consolidate;
 }
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    [self linkVisit];
     [visit setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
 
 
--(void)saveObject:(ObjectResponse)eventResponse
-{
-    NSLog(@"This does nothing. Please use the PatientObject's <addVisitToCurrentPatient:(VisitationObject *)visitation> method");
-}
-
--(void)CommonExecution
-{
-    NSLog(@"This does nothing client-side");
-}
-
-
 -(BOOL)isVisitUniqueForVisitID
 {
-    [self linkVisit];
     NSArray* pastVisits = [self FindObjectInTable:DATABASE withName:visit.visitationId forAttribute:VISITID];
     
     if (pastVisits.count > 0) {
@@ -81,7 +71,6 @@
 
 -(BOOL)loadVisitWithVisitationID:(NSString *)visitID{
     // checks to see if object exists
-    [self linkVisit];
     NSArray* arr = [self FindObjectInTable:DATABASE withName:visitID forAttribute:VISITID];
     
     if (arr.count == 1) {
@@ -89,6 +78,27 @@
         return  YES;
     }
     return  NO;
+}
+-(void)SetTriageCheckinTime{
+    [visit setTriageIn:[NSDate date]];
+}
+
+-(void)SetTriageCheckOutTime{
+    [visit setTriageOut:[NSDate date]];
+}
+
+-(void)SetDoctorCheckinTime{
+    [visit setDoctorIn:[NSDate date]];
+}
+
+-(void)SetDoctorCheckOutTime{
+    [visit setDoctorOut:[NSDate date]];
+}
+-(void)associateUserToNurseId{
+    [visit setNurseId:self.appDelegate.currentUserName];
+}
+-(void)associateUserToDoctorId{
+    [visit setDoctorId:self.appDelegate.currentUserName];
 }
 -(void)linkVisit{
     visit = (Visitation*)self.databaseObject;

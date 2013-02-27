@@ -62,17 +62,17 @@
     [currentVisit setObject:[NSNumber numberWithInt:[_patientWeightField.text intValue]] withAttribute:WEIGHT];
     [currentVisit setObject:_patientBPField.text withAttribute:BLOODPRESSURE];
     [currentVisit setObject:_conditionsTextbox.text withAttribute:CONDITION];
-    
+    [currentVisit SetTriageCheckinTime];
+    [currentVisit associateUserToNurseId];
     // Adding visitation to patient object
     [_patientData addVisitToCurrentPatient:currentVisit];
     
-    [_patientData saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        if (!error) {
-           [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+    [_patientData UpdatePatientObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        if (error) {
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
         }
-            handler(self,nil);
+        handler(self,nil);
     }];
-    // NEED LOGIC TO RESET EVERYTHING AND START A NEW PATIENT
 }
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy

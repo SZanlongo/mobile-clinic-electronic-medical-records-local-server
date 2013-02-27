@@ -2,7 +2,7 @@
 //  Users.h
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/20/13.
+//  Created by Michael Montaque on 2/26/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
@@ -14,12 +14,12 @@
 @interface Users : NSManagedObject
 
 @property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSString * firstname;
-@property (nonatomic, retain) NSString * lastname;
+@property (nonatomic, retain) NSString * firstName;
+@property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSNumber * status;
-@property (nonatomic, retain) NSString * username;
-@property (nonatomic, retain) NSNumber * usertype;
+@property (nonatomic, retain) NSString * userName;
+@property (nonatomic, retain) NSNumber * userType;
 @property (nonatomic, retain) NSSet *patient;
 @end
 

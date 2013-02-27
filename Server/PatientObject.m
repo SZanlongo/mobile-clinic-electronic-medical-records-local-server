@@ -30,6 +30,14 @@ NSString* firstname;
 NSString* lastname;
 @implementation PatientObject
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self linkDatabaseObjects];
+    }
+    return self;
+}
 
 #pragma mark - BaseObjectProtocol Methods
 #pragma mark -
@@ -55,8 +63,8 @@ NSString* lastname;
             break;
         case kCreateNewPatient:
         default:
-            _patient = (Patients*)[self CreateANewObjectFromClass:DATABASE];
-            [_patient setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
+            patient = (Patients*)[self CreateANewObjectFromClass:DATABASE];
+            [patient setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
             break;
     }
 }
@@ -88,9 +96,9 @@ NSString* lastname;
  */
 -(void)saveObject:(ObjectResponse)eventResponse
 {
-    if (_patient){
+    if (patient){
         
-        [self SaveCurrentObjectToDatabase:_patient];
+        [self SaveCurrentObjectToDatabase:patient];
         
         eventResponse(self, nil);
     }else{
@@ -168,5 +176,90 @@ NSString* lastname;
     [status CommonExecution];
 }
 
+-(void)PushPatientsToCloud{
+    NSArray* allPatients = [self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME];
 
+    for (Patients* syncPatient in allPatients) {
+        
+        [self query:@"patients" parameters:nil completion:^(NSError *error, NSDictionary *result) {
+            
+            NSMutableDictionary* temp = [NSMutableDictionary dictionaryWithDictionary:[[self consolidateForTransmitting:syncPatient]objectForKey:DATABASEOBJECT]] ;
+            //TODO: Deal with date values
+            [temp setValue:[self convertDateToSeconds:syncPatient.age] forKey:DOB];
+            //TODO: Deal with visists
+            [temp removeObjectForKey:@"visits"];
+            //TODO: Remover CreatedAt
+            [temp setValue:@"131231" forKey:@"createdAt"];
+       
+            if ([[result objectForKey:@"data"]count] == 0) {
+                [self query:CREATEPATIENT parameters:temp  completion:nil];
+        } else {
+            [self query:EDITPATIENT parameters:temp  completion:nil];
+         }
+            
+        }];
+    }
+}
+
+-(void)SyncPatientsWithCloud{
+    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
+    
+    //TODO: Remove Hard Dependencies
+    [mDic setObject:@"1" forKey:@"created_at"];
+    
+    [self query:@"patients" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+        NSLog(@"Patients: \n\n %@",result);
+        [self storeMultipleCloudUsers:result];
+        [self PushPatientsToCloud];
+    }];
+}
+
+-(void)storeMultipleCloudUsers:(NSDictionary*)cloudUsers
+{
+    //TODO: Remove Hard Dependencies
+    NSArray* users = [cloudUsers objectForKey:@"data"];
+    
+    for (NSDictionary* userInfo in users) {
+        //We only want to create patients that do not exists in Database
+        if (![self loadPatientWithID:[userInfo objectForKey:PATIENTID]]) {
+            
+            self.databaseObject = (Patients*)[self CreateANewObjectFromClass:DATABASE];
+            [self linkDatabaseObjects];
+            
+            patient.firstName = [userInfo objectForKey:FIRSTNAME];
+            patient.familyName = [userInfo objectForKey:FAMILYNAME];
+            patient.villageName = [userInfo objectForKey:VILLAGE];
+            patient.age = [self convertFromSeconds:[userInfo objectForKey:DOB]];
+            patient.sex = [userInfo objectForKey:SEX];
+            [self SaveCurrentObjectToDatabase:patient];
+            patient = nil;
+        }
+    }
+}
+
+-(BOOL)loadPatientWithID:(NSString *)patientID
+{
+    
+    if ([patientID isKindOfClass:[NSString class]]) {
+        NSArray* arr = [self FindObjectInTable:DATABASE withName:patientID forAttribute:PATIENTID];
+        
+        if (arr.count == 1) {
+            patient = [arr objectAtIndex:0];
+            return  YES;
+        }
+    }// checks to see if object exists
+    return NO;
+}
+
+-(void)linkDatabaseObjects{
+    patient = (Patients*) self.databaseObject;
+}
+
+-(NSDate*)convertFromSeconds:(NSNumber*)seconds{
+   return [NSDate dateWithTimeIntervalSince1970:seconds.doubleValue];
+}
+
+-(NSNumber*)convertDateToSeconds:(NSDate*)date{
+    return [NSNumber numberWithDouble:[date timeIntervalSince1970]];
+}
 @end

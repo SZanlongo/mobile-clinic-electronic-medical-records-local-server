@@ -113,7 +113,7 @@
                [ns domain], [ns type], [ns name], errorDict);
 }
 -(void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag{
-    NSLog(@"REading");
+    NSLog(@"REading partial");
 }
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
     

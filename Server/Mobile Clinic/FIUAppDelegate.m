@@ -8,7 +8,8 @@
 
 #import "FIUAppDelegate.h"
 #import "BaseObject.h"
-
+#import "PatientObject.h"
+PatientObject* patients;
 @implementation FIUAppDelegate
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -19,15 +20,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    
     [self managedObjectContext];
-    
-    BaseObject *mObj = [[BaseObject alloc]init];
-    NSMutableDictionary *mDic = [[NSMutableDictionary alloc]init];
-    
-    [mDic setObject:@"1" forKey:@"createdAt"];
-    [mObj query:@"create_patient" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-        
-    }];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.
@@ -124,7 +118,7 @@
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     
  [[NSNotificationCenter defaultCenter]postNotificationName:APPDELEGATE_STARTED object:self];
-    
+    patients = [[PatientObject alloc]init];
     return _managedObjectContext;
 }
 
@@ -146,6 +140,10 @@
     if (![[self managedObjectContext] save:&error]) {
         [[NSApplication sharedApplication] presentError:error];
     }
+}
+
+- (IBAction)syncAllPatient:(id)sender {
+    [patients SyncPatientsWithCloud];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender

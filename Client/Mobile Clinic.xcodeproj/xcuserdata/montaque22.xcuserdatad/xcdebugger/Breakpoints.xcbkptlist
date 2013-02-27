@@ -7,39 +7,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "383548013.608384"
+         filePath = "Mobile Clinic/CurrentVisitViewController.m"
+         timestampString = "383635003.737971"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "203"
-         endingLineNumber = "203"
-         landmarkName = "-CreatePatientActionSuccessfull:"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
+         landmarkName = "-checkInButton:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "383546852.109967"
+         filePath = "Mobile Clinic/CurrentVisitViewController.m"
+         timestampString = "383635831.733995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
-         landmarkName = "-createNewPatient:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "383547919.583132"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
-         landmarkName = "-loadPatientWithPatientID:"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "-checkInButton:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

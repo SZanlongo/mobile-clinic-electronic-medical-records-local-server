@@ -50,14 +50,10 @@ UserObject* users;
     [[NSNotificationCenter defaultCenter]removeObserver:self name:APPDELEGATE_STARTED object:appDelegate];
     
     // On First load, Sync Users from cloud to local server
-    UserObject* updateUserList = [[UserObject alloc]init];
-    
-    [updateUserList SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
-        appDelegate = note.object;
-        appDelegate.server = connection;
-        [self refreshServer:nil];
-    }];
-    
+    users = [[UserObject alloc]init];
+    appDelegate = note.object;
+    appDelegate.server = connection;
+    [self refreshServer:nil];    
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
@@ -86,10 +82,16 @@ UserObject* users;
 }
 
 -(void)refreshServer:(id)sender{
-    [self beginUpdates];
-    listOfUsers = [NSArray arrayWithArray:[users getAllUsersFromDatabase]];
-    [self endUpdates];
-    [self reloadData];
+      
+    [users SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
+        [self beginUpdates];
+
+        listOfUsers = [NSArray arrayWithArray:[users getAllUsersFromDatabase]];
+        [self endUpdates];
+        [self reloadData];
+    }];
+    
+   
     
 }
 -(void)StopServer:(id)sender{

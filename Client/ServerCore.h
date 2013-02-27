@@ -10,6 +10,7 @@
 #import "GCDAsyncSocket.h"
 #import "HTTPCore.h"
 #import "ServerProtocol.h"
+
 @interface ServerCore : HTTPCore <GCDAsyncSocketDelegate,NSNetServiceBrowserDelegate,NSNetServiceDelegate,ServerProtocol> {
     
     NSNetServiceBrowser *netServiceBrowser;
@@ -18,6 +19,7 @@
 	GCDAsyncSocket *asyncSocket;
     NSMutableData* globalData;
 	BOOL connected;
+
 }
 +(id)sharedInstance;
 -(BOOL)isClientConntectToServer;

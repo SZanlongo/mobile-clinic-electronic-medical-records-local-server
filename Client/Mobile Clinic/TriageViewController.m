@@ -148,6 +148,7 @@
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
                  ];
             }
+            [[cell viewController]resetData];
         }];
         
         [self.navigationController pushViewController:newView animated:YES];

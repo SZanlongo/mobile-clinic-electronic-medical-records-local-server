@@ -34,5 +34,5 @@
 - (IBAction)getAgeOfPatient:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
-
+-(void)resetData;
 @end

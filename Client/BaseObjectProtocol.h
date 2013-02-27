@@ -38,7 +38,7 @@ typedef enum {
 
 typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
-@required
+@optional
 /** This method should take all the objects important information
  * and place them inside a dictionary with keys that should be 
  * reflected in the server.
@@ -116,5 +116,6 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 -(void)setObject:(id)object withAttribute:(NSString*)attribute;
 
 @property(strong, nonatomic)NSManagedObject* databaseObject;
+
 @end
 

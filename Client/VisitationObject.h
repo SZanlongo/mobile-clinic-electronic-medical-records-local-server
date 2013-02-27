@@ -15,11 +15,11 @@
 #define CONDITION   @"condition"
 #define DTITLE      @"diagnosisTitle"
 #define GRAPHIC     @"isGraphic"
-#define WEIGHT      @"weight" //The different user types (look at enum)
-#define OBSERVATION @"observation"
-#define NURSEID     @"nurseId"
-#define BLOODPRESSURE @"bloodPressure"
-#define VISITID     @"visitationId"
+#define WEIGHT          @"weight" //The different user types (look at enum)
+#define OBSERVATION     @"observation"
+#define NURSEID         @"nurseId"
+#define BLOODPRESSURE   @"bloodPressure"
+#define VISITID         @"visitationId"
 
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
@@ -49,10 +49,33 @@
  */
 -(BOOL)loadVisitWithVisitationID:(NSString *)visitID;
 
-
 /**
  * Adds a prescription to the visit of the patient. Call this method when you have a brand new prescription for the visit and you are going to save it for the first time. This method will add the visit's ID to the prescription and associate the prescription with the visit by adding it to the visit's relationship. NOTE: This method does not save the prescription. You will have to call SaveObject method still in the patient object
  @param prescription the prescription you want to associate with the visit
  */
 -(void)addPrescriptionToCurrentVisit:(PrescriptionObject*)prescription;
+/**
+ * Adds the current user's username to the visitation nurse Id
+ */
+-(void)associateUserToNurseId;
+/**
+ * Adds the current user's username to the visitation Doctor Id
+ */
+-(void)associateUserToDoctorId;
+/**
+ * sets the Triage check in time to the current date & time
+ */
+-(void) SetTriageCheckinTime;
+/**
+ * sets the Triage check out time to the current date & time
+ */
+-(void) SetTriageCheckOutTime;
+/**
+ * sets the Doctor check in time to the current date & time
+ */
+-(void) SetDoctorCheckinTime;
+/**
+ * sets the Doctor check out time to the current date & time
+ */
+-(void) SetDoctorCheckOutTime;
 @end

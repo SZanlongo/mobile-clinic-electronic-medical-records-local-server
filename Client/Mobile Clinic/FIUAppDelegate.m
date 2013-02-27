@@ -11,12 +11,24 @@
 
 @implementation FIUAppDelegate
 @synthesize ServerManager;
+
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
++ (UIViewController*) topMostController
+{
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    return topController;
+}
+
 +(AJNotificationView *)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString *)msg{
-    UIView *topMostView = [[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0];
+    UIView *topMostView = [[FIUAppDelegate topMostController]view];
     return [AJNotificationView showNoticeInView:topMostView type:color title:msg linedBackground:animate hideAfter:10];
 }
 
@@ -28,7 +40,7 @@
 {
     #define TESTING 1
         #ifdef TESTING
-            [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+            [TestFlight setDeviceIdentifier:[[NSUUID UUID]UUIDString]];
         #endif
     
         [TestFlight takeOff:@"afc6ff4013b9e807e5a97743e2a8d270_MTg2NjAwMjAxMy0wMi0xMiAxODozOTozOS41NzU1OTk"];

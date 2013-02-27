@@ -7,9 +7,11 @@
 //
 #define ARCHIVER    @"archiver"
 
+
 #import "ServerCore.h"
 #import "ObjectFactory.h"
 
+ServerCallback onComplete;
 
 @interface ServerCore (Private)
 - (void)connectToNextAddress;
@@ -184,7 +186,7 @@
         
         NSLog(@"Dictionary: %@",[obj description]);
         
-        [obj CommonExecution];
+        onComplete(obj);
     } else {
         NSLog(@"Write Error in Log: Recieved No data");
     }
@@ -206,10 +208,13 @@
     return myDictionary;
 }
 
-- (void)sendData:(NSDictionary*)dataToBeSent;
+- (void)sendData:(NSDictionary*)dataToBeSent withOnComplete:(ServerCallback)response
 {
+    
+    onComplete = response;
+    
     //New mutable data object
-   globalData = [[NSMutableData alloc] init];
+    globalData = [[NSMutableData alloc] init];
     
     //Created an archiver to serialize dictionary into data object
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:globalData];

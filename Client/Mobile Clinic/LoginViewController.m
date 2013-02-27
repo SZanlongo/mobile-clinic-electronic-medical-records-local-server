@@ -40,7 +40,7 @@
     
     // if user doesn't exist, instantiate the user
     if (!user)
-        user = [[UserObject alloc]initWithNewUser];
+        user = [[UserObject alloc]init];
     
     // Attempt to login the user based on username and password
     [user loginWithUsername:usernameTextField.text andPassword:passwordTextField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
@@ -51,6 +51,7 @@
             // Listens for the logout button
             [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
             [self navigateToMainScreen];
+            [user.appDelegate setCurrentUserName:usernameTextField.text];
         }
     }];
     
@@ -58,6 +59,8 @@
 -(void)LogOffDevice{
     [self dismissViewControllerAnimated:YES completion:^{
         // Stops listening
+        [passwordTextField setText:@""];
+         [user.appDelegate setCurrentUserName:@""];
         [[NSNotificationCenter defaultCenter]removeObserver:self];
     }];
 }

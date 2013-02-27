@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+typedef void (^ServerCallback)(id data);
 @protocol ServerProtocol <NSObject>
 @required
 - (void) startClient;
 - (void) stopClient;
-- (void) sendData:(NSDictionary*)dataToBeSent;
+- (void)sendData:(NSDictionary*)dataToBeSent withOnComplete:(ServerCallback)response;
 - (BOOL) isClientConntectToServer;
 @end

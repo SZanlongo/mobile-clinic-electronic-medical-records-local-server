@@ -28,7 +28,7 @@
 {
     self = [super init];
     if (self) {
-        user = (Users*)self.databaseObject;
+        [self linkDatabaseObjects];
     }
     return self;
 }
@@ -341,5 +341,7 @@
     [status CommonExecution];
     
 }
-
+-(void)linkDatabaseObjects{
+    user = (Users*) self.databaseObject;
+}
 @end

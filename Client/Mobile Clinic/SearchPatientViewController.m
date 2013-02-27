@@ -133,9 +133,9 @@
         //Search the server and save all the results to the Clients database
         [_patientData FindAllPatientsOnServerWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
             if (error) {
-                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
             }
-            
+
             // Get all the result from the query
             _patientSearchResultsArray  = [NSArray arrayWithArray:[_patientData FindAllPatientsLocallyWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text]];
             
@@ -170,4 +170,11 @@
     handler(nil,nil);
 }
 
+-(void)resetData{
+    _patientData = [[PatientObject alloc]initWithNewPatient];
+    [_familyNameField setText:@""];
+    [_patientNameField setText:@""];
+    _patientSearchResultsArray = nil;
+    [_searchResultTableView reloadData];
+}
 @end

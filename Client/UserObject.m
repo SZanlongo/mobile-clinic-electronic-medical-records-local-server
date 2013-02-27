@@ -6,14 +6,8 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
-#define STATUS      @"status"
-#define EMAIL       @"email"
-#define FIRSTNAME   @"firstname"
-#define LASTNAME    @"lastname"
-#define USERNAME    @"username"
-#define PASSWORD    @"password"
+
 #define ALL_USERS   @"all users"
-#define USERTYPE    @"usertype" //The different user types (look at enum)
 #define DATABASE    @"Users"
 
 #import "UserObject.h"
@@ -33,20 +27,25 @@ NSString* tempPassword;
 {
     self = [super init];
     if (self) {
-        _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
+        
+     self.databaseObject = (Users*)[self CreateANewObjectFromClass:DATABASE];
+        user = (Users*)self.databaseObject;
     }
     return self;
 }
 
 -(NSString *)description
 {
-    NSString* text = [NSString stringWithFormat:@"\nUsername: %@ \nPassword: %@ \nUsertype: %i ",_user.username,_user.password,_user.usertype.intValue];
+    NSString* text = [NSString stringWithFormat:@"\nUsername: %@ \nPassword: %@ \nUsertype: %i ",user.userName,user.password,user.userType.intValue];
     return text;
 }
 
 #pragma mark - Protocol Methods
 #pragma mark -
-
+-(void)setDBObject:(NSManagedObject *)DatabaseObject{
+    [super setDBObject:DatabaseObject];
+    user = (Users*)self.databaseObject;
+}
 -(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object
 {
     
@@ -60,14 +59,14 @@ NSString* tempPassword;
 -(void)unpackageFileForUser:(NSDictionary *)data
 {
     [super unpackageFileForUser:data];
-    [_user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
+    [user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
 
 -(void)saveObject:(ObjectResponse)eventResponse
 {
     // First check to see if a databaseObject is present
-    if (_user){
+    if (user){
         
         [self SaveCurrentObjectToDatabase];
     }
@@ -84,15 +83,15 @@ NSString* tempPassword;
 -(BOOL)usernameAndPasswordValidation
 {
     // Username must be between 5 - 20 chars
-    if (_user.password.length < 5 || _user.password.length > 20) {
+    if (user.password.length < 5 || user.password.length > 20) {
         return NO;
     }
     // Username must be between 5 - 20 chars
-    else if (_user.username.length < 5 || _user.username.length > 20) {
+    else if (user.userName.length < 5 || user.userName.length > 20) {
         return NO;
     }
     // Check if contains any symbols
-    else if (![_user.username isAlphaNumeric]) {
+    else if (![user.userName isAlphaNumeric]) {
         return NO;
     }
     
@@ -126,10 +125,10 @@ NSString* tempPassword;
         if (didFindUser) {
             
             // Check if the user has permissions
-            if (_user.status.boolValue)
+            if (user.status.boolValue)
             {
                 // Check credentials against the found user
-                if ([_user.password isEqualToString:password])
+                if ([user.password isEqualToString:password])
                 {
                     respondToEvent(self,nil);
                 }
@@ -161,7 +160,7 @@ NSString* tempPassword;
     [center addObserver:self selector:@selector(ActionSuccessfull:) name:GLOBAL_STATUS_LISTENER object:tempObject];
     
     //storing internal variables to be sent to the client
-    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:_user]];
+    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:user]];
     
     //** SETTING THE COMMAND YOU WANT THE SERVER TO EXECUTE WITH YOUR INFORMATION **
     [dataToSend setValue:[NSNumber numberWithInt:kLoginUser] forKey:OBJECTCOMMAND];
@@ -180,7 +179,7 @@ NSString* tempPassword;
     if ([self usernameAndPasswordValidation]) {
         
         //Repackage data to be sent
-        NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:_user]];
+        NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:user]];
         
         // adding Command to tell the server to create a new user
         // with the information provided
@@ -208,7 +207,7 @@ NSString* tempPassword;
     NSArray* arr = [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:USERNAME];
     
     if (arr.count == 1) {
-        _user = arr.lastObject;
+        user = arr.lastObject;
         return  YES;
     }
     return  NO;
@@ -217,16 +216,17 @@ NSString* tempPassword;
 -(void)getUsersFromServer:(ObjectResponse)withResponse
 {
     classResponder = withResponse;
-    // Create a listener for when the server sends a responses
-    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(PullAllUsers:) name:GLOBAL_STATUS_LISTENER object:tempObject];
+
     NSMutableDictionary* dataToSend = [[NSMutableDictionary alloc]initWithCapacity:2];
     [dataToSend setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dataToSend setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
     // Send data to server
     [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-            classResponder(nil,error);
+        classResponder(nil,error);
+    } andWithPositiveResponse:^(id data) {
+        [self PullAllUsers:data];
     }];
+
 }
 
 #pragma mark - Listen & Respond Methods
@@ -252,9 +252,9 @@ NSString* tempPassword;
     
     
 }
--(void)PullAllUsers:(NSNotification *)notification{
+-(void)PullAllUsers:(StatusObject *)notification{
     // Get information that was returned from server
-    tempObject = notification.object;
+    tempObject = notification;
     
     // get all the users returned from server
     NSArray* arr = [tempObject.data objectForKey:ALL_USERS];
@@ -263,13 +263,14 @@ NSString* tempPassword;
     for (NSDictionary* dict in arr) {
         // If the user doesnt exists in the database currently then add it in
         if (![self loadUserWithUsername:[dict objectForKey:USERNAME]]) {
-           _user = (Users*)[self CreateANewObjectFromClass:DATABASE];
+           user = (Users*)[self CreateANewObjectFromClass:DATABASE];
         }
         
-        [_user setValuesForKeysWithDictionary:dict];
+        [user setValuesForKeysWithDictionary:dict];
         [self SaveCurrentObjectToDatabase];
     }
     
     classResponder(nil,nil);
 }
+
 @end

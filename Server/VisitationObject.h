@@ -12,9 +12,10 @@
 
 @interface VisitationObject : BaseObject{
     NSString* associatedPatient;
+    Visitation* visit;
 }
 
-@property(strong,nonatomic)Visitation* visit;
-
 -(id)initWithVisit:(NSDictionary*)info;
+
+
 @end

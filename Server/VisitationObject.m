@@ -23,10 +23,19 @@
 #import "Visitation.h"
 @implementation VisitationObject
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self linkDatabaseObject];
+    }
+    return self;
+}
 - (id)initWithVisit:(NSDictionary *)info
 {
     self = [super init];
     if (self) {
+        [self linkDatabaseObject];
         [self unpackageFileForUser:info];
     }
     return self;
@@ -42,17 +51,19 @@
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-
-    [_visit setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
+    [visit setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
+-(void)associateCurrentUserToVisit{
+    
+}
 
 -(void)saveObject:(ObjectResponse)eventResponse
 {
     // First check to see if a databaseObject is present
-    if (_visit){
+    if (visit){
         
-        [self SaveCurrentObjectToDatabase:_visit];
+        [self SaveCurrentObjectToDatabase:visit];
         
         if (eventResponse)
             eventResponse(self, nil);
@@ -101,14 +112,21 @@
     [status CommonExecution];
 }
 
+#pragma mark - Private Methods
+#pragma mark-
+
 -(BOOL)isVisitUniqueForVisitID
 {
-   NSArray* pastVisits = [self FindObjectInTable:DATABASE withName:_visit.visitationId forAttribute:VISITID];
+   NSArray* pastVisits = [self FindObjectInTable:DATABASE withName:visit.visitationId forAttribute:VISITID];
     
     if (pastVisits.count > 0) {
         return NO;
     }
     
     return YES;
+}
+
+-(void)linkDatabaseObject{
+    visit = (Visitation*)self.databaseObject;
 }
 @end

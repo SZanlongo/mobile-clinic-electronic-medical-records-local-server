@@ -20,19 +20,14 @@
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSString * userName;
 @property (nonatomic, retain) NSNumber * userType;
-@property (nonatomic, retain) NSOrderedSet *patient;
+@property (nonatomic, retain) NSSet *patient;
 @end
 
 @interface Users (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(Patients *)value inPatientAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromPatientAtIndex:(NSUInteger)idx;
-- (void)insertPatient:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removePatientAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInPatientAtIndex:(NSUInteger)idx withObject:(Patients *)value;
-- (void)replacePatientAtIndexes:(NSIndexSet *)indexes withPatient:(NSArray *)values;
 - (void)addPatientObject:(Patients *)value;
 - (void)removePatientObject:(Patients *)value;
-- (void)addPatient:(NSOrderedSet *)values;
-- (void)removePatient:(NSOrderedSet *)values;
+- (void)addPatient:(NSSet *)values;
+- (void)removePatient:(NSSet *)values;
+
 @end

@@ -14,10 +14,12 @@
 #import "Patients.h"
 
 
-@interface PatientObject : BaseObject
+@interface PatientObject : BaseObject{
+    Patients* patient;
+}
+      
+@property(nonatomic, strong)    NSMutableArray* visits;
 
-//----> 0 = Female, 1 = Male <---//
-@property(nonatomic, strong)        Patients* patient;
-@property(nonatomic, strong)        NSMutableArray* visits;
-
+-(void) PushPatientsToCloud;
+-(void) SyncPatientsWithCloud;
 @end

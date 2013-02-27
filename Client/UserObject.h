@@ -13,7 +13,13 @@
  */
 
 
-
+#define STATUS      @"status"
+#define EMAIL       @"email"
+#define FIRSTNAME   @"firstName"
+#define LASTNAME    @"lastName"
+#define USERNAME    @"userName"
+#define PASSWORD    @"password"
+#define USERTYPE    @"userType"
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
 #import "Users.h"
@@ -26,8 +32,9 @@ typedef enum {
     kRecordKeeper   = 4,
 }UserTypes;
 
-@interface UserObject : BaseObject
-@property(nonatomic, strong)      Users* user;
+@interface UserObject : BaseObject{
+    Users* user;
+}    
 
 -(id)initWithNewUser;
 /* call to send this object to be verified by the server */
