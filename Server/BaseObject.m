@@ -32,22 +32,34 @@
 
 #pragma mark - BaseObject Protocol Methods
 #pragma mark-
--(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
+-(NSDictionary *)consolidateForTransmitting{
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
     
-    [consolidate setValue:[object dictionaryWithValuesForKeys:object.entity.attributeKeys] forKey:DATABASEOBJECT];
+    [consolidate setValue:[databaseObject dictionaryWithValuesForKeys:databaseObject.entity.attributeKeys] forKey:DATABASEOBJECT];
     return consolidate;
 }
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
+    
 }
 
 -(NSString *)description{
     NSString* text = [NSString stringWithFormat:@"\nObjectType: %i",self.objectType];
     return text;
 }
-
+-(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
+    
+}
+//-(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse{
+//    
+//    if ([self.appDelegate.server isClientConntectToServer]) {
+//        // Sending information to the server
+//        [self.appDelegate.server sendData:data withOnComplete:posResponse];
+//    }else{
+//        negativeResponse(nil,[self createErrorWithDescription:@"Server is Down, Please contact you Application Administrator" andErrorCodeNumber:10 inDomain:@"BaseObject"]);
+//    }
+//}
 -(void)saveObject:(ObjectResponse)eventResponse{
     //Do not save the objectID, That is automatically saved and generated
     eventResponse(self, nil);

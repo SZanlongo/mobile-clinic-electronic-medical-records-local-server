@@ -41,9 +41,9 @@
     return self;
 }
 
--(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
+-(NSDictionary *)consolidateForTransmitting{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
 
     [consolidate setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
     return consolidate;

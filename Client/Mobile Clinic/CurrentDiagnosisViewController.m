@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _visitationData = [[VisitationObject alloc]initWithNewVisit];
+   // _visitationData = [[VisitationObject alloc]initWithNewVisit];
 	// Do any additional setup after loading the view.
 }
 

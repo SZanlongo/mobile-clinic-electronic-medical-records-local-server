@@ -9,7 +9,8 @@
 
 #import "ServerCore.h"
 #import "ObjectFactory.h"
-
+ServerCommand onComplete;
+static int TIMEOUT = -1;
 @implementation ServerCore
 @synthesize isServerRunning;
 +(id)sharedInstance{
@@ -123,23 +124,28 @@
 
     if(data) {
         // ObjectFactory: Used to instatiate the proper class but returns it generically
-      id<BaseObjectProtocol> obj = [ObjectFactory createObjectForType:myDictionary];
+      id<BaseObjectProtocol> factoryObject = [ObjectFactory createObjectForType:myDictionary];
         
-        // setup the object with the values the client set
-        // stores the command the client sent
-        [obj unpackageFileForUser:myDictionary];
+        [factoryObject ServerCommand:myDictionary withOnComplete:^(NSDictionary *dataToBeSent) {
+   
+            //New mutable data object
+            NSMutableData *data = [[NSMutableData alloc] init];
+            
+            //Created an archiver to serialize dictionary into data object
+            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+            
+            //encodes the dataToBeSent into data object
+            [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
+            //finalize archiving
+            [archiver finishEncoding];
+            //send data
+            [sock writeData:data withTimeout:TIMEOUT tag:10];
+        }];
         
-        //If the server needs to responds, This is the socket to respond to
-        [obj setClient:sock];
-        
-        NSLog(@"Dictionary: %@",[obj description]);
-        // Executes the command that was given from the client
-        [obj CommonExecution];
-
-    
+        NSLog(@"Dictionary: %@",[factoryObject description]);
+  
     } else {
         NSLog(@"Write Error in Log: Recieved No data");
-        
     }
 }
 
@@ -160,21 +166,6 @@ NSLog(@"Sent Data to client");
     return myDictionary;
 }
 
-- (void)sendData:(NSDictionary*)dataToBeSent toClient:(GCDAsyncSocket*)sock
-{
-    //New mutable data object
-    NSMutableData *data = [[NSMutableData alloc] init];
-    
-    //Created an archiver to serialize dictionary into data object
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    //encodes the dataToBeSent into data object
-    [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
-    //finalize archiving
-    [archiver finishEncoding];
-    //send data
-	[sock writeData:data withTimeout:0 tag:10];
-	
-}
 -(void)stopServer{
     if (isServerRunning) {
         [asyncSocket disconnect];

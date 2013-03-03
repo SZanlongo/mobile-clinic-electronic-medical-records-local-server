@@ -72,7 +72,8 @@
         cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    VisitationObject * visitData = [[VisitationObject alloc]initWithVisit:[_patientHistoryArray objectAtIndex:indexPath.row]];
+    VisitationObject * visitData = [[VisitationObject alloc]init];
+    [visitData setDBObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
     
     // Display contents of cells
     cell.patientDOBLabel.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];

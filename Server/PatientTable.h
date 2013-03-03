@@ -9,5 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PatientTable : NSViewController
+@property (weak) IBOutlet NSScrollView *patientTable;
+- (IBAction)refreshPatients:(id)sender;
+- (IBAction)unblockPatients:(id)sender;
+- (IBAction)pushPatientsIntoCloud:(id)sender;
 
 @end

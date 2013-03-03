@@ -19,7 +19,8 @@
 }
       
 @property(nonatomic, strong)    NSMutableArray* visits;
-
+-(id)init;
+-(void) UnlockPatient;
 -(void) PushPatientsToCloud;
 -(void) SyncPatientsWithCloud;
 @end

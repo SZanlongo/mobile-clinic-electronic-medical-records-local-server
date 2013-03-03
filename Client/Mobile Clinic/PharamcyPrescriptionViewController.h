@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StationViewHandlerProtocol.h"
 #import "PatientObject.h"
+#import "PrescriptionObject.h"
 
 @interface PharamcyPrescriptionViewController : UIViewController{
     ScreenHandler handler;

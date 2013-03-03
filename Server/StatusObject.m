@@ -24,14 +24,16 @@ FIUAppDelegate* appDelegate;
 
 #pragma mark - BaseObjectProtocol Method
 #pragma mark -
--(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
+-(NSDictionary *)consolidateForTransmitting{
     
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:5];
+   
     [consolidate setValue:_errorMessage forKey:ERRORMSG];
     [consolidate setValue:_data forKey:DATA];
     [consolidate setValue:[NSNumber numberWithInt:_status] forKey:STATUS];
     [consolidate setValue:[NSNumber numberWithInt:kStatusType] forKey:OBJECTTYPE];
     [consolidate setValue:[NSNumber numberWithInt:kStatusClientWillRecieve] forKey:OBJECTCOMMAND];
+    
     return consolidate;
 }
 
@@ -50,15 +52,11 @@ FIUAppDelegate* appDelegate;
 
 -(void)CommonExecution{
 
-    [self SendDataToClient];
-
 }
 
 #pragma mark - Private Methods
 #pragma mark -
--(void)SendDataToClient{
-    [appDelegate.server sendData:[self consolidateForTransmitting:nil] toClient:_client];
-}
+
 
 -(NSString *)description{
     NSString* text = [NSString stringWithFormat:@"\nError Message: %@ \nData: %@ \nObjectType: %i",_errorMessage,_data.description,self.objectType];

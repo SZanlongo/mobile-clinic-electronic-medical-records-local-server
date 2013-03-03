@@ -8,8 +8,9 @@
 #define APPDELEGATE_STARTED @"slow appdelegate"
 #import <Cocoa/Cocoa.h>
 #import "ServerCore.h"
-
+#import "PatientTable.h"
 @interface FIUAppDelegate : NSObject <NSApplicationDelegate>{
+    PatientTable* pTable;
 }
 
 @property (nonatomic, strong) ServerCore *server;
@@ -23,5 +24,6 @@
 - (IBAction)saveAction:(id)sender;
 
 - (IBAction)syncAllPatient:(id)sender;
+- (IBAction)showPatientsView:(id)sender;
 
 @end

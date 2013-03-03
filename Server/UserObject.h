@@ -33,7 +33,6 @@ typedef enum {
 //@property(nonatomic, strong)      Users* user;
 -(id)init;
 -(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder;
--(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
 -(NSArray*)getAllUsersFromDatabase;
 -(BOOL)loadUserWithUsername:(NSString*)usersName;
 @end

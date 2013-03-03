@@ -2,8 +2,8 @@
 //  Patients.h
 //  Mobile Clinic
 //
-//  Created by Rigo Hernandez on 2/26/13.
-//  Copyright (c) 2013 Steven Berlanga. All rights reserved.
+//  Created by Michael Montaque on 2/27/13.
+//  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSNumber * sex;
 @property (nonatomic, retain) NSNumber * status;
 @property (nonatomic, retain) NSString * villageName;
+@property (nonatomic, retain) NSString * isLockedBy;
 @property (nonatomic, retain) NSSet *visit;
 @end
 

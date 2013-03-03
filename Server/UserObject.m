@@ -19,7 +19,6 @@
 
 #import "Users.h"
 #import "UserObject.h"
-#import "StatusObject.h"
 #import "NSString+Validation.h"
 
 @implementation UserObject
@@ -29,17 +28,20 @@
     self = [super init];
     if (self) {
         [self linkDatabaseObjects];
+        // Find and return object if it exists
+        status = [[StatusObject alloc]init];
     }
     return self;
 }
 
 #pragma mark - BaseObjectProtocol Methods
 #pragma mark -
+
 //TODO: Add error creator to base object
 /* The super needs to be called first */
--(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
+-(NSDictionary *)consolidateForTransmitting{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
     
     [consolidate setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
 
@@ -52,13 +54,18 @@
     [user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
+-(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
+    commandPattern = response;
+    [self unpackageFileForUser:dataToBeRecieved];
+    [self CommonExecution];
+}
 
 /* Depending on the RemoteCommands it will execute a different Command */
 -(void)CommonExecution
 {
     switch (self.commands) {
-        case kCreateNewUser:
-            [self CreateANewUser:nil];
+        case kCreateNewObject:
+            NSLog(@"Please use web application to add users");
             break;
         case kPullAllUsers:
             [self PushAllUsersToClient];
@@ -74,12 +81,6 @@
 }
 
 
-/* Make sure you call Super after checking the existance of the database object
- * This can be done by doing the following:
- *       if (![self FindDataBaseObjectWithID]) {
- *               [self CreateANewObjectFromClass:<<CLASS NAME>>];
- *           }
- */
 -(void)saveObject:(ObjectResponse)eventResponse
 {
 
@@ -99,27 +100,6 @@
 
 #pragma mark- Public Methods
 #pragma mark-
-
--(void)CreateANewUser:(ObjectResponse)onSuccessHandler
-{
-    // Find and return object if it exists
-    StatusObject* status = [[StatusObject alloc]init];
-    // Need to set client so it can go the correct device
-    [status setClient:self.client];
-    
-    // Run Complete validation on the information given
-    // if there is an error it will be stored in the status var
-    if ([self CompleteServerSideValidation:status]) {
-        // If validation passes a new user is create
-        [self CreateANewObjectFromClass:DATABASE];
-        // Save the new user
-        [self saveObject:nil];
-        // store a message that the user has been created
-        [status setErrorMessage:@"Your profile has been created. Contact your Application Administrator for approval"];
-    }
-    
-    [status CommonExecution];
-}
 
 
 -(BOOL)loadUserWithUsername:(NSString *)usersName
@@ -162,14 +142,14 @@
 
 -(void)setDBObject:(NSManagedObject *)DatabaseObject{
     [super setDBObject:DatabaseObject];
-    user = (Users*)self.databaseObject;
+    [self linkDatabaseObjects];
 }
 
 #pragma mark - Private Methods
 #pragma mark -
 
 
--(BOOL)CompleteServerSideValidation:(StatusObject*)status
+-(BOOL)CompleteServerSideValidation
 {
     BOOL isValid = YES;
     [status setStatus:kSuccess];
@@ -275,26 +255,19 @@
     //[dict setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dict setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
     [dict setValue:arrayToSend forKey:ALL_USERS];
-    
-    StatusObject* status = [[StatusObject alloc]init];
-    // Need to set client so it can go the correct device
-    [status setClient:self.client];
+
     // status will hold a copy of this user data
     [status setData:dict];
     // Indicates that this was a success
     [status setStatus:kSuccess];
     // Its good to send a message
     [status setErrorMessage:@"Synced All users to device from server. Please Try logging in."];
-    // Let the status object send this information
-    [status CommonExecution];
+    
+    commandPattern([status consolidateForTransmitting]);
 }
 
 -(void)ValidateAndLoginUser
 {
-    
-    StatusObject* status = [[StatusObject alloc]init];
-    // Need to set client so it can go the correct device
-    [status setClient:self.client];
     // Initially set it to an error, for efficiency.
     [status setStatus:kError];
     
@@ -305,10 +278,9 @@
         // Its good to send a message
         [status setErrorMessage:@"Username doesnt Exist or was incorrect"];
         // Let the status object send this information
-        [status CommonExecution];
         NSLog(@"Username doesnt Exist or was incorrect");
-        return;
-    }
+
+    }else{
     
     // Validate with information inside database
     user = [userArray objectAtIndex:0];
@@ -316,31 +288,25 @@
     if (![user.password isEqualToString:user.password]) {
         // Its good to send a message
         [status setErrorMessage:@"User Password is incorrect"];
-        // Let the status object send this information
-        [status CommonExecution];
         NSLog(@"User Password is incorrect");
-        return;
-    }
-    
-    if (!user.status.boolValue) {
+    }else if (!user.status.boolValue) {
         // Its good to send a message
         [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
-        // Let the status object send this information
-        [status CommonExecution];
         NSLog(@"User is inactive");
-        return;
     }
-    
     // status will hold a copy of this user data
-    [status setData:[self consolidateForTransmitting:user]];
+    [status setData:[self consolidateForTransmitting]];
     // Indicates that this was a success
     [status setStatus:kSuccess];
     // Its good to send a message
     [status setErrorMessage:@"Login Successfull"];
-    // Let the status object send this information
-    [status CommonExecution];
+
+    }
+    
+    commandPattern([status consolidateForTransmitting]);
     
 }
+
 -(void)linkDatabaseObjects{
     user = (Users*) self.databaseObject;
 }

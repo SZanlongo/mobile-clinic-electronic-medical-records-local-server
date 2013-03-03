@@ -5,9 +5,11 @@
 //  Created by Michael Montaque on 2/1/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
-#define SAVECOMPLETE      @"savedone"
-#define OBJECTTYPE        @"objectType"
-#define OBJECTCOMMAND     @"userCommand" //The different user types (look at enum)
+#define DATABASEOBJECT @"Database Object"
+#define ISLOCKEDBY          @"isLockedBy"
+#define SAVECOMPLETE        @"savedone"
+#define OBJECTTYPE          @"objectType"
+#define OBJECTCOMMAND       @"userCommand" //The different user types (look at enum)
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
@@ -23,15 +25,15 @@ typedef enum {
 
 /* These are all the commands the server and client will understand */
 typedef enum {
-    kCreateNewUser,
-    kPullAllUsers,
-    kLoginUser,
-    kLogoutUser,
-    kStatusClientWillRecieve,
-    kStatusServerWillRecieve,
-    kCreateNewPatient,
-    kFindPatientsByName,
-    kUpdatePatients,
+    kPullAllUsers               = 0,
+    kLoginUser                  = 1,
+    kLogoutUser                 = 2,
+    kStatusClientWillRecieve    = 3,
+    kStatusServerWillRecieve    = 4,
+    kToggleObjectLock           = 5,
+    kCreateNewObject            = 6,
+    kFindObject                 = 7,
+    kUpdateObject               = 8,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>
@@ -39,13 +41,17 @@ typedef enum {
 typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 @optional
+- (id)initWithDatabase:(NSString*)database;
+- (id)initWithNewDatabaseObject:(NSString*)database;
+- (id)initAndFillWithNewObject:(NSDictionary *)info andRelatedDatabase:(NSString*)database;
+- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib;
 /** This method should take all the objects important information
  * and place them inside a dictionary with keys that should be 
  * reflected in the server.
  *
  * Once packaged, return the dictionary
  */
--(NSDictionary*) consolidateForTransmitting:(NSManagedObject*)object;
+-(NSDictionary*) consolidateForTransmitting;
 
 /** This should only take in a dictionary that contains information
  * for the object that is unpackaging it.
@@ -114,6 +120,18 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  *@param attribute the name of the attribute or the key to which the object needs to be saved
  */
 -(void)setObject:(id)object withAttribute:(NSString*)attribute;
+
+-(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse;
+
+-(void)setValueToDictionaryValues:(NSDictionary*)values;
+
+-(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
+
+-(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database;
+
+-(void)shouldLockVisit:(BOOL)lockVisit forDatabase:(NSString*)database onCompletion:(ObjectResponse)Response;
+
+-(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
 
 @property(strong, nonatomic)NSManagedObject* databaseObject;
 

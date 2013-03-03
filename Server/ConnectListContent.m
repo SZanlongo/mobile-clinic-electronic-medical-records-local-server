@@ -16,14 +16,10 @@
     if (!appDelegate) {
         appDelegate = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
         
-        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        // Called when the server saves information
-        [center addObserverForName:SAVE_USER object:nil queue:nil usingBlock:^(NSNotification *note) {
-            [self displayUserInformation:note.object];
-        }];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(displayUserInformation:) name:SAVE_USER object:user];
 
         // Called when the user taps a user Row
-        [center addObserver:self selector:@selector(displayUserInformation:) name:SELECTED_A_USER object:user];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayUserInformation:) name:SELECTED_A_USER object:user];
     }
 }
 
@@ -38,7 +34,6 @@
 }
 -(void)AuthorizeUser:(id)sender{
     NSSegmentedControl* seg = sender;
-    
     [user setObject:[NSNumber numberWithBool:(seg.selectedSegment == 1)?YES:NO] withAttribute:STATUS ];
     [_isActiveSegment setSelectedSegment:([[user getObjectForAttribute:USERNAME]boolValue])?1:0];
 }

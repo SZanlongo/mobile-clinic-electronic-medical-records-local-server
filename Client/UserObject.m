@@ -23,16 +23,7 @@ NSString* tempPassword;
 #pragma mark - Default Methods
 #pragma mark -
 
-- (id)initWithNewUser
-{
-    self = [super init];
-    if (self) {
-        
-     self.databaseObject = (Users*)[self CreateANewObjectFromClass:DATABASE];
-        user = (Users*)self.databaseObject;
-    }
-    return self;
-}
+
 
 -(NSString *)description
 {
@@ -49,7 +40,7 @@ NSString* tempPassword;
 -(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object
 {
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
     
     [consolidate setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
     
@@ -263,7 +254,7 @@ NSString* tempPassword;
     for (NSDictionary* dict in arr) {
         // If the user doesnt exists in the database currently then add it in
         if (![self loadUserWithUsername:[dict objectForKey:USERNAME]]) {
-           user = (Users*)[self CreateANewObjectFromClass:DATABASE];
+            user = (Users*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
         }
         
         [user setValuesForKeysWithDictionary:dict];

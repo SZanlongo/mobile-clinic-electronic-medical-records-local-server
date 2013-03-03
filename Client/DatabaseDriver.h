@@ -17,7 +17,7 @@
 
 -(id)init;
 
--(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name;
+-(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name isTemporary:(BOOL)temporary;
 
 -(void)SaveCurrentObjectToDatabase;
 

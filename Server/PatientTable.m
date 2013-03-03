@@ -24,4 +24,12 @@
     return self;
 }
 
+- (IBAction)refreshPatients:(id)sender {
+}
+
+- (IBAction)unblockPatients:(id)sender {
+}
+
+- (IBAction)pushPatientsIntoCloud:(id)sender {
+}
 @end

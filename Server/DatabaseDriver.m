@@ -7,8 +7,7 @@
 //
 
 #import "DatabaseDriver.h"
-#import "FIUAppDelegate.h"
-FIUAppDelegate* appDelegate;
+
 @implementation DatabaseDriver
 
 -(id)init{

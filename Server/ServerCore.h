@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GCDAsyncSocket.h"
-
+#import "ServerProtocol.h"
 @interface ServerCore : NSObject <GCDAsyncSocketDelegate,NSNetServiceDelegate> {
     NSNetService *netService;
 	GCDAsyncSocket *asyncSocket;

@@ -11,25 +11,10 @@
 
 @implementation PrescriptionObject
 
--(id)initWithNewPrescription{
-    self = [super init];
-    if (self) {
-        prescription = (Prescription*)[self CreateANewObjectFromClass:DATABASE];
-    }
-    return self;
-}
-- (id)initWithPrescription:(Prescription *)info
-{
-    self = [super init];
-    if (self) {
-        prescription = info;
-    }
-    return self;
-}
 
 -(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting:object]];
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
     
     [consolidate setValue:[NSNumber numberWithInt:kPrescriptionType] forKey:OBJECTTYPE];
     

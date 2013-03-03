@@ -49,8 +49,8 @@
     
     //RIGO - FOR TESTING PURPOSES ONLY
     //MANUALLY ENTERS DATA INTO THE DATABASE
-    NSError *error;
-    NSManagedObjectContext *context = [self managedObjectContext];
+//    NSError *error;
+//    NSManagedObjectContext *context = [self managedObjectContext];
 
     /*
     // Delete all entries in the Core Data table (ex. Patients)
@@ -77,18 +77,13 @@
      */
     
     // Print (to NSLog) content of table (ex. Patients)
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-    
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@ %@", [info valueForKey:@"firstName"], [info valueForKey:@"familyName"]);
-        NSLog(@"Age: %@", [info valueForKey:@"age"]);
-        NSLog(@"Sex: %@", [info valueForKey:@"sex"]);
-        NSLog(@"Village Name: %@", [info valueForKey:@"villageName"]);
-    }
-    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+//    
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//   
+
+   
     // Add sample patients if database is empty
     
     // ADD SAMPLE PATIENTS INTO DB

@@ -18,10 +18,13 @@
 #import <Foundation/Foundation.h>
 #import "DatabaseDriver.h"
 #import "BaseObjectProtocol.h"
+#import "StatusObject.h"
 
 
 @interface BaseObject : DatabaseDriver <BaseObjectProtocol>{
     ObjectResponse respondToEvent;
+    ServerCommand commandPattern;
+    StatusObject* status;
 }
 @property(nonatomic, weak)      id client;
 @property(nonatomic, assign)    ObjectTypes objectType;
@@ -30,4 +33,5 @@
 -(id)init;
 -(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion;
 -(void)queryWithPartialURL:(NSString *)partialURL parameters: (NSDictionary *)params imageData:(NSData *)imageData completion:(void(^)(NSError *error, NSDictionary *result)) completion;
+
 @end

@@ -57,21 +57,22 @@
 // Creates a visit for the patient and checks them in
 - (IBAction)checkInButton:(id)sender {
     // Assigning vitals & condition
-    currentVisit = [[VisitationObject alloc] initWithNewVisit];
+    currentVisit;// = [[VisitationObject alloc] initWithNewVisit];
     
     [currentVisit setObject:[NSNumber numberWithInt:[_patientWeightField.text intValue]] withAttribute:WEIGHT];
     [currentVisit setObject:_patientBPField.text withAttribute:BLOODPRESSURE];
     [currentVisit setObject:_conditionsTextbox.text withAttribute:CONDITION];
-    [currentVisit SetTriageCheckinTime];
-    [currentVisit associateUserToNurseId];
+   // [currentVisit SetTriageCheckinTime];
+   // [currentVisit setNurseId];
     // Adding visitation to patient object
     [_patientData addVisitToCurrentPatient:currentVisit];
     
     [_patientData UpdatePatientObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        if (error) {
+        if (!data && error) {
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        }
+        }else{
         handler(self,nil);
+        }
     }];
 }
 

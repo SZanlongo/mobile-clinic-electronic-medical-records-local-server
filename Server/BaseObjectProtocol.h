@@ -22,29 +22,31 @@ typedef enum {
 
 /* These are all the commands the server and client will understand */
 typedef enum {
-    kCreateNewUser,
-    kPullAllUsers,
-    kLoginUser,
-    kLogoutUser,
-    kStatusClientWillRecieve,
-    kStatusServerWillRecieve,
-    kCreateNewPatient,
-    kFindPatientsByName,
-    kUpdatePatients,
+    kPullAllUsers               = 0,
+    kLoginUser                  = 1,
+    kLogoutUser                 = 2,
+    kStatusClientWillRecieve    = 3,
+    kStatusServerWillRecieve    = 4,
+    kToggleObjectLock           = 5,
+    kCreateNewObject            = 6,
+    kFindObject                 = 7,
+    kUpdateObject               = 8,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>
 
 typedef void (^ObjectResponse)(id<BaseObjectProtocol> data, NSError* error);
+typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 
 @required
+- (void)ServerCommand:(NSDictionary*)dataToBeRecieved withOnComplete:(ServerCommand)response;
 /* This method should take all the objects important information
  * and place them inside a dictionary with keys that should be
  * reflected in the server.
  *
  * Once packaged, return the dictionary
  */
--(NSDictionary*) consolidateForTransmitting:(NSManagedObject*)object;
+-(NSDictionary*) consolidateForTransmitting;
 
 /* This should only take in a dictionary that contains information
  * for the object that is unpackaging it.

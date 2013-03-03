@@ -93,10 +93,18 @@ UIPopoverController * pop;
         [_patient setObject:_villageNameField.text withAttribute:VILLAGE];
         [_patient setObject: [NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex] withAttribute:SEX];
                 
-        // Even if the user file is being edited this method will
-        // know the difference
+        /** 
+         * This will create a patient locally and on the server.
+         * The patient created on the server will be locked automatically.
+         * This is done because of the workflow of the system
+         * To unlock the patient see the documentation for the PatientObject
+         */
         [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
+            if (!data && error) {
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
+            }else{
                 handler(data,error);
+            }
         }];
     }
 }

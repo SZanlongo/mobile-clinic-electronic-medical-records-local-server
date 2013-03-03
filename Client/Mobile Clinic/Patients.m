@@ -2,8 +2,8 @@
 //  Patients.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/26/13.
-//  Copyright (c) 2013 Florida International University. All rights reserved.
+//  Created by Michael Montaque on 2/27/13.
+//  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
 #import "Patients.h"
@@ -20,6 +20,7 @@
 @dynamic sex;
 @dynamic status;
 @dynamic villageName;
+@dynamic isLockedBy;
 @dynamic visit;
 
 @end

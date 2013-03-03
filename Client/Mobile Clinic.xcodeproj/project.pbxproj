@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */; };
-		0F11D35316DC908900DA6B23 /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F11D35216DC908900DA6B23 /* Patients.m */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
 		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
@@ -100,7 +99,11 @@
 		EA9E98E916DC58AF002BEB87 /* Prescription.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E98E816DC58AF002BEB87 /* Prescription.m */; };
 		EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
 		EAA7AC2816C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
+		EAADC01B16E05554009E7AF9 /* PatientFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAADC01A16E05554009E7AF9 /* PatientFile.json */; };
+		EAADC02216E113A5009E7AF9 /* MobileClinicFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADC02116E113A5009E7AF9 /* MobileClinicFacade.m */; };
+		EAADC02316E113A5009E7AF9 /* MobileClinicFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADC02116E113A5009E7AF9 /* MobileClinicFacade.m */; };
 		EAC19C7516DDB72A00B0B8DA /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C7416DDB72A00B0B8DA /* Visitation.m */; };
+		EAC19C8216DEC07500B0B8DA /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C8116DEC07500B0B8DA /* Patients.m */; };
 		EACEB53916BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53A16BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
@@ -163,11 +166,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EAADC01116E03F24009E7AF9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				EAADC01B16E05554009E7AF9 /* PatientFile.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0F0172A416DBEBC1000A7F3B /* PatientHistoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientHistoryTableCell.h; path = ../PatientHistoryTableCell.h; sourceTree = "<group>"; };
 		0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientHistoryTableCell.m; path = ../PatientHistoryTableCell.m; sourceTree = "<group>"; };
-		0F11D35116DC908900DA6B23 /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Patients.h; path = ../Patients.h; sourceTree = "<group>"; };
-		0F11D35216DC908900DA6B23 /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Patients.m; path = ../Patients.m; sourceTree = "<group>"; };
 		0F1A596616D8327600C121BA /* CurrentVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentVisitTableCell.h; sourceTree = "<group>"; };
 		0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitTableCell.m; sourceTree = "<group>"; };
 		0F1A596916D8329F00C121BA /* PreviousVisitTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitTableCell.h; sourceTree = "<group>"; };
@@ -295,8 +309,16 @@
 		EA9E98E816DC58AF002BEB87 /* Prescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prescription.m; sourceTree = "<group>"; };
 		EAA7AC2516C33D8700B3B911 /* PatientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObject.m; sourceTree = "<group>"; };
 		EAA7AC2616C33D8700B3B911 /* PatientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObject.h; sourceTree = "<group>"; };
+		EAADC01A16E05554009E7AF9 /* PatientFile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PatientFile.json; sourceTree = "<group>"; };
+		EAADC02016E113A5009E7AF9 /* MobileClinicFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileClinicFacade.h; sourceTree = "<group>"; };
+		EAADC02116E113A5009E7AF9 /* MobileClinicFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileClinicFacade.m; sourceTree = "<group>"; };
+		EAADC02416E113D2009E7AF9 /* MobileClinicFacadeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileClinicFacadeProtocol.h; sourceTree = "<group>"; };
+		EAADC02516E1163D009E7AF9 /* PatientObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObjectProtocol.h; sourceTree = "<group>"; };
+		EAADC02916E36F78009E7AF9 /* VisitationObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitationObjectProtocol.h; sourceTree = "<group>"; };
 		EAC19C7316DDB72A00B0B8DA /* Visitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Visitation.h; sourceTree = "<group>"; };
 		EAC19C7416DDB72A00B0B8DA /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visitation.m; sourceTree = "<group>"; };
+		EAC19C8016DEC07500B0B8DA /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patients.h; sourceTree = "<group>"; };
+		EAC19C8116DEC07500B0B8DA /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patients.m; sourceTree = "<group>"; };
 		EACEB53716BEC4E100685AE8 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -483,6 +505,7 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				EAADC01A16E05554009E7AF9 /* PatientFile.json */,
 				EAE6CDEE16BE4754008949DC /* Animated Notifications  */,
 				EA8BB92C16C8794200A4BC6E /* Camera API */,
 				EA952F1816BEF1EC006A9AF9 /* Categories */,
@@ -494,7 +517,7 @@
 				EA9AC88616C860D500493485 /* Interfaces */,
 				467740FE16BD931E002FD4A5 /* Mobile Clinic */,
 				4677412216BD931E002FD4A5 /* Mobile ClinicTests */,
-				EAE6CDEB16BE4701008949DC /* Objects */,
+				EAADC02616E1165C009E7AF9 /* Mobile Clinic Driver */,
 				467740F616BD931E002FD4A5 /* Products */,
 				EAE6CDED16BE4743008949DC /* Server API */,
 				46E773D316CB0BFB00242454 /* TestFlightSDK1.1 */,
@@ -537,12 +560,12 @@
 				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
 				0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */,
 				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
+				EAC19C8016DEC07500B0B8DA /* Patients.h */,
+				EAC19C8116DEC07500B0B8DA /* Patients.m */,
 				EAC19C7316DDB72A00B0B8DA /* Visitation.h */,
 				EAC19C7416DDB72A00B0B8DA /* Visitation.m */,
 				EA27F9CA16DCB7C8008D7DA9 /* Users.h */,
 				EA27F9CB16DCB7C9008D7DA9 /* Users.m */,
-				0F11D35116DC908900DA6B23 /* Patients.h */,
-				0F11D35216DC908900DA6B23 /* Patients.m */,
 				EA9E98E716DC58AF002BEB87 /* Prescription.h */,
 				EA9E98E816DC58AF002BEB87 /* Prescription.m */,
 				4677410716BD931E002FD4A5 /* FIUAppDelegate.h */,
@@ -722,6 +745,37 @@
 			name = Interfaces;
 			sourceTree = "<group>";
 		};
+		EAADC02616E1165C009E7AF9 /* Mobile Clinic Driver */ = {
+			isa = PBXGroup;
+			children = (
+				EAE6CDEB16BE4701008949DC /* Objects */,
+				EAADC02416E113D2009E7AF9 /* MobileClinicFacadeProtocol.h */,
+				EAADC02016E113A5009E7AF9 /* MobileClinicFacade.h */,
+				EAADC02116E113A5009E7AF9 /* MobileClinicFacade.m */,
+			);
+			name = "Mobile Clinic Driver";
+			sourceTree = "<group>";
+		};
+		EAADC02716E1169C009E7AF9 /* Patient Object */ = {
+			isa = PBXGroup;
+			children = (
+				EAADC02516E1163D009E7AF9 /* PatientObjectProtocol.h */,
+				EAA7AC2616C33D8700B3B911 /* PatientObject.h */,
+				EAA7AC2516C33D8700B3B911 /* PatientObject.m */,
+			);
+			name = "Patient Object";
+			sourceTree = "<group>";
+		};
+		EAADC02816E36F54009E7AF9 /* Visitation Object */ = {
+			isa = PBXGroup;
+			children = (
+				EA1EE1A116C9B7C300E263D2 /* VisitationObject.h */,
+				EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */,
+				EAADC02916E36F78009E7AF9 /* VisitationObjectProtocol.h */,
+			);
+			name = "Visitation Object";
+			sourceTree = "<group>";
+		};
 		EAE6CDC516BE468C008949DC /* HTTP API */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,10 +824,8 @@
 				EAE6CDCF16BE46CC008949DC /* StatusObject.m */,
 				EAE6CDD816BE46CC008949DC /* UserObject.h */,
 				EAE6CDD916BE46CC008949DC /* UserObject.m */,
-				EAA7AC2616C33D8700B3B911 /* PatientObject.h */,
-				EAA7AC2516C33D8700B3B911 /* PatientObject.m */,
-				EA1EE1A116C9B7C300E263D2 /* VisitationObject.h */,
-				EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */,
+				EAADC02716E1169C009E7AF9 /* Patient Object */,
+				EAADC02816E36F54009E7AF9 /* Visitation Object */,
 				EA9E98E416DC475D002BEB87 /* PrescriptionObject.h */,
 				EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */,
 			);
@@ -837,6 +889,7 @@
 				467740F116BD931E002FD4A5 /* Sources */,
 				467740F216BD931E002FD4A5 /* Frameworks */,
 				467740F316BD931E002FD4A5 /* Resources */,
+				EAADC01116E03F24009E7AF9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1015,9 +1068,10 @@
 				46B11A3916DB24ED008CD600 /* PharamcyPrescriptionCell.m in Sources */,
 				46B11A3C16DB266C008CD600 /* MedicineSearchCell.m in Sources */,
 				0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */,
-				0F11D35316DC908900DA6B23 /* Patients.m in Sources */,
 				EA27F9CC16DCB7C9008D7DA9 /* Users.m in Sources */,
 				EAC19C7516DDB72A00B0B8DA /* Visitation.m in Sources */,
+				EAC19C8216DEC07500B0B8DA /* Patients.m in Sources */,
+				EAADC02216E113A5009E7AF9 /* MobileClinicFacade.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1059,6 +1113,7 @@
 				EA1EE19C16C8877F00E263D2 /* NSString+StringExt.m in Sources */,
 				EA1EE1A016C982DB00E263D2 /* DateController.m in Sources */,
 				EA1EE1A416C9B7C300E263D2 /* VisitationObject.m in Sources */,
+				EAADC02316E113A5009E7AF9 /* MobileClinicFacade.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

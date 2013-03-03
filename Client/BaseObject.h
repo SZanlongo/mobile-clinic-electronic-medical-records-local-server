@@ -5,13 +5,14 @@
 //  Created by Michael Montaque on 1/27/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
-#define DATABASEOBJECT @"Database Object"
+
 
 #import <Foundation/Foundation.h>
 #import "DatabaseDriver.h"
 #import "BaseObjectProtocol.h"
 #import "DataProcessor.h"
 #import "NSString+StringExt.h"
+#import "NSObject+CustomTools.h"
 
 @interface BaseObject : DatabaseDriver <BaseObjectProtocol>{
    /* This is a callback block variable 
