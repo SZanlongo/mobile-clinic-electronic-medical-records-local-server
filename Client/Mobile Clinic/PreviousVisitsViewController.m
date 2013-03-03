@@ -36,6 +36,14 @@
     // Search database with patientId
     _patientHistoryArray = [[NSMutableArray alloc]initWithArray:[_patientData getAllVisitsForCurrentPatient]];
     
+    //SEBASTIAN - I AM TRYING TO SORT THE PREVIOUS VISITS BY DATE
+    //    NSSortDescriptor *sortDescriptor;
+    //    sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"triageOut" ascending:YES];
+    //    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    //    NSArray *sortedArray;
+    //    sortedArray = [_patientData.getAllVisitsForCurrentPatient sortedArrayUsingDescriptors:sortDescriptors];
+    //    _patientHistoryArray = sortedArray;
+    
     // Populate cells
     [_patientHistoryTableView reloadData];
 }

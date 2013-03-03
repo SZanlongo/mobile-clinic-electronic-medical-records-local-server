@@ -26,4 +26,6 @@
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 
+-(BOOL)validateCheckin;
+
 @end
