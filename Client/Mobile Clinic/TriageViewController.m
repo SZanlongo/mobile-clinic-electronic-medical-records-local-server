@@ -103,7 +103,7 @@
             cell = [[RegisterPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:registerCellIdentifier];
             cell.viewController = _registerControl;
         }
-        
+        [_segmentedControl setEnabled:YES forSegmentAtIndex:0];
         return [self setupCell:cell forRow:indexPath];
         
     }
@@ -114,7 +114,7 @@
             cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
             cell.viewController = _searchControl;
         }
-        
+        [_segmentedControl setEnabled:YES forSegmentAtIndex:1];
         return [self setupCell:cell forRow:indexPath];
     }
 }
