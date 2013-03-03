@@ -127,6 +127,13 @@
     // Check if there is at least one name
     if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
         
+        //this will remove spaces BEFORE AND AFTER the string. I am leaving spaces in the middle because we might have names that are 2 words
+        //this also updates the fields with the new format so the user knows that its being trimmed
+        //also, keep in mind that adding several spaces after text adds a period
+        
+        _patientNameField.text = [_patientNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        _familyNameField.text = [_familyNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
         //Search the server and save all the results to the Clients database
         [_patientData FindAllPatientsOnServerWithFirstName:_patientNameField.text andWithLastName:_familyNameField.text onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
             if (error) {
