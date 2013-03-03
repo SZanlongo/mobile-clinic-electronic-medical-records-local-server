@@ -160,7 +160,14 @@ UIPopoverController * pop;
     } else if([_villageNameField.text isEqualToString:@""] || _villageNameField.text == nil){
         errorMsg = @"Missing Village Name";
         inputIsValid = NO;
+    } else if (_patient.getDateOfBirth == nil) {
+        errorMsg = @"Missing Patient Age";
+        inputIsValid = NO;
     }
+//    } else if (_patient.getPhoto == nil) {
+//        errorMsg = @"Missing Patient Photo";
+//        inputIsValid = NO;
+//    }
     
     //display error message on invlaid input
     if(inputIsValid == NO){
