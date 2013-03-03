@@ -81,7 +81,6 @@
     cell.patientBPLabel.text = [visitData getObjectForAttribute:BLOODPRESSURE];
     [cell.patientConditionsTextView setText:[visitData getObjectForAttribute:CONDITION]];
 //    cell.patientMedicationTextView setText:[visitData getObjectForAttribute:MEDICATIONID]];
-    
     return cell;
 }
 
