@@ -42,18 +42,18 @@
     
     // Create controllers for each view (Search & Register)
     _registerControl = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
-//    [_registerControl view];
+    //    [_registerControl view];
     _searchControl = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
-//    [_searchControl view];
+    //    [_searchControl view];
     
     // Notifications that receive patient data from registration & search view controllers
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
+    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    //    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 // Transfers the patient's data to the next view controller
@@ -114,14 +114,14 @@
             cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
             cell.viewController = _searchControl;
         }
-
+        
         return [self setupCell:cell forRow:indexPath];
     }
 }
 
 -(UITableViewCell*)setupCell:(id)cell forRow:(NSIndexPath*)path{
     // Rotate view vertically on the screen
-   
+    
     CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
     [cell viewController].view.transform = transform;
     [cell viewController].view.frame = CGRectMake(50, 0, 916, 768);
@@ -139,7 +139,7 @@
         _patientData = object;
         
         TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
-
+        
         newView.patientData = _patientData;
         
         [newView setScreenHandler:^(id object, NSError *error) {
@@ -175,28 +175,27 @@
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
             break;
         default:
-            break;
+            break;            
     }
-    
     [self.tableView reloadData];
-}
-
-- (void)setScreenHandler:(ScreenHandler)myHandler {
-    handler = myHandler;
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset {
     int cellHeight = 768;
-
+    
     if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
         *targetContentOffset = CGPointMake(targetContentOffset->x,
                                            targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+        self.segmentedControl.selectedSegmentIndex = 1;
     }
     else
+    {
         *targetContentOffset = CGPointMake(targetContentOffset->x,
                                            targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+        self.segmentedControl.selectedSegmentIndex = 0;
+    }
 }
 
 @end
