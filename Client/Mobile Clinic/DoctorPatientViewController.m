@@ -15,8 +15,6 @@
 
 @implementation DoctorPatientViewController
 
-@synthesize segmentedControl;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,7 +30,7 @@
 	// Do any additional setup after loading the view.
     
     UINavigationBar *bar =[self.navigationController navigationBar];
-    [bar setTintColor:[UIColor orangeColor]];
+    [bar setTintColor:[UIColor blueColor]];
     
     // Rotate table horizontally (90 degrees)
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
@@ -122,7 +120,7 @@
         [cell addSubview:cell.viewController.view];
         [cell.viewController setScreenHandler:handler];
         
-        [segmentedControl setEnabled:YES forSegmentAtIndex:0];
+        [_segmentedControl setEnabled:YES forSegmentAtIndex:0];
         
         return cell;
     }
@@ -145,7 +143,7 @@
         
         [cell addSubview: cell.viewController.view];
         
-        [segmentedControl setEnabled:YES forSegmentAtIndex:1];
+        [_segmentedControl setEnabled:YES forSegmentAtIndex:1];
         
         return cell;
     }
@@ -174,6 +172,8 @@
     
     [self.tableView reloadData];
 }
+
+
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity

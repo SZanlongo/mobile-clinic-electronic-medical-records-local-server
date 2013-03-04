@@ -72,7 +72,41 @@
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy
 - (IBAction)quickCheckOutButton:(id)sender {
+    if (self.validateCheckin) {
+        
+    }
+}
+
+-(BOOL)validateCheckin{
+    BOOL inputIsValid = YES;
+    NSString *errorMsg;
+    NSString * correct = @"\\b([0-9%_.+\\-]+)\\b";
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", correct];
     
+    if([_patientWeightField.text isEqualToString:@""] || _patientWeightField.text == nil) {
+        errorMsg = @"Missing Patient Weight";
+        inputIsValid = NO;
+    } else if([_patientBPField.text isEqualToString:@""] || _patientBPField.text == nil) {
+        errorMsg = @"Missing Blood Pressure";
+        inputIsValid = NO;
+    } else if([_conditionsTextbox.text isEqualToString:@""] || _conditionsTextbox.text == nil){
+        errorMsg = @"Missing Patient Conditions";
+        inputIsValid = NO;
+    } else if (![predicate evaluateWithObject:_patientWeightField.text]){
+        errorMsg = @"Patient Weight has Letters";
+        inputIsValid = NO;
+    } else if (![predicate evaluateWithObject:_patientBPField.text]){
+        errorMsg = @"Patient Blood Pressure has Letters";
+        inputIsValid = NO;
+    }
+    
+    //display error message on invlaid input
+    if(inputIsValid == NO){
+        UIAlertView *validateRegistrationAlert = [[UIAlertView alloc] initWithTitle:nil message:errorMsg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [validateRegistrationAlert show];
+    }
+    
+    return inputIsValid;
 }
 
 -(void)setScreenHandler:(ScreenHandler)myHandler{
