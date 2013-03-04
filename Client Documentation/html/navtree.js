@@ -23,10 +23,10 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "interface_a_s_i_h_t_t_p_request.html#a9230d52e58d43d70aae4943948b2b77f",
-"interface_doctor_patient_view_controller.html",
-"interface_g_c_d_async_socket_07_08.html#afc53b55b0ced1e5147bef160fb75ebb1",
-"interface_search_patient_view_controller_cell.html#ab66fcb513a2252e2c2d9f2fed822b70d",
-"protocol_g_c_d_async_socket_delegate-p.html#a7cb78d7e233ff18ad3bd3a5fcf9da17c",
+"interface_date_controller.html#a466fffdc6b49019a9c18a9786a8bbce4",
+"interface_m_b_progress_h_u_d.html#a9eccf2d6fd3a3aee4df6e264de66b9b3",
+"interface_search_patient_table_cell.html",
+"protocol_a_s_i_h_t_t_p_request_delegate-p.html#ade35a252de98046063390683d7da07e9",
 ];
 
 var navTreeSubIndices = new Array();

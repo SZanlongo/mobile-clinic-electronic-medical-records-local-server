@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -70,24 +64,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('class_u_i_view.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -102,6 +82,7 @@ $(document).ready(function(){initNavTree('class_u_i_view.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">UIView Class Reference</div>  </div>
@@ -110,28 +91,19 @@ $(document).ready(function(){initNavTree('class_u_i_view.html','');});
 <div class="dynheader">
 Inheritance diagram for UIView:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="class_u_i_view.png" usemap="#UIView_map" alt=""/>
-  <map id="UIView_map" name="UIView_map">
-<area href="interface_a_j_notification_view.html" alt="AJNotificationView" shape="rect" coords="0,56,146,80"/>
-<area href="interface_m_b_progress_h_u_d.html" alt="MBProgressHUD" shape="rect" coords="156,56,302,80"/>
-<area href="interface_m_b_round_progress_view.html" alt="MBRoundProgressView" shape="rect" coords="312,56,458,80"/>
-<area href="interface_r_n_blur_modal_view.html" alt="RNBlurModalView" shape="rect" coords="468,56,614,80"/>
+<div class="center"><img src="class_u_i_view__inherit__graph.png" border="0" usemap="#_u_i_view_inherit__map" alt="Inheritance graph"/></div>
+<map name="_u_i_view_inherit__map" id="_u_i_view_inherit__map">
 </map>
- </div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>RNBlurModalView.m</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_u_i_view.html">UIView</a></li>
-    <li class="footer">Generated on Mon Feb 25 2013 00:19:24 for Mobile Clinic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Mar 3 2013 20:57:27 for Mobile Clinic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.1
+</small></address>
 </body>
 </html>

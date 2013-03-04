@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -70,24 +64,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('protocol_screen_navigation_delegate-p.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -102,6 +82,7 @@ $(document).ready(function(){initNavTree('protocol_screen_navigation_delegate-p.
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a>  </div>
@@ -109,16 +90,6 @@ $(document).ready(function(){initNavTree('protocol_screen_navigation_delegate-p.
 <div class="title">&lt;ScreenNavigationDelegate&gt; Protocol Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for &lt;ScreenNavigationDelegate&gt;:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="protocol_screen_navigation_delegate-p.png" usemap="#&lt;ScreenNavigationDelegate&gt;_map" alt=""/>
-  <map id="&lt;ScreenNavigationDelegate&gt;_map" name="&lt;ScreenNavigationDelegate&gt;_map">
-<area href="interface_f_i_u_patient_registration_view_controller.html" alt="FIUPatientRegistrationViewController" shape="rect" coords="0,56,219,80"/>
-<area href="interface_f_i_u_search_patient_view_controller.html" alt="FIUSearchPatientViewController" shape="rect" coords="229,56,448,80"/>
-</map>
- </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -129,15 +100,11 @@ Public Member Functions</h2></td></tr>
 <li><a class="el" href="_screen_navigation_delegate_8h_source.html">ScreenNavigationDelegate.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="protocol_screen_navigation_delegate-p.html">ScreenNavigationDelegate</a></li>
-    <li class="footer">Generated on Mon Feb 25 2013 00:19:24 for Mobile Clinic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Mar 3 2013 20:57:27 for Mobile Clinic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.1
+</small></address>
 </body>
 </html>

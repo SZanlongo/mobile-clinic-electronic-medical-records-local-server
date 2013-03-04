@@ -1,8 +1,6 @@
 var searchData=
 [
   ['testflight',['TestFlight',['../interface_test_flight.html',1,'']]],
-  ['triage',['Triage',['../interface_triage.html',1,'']]],
-  ['triage_28_29',['Triage()',['../interface_triage_07_08.html',1,'']]],
   ['triagepatientviewcontroller',['TriagePatientViewController',['../interface_triage_patient_view_controller.html',1,'']]],
   ['triagepatientviewcontroller_28_29',['TriagePatientViewController()',['../interface_triage_patient_view_controller_07_08.html',1,'']]],
   ['triageviewcontroller',['TriageViewController',['../interface_triage_view_controller.html',1,'']]],

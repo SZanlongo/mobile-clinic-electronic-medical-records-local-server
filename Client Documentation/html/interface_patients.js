@@ -7,6 +7,7 @@ var interface_patients =
     [ "age", "interface_patients.html#a716d70e315515e0e47c62637a25c735b", null ],
     [ "familyName", "interface_patients.html#af455faca678b9c820798fbf9955fbd53", null ],
     [ "firstName", "interface_patients.html#aeeee3e6108de189e7e2f581c5bddba7c", null ],
+    [ "isLockedBy", "interface_patients.html#a65d61f7207435bafcc0d971c7bce8bf8", null ],
     [ "patientId", "interface_patients.html#a4e1a058c362fe9b19efab97749146ed9", null ],
     [ "photo", "interface_patients.html#a5649c94f5130d2745e9231e0dff26cee", null ],
     [ "sex", "interface_patients.html#a281f68387a299286008660941a8c0e59", null ],

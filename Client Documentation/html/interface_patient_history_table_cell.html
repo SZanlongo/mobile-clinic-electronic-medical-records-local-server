@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -70,24 +64,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('interface_patient_history_table_cell.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -102,6 +82,7 @@ $(document).ready(function(){initNavTree('interface_patient_history_table_cell.h
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#properties">Properties</a>  </div>
@@ -109,25 +90,36 @@ $(document).ready(function(){initNavTree('interface_patient_history_table_cell.h
 <div class="title">PatientHistoryTableCell Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for PatientHistoryTableCell:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_patient_history_table_cell__coll__graph.png" border="0" usemap="#_patient_history_table_cell_coll__map" alt="Collaboration graph"/></div>
+<map name="_patient_history_table_cell_coll__map" id="_patient_history_table_cell_coll__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:abcf274de7a9f738b48bd5aef047f9ae4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcf274de7a9f738b48bd5aef047f9ae4"></a>
-<a class="el" href="interface_patient_history_view_controller.html">PatientHistoryViewController</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>viewController</b></td></tr>
+<tr class="memitem:a3210ff3392d51cf8faeae4c9be1f63d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3210ff3392d51cf8faeae4c9be1f63d9"></a>
+IBOutlet <a class="el" href="class_u_i_label.html">UILabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>patientDOBLabel</b></td></tr>
+<tr class="memitem:a9b86d42fdf150f3dded48fe3d7edb877"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b86d42fdf150f3dded48fe3d7edb877"></a>
+IBOutlet <a class="el" href="class_u_i_label.html">UILabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>patientWeightLabel</b></td></tr>
+<tr class="memitem:a6c7af2f50002a3db8b626bad30e242e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c7af2f50002a3db8b626bad30e242e7"></a>
+IBOutlet <a class="el" href="class_u_i_label.html">UILabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>patientBPLabel</b></td></tr>
+<tr class="memitem:a4aef4437277cbc16edfecd6e4f380efe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4aef4437277cbc16edfecd6e4f380efe"></a>
+IBOutlet UITextView *&#160;</td><td class="memItemRight" valign="bottom"><b>patientConditionsTextView</b></td></tr>
+<tr class="memitem:aad8ae0dfd1a0fbe64d89e90be55a2882"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad8ae0dfd1a0fbe64d89e90be55a2882"></a>
+IBOutlet UITextView *&#160;</td><td class="memItemRight" valign="bottom"><b>patientMedicationTextView</b></td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Mobile Clinic/<a class="el" href="_patient_history_table_cell_8h_source.html">PatientHistoryTableCell.h</a></li>
+<li><a class="el" href="_patient_history_table_cell_8h_source.html">PatientHistoryTableCell.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="interface_patient_history_table_cell.html">PatientHistoryTableCell</a></li>
-    <li class="footer">Generated on Mon Feb 25 2013 00:19:23 for Mobile Clinic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Mar 3 2013 20:57:26 for Mobile Clinic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.1
+</small></address>
 </body>
 </html>

@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -70,24 +64,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('class_n_s_object.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -102,6 +82,7 @@ $(document).ready(function(){initNavTree('class_n_s_object.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">NSObject Class Reference</div>  </div>
@@ -110,42 +91,19 @@ $(document).ready(function(){initNavTree('class_n_s_object.html','');});
 <div class="dynheader">
 Inheritance diagram for NSObject:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="class_n_s_object.png" usemap="#NSObject_map" alt=""/>
-  <map id="NSObject_map" name="NSObject_map">
-<area href="interface_a_s_i_data_compressor.html" alt="ASIDataCompressor" shape="rect" coords="178,56,346,80"/>
-<area href="interface_a_s_i_data_decompressor.html" alt="ASIDataDecompressor" shape="rect" coords="178,112,346,136"/>
-<area href="interface_a_s_i_download_cache.html" alt="ASIDownloadCache" shape="rect" coords="178,168,346,192"/>
-<area href="interface_a_s_i_input_stream.html" alt="ASIInputStream" shape="rect" coords="178,224,346,248"/>
-<area href="interface_camera_facade.html" alt="CameraFacade" shape="rect" coords="178,280,346,304"/>
-<area href="interface_database_driver.html" alt="DatabaseDriver" shape="rect" coords="178,336,346,360"/>
-<area href="interface_g_c_d_async_read_packet.html" alt="GCDAsyncReadPacket" shape="rect" coords="178,392,346,416"/>
-<area href="interface_g_c_d_async_socket.html" alt="GCDAsyncSocket" shape="rect" coords="178,448,346,472"/>
-<area href="interface_g_c_d_async_socket_pre_buffer.html" alt="GCDAsyncSocketPreBuffer" shape="rect" coords="178,504,346,528"/>
-<area href="interface_g_c_d_async_special_packet.html" alt="GCDAsyncSpecialPacket" shape="rect" coords="178,560,346,584"/>
-<area href="interface_g_c_d_async_write_packet.html" alt="GCDAsyncWritePacket" shape="rect" coords="178,616,346,640"/>
-<area href="interface_h_t_t_p_core.html" alt="HTTPCore" shape="rect" coords="178,672,346,696"/>
-<area href="interface_object_factory.html" alt="ObjectFactory" shape="rect" coords="178,728,346,752"/>
-<area href="interface_reachability.html" alt="Reachability" shape="rect" coords="178,784,346,808"/>
-<area href="interface_server.html" alt="Server" shape="rect" coords="178,840,346,864"/>
-<area href="interface_status_object.html" alt="StatusObject" shape="rect" coords="178,896,346,920"/>
-<area href="interface_test_flight.html" alt="TestFlight" shape="rect" coords="178,952,346,976"/>
-<area href="interface_u_i_camera.html" alt="UICamera" shape="rect" coords="178,1008,346,1032"/>
+<div class="center"><img src="class_n_s_object__inherit__graph.png" border="0" usemap="#_n_s_object_inherit__map" alt="Inheritance graph"/></div>
+<map name="_n_s_object_inherit__map" id="_n_s_object_inherit__map">
 </map>
- </div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>NSObject+CustomTools.m</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_n_s_object.html">NSObject</a></li>
-    <li class="footer">Generated on Mon Feb 25 2013 00:19:23 for Mobile Clinic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Mar 3 2013 20:57:26 for Mobile Clinic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.1
+</small></address>
 </body>
 </html>

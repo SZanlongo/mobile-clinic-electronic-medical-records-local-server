@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -70,24 +64,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('interface_patients.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -102,6 +82,7 @@ $(document).ready(function(){initNavTree('interface_patients.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -110,6 +91,13 @@ $(document).ready(function(){initNavTree('interface_patients.html','');});
 <div class="title">Patients Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for Patients:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_patients__coll__graph.png" border="0" usemap="#_patients_coll__map" alt="Collaboration graph"/></div>
+<map name="_patients_coll__map" id="_patients_coll__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -140,22 +128,20 @@ NSNumber *&#160;</td><td class="memItemRight" valign="bottom"><b>sex</b></td></t
 NSNumber *&#160;</td><td class="memItemRight" valign="bottom"><b>status</b></td></tr>
 <tr class="memitem:a7da57ca2dd958080c44cc4c66184f2a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7da57ca2dd958080c44cc4c66184f2a1"></a>
 <a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>villageName</b></td></tr>
+<tr class="memitem:a65d61f7207435bafcc0d971c7bce8bf8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65d61f7207435bafcc0d971c7bce8bf8"></a>
+<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>isLockedBy</b></td></tr>
 <tr class="memitem:a689892d169bfd59390d4da4c90b85f57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a689892d169bfd59390d4da4c90b85f57"></a>
 NSSet *&#160;</td><td class="memItemRight" valign="bottom"><b>visit</b></td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="_patients_8h_source.html">Patients.h</a></li>
+<li>Mobile Clinic/<a class="el" href="_patients_8h_source.html">Patients.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="interface_patients.html">Patients</a></li>
-    <li class="footer">Generated on Mon Feb 25 2013 00:19:23 for Mobile Clinic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Mar 3 2013 20:57:27 for Mobile Clinic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.1
+</small></address>
 </body>
 </html>

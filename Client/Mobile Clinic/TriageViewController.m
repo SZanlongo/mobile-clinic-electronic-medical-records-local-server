@@ -46,6 +46,9 @@
     _searchControl = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
     //    [_searchControl view];
     
+    // Notifications that receive patient data from registration & search view controllers
+    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

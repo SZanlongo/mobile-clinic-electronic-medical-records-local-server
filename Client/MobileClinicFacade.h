@@ -12,7 +12,9 @@
  * The primary key/ID of the object should not be used or tampered.
  * Description:
  * The Mobile Clinic Facade consolidates all the appropriate methods to complete the patient workflow
+ * @see MobileClinicFacadeProtocol
  */
+
 #import <Foundation/Foundation.h>
 
 #import "MobileClinicFacadeProtocol.h"

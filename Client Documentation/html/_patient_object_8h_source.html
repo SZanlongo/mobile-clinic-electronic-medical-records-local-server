@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -72,19 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('_patient_object_8h.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -111,50 +92,35 @@ $(document).ready(function(){initNavTree('_patient_object_8h.html','');});
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">//  Created by Steven Berlanga on 2/4/13.</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//  Copyright (c) 2013 Steven Berlanga. All rights reserved.</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define FIRSTNAME   @&quot;firstName&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FAMILYNAME  @&quot;familyName&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define VILLAGE     @&quot;villageName&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define HEIGHT      @&quot;height&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define SEX         @&quot;sex&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define DOB         @&quot;age&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PICTURE     @&quot;photo&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define VISITS      @&quot;visits&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PATIENTID   @&quot;patientId&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#import &quot;BaseObject.h&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#import &quot;NSObject+CustomTools.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#import &quot;VisitationObject.h&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#import &quot;Patients.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="interface_patient_object.html">   23</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_patient_object.html">PatientObject</a> : <a class="code" href="interface_base_object.html">BaseObject</a></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;@property(nonatomic, strong)        <a class="code" href="interface_patients.html">Patients</a>* patient;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;@property(nonatomic, strong)        <a class="code" href="interface_visitation_object.html">VisitationObject</a>* currentVisit;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;@property(nonatomic, strong)        NSMutableArray* visits;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//----&gt; 0 = Female, 1 = Male &lt;---//</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span>- (NSInteger)<a class="code" href="interface_patient_object.html#ad8073bdb635e32beafac2d97cae2456f">getAge</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;- (<a class="code" href="class_u_i_image.html">UIImage</a> *)<a class="code" href="interface_patient_object.html#a844be02e2d9c23031ae692278965cdc7">getPhoto</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;- (<a class="code" href="class_n_s_string.html">NSString</a> *)getSex:(NSNumber *)sex;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;- (id)<a class="code" href="interface_patient_object.html#acd5c64bcd42e3a677e5867d0c589bfba">initWithNewPatient</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"></span><span class="preprocessor">#import &quot;BaseObject.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#import &quot;PatientObjectProtocol.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="interface_patient_object.html">   15</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_patient_object.html">PatientObject</a> : <a class="code" href="interface_base_object.html">BaseObject</a> &lt;<a class="code" href="protocol_patient_object_protocol-p.html">PatientObjectProtocol</a>&gt;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    NSMutableArray* visits;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;- (NSInteger)getAge;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;- (<a class="code" href="class_u_i_image.html">UIImage</a> *)getPhoto;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;-(<a class="code" href="class_n_s_string.html">NSString</a>*)getDateOfBirth;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;-(void)setPhoto:(<a class="code" href="class_u_i_image.html">UIImage</a>*)image;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;- (<a class="code" href="class_n_s_string.html">NSString</a> *)getSex;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;- (id)initWithNewPatient;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;-(void)createNewPatient:(ObjectResponse)onSuccessHandler;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;-(BOOL)loadPatientWithPatientID:(<a class="code" href="class_n_s_string.html">NSString</a> *)patientID;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;-(NSArray*)FindAllPatientsLocallyWithFirstName:(<a class="code" href="class_n_s_string.html">NSString</a>*)firstname andWithLastName:(<a class="code" href="class_n_s_string.html">NSString</a>*)lastname;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;-(void)FindAllPatientsOnServerWithFirstName:(<a class="code" href="class_n_s_string.html">NSString</a> *)firstname andWithLastName:(<a class="code" href="class_n_s_string.html">NSString</a> *)lastname onCompletion:(ObjectResponse)eventResponse;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;-(void)addVisitToCurrentPatient:(<a class="code" href="interface_visitation_object.html">VisitationObject</a>*)visitation;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;-(void)setObject:(<span class="keywordtype">id</span>)object withAttribute:(<a class="code" href="class_n_s_string.html">NSString</a>*)attribute;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;-(id)getObjectForAttribute:(<a class="code" href="class_n_s_string.html">NSString</a>*)attribute;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;-(NSArray*)<a class="code" href="interface_patient_object.html#a792bd04575638049f36009d0f5985ace">getAllVisitsForCurrentPatient</a>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;-(void)addVisitToCurrentPatient:(<span class="keywordtype">id</span>&lt;<a class="code" href="protocol_base_object_protocol-p.html">BaseObjectProtocol</a>&gt;)visitation;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;-(NSArray*)getAllVisitsForCurrentPatient;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;-(void)LockPatient:(ObjectResponse)response;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;-(void)UpdatePatientObject:(ObjectResponse)response;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;+(<a class="code" href="class_n_s_string.html">NSString</a>*)DatabaseName;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">@end</span></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><b>PatientObject.h</b></li>
-    <li class="footer">Generated on Mon Feb 25 2013 00:19:22 for Mobile Clinic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Mar 3 2013 20:57:25 for Mobile Clinic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.1
+</small></address>
 </body>
 </html>

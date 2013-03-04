@@ -157,11 +157,15 @@
     //    }
 }
 -(void)BroadSearchForPatient{
+    //this will remove spaces BEFORE AND AFTER the string. I am leaving spaces in the middle because we might have names that are 2 words
+    //this also updates the fields with the new format so the user knows that its being trimmed
+    //also, keep in mind that adding several spaces after text adds a period
+    
+    _patientNameField.text = [_patientNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    _familyNameField.text = [_familyNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
         [mobileFacade findPatientWithFirstName:_patientNameField.text orLastName:_familyNameField.text onCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-            if (error) {
-                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
-            }
             // Get all the result from the query
             _patientSearchResultsArray  = [NSArray arrayWithArray:allObjectsFromSearch];
             

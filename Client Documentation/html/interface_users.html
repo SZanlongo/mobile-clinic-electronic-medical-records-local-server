@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -70,24 +64,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('interface_users.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -102,6 +82,7 @@ $(document).ready(function(){initNavTree('interface_users.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -110,6 +91,13 @@ $(document).ready(function(){initNavTree('interface_users.html','');});
 <div class="title">Users Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for Users:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_users__coll__graph.png" border="0" usemap="#_users_coll__map" alt="Collaboration graph"/></div>
+<map name="_users_coll__map" id="_users_coll__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -126,18 +114,18 @@ Public Member Functions</h2></td></tr>
 Properties</h2></td></tr>
 <tr class="memitem:a94730871d810858a8efcd4484b0b91a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94730871d810858a8efcd4484b0b91a1"></a>
 <a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>email</b></td></tr>
-<tr class="memitem:aeffbbb5ba88a198b63a821e383208279"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeffbbb5ba88a198b63a821e383208279"></a>
-<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>firstname</b></td></tr>
-<tr class="memitem:af7e3b81e9b27121afc227298cd3f3e6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7e3b81e9b27121afc227298cd3f3e6e"></a>
-<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>lastname</b></td></tr>
+<tr class="memitem:aeeee3e6108de189e7e2f581c5bddba7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeee3e6108de189e7e2f581c5bddba7c"></a>
+<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>firstName</b></td></tr>
+<tr class="memitem:a5af288fae96cc6ddd796d1713c78de21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5af288fae96cc6ddd796d1713c78de21"></a>
+<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>lastName</b></td></tr>
 <tr class="memitem:acc98b6f3de9c91f6c76c9a90c640ffd8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc98b6f3de9c91f6c76c9a90c640ffd8"></a>
 <a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>password</b></td></tr>
 <tr class="memitem:a13ac1e360c2c871f0c55fb68e44227c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13ac1e360c2c871f0c55fb68e44227c2"></a>
 NSNumber *&#160;</td><td class="memItemRight" valign="bottom"><b>status</b></td></tr>
-<tr class="memitem:a60e172c85c62e68c966d409f4e54b1c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60e172c85c62e68c966d409f4e54b1c9"></a>
-<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>username</b></td></tr>
-<tr class="memitem:a44d103cf90521c2ed6a6c0322214edc3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44d103cf90521c2ed6a6c0322214edc3"></a>
-NSNumber *&#160;</td><td class="memItemRight" valign="bottom"><b>usertype</b></td></tr>
+<tr class="memitem:ac38202c6f4861ad216f9fbc5d962b5ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac38202c6f4861ad216f9fbc5d962b5ab"></a>
+<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>userName</b></td></tr>
+<tr class="memitem:a6876c4a2e3db255b3a0a03ab84950354"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6876c4a2e3db255b3a0a03ab84950354"></a>
+NSNumber *&#160;</td><td class="memItemRight" valign="bottom"><b>userType</b></td></tr>
 <tr class="memitem:a4b918dd88b8faef1096f846445334ab6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b918dd88b8faef1096f846445334ab6"></a>
 NSSet *&#160;</td><td class="memItemRight" valign="bottom"><b>patient</b></td></tr>
 </table>
@@ -145,15 +133,11 @@ NSSet *&#160;</td><td class="memItemRight" valign="bottom"><b>patient</b></td></
 <li>Mobile Clinic/<a class="el" href="_users_8h_source.html">Users.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="interface_users.html">Users</a></li>
-    <li class="footer">Generated on Mon Feb 25 2013 00:19:24 for Mobile Clinic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Mar 3 2013 20:57:27 for Mobile Clinic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.1
+</small></address>
 </body>
 </html>

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['databasedriver',['DatabaseDriver',['../interface_database_driver.html',1,'']]],
+  ['databasedriverprotocol_2dp',['DatabaseDriverProtocol-p',['../protocol_database_driver_protocol-p.html',1,'']]],
   ['datecontroller',['DateController',['../interface_date_controller.html',1,'']]],
   ['datecontroller_28_29',['DateController()',['../interface_date_controller_07_08.html',1,'']]],
   ['delegate',['delegate',['../interface_m_b_progress_h_u_d.html#aa57edea6204eb8aad7c2e6eed592629b',1,'MBProgressHUD']]],

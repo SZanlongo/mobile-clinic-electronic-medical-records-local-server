@@ -5,7 +5,6 @@ var searchData=
   ['searchpatienttablecell',['SearchPatientTableCell',['../interface_search_patient_table_cell.html',1,'']]],
   ['searchpatientviewcontroller',['SearchPatientViewController',['../interface_search_patient_view_controller.html',1,'']]],
   ['searchpatientviewcontroller_28_29',['SearchPatientViewController()',['../interface_search_patient_view_controller_07_08.html',1,'']]],
-  ['searchpatientviewcontrollercell',['SearchPatientViewControllerCell',['../interface_search_patient_view_controller_cell.html',1,'']]],
   ['server',['Server',['../interface_server.html',1,'']]],
   ['server_28_29',['Server()',['../interface_server_07_08.html',1,'']]],
   ['server_28private_29',['Server(Private)',['../interface_server_07_private_08.html',1,'']]],

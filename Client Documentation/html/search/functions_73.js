@@ -2,9 +2,12 @@ var searchData=
 [
   ['searchfortermafterprebuffering_3a',['searchForTermAfterPreBuffering:',['../interface_g_c_d_async_read_packet.html#a6fbcbaa0f70464faafa3200e69eca2b0',1,'GCDAsyncReadPacket']]],
   ['setautodisconnectonclosedreadstream_3a',['setAutoDisconnectOnClosedReadStream:',['../interface_g_c_d_async_socket.html#adc2fecde2f4d460a7e8d010d9cf01300',1,'GCDAsyncSocket']]],
+  ['setdbobject_3a',['setDBObject:',['../protocol_base_object_protocol-p.html#ab7c6bf80fb14b43a86a03f5a432868d5',1,'BaseObjectProtocol-p']]],
   ['setdeviceidentifier_3a',['setDeviceIdentifier:',['../interface_test_flight.html#a1221d3e40a79706eb3996de1729c0e82',1,'TestFlight']]],
-  ['setobject_3awithattribute_3a',['setObject:withAttribute:',['../interface_patient_object.html#a650a5a7f63b8d5efcfa2fc8662faa0bd',1,'PatientObject::setObject:withAttribute:()'],['../interface_visitation_object.html#a650a5a7f63b8d5efcfa2fc8662faa0bd',1,'VisitationObject::setObject:withAttribute:()']]],
+  ['setobject_3awithattribute_3a',['setObject:withAttribute:',['../protocol_base_object_protocol-p.html#a650a5a7f63b8d5efcfa2fc8662faa0bd',1,'BaseObjectProtocol-p']]],
+  ['setobject_3awithattribute_3aindatabaseobject_3a',['setObject:withAttribute:inDatabaseObject:',['../protocol_database_driver_protocol-p.html#a55f5107f62c0211fc2656a5aa0a4f6c1',1,'DatabaseDriverProtocol-p']]],
   ['setoptions_3a',['setOptions:',['../interface_test_flight.html#aebfc5f5e80a1234e826655312a7231c2',1,'TestFlight']]],
+  ['setphoto_3a',['setPhoto:',['../interface_patient_object.html#ad24418df43ea4291fce5d7dff0af9e39',1,'PatientObject']]],
   ['show_3a',['show:',['../interface_m_b_progress_h_u_d.html#a2399f0aa26eadb79a5ec7a7ff66ac9b9',1,'MBProgressHUD']]],
   ['showhudaddedto_3aanimated_3a',['showHUDAddedTo:animated:',['../interface_m_b_progress_h_u_d.html#a2f54863d49e67015d6164e5fc2ca36ba',1,'MBProgressHUD']]],
   ['showwhileexecuting_3aontarget_3awithobject_3aanimated_3a',['showWhileExecuting:onTarget:withObject:animated:',['../interface_m_b_progress_h_u_d.html#a09cc0168f613c61e322c18a3df1c916f',1,'MBProgressHUD']]],

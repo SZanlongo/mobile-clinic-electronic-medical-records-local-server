@@ -23,25 +23,26 @@ var hierarchy =
     [ "<BaseObjectProtocol>", "protocol_base_object_protocol-p.html", [
       [ "BaseObject", "interface_base_object.html", [
         [ "PatientObject", "interface_patient_object.html", null ],
+        [ "PrescriptionObject", "interface_prescription_object.html", null ],
         [ "UserObject", "interface_user_object.html", null ],
         [ "VisitationObject", "interface_visitation_object.html", null ]
       ] ],
       [ "StatusObject", "interface_status_object.html", null ]
     ] ],
-    [ "CreateNewUserViewController()", "interface_create_new_user_view_controller_07_08.html", null ],
+    [ "CurrentDiagnosisTableCell", "interface_current_diagnosis_table_cell.html", null ],
     [ "CurrentDiagnosisViewController()", "interface_current_diagnosis_view_controller_07_08.html", null ],
+    [ "CurrentVisitTableCell", "interface_current_visit_table_cell.html", null ],
     [ "CurrentVisitViewController()", "interface_current_visit_view_controller_07_08.html", null ],
+    [ "<DatabaseDriverProtocol>", "protocol_database_driver_protocol-p.html", [
+      [ "DatabaseDriver", "interface_database_driver.html", [
+        [ "BaseObject", "interface_base_object.html", null ]
+      ] ]
+    ] ],
     [ "DateController()", "interface_date_controller_07_08.html", null ],
     [ "DoctorPatientViewController()", "interface_doctor_patient_view_controller_07_08.html", null ],
     [ "DoctorViewController()", "interface_doctor_view_controller_07_08.html", null ],
     [ "FIUAppDelegate", "interface_f_i_u_app_delegate.html", null ],
-    [ "FIUDiagnosisViewController()", "interface_f_i_u_diagnosis_view_controller_07_08.html", null ],
-    [ "FIUFamilyMemberViewController()", "interface_f_i_u_family_member_view_controller_07_08.html", null ],
-    [ "FIULoginViewController()", "interface_f_i_u_login_view_controller_07_08.html", null ],
     [ "FIUPatientCell", "interface_f_i_u_patient_cell.html", null ],
-    [ "FIUPatientRegistrationViewController()", "interface_f_i_u_patient_registration_view_controller_07_08.html", null ],
-    [ "FIUSearchPatientViewController()", "interface_f_i_u_search_patient_view_controller_07_08.html", null ],
-    [ "FIUSearchPatientViewControllerCell", "interface_f_i_u_search_patient_view_controller_cell.html", null ],
     [ "GCDAsyncSocket()", "interface_g_c_d_async_socket_07_08.html", null ],
     [ "<GCDAsyncSocketDelegate>", "protocol_g_c_d_async_socket_delegate-p.html", [
       [ "ServerCore", "interface_server_core.html", null ]
@@ -50,7 +51,13 @@ var hierarchy =
     [ "MBProgressHUD()", "interface_m_b_progress_h_u_d_07_08.html", null ],
     [ "<MBProgressHUDDelegate>", "protocol_m_b_progress_h_u_d_delegate-p.html", null ],
     [ "Medication", "interface_medication.html", null ],
+    [ "MedicineSearchCell", "interface_medicine_search_cell.html", null ],
+    [ "MedicineSearchResultCell", "interface_medicine_search_result_cell.html", null ],
+    [ "MedicineSearchViewController()", "interface_medicine_search_view_controller_07_08.html", null ],
     [ "Mobile_ClinicTests", "interface_mobile___clinic_tests.html", null ],
+    [ "<MobileClinicFacadeProtocol>", "protocol_mobile_clinic_facade_protocol-p.html", [
+      [ "MobileClinicFacade", "interface_mobile_clinic_facade.html", null ]
+    ] ],
     [ "NSDate", "class_n_s_date.html", null ],
     [ "NSObject", "class_n_s_object.html", [
       [ "ASIDataCompressor", "interface_a_s_i_data_compressor.html", null ],
@@ -58,9 +65,7 @@ var hierarchy =
       [ "ASIDownloadCache", "interface_a_s_i_download_cache.html", null ],
       [ "ASIInputStream", "interface_a_s_i_input_stream.html", null ],
       [ "CameraFacade", "interface_camera_facade.html", null ],
-      [ "DatabaseDriver", "interface_database_driver.html", [
-        [ "BaseObject", "interface_base_object.html", null ]
-      ] ],
+      [ "DatabaseDriver", "interface_database_driver.html", null ],
       [ "GCDAsyncReadPacket", "interface_g_c_d_async_read_packet.html", null ],
       [ "GCDAsyncSocket", "interface_g_c_d_async_socket.html", null ],
       [ "GCDAsyncSocketPreBuffer", "interface_g_c_d_async_socket_pre_buffer.html", null ],
@@ -70,6 +75,7 @@ var hierarchy =
         [ "ServerCore", "interface_server_core.html", null ],
         [ "ServerWrapper", "interface_server_wrapper.html", null ]
       ] ],
+      [ "MobileClinicFacade", "interface_mobile_clinic_facade.html", null ],
       [ "ObjectFactory", "interface_object_factory.html", null ],
       [ "Reachability", "interface_reachability.html", null ],
       [ "Server", "interface_server.html", null ],
@@ -79,16 +85,23 @@ var hierarchy =
     ] ],
     [ "NSString", "class_n_s_string.html", null ],
     [ "PatientHistoryTableCell", "interface_patient_history_table_cell.html", null ],
-    [ "PatientHistoryTableCell()", "interface_patient_history_table_cell_07_08.html", null ],
     [ "PatientHistoryViewController()", "interface_patient_history_view_controller_07_08.html", null ],
-    [ "PatientResultTableCell()", "interface_patient_result_table_cell_07_08.html", null ],
+    [ "<PatientObjectProtocol>", "protocol_patient_object_protocol-p.html", [
+      [ "PatientObject", "interface_patient_object.html", null ]
+    ] ],
+    [ "PatientResultTableCell", "interface_patient_result_table_cell.html", null ],
     [ "PatientResultViewController()", "interface_patient_result_view_controller_07_08.html", null ],
     [ "Patients", "interface_patients.html", null ],
-    [ "PatientVisitation()", "interface_patient_visitation_07_08.html", null ],
+    [ "PharamcyPrescriptionCell", "interface_pharamcy_prescription_cell.html", null ],
+    [ "PharamcyPrescriptionViewController()", "interface_pharamcy_prescription_view_controller_07_08.html", null ],
+    [ "PharmacyPatientViewController()", "interface_pharmacy_patient_view_controller_07_08.html", null ],
     [ "PharmacyViewController()", "interface_pharmacy_view_controller_07_08.html", null ],
     [ "PrescribePatientViewController()", "interface_prescribe_patient_view_controller_07_08.html", null ],
     [ "Prescription", "interface_prescription.html", null ],
+    [ "PreviousVisitsTableCell", "interface_previous_visits_table_cell.html", null ],
+    [ "PreviousVisitsTableCell()", "interface_previous_visits_table_cell_07_08.html", null ],
     [ "PreviousVisitsViewController()", "interface_previous_visits_view_controller_07_08.html", null ],
+    [ "PreviousVisitTableCell", "interface_previous_visit_table_cell.html", null ],
     [ "Reachability(private)", "interface_reachability_07private_08.html", null ],
     [ "RegisterPatientTableCell", "interface_register_patient_table_cell.html", null ],
     [ "RegisterPatientViewController()", "interface_register_patient_view_controller_07_08.html", null ],
@@ -96,13 +109,9 @@ var hierarchy =
     [ "RNBlurView", "interface_r_n_blur_view.html", null ],
     [ "RNCloseButton", "interface_r_n_close_button.html", null ],
     [ "<SCOperationDelegate>", "protocol_s_c_operation_delegate-p.html", null ],
-    [ "<ScreenNavigationDelegate>", "protocol_screen_navigation_delegate-p.html", [
-      [ "FIUPatientRegistrationViewController", "interface_f_i_u_patient_registration_view_controller.html", null ],
-      [ "FIUSearchPatientViewController", "interface_f_i_u_search_patient_view_controller.html", null ]
-    ] ],
+    [ "<ScreenNavigationDelegate>", "protocol_screen_navigation_delegate-p.html", null ],
     [ "SearchPatientTableCell", "interface_search_patient_table_cell.html", null ],
     [ "SearchPatientViewController()", "interface_search_patient_view_controller_07_08.html", null ],
-    [ "SearchPatientViewControllerCell", "interface_search_patient_view_controller_cell.html", null ],
     [ "Server()", "interface_server_07_08.html", null ],
     [ "Server(Private)", "interface_server_07_private_08.html", null ],
     [ "ServerCore(Private)", "interface_server_core_07_private_08.html", null ],
@@ -114,7 +123,6 @@ var hierarchy =
     ] ],
     [ "StationViewController()", "interface_station_view_controller_07_08.html", null ],
     [ "<StationViewHandlerProtocol>", "protocol_station_view_handler_protocol-p.html", null ],
-    [ "Triage()", "interface_triage_07_08.html", null ],
     [ "TriagePatientViewController()", "interface_triage_patient_view_controller_07_08.html", null ],
     [ "TriageViewController()", "interface_triage_view_controller_07_08.html", null ],
     [ "<UICameraDelegate>", "protocol_u_i_camera_delegate-p.html", [
@@ -136,31 +144,29 @@ var hierarchy =
       [ "ASIAutorotatingViewController", "interface_a_s_i_autorotating_view_controller.html", [
         [ "ASIAuthenticationDialog", "interface_a_s_i_authentication_dialog.html", null ]
       ] ],
-      [ "CreateNewUserViewController", "interface_create_new_user_view_controller.html", null ],
       [ "CurrentDiagnosisViewController", "interface_current_diagnosis_view_controller.html", null ],
       [ "CurrentVisitViewController", "interface_current_visit_view_controller.html", null ],
       [ "DateController", "interface_date_controller.html", null ],
       [ "DoctorPatientViewController", "interface_doctor_patient_view_controller.html", null ],
       [ "DoctorViewController", "interface_doctor_view_controller.html", null ],
-      [ "FIUDiagnosisViewController", "interface_f_i_u_diagnosis_view_controller.html", null ],
-      [ "FIUFamilyMemberViewController", "interface_f_i_u_family_member_view_controller.html", null ],
-      [ "FIULoginViewController", "interface_f_i_u_login_view_controller.html", null ],
-      [ "FIUSearchPatientViewController", "interface_f_i_u_search_patient_view_controller.html", null ],
       [ "LoginViewController", "interface_login_view_controller.html", null ],
+      [ "MedicineSearchViewController", "interface_medicine_search_view_controller.html", null ],
       [ "PatientHistoryViewController", "interface_patient_history_view_controller.html", null ],
-      [ "PatientResultTableCell", "interface_patient_result_table_cell.html", null ],
       [ "PatientResultViewController", "interface_patient_result_view_controller.html", null ],
-      [ "PatientVisitation", "interface_patient_visitation.html", null ],
+      [ "PharamcyPrescriptionViewController", "interface_pharamcy_prescription_view_controller.html", null ],
+      [ "PharmacyPatientViewController", "interface_pharmacy_patient_view_controller.html", null ],
       [ "PharmacyViewController", "interface_pharmacy_view_controller.html", null ],
       [ "PrescribePatientViewController", "interface_prescribe_patient_view_controller.html", null ],
       [ "PreviousVisitsViewController", "interface_previous_visits_view_controller.html", null ],
       [ "RegisterPatientViewController", "interface_register_patient_view_controller.html", null ],
       [ "SearchPatientViewController", "interface_search_patient_view_controller.html", null ],
       [ "StationViewController", "interface_station_view_controller.html", null ],
-      [ "Triage", "interface_triage.html", null ],
       [ "TriagePatientViewController", "interface_triage_patient_view_controller.html", null ],
       [ "TriageViewController", "interface_triage_view_controller.html", null ]
     ] ],
     [ "Users", "interface_users.html", null ],
-    [ "Visitation", "interface_visitation.html", null ]
+    [ "Visitation", "interface_visitation.html", null ],
+    [ "<VisitationObjectProtocol>", "protocol_visitation_object_protocol-p.html", [
+      [ "VisitationObject", "interface_visitation_object.html", null ]
+    ] ]
 ];

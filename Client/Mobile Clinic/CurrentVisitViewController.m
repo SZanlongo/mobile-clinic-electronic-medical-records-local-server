@@ -53,7 +53,7 @@
 // Creates a visit for the patient and checks them in
 - (IBAction)checkInButton:(id)sender {
     // Assigning vitals & condition
-    
+    if (self.validateCheckin) {
     MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
     [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
     [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
@@ -68,6 +68,9 @@
             handler(object,error);
         }
     }];
+    
+    }
+      
 }
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy
