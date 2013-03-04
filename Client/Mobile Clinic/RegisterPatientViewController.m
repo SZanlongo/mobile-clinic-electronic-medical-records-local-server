@@ -42,7 +42,7 @@ UIPopoverController * pop;
     facade = [[CameraFacade alloc]initWithView:self];
     
     if (!_patient)
-        _patient = [[PatientObject alloc]initWithNewPatient];
+        _patient = [[NSMutableDictionary alloc]initWithCapacity:10];
     else
         [self Redisplay];
 }
@@ -57,11 +57,12 @@ UIPopoverController * pop;
 }
 
 -(void)Redisplay {
-    [_patientNameField setText:[_patient getObjectForAttribute:FIRSTNAME]];
-    [_patientPhoto setImage:_patient.getPhoto];
-    [_familyNameField setText:[_patient getObjectForAttribute:FAMILYNAME]];
-    [_villageNameField setText:[_patient getObjectForAttribute:VILLAGE]];
-    [_patientSexSegment setSelectedSegmentIndex:[[_patient getObjectForAttribute:SEX]integerValue]];
+    
+    [_patientNameField setText:[_patient objectForKey:FIRSTNAME]];
+    [_patientPhoto setImage:[UIImage imageWithData:[_patient objectForKey:PICTURE]]];
+    [_familyNameField setText:[_patient objectForKey:FAMILYNAME]];
+    [_villageNameField setText:[_patient objectForKey:VILLAGE]];
+    [_patientSexSegment setSelectedSegmentIndex:[[_patient objectForKey:SEX]integerValue]];
 }
 
 - (void)viewDidUnload {
@@ -78,7 +79,7 @@ UIPopoverController * pop;
     [facade TakePictureWithCompletion:^(id img) {
         if(img) {
             [_patientPhoto setImage:img];
-            [_patient setPhoto:img];
+            [_patient setValue:[img convertImageToPNGBinaryData] forKey:PICTURE];
         }
         [progress hide:YES];
     }];
@@ -88,22 +89,24 @@ UIPopoverController * pop;
     // Before doing anything else, chech that all of the fields have been completed
     if (self.validateRegistration) {
         /* Age is set when the moment the user sets it through the Popover */
-        [_patient setObject:_patientNameField.text withAttribute:FIRSTNAME];
-        [_patient setObject:_familyNameField.text withAttribute:FAMILYNAME];
-        [_patient setObject:_villageNameField.text withAttribute:VILLAGE];
-        [_patient setObject: [NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex] withAttribute:SEX];
-                
-        /** 
+        [_patient setValue:_patientNameField.text forKey:FIRSTNAME];
+        [_patient setValue:_familyNameField.text forKey:FAMILYNAME];
+        [_patient setValue:_villageNameField.text forKey:VILLAGE];
+        [_patient setValue:[NSNumber numberWithInt:_patientSexSegment.selectedSegmentIndex] forKey:SEX];
+        /**
          * This will create a patient locally and on the server.
          * The patient created on the server will be locked automatically.
          * This is done because of the workflow of the system
          * To unlock the patient see the documentation for the PatientObject
          */
-        [_patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
-            if (!data && error) {
+        
+        MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+       
+        [mobileFacade createAndCheckInPatient:_patient onCompletion:^(NSDictionary *object, NSError *error) {
+            if (!object) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
             }else{
-                handler(data,error);
+                handler(object,error);
             }
         }];
     }
@@ -120,8 +123,8 @@ UIPopoverController * pop;
     }
     
     // Set Date if it is available
-    if (_patient.getAge) {
-        [datepicker.datePicker setDate:[_patient getObjectForAttribute:DOB]];
+    if ([_patient objectForKey:DOB]) {
+        [datepicker.datePicker setDate:[_patient objectForKey:DOB]];
     }
     
     // set how the screen should return
@@ -129,8 +132,10 @@ UIPopoverController * pop;
     [datepicker setScreenHandler:^(id object, NSError *error) {
         // This method will return the age
         if (object) {
-            [_patient setObject:object withAttribute:DOB];
-            [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old",_patient.getAge] forState:UIControlStateNormal];
+            [_patient setValue:object forKey:DOB];
+            NSDate* date = object;
+            
+            [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old", [date getNumberOfYearsElapseFromDate]] forState:UIControlStateNormal];
         }
         [pop dismissPopoverAnimated:YES];
     }];
@@ -160,7 +165,7 @@ UIPopoverController * pop;
     } else if([_villageNameField.text isEqualToString:@""] || _villageNameField.text == nil){
         errorMsg = @"Missing Village Name";
         inputIsValid = NO;
-    } else if (_patient.getDateOfBirth == nil) {
+    } else if ([_patient objectForKey:DOB] == nil) {
         errorMsg = @"Missing Patient Age";
         inputIsValid = NO;
     }
@@ -185,6 +190,6 @@ UIPopoverController * pop;
     [_villageNameField setText:@""];
     [_patientPhoto setImage:[UIImage imageNamed:@"userImage.jpeg"]];
     [_patientSexSegment setSelectedSegmentIndex:0];
-    _patient = [[PatientObject alloc]initWithNewPatient];
+    [_patient removeAllObjects];
 }
 @end

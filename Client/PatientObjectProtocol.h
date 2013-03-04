@@ -13,7 +13,7 @@
 #define SEX         @"sex"
 #define DOB         @"age"
 #define PICTURE     @"photo"
-
+#import "DataProcessor.h"
 @protocol PatientObjectProtocol <NSObject>
 
 @end

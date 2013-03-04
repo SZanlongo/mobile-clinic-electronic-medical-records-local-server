@@ -119,7 +119,9 @@
 -(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database{
     
     [self tryAndSendData:DataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        [self saveObject:response];
+        [self saveObject:^(id<BaseObjectProtocol> innerdata, NSError *innererror) {
+            response(data,error);
+        }];
         
     } andWithPositiveResponse:^(id PosData) {
         // Save Returned Values

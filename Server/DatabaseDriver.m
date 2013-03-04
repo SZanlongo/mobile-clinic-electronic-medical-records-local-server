@@ -23,10 +23,10 @@ return self;
 }
 
 
--(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name{
+-(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name isTemporary:(BOOL)temp{
     NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:appDelegate.managedObjectContext];
    
-   return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
+    return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:(temp)?nil:appDelegate.managedObjectContext];
 
 }
 

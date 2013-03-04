@@ -224,7 +224,7 @@
     
     for (NSDictionary* userInfo in users) {
         if (![self loadUserWithUsername:[userInfo objectForKey:USERNAME]]) {
-            user = (Users*)[self CreateANewObjectFromClass:DATABASE];
+            user = (Users*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
         }
 
         user.userName = [userInfo objectForKey:USERNAME];

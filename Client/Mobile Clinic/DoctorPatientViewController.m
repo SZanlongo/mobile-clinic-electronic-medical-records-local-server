@@ -48,12 +48,13 @@
     
    // _visitationData = [[VisitationObject alloc] initWithNewVisit];
     
-    _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
-    _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
-    _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
-    _patientAgeField.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
-    _patientSexField.text = [_patientData getSex];
-    [_patientPhoto setImage:_patientData.getPhoto];
+    _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
+    _familyNameField.text = [_patientData objectForKey:FAMILYNAME];
+    _villageNameField.text = [_patientData objectForKey:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB
+                                                              ]integerValue]];
+    _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
+    [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
     
     [_control1 view];
     [_control1 setPatientData:_patientData];
@@ -65,7 +66,7 @@
 }
 
 -(void)saveVisitation{
-    [_patientData addVisitToCurrentPatient:_control1.visitationData];
+   // [_patientData addVisitToCurrentPatient:_control1.visitationData];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

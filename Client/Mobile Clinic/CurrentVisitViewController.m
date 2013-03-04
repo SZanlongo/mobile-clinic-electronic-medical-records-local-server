@@ -7,7 +7,7 @@
 //
 
 #import "CurrentVisitViewController.h"
-
+#import "MobileClinicFacade.h"
 @interface CurrentVisitViewController ()
 
 @end
@@ -25,12 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    // Pass in the patient's data thru notification
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(assignPatientData:) name:CREATE_NEW_DIAGNOSIS object:_patientData];
-    
-    // Instantiate visitation object
+    currentVisit = [[NSMutableDictionary alloc]initWithCapacity:10];
+    [currentVisit setValue:[NSDate date] forKey:TRIAGEIN];
 
 }
 
@@ -57,21 +53,19 @@
 // Creates a visit for the patient and checks them in
 - (IBAction)checkInButton:(id)sender {
     // Assigning vitals & condition
-    currentVisit;// = [[VisitationObject alloc] initWithNewVisit];
     
-    [currentVisit setObject:[NSNumber numberWithInt:[_patientWeightField.text intValue]] withAttribute:WEIGHT];
-    [currentVisit setObject:_patientBPField.text withAttribute:BLOODPRESSURE];
-    [currentVisit setObject:_conditionsTextbox.text withAttribute:CONDITION];
-   // [currentVisit SetTriageCheckinTime];
-   // [currentVisit setNurseId];
-    // Adding visitation to patient object
-    [_patientData addVisitToCurrentPatient:currentVisit];
-    
-    [_patientData UpdatePatientObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        if (!data && error) {
+    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
+    [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
+    [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
+    [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
+    [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
+
+    [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {
+        if (!object) {
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
         }else{
-        handler(self,nil);
+            handler(object,error);
         }
     }];
 }

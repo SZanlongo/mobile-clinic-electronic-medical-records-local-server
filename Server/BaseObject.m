@@ -41,7 +41,6 @@
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
-    
 }
 
 -(NSString *)description{
@@ -50,6 +49,13 @@
 }
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
     
+}
+-(NSMutableDictionary*)getDictionaryValuesFromManagedObject{
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
+    for (NSString* key in self.databaseObject.entity.attributesByName.allKeys) {
+        [dict setValue:[self.databaseObject valueForKey:key] forKey:key];
+    }
+    return dict;
 }
 //-(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse{
 //    
@@ -60,6 +66,25 @@
 //        negativeResponse(nil,[self createErrorWithDescription:@"Server is Down, Please contact you Application Administrator" andErrorCodeNumber:10 inDomain:@"BaseObject"]);
 //    }
 //}
+
+-(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
+    
+    if (arr.count == 1) {
+        self.databaseObject = [arr objectAtIndex:0];
+        return  YES;
+    }
+    return  NO;
+}
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
+    if (arr.count > 0) {
+         return [arr objectAtIndex:0];
+    }
+return nil;
+}
 -(void)saveObject:(ObjectResponse)eventResponse{
     //Do not save the objectID, That is automatically saved and generated
     eventResponse(self, nil);
@@ -79,6 +104,22 @@
 
 -(void)setDBObject:(NSManagedObject *)DatabaseObject{
     databaseObject = DatabaseObject;
+}
+
+-(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message{
+    if (!status) {
+        status =[[StatusObject alloc]init];
+    }
+    // set data
+    [status setData:data];
+    
+    // Set message
+    [status setErrorMessage:message];
+    
+    // set status
+    [status setStatus:kStatus];
+    
+    commandPattern([status consolidateForTransmitting]);
 }
 
 #pragma mark - Cloud API

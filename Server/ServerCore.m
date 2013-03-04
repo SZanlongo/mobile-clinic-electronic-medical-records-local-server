@@ -113,9 +113,7 @@ static int TIMEOUT = -1;
 	NSLog(@"Failed to Publish Service: domain(%@) type(%@) name(%@) - %@",
                [ns domain], [ns type], [ns name], errorDict);
 }
--(void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag{
-    NSLog(@"REading partial");
-}
+
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
     
     NSLog(@"Server did accept data %li",data.length);
@@ -150,7 +148,7 @@ static int TIMEOUT = -1;
 }
 
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
-NSLog(@"Sent Data to client");
+    NSLog(@"Server is now Listening for Data");
     [sock readDataWithTimeout:-1 tag:tag];
 }
 

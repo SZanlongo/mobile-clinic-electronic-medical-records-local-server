@@ -47,11 +47,11 @@
 
 // Transfers the patient's data to the next view controller
 - (void)transferPatientData:(NSNotification *)note {
-    _patientData = note.object;
+    _patientData =[NSMutableDictionary dictionaryWithDictionary:note.object];
     
     DoctorPatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
     
-    newView.patientData = _patientData;
+    [newView setPatientData:_patientData];
     
     [self.navigationController pushViewController:newView animated:YES];
 }
@@ -123,7 +123,7 @@
         
         CurrentDiagnosisViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
         
-        newView.patientData = _patientData;
+        [newView setPatientData:_patientData];
         
         [newView setScreenHandler:^(id object, NSError *error) {
             [self.navigationController popViewControllerAnimated:YES];

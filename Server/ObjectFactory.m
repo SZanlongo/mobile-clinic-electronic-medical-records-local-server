@@ -10,6 +10,7 @@
 #import "UserObject.h"
 #import "PatientObject.h"
 #import "StatusObject.h"
+#import "VisitationObject.h"
 @implementation ObjectFactory
 
 +(id<BaseObjectProtocol>)createObjectForType:(NSDictionary*)data{
@@ -23,6 +24,8 @@
             return [[StatusObject alloc]init];
         case kPatientType:
             return [[PatientObject alloc]init];
+        case kVisitationType:
+            return [[VisitationObject alloc]init];
         default:
             return nil;
     }

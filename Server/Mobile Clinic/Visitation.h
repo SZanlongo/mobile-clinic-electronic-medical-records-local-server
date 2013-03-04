@@ -2,7 +2,7 @@
 //  Visitation.h
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/26/13.
+//  Created by Michael Montaque on 3/3/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
@@ -20,6 +20,8 @@
 @property (nonatomic, retain) NSDate * doctorIn;
 @property (nonatomic, retain) NSDate * doctorOut;
 @property (nonatomic, retain) NSNumber * isGraphic;
+@property (nonatomic, retain) NSString * isLockedBy;
+@property (nonatomic, retain) NSNumber * isOpen;
 @property (nonatomic, retain) NSString * nurseId;
 @property (nonatomic, retain) NSString * observation;
 @property (nonatomic, retain) NSString * patientId;

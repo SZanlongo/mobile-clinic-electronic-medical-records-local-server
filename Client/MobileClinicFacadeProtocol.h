@@ -35,6 +35,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
 -(void) updateVisitRecord:(NSDictionary*)visitRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response;
 
 -(void) findAllVisitsForCurrentPatient:(NSDictionary*)patientInfo AndOnCompletion:(MobileClinicSearchResponse)Response;
+-(void) findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response;
 
 -(void) updateCurrentPatientAndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
 

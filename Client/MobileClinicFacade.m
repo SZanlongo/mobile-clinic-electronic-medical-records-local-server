@@ -9,9 +9,28 @@
 #import "MobileClinicFacade.h"
 #import "PatientObject.h"
 #import "VisitationObject.h"
-
+FIUAppDelegate* appDelegate;
 @implementation MobileClinicFacade
-
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        appDelegate = (FIUAppDelegate*)[[UIApplication sharedApplication]delegate];
+    }
+    return self;
+}
+-(NSString *)GetCurrentUsername{
+    return appDelegate.currentUserName;
+}
+-(void)createAndCheckInPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response{
+   
+    PatientObject* patient = [[PatientObject alloc]initWithNewDatabaseObject:[PatientObject DatabaseName]];
+    [patient setValueToDictionaryValues:patientInfo];
+    // Object is Create locally Only
+    [patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
+        Response([data getDictionaryValuesFromManagedObject], error);
+    }];
+}
 //  Use to find patients. Has no need to lock
 -(void)findPatientWithFirstName:(NSString *)firstname orLastName:(NSString *)lastname onCompletion:(MobileClinicSearchResponse)Response{
     
@@ -76,6 +95,17 @@
     
     [vObject shouldLockVisit:!unlock forDatabase:nil onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
+    }];
+}
+
+-(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{
+    
+    /* Create a temporary Patient Object to make request */
+    VisitationObject* vObject = [[VisitationObject alloc]init];
+    
+    [vObject FindAllOpenVisitsOnServer:^(id<BaseObjectProtocol> data, NSError *error) {
+        NSArray* allVisits = [NSArray arrayWithArray:[vObject FindAllOpenVisitsLocally]];
+        Response(allVisits,error);
     }];
 }
 @end

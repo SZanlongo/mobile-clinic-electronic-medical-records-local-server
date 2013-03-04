@@ -15,7 +15,7 @@
     ScreenHandler handler;
 }
     
-@property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) CurrentVisitViewController * control1;
 @property (strong, nonatomic) PreviousVisitsViewController * control2;
 

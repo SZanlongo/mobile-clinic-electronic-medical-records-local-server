@@ -46,9 +46,6 @@
     _searchControl = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
 //    [_searchControl view];
     
-    // Notifications that receive patient data from registration & search view controllers
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:CREATE_NEW_PATIENT object:_patientData];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferPatientData:) name:SEARCH_FOR_PATIENT object:_patientData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -57,12 +54,12 @@
 }
 
 // Transfers the patient's data to the next view controller
-- (void)transferPatientData:(PatientObject *)note {
-    _patientData = note;
+- (void)transferPatientData:(NSMutableDictionary *)note {
+    _patientData = [NSMutableDictionary dictionaryWithDictionary:note];
     
     TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
     
-    newView.patientData = _patientData;
+    [newView setPatientData:_patientData];
     
     [self.navigationController pushViewController:newView animated:YES];
 }
@@ -136,11 +133,11 @@
     
     //
     [[cell viewController] setScreenHandler:^(id object, NSError *error) {
-        _patientData = object;
+        _patientData = [NSMutableDictionary dictionaryWithDictionary:object];
         
         TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
 
-        newView.patientData = _patientData;
+        [newView setPatientData:_patientData];
         
         [newView setScreenHandler:^(id object, NSError *error) {
             [self.navigationController popViewControllerAnimated:YES];

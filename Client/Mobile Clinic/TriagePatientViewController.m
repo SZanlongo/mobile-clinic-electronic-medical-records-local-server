@@ -48,12 +48,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
-    _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
-    _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
-    _patientAgeField.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
-    _patientSexField.text = [_patientData getSex];
-    [_patientPhoto setImage:_patientData.getPhoto];
+    _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
+    _familyNameField.text = [_patientData objectForKey:FAMILYNAME];
+    _villageNameField.text = [_patientData objectForKey:VILLAGE];
+    NSDate* date = [_patientData objectForKey:DOB];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",date.getNumberOfYearsElapseFromDate];
+    NSString* gender = ([[_patientData objectForKey:SEX]integerValue]==0)?@"Female":@"Male";
+    _patientSexField.text = gender;
+    [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
     
     [_control1 view];
     [_control1 setPatientData:_patientData];

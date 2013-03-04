@@ -7,16 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PatientObject.h"
 #import "ScreenNavigationDelegate.h"
 #import "PatientResultTableCell.h"
+
+typedef enum MobileClinicMode{
+    kTriageMode,
+    kDoctorMode,
+    kPharmacistMode
+} MCMode;
 
 @interface SearchPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     ScreenHandler handler;
     BOOL shouldDismiss;
 }
-
-@property (nonatomic, strong) PatientObject * patientData;
+@property (assign) MCMode mode;
+@property (nonatomic, strong) NSMutableDictionary * patientData;
 @property (nonatomic, strong) NSArray * patientSearchResultsArray;
 
 @property (strong, nonatomic) IBOutlet UITextField *patientNameField;

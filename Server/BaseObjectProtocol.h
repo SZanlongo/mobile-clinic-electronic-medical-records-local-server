@@ -5,9 +5,9 @@
 //  Created by Michael Montaque on 2/1/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
-
-#define OBJECTTYPE        @"objectType"
-#define OBJECTCOMMAND     @"userCommand" //The different user types (look at enum)
+#define ISLOCKEDBY          @"isLockedBy"
+#define OBJECTTYPE          @"objectType"
+#define OBJECTCOMMAND       @"userCommand" //The different user types (look at enum)
 
 #import <Foundation/Foundation.h>
 
@@ -31,6 +31,7 @@ typedef enum {
     kCreateNewObject            = 6,
     kFindObject                 = 7,
     kUpdateObject               = 8,
+    kFindOpenObjects            = 9,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>
@@ -116,7 +117,13 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
  */
 -(void)setDBObject:(NSManagedObject*)DatabaseObject;
 
+-(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
+
+-(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+
 @property(strong, nonatomic)NSManagedObject* databaseObject;
 
-
+-(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message;
 @end

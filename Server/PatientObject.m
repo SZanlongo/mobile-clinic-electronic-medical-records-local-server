@@ -63,11 +63,7 @@ NSString* isLockedBy;
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
     
-    if ([data objectForKey:DATABASEOBJECT]) {
-        self.databaseObject = [self loadAndReturnPatientForID:[[data objectForKey:DATABASEOBJECT] valueForKey:PATIENTID]];
-    }else{
-        self.databaseObject = [self CreateANewObjectFromClass:DATABASE];
-    }
+    self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:YES];
     
     [self linkDatabaseObjects];
     
@@ -275,7 +271,7 @@ NSString* isLockedBy;
         //We only want to create patients that do not exists in Database
         if (![self loadPatientWithID:[userInfo objectForKey:PATIENTID]]) {
             
-            self.databaseObject = (Patients*)[self CreateANewObjectFromClass:DATABASE];
+            self.databaseObject = (Patients*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
             [self linkDatabaseObjects];
             
             patient.firstName = [userInfo objectForKey:FIRSTNAME];

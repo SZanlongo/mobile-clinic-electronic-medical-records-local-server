@@ -37,5 +37,9 @@
 
 -(void)shouldLockVisit:(BOOL)lockVisit onCompletion:(ObjectResponse)Response;
 
+-(void) FindAllOpenVisitsOnServer:(ObjectResponse)Response;
+
+-(NSArray*) FindAllOpenVisitsLocally;
+
 +(NSString*)DatabaseName;
 @end

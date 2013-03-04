@@ -34,6 +34,7 @@ typedef enum {
     kCreateNewObject            = 6,
     kFindObject                 = 7,
     kUpdateObject               = 8,
+    kFindOpenObjects            = 9,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>

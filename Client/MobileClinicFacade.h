@@ -18,5 +18,6 @@
 #import "MobileClinicFacadeProtocol.h"
 
 @interface MobileClinicFacade : NSObject <MobileClinicFacadeProtocol>
-
+-(id)init;
+-(NSString*)GetCurrentUsername;
 @end

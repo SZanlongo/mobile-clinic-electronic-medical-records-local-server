@@ -66,22 +66,41 @@
     visit = (Visitation*)self.databaseObject;
 }
 -(void)createVisitationIDForPatient:(NSString *)patientFirstName{
+    [self linkVisit];
     [visit setVisitationId:[NSString stringWithFormat:@"%@.%f",patientFirstName,[[NSDate date]timeIntervalSince1970]]];
 }
 
 -(void)createNewVisitOnClientAndServer:(ObjectResponse)onSuccessHandler
 {
     respondToEvent = onSuccessHandler;
+    // Open the visitation
+    [self.databaseObject setValue:[NSNumber numberWithBool:YES] forKey:ISOPEN];
     NSMutableDictionary* dataToSend= [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
     [dataToSend setValue:[NSNumber numberWithInteger:kCreateNewObject] forKey:OBJECTCOMMAND];
+    
     [self UpdateObject:onSuccessHandler andSendObjects:dataToSend forDatabase:DATABASE];
 }
-
+-(void) FindAllOpenVisitsOnServer:(ObjectResponse)Response{
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kFindOpenObjects],OBJECTCOMMAND,[NSNumber numberWithInteger:kVisitationType],OBJECTTYPE, nil];
+    
+    [self tryAndSendData:dict withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+        Response(data,error);
+    } andWithPositiveResponse:^(id data) {
+        StatusObject* status = data;
+        [self SaveListOfPatientsToTheDatabase:status.data];
+        respondToEvent(self,nil);
+    }];
+}
+-(NSArray*)FindAllOpenVisitsLocally{
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"isOpen == TRUE"];
+    
+    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN];
+}
 -(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient
 {
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",[patient objectForKey:PATIENTID]];
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[patient objectForKey:PATIENTID]];
     
-    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:[patient objectForKey:PATIENTID]];
+    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:PATIENTID];
 }
 
 -(void)FindAllVisitsOnServerForPatient:(NSDictionary*)patient OnCompletion:(ObjectResponse)eventResponse
@@ -136,7 +155,7 @@
 
 -(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database{
     
-    [self UpdateObject:response andSendObjects:DataToSend forDatabase:database];
+    [super UpdateObject:response andSendObjects:DataToSend forDatabase:database];
 }
 
 -(void)shouldLockVisit:(BOOL)lockVisit forDatabase:(NSString *)database onCompletion:(ObjectResponse)Response{

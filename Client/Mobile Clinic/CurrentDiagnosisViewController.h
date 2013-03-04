@@ -15,7 +15,7 @@
     ScreenHandler handler;
 }
 
-@property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) VisitationObject * visitationData;
 @property (weak, nonatomic) IBOutlet UITextView *conditionsTextbox;
 @property (weak, nonatomic) IBOutlet UITextView *diagnosisTextbox;

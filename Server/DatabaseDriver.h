@@ -17,7 +17,7 @@
 -(id)init;
 
 -(id)getValueForKey:(NSString *)key FromObject:(NSManagedObject*)databaseObject;
--(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name;
+-(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name isTemporary:(BOOL)temp;
 -(void)SaveCurrentObjectToDatabase:(NSManagedObject*)databaseObject;
 
 -(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute;

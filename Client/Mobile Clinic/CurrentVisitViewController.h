@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "StationViewHandlerProtocol.h"
-#import "PatientObject.h"
-#import "VisitationObject.h"
+
 
 @interface CurrentVisitViewController : UIViewController {
     ScreenHandler handler;
-    VisitationObject *currentVisit;
+    NSMutableDictionary *currentVisit;
 }
 
-@property (strong, nonatomic) PatientObject *patientData;
+@property (strong, nonatomic) NSMutableDictionary *patientData;
 @property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
 @property (strong, nonatomic) IBOutlet UITextField *patientBPField;
 @property (strong, nonatomic) IBOutlet UITextView *conditionsTextbox;

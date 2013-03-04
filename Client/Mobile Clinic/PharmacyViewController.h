@@ -10,6 +10,7 @@
 #import "SearchPatientTableCell.h"
 #import "StationViewHandlerProtocol.h"
 #import "PrescriptionObject.h"
+#import "PatientObject.h"
 
 @interface PharmacyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     ScreenHandler handler;

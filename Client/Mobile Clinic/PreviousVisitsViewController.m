@@ -7,9 +7,11 @@
 //
 
 #import "PreviousVisitsViewController.h"
-
+#import "MobileClinicFacade.h"
+#import "BaseObject.h"
 @interface PreviousVisitsViewController (){
     NSManagedObjectContext *context;
+    MobileClinicFacade* mobileFacade;
 }
 @end
 
@@ -29,15 +31,15 @@
 	// Do any additional setup after loading the view.
     // Define row height
     _patientHistoryTableView.rowHeight = 150;
+    mobileFacade = [[MobileClinicFacade alloc]init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
-    // Search database with patientId
-    _patientHistoryArray = [[NSMutableArray alloc]initWithArray:[_patientData getAllVisitsForCurrentPatient]];
-    
-    // Populate cells
-    [_patientHistoryTableView reloadData];
+    [mobileFacade findAllVisitsForCurrentPatient:_patientData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        _patientHistoryArray = [NSMutableArray arrayWithArray:allObjectsFromSearch];
+        [_patientHistoryTableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,31 +74,34 @@
         cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    VisitationObject * visitData = [[VisitationObject alloc]init];
+    
+    
+    // Set Patient Data
+    cell.patientDOBLabel.text = [[_patientData objectForKey:DOB]convertNSDateFullBirthdayString];
+
+    // Set Visitation Data
+    BaseObject * visitData = [[BaseObject alloc]init];
     [visitData setDBObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
     
-    // Display contents of cells
-    cell.patientDOBLabel.text = [[_patientData getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
-//    cell.patientAgeLabel.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
     cell.patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[visitData getObjectForAttribute:WEIGHT]doubleValue]];
     cell.patientBPLabel.text = [visitData getObjectForAttribute:BLOODPRESSURE];
     [cell.patientConditionsTextView setText:[visitData getObjectForAttribute:CONDITION]];
-//    cell.patientMedicationTextView setText:[visitData getObjectForAttribute:MEDICATIONID]];
+
     return cell;
 }
 
 //
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    // TODO: YOU NEED TO TRY AND LOCK THE PATIENT BEFORE CHANGING SCREENS OR PROCEEDING
+    
     // Gets the object at the corresponding index
-    [_patientData setDatabaseObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
+   // [_patientData setDatabaseObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
     
     // Sets color of cell when selected
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor grayColor];
-    
-    // Select patient and post notification
-//    [[NSNotificationCenter defaultCenter] postNotificationName:<#(NSString *)#> object:_patientData];
+
 }
 
 @end

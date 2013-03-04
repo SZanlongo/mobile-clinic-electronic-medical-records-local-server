@@ -30,6 +30,8 @@
 		EA3856B216C1956B00FA83FD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5D38FA16B9E3E400377D2C /* Security.framework */; };
 		EA3856B316C1957300FA83FD /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8D862516B0C9C000256495 /* CoreServices.framework */; };
 		EA3856B416C1957D00FA83FD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8D85F216B0C9BF00256495 /* CoreData.framework */; };
+		EA4CEC1416E3F8F400D6AB58 /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CEC1316E3F8F400D6AB58 /* Visitation.m */; };
+		EA4CEC1516E3F8F400D6AB58 /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CEC1316E3F8F400D6AB58 /* Visitation.m */; };
 		EA5D38F816B9E38000377D2C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5D38F716B9E38000377D2C /* GCDAsyncSocket.m */; };
 		EA5D38F916B9E38000377D2C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5D38F716B9E38000377D2C /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA5D38FB16B9E3E400377D2C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5D38FA16B9E3E400377D2C /* Security.framework */; };
@@ -69,9 +71,6 @@
 		EAC19C6816DD27BF00B0B8DA /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C6716DD27BF00B0B8DA /* Users.m */; };
 		EAC19C6916DD27BF00B0B8DA /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C6716DD27BF00B0B8DA /* Users.m */; };
 		EAC19C6A16DD27BF00B0B8DA /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C6716DD27BF00B0B8DA /* Users.m */; };
-		EAC19C7816DDBD5B00B0B8DA /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C7716DDBD5B00B0B8DA /* Visitation.m */; };
-		EAC19C7916DDBD5B00B0B8DA /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C7716DDBD5B00B0B8DA /* Visitation.m */; };
-		EAC19C7A16DDBD5B00B0B8DA /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C7716DDBD5B00B0B8DA /* Visitation.m */; };
 		EAC19C7E16DE839C00B0B8DA /* PatientTable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C7C16DE839C00B0B8DA /* PatientTable.m */; };
 		EAC19C7F16DE839C00B0B8DA /* PatientTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC19C7D16DE839C00B0B8DA /* PatientTable.xib */; };
 		EAC19C8516DEE40700B0B8DA /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C8416DEE40700B0B8DA /* Patients.m */; };
@@ -136,6 +135,8 @@
 		EA1EE1BD16D0A02000E263D2 /* VisitationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitationObject.h; sourceTree = "<group>"; };
 		EA1EE1BE16D0A02000E263D2 /* VisitationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitationObject.m; sourceTree = "<group>"; };
 		EA27F9C516DCA9FA008D7DA9 /* DatabaseDriverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDriverProtocol.h; sourceTree = "<group>"; };
+		EA4CEC1216E3F8F400D6AB58 /* Visitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Visitation.h; sourceTree = "<group>"; };
+		EA4CEC1316E3F8F400D6AB58 /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visitation.m; sourceTree = "<group>"; };
 		EA5D38F616B9E38000377D2C /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		EA5D38F716B9E38000377D2C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EA5D38FA16B9E3E400377D2C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -185,8 +186,6 @@
 		EAC19C6216DD27BF00B0B8DA /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Medication.m; path = ../Medication.m; sourceTree = "<group>"; };
 		EAC19C6616DD27BF00B0B8DA /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Users.h; path = ../Users.h; sourceTree = "<group>"; };
 		EAC19C6716DD27BF00B0B8DA /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Users.m; path = ../Users.m; sourceTree = "<group>"; };
-		EAC19C7616DDBD5B00B0B8DA /* Visitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visitation.h; path = ../Visitation.h; sourceTree = "<group>"; };
-		EAC19C7716DDBD5B00B0B8DA /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Visitation.m; path = ../Visitation.m; sourceTree = "<group>"; };
 		EAC19C7B16DE839C00B0B8DA /* PatientTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientTable.h; sourceTree = "<group>"; };
 		EAC19C7C16DE839C00B0B8DA /* PatientTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientTable.m; sourceTree = "<group>"; };
 		EAC19C7D16DE839C00B0B8DA /* PatientTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientTable.xib; sourceTree = "<group>"; };
@@ -349,8 +348,6 @@
 		EA8D85F416B0C9BF00256495 /* Mobile Clinic */ = {
 			isa = PBXGroup;
 			children = (
-				EAC19C7616DDBD5B00B0B8DA /* Visitation.h */,
-				EAC19C7716DDBD5B00B0B8DA /* Visitation.m */,
 				EAC19C6616DD27BF00B0B8DA /* Users.h */,
 				EAC19C6716DD27BF00B0B8DA /* Users.m */,
 				EAC19C6116DD27BF00B0B8DA /* Medication.h */,
@@ -363,6 +360,8 @@
 				EA8D85F516B0C9BF00256495 /* Supporting Files */,
 				EAD015F216DAB086002A8B3B /* PatientScreen.xib */,
 				EAC19C5216DD24BC00B0B8DA /* Mobile_Clinic.xcdatamodeld */,
+				EA4CEC1216E3F8F400D6AB58 /* Visitation.h */,
+				EA4CEC1316E3F8F400D6AB58 /* Visitation.m */,
 				EAC19C8316DEE40700B0B8DA /* Patients.h */,
 				EAC19C8416DEE40700B0B8DA /* Patients.m */,
 			);
@@ -639,9 +638,9 @@
 				EAC19C5916DD27BE00B0B8DA /* Prescription.m in Sources */,
 				EAC19C6316DD27BF00B0B8DA /* Medication.m in Sources */,
 				EAC19C6816DD27BF00B0B8DA /* Users.m in Sources */,
-				EAC19C7816DDBD5B00B0B8DA /* Visitation.m in Sources */,
 				EAC19C7E16DE839C00B0B8DA /* PatientTable.m in Sources */,
 				EAC19C8516DEE40700B0B8DA /* Patients.m in Sources */,
+				EA4CEC1416E3F8F400D6AB58 /* Visitation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +667,7 @@
 				EAC19C5A16DD27BE00B0B8DA /* Prescription.m in Sources */,
 				EAC19C6416DD27BF00B0B8DA /* Medication.m in Sources */,
 				EAC19C6916DD27BF00B0B8DA /* Users.m in Sources */,
-				EAC19C7916DDBD5B00B0B8DA /* Visitation.m in Sources */,
+				EA4CEC1516E3F8F400D6AB58 /* Visitation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,7 +682,6 @@
 				EAC19C5B16DD27BE00B0B8DA /* Prescription.m in Sources */,
 				EAC19C6516DD27BF00B0B8DA /* Medication.m in Sources */,
 				EAC19C6A16DD27BF00B0B8DA /* Users.m in Sources */,
-				EAC19C7A16DDBD5B00B0B8DA /* Visitation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

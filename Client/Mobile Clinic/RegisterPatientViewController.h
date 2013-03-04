@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PatientObject.h"
+#import "MobileClinicFacade.h"
 #import "CameraFacade.h"
 #import "StationViewHandlerProtocol.h"
 
@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *patientSexSegment;
 @property (weak, nonatomic) IBOutlet UIButton *createPatientButton;
 
-@property (strong, nonatomic) PatientObject *patient;
+@property (strong, nonatomic) NSMutableDictionary *patient;
 
 - (IBAction)patientPhotoButton:(id)sender;
 - (IBAction)createPatient:(id)sender;

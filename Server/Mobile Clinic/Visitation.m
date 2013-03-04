@@ -2,7 +2,7 @@
 //  Visitation.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 2/26/13.
+//  Created by Michael Montaque on 3/3/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
@@ -19,6 +19,8 @@
 @dynamic doctorIn;
 @dynamic doctorOut;
 @dynamic isGraphic;
+@dynamic isLockedBy;
+@dynamic isOpen;
 @dynamic nurseId;
 @dynamic observation;
 @dynamic patientId;
