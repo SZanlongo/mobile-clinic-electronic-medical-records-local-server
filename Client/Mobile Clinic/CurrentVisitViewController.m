@@ -27,7 +27,7 @@
     [super viewDidLoad];
     currentVisit = [[NSMutableDictionary alloc]initWithCapacity:10];
     [currentVisit setValue:[NSDate date] forKey:TRIAGEIN];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,23 +54,25 @@
 - (IBAction)checkInButton:(id)sender {
     // Assigning vitals & condition
     if (self.validateCheckin) {
-    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
-    [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
-    [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
-    [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
-    [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
-    [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
-
-    [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {
-        if (!object) {
-            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        }else{
-            handler(object,error);
-        }
-    }];
-    
+        MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+        [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
+        [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
+        [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
+        [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
+        [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
+        
+        [mobileFacade updateCurrentPatientAndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
+            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {
+                if (!object) {
+                    [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+                }else{
+                    handler(object,error);
+                }
+            }];
+            
+        }];
     }
-      
+    
 }
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy

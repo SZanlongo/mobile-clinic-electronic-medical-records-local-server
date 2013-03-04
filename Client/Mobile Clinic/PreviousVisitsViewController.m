@@ -44,22 +44,12 @@
      
     [mobileFacade findAllVisitsForCurrentPatient:_patientData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         _patientHistoryArray = [NSMutableArray arrayWithArray:allObjectsFromSearch];
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"triageOut" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        _patientHistoryArray = [NSMutableArray arrayWithArray:[_patientHistoryArray sortedArrayUsingDescriptors:sortDescriptors]];
         [_patientHistoryTableView reloadData];
     }];
-    
-    // Search database with patientId
-    //_patientHistoryArray = [[NSMutableArray alloc]initWithArray:[_patientData getAllVisitsForCurrentPatient]];
-    
-    //SEBASTIAN - I AM TRYING TO SORT THE PREVIOUS VISITS BY DATE
-    //    NSSortDescriptor *sortDescriptor;
-    //    sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"triageOut" ascending:YES];
-    //    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    //    NSArray *sortedArray;
-    //    sortedArray = [_patientData.getAllVisitsForCurrentPatient sortedArrayUsingDescriptors:sortDescriptors];
-    //    _patientHistoryArray = sortedArray;
-    
-    //  Populate cells
-    //  [_patientHistoryTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
