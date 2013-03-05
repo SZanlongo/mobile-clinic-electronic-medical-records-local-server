@@ -7,19 +7,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "384035821.412894"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "166"
-         endingLineNumber = "166"
-         landmarkName = "-ClientSidePatientLockToggleWithError:orPositiveErro:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "ServerCore.m"
          timestampString = "384046537.95149"
          startingColumnNumber = "9223372036854775807"
@@ -27,19 +14,6 @@
          startingLineNumber = "140"
          endingLineNumber = "140"
          landmarkName = "-socket:didReadData:withTag:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "VisitationObject.m"
-         timestampString = "384048707.819925"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "219"
-         endingLineNumber = "219"
-         landmarkName = "-isVisitUniqueForVisitID"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

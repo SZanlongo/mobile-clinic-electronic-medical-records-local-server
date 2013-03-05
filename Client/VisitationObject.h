@@ -16,30 +16,10 @@
 @interface VisitationObject : BaseObject<VisitationObjectProtocol>{
     Visitation* visit;
 }
+
 @property(nonatomic, strong)    PrescriptionObject* currentPrescription;
 
-/**
- * Loads the current object with a previously existing visitation that resides locally on the client
- *@param visitID represents the id of the object that you want to find
- */
--(BOOL)loadVisitWithVisitationID:(NSString *)visitID;
-
 -(void)linkVisit;
-
--(void)createVisitationIDForPatient:(NSString*)patientFirstName;
-
--(void)createNewVisitOnClientAndServer:(ObjectResponse)onSuccessHandler
-;
-
--(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient;
-
--(void)FindAllVisitsOnServerForPatient:(NSDictionary*)patient OnCompletion:(ObjectResponse)eventResponse;
-
--(void)shouldLockVisit:(BOOL)lockVisit onCompletion:(ObjectResponse)Response;
-
--(void) FindAllOpenVisitsOnServer:(ObjectResponse)Response;
-
--(NSArray*) FindAllOpenVisitsLocally;
 
 +(NSString*)DatabaseName;
 @end

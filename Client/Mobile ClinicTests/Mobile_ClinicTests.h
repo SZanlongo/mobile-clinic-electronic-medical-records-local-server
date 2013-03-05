@@ -7,10 +7,10 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "FIULoginViewController.h"
+#import <OCMock/OCMock.h>
+
 @interface Mobile_ClinicTests : SenTestCase{
-    FIULoginViewController* loginScreen;
-    UserObject* user;
+   
 }
 
 @end

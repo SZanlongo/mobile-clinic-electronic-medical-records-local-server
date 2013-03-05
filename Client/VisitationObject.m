@@ -43,7 +43,8 @@
     }
 }
 
-
+#pragma mark- Private Methods
+#pragma mark-
 -(BOOL)isVisitUniqueForVisitID
 {
     NSArray* pastVisits = [self FindObjectInTable:DATABASE withName:visit.visitationId forAttribute:VISITID];
@@ -55,7 +56,6 @@
     return YES;
 }
 
-
 -(BOOL)loadVisitWithVisitationID:(NSString *)visitID{
    
    return [super loadObjectForID:visitID inDatabase:DATABASE forAttribute:VISITID];
@@ -65,9 +65,12 @@
 -(void)linkVisit{
     visit = (Visitation*)self.databaseObject;
 }
--(void)createVisitationIDForPatient:(NSString *)patientFirstName{
+
+#pragma mark- Public Methods
+#pragma mark-
+-(void)associatePatientToVisit:(NSString *)patientFirstName{
     [self linkVisit];
-    [visit setVisitationId:[NSString stringWithFormat:@"%@.%f",patientFirstName,[[NSDate date]timeIntervalSince1970]]];
+    [visit setVisitationId:[NSString stringWithFormat:@"%@_%f",patientFirstName,[[NSDate date]timeIntervalSince1970]]];
 }
 
 -(void)createNewVisitOnClientAndServer:(ObjectResponse)onSuccessHandler
@@ -76,11 +79,12 @@
     // Open the visitation
     [self.databaseObject setValue:[NSNumber numberWithBool:YES] forKey:ISOPEN];
     NSMutableDictionary* dataToSend= [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-    [dataToSend setValue:[NSNumber numberWithInteger:kCreateNewObject] forKey:OBJECTCOMMAND];
+    [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
     
     [self UpdateObject:onSuccessHandler andSendObjects:dataToSend forDatabase:DATABASE];
 }
--(void) FindAllOpenVisitsOnServer:(ObjectResponse)Response{
+
+-(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response{
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kFindOpenObjects],OBJECTCOMMAND,[NSNumber numberWithInteger:kVisitationType],OBJECTTYPE, nil];
     
     [self tryAndSendData:dict withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
@@ -91,11 +95,13 @@
         respondToEvent(self,nil);
     }];
 }
+
 -(NSArray*)FindAllOpenVisitsLocally{
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"isOpen == TRUE"];
     
     return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN];
 }
+
 -(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient
 {
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[patient objectForKey:PATIENTID]];
@@ -140,26 +146,21 @@
         [self SaveCurrentObjectToDatabase];
     }
 }
--(NSDictionary*)DictionaryReadyToCreateVisit{
+
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response{
+
+    if (shouldLock) {
+        [self.databaseObject setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
+    }else{
+        [self.databaseObject setValue:@"" forKey:ISLOCKEDBY];
+    }
     
-    [self.databaseObject setValue:[NSNumber numberWithBool:YES] forKey:ISOPEN];
+    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
     
-    NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithDictionary:[self consolidateForTransmitting]];
+    [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
+    [dataToSend setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
     
-    [query setValue:[NSNumber numberWithInt:kCreateNewObject] forKey:OBJECTCOMMAND];
-    
-    [query setValue:@"" forKey:ISLOCKEDBY];
-    
-    return query;
+    [super UpdateObject:response andSendObjects:dataToSend forDatabase:DATABASE];
 }
 
--(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database{
-    
-    [super UpdateObject:response andSendObjects:DataToSend forDatabase:database];
-}
-
--(void)shouldLockVisit:(BOOL)lockVisit forDatabase:(NSString *)database onCompletion:(ObjectResponse)Response{
-   
-    [super shouldLockVisit:lockVisit forDatabase:DATABASE onCompletion:Response];
-}
 @end

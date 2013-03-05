@@ -21,12 +21,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PatientObject.m"
-         timestampString = "384049432.005505"
+         timestampString = "384141136.173107"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
-         landmarkName = "-createNewPatient:"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
+         landmarkName = "-QueryForPatientActionSuccessfull:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -53,19 +53,6 @@
          startingLineNumber = "103"
          endingLineNumber = "103"
          landmarkName = "-createPatient:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BaseObject.m"
-         timestampString = "384046344.440903"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "123"
-         endingLineNumber = "123"
-         landmarkName = "-UpdateObject:andSendObjects:forDatabase:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

@@ -31,10 +31,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  * @param patietnInfo The patient's information in a dictionary form
  */
 -(void) createAndCheckInPatient:(NSDictionary*)patientInfo onCompletion:(MobileClinicCommandResponse)Response;
-/**
- * Not Implemented: Do not use this method yet.
- */
--(void) loadAndLockPatient:(NSDictionary*)patientInfo onCompletion:(MobileClinicCommandResponse)Response;
+
 /**
  * Locates the patient by First and/or Family name. This method fetches the query from the server and caches it to the device. Then it queries the cache to return a complete list objects that matches the criteria
  * @param firstname the firstname of the patient
@@ -49,14 +46,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  * @param patientInfo The patient to associate the visitation to
  */
 -(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response;
-/**
- * Locks the visit from the other users. This lock will not release by itself. The lock will only respond to the user which means that the lock will not work if the user is not logged in.
- * The lock needs to be called whenever the user needs to manipulate data that already exists on the server. 
- * To lock the visit, just pass this method the user's visit information (in a dictionary of course) and the Response block will return whether or not it was successfull via the error variable. 
- * Whether the lock was successful or not the block will always return the updated visit value from the server;
- * @param VisitInfo the visitation dictionary that needs to be locked
- */
--(void) LockVist:(NSDictionary*)VisitInfo onCompletion:(MobileClinicCommandResponse)Response;
+
 /**
  * This will update the give visit in local and remote database. 
  * If the visit is locked by another user the server will not update the visit but instead will throw an error message.
@@ -84,7 +74,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
 /**
  * Not Implemented yet
  */
--(void) updateCurrentPatientAndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
+-(void) updateCurrentPatient:(NSDictionary*)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
 /**
  * Not Implemented yet
  */

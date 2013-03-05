@@ -94,6 +94,7 @@ return nil;
     
 }
 
+
 -(void)setObject:(id)object withAttribute:(NSString *)attribute{
     [super setObject:object withAttribute:attribute inDatabaseObject:databaseObject];
 }
@@ -122,6 +123,14 @@ return nil;
     commandPattern([status consolidateForTransmitting]);
 }
 
+-(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database
+{
+    // Check if it exists in database
+    if ([self FindObjectInTable:database withName:obj forAttribute:key].count > 0) {
+        return NO;
+    }
+    return YES;
+}
 #pragma mark - Cloud API
 #pragma mark-
 -(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion

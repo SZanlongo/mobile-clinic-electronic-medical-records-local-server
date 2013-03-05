@@ -64,9 +64,6 @@
 -(void)CommonExecution
 {
     switch (self.commands) {
-        case kCreateNewObject:
-            NSLog(@"Please use web application to add users");
-            break;
         case kPullAllUsers:
             [self PushAllUsersToClient];
             break;

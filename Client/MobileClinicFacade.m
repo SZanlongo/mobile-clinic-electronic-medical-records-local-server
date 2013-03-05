@@ -11,6 +11,7 @@
 #import "VisitationObject.h"
 FIUAppDelegate* appDelegate;
 @implementation MobileClinicFacade
+
 - (id)init
 {
     self = [super init];
@@ -19,18 +20,21 @@ FIUAppDelegate* appDelegate;
     }
     return self;
 }
+
 -(NSString *)GetCurrentUsername{
     return appDelegate.currentUserName;
 }
+
 -(void)createAndCheckInPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response{
    
     PatientObject* patient = [[PatientObject alloc]initWithNewDatabaseObject:[PatientObject DatabaseName]];
     [patient setValueToDictionaryValues:patientInfo];
     // Object is Create locally Only
-    [patient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
+    [patient createNewPatientLocally:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject], error);
     }];
 }
+
 //  Use to find patients. Has no need to lock
 -(void)findPatientWithFirstName:(NSString *)firstname orLastName:(NSString *)lastname onCompletion:(MobileClinicSearchResponse)Response{
     
@@ -47,6 +51,7 @@ FIUAppDelegate* appDelegate;
         
     }];
 }
+
 // Use to find visits for a given patient. Has no need to lock
 -(void)findAllVisitsForCurrentPatient:(NSDictionary *)patientInfo AndOnCompletion:(MobileClinicSearchResponse)Response{
     
@@ -58,42 +63,26 @@ FIUAppDelegate* appDelegate;
         Response(allVisits,error);
     }];
 }
+
 // Creates a new visit for a given patient. Has no need to lock
 -(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response{
     VisitationObject* visit = [[VisitationObject alloc]initWithNewDatabaseObject:[VisitationObject DatabaseName]];
     [visit setValueToDictionaryValues:visitInfo];
     [visit setObject:[patientInfo objectForKey:PATIENTID] withAttribute:PATIENTID];
-    [visit createVisitationIDForPatient:[patientInfo objectForKey:FIRSTNAME]];
+    [visit associatePatientToVisit:[patientInfo objectForKey:FIRSTNAME]];
     [visit createNewVisitOnClientAndServer:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
         
     }];
 }
 
--(void)LockPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response{
-   
-    PatientObject* patient = [[PatientObject alloc]initWithCachedObject:[patientInfo objectForKey:PATIENTID] inDatabase:[PatientObject DatabaseName] forAttribute:PATIENTID];
-   
-    [patient shouldLockVisit:YES forDatabase:nil onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
-        Response([data getDictionaryValuesFromManagedObject],error);
-    }];
-}
-// Locks a visit 
--(void)LockVist:(NSDictionary *)VisitInfo  onCompletion:(MobileClinicCommandResponse)Response{
-    VisitationObject* visit = [[VisitationObject alloc]init];
-    [visit loadVisitWithVisitationID:[VisitInfo objectForKey:VISITID]];
-   
-    [visit shouldLockVisit:YES forDatabase:nil onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
-        Response([data getDictionaryValuesFromManagedObject],error);
-    }];
-}
+
 // Updates a visitation record and locks it depend the Bool variable
 -(void)updateVisitRecord:(NSDictionary *)visitRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response{
-    VisitationObject* vObject = [[VisitationObject alloc]init];
-    [vObject loadVisitWithVisitationID:[visitRecord objectForKey:VISITID]];
-    [vObject setValueToDictionaryValues:visitRecord];
+   
+    VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObject:[visitRecord objectForKey:VISITID] inDatabase:[VisitationObject DatabaseName] forAttribute:VISITID withUpdatedObject:visitRecord];
     
-    [vObject shouldLockVisit:!unlock forDatabase:nil onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+    [vObject UpdateObjectAndShouldLock:!unlock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
     }];
 }
@@ -103,9 +92,19 @@ FIUAppDelegate* appDelegate;
     /* Create a temporary Patient Object to make request */
     VisitationObject* vObject = [[VisitationObject alloc]init];
     
-    [vObject FindAllOpenVisitsOnServer:^(id<BaseObjectProtocol> data, NSError *error) {
+    [vObject SyncAllOpenVisitsOnServer:^(id<BaseObjectProtocol> data, NSError *error) {
         NSArray* allVisits = [NSArray arrayWithArray:[vObject FindAllOpenVisitsLocally]];
         Response(allVisits,error);
     }];
+}
+
+-(void)updateCurrentPatient:(NSDictionary *)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
+    
+    id<PatientObjectProtocol> patient = [[PatientObject alloc]initAndFillWithNewObject:patientInfo andRelatedDatabase:[PatientObject DatabaseName]];
+   
+    [patient UpdateAndLockPatientObject:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
+        Response([data getDictionaryValuesFromManagedObject],error);
+    }];
+    
 }
 @end

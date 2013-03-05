@@ -30,11 +30,9 @@ typedef enum {
     kLogoutUser                 = 2,
     kStatusClientWillRecieve    = 3,
     kStatusServerWillRecieve    = 4,
-    kToggleObjectLock           = 5,
-    kCreateNewObject            = 6,
-    kFindObject                 = 7,
-    kUpdateObject               = 8,
-    kFindOpenObjects            = 9,
+    kUpdateObject               = 5,
+    kFindObject                 = 6,
+    kFindOpenObjects            = 7,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>
@@ -45,7 +43,7 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 - (id)initWithDatabase:(NSString*)database;
 - (id)initWithNewDatabaseObject:(NSString*)database;
 - (id)initAndFillWithNewObject:(NSDictionary *)info andRelatedDatabase:(NSString*)database;
-- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib;
+- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib withUpdatedObject:(NSDictionary*)dic;
 /** This method should take all the objects important information
  * and place them inside a dictionary with keys that should be 
  * reflected in the server.
@@ -129,8 +127,6 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
 
 -(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database;
-
--(void)shouldLockVisit:(BOOL)lockVisit forDatabase:(NSString*)database onCompletion:(ObjectResponse)Response;
 
 -(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
 

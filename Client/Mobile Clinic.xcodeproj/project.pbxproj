@@ -90,6 +90,8 @@
 		EA3F45D816C84D350000AED9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3F45D716C84D350000AED9 /* MBProgressHUD.m */; };
 		EA3F45D916C84D350000AED9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3F45D716C84D350000AED9 /* MBProgressHUD.m */; };
 		EA3F45DB16C84D6A0000AED9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */; };
+		EA4CEC1F16E4575500D6AB58 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4CEC1716E4575500D6AB58 /* libOCMock.a */; };
+		EA4CEC2116E45A4D00D6AB58 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4CEC1716E4575500D6AB58 /* libOCMock.a */; };
 		EA8BB92B16C866E300A4BC6E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */; };
 		EA9AC88416C8606C00493485 /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9AC88316C8606C00493485 /* DataProcessor.m */; };
 		EA9AC88516C8606C00493485 /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9AC88316C8606C00493485 /* DataProcessor.m */; };
@@ -298,6 +300,13 @@
 		EA3F45D616C84D350000AED9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EA3F45D716C84D350000AED9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EA4CEC1716E4575500D6AB58 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		EA4CEC1916E4575500D6AB58 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		EA4CEC1A16E4575500D6AB58 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		EA4CEC1B16E4575500D6AB58 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		EA4CEC1C16E4575500D6AB58 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		EA4CEC1D16E4575500D6AB58 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		EA4CEC1E16E4575500D6AB58 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		EA9AC88216C8606C00493485 /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcessor.h; sourceTree = "<group>"; };
 		EA9AC88316C8606C00493485 /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcessor.m; sourceTree = "<group>"; };
 		EA9C2F3916BF624F000F38CD /* UIViewControllerExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerExt.h; sourceTree = "<group>"; };
@@ -395,6 +404,7 @@
 				467740FB16BD931E002FD4A5 /* Foundation.framework in Frameworks */,
 				467740FD16BD931E002FD4A5 /* CoreGraphics.framework in Frameworks */,
 				46E773D816CB0BFB00242454 /* libTestFlight.a in Frameworks */,
+				EA4CEC1F16E4575500D6AB58 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +412,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA4CEC2116E45A4D00D6AB58 /* libOCMock.a in Frameworks */,
 				EA8BB92B16C866E300A4BC6E /* QuartzCore.framework in Frameworks */,
 				EA3856B116C0EA9200FA83FD /* CoreData.framework in Frameworks */,
 				EA3856B016C0EA8C00FA83FD /* CoreGraphics.framework in Frameworks */,
@@ -505,6 +516,7 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				EA4CEC1616E4575400D6AB58 /* iOS */,
 				EAADC01A16E05554009E7AF9 /* PatientFile.json */,
 				EAE6CDEE16BE4754008949DC /* Animated Notifications  */,
 				EA8BB92C16C8794200A4BC6E /* Camera API */,
@@ -677,6 +689,28 @@
 				46B11A4516DB693F008CD600 /* MedicineSearchResultView.xib */,
 			);
 			name = Pharmacy;
+			sourceTree = "<group>";
+		};
+		EA4CEC1616E4575400D6AB58 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EA4CEC1716E4575500D6AB58 /* libOCMock.a */,
+				EA4CEC1816E4575500D6AB58 /* OCMock */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		EA4CEC1816E4575500D6AB58 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				EA4CEC1916E4575500D6AB58 /* NSNotificationCenter+OCMAdditions.h */,
+				EA4CEC1A16E4575500D6AB58 /* OCMArg.h */,
+				EA4CEC1B16E4575500D6AB58 /* OCMConstraint.h */,
+				EA4CEC1C16E4575500D6AB58 /* OCMock.h */,
+				EA4CEC1D16E4575500D6AB58 /* OCMockObject.h */,
+				EA4CEC1E16E4575500D6AB58 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
 			sourceTree = "<group>";
 		};
 		EA8BB92C16C8794200A4BC6E /* Camera API */ = {
@@ -1215,6 +1249,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+					"\"$(SRCROOT)/iOS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1233,6 +1268,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+					"\"$(SRCROOT)/iOS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1250,8 +1286,18 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iOS\"";
 				INFOPLIST_FILE = "Mobile ClinicTests/Mobile ClinicTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/iOS\"",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(SRCROOT)/iOS/libOCMock.a\"",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1268,8 +1314,18 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iOS\"";
 				INFOPLIST_FILE = "Mobile ClinicTests/Mobile ClinicTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/iOS\"",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(SRCROOT)/iOS/libOCMock.a\"",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

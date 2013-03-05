@@ -20,7 +20,39 @@
 #define BLOODPRESSURE   @"bloodPressure"
 #define VISITID         @"visitationId"
 #import <Foundation/Foundation.h>
-
+#import "BaseObjectProtocol.h"
 @protocol VisitationObjectProtocol <NSObject>
 
+/**
+ *
+ */
+-(void)associatePatientToVisit:(NSString*)patientFirstName;
+
+/**
+ *
+ */
+-(void)createNewVisitOnClientAndServer:(ObjectResponse)onSuccessHandler
+;
+/**
+ *
+ */
+-(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient;
+/**
+ *
+ */
+-(void)FindAllVisitsOnServerForPatient:(NSDictionary*)patient OnCompletion:(ObjectResponse)eventResponse;
+
+/**
+ *
+ */
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response;
+
+/**
+ *
+ */
+-(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response;
+/**
+ *
+ */
+-(NSArray*) FindAllOpenVisitsLocally;
 @end

@@ -27,11 +27,9 @@ typedef enum {
     kLogoutUser                 = 2,
     kStatusClientWillRecieve    = 3,
     kStatusServerWillRecieve    = 4,
-    kToggleObjectLock           = 5,
-    kCreateNewObject            = 6,
-    kFindObject                 = 7,
-    kUpdateObject               = 8,
-    kFindOpenObjects            = 9,
+    kUpdateObject               = 5,
+    kFindObject                 = 6,
+    kFindOpenObjects            = 7,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>
@@ -126,4 +124,6 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 @property(strong, nonatomic)NSManagedObject* databaseObject;
 
 -(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message;
+
+-(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database;
 @end

@@ -78,70 +78,46 @@ NSString* isLockedBy;
 -(void)CommonExecution
 {
     switch (self.commands) {
-        case kCreateNewObject:
-            [self createNewPatient];
-            break;
-            
         case kUpdateObject:
-            [self ClientSidePatientLockToggleWithError:@"Server could not update patient"  orPositiveErro:@"Server successfully updated your information"];
+            [self UpdatePatientInformationWithError:@"Server could not update patient"  orPositiveErro:@"Server successfully updated your information"];
             break;
             
         case kFindObject:
             [self FindPatientByName];
-            break;
-            
-        case kToggleObjectLock:
-            [self ClientSidePatientLockToggleWithError:@"Server failed to release/lock the patient" orPositiveErro:@"Server locked the patient"];
-            
+            break;    
         default:
             break;
     }
 }
 
 
-/* Make sure you call Super after checking the existance of the database object
- * This can be done by doing the following:
- *       if (![self FindDataBaseObjectWithID]) {
- *               [self CreateANewObjectFromClass:<<CLASS NAME>>];
- *           }
+/*
+ * This will create a new patient if one does not exists, otherwise it will update the existing one
  */
 -(void)saveObject:(ObjectResponse)eventResponse
 {
-    if (patient){
+    [self linkDatabaseObjects];
+    
+    BOOL doesExist = [self isObject:patient.patientId UniqueForKey:PATIENTID inDatabase:DATABASE];
+    
+    if (doesExist){
+        Patients* exists = [self loadAndReturnPatientForID:patient.patientId];
+
+        [exists setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
         
-        [self SaveCurrentObjectToDatabase:patient];
-        
-        eventResponse(self, nil);
+        [self SaveCurrentObjectToDatabase:exists];    
+
     }else{
-        eventResponse(nil, [self createErrorWithDescription:@"No Patient has been selected" andErrorCodeNumber:0 inDomain:@"Patient Object"]);
+         Patients* doesntExist = (Patients*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
+        [doesntExist setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+        
+        [self SaveCurrentObjectToDatabase:doesntExist];
     }
+    eventResponse(self, nil);
 }
 
 #pragma mark - Private Methods
 #pragma mark -
-
--(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key
-{
-    // Check if it exists in database
-    if ([self FindObjectInTable:DATABASE withName:obj forAttribute:key].count > 0) {
-        return NO;
-    }
-    return YES;
-}
-
--(void)createNewPatient{
-    
-    [patient setIsLockedBy:isLockedBy];
-
-    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        if (!error) {
-            [self sendInformation:nil toClientWithStatus:kSuccess andMessage:@"Server successfully saved your information"];
-        }else{
-            [self sendInformation:nil toClientWithStatus:kError andMessage:@"Server could not save your information"];
-        }
-    }];
-    
-}
 
 -(void)FindPatientByName{
     
@@ -161,24 +137,24 @@ NSString* isLockedBy;
     [self sendInformation:dict toClientWithStatus:kSuccess andMessage:@"Server search completed"];
 }
 
--(void)ClientSidePatientLockToggleWithError:(NSString*)negError orPositiveErro:(NSString*)posError{
+-UpdatePatientInformationWithError:(NSString*)negError orPositiveErro:(NSString*)posError{
     // Load old patient in global object and save new patient in variable
     Patients* oldPatient = [self loadAndReturnPatientForID:patient.patientId];
     
-    if ([oldPatient.isLockedBy isEqualToString:isLockedBy] || oldPatient.isLockedBy.length == 0) {
-        // Update the old patient
-        [oldPatient setValuesForKeysWithDictionary:[patient dictionaryWithValuesForKeys:patient.attributeKeys]];
+    if (!oldPatient || [oldPatient.isLockedBy isEqualToString:isLockedBy] || oldPatient.isLockedBy.length == 0) {
+
         // save to local database
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
             if (!error) {
-                [self sendInformation:nil toClientWithStatus:kSuccess andMessage:posError];
+                [self sendInformation:[self getDictionaryValuesFromManagedObject] toClientWithStatus:kSuccess andMessage:posError];
             }else{
                 [self sendInformation:nil toClientWithStatus:kError andMessage:negError];
             }
         }];
     }else{
-        // Patient was already locked
-        [self sendInformation:nil toClientWithStatus:kError andMessage:[NSString stringWithFormat:@"Patient is being used by %@",isLockedBy]];
+        [self loadPatientWithID:patient.patientId];
+        
+        [self sendInformation:[self getDictionaryValuesFromManagedObject] toClientWithStatus:kError andMessage:[NSString stringWithFormat:@"Patient is being used by %@",[self.databaseObject valueForKey:ISLOCKEDBY]]];
     }
 }
 
@@ -189,7 +165,7 @@ NSString* isLockedBy;
     [self saveObject:WhatIDOAfterThePatientIsUnlocked];
 }
 
--(void)sendInformation:(id)data toClientWithStatus:(ServerStatus)kStatus andMessage:(NSString*)message{
+-(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message{
 
     // set data
     [status setData:data];
@@ -208,17 +184,6 @@ NSString* isLockedBy;
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ || %K contains[cd] %@",FIRSTNAME,firstname,FAMILYNAME,lastname];
     
     return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:FIRSTNAME];
-}
-
--(Patients*)LoadOldPatientAndReturnNewPatient{
-    // New patient
-    Patients* newPatient = [[Patients alloc]init];
-    // transfer patient information to the new patient
-    [newPatient setValuesForKeysWithDictionary:[patient dictionaryWithValuesForKeys:patient.attributeKeys]];
-    // load the old patient with existing patient info
-    [self loadPatientWithID:patient.patientId];
-    
-    return newPatient;
 }
 
 -(void)PushPatientsToCloud{
@@ -271,7 +236,7 @@ NSString* isLockedBy;
         //We only want to create patients that do not exists in Database
         if (![self loadPatientWithID:[userInfo objectForKey:PATIENTID]]) {
             
-            self.databaseObject = (Patients*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
+            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:YES];
             [self linkDatabaseObjects];
             
             patient.firstName = [userInfo objectForKey:FIRSTNAME];
@@ -287,29 +252,11 @@ NSString* isLockedBy;
 
 -(BOOL)loadPatientWithID:(NSString *)patientID
 {
-    
-    if ([patientID isKindOfClass:[NSString class]]) {
-        NSArray* arr = [self FindObjectInTable:DATABASE withName:patientID forAttribute:PATIENTID];
-        
-        if (arr.count == 1) {
-            patient = [arr objectAtIndex:0];
-            return  YES;
-        }
-    }// checks to see if object exists
-    return NO;
+    return [super loadObjectForID:patientID inDatabase:DATABASE forAttribute:patientID];
 }
 
 -(Patients*)loadAndReturnPatientForID:(NSString*)patientId{
-   
-    if ([patientId isKindOfClass:[NSString class]]) {
-        
-        NSArray* arr = [self FindObjectInTable:DATABASE withName:patientId forAttribute:PATIENTID];
-        
-        if (arr.count > 0) {
-            return [arr lastObject];
-        }
-    }
-        return nil;
+    return (Patients*)[super loadObjectWithID:patientId inDatabase:DATABASE forAttribute:PATIENTID];
 }
 
 -(void)linkDatabaseObjects{

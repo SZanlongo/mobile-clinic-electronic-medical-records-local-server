@@ -37,11 +37,12 @@
     }
     return self;
 }
-- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib
+- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib withUpdatedObject:(NSDictionary*)dic
 {
     self = [super init];
     if (self) {
         [self loadObjectForID:objectID inDatabase:database forAttribute:attrib];
+        [self setValueToDictionaryValues:dic];
     }
     return self;
 }
@@ -71,8 +72,8 @@
 
 -(void)saveObject:(ObjectResponse)eventResponse{
     //Do not save the objectID, That is automatically saved and generated
+    [self SaveAndRefreshObjectToDatabase:self.databaseObject];
     eventResponse(nil, nil);
-    [self SaveCurrentObjectToDatabase];
 }
 
 -(void)CommonExecution{
@@ -136,21 +137,7 @@
     }];
 }
 
--(void)shouldLockVisit:(BOOL)lockVisit forDatabase:(NSString*)database onCompletion:(ObjectResponse)Response{
-    
-    if (lockVisit) {
-        [self.databaseObject setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
-    }else{
-        [self.databaseObject setValue:@"" forKey:ISLOCKEDBY];
-    }
-    
-    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-    
-    [dataToSend setValue:[NSNumber numberWithInteger:kToggleObjectLock] forKey:OBJECTCOMMAND];
-    
-    [self UpdateObject:Response andSendObjects:dataToSend forDatabase:database];
-    
-}
+
 -(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
     // checks to see if object exists
     NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
