@@ -62,7 +62,7 @@
         [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
         [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
         
-        [mobileFacade updateCurrentPatientAndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
+        [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
             [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {
                 if (!object) {
                     [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
@@ -86,7 +86,8 @@
         [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
         [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
         
-        [mobileFacade updateCurrentPatientAndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
+        [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
+            
             [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *innerObject, NSError *error) {
                 
                 if (!innerObject) {

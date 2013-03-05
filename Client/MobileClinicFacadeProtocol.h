@@ -72,7 +72,8 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  */
 -(void) findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response;
 /**
- * Not Implemented yet
+ * This method will update the patient's Information.
+ * If the patient doesn't exist then 
  */
 -(void) updateCurrentPatient:(NSDictionary*)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
 /**
