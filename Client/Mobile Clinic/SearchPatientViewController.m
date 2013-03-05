@@ -88,9 +88,21 @@
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",date.getNumberOfYearsElapseFromDate];
     cell.patientDOB.text = [[base getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
     
+    
     NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    BaseObject* base = [[BaseObject alloc]init];
+    [base setDBObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
+    NSString * lockedBy = [base getObjectForAttribute:ISLOCKEDBY];
+    if (![lockedBy isEqualToString:mobileFacade.GetCurrentUsername]) {
+        [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor yellowColor]];
+    } else {
+        [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 //
