@@ -196,6 +196,7 @@
 		EAD015F216DAB086002A8B3B /* PatientScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientScreen.xib; sourceTree = "<group>"; };
 		EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
+		EAF4B6C416E68FED007B14B7 /* UserObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObjectProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,6 +438,7 @@
 			children = (
 				EA172D5A16B60A6A00F00C61 /* UserObject.h */,
 				EA172D5B16B60A6B00F00C61 /* UserObject.m */,
+				EAF4B6C416E68FED007B14B7 /* UserObjectProtocol.h */,
 				EA172D7816B6371D00F00C61 /* StatusObject.h */,
 				EA172D7916B6371D00F00C61 /* StatusObject.m */,
 				463294A016C9B97B00C57DCE /* PatientObject.h */,

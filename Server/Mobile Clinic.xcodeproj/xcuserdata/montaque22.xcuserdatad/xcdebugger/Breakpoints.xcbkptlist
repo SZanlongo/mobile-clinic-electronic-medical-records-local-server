@@ -7,13 +7,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "ServerCore.m"
-         timestampString = "384046537.95149"
+         filePath = "BaseObject.m"
+         timestampString = "384208993.735021"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "140"
-         endingLineNumber = "140"
-         landmarkName = "-socket:didReadData:withTag:"
+         startingLineNumber = "146"
+         endingLineNumber = "146"
+         landmarkName = "-isObject:UniqueForKey:inDatabase:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -22,8 +22,9 @@ UserObject* users;
     if (!appDelegate) {
         appDelegate = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
         userDatabaseDriver = [[DatabaseDriver alloc]init];
-        users = [[UserObject alloc]init];
+
         listOfUsers = [[NSMutableArray alloc]init];
+        
         [self setDelegate:self];
         [self setDataSource:self];
         
@@ -34,10 +35,8 @@ UserObject* users;
         [center addObserver:self selector:@selector(SetupAnythingThatNeedsCoreData:) name:APPDELEGATE_STARTED object:appDelegate];
         
         // listen for when users add themselves to the database
-        [center addObserverForName:SAVE_USER object:nil queue:nil usingBlock:^(NSNotification *note) {
-            [self refreshServer:nil];
-        }];
-        
+       // [center addObserver:self selector:@selector(refreshServer:) name:SAVE_USER object:nil];
+
         // connection = [ServerWrapper sharedServerManager];
         connection = [ServerCore sharedInstance];
         
@@ -70,9 +69,10 @@ UserObject* users;
     return list;
 }
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
-    UserObject* user = [[UserObject alloc]init];
-       [user setDBObject:[listOfUsers objectAtIndex:row]];
-    [[NSNotificationCenter defaultCenter]postNotificationName:SELECTED_A_USER object:user];
+
+    NSManagedObject* user = [listOfUsers objectAtIndex:row];
+    NSString* username = [user valueForKey:USERNAME];
+    [[NSNotificationCenter defaultCenter]postNotificationName:SELECTED_A_USER object:username];
     return YES;
 }
 
@@ -82,17 +82,17 @@ UserObject* users;
 }
 
 -(void)refreshServer:(id)sender{
-      
-    [users SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
-        [self beginUpdates];
+    
+    if (users) {
+        [users SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
+            [self beginUpdates];
+            
+            listOfUsers = [NSArray arrayWithArray:[users getAllUsersFromDatabase]];
+            [self endUpdates];
+            [self reloadData];
+        }];
 
-        listOfUsers = [NSArray arrayWithArray:[users getAllUsersFromDatabase]];
-        [self endUpdates];
-        [self reloadData];
-    }];
-    
-   
-    
+    }  
 }
 -(void)StopServer:(id)sender{
     NSSegmentedControl* sc = sender;

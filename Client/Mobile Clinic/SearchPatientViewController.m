@@ -199,7 +199,6 @@
             
             // Redisplay the information
             [_searchResultTableView reloadData];
-            
         }];
     }
 }
