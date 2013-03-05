@@ -156,6 +156,7 @@
 		EAE6CE0116BE4A60008949DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CE0016BE4A60008949DC /* Security.framework */; };
 		EAE6CE0616BE552B008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CE0516BE552B008949DC /* NSString+Validation.m */; };
 		EAE6CE0716BE552B008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CE0516BE552B008949DC /* NSString+Validation.m */; };
+		EAF4B7B516E69F31007B14B7 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4B7B416E69F31007B14B7 /* GHUnitIOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -385,6 +386,7 @@
 		EAE6CE0316BE52A0008949DC /* ServerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerProtocol.h; sourceTree = "<group>"; };
 		EAE6CE0416BE552B008949DC /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EAE6CE0516BE552B008949DC /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
+		EAF4B7B416E69F31007B14B7 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../../../Downloads/GHUnitIOS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,6 +414,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF4B7B516E69F31007B14B7 /* GHUnitIOS.framework in Frameworks */,
 				EA4CEC2116E45A4D00D6AB58 /* libOCMock.a in Frameworks */,
 				EA8BB92B16C866E300A4BC6E /* QuartzCore.framework in Frameworks */,
 				EA3856B116C0EA9200FA83FD /* CoreData.framework in Frameworks */,
@@ -548,6 +551,7 @@
 		467740F716BD931E002FD4A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAF4B7B416E69F31007B14B7 /* GHUnitIOS.framework */,
 				EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */,
 				EACEB53B16BECEB700685AE8 /* Accelerate.framework */,
 				EAE6CE0016BE4A60008949DC /* Security.framework */,
@@ -1283,6 +1287,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/../../../Downloads/gh-unit-master/Examples/MyTestable-iOS\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Downloads\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
@@ -1311,6 +1318,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/../../../Downloads/gh-unit-master/Examples/MyTestable-iOS\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Downloads\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";

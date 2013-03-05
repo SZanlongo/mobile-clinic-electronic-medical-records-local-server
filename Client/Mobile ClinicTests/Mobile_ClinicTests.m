@@ -14,7 +14,7 @@
 #import "PatientObject.h"
 #import "UserObject.h"
 
-id<PatientObjectProtocol> patient;
+PatientObject* patient;
 UserObject* user;
 @implementation Mobile_ClinicTests
 
@@ -31,35 +31,41 @@ UserObject* user;
     // Tear-down code here.
     [super tearDown];
 }
-- (void)testUserObjectSendingInvalidUsername{
-    [self setUp];
-    [user setObject:@"" withAttribute:PASSWORD];
-    [user setObject:TEST_CHAR withAttribute:USERNAME];
-    
-    
-    [user loginWithUsername:USERNAME andPassword:PASSWORD onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
-        
-    }];
-    [self tearDown];
-}
+
+/**
+ *  Given that i have a patient object
+ *  And I add values to a dictionary
+ *  When i call the setValueToDictionaryValues
+ *  Then the patient.database should contain the same values
+ */
 - (void)testCreatingANewLocalPatient
 {
     [self setUp];
     NSMutableDictionary* testPatient = [[NSMutableDictionary alloc]init];
-    UIImage* img = [UIImage imageNamed:@"orant_logo.png"];
+
     [testPatient setValue:@"Mike" forKey:FIRSTNAME];
     [testPatient setValue:@"Mont" forKey:FAMILYNAME];
     [testPatient setValue:@"Mia" forKey:VILLAGE];
     [testPatient setValue:[NSDate date] forKey:DOB];
-
-   // patient =[[PatientObject alloc]initAndFillWithNewObject:testPatient andRelatedDatabase:[PatientObject DatabaseName]];
     
-//    [patient createNewPatientLocally:^(id<BaseObjectProtocol> data, NSError *error) {
-//        
-//    }];
+    patient =[[PatientObject alloc]init];
+    [patient setValueToDictionaryValues:testPatient];
 
     [self tearDown];
 }
+/**
+ *  Given that i have a patient object with a database object that is empty
+ *  And i create a null dictionary
+ *  When when i call the setValueToDictionaryValues
+ *  Then patient.database should remain empty
+ */
+- (void)testOCMockPass {
+    id mock = [OCMockObject mockForClass:NSString.class];
+    [[[mock stub] andReturn:@"mocktest"] lowercaseString];
 
+    NSString *returnValue = [mock lowercaseString];
+    GHAssertEqualObjects(@"mocktest", returnValue,
+                         @"Should have returned the expected string.");
+}
 
 @end
