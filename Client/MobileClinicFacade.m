@@ -87,8 +87,7 @@ FIUAppDelegate* appDelegate;
     }];
 }
 
--(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{
-    
+-(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{    
     /* Create a temporary Patient Object to make request */
     VisitationObject* vObject = [[VisitationObject alloc]init];
     

@@ -211,7 +211,11 @@ camera(nil);
             
             UIImage* img = [imageToSave fixImageOrientation];
             
-            camera(img);
+            //put back into main thread to miniize time taken to display photo
+            dispatch_async(dispatch_get_main_queue(), ^{
+                camera(img);
+            });
+            
         }
         
     });

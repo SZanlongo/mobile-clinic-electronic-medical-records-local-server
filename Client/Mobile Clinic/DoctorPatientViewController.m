@@ -49,8 +49,7 @@
     _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
     _familyNameField.text = [_patientData objectForKey:FAMILYNAME];
     _villageNameField.text = [_patientData objectForKey:VILLAGE];
-    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB
-                                                              ]integerValue]];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB]getNumberOfYearsElapseFromDate]];
     _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
     [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
     
