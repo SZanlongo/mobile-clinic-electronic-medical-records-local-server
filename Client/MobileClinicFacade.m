@@ -58,6 +58,7 @@ FIUAppDelegate* appDelegate;
         Response(allVisits,error);
     }];
 }
+
 // Creates a new visit for a given patient. Has no need to lock
 -(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response{
     VisitationObject* visit = [[VisitationObject alloc]initWithNewDatabaseObject:[VisitationObject DatabaseName]];
@@ -78,6 +79,8 @@ FIUAppDelegate* appDelegate;
         Response([data getDictionaryValuesFromManagedObject],error);
     }];
 }
+
+//TODO:allow lock to also unlock
 // Locks a visit 
 -(void)LockVist:(NSDictionary *)VisitInfo  onCompletion:(MobileClinicCommandResponse)Response{
     VisitationObject* visit = [[VisitationObject alloc]init];
@@ -87,6 +90,7 @@ FIUAppDelegate* appDelegate;
         Response([data getDictionaryValuesFromManagedObject],error);
     }];
 }
+
 // Updates a visitation record and locks it depend the Bool variable
 -(void)updateVisitRecord:(NSDictionary *)visitRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response{
     VisitationObject* vObject = [[VisitationObject alloc]init];
@@ -98,8 +102,7 @@ FIUAppDelegate* appDelegate;
     }];
 }
 
--(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{
-    
+-(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{    
     /* Create a temporary Patient Object to make request */
     VisitationObject* vObject = [[VisitationObject alloc]init];
     

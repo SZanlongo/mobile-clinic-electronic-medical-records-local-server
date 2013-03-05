@@ -55,6 +55,7 @@
     // Assigning vitals & condition
     if (self.validateCheckin) {
         MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+        
         [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
         [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
         [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
@@ -71,20 +72,43 @@
             }];
             
         }];
-    }
-    
+    }    
 }
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy
 - (IBAction)quickCheckOutButton:(id)sender {
     if (self.validateCheckin) {
+        MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
         
+        [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
+        [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
+        [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
+        [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
+        [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
+        
+        [mobileFacade updateCurrentPatientAndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
+            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *innerObject, NSError *error) {
+                
+                if (!innerObject) {
+                    [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+                }else{
+                    [mobileFacade updateVisitRecord:innerObject andShouldUnlock:YES onCompletion:^(NSDictionary *inceptionObject, NSError *error) {
+                        if (!inceptionObject) {
+                            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+                        }else{
+                            handler(inceptionObject,error);
+                        }
+                    }];
+                }
+            }];
+        }];
     }
 }
 
 -(BOOL)validateCheckin{
     BOOL inputIsValid = YES;
     NSString *errorMsg;
+    
     NSString * correct = @"\\b([0-9%_.+\\-]+)\\b";
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", correct];
     
