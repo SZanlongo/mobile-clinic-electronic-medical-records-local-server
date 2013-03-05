@@ -42,12 +42,12 @@
     _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
     [_medicineViewController view];
 
-    _patientNameField.text = [_patientData getObjectForAttribute:FIRSTNAME];
-    _familyNameField.text = [_patientData getObjectForAttribute:FAMILYNAME];
-    _villageNameField.text = [_patientData getObjectForAttribute:VILLAGE];
-//    _patientAgeField.text = [NSString stringWithFormat:@"%i",[_patientData getAge]];
-//    _patientSexField.text = [_patientData getSex];
-//    [_patientPhoto setImage:_patientData.getPhoto];
+    _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
+    _familyNameField.text = [_patientData objectForKey:FAMILYNAME];
+    _villageNameField.text = [_patientData objectForKey:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB]getNumberOfYearsElapseFromDate]];
+    _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
+    [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];
@@ -58,7 +58,7 @@
 
 -(void)savePrescription {
    // VisitationObject *mObject = [[VisitationObject alloc] initWithNewVisit];
-    PrescriptionObject *presc = [[PrescriptionObject alloc]initWithNewPrescription];
+   // PrescriptionObject *presc = [[PrescriptionObject alloc]initWithNewPrescription];
 //    [presc setObject:@"Advil" withAttribute:INSTRUCTIONS];
 //    [mObject addPrescriptionToCurrentVisit:presc];
    // [_patientData addVisitToCurrentPatient:mObject];
