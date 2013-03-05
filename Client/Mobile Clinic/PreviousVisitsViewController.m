@@ -48,7 +48,7 @@
         sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"triageOut" ascending:NO];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         _patientHistoryArray = [NSMutableArray arrayWithArray:[_patientHistoryArray sortedArrayUsingDescriptors:sortDescriptors]];
-        [_patientHistoryTableView reloadData];
+        [_patientHistoryTableView reloadData];           
     }];
 }
 
