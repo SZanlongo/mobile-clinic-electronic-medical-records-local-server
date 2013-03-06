@@ -85,18 +85,6 @@
         cell = [[SearchPatientTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchCellIdentifier];
         cell.viewController = _control;
     }
-//    
-//    CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
-//    cell.viewController.view.transform = transform;
-//
-//    cell.viewController.view.frame = CGRectMake(50, 0, 916, 768);
-//    
-//    // Removes previous view (for memory mgmt)
-//    for(UIView *mView in [cell.contentView subviews]){
-//        [mView removeFromSuperview];
-//    }
-//    
-//    [cell addSubview: cell.viewController.view];
     
     return [self setupCell:cell forRow:indexPath];
 //    return cell;    

@@ -37,27 +37,6 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    PatientObject* myPatient = [[PatientObject alloc]initWithNewPatient];
-//    
-//    VisitationObject* myVisit = [[VisitationObject alloc]initWithNewVisit];
-//    
-//    [myVisit setObject:@"Fake Diagnosis Notes" withAttribute:DNOTES];
-//    [myVisit setObject:@"Fake Diagnosis Title" withAttribute:DTITLE];
-//    [myVisit setObject:@"Fake Complaint" withAttribute:COMPLAINT];
-//    [myVisit setObject:[NSDate date] withAttribute:CHECKIN];
-//    [myVisit setObject:[NSDate date] withAttribute:CHECKOUT];
-//    [myVisit setObject:@"FakeVisitID" withAttribute:VISITID];
-//    
-//    [myPatient setObject:@"Tuba" withAttribute:FIRSTNAME];
-//    [myPatient setObject:@"Jubu" withAttribute:FAMILYNAME];
-//    [myPatient setObject:@"Pufu" withAttribute:VILLAGE];
-//    
-//    [myPatient addVisitToCurrentPatient:myVisit];
-//    
-//    [myPatient createNewPatient:^(id<BaseObjectProtocol> data, NSError *error) {
-//        PatientObject* p = data;
-//        NSLog(@"Save Complete: %@",[p description]);
-//    }];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -67,23 +46,6 @@
 - (IBAction)logout:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:LOGOFF object:nil];
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-//    #warning Create validation for users that have the potential to go into areas they are not allowed
-//    
-//    id potentialDestination = segue.destinationViewController;
-//    id <StationViewHandlerProtocol>destination;
-//    
-//    if ([potentialDestination isKindOfClass:[UINavigationController class]]) {
-//        UINavigationController* navCtrl = potentialDestination;
-//        destination = [navCtrl.viewControllers lastObject];
-//    }else{
-//        destination = potentialDestination;
-//    }
-//    
-//    [destination setScreenHandler:^(id object, NSError *error) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    }];
-}
+
 
 @end
