@@ -814,6 +814,43 @@
 			name = "Visitation Object";
 			sourceTree = "<group>";
 		};
+		EAE51CB916E6D06F00B858CE /* Database Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				EACEB53D16BED11B00685AE8 /* DatabaseDriver.h */,
+				EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */,
+				EA9E98E016DBF7BA002BEB87 /* DatabaseDriverProtocol.h */,
+			);
+			name = "Database Drivers";
+			sourceTree = "<group>";
+		};
+		EAE51CBA16E6D08F00B858CE /* User Object */ = {
+			isa = PBXGroup;
+			children = (
+				EAE6CDD816BE46CC008949DC /* UserObject.h */,
+				EAE6CDD916BE46CC008949DC /* UserObject.m */,
+			);
+			name = "User Object";
+			sourceTree = "<group>";
+		};
+		EAE51CBC16E6D0AE00B858CE /* Prescription Object */ = {
+			isa = PBXGroup;
+			children = (
+				EA9E98E416DC475D002BEB87 /* PrescriptionObject.h */,
+				EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */,
+			);
+			name = "Prescription Object";
+			sourceTree = "<group>";
+		};
+		EAE51CBD16E6D0BF00B858CE /* Status Object */ = {
+			isa = PBXGroup;
+			children = (
+				EAE6CDD716BE46CC008949DC /* StatusObject.h */,
+				EAE6CDCF16BE46CC008949DC /* StatusObject.m */,
+			);
+			name = "Status Object";
+			sourceTree = "<group>";
+		};
 		EAE6CDC516BE468C008949DC /* HTTP API */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,14 +895,11 @@
 			isa = PBXGroup;
 			children = (
 				EAE6CDEC16BE471D008949DC /* BaseObject */,
-				EAE6CDD716BE46CC008949DC /* StatusObject.h */,
-				EAE6CDCF16BE46CC008949DC /* StatusObject.m */,
-				EAE6CDD816BE46CC008949DC /* UserObject.h */,
-				EAE6CDD916BE46CC008949DC /* UserObject.m */,
+				EAE51CBD16E6D0BF00B858CE /* Status Object */,
+				EAE51CBA16E6D08F00B858CE /* User Object */,
 				EAADC02716E1169C009E7AF9 /* Patient Object */,
 				EAADC02816E36F54009E7AF9 /* Visitation Object */,
-				EA9E98E416DC475D002BEB87 /* PrescriptionObject.h */,
-				EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */,
+				EAE51CBC16E6D0AE00B858CE /* Prescription Object */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -873,9 +907,7 @@
 		EAE6CDEC16BE471D008949DC /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
-				EACEB53D16BED11B00685AE8 /* DatabaseDriver.h */,
-				EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */,
-				EA9E98E016DBF7BA002BEB87 /* DatabaseDriverProtocol.h */,
+				EAE51CB916E6D06F00B858CE /* Database Drivers */,
 				EAE6CDD216BE46CC008949DC /* BaseObject.h */,
 				EAE6CDD316BE46CC008949DC /* BaseObject.m */,
 				EAE6CE0216BE4E45008949DC /* BaseObjectProtocol.h */,

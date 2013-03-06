@@ -14,6 +14,7 @@
  
 #define DATA      @"data to transfer"
 #define STATUS    @"status"
+
 #import "NSObject+CustomTools.h"
 #import "BaseObjectProtocol.h"
 typedef enum {

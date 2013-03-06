@@ -42,7 +42,10 @@
     self = [super init];
     if (self) {
         [self loadObjectForID:objectID inDatabase:database forAttribute:attrib];
-        [self setValueToDictionaryValues:dic];
+        
+        if (dic) {
+             [self setValueToDictionaryValues:dic];
+        }
     }
     return self;
 }
@@ -65,19 +68,58 @@
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
 }
 
--(NSString *)description{
-   
-    return @"";
-}
 
--(void)saveObject:(ObjectResponse)eventResponse{
-    //Do not save the objectID, That is automatically saved and generated
-    [self SaveAndRefreshObjectToDatabase:self.databaseObject];
-    eventResponse(nil, nil);
+-(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib{
+    
+    id objID = [self.databaseObject valueForKey:attrib];
+    
+    NSManagedObject* obj = [self loadObjectWithID:objID inDatabase:DBName forAttribute:attrib];
+    
+    [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+    
+    if (obj){
+        
+        if (!self.databaseObject.managedObjectContext) {
+            [self SaveAndRefreshObjectToDatabase:obj];
+        }else{
+            [self SaveAndRefreshObjectToDatabase:self.databaseObject];
+        }
+    }else{
+        
+        if (self.databaseObject.managedObjectContext) {
+            [self SaveAndRefreshObjectToDatabase:self.databaseObject];
+        }else{
+            
+            obj = [self CreateANewObjectFromClass:DBName isTemporary:NO];
+            
+            [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+            
+            [self SaveAndRefreshObjectToDatabase:obj];
+        }
+    }
+    eventResponse(self, nil);
 }
 
 -(void)CommonExecution{
-    NSLog(@"CommonExecution Not implemented.");
+    
+}
+-(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects{
+    
+    NSMutableArray* arrayWithDictionaries = [[NSMutableArray alloc]initWithCapacity:managedObjects.count];
+    
+    for (NSManagedObject* objs in managedObjects) {
+        
+        [arrayWithDictionaries addObject:[objs dictionaryWithValuesForKeys:objs.entity.attributesByName.allKeys]];
+    }
+    return arrayWithDictionaries;
+}
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
+    if (arr.count > 0) {
+        return [arr objectAtIndex:0];
+    }
+    return nil;
 }
 
 -(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse{
@@ -117,23 +159,21 @@
    return [super getObjectForAttribute:attribute inDatabaseObject:databaseObject];
 }
 
--(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database{
+-(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database withAttribute:(NSString*)attrib{
     
     [self tryAndSendData:DataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        [self saveObject:^(id<BaseObjectProtocol> innerdata, NSError *innererror) {
-            response(data,error);
-        }];
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+             response(data,error);
+        } inDatabase:database forAttribute:attrib];
         
     } andWithPositiveResponse:^(id PosData) {
         // Save Returned Values
         StatusObject* status = PosData;
 
         [self setValueToDictionaryValues:status.data];
-        
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-
-           response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[DataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
-       }];
+            response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[DataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
+        } inDatabase:database forAttribute:attrib];
     }];
 }
 
