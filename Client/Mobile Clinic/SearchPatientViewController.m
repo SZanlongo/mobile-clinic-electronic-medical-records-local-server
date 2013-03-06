@@ -83,8 +83,12 @@
 
     
     // Display contents of cells
-    UIImage* image = [UIImage imageWithData:[base objectForKey:PICTURE]];
-    [cell.patientImage setImage:image];
+    if ([[base objectForKey:PICTURE]isKindOfClass:[NSData class]]) {
+        UIImage* image = [UIImage imageWithData: [base objectForKey:PICTURE]];
+        [cell.patientImage setImage:image];
+    }
+    
+    
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [base objectForKey:FIRSTNAME], [base objectForKey:FAMILYNAME]];
     NSDate* date = [base objectForKey:DOB];
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",date.getNumberOfYearsElapseFromDate];
@@ -147,10 +151,8 @@
         case kTriageMode:
             [self BroadSearchForPatient];
             break;
-        case kDoctorMode:
-            [self narrowSearchInQueue];
-            break;
         default:
+             [self BroadSearchForPatient];
             break;
     }
     

@@ -47,7 +47,8 @@
     _villageNameField.text = [_patientData objectForKey:VILLAGE];
     _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB]getNumberOfYearsElapseFromDate]];
     _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
-    [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
+    id data = [_patientData objectForKey:PICTURE];
+    [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];
