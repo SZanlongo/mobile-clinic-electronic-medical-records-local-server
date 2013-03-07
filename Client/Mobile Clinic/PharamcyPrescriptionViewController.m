@@ -30,6 +30,18 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    //    // Populate condition for doctor to see
+    //    NSArray * arr = [[NSArray alloc] init];
+    //    arr = [_patientData getAllVisitsForCurrentPatient];
+    //    VisitationObject * tempVisit = [arr objectAtIndex:(arr.count - 1)];
+    //
+    //    if (arr.count > 0) {
+    //        _conditionsTextbox.text = [tempVisit getObjectForAttribute:CONDITION];
+    //    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -169,6 +169,10 @@ UIPopoverController * pop;
         errorMsg = @"Missing Patient Age";
         inputIsValid = NO;
     }
+//    } else if (_patient.getPhoto == nil) {
+//        errorMsg = @"Missing Patient Photo";
+//        inputIsValid = NO;
+//    }
     
     //display error message on invlaid input
     if(inputIsValid == NO){

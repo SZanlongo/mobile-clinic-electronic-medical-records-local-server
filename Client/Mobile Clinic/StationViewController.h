@@ -11,8 +11,5 @@
 @interface StationViewController : UIViewController
 
 - (IBAction)logout:(id)sender ;
-- (IBAction)triageButton:(id)sender;
-- (IBAction)doctorButton:(id)sender;
-- (IBAction)pharmacyButton:(id)sender;
 
 @end

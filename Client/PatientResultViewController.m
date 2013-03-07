@@ -29,6 +29,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+//    _patientNameLabel.text = @"rigo";
+//    _patientAgeLabel.text = @"32";
+//    _patientDOBLabel.text = @"Feb. 27, 1980";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +40,10 @@
 }
 
 - (void)viewDidUnload {
+//    [self setPatientPhoto:nil];
+//    [self setPatientNameLabel:nil];
+//    [self setPatientDOBLabel:nil];
+//    [self setPatientAgeLabel:nil];
     [super viewDidUnload];
 }
 @end

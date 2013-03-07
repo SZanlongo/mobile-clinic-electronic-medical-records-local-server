@@ -11,6 +11,7 @@
 @interface PatientHistoryTableCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *patientDOBLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *patientAgeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
 @property (weak, nonatomic) IBOutlet UITextView *patientConditionsTextView;

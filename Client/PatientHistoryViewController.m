@@ -26,6 +26,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+  
+    // Populate patient data
+//    _patientDOBLabel.text = _patientData.patient.age.description;
+//    _patientAgeLabel.text = [NSString stringWithFormat:@"%d", _patientData.patient.age.getNumberOfYearsElapseFromDate];
+//    _patientWeightLabel.text =
+//    _patientBPLabel.text =
+//    [_patientConditionsTextView setText:<#(NSString *)#>];
+//    [_patientMedicationTextView setText:<#(NSString *)#>];
 }
 
 - (void)didReceiveMemoryWarning {
