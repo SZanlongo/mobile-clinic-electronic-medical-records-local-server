@@ -8,6 +8,7 @@
 #import "PatientObject.h"
 #import "StationViewController.h"
 #import "StationViewHandlerProtocol.h"
+#import "GenericStartViewController.h"
 
 @interface StationViewController ()
 
@@ -26,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
 	// Do any additional setup after loading the view.
     
 }
@@ -45,6 +46,36 @@
 }
 - (IBAction)logout:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:LOGOFF object:nil];
+}
+
+- (IBAction)triageButton:(id)sender {
+    [self goToGenericStart:1];
+}
+
+- (IBAction)doctorButton:(id)sender {
+    [self goToGenericStart:2];
+}
+
+- (IBAction)pharmacyButton:(id)sender {
+    [self goToGenericStart:3];
+}
+
+- (void)goToGenericStart:(int)station {
+    GenericStartViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"genericStartViewController"];
+    switch (station) {
+        case 1:
+            [newView setStationChosen:[NSNumber numberWithInt:1]];
+            break;
+        case 2:
+            [newView setStationChosen:[NSNumber numberWithInt:2]];
+            break;
+        case 3:
+            [newView setStationChosen:[NSNumber numberWithInt:3]];
+            break;
+        default:
+            break;
+    }
+    [self.navigationController pushViewController:newView animated:YES];
 }
 
 

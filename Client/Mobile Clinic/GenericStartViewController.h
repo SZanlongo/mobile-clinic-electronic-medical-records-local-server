@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RegisterPatientTableCell.h"
 #import "SearchPatientTableCell.h"
+#import "PatientQueueTableCell.h"
 #import "StationViewHandlerProtocol.h"
 //need to import patient queue table cell when its complete
 
@@ -25,13 +26,11 @@
 //different cell view controllers
 @property (strong, nonatomic) RegisterPatientViewController * registerControl;
 @property (strong, nonatomic) SearchPatientViewController * searchControl;
+@property (strong, nonatomic) PatientQueueViewController * queueControl;
 
 //gui elements
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
-
-//methods
-- (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end

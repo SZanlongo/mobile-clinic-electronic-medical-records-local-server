@@ -49,17 +49,6 @@
     [super viewWillAppear:animated];
 }
 
-// Transfers the patient's data to the next view controller
-- (void)transferPatientData:(NSMutableDictionary *)note {
-    _patientData = [NSMutableDictionary dictionaryWithDictionary:note];
-    
-    TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
-    
-    [newView setPatientData:_patientData];
-    
-    [self.navigationController pushViewController:newView animated:YES];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -149,8 +138,7 @@
         if (error) {
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:newView.view
              ];
-        }
-        
+        }        
     }];
     
     _segmentedControl.selectedSegmentIndex = 1;
@@ -172,22 +160,22 @@
     [self.tableView reloadData];
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                     withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset {
-    int cellHeight = 768;
-    
-    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
-        self.segmentedControl.selectedSegmentIndex = 1;
-    }
-    else
-    {
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
-        self.segmentedControl.selectedSegmentIndex = 0;
-    }
-}
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+//                     withVelocity:(CGPoint)velocity
+//              targetContentOffset:(inout CGPoint *)targetContentOffset {
+//    int cellHeight = 768;
+//    
+//    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
+//        *targetContentOffset = CGPointMake(targetContentOffset->x,
+//                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+//        self.segmentedControl.selectedSegmentIndex = 1;
+//    }
+//    else
+//    {
+//        *targetContentOffset = CGPointMake(targetContentOffset->x,
+//                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+//        self.segmentedControl.selectedSegmentIndex = 0;
+//    }
+//}
 
 @end
