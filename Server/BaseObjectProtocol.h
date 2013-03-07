@@ -60,7 +60,7 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 /* This only needs to be implemented if the object needs to save to
  * its local database
  */
--(void)saveObject:(ObjectResponse)eventResponse;
+-(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib;
 
 /* This needs to be implemented at all times. This is responsible for
  * carrying out the instructions that it was given.

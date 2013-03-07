@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCMock.h>
+#import <GHUnitIOS/GHUnit.h>
 
 @interface Mobile_ClinicTests : SenTestCase{
    

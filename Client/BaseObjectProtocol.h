@@ -40,6 +40,7 @@ typedef enum {
 typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 @optional
+
 - (id)initWithDatabase:(NSString*)database;
 - (id)initWithNewDatabaseObject:(NSString*)database;
 - (id)initAndFillWithNewObject:(NSDictionary *)info andRelatedDatabase:(NSString*)database;
@@ -65,7 +66,7 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 /* This only needs to be implemented if the object needs to save to
  * its local database
  */
--(void)saveObject:(ObjectResponse)eventResponse;
+-(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib;
 
 /** This needs to be implemented at all times. This is responsible for
  * carrying out the instructions that it was given.
@@ -126,9 +127,13 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
 
--(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database;
+-(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database withAttribute:(NSString*)attrib;
 
 -(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+
+-(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects;
 
 @property(strong, nonatomic)NSManagedObject* databaseObject;
 

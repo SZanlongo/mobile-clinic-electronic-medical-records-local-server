@@ -16,6 +16,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
 #import "Users.h"
+#import "UserObjectProtocol.h"
 typedef enum {
     kTriageNurse    = 0,
     kDoctor         = 1,
@@ -26,11 +27,12 @@ typedef enum {
 
 
 
-@interface UserObject : BaseObject{
+@interface UserObject : BaseObject<UserObjectProtocol>{
     Users* user;
 }
 
 //@property(nonatomic, strong)      Users* user;
+- (id)initWithExistingWithID:(NSString*)username;
 -(id)init;
 -(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder;
 -(NSArray*)getAllUsersFromDatabase;

@@ -87,12 +87,26 @@ FIUAppDelegate* appDelegate;
     }];
 }
 
+//TODO: Needs to be optimized
 -(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{    
     /* Create a temporary Patient Object to make request */
     VisitationObject* vObject = [[VisitationObject alloc]init];
     
     [vObject SyncAllOpenVisitsOnServer:^(id<BaseObjectProtocol> data, NSError *error) {
+        
         NSArray* allVisits = [NSArray arrayWithArray:[vObject FindAllOpenVisitsLocally]];
+        
+        NSString* patientDatabase = [PatientObject DatabaseName];
+        NSString* patientID;
+       
+        for (NSMutableDictionary* dic in allVisits) {
+            
+            patientID = [dic objectForKey:patientID];
+            
+            PatientObject* patients = [[PatientObject alloc]initWithCachedObject:patientID inDatabase:patientDatabase forAttribute:PATIENTID withUpdatedObject:nil];
+
+            [dic setValue:patients.getDictionaryValuesFromManagedObject forKey:OPEN_VISITS_PATIENT];
+        }
         Response(allVisits,error);
     }];
 }

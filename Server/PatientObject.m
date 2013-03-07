@@ -37,7 +37,8 @@ NSString* isLockedBy;
 {
     self = [super init];
     if (self) {
-        [self linkDatabaseObjects];
+        self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:YES];
+         [self linkDatabaseObjects];
         status = [[StatusObject alloc]init];
     }
     return self;
@@ -62,7 +63,7 @@ NSString* isLockedBy;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    
+
     self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:YES];
     
     [self linkDatabaseObjects];
@@ -98,22 +99,7 @@ NSString* isLockedBy;
 {
     [self linkDatabaseObjects];
     
-    BOOL doesExist = [self isObject:patient.patientId UniqueForKey:PATIENTID inDatabase:DATABASE];
-    
-    if (doesExist){
-        Patients* exists = [self loadAndReturnPatientForID:patient.patientId];
-
-        [exists setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
-        
-        [self SaveCurrentObjectToDatabase:exists];    
-
-    }else{
-         Patients* doesntExist = (Patients*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-        [doesntExist setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
-        
-        [self SaveCurrentObjectToDatabase:doesntExist];
-    }
-    eventResponse(self, nil);
+       [super saveObject:eventResponse inDatabase:DATABASE forAttribute:PATIENTID];
 }
 
 #pragma mark - Private Methods

@@ -90,23 +90,7 @@ NSString* isLockedBy;
 {
     [self linkDatabaseObject];
     
-    BOOL doesExist = [self isObject:visit.visitationId UniqueForKey:VISITID];
-    
-    if (doesExist){
-
-        NSManagedObject* exists = [super loadObjectWithID:visit.visitationId inDatabase:DATABASE forAttribute:VISITID];
-        
-        [exists setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
-        
-        [self SaveCurrentObjectToDatabase:exists];
-        
-    }else{
-        NSManagedObject* doesntExist = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-        [doesntExist setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
-        
-        [self SaveCurrentObjectToDatabase:doesntExist];
-    }
-    eventResponse(self, nil);
+        [super saveObject:eventResponse inDatabase:DATABASE forAttribute:VISITID];
 }
 
 -(void)CommonExecution

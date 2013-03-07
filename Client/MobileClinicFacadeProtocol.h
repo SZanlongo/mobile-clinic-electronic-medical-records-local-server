@@ -5,6 +5,11 @@
 //  Created by Michael Montaque on 3/1/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
+#define OPEN_VISITS_PATIENT @"Open Visit"
+
+#import "PatientObjectProtocol.h"
+#import "VisitationObjectProtocol.h"
+#import <Foundation/Foundation.h>
 
 /**
  * WorkFLow
@@ -16,9 +21,6 @@
  *		2. If you are working with a patient and modifying any of their records make sure you pass the appropriate Bool attribute to lock the patient.(See Note 2 & 3)
  *		3. All(Most) the objects return from the Block response of the methods will be updated values take from the server. So if you tried to lock the object under your userprofile but it was already locked by another user, your returned object from the server will reflect the other user's information and changes. This is to help mitigate RACE conditions
  */
-#import "PatientObjectProtocol.h"
-#import "VisitationObjectProtocol.h"
-#import <Foundation/Foundation.h>
 
 typedef void (^MobileClinicCommandResponse)(NSDictionary* object, NSError* error);
 typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSError* error);
@@ -65,7 +67,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
 /**
  * This method will return all open visits. 
  * When a Visit is created in triage it is automatically deemed Open, which means that it should be tracked by the system till the patien leaves.
- * All of the the open visits form a queue that should be used to populate the doctor and pharmacist search list.
+ * The information will be synced from the server and cached to the local. The returned visits will be an accumulation of both the local and client.
  * This is great to help them narrow down who is next and how many is left.
  * If the user selects the visit from the queue it MUST BE LOCKED USING THE @see UpdateVisitRecord or @see LockVisit methods
  * The block returns an array of Visitation ManageObject objects;
@@ -73,23 +75,26 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
 -(void) findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response;
 /**
  * This method will update the patient's Information.
- * If the patient doesn't exist then 
+ * If the patient doesn't exist then it will create one
+ * If the lock is True then the system will attempt to lock the patient
+ * @param patientInfo the patient you want to save locally and to the server
+ * @param lock If True then the system will attempt to lock the patient
  */
 -(void) updateCurrentPatient:(NSDictionary*)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
 /**
  * Not Implemented yet
  */
--(void) findAllPrescriptionForCurrentVisitAndOnCompletion:(MobileClinicSearchResponse)Response;
+//-(void) findAllPrescriptionForCurrentVisitAndOnCompletion:(MobileClinicSearchResponse)Response;
 /**
  * Not Implemented yet
  */
--(void) addNewPrescriptionForCurrentPatientAndUnlockPatient:(NSDictionary*)PrescriptionInfo onCompletion:(MobileClinicCommandResponse)Response;
+//-(void) addNewPrescriptionForCurrentPatientAndUnlockPatient:(NSDictionary*)PrescriptionInfo onCompletion:(MobileClinicCommandResponse)Response;
 /**
  * Not Implemented yet
  */
--(void) loadMobileClinicWithPrescriptionRecordForCurrentVisit:(NSDictionary*)visitInfo onCompletion:(MobileClinicCommandResponse)Response;
+//-(void) loadMobileClinicWithPrescriptionRecordForCurrentVisit:(NSDictionary*)visitInfo onCompletion:(MobileClinicCommandResponse)Response;
 /**
  * Not Implemented yet
  */
--(void) updatePrescriptionRecord:(NSDictionary*)prescriptionRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response;
+//-(void) updatePrescriptionRecord:(NSDictionary*)prescriptionRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response;
 @end

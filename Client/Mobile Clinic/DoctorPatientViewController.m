@@ -39,31 +39,25 @@
     [_tableView setShowsVerticalScrollIndicator:NO];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    // Create controllers for each view
     
+    // Create controllers for each view    
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
-    
-   // _visitationData = [[VisitationObject alloc] initWithNewVisit];
     
     _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
     _familyNameField.text = [_patientData objectForKey:FAMILYNAME];
     _villageNameField.text = [_patientData objectForKey:VILLAGE];
     _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB]getNumberOfYearsElapseFromDate]];
     _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
-    [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
-    
+    id data = [_patientData objectForKey:PICTURE];
+    [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
     [_control1 view];
     [_control1 setPatientData:_patientData];
     [_control2 view];
     [_control2 setPatientData:_patientData];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
-//    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)saveVisitation{
-   // [_patientData addVisitToCurrentPatient:_control1.visitationData];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -149,30 +143,9 @@
     
 }
 
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//}
-
 - (void)setScreenHandler:(ScreenHandler)myHandler{
     handler = myHandler;
 }
-
-- (IBAction) segmentedControlIndexChanged {
-    switch (self.segmentedControl.selectedSegmentIndex) {
-        case 0:
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-            break;
-        case 1:
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-            break;
-        default:
-            break;
-            
-    }
-    
-    [self.tableView reloadData];
-}
-
-
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity

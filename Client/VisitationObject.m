@@ -33,14 +33,9 @@
 
 -(void)saveObject:(ObjectResponse)eventResponse
 {
-    // Database object needs to exist
-    if (self.databaseObject){
-        [super SaveAndRefreshObjectToDatabase:self.databaseObject];
-        eventResponse(self,nil);
-    }else{
-        
-        eventResponse(Nil,[self createErrorWithDescription:@"Error: No Visit Selected" andErrorCodeNumber:0 inDomain:@"Visitation Object"]);
-    }
+    [super saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+         eventResponse(data,error);
+    } inDatabase:DATABASE forAttribute:VISITID];
 }
 
 #pragma mark- Private Methods
@@ -81,7 +76,8 @@
     NSMutableDictionary* dataToSend= [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
     [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
     
-    [self UpdateObject:onSuccessHandler andSendObjects:dataToSend forDatabase:DATABASE];
+    [super UpdateObject:onSuccessHandler andSendObjects:dataToSend forDatabase:DATABASE withAttribute:VISITID];
+    
 }
 
 -(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response{
@@ -97,9 +93,10 @@
 }
 
 -(NSArray*)FindAllOpenVisitsLocally{
+   //Predicate to return list of Open Objects
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"isOpen == TRUE"];
     
-    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN];
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
 
 -(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient
@@ -160,7 +157,7 @@
     [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
     [dataToSend setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
     
-    [super UpdateObject:response andSendObjects:dataToSend forDatabase:DATABASE];
+    [super UpdateObject:response andSendObjects:dataToSend forDatabase:DATABASE withAttribute:VISITID];
 }
 
 @end
