@@ -47,6 +47,7 @@
     [self setPatientWeightField:nil];
     [self setPatientBPField:nil];
     [self setConditionsTextbox:nil];
+    [self setVisitPriority:nil];
     [super viewDidUnload];
 }
 

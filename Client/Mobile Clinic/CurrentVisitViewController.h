@@ -22,6 +22,7 @@
 
 - (IBAction)checkInButton:(id)sender;
 - (IBAction)quickCheckOutButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *visitPriority;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 
