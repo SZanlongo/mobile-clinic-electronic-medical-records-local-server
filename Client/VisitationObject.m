@@ -51,8 +51,7 @@
     return YES;
 }
 
--(BOOL)loadVisitWithVisitationID:(NSString *)visitID{
-   
+-(BOOL)loadVisitWithVisitationID:(NSString *)visitID{   
    return [super loadObjectForID:visitID inDatabase:DATABASE forAttribute:VISITID];
 
 }
@@ -122,8 +121,7 @@
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
         [self SaveListOfPatientsToTheDatabase:status.data];
-        respondToEvent(self,nil);
-        
+        respondToEvent(self,nil);        
     }];
 }
 
