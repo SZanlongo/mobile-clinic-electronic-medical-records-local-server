@@ -50,6 +50,9 @@
 		6D3A635F16C8472D003B79F7 /* UICamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635C16C8472D003B79F7 /* UICamera.m */; };
 		6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */; };
 		6DB0676A16D7DDF000D177E7 /* CurrentDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */; };
+		6DB5994C16EA463D0016AE82 /* PatientQueueTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5994B16EA463D0016AE82 /* PatientQueueTableCell.m */; };
+		6DB5995016EA46640016AE82 /* GenericStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5994F16EA46640016AE82 /* GenericStartViewController.m */; };
+		6DB5995316EA468C0016AE82 /* PatientQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5995216EA468C0016AE82 /* PatientQueueViewController.m */; };
 		6DC75C5D16DAED47000F527A /* PharmacyPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC75C5C16DAED47000F527A /* PharmacyPatientViewController.m */; };
 		6DD5D8F316D313E7007C3F74 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D8F216D313E7007C3F74 /* LoginViewController.m */; };
 		6DD5D8F616D31412007C3F74 /* StationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D8F516D31412007C3F74 /* StationViewController.m */; };
@@ -213,6 +216,12 @@
 		6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDiagnosisTableCell.m; sourceTree = "<group>"; };
 		6DB0676816D7DDF000D177E7 /* CurrentDiagnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentDiagnosisViewController.h; sourceTree = "<group>"; };
 		6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDiagnosisViewController.m; sourceTree = "<group>"; };
+		6DB5994A16EA463D0016AE82 /* PatientQueueTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientQueueTableCell.h; sourceTree = "<group>"; };
+		6DB5994B16EA463D0016AE82 /* PatientQueueTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientQueueTableCell.m; sourceTree = "<group>"; };
+		6DB5994E16EA46640016AE82 /* GenericStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericStartViewController.h; sourceTree = "<group>"; };
+		6DB5994F16EA46640016AE82 /* GenericStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericStartViewController.m; sourceTree = "<group>"; };
+		6DB5995116EA468C0016AE82 /* PatientQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientQueueViewController.h; sourceTree = "<group>"; };
+		6DB5995216EA468C0016AE82 /* PatientQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientQueueViewController.m; sourceTree = "<group>"; };
 		6DC75C5B16DAED47000F527A /* PharmacyPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPatientViewController.h; sourceTree = "<group>"; };
 		6DC75C5C16DAED47000F527A /* PharmacyPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPatientViewController.m; sourceTree = "<group>"; };
 		6DD5D8F116D313E7007C3F74 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -381,9 +390,11 @@
 				6D522C9616DADAA3004FFC21 /* CurrentDiagnosisTableCell.h */,
 				6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */,
 				6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */,
-				6D0D701A16D97611005A8C1F /* CurrentVisitTableCell.m */,
+				0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */,
 				0F0172A416DBEBC1000A7F3B /* PatientHistoryTableCell.h */,
 				0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */,
+				6DB5994A16EA463D0016AE82 /* PatientQueueTableCell.h */,
+				6DB5994B16EA463D0016AE82 /* PatientQueueTableCell.m */,
 				0F1A596C16D8354F00C121BA /* PatientResultTableCell.h */,
 				0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */,
 				6D0D701C16D97EE4005A8C1F /* PreviousVisitsTableCell.h */,
@@ -407,11 +418,15 @@
 				EA1EE19D16C982DB00E263D2 /* DateController.h */,
 				EA1EE19E16C982DB00E263D2 /* DateController.m */,
 				6D1CD5F616DA6A8C00FA5AC0 /* Doctor */,
+				6DB5994E16EA46640016AE82 /* GenericStartViewController.h */,
+				6DB5994F16EA46640016AE82 /* GenericStartViewController.m */,
 				0F9E6BA916D1E44A008AFB49 /* Images */,
 				6DD5D8F116D313E7007C3F74 /* LoginViewController.h */,
 				6DD5D8F216D313E7007C3F74 /* LoginViewController.m */,
 				0F1A597216D893F400C121BA /* PatientHistoryViewController.h */,
 				0F1A597316D893F400C121BA /* PatientHistoryViewController.m */,
+				6DB5995116EA468C0016AE82 /* PatientQueueViewController.h */,
+				6DB5995216EA468C0016AE82 /* PatientQueueViewController.m */,
 				0F1A597516D8B03000C121BA /* PatientResultViewController.h */,
 				0F1A597616D8B03000C121BA /* PatientResultViewController.m */,
 				6D1CD5F716DA6A9400FA5AC0 /* Pharmacy */,
@@ -1069,6 +1084,9 @@
 				EAC19C7516DDB72A00B0B8DA /* Visitation.m in Sources */,
 				EAC19C8216DEC07500B0B8DA /* Patients.m in Sources */,
 				EAADC02216E113A5009E7AF9 /* MobileClinicFacade.m in Sources */,
+				6DB5994C16EA463D0016AE82 /* PatientQueueTableCell.m in Sources */,
+				6DB5995016EA46640016AE82 /* GenericStartViewController.m in Sources */,
+				6DB5995316EA468C0016AE82 /* PatientQueueViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
