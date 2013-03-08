@@ -14,11 +14,12 @@
 #define CONDITION   @"condition"
 #define DTITLE      @"diagnosisTitle"
 #define GRAPHIC     @"isGraphic"
-#define WEIGHT          @"weight" //The different user types (look at enum)
+#define WEIGHT          @"weight" 
 #define OBSERVATION     @"observation"
 #define NURSEID         @"nurseId"
 #define BLOODPRESSURE   @"bloodPressure"
 #define VISITID         @"visitationId"
+#define PRIORITY        @"priority"
 #import <Foundation/Foundation.h>
 #import "BaseObjectProtocol.h"
 @protocol VisitationObjectProtocol <NSObject>

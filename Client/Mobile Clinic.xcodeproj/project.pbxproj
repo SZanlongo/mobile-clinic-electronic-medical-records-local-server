@@ -1177,12 +1177,16 @@
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
-					"\"$(SRCROOT)/iOS\"",
+					"$(FRANK_LIBRARY_SEARCH_PATHS)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(FRANK_LDFLAGS)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1195,13 +1199,10 @@
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK1.1\"",
-					"\"$(SRCROOT)/iOS\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/TestFlightSDK1.1\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1215,13 +1216,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileClinicTests/MobileClinicTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"“$(SRCROOT)/MobileClinicTests\" /**",
+					"‚Äö√Ñ√∂‚àö√ë‚àö‚à´$(SRCROOT)/MobileClinicTests\" /**",
 				);
 				INFOPLIST_FILE = "MobileClinicTests/MobileClinicTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRANK_LIBRARY_SEARCH_PATHS)",
+				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-all_load",
 					"-ObjC",
+					"$(FRANK_LDFLAGS)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1238,7 +1244,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileClinicTests/MobileClinicTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"“$(SRCROOT)/MobileClinicTests\" /**",
+					"‚Äö√Ñ√∂‚àö√ë‚àö‚à´$(SRCROOT)/MobileClinicTests\" /**",
 				);
 				INFOPLIST_FILE = "MobileClinicTests/MobileClinicTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";

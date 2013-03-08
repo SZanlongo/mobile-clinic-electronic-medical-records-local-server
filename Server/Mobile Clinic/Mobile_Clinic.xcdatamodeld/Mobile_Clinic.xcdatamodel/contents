@@ -52,6 +52,7 @@
         <attribute name="nurseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="observation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="triageIn" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="triageOut" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="visitationId" optional="YES" attributeType="String" syncable="YES"/>
@@ -63,6 +64,6 @@
         <element name="Patients" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Prescription" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Users" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="Visitation" positionX="160" positionY="192" width="128" height="300"/>
+        <element name="Visitation" positionX="160" positionY="192" width="128" height="315"/>
     </elements>
 </model>

@@ -113,8 +113,8 @@ FIUAppDelegate* appDelegate;
 
 -(void)updateCurrentPatient:(NSDictionary *)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
     
-    id<PatientObjectProtocol> patient = [[PatientObject alloc]initAndFillWithNewObject:patientInfo andRelatedDatabase:[PatientObject DatabaseName]];
-   
+    PatientObject* patient = [[PatientObject alloc]initWithCachedObject:[patientInfo objectForKey:PATIENTID] inDatabase:[PatientObject DatabaseName] forAttribute:PATIENTID withUpdatedObject:patientInfo];
+
     [patient UpdateAndLockPatientObject:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
     }];

@@ -59,13 +59,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/TriagePatientViewController.m"
-         timestampString = "384237614.459157"
+         filePath = "MobileClinicFacade.m"
+         timestampString = "384478249.712185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
+         landmarkName = "-addNewVisit:ForCurrentPatient:onCompletion:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -73,12 +73,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MobileClinicFacade.m"
-         timestampString = "384236069.00336"
+         timestampString = "384478979.954176"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "102"
-         endingLineNumber = "102"
-         landmarkName = "-findAllOpenVisitsAndOnCompletion:"
+         startingLineNumber = "116"
+         endingLineNumber = "116"
+         landmarkName = "-updateCurrentPatient:AndShouldLock:onCompletion:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BaseObject.m"
+         timestampString = "384479070.005326"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "47"
+         endingLineNumber = "47"
+         landmarkName = "-initWithCachedObject:inDatabase:forAttribute:withUpdatedObject:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

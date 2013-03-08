@@ -135,7 +135,9 @@
 -(void)setValueToDictionaryValues:(NSDictionary*)values{
     
     for (NSString* key in values.allKeys) {
-        [self.databaseObject setValue:[values objectForKey:key] forKey:key];
+        if (![[values objectForKey:key]isKindOfClass:[NSNull class]]) {
+            [self.databaseObject setValue:[values objectForKey:key] forKey:key];
+        }
     }
 }
 

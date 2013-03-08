@@ -91,8 +91,10 @@
     
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [base objectForKey:FIRSTNAME], [base objectForKey:FAMILYNAME]];
     NSDate* date = [base objectForKey:DOB];
-    cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",date.getNumberOfYearsElapseFromDate];
-    cell.patientDOB.text = [[base objectForKey:DOB]convertNSDateFullBirthdayString];
+    BOOL doesDOBExist = ([date isKindOfClass:[NSDate class]] && date);
+    cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",(doesDOBExist)?date.getNumberOfYearsElapseFromDate:0];
+    
+    cell.patientDOB.text = (doesDOBExist)?[[base objectForKey:DOB]convertNSDateFullBirthdayString]:@"Not Available";
     
     
     NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
@@ -101,6 +103,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (!mobileFacade) {
+        mobileFacade = [[MobileClinicFacade alloc]init];
+    }
     
     NSString * lockedBy = [[NSMutableDictionary dictionaryWithDictionary:[_patientSearchResultsArray objectAtIndex:indexPath.row]] objectForKey:ISLOCKEDBY];
                             
