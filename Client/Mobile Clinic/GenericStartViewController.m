@@ -48,20 +48,24 @@
     UINavigationBar *bar = [self.navigationController navigationBar];
     
     _searchControl = [self getViewControllerFromiPadStoryboardWithName:@"searchPatientViewController"];
+    [_segmentedControl setTitle:@"Search" forSegmentAtIndex:1];
     
     //set up according to station chosen
     switch ([[self stationChosen] intValue]) {
         case 1:
             [bar setTintColor:[UIColor orangeColor]];
             _registerControl = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
+            [_segmentedControl setTitle:@"Register" forSegmentAtIndex:0];
             break;
         case 2:
             [bar setTintColor:[UIColor blueColor]];
             _queueControl = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
+            [_segmentedControl setTitle:@"Queue" forSegmentAtIndex:0];
             break;
         case 3:
             [bar setTintColor:[UIColor greenColor]];
             _queueControl = [self getViewControllerFromiPadStoryboardWithName:@"registerPatientViewController"];
+            [_segmentedControl setTitle:@"Queue" forSegmentAtIndex:0];
             break;
         default:
             break;
@@ -163,6 +167,8 @@
     return cell;
 }
 
+
+
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset {
@@ -171,12 +177,13 @@
     if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
         *targetContentOffset = CGPointMake(targetContentOffset->x,
                                            targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
-        self.segmentedControl.selectedSegmentIndex = 1;
+        _segmentedControl.selectedSegmentIndex = 1;
     }
     else
     {
         *targetContentOffset = CGPointMake(targetContentOffset->x,
                                            targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+        _segmentedControl.selectedSegmentIndex = 0;
     }
 }
 
@@ -190,6 +197,20 @@
     [self setToolbar:nil];
     [self setSegmentedControl:nil];
     [super viewDidUnload];
+}
+
+- (IBAction)segmentClicked:(id)sender {
+    switch (_segmentedControl.selectedSegmentIndex) {
+        case 0:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        case 1:
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
+        default:
+            break;
+    }
+    [self.tableView reloadData];
 }
 
 @end

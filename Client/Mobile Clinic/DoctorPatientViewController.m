@@ -11,6 +11,8 @@
 
 @interface DoctorPatientViewController ()
 
+@property CGPoint originalCenter;
+
 @end
 
 @implementation DoctorPatientViewController
@@ -60,6 +62,18 @@
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
 //    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
+    self.originalCenter = self.view.center;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+- (void)keyboardDidShow: (NSNotification *) notif {
+    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 264 - 44);
+}
+
+- (void)keyboardDidHide: (NSNotification *) notif {
+    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
 }
 
 -(void)saveVisitation{

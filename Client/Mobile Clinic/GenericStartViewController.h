@@ -32,5 +32,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
+- (IBAction)segmentClicked:(id)sender;
 
 @end
