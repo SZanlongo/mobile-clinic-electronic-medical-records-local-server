@@ -47,36 +47,66 @@
     [self setPatientWeightField:nil];
     [self setPatientBPField:nil];
     [self setConditionsTextbox:nil];
+    [self setVisitPriority:nil];
+    [self setRespirationField:nil];
+    [self setHeartField:nil];
     [super viewDidUnload];
 }
 
 // Creates a visit for the patient and checks them in
 - (IBAction)checkInButton:(id)sender {
-    // Assigning vitals & condition
-    if (self.validateCheckin) {
-        MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
-        
-        [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
-        [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
-        [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
-        [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
-        [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
-        
-        [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
-            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {
-                if (!object) {
-                    [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-                }else{
-                    handler(object,error);
-                }
-            }];
-            
-        }];
-    }    
+    [self setVisitData];
 }
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy
 - (IBAction)quickCheckOutButton:(id)sender {
+    //replaced with setVisitData
+    //need to implement QC, which should be:
+        //              if (!innerObject) {
+        //                    [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        //                }else{
+        //                    [mobileFacade updateVisitRecord:innerObject andShouldUnlock:YES onCompletion:^(NSDictionary *inceptionObject, NSError *error) {
+        //                        if (!inceptionObject) {
+        //                            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        //                        }else{
+        //                            handler(inceptionObject,error);
+        //                        }
+        //                    }];
+        //                }
+
+    
+    
+//    if (self.validateCheckin) {
+//        MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+//        
+//        [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
+//        [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
+//        [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
+//        [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
+//        [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
+////        [currentVisit setValue:[NSNumber numberWithInteger:_visitPriority.selectedSegmentIndex] forKey:PRIORITY];
+//        
+//        [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
+//            
+//            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *innerObject, NSError *error) {
+//                
+//                if (!innerObject) {
+//                    [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+//                }else{
+//                    [mobileFacade updateVisitRecord:innerObject andShouldUnlock:YES onCompletion:^(NSDictionary *inceptionObject, NSError *error) {
+//                        if (!inceptionObject) {
+//                            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+//                        }else{
+//                            handler(inceptionObject,error);
+//                        }
+//                    }];
+//                }
+//            }];
+//        }];
+//    }
+}
+
+- (void)setVisitData {
     if (self.validateCheckin) {
         MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
         
@@ -88,21 +118,14 @@
         [currentVisit setValue:[NSNumber numberWithInteger:1] forKey:PRIORITY];
         
         [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
-            
-            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *innerObject, NSError *error) {
-                
-                if (!innerObject) {
+            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {
+                if (!object) {
                     [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
                 }else{
-                    [mobileFacade updateVisitRecord:innerObject andShouldUnlock:YES onCompletion:^(NSDictionary *inceptionObject, NSError *error) {
-                        if (!inceptionObject) {
-                            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-                        }else{
-                            handler(inceptionObject,error);
-                        }
-                    }];
+                    handler(object,error);
                 }
             }];
+            
         }];
     }
 }

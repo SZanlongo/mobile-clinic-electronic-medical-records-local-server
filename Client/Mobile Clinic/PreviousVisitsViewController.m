@@ -95,6 +95,8 @@
     
     cell.patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[visitData getObjectForAttribute:WEIGHT]doubleValue]];
     cell.patientBPLabel.text = [visitData getObjectForAttribute:BLOODPRESSURE];
+//    cell.patientHeartLabel.text = [visitData getObjectForAttribute:HEARTRATE];
+//    cell.patientRespirationLabel.text = [visitData getObjectForAttribute:RESPIRATION];
     [cell.patientConditionsTextView setText:[visitData getObjectForAttribute:CONDITION]];
 
     return cell;

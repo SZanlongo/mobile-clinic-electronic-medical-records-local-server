@@ -105,7 +105,7 @@ UIPopoverController * pop;
         [mobileFacade createAndCheckInPatient:_patient onCompletion:^(NSDictionary *object, NSError *error) {
             if (!object) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
-            }else{
+            }else{                
                 handler(object,error);
             }
         }];
