@@ -106,7 +106,6 @@ FIUAppDelegate* appDelegate;
             patientID = [dic objectForKey:patientID];
             
             PatientObject* patients = [[PatientObject alloc]initWithCachedObject:patientID inDatabase:patientDatabase forAttribute:PATIENTID withUpdatedObject:nil];
-
             [dic setValue:patients.getDictionaryValuesFromManagedObject forKey:OPEN_VISITS_PATIENT];
         }
         Response(allVisits,error);

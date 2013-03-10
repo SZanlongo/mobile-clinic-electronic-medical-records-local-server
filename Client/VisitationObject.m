@@ -79,7 +79,7 @@
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
         [self SaveListOfPatientsToTheDatabase:status.data];
-        respondToEvent(self,nil);
+        Response(self,nil);
     }];
 }
 

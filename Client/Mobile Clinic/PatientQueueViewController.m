@@ -35,15 +35,16 @@
     mobileFacade = [[MobileClinicFacade alloc] init];
     
     [mobileFacade findAllOpenVisitsAndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-        queueArray = allObjectsFromSearch;
+        queueArray = [NSArray arrayWithArray:allObjectsFromSearch];
+        
     }];
     
-    // Sort queue by priority
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"priority" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
-    [_queueTableView reloadData];
+//    // Sort queue by priority
+//    NSSortDescriptor *sortDescriptor;
+//    sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"priority" ascending:NO];
+//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//    queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
+//    [_queueTableView reloadData];
     
 }
 
@@ -62,6 +63,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"COUNT OF QUEUE RESULTS: %d", queueArray.count);
     return queueArray.count;
 }
 
@@ -71,10 +73,12 @@
     QueueTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(!cell) {
-        cell = [[QueueTableCell alloc] init];
+        cell = [[QueueTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary * patientDic = [[NSDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
+    NSDictionary * visitDic = [[NSDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
+    
+    NSDictionary * patientDic = [visitDic objectForKey:OPEN_VISITS_PATIENT];
     
     // Display contents of cells
     if ([[patientDic objectForKey:PICTURE]isKindOfClass:[NSData class]]) {
