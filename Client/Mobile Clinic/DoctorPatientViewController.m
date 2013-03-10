@@ -63,9 +63,9 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
 //    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
     self.originalCenter = self.view.center;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+ //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)keyboardDidShow: (NSNotification *) notif {
@@ -170,8 +170,8 @@
     handler = myHandler;
 }
 
-- (IBAction) segmentedControlIndexChanged {
-    switch (self.segmentedControl.selectedSegmentIndex) {
+- (IBAction)segmentClicked:(id)sender {
+    switch (_segmentedControl.selectedSegmentIndex) {
         case 0:
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
             break;
@@ -180,9 +180,7 @@
             break;
         default:
             break;
-            
     }
-    
     [self.tableView reloadData];
 }
 

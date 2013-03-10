@@ -112,6 +112,8 @@
         
         [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
         [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
+//        [currentVisit setValue:_heartField.text forKey:(HEARTRATE)];
+//        [currentVisit setValue:_respirationField.text forKey:RESPIRATION];
         [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
         [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
         [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
@@ -138,26 +140,38 @@
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", correct];
     
     if([_patientWeightField.text isEqualToString:@""] || _patientWeightField.text == nil) {
-        errorMsg = @"Missing Patient Weight";
+        errorMsg = @"Missing Weight";
         inputIsValid = NO;
     } else if([_patientBPField.text isEqualToString:@""] || _patientBPField.text == nil) {
         errorMsg = @"Missing Blood Pressure";
         inputIsValid = NO;
     } else if([_conditionsTextbox.text isEqualToString:@""] || _conditionsTextbox.text == nil){
-        errorMsg = @"Missing Patient Conditions";
+        errorMsg = @"Missing Conditions";
         inputIsValid = NO;
     } else if (![predicate evaluateWithObject:_patientWeightField.text]){
-        errorMsg = @"Patient Weight has Letters";
+        errorMsg = @"Weight has Letters";
         inputIsValid = NO;
     } else if (![predicate evaluateWithObject:_patientBPField.text]){
-        errorMsg = @"Patient Blood Pressure has Letters";
+        errorMsg = @"Blood Pressure has Letters";
+        inputIsValid = NO;
+    } else if ([_heartField.text isEqualToString:@""] || _heartField.text == nil) {
+        errorMsg = @"Missing Heart Rate";
+        inputIsValid = NO;
+    } else if (![predicate evaluateWithObject:_heartField.text]) {
+        errorMsg = @"Heart Rate has Letters";
+        inputIsValid = NO;
+    } else if ([_respirationField.text isEqualToString:@""] || _respirationField.text == nil) {
+        errorMsg = @"Missing Respiration";
+        inputIsValid = NO;
+    } else if (![predicate evaluateWithObject:_respirationField.text]) {
+        errorMsg = @"Respiration has Letters";
         inputIsValid = NO;
     }
     
     //display error message on invlaid input
     if(inputIsValid == NO){
-        UIAlertView *validateRegistrationAlert = [[UIAlertView alloc] initWithTitle:nil message:errorMsg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [validateRegistrationAlert show];
+        UIAlertView *validateCheckinAlert = [[UIAlertView alloc] initWithTitle:nil message:errorMsg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [validateCheckinAlert show];
     }
     
     return inputIsValid;

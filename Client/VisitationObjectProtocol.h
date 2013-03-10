@@ -19,6 +19,8 @@
 #define NURSEID         @"nurseId"
 #define BLOODPRESSURE   @"bloodPressure"
 #define VISITID         @"visitationId"
+#define HEARTRATE       @"heartRate"
+#define RESPIRATION     @"respiration"
 #define PRIORITY        @"priority"
 #import <Foundation/Foundation.h>
 #import "BaseObjectProtocol.h"

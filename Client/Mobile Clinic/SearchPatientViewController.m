@@ -80,14 +80,11 @@
     
     NSDictionary* base = [[NSDictionary alloc]initWithDictionary:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
     
-
-    
     // Display contents of cells
     if ([[base objectForKey:PICTURE]isKindOfClass:[NSData class]]) {
         UIImage* image = [UIImage imageWithData: [base objectForKey:PICTURE]];
         [cell.patientImage setImage:image];
     }
-    
     
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [base objectForKey:FIRSTNAME], [base objectForKey:FAMILYNAME]];
     NSDate* date = [base objectForKey:DOB];
@@ -95,9 +92,8 @@
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",(doesDOBExist)?date.getNumberOfYearsElapseFromDate:0];
     
     cell.patientDOB.text = (doesDOBExist)?[[base objectForKey:DOB]convertNSDateFullBirthdayString]:@"Not Available";
-    
-    
-    NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
+
+//    NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
     
     return cell;
 }
@@ -134,24 +130,6 @@
 
 //
 - (IBAction)searchByNameButton:(id)sender {
-    // TEMPORARY CODE TO DO SEARCH
-    // Check if there is at least one name
-    //    if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
-    //
-    //        NSError *error;
-    //        context = [[FIUAppDelegate alloc] managedObjectContext];
-    //        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    //
-    //        [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-    //        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName beginswith[cd] %@) OR (familyName beginswith[cd] %@)", _patientNameField.text, _familyNameField.text]];
-    //
-    //        _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
-    //
-    //        // Redisplay the information
-    //        [_searchResultTableView reloadData];
-    //    }
-    
-    // MIKE'S SEARCH (WILL EVENTUALLY IMPLEMENT WHEN ITS WORKING) ( DO NO DELETE!)
     // Check if there is at least one name
     switch (_mode) {
         case kTriageMode:
@@ -161,19 +139,6 @@
              [self BroadSearchForPatient];
             break;
     }
-    
-    
-    //// FOR MY OWN TESTING (RIGO)
-    //    if([_patientSearchResultsArray count] == 0) {
-    //        NSLog(@"ARRAY IS EMPTY!!!!!!!!!");
-    //    }
-    //    else{
-    //        NSLog(@"ARRAY HAS STUFF INSIDE IT!!!!!!!!");
-    //
-    //        for(Patients * obj in _patientSearchResultsArray) {
-    //            NSLog(@"NAME: %@ %@", obj.firstName, obj.familyName);
-    //        }
-    //    }
 }
 -(void)BroadSearchForPatient{
     //this will remove spaces BEFORE AND AFTER the string. I am leaving spaces in the middle because we might have names that are 2 words
@@ -195,8 +160,8 @@
     }
 }
 -(void)narrowSearchInQueue{
-
 }
+
 - (IBAction)searchByNFCButton:(id)sender {
 }
 

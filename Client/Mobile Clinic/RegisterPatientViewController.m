@@ -157,7 +157,7 @@ UIPopoverController * pop;
     // Not checking to see if the name, family, or village strings contain numbers,
     // This can always be revised, but some names apparently have "!" to symbolize a click (now you learned something new!)
     if([_patientNameField.text isEqualToString:@""] || _patientNameField.text == nil) {
-        errorMsg = @"Missing Patient Name";
+        errorMsg = @"Missing Name";
         inputIsValid = NO;
     }else if([_familyNameField.text isEqualToString:@""] || _familyNameField.text == nil) {
         errorMsg = @"Missing Family Name";
@@ -166,11 +166,13 @@ UIPopoverController * pop;
         errorMsg = @"Missing Village Name";
         inputIsValid = NO;
     } else if ([_patient objectForKey:DOB] == nil) {
-        errorMsg = @"Missing Patient Age";
+        errorMsg = @"Missing Age";
         inputIsValid = NO;
-    } else if ([_patient objectForKey:PICTURE] == nil) {
-
     }
+//    else if ([_patient objectForKey:PICTURE] == nil) {
+//        errorMsg = @"Missing Photo";
+//        inputIsValid = NO;
+//    }
     
     //display error message on invlaid input
     if(inputIsValid == NO){
