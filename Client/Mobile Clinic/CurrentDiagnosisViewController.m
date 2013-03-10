@@ -55,9 +55,11 @@
 
 - (IBAction)submitButton:(id)sender {
     //set visitiation diag
-    [_visitationData setObject:_diagnosisTextbox.text withAttribute:CONDITION];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
-    handler(self,nil);
+    if (self.validateDiagnosis) {
+        [_visitationData setObject:_diagnosisTextbox.text withAttribute:CONDITION];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
+        handler(self,nil);
+    }    
 }
 
 - (BOOL)validateDiagnosis {
