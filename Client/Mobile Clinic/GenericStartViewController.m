@@ -135,7 +135,9 @@
     
     [[cell viewController] setScreenHandler:^(id object, NSError *error) {
         _patientData = [NSMutableDictionary dictionaryWithDictionary:object];
+        
         id newView;
+        
         switch ([[self stationChosen] intValue]) {
             case 1:
                 newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];
@@ -161,8 +163,19 @@
             [[cell viewController]resetData];
         }];
         
-        [self presentViewController:newView animated:YES completion:nil];
-        //[self.navigationController pushViewController:newView animated:YES];
+        switch ([[self stationChosen] intValue]) {
+            case 1:
+                [self presentViewController:newView animated:YES completion:nil];
+                break;
+            case 2:
+                [self.navigationController pushViewController:newView animated:YES];
+                break;
+            case 3:
+                [self.navigationController pushViewController:newView animated:YES];
+                break;
+            default:
+                break;
+        }
     }];
     
     return cell;
