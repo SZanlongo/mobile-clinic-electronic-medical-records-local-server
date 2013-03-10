@@ -161,7 +161,8 @@
             [[cell viewController]resetData];
         }];
         
-        [self.navigationController pushViewController:newView animated:YES];
+        [self presentViewController:newView animated:YES completion:nil];
+        //[self.navigationController pushViewController:newView animated:YES];
     }];
     
     return cell;
