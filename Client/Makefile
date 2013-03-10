@@ -6,4 +6,4 @@ clean:
 	-rm -rf build/*
 
 test:
-	GHUNIT_CLI=1 xcodebuild -target Tests -configuration Debug -sdk iphonesimulator build	
+	GHUNIT_CLI=1 xcodebuild -target MobileClinicTests -configuration Debug -sdk iphonesimulator build	
