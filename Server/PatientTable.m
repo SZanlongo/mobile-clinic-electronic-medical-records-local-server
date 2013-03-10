@@ -18,13 +18,37 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
+        patientsHandler = [[PatientObject alloc]init];
+        
+        patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
+
+        [_patientTable reloadData];
     }
-    
     return self;
 }
 
+-(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
+   
+    NSManagedObject* dictionary = [patientList objectAtIndex:row];
+    
+    if ([tableColumn.identifier isEqualToString:@"patientName"]) {
+        return [NSString stringWithFormat:@"%@ %@",[dictionary valueForKey:FIRSTNAME],[dictionary valueForKey:FAMILYNAME]];
+    }else{
+        
+        NSString* username = [dictionary valueForKey:ISLOCKEDBY];
+        
+        BOOL isBlocked = (!username || [username isEqualToString:@""]);
+        return (isBlocked)?@"Unlocked":@"Locked";
+    }
+}
+
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
+    return patientList.count;
+}
+
 - (IBAction)refreshPatients:(id)sender {
+    patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
+    [_patientTable reloadData];
 }
 
 - (IBAction)unblockPatients:(id)sender {

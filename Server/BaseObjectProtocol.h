@@ -126,4 +126,6 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 -(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message;
 
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database;
+
+-(void)copyDictionaryValues:(NSDictionary*)dictionary intoManagedObject:(NSManagedObject*)mObject;
 @end

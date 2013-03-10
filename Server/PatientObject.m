@@ -7,22 +7,6 @@
 //
 
 #import "PatientObject.h"
-
-
-#define FIRSTNAME       @"firstName"
-#define FAMILYNAME      @"familyName"
-#define VILLAGE         @"villageName"
-#define HEIGHT          @"height"
-#define SEX             @"sex"
-#define DOB             @"age"
-#define PICTURE         @"photo"
-#define VISITS          @"visits"
-#define PATIENTID       @"patientId"
-#define ALL_PATIENTS    @"all patients"
-#define ISLOCKEDBY      @"isLockedBy"
-#define DATABASE        @"Patients"
-
-
 #import "StatusObject.h"
 #import "NSString+Validation.h"
 #import "Patients.h"

@@ -6,14 +6,42 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 #import <GHUnitIOS/GHUnit.h>
+#import "PatientObject.h"
+#import "ServerCore.h"
 
-@interface PatientObjectTest : GHTestCase { }
+@interface PatientObjectTest: GHAsyncTestCase {
+    PatientObject* patient;
+    ServerCore* server;
+}
+
 @end
 
 @implementation PatientObjectTest
 
+- (BOOL)shouldRunOnMainThread {
+    // By default NO, but if you have a UI test or test dependent on running on the main thread return YES.
+    // Also an async test that calls back on the main thread, you'll probably want to return YES.
+    return YES;
+}
+
+- (void)setUpClass {
+    //server = [[ServerCore alloc]init];
+   // [server startClient];
+}
+
+- (void)tearDownClass {
+    // Run at end of all tests in the class
+}
+
+- (void)setUp {
+    // Run before each test method
+}
+
+- (void)tearDown {
+    // Run after each test method
+}
 - (void)testSimplePass {
-	// Another test
+	[self waitFor:kGHUnitWaitStatusSuccess timeout:5];
 }
 
 - (void)testSimpleFail {

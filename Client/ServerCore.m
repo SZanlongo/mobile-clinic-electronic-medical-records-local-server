@@ -78,6 +78,9 @@ ServerCallback onComplete;
     if ([serverService.name isEqualToString:netService.name]) {
         NSLog(@"Removed Current Service that was in use");
         connected = NO;
+        if (connectionStatus) {
+            connectionStatus(connected);
+        }
         [self stopClient];
         [self startClient];
     }
@@ -161,6 +164,10 @@ ServerCallback onComplete;
 	NSLog(@"Socket:DidConnectToHost: %@ Port: %hu", host, port);
 	[self grabURLInBackground:host];
 	connected = YES;
+   
+    if (connectionStatus) {
+        connectionStatus(connected);
+    }
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
@@ -168,7 +175,9 @@ ServerCallback onComplete;
 	NSLog(@"SocketDidDisconnect:WithError: %@", err);
 
 		[self connectToNextAddress];
-
+    if (connectionStatus) {
+        connectionStatus(NO);
+    }
     
 }
 
@@ -241,5 +250,8 @@ ServerCallback onComplete;
 }
 -(NSString *)getCurrentConnectionName{
     return asyncSocket.connectedHost;
+}
+- (void)setConnectionStatusHandler:(ClientServerConnect)statusHandler{
+    connectionStatus = statusHandler;
 }
 @end

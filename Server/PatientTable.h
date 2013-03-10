@@ -7,9 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PatientObject.h"
+@interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate>{
+    PatientObject* patientsHandler;
+    NSArray* patientList;
+}
+@property (weak) IBOutlet NSScrollView *scrollView;
+@property (weak) IBOutlet NSTableView *patientTable;
 
-@interface PatientTable : NSViewController
-@property (weak) IBOutlet NSScrollView *patientTable;
 - (IBAction)refreshPatients:(id)sender;
 - (IBAction)unblockPatients:(id)sender;
 - (IBAction)pushPatientsIntoCloud:(id)sender;

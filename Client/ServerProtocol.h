@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+
+typedef void (^ClientServerConnect) (BOOL isConnected);
 typedef void (^ServerCallback)(id data);
 @protocol ServerProtocol <NSObject>
 @required
@@ -14,4 +16,5 @@ typedef void (^ServerCallback)(id data);
 - (void) stopClient;
 - (void)sendData:(NSDictionary*)dataToBeSent withOnComplete:(ServerCallback)response;
 - (BOOL) isClientConntectToServer;
+- (void)setConnectionStatusHandler:(ClientServerConnect)statusHandler;
 @end

@@ -42,7 +42,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
 -(void) findPatientWithFirstName:(NSString*)firstname orLastName:(NSString*)lastname onCompletion:(MobileClinicSearchResponse)Response;
 /**
  * Adds a new visitation record for the given patient. This method will not lock the patient but. This method is meant to be called at the end of the triage workflow. 
- * This method will store the visitation object locally and on the server. It will also update the patient's information on the server as well. 
+ * This method will store the visitation object locally and on the server.  
  * @response Block call that, on completion, will return the visitation object
  * @param visitInfo The visitation information 
  * @param patientInfo The patient to associate the visitation to
@@ -51,12 +51,14 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
 
 /**
  * This will update the give visit in local and remote database. 
- * If the visit is locked by another user the server will not update the visit but instead will throw an error message.
- * You must successfully lock the object before you can call this method.
+ * If the visit is locked by another user the server will not update the visit but will throw an error message.
+ * You should successfully lock the object before you try and change information.
  * This method has the power to lock the object, but the object must not be in user by another user.
+ * This method also allows you to open and close a visit, which is determined by the Bool ShouldCloseVisit.
  * This method will returned the updated value to you through the block call. 
  * @param visitRecord the record you want to lock
  * @param unlock TRUE means that the object will be unlocked when the update is completed FALSE will leave the object locked after the update;
+ * @param closeVisit determines whether or not the patient has completed his/her visit
  */
 -(void) updateVisitRecord:(NSDictionary*)visitRecord andShouldUnlock:(BOOL)unlock andShouldCloseVisit:(BOOL)closeVisit onCompletion:(MobileClinicCommandResponse)Response;
 /**
@@ -70,7 +72,9 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  * The information will be synced from the server and cached to the local. The returned visits will be an accumulation of both the local and client.
  * This is great to help them narrow down who is next and how many is left.
  * If the user selects the visit from the queue it MUST BE LOCKED USING THE @see UpdateVisitRecord or @see LockVisit methods
- * The block returns an array of Visitation ManageObject objects;
+ * The block returns an array of Visitaion Dictionaries;
+ * The dictionaries also hold the corresponing Patient Dictionary the belongs to that visit
+ which can be retrieved by using the Definition OPEN_VISITS_PATIENT
  */
 -(void) findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response;
 /**
