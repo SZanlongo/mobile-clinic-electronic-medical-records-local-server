@@ -112,8 +112,8 @@
         
         [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
         [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
-      //  [currentVisit setValue:_heartField.text forKey:<#(NSString *)#>];
-      //  [currentVisit setValue:_respirationField.text forKey:<#(NSString *)#>]'
+        [currentVisit setValue:_heartField.text forKey:(HEARTRATE)];
+        [currentVisit setValue:_respirationField.text forKey:RESPIRATION];
         [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
         [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
         [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
