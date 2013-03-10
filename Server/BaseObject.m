@@ -148,6 +148,9 @@ return nil;
     }
     return YES;
 }
+
+
+
 #pragma mark - Cloud API
 #pragma mark-
 -(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion

@@ -67,16 +67,8 @@
     [visit setVisitationId:[NSString stringWithFormat:@"%@_%f",patientFirstName,[[NSDate date]timeIntervalSince1970]]];
 }
 
--(void)createNewVisitOnClientAndServer:(ObjectResponse)onSuccessHandler
-{
-    respondToEvent = onSuccessHandler;
-    // Open the visitation
-    [self.databaseObject setValue:[NSNumber numberWithBool:YES] forKey:ISOPEN];
-    NSMutableDictionary* dataToSend= [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-    [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
-    
-    [super UpdateObject:onSuccessHandler andSendObjects:dataToSend forDatabase:DATABASE withAttribute:VISITID];
-    
+-(void)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen{
+    [self.databaseObject setValue:[NSNumber numberWithBool:shouldOpen] forKey:ISOPEN];
 }
 
 -(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response{

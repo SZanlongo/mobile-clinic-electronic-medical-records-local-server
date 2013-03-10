@@ -13,7 +13,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "70"
          endingLineNumber = "70"
-         landmarkName = "-checkInButton:"
+         landmarkName = "-quickCheckOutButton:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -39,7 +39,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "70"
          endingLineNumber = "70"
-         landmarkName = "-checkInButton:"
+         landmarkName = "-quickCheckOutButton:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "65"
          endingLineNumber = "65"
-         landmarkName = "-checkInButton:"
+         landmarkName = "-quickCheckOutButton:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MobileClinicFacade.m"
-         timestampString = "384478979.954176"
+         timestampString = "384592048.372173"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "116"
-         endingLineNumber = "116"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
          landmarkName = "-updateCurrentPatient:AndShouldLock:onCompletion:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,12 +86,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BaseObject.m"
-         timestampString = "384479070.005326"
+         timestampString = "384593128.364612"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
-         landmarkName = "-initWithCachedObject:inDatabase:forAttribute:withUpdatedObject:"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
+         landmarkName = "-UpdateObject:andSendObjects:forDatabase:withAttribute:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

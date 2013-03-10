@@ -32,11 +32,6 @@
 /**
  *
  */
--(void)createNewVisitOnClientAndServer:(ObjectResponse)onSuccessHandler
-;
-/**
- *
- */
 -(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient;
 /**
  *
@@ -56,4 +51,8 @@
  *
  */
 -(NSArray*) FindAllOpenVisitsLocally;
+/**
+ *
+ */
+-(void)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen;
 @end

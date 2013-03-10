@@ -39,7 +39,7 @@ FIUAppDelegate* appDelegate;
 -(void)findPatientWithFirstName:(NSString *)firstname orLastName:(NSString *)lastname onCompletion:(MobileClinicSearchResponse)Response{
     
     /* Create a temporary Patient Object to make request */
-    PatientObject* patients = [[PatientObject alloc]init];
+    PatientObject* patients = [[PatientObject alloc]initWithDatabase:[PatientObject DatabaseName]];
     
     /* Query server and save results locally */
     [patients FindAllPatientsOnServerWithFirstName:firstname andWithLastName:lastname onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
@@ -70,18 +70,20 @@ FIUAppDelegate* appDelegate;
     [visit setValueToDictionaryValues:visitInfo];
     [visit setObject:[patientInfo objectForKey:PATIENTID] withAttribute:PATIENTID];
     [visit associatePatientToVisit:[patientInfo objectForKey:FIRSTNAME]];
-    [visit createNewVisitOnClientAndServer:^(id<BaseObjectProtocol> data, NSError *error) {
+    [visit shouldSetCurrentVisitToOpen:YES];
+    [visit UpdateObjectAndShouldLock:NO onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
-        
     }];
 }
 
 
 // Updates a visitation record and locks it depend the Bool variable
--(void)updateVisitRecord:(NSDictionary *)visitRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response{
+-(void)updateVisitRecord:(NSDictionary *)visitRecord andShouldUnlock:(BOOL)unlock andShouldCloseVisit:(BOOL)closeVisit onCompletion:(MobileClinicCommandResponse)Response{
    
     VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObject:[visitRecord objectForKey:VISITID] inDatabase:[VisitationObject DatabaseName] forAttribute:VISITID withUpdatedObject:visitRecord];
-    
+   
+    [vObject shouldSetCurrentVisitToOpen:closeVisit];
+   
     [vObject UpdateObjectAndShouldLock:!unlock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
     }];

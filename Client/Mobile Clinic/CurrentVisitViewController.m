@@ -115,7 +115,7 @@
         [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
         [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
         [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
-        [currentVisit setValue:[NSNumber numberWithInteger:1] forKey:PRIORITY];
+        [currentVisit setValue:[NSNumber numberWithInteger:_visitPriority.selectedSegmentIndex] forKey:PRIORITY];
         
         [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
             [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {

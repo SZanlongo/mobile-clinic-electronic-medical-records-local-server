@@ -46,6 +46,7 @@
         <attribute name="doctorId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="doctorIn" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="doctorOut" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="heartRate" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
         <attribute name="isGraphic" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLockedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isOpen" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -53,17 +54,17 @@
         <attribute name="observation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="respiration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="triageIn" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="triageOut" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="visitationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <relationship name="prescription" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Prescription" syncable="YES"/>
     </entity>
     <elements>
         <element name="Medication" positionX="396" positionY="666" width="128" height="135"/>
         <element name="Patients" positionX="-11" positionY="468" width="128" height="195"/>
         <element name="Prescription" positionX="403" positionY="450" width="128" height="150"/>
         <element name="Users" positionX="205" positionY="402" width="128" height="165"/>
-        <element name="Visitation" positionX="-182" positionY="564" width="128" height="315"/>
+        <element name="Visitation" positionX="-182" positionY="564" width="128" height="330"/>
     </elements>
 </model>

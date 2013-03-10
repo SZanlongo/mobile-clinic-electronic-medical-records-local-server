@@ -51,9 +51,11 @@
 }
 
 -(NSDictionary *)consolidateForTransmitting{
-    /* Setup some of variables that are common to all the 
+    /* 
+     * Setup some of variables that are common to all the
      * the object that inherit from this base class
      */
+    
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
 
     [consolidate setValue:[self.databaseObject dictionaryWithValuesForKeys:self.databaseObject.entity.attributesByName.allKeys] forKey:DATABASEOBJECT];
@@ -103,16 +105,18 @@
 -(void)CommonExecution{
     
 }
+
 -(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects{
     
     NSMutableArray* arrayWithDictionaries = [[NSMutableArray alloc]initWithCapacity:managedObjects.count];
     
     for (NSManagedObject* objs in managedObjects) {
-        
-        [arrayWithDictionaries addObject:[objs dictionaryWithValuesForKeys:objs.entity.attributesByName.allKeys]];
+        self.databaseObject = objs;
+        [arrayWithDictionaries addObject:self.getDictionaryValuesFromManagedObject];
     }
     return arrayWithDictionaries;
 }
+
 -(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
     // checks to see if object exists
     NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];

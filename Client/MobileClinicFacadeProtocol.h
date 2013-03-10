@@ -58,7 +58,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  * @param visitRecord the record you want to lock
  * @param unlock TRUE means that the object will be unlocked when the update is completed FALSE will leave the object locked after the update;
  */
--(void) updateVisitRecord:(NSDictionary*)visitRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response;
+-(void) updateVisitRecord:(NSDictionary*)visitRecord andShouldUnlock:(BOOL)unlock andShouldCloseVisit:(BOOL)closeVisit onCompletion:(MobileClinicCommandResponse)Response;
 /**
  * Using information from the given patient, this method will find all visits related to them.
  * @param patientInfo the patient you want the visits from.
