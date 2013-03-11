@@ -98,14 +98,14 @@ NSString* isLockedBy;
     // Load old patient in global object and save new patient in variable
     Visitation* oldVisit = (Visitation*)[self loadObjectWithID:visit.visitationId inDatabase:nil forAttribute:VISITID];
     
-    BOOL isNotLockedUp = (!oldVisit || [oldVisit.isLockedBy isEqualToString:isLockedBy] || oldVisit.isLockedBy.length == 0);
+    BOOL isNotLockedUp = (!oldVisit || ![oldVisit.isLockedBy isEqualToString:isLockedBy]);
     
     
     if (isNotLockedUp) {
         
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
             if (!error) {
-                [self sendInformation:nil toClientWithStatus:kSuccess andMessage:posError];
+                [self sendInformation:[self getDictionaryValuesFromManagedObject] toClientWithStatus:kSuccess andMessage:posError];
             }else{
                 [self sendInformation:nil toClientWithStatus:kError andMessage:negError];
             }

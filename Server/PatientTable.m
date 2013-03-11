@@ -7,7 +7,7 @@
 //
 
 #import "PatientTable.h"
-#define ALLVISITS   @"All_Visits"
+#define INNER   @"Inner"
 
 @interface PatientTable ()
 
@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         patientsHandler = [[PatientObject alloc]init];
-        
+        visitsHandler = [[VisitationObject alloc]init];
         patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
        
         BaseObject* base = [[BaseObject alloc]init];
@@ -40,7 +40,7 @@
                 [allVisits addObject: [base getDictionaryValuesFromManagedObject:v]];      
             }
             
-            [pDic setValue:allVisits forKey:ALLVISITS];
+            [pDic setValue:allVisits forKey:INNER];
             
             [allItems addObject:pDic];
         }
@@ -58,8 +58,8 @@
 -(NSInteger)browser:(NSBrowser *)browser numberOfChildrenOfItem:(id)item{
     if ([item isKindOfClass:[NSArray class]]) {
         return [item count];
-    }else if ([item isKindOfClass:[Patients class]]) {
-        return [[visitsHandler getVisitsForPatientWithID:[item valueForKey:PATIENTID]]count];
+    }else if ([item isKindOfClass:[NSDictionary class]]){
+        return [[item objectForKey:INNER]count];
     }else{
         return 0;
     }
@@ -68,53 +68,38 @@
    
     if ([item isKindOfClass:[NSArray class]]) {
         return [item objectAtIndex:index];
-    }else {
+    }else if([item isKindOfClass:[NSDictionary class]]) {
+        return [[item objectForKey:INNER]objectAtIndex:index];
+    }else{
         return item;
     }
 }
 
 -(BOOL)browser:(NSBrowser *)browser isLeafItem:(id)item{
 
-    return YES;
+    if ([item isKindOfClass:[NSDictionary class]]) {
+        NSArray* inner = [item objectForKey:INNER];
+        return (inner.count == 0 || !inner);
+    }
+    else
+        return NO;
 }
 
 -(id)browser:(NSBrowser *)browser objectValueForItem:(id)item{
     
-    NSManagedObject* dictionary = item;
-    if ([item isKindOfClass:[Patients class]]) {
-        return [NSString stringWithFormat:@"%@ %@",[dictionary valueForKey:FIRSTNAME],[dictionary valueForKey:FAMILYNAME]];
-    }else{
-        return [NSString stringWithFormat:@"%@",[dictionary valueForKey:CONDITION]];
+    NSString* fn;
+    if ([item isKindOfClass:[NSDictionary class]]) {
+        fn =  [item objectForKey:FIRSTNAME];
+        if (fn) {
+            return [NSString stringWithFormat:@"%@ %@",fn,[item objectForKey:FAMILYNAME]];
+        }else{
+            return [NSString stringWithFormat:@"%@",[item objectForKey:CONDITION]];
+        }
     }
+
 }
 
 
-
-
-
-//-(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-//   
-//    NSManagedObject* dictionary = [patientList objectAtIndex:row];
-//    
-//    if ([tableColumn.identifier isEqualToString:@"patientName"]) {
-//        return [NSString stringWithFormat:@"%@ %@",[dictionary valueForKey:FIRSTNAME],[dictionary valueForKey:FAMILYNAME]];
-//    }else{
-//        
-//        NSString* username = [dictionary valueForKey:ISLOCKEDBY];
-//        
-//        BOOL isBlocked = (!username || [username isEqualToString:@""]);
-//        return (isBlocked)?@"Unlocked":@"Locked";
-//    }
-//}
-//
-//-(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
-//    return patientList.count;
-//}
-//-(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
-//
-//    selectedRow = row;
-//    return YES;
-//}
 - (IBAction)refreshPatients:(id)sender {
     patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
     [_patientTable reloadData];
