@@ -54,22 +54,22 @@ PatientObject* patients;
 //            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
 //        }
 //    }];
+//    
+//    BaseObject * obj = [[BaseObject alloc] init];
+//    
+//    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
     
-    BaseObject * obj = [[BaseObject alloc] init];
-    
-    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
-    
-    [mDic setObject:@"poop" forKey:@"userName"];
-    [mDic setObject:@"poop" forKey:@"password"];
-    [mDic setObject:@"poop" forKey:@"firstName"];
-    [mDic setObject:@"poop" forKey:@"lastName"];
-    [mDic setObject:@"poop@popper.com" forKey:@"email"];
-    [mDic setObject:@"1" forKey:@"userType"];
-    [mDic setObject:@"1" forKey:@"status"];
-//    [mDic setObject:@"asd" forKey:@"remember_token"];
-    [obj query:@"create_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-        
-    }];
+//    [mDic setObject:@"pooop" forKey:@"userName"];
+//    [mDic setObject:@"poooop" forKey:@"password"];
+//    [mDic setObject:@"poop" forKey:@"firstName"];
+//    [mDic setObject:@"poop" forKey:@"lastName"];
+//    [mDic setObject:@"poop@popper.com" forKey:@"email"];
+//    [mDic setObject:@"1" forKey:@"userType"];
+//    [mDic setObject:@"1" forKey:@"status"];
+////    [mDic setObject:@"asd" forKey:@"remember_token"];
+//    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+//
+//    }];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.
