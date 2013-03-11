@@ -295,8 +295,7 @@
 								<object class="NSMenuItem" id="75418644">
 									<reference key="NSMenu" ref="636336752"/>
 									<string key="NSTitle">Show Patient Viewer</string>
-									<string key="NSKeyEquiv">z</string>
-									<int key="NSKeyEquivModMask">1048576</int>
+									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
@@ -1399,10 +1398,11 @@
 																<string key="NSReuseIdentifierKey">_NS:16</string>
 																<reference key="NSTableView" ref="275515026"/>
 															</object>
-															<object class="_NSCornerView" key="NSCornerView">
-																<nil key="NSNextResponder"/>
+															<object class="_NSCornerView" key="NSCornerView" id="877289241">
+																<reference key="NSNextResponder" ref="491628109"/>
 																<int key="NSvFlags">-2147483392</int>
 																<string key="NSFrame">{{224, 0}, {16, 17}}</string>
+																<reference key="NSSuperview" ref="491628109"/>
 																<reference key="NSNextKeyView" ref="279428403"/>
 																<string key="NSReuseIdentifierKey">_NS:19</string>
 															</object>
@@ -1511,6 +1511,7 @@
 													<reference key="NSBGColor" ref="273371230"/>
 													<int key="NScvFlags">4</int>
 												</object>
+												<reference ref="877289241"/>
 											</array>
 											<string key="NSFrame">{{308, 85}, {335, 436}}</string>
 											<reference key="NSSuperview" ref="809814160"/>
@@ -1521,6 +1522,7 @@
 											<reference key="NSHScroller" ref="898554517"/>
 											<reference key="NSContentView" ref="279428403"/>
 											<reference key="NSHeaderClipView" ref="978978482"/>
+											<reference key="NSCornerView" ref="877289241"/>
 											<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											<double key="NSMinMagnification">0.25</double>
 											<double key="NSMaxMagnification">4</double>

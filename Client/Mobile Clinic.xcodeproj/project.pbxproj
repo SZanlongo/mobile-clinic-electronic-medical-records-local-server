@@ -79,9 +79,20 @@
 		EA6F748516E8181F001FD385 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6F748416E8181F001FD385 /* Default.png */; };
 		EA6F748716E8181F001FD385 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6F748616E8181F001FD385 /* Default@2x.png */; };
 		EA6F748916E81820001FD385 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6F748816E8181F001FD385 /* Default-568h@2x.png */; };
-		EA6F749616E81E50001FD385 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6F749516E81E50001FD385 /* GHUnitIOSTestMain.m */; };
 		EA6F749716E81EDC001FD385 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3F45DA16C84D6A0000AED9 /* QuartzCore.framework */; };
-		EA6F74A416E82131001FD385 /* PatientObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6F74A316E82131001FD385 /* PatientObjectTest.m */; };
+		EA7CDC2616ECF700005A9070 /* RunTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA7CDC2416ECF6FF005A9070 /* RunTests.sh */; };
+		EA7CDC2716ECF700005A9070 /*  RunIPhoneSecurityd.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA7CDC2516ECF700005A9070 /*  RunIPhoneSecurityd.sh */; };
+		EA7CDC2B16ECF874005A9070 /* Makefile in Resources */ = {isa = PBXBuildFile; fileRef = EA7CDC2A16ECF874005A9070 /* Makefile */; };
+		EA7CDC4E16ED08AE005A9070 /* PatientObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6F74A316E82131001FD385 /* PatientObjectTest.m */; };
+		EA7CDC4F16ED08E6005A9070 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6F749516E81E50001FD385 /* GHUnitIOSTestMain.m */; };
+		EA7CDC6C16ED0AB9005A9070 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
+		EA7CDC6D16ED0AB9005A9070 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CE0016BE4A60008949DC /* Security.framework */; };
+		EA7CDC6E16ED0AC5005A9070 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CDFC16BE4989008949DC /* SystemConfiguration.framework */; };
+		EA7CDC6F16ED0AD9005A9070 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CDFA16BE4981008949DC /* MobileCoreServices.framework */; };
+		EA7CDC7016ED0AE1005A9070 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CDFE16BE4998008949DC /* libz.dylib */; };
+		EA7CDC7116ED0AE9005A9070 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CDF816BE496E008949DC /* CFNetwork.framework */; };
+		EA7CDC7216ED0AFB005A9070 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4677413316BD936F002FD4A5 /* CoreData.framework */; };
+		EA7CDC7316ED0B0C005A9070 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E773D416CB0BFB00242454 /* libTestFlight.a */; };
 		EA9AC88416C8606C00493485 /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9AC88316C8606C00493485 /* DataProcessor.m */; };
 		EA9C2F3B16BF624F000F38CD /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
 		EA9E98E616DC475D002BEB87 /* PrescriptionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */; };
@@ -267,6 +278,10 @@
 		EA6F748816E8181F001FD385 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EA6F749516E81E50001FD385 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		EA6F74A316E82131001FD385 /* PatientObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObjectTest.m; sourceTree = "<group>"; };
+		EA749BCE16EDA47B000F849F /* PrescriptionObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionObjectProtocol.h; sourceTree = "<group>"; };
+		EA7CDC2416ECF6FF005A9070 /* RunTests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RunTests.sh; sourceTree = "<group>"; };
+		EA7CDC2516ECF700005A9070 /*  RunIPhoneSecurityd.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = " RunIPhoneSecurityd.sh"; sourceTree = "<group>"; };
+		EA7CDC2A16ECF874005A9070 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		EA9AC88216C8606C00493485 /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcessor.h; sourceTree = "<group>"; };
 		EA9AC88316C8606C00493485 /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcessor.m; sourceTree = "<group>"; };
 		EA9C2F3916BF624F000F38CD /* UIViewControllerExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerExt.h; sourceTree = "<group>"; };
@@ -372,10 +387,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7CDC7216ED0AFB005A9070 /* CoreData.framework in Frameworks */,
+				EA7CDC7116ED0AE9005A9070 /* CFNetwork.framework in Frameworks */,
+				EA7CDC7016ED0AE1005A9070 /* libz.dylib in Frameworks */,
+				EA7CDC6F16ED0AD9005A9070 /* MobileCoreServices.framework in Frameworks */,
+				EA7CDC6E16ED0AC5005A9070 /* SystemConfiguration.framework in Frameworks */,
+				EA7CDC6C16ED0AB9005A9070 /* Accelerate.framework in Frameworks */,
+				EA7CDC6D16ED0AB9005A9070 /* Security.framework in Frameworks */,
 				EA6F749716E81EDC001FD385 /* QuartzCore.framework in Frameworks */,
 				EA6F747516E8181F001FD385 /* UIKit.framework in Frameworks */,
 				EA6F747616E8181F001FD385 /* Foundation.framework in Frameworks */,
 				EA6F747716E8181F001FD385 /* CoreGraphics.framework in Frameworks */,
+				EA7CDC7316ED0B0C005A9070 /* libTestFlight.a in Frameworks */,
 				EAFD1F8816E82E0F00698D04 /* GHUnitIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +495,9 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				EA7CDC2A16ECF874005A9070 /* Makefile */,
+				EA7CDC2416ECF6FF005A9070 /* RunTests.sh */,
+				EA7CDC2516ECF700005A9070 /*  RunIPhoneSecurityd.sh */,
 				EAADC01A16E05554009E7AF9 /* PatientFile.json */,
 				EAE6CDEE16BE4754008949DC /* Animated Notifications  */,
 				EA8BB92C16C8794200A4BC6E /* Camera API */,
@@ -794,6 +820,7 @@
 			children = (
 				EA9E98E416DC475D002BEB87 /* PrescriptionObject.h */,
 				EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */,
+				EA749BCE16EDA47B000F849F /* PrescriptionObjectProtocol.h */,
 			);
 			name = "Prescription Object";
 			sourceTree = "<group>";
@@ -933,6 +960,7 @@
 				EA6F747016E8181F001FD385 /* Sources */,
 				EA6F747116E8181F001FD385 /* Frameworks */,
 				EA6F747216E8181F001FD385 /* Resources */,
+				EA7CDC2916ECF846005A9070 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -994,6 +1022,9 @@
 				46E773DA16CB0BFB00242454 /* release_notes.md in Resources */,
 				0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */,
 				46B11A4616DB693F008CD600 /* MedicineSearchResultView.xib in Resources */,
+				EA7CDC2616ECF700005A9070 /* RunTests.sh in Resources */,
+				EA7CDC2716ECF700005A9070 /*  RunIPhoneSecurityd.sh in Resources */,
+				EA7CDC2B16ECF874005A9070 /* Makefile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,6 +1040,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EA7CDC2916ECF846005A9070 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh RunTests.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		467740F116BD931E002FD4A5 /* Sources */ = {
@@ -1093,8 +1140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA6F749616E81E50001FD385 /* GHUnitIOSTestMain.m in Sources */,
-				EA6F74A416E82131001FD385 /* PatientObjectTest.m in Sources */,
+				EA7CDC4F16ED08E6005A9070 /* GHUnitIOSTestMain.m in Sources */,
+				EA7CDC4E16ED08AE005A9070 /* PatientObjectTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,16 +1276,21 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/MobileClinicTests\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/MobileClinicTests\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileClinicTests/MobileClinicTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"‚Äö√Ñ√∂‚àö√ë‚àö‚à´$(SRCROOT)/MobileClinicTests\" /**",
+					"$(SRCROOT)/MobileClinicTests\" /** $(SRCROOT) \"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				INFOPLIST_FILE = "MobileClinicTests/MobileClinicTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRANK_LIBRARY_SEARCH_PATHS)",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+					"$(SRCROOT)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1247,7 +1299,7 @@
 					"$(FRANK_LDFLAGS)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/TestFlightSDK1.1\" \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1257,20 +1309,26 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/MobileClinicTests\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/MobileClinicTests\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileClinicTests/MobileClinicTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"‚Äö√Ñ√∂‚àö√ë‚àö‚à´$(SRCROOT)/MobileClinicTests\" /**",
+					"$(SRCROOT)/MobileClinicTests\" /** $(SRCROOT) \"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				INFOPLIST_FILE = "MobileClinicTests/MobileClinicTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/TestFlightSDK1.1\" \"$(SRCROOT)\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

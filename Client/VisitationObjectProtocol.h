@@ -56,5 +56,5 @@
 /**
  *
  */
--(void)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen;
+-(BOOL)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen;
 @end

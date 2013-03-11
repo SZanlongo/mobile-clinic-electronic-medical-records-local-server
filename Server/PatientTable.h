@@ -7,9 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PatientObject.h"
+#import "VisitationObject.h"
+@interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSBrowserDelegate>{
+    PatientObject* patientsHandler;
+    VisitationObject* visitsHandler;
+    NSArray* patientList;
+    NSMutableArray* visitList;
+    NSMutableArray* allItems;
+    NSManagedObject* patient;
+    int selectedRow;
+}
+@property (weak) IBOutlet NSScrollView *scrollView;
+@property (weak) IBOutlet NSTableView *patientTable;
+@property (weak) IBOutlet NSBrowser *patientDirectory;
 
-@interface PatientTable : NSViewController
-@property (weak) IBOutlet NSScrollView *patientTable;
 - (IBAction)refreshPatients:(id)sender;
 - (IBAction)unblockPatients:(id)sender;
 - (IBAction)pushPatientsIntoCloud:(id)sender;

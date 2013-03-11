@@ -8,9 +8,9 @@
 #define APPDELEGATE_STARTED @"slow appdelegate"
 #import <Cocoa/Cocoa.h>
 #import "ServerCore.h"
-#import "PatientTable.h"
+
 @interface FIUAppDelegate : NSObject <NSApplicationDelegate>{
-    PatientTable* pTable;
+    
 }
 
 @property (nonatomic, strong) ServerCore *server;

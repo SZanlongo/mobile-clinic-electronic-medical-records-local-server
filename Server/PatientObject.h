@@ -8,19 +8,16 @@
 
 #define SAVE_USER @"savedUser"
 #import <Foundation/Foundation.h>
-
+#import "PatientObjectProtocol.h"
 #import "BaseObject.h"
 #import "VisitationObject.h"
 #import "Patients.h"
 
 
-@interface PatientObject : BaseObject{
+@interface PatientObject : BaseObject<PatientObjectProtocol>{
     Patients* patient;
 }
       
 @property(nonatomic, strong)    NSMutableArray* visits;
--(id)init;
--(void) UnlockPatient;
--(void) PushPatientsToCloud;
--(void) SyncPatientsWithCloud;
+
 @end

@@ -62,19 +62,9 @@
 
 - (void)goToGenericStart:(int)station {
     GenericStartViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"genericStartViewController"];
-    switch (station) {
-        case 1:
-            [newView setStationChosen:[NSNumber numberWithInt:1]];
-            break;
-        case 2:
-            [newView setStationChosen:[NSNumber numberWithInt:2]];
-            break;
-        case 3:
-            [newView setStationChosen:[NSNumber numberWithInt:3]];
-            break;
-        default:
-            break;
-    }
+    
+    [newView setStationChosen:[NSNumber numberWithInt:station]];
+    
     [self.navigationController pushViewController:newView animated:YES];
 }
 
