@@ -9,6 +9,7 @@
 #import "StationViewController.h"
 #import "StationViewHandlerProtocol.h"
 #import "GenericStartViewController.h"
+#import "PatientQueueViewController.h"
 
 @interface StationViewController ()
 
@@ -53,20 +54,27 @@
 }
 
 - (IBAction)doctorButton:(id)sender {
-    [self goToGenericStart:2];
+    [self goToPatientQueue:2];
 }
 
 - (IBAction)pharmacyButton:(id)sender {
-    [self goToGenericStart:3];
+    [self goToPatientQueue:3];
 }
 
 - (void)goToGenericStart:(int)station {
-    GenericStartViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"genericStartViewController"];
+    GenericStartViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"genericStartViewController"];
     
     [newView setStationChosen:[NSNumber numberWithInt:station]];
     
     [self.navigationController pushViewController:newView animated:YES];
 }
 
+- (void)goToPatientQueue:(int)station {
+    PatientQueueViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"patientQueueViewController"];
+
+    [newView setStationChosen:[NSNumber numberWithInt:station]];
+    
+    [self.navigationController pushViewController:newView animated:YES];
+}
 
 @end
