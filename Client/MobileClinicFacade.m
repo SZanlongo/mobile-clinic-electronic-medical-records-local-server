@@ -9,6 +9,7 @@
 #import "MobileClinicFacade.h"
 #import "PatientObject.h"
 #import "VisitationObject.h"
+#import "PrescriptionObject.h"
 FIUAppDelegate* appDelegate;
 @implementation MobileClinicFacade
 
@@ -127,5 +128,25 @@ FIUAppDelegate* appDelegate;
         Response([data getDictionaryValuesFromManagedObject],error);
     }];
     
+}
+
+-(void)findAllPrescriptionForCurrentVisit:(NSDictionary *)visit AndOnCompletion:(MobileClinicSearchResponse)Response{
+    /* Create a temporary Patient Object to make request */
+    PrescriptionObject* prObject = [[PrescriptionObject alloc]init];
+    
+    [prObject FindAllPrescriptionsOnServerForVisit:visit OnCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+        NSArray* allVisits = [NSArray arrayWithArray:[prObject FindAllPrescriptionForCurrentVisitLocally:visit]];
+        Response(allVisits,error);
+
+    }];
+}
+
+-(void) updatePrescription:(NSDictionary*)Rx AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
+    
+    PrescriptionObject* prescript = [[PrescriptionObject alloc]initWithCachedObject:[Rx objectForKey:PRESCRIPTIONID] inDatabase:[PrescriptionObject DatabaseName] forAttribute:PRESCRIPTIONID withUpdatedObject:Rx];
+   
+    [prescript UpdateObjectAndShouldLock:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
+         Response([data getDictionaryValuesFromManagedObject],error);
+    }];
 }
 @end

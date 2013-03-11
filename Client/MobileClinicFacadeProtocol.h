@@ -9,6 +9,7 @@
 
 #import "PatientObjectProtocol.h"
 #import "VisitationObjectProtocol.h"
+#import "PrescriptionObjectProtocol.h"
 #import <Foundation/Foundation.h>
 
 /**
@@ -86,19 +87,20 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  */
 -(void) updateCurrentPatient:(NSDictionary*)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
 /**
- * Not Implemented yet
+ *  Locates on the server and client all prescriptions for a given Visit
+ *  @param visit the Visitation Dictionary that you want to search for all prescriptions from
  */
-//-(void) findAllPrescriptionForCurrentVisitAndOnCompletion:(MobileClinicSearchResponse)Response;
+-(void) findAllPrescriptionForCurrentVisit:(NSDictionary*)visit AndOnCompletion:(MobileClinicSearchResponse)Response;
 /**
  * Not Implemented yet
  */
 //-(void) addNewPrescriptionForCurrentPatientAndUnlockPatient:(NSDictionary*)PrescriptionInfo onCompletion:(MobileClinicCommandResponse)Response;
+
 /**
- * Not Implemented yet
+ * Updates existing medication or creates new ones if it doesn't exist
+ * Set the Bool variable to true to lock the prescription if necessary
+ * The block variable will return updated versions of the object or error messages if there was a problem
+ * @param Rx the Prescription dicitionary file to update
  */
-//-(void) loadMobileClinicWithPrescriptionRecordForCurrentVisit:(NSDictionary*)visitInfo onCompletion:(MobileClinicCommandResponse)Response;
-/**
- * Not Implemented yet
- */
-//-(void) updatePrescriptionRecord:(NSDictionary*)prescriptionRecord andShouldUnlock:(BOOL)unlock onCompletion:(MobileClinicCommandResponse)Response;
+-(void) updatePrescription:(NSDictionary*)Rx AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response'
 @end

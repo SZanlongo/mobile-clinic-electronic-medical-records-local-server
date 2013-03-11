@@ -278,6 +278,7 @@
 		EA6F748816E8181F001FD385 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EA6F749516E81E50001FD385 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		EA6F74A316E82131001FD385 /* PatientObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObjectTest.m; sourceTree = "<group>"; };
+		EA749BCE16EDA47B000F849F /* PrescriptionObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionObjectProtocol.h; sourceTree = "<group>"; };
 		EA7CDC2416ECF6FF005A9070 /* RunTests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RunTests.sh; sourceTree = "<group>"; };
 		EA7CDC2516ECF700005A9070 /*  RunIPhoneSecurityd.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = " RunIPhoneSecurityd.sh"; sourceTree = "<group>"; };
 		EA7CDC2A16ECF874005A9070 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -819,6 +820,7 @@
 			children = (
 				EA9E98E416DC475D002BEB87 /* PrescriptionObject.h */,
 				EA9E98E516DC475D002BEB87 /* PrescriptionObject.m */,
+				EA749BCE16EDA47B000F849F /* PrescriptionObjectProtocol.h */,
 			);
 			name = "Prescription Object";
 			sourceTree = "<group>";

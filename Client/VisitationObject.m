@@ -134,8 +134,12 @@
             self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
         }
         [self linkVisit];
+        
         [visit setValuesForKeysWithDictionary:dict];
-        [self SaveCurrentObjectToDatabase];
+        
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
     }
 }
 
