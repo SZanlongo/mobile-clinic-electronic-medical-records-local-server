@@ -96,7 +96,7 @@
             return [NSString stringWithFormat:@"%@",[item objectForKey:CONDITION]];
         }
     }
-
+    return nil;
 }
 
 
@@ -116,4 +116,5 @@
 - (IBAction)pushPatientsIntoCloud:(id)sender {
     
 }
+
 @end

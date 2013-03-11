@@ -9,9 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import "PatientObject.h"
 #import "VisitationObject.h"
+#import "PrescriptionObject.h"
 @interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSBrowserDelegate>{
     PatientObject* patientsHandler;
     VisitationObject* visitsHandler;
+    PrescriptionObject* prescriptionHandler;
     NSArray* patientList;
     NSMutableArray* visitList;
     NSMutableArray* allItems;
