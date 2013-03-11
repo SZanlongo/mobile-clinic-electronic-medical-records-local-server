@@ -70,10 +70,17 @@ FIUAppDelegate* appDelegate;
     [visit setValueToDictionaryValues:visitInfo];
     [visit setObject:[patientInfo objectForKey:PATIENTID] withAttribute:PATIENTID];
     [visit associatePatientToVisit:[patientInfo objectForKey:FIRSTNAME]];
-    [visit shouldSetCurrentVisitToOpen:YES];
-    [visit UpdateObjectAndShouldLock:NO onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
-        Response([data getDictionaryValuesFromManagedObject],error);
-    }];
+    
+    if ([visit shouldSetCurrentVisitToOpen:YES]) {
+        [visit UpdateObjectAndShouldLock:NO onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
+            Response([data getDictionaryValuesFromManagedObject],error);
+        }];
+    }else{
+        NSString* msg = [NSString stringWithFormat:@"%@ %@ already has an open visit",[patientInfo objectForKey:FIRSTNAME],[patientInfo objectForKey:FAMILYNAME]];
+        Response(nil,[self createErrorWithDescription:msg andErrorCodeNumber:20 inDomain:@"MobileClinicFacade"]);
+    }
+    
+
 }
 
 
@@ -103,7 +110,7 @@ FIUAppDelegate* appDelegate;
        
         for (NSMutableDictionary* dic in allVisits) {
             
-            patientID = [dic objectForKey:patientID];
+            patientID = [dic objectForKey:PATIENTID];
             
             PatientObject* patients = [[PatientObject alloc]initWithCachedObject:patientID inDatabase:patientDatabase forAttribute:PATIENTID withUpdatedObject:nil];
             [dic setValue:patients.getDictionaryValuesFromManagedObject forKey:OPEN_VISITS_PATIENT];

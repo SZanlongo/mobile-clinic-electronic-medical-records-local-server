@@ -134,6 +134,7 @@
     [cell addSubview: [cell viewController].view];
     
     [[cell viewController] setScreenHandler:^(id object, NSError *error) {
+       
         _patientData = [NSMutableDictionary dictionaryWithDictionary:object];
         
         id newView;
@@ -155,11 +156,24 @@
         [newView setPatientData:_patientData];
         
         [newView setScreenHandler:^(id object, NSError *error) {
-            [self.navigationController popViewControllerAnimated:YES];
-            if (error) {
+            
+            switch ([[self stationChosen] intValue]) {
+                case 1:
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    break;
+                case 2:
+                case 3:
+                    [self.navigationController popViewControllerAnimated:YES];
+                     break;
+                default:
+                    break;
+            }
+            
+            if (!object && error) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
                  ];
             }
+            
             [[cell viewController]resetData];
         }];
         
@@ -168,8 +182,6 @@
                 [self presentViewController:newView animated:YES completion:nil];
                 break;
             case 2:
-                [self.navigationController pushViewController:newView animated:YES];
-                break;
             case 3:
                 [self.navigationController pushViewController:newView animated:YES];
                 break;

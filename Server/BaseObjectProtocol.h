@@ -128,4 +128,6 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database;
 
 -(void)copyDictionaryValues:(NSDictionary*)dictionary intoManagedObject:(NSManagedObject*)mObject;
+
+-(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object;
 @end

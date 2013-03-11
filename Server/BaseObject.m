@@ -51,6 +51,13 @@
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
     
 }
+-(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object{
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
+    for (NSString* key in object.entity.attributesByName.allKeys) {
+        [dict setValue:[object valueForKey:key] forKey:key];
+    }
+    return dict;
+}
 
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];

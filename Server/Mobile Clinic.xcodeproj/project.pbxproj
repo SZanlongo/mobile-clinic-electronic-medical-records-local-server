@@ -197,6 +197,7 @@
 		EAD015F216DAB086002A8B3B /* PatientScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientScreen.xib; sourceTree = "<group>"; };
 		EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
+		EAEF2F9816ED63BD00A9B49A /* VisitationObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitationObjectProtocol.h; sourceTree = "<group>"; };
 		EAF4B6C416E68FED007B14B7 /* UserObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObjectProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -294,9 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				EAADC01D16E0596C009E7AF9 /* PatientFile.json */,
-				EAC19C7B16DE839C00B0B8DA /* PatientTable.h */,
-				EAC19C7C16DE839C00B0B8DA /* PatientTable.m */,
-				EAC19C7D16DE839C00B0B8DA /* PatientTable.xib */,
+				EAEF2F9716ED5B7300A9B49A /* Patient Control */,
 				EA172D3E16B5828600F00C61 /* ConnectionTable.h */,
 				EA172D3F16B5828600F00C61 /* ConnectionTable.m */,
 				EA172D7C16B6412600F00C61 /* ConnectListContent.h */,
@@ -447,6 +446,7 @@
 				EA7CDC7416ED1D13005A9070 /* PatientObjectProtocol.h */,
 				EA1EE1BD16D0A02000E263D2 /* VisitationObject.h */,
 				EA1EE1BE16D0A02000E263D2 /* VisitationObject.m */,
+				EAEF2F9816ED63BD00A9B49A /* VisitationObjectProtocol.h */,
 			);
 			name = "Object Types (USE THESE ONLY)";
 			sourceTree = "<group>";
@@ -478,6 +478,16 @@
 				EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		EAEF2F9716ED5B7300A9B49A /* Patient Control */ = {
+			isa = PBXGroup;
+			children = (
+				EAC19C7B16DE839C00B0B8DA /* PatientTable.h */,
+				EAC19C7C16DE839C00B0B8DA /* PatientTable.m */,
+				EAC19C7D16DE839C00B0B8DA /* PatientTable.xib */,
+			);
+			name = "Patient Control";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

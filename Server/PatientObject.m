@@ -39,6 +39,7 @@ NSString* isLockedBy;
     [consolidate setValue:[NSNumber numberWithInt:kPatientType] forKey:OBJECTTYPE];
     return consolidate;
 }
+
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
     commandPattern = response;
     [self unpackageFileForUser:dataToBeRecieved];
@@ -110,9 +111,10 @@ NSString* isLockedBy;
 -UpdatePatientInformationWithError:(NSString*)negError orPositiveErro:(NSString*)posError{
     // Load old patient in global object and save new patient in variable
     Patients* oldPatient = [self loadAndReturnPatientForID:patient.patientId];
-    
-    if (!oldPatient || [oldPatient.isLockedBy isEqualToString:isLockedBy] || oldPatient.isLockedBy.length == 0) {
+   
+    BOOL isLockedUp = (!oldPatient || [oldPatient.isLockedBy isEqualToString:isLockedBy] || oldPatient.isLockedBy.length == 0);
 
+    if (!isLockedUp) {
         // save to local database
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
             if (!error) {

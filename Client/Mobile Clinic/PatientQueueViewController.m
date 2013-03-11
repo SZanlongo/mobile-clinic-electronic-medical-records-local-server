@@ -36,7 +36,7 @@
     
     [mobileFacade findAllOpenVisitsAndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         queueArray = [NSArray arrayWithArray:allObjectsFromSearch];
-        
+        [_queueTableView reloadData];
     }];
     
 //    // Sort queue by priority

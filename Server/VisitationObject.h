@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
 #import "Visitation.h"
-
-@interface VisitationObject : BaseObject{
+#import "VisitationObjectProtocol.h"
+@interface VisitationObject : BaseObject<VisitationObjectProtocol>{
     NSString* associatedPatient;
     Visitation* visit;
 }
