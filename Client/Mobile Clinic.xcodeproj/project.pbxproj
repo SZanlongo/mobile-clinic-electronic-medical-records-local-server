@@ -439,6 +439,8 @@
 				0F428B9116D5215600E25B4B /* Cells */,
 				EA1EE19D16C982DB00E263D2 /* DateController.h */,
 				EA1EE19E16C982DB00E263D2 /* DateController.m */,
+				0FDE47BD16ED0CFB00966C77 /* PatientQueueViewController.h */,
+				0FDE47BE16ED0CFB00966C77 /* PatientQueueViewController.m */,
 				6D1CD5F616DA6A8C00FA5AC0 /* Doctor */,
 				6DB5994E16EA46640016AE82 /* GenericStartViewController.h */,
 				6DB5994F16EA46640016AE82 /* GenericStartViewController.m */,
@@ -647,8 +649,6 @@
 				6D2D28BE16D7DD10007FB79F /* DoctorPatientViewController.m */,
 				6D2D28B616D7DCE9007FB79F /* DoctorViewController.h */,
 				6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */,
-				0FDE47BD16ED0CFB00966C77 /* PatientQueueViewController.h */,
-				0FDE47BE16ED0CFB00966C77 /* PatientQueueViewController.m */,
 			);
 			name = Doctor;
 			sourceTree = "<group>";

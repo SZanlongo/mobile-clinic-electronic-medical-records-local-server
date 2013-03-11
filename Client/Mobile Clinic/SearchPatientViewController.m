@@ -133,14 +133,14 @@
     // Check if there is at least one name
     switch (_mode) {
         case kTriageMode:
-            [self BroadSearchForPatient];
+            [self broadSearchForPatient];
             break;
         default:
-             [self BroadSearchForPatient];
+            [self broadSearchForPatient];
             break;
     }
 }
--(void)BroadSearchForPatient{
+- (void)broadSearchForPatient {
     //this will remove spaces BEFORE AND AFTER the string. I am leaving spaces in the middle because we might have names that are 2 words
     //this also updates the fields with the new format so the user knows that its being trimmed
     //also, keep in mind that adding several spaces after text adds a period
@@ -159,7 +159,8 @@
         }];
     }
 }
--(void)narrowSearchInQueue{
+
+- (void)narrowSearchInQueue {
 }
 
 - (IBAction)searchByNFCButton:(id)sender {
@@ -173,7 +174,7 @@
     handler(nil,nil);
 }
 
--(void)resetData{
+- (void)resetData {
     [_patientData removeAllObjects];
     [_familyNameField setText:@""];
     [_patientNameField setText:@""];
