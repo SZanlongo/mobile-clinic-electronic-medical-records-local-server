@@ -47,9 +47,18 @@
     NSString* text = [NSString stringWithFormat:@"\nObjectType: %i",self.objectType];
     return text;
 }
+
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
     
 }
+-(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object{
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
+    for (NSString* key in object.entity.attributesByName.allKeys) {
+        [dict setValue:[object valueForKey:key] forKey:key];
+    }
+    return dict;
+}
+
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
     for (NSString* key in self.databaseObject.entity.attributesByName.allKeys) {
@@ -58,6 +67,11 @@
     return dict;
 }
 
+-(void)copyDictionaryValues:(NSDictionary*)dictionary intoManagedObject:(NSManagedObject*)mObject{
+    for (NSString* key in dictionary.allKeys) {
+        [mObject setValue:[dictionary objectForKey:key] forKey:key];
+    }
+}
 
 -(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
     // checks to see if object exists

@@ -8,8 +8,7 @@
 
 #import "FIUAppDelegate.h"
 #import "ServerCore.h"
-#import "PatientObject.h"
-#import "VisitationObject.h"
+
 
 @implementation FIUAppDelegate
 @synthesize ServerManager;

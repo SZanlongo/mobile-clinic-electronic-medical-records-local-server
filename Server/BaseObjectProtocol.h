@@ -18,6 +18,7 @@ typedef enum {
     kPatientType    = 3,
     kVisitationType = 4,
     kPharmacyType   = 5,
+    kPrescriptionType   = 6,
 }ObjectTypes;
 
 /* These are all the commands the server and client will understand */
@@ -126,4 +127,8 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 -(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message;
 
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database;
+
+-(void)copyDictionaryValues:(NSDictionary*)dictionary intoManagedObject:(NSManagedObject*)mObject;
+
+-(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object;
 @end

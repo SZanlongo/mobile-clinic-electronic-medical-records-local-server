@@ -8,16 +8,26 @@
 
 #import "FIUAppDelegate.h"
 #import "BaseObject.h"
-#import "PatientObject.h"
+#import "PatientTable.h"
+//#import "PatientObject.h"
 
-PatientObject* patients;
+PatientTable* pTable;
+//PatientObject* patients;
 @implementation FIUAppDelegate
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
 
-
+-(void)showPatientsView:(id)sender{
+    if(! [_window isVisible] )
+        [_window makeKeyAndOrderFront:sender];
+    
+    if (!pTable)
+        pTable = [[PatientTable alloc]initWithNibName:@"PatientTable" bundle:nil];
+    
+    [_window setContentView:pTable.view];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -166,7 +176,6 @@ PatientObject* patients;
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     
  [[NSNotificationCenter defaultCenter]postNotificationName:APPDELEGATE_STARTED object:self];
-    patients = [[PatientObject alloc]init];
     return _managedObjectContext;
 }
 
@@ -190,14 +199,6 @@ PatientObject* patients;
     }
 }
 
-- (IBAction)syncAllPatient:(id)sender {
-    [patients SyncPatientsWithCloud];
-}
-
-- (IBAction)showPatientsView:(id)sender {
-    pTable = [[PatientTable alloc]init];
-
-}
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {

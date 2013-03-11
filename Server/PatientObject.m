@@ -7,22 +7,6 @@
 //
 
 #import "PatientObject.h"
-
-
-#define FIRSTNAME       @"firstName"
-#define FAMILYNAME      @"familyName"
-#define VILLAGE         @"villageName"
-#define HEIGHT          @"height"
-#define SEX             @"sex"
-#define DOB             @"age"
-#define PICTURE         @"photo"
-#define VISITS          @"visits"
-#define PATIENTID       @"patientId"
-#define ALL_PATIENTS    @"all patients"
-#define ISLOCKEDBY      @"isLockedBy"
-#define DATABASE        @"Patients"
-
-
 #import "StatusObject.h"
 #import "NSString+Validation.h"
 #import "Patients.h"
@@ -55,6 +39,7 @@ NSString* isLockedBy;
     [consolidate setValue:[NSNumber numberWithInt:kPatientType] forKey:OBJECTTYPE];
     return consolidate;
 }
+
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
     commandPattern = response;
     [self unpackageFileForUser:dataToBeRecieved];
@@ -126,9 +111,10 @@ NSString* isLockedBy;
 -UpdatePatientInformationWithError:(NSString*)negError orPositiveErro:(NSString*)posError{
     // Load old patient in global object and save new patient in variable
     Patients* oldPatient = [self loadAndReturnPatientForID:patient.patientId];
-    
-    if (!oldPatient || [oldPatient.isLockedBy isEqualToString:isLockedBy] || oldPatient.isLockedBy.length == 0) {
+   
+    BOOL isNotLockedUp = (!oldPatient || ![oldPatient.isLockedBy isEqualToString:isLockedBy]);
 
+    if (isNotLockedUp) {
         // save to local database
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
             if (!error) {

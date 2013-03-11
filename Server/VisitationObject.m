@@ -7,29 +7,11 @@
 //
 
 #import "VisitationObject.h"
-#define TRIAGEIN    @"triageIn"
-#define TRIAGEOUT   @"triageOut"
-#define DOCTORID    @"doctorId"
-#define PATIENTID   @"patientId"
-#define DOCTORIN    @"doctorIn"
-#define DOCTOROUT   @"doctorOut"
-#define CONDITION   @"condition"
-#define DTITLE      @"diagnosisTitle"
-#define GRAPHIC     @"isGraphic"
-#define WEIGHT          @"weight" //The different user types (look at enum)
-#define OBSERVATION     @"observation"
-#define NURSEID         @"nurseId"
-#define BLOODPRESSURE   @"bloodPressure"
-#define VISITID         @"visitationId"
-
-#define DATABASE    @"Visitation"
-#define ISOPEN      @"isOpen"
-#define ALLVISITS   @"all visits"
-
 #import "UserObject.h"
 #import "StatusObject.h"
 #import "Visitation.h"
 
+#define DATABASE    @"Visitation"
 NSString* patientID;
 NSString* isLockedBy;
 @implementation VisitationObject
@@ -116,11 +98,14 @@ NSString* isLockedBy;
     // Load old patient in global object and save new patient in variable
     Visitation* oldVisit = (Visitation*)[self loadObjectWithID:visit.visitationId inDatabase:nil forAttribute:VISITID];
     
-    if (!oldVisit || [oldVisit.isLockedBy isEqualToString:isLockedBy] || oldVisit.isLockedBy.length == 0) {
+    BOOL isNotLockedUp = (!oldVisit || ![oldVisit.isLockedBy isEqualToString:isLockedBy]);
+    
+    
+    if (isNotLockedUp) {
         
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
             if (!error) {
-                [self sendInformation:nil toClientWithStatus:kSuccess andMessage:posError];
+                [self sendInformation:[self getDictionaryValuesFromManagedObject] toClientWithStatus:kSuccess andMessage:posError];
             }else{
                 [self sendInformation:nil toClientWithStatus:kError andMessage:negError];
             }
@@ -129,10 +114,15 @@ NSString* isLockedBy;
         [self loadObjectForID:visit.visitationId inDatabase:DATABASE forAttribute:VISITID];
         
         [self sendInformation:[self getDictionaryValuesFromManagedObject] toClientWithStatus:kError andMessage:[NSString stringWithFormat:@"Patient is being used by %@",[self.databaseObject valueForKey:ISLOCKEDBY]]];
-        
+
     }
 }
-
+-(NSArray*)getVisitsForPatientWithID:(NSString*)pID{
+    
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,pID];
+    
+    return [NSArray arrayWithArray:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
+}
 #pragma mark - Private Methods
 #pragma mark-
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key{
@@ -159,9 +149,7 @@ NSString* isLockedBy;
 }
 
 -(void)FindVisitByPatients{
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,patientID];
-    
-    NSArray* arr = [NSArray arrayWithArray:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
+    NSArray* arr = [self getVisitsForPatientWithID:patientID];
     
     NSMutableArray* arrayToSend = [[NSMutableArray alloc]initWithCapacity:arr.count];
     

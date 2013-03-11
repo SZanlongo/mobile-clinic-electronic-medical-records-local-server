@@ -20,7 +20,7 @@ typedef enum {
     kPatientType    = 3,
     kVisitationType = 4,
     kPharmacyType   = 5,
-    kPrescriptionType = 6,
+    kPrescriptionType   = 6,
 }ObjectTypes;
 
 /* These are all the commands the server and client will understand */

@@ -10,14 +10,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
-#import "PrescriptionObject.h"
 #import "Visitation.h"
 #import "VisitationObjectProtocol.h"
 @interface VisitationObject : BaseObject<VisitationObjectProtocol>{
     Visitation* visit;
 }
-
-@property(nonatomic, strong)    PrescriptionObject* currentPrescription;
 
 -(void)linkVisit;
 

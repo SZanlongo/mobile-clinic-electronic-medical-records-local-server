@@ -67,8 +67,13 @@
     [visit setVisitationId:[NSString stringWithFormat:@"%@_%f",patientFirstName,[[NSDate date]timeIntervalSince1970]]];
 }
 
--(void)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen{
+-(BOOL)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen{
+    BOOL isAlreadyOpen = ([[self.databaseObject valueForKey:ISOPEN]boolValue]);
+    if (isAlreadyOpen) {
+        return NO;
+    }
     [self.databaseObject setValue:[NSNumber numberWithBool:shouldOpen] forKey:ISOPEN];
+    return YES;
 }
 
 -(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response{
@@ -129,8 +134,12 @@
             self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
         }
         [self linkVisit];
+        
         [visit setValuesForKeysWithDictionary:dict];
-        [self SaveCurrentObjectToDatabase];
+        
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
     }
 }
 

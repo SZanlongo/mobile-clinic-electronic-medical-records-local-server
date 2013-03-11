@@ -19,10 +19,13 @@
 	GCDAsyncSocket *asyncSocket;
     NSMutableData* globalData;
 	BOOL connected;
+    
+    ClientServerConnect connectionStatus;
 
 }
 +(id)sharedInstance;
 -(BOOL)isClientConntectToServer;
 -(NSString*)getCurrentConnectionName;
 - (NSInteger)numberOfConnections;
+
 @end

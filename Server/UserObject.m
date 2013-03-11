@@ -232,6 +232,8 @@
             
             [self linkDatabaseObjects];
             
+            //TODO: Why are the improper values still showing?
+            //[self copyDictionaryValues:userInfo intoManagedObject:self.databaseObject];
             user.userName = [userInfo objectForKey:USERNAME];
             //TODO: How to deal with password
             user.password = @"000000";
