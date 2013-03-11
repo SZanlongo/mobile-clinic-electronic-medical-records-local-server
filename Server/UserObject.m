@@ -27,6 +27,7 @@
 {
     self = [super init];
     if (self) {
+        self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:YES];
         [self linkDatabaseObjects];
         // Find and return object if it exists
         status = [[StatusObject alloc]init];
@@ -34,6 +35,17 @@
     return self;
 }
 
+- (id)initWithExistingWithID:(NSString*)username
+{
+    self = [super init];
+    if (self) {
+        [self loadObjectForID:username inDatabase:DATABASE forAttribute:USERNAME];
+        [self linkDatabaseObjects];
+        // Find and return object if it exists
+        status = [[StatusObject alloc]init];
+    }
+    return self;
+}
 #pragma mark - BaseObjectProtocol Methods
 #pragma mark -
 
@@ -64,9 +76,6 @@
 -(void)CommonExecution
 {
     switch (self.commands) {
-        case kCreateNewObject:
-            NSLog(@"Please use web application to add users");
-            break;
         case kPullAllUsers:
             [self PushAllUsersToClient];
             break;
@@ -84,17 +93,10 @@
 -(void)saveObject:(ObjectResponse)eventResponse
 {
 
-    if (user){
- 
-        [self SaveCurrentObjectToDatabase:user];
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:SAVE_USER object:self];
-        if (eventResponse) 
-            eventResponse(self, nil);
-    }else{
-//        if (eventResponse)
-//            eventResponse(self, nil);
-    }
+    [self linkDatabaseObjects];
+    
+    [super saveObject:eventResponse inDatabase:DATABASE forAttribute:USERNAME];
+    
 }
 
 
@@ -223,20 +225,24 @@
     NSArray* users = [cloudUsers objectForKey:@"data"];
     
     for (NSDictionary* userInfo in users) {
-        if (![self loadUserWithUsername:[userInfo objectForKey:USERNAME]]) {
-            user = (Users*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-        }
-
-        user.userName = [userInfo objectForKey:USERNAME];
-        //TODO: How to deal with password
-        user.password = @"000000";
-        user.firstName = [userInfo objectForKey:FIRSTNAME];
-        user.lastName = [userInfo objectForKey:LASTNAME];
-        user.email = [userInfo objectForKey:EMAIL];
-        user.status = [userInfo objectForKey:STATUS];
-        user.userType = [userInfo objectForKey:USERTYPE];
-        [self SaveCurrentObjectToDatabase:user];
-        user = nil;
+        self.databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME] inDatabase:DATABASE forAttribute:USERNAME];
+        
+        if (!self.databaseObject) {
+            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
+            
+            [self linkDatabaseObjects];
+            
+            user.userName = [userInfo objectForKey:USERNAME];
+            //TODO: How to deal with password
+            user.password = @"000000";
+            user.firstName = [userInfo objectForKey:FIRSTNAME];
+            user.lastName = [userInfo objectForKey:LASTNAME];
+            user.email = [userInfo objectForKey:EMAIL];
+            user.status = [userInfo objectForKey:STATUS];
+            user.userType = [userInfo objectForKey:USERTYPE];
+            [self SaveCurrentObjectToDatabase:user];
+            user = nil;
+        }  
     }
 }
 

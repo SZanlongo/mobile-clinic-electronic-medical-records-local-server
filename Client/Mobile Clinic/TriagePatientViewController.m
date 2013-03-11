@@ -55,7 +55,8 @@
     _patientAgeField.text = [NSString stringWithFormat:@"%i",date.getNumberOfYearsElapseFromDate];
     NSString* gender = ([[_patientData objectForKey:SEX]integerValue]==0)?@"Female":@"Male";
     _patientSexField.text = gender;
-    [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
+    id data = [_patientData objectForKey:PICTURE];
+    [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
     
     [_control1 view];
     [_control1 setPatientData:_patientData];

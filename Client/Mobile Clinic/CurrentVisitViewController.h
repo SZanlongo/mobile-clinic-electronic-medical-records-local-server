@@ -22,6 +22,9 @@
 
 - (IBAction)checkInButton:(id)sender;
 - (IBAction)quickCheckOutButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *respirationField;
+@property (weak, nonatomic) IBOutlet UITextField *heartField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *visitPriority;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 

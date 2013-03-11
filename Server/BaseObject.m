@@ -57,15 +57,7 @@
     }
     return dict;
 }
-//-(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse{
-//    
-//    if ([self.appDelegate.server isClientConntectToServer]) {
-//        // Sending information to the server
-//        [self.appDelegate.server sendData:data withOnComplete:posResponse];
-//    }else{
-//        negativeResponse(nil,[self createErrorWithDescription:@"Server is Down, Please contact you Application Administrator" andErrorCodeNumber:10 inDomain:@"BaseObject"]);
-//    }
-//}
+
 
 -(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
     // checks to see if object exists
@@ -85,14 +77,40 @@
     }
 return nil;
 }
--(void)saveObject:(ObjectResponse)eventResponse{
-    //Do not save the objectID, That is automatically saved and generated
+-(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib{
+    
+    id objID = [self.databaseObject valueForKey:attrib];
+   
+    NSManagedObject* obj = [self loadObjectWithID:objID inDatabase:DBName forAttribute:attrib];
+    
+    [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+    
+    if (obj){
+        
+        if (!self.databaseObject.managedObjectContext) {
+            [self SaveCurrentObjectToDatabase:obj];
+        }else{
+            [self SaveCurrentObjectToDatabase:self.databaseObject];
+        }
+    }else{
+        
+        if (self.databaseObject.managedObjectContext) {
+            [self SaveCurrentObjectToDatabase:self.databaseObject];
+        }else{
+            obj = [self CreateANewObjectFromClass:DBName isTemporary:NO];
+            
+            [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+            
+            [self SaveCurrentObjectToDatabase:obj];
+        }   
+    }
     eventResponse(self, nil);
 }
 
 -(void)CommonExecution{
     
 }
+
 
 -(void)setObject:(id)object withAttribute:(NSString *)attribute{
     [super setObject:object withAttribute:attribute inDatabaseObject:databaseObject];
@@ -121,6 +139,17 @@ return nil;
     
     commandPattern([status consolidateForTransmitting]);
 }
+
+-(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database
+{
+    // Check if it exists in database
+    if ([self FindObjectInTable:database withName:obj forAttribute:key].count > 0) {
+        return NO;
+    }
+    return YES;
+}
+
+
 
 #pragma mark - Cloud API
 #pragma mark-

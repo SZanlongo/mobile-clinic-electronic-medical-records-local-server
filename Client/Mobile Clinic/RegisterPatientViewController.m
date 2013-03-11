@@ -105,7 +105,7 @@ UIPopoverController * pop;
         [mobileFacade createAndCheckInPatient:_patient onCompletion:^(NSDictionary *object, NSError *error) {
             if (!object) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
-            }else{
+            }else{                
                 handler(object,error);
             }
         }];
@@ -157,7 +157,7 @@ UIPopoverController * pop;
     // Not checking to see if the name, family, or village strings contain numbers,
     // This can always be revised, but some names apparently have "!" to symbolize a click (now you learned something new!)
     if([_patientNameField.text isEqualToString:@""] || _patientNameField.text == nil) {
-        errorMsg = @"Missing Patient Name";
+        errorMsg = @"Missing Name";
         inputIsValid = NO;
     }else if([_familyNameField.text isEqualToString:@""] || _familyNameField.text == nil) {
         errorMsg = @"Missing Family Name";
@@ -166,11 +166,11 @@ UIPopoverController * pop;
         errorMsg = @"Missing Village Name";
         inputIsValid = NO;
     } else if ([_patient objectForKey:DOB] == nil) {
-        errorMsg = @"Missing Patient Age";
+        errorMsg = @"Missing Age";
         inputIsValid = NO;
     }
-//    } else if (_patient.getPhoto == nil) {
-//        errorMsg = @"Missing Patient Photo";
+//    else if ([_patient objectForKey:PICTURE] == nil) {
+//        errorMsg = @"Missing Photo";
 //        inputIsValid = NO;
 //    }
     

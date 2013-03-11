@@ -14,13 +14,47 @@
 #define CONDITION   @"condition"
 #define DTITLE      @"diagnosisTitle"
 #define GRAPHIC     @"isGraphic"
-#define WEIGHT          @"weight" //The different user types (look at enum)
+#define WEIGHT          @"weight" 
 #define OBSERVATION     @"observation"
 #define NURSEID         @"nurseId"
 #define BLOODPRESSURE   @"bloodPressure"
 #define VISITID         @"visitationId"
+#define HEARTRATE       @"heartRate"
+#define RESPIRATION     @"respiration"
+#define PRIORITY        @"priority"
 #import <Foundation/Foundation.h>
-
+#import "BaseObjectProtocol.h"
 @protocol VisitationObjectProtocol <NSObject>
 
+/**
+ *
+ */
+-(void)associatePatientToVisit:(NSString*)patientFirstName;
+
+/**
+ *
+ */
+-(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient;
+/**
+ *
+ */
+-(void)FindAllVisitsOnServerForPatient:(NSDictionary*)patient OnCompletion:(ObjectResponse)eventResponse;
+
+/**
+ *
+ */
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response;
+
+/**
+ *
+ */
+-(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response;
+/**
+ *
+ */
+-(NSArray*) FindAllOpenVisitsLocally;
+/**
+ *
+ */
+-(void)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen;
 @end

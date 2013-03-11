@@ -23,7 +23,9 @@ NSString* tempPassword;
 #pragma mark - Default Methods
 #pragma mark -
 
-
++(NSString *)DatabaseName{
+    return DATABASE;
+}
 
 -(NSString *)description
 {

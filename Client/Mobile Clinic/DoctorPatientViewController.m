@@ -11,6 +11,8 @@
 
 @interface DoctorPatientViewController ()
 
+@property CGPoint originalCenter;
+
 @end
 
 @implementation DoctorPatientViewController
@@ -51,8 +53,8 @@
     _villageNameField.text = [_patientData objectForKey:VILLAGE];
     _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB]getNumberOfYearsElapseFromDate]];
     _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
-    [_patientPhoto setImage:[UIImage imageWithData:[_patientData objectForKey:PICTURE]]];
-    
+    id data = [_patientData objectForKey:PICTURE];
+    [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
     [_control1 view];
     [_control1 setPatientData:_patientData];
     [_control2 view];
@@ -60,6 +62,18 @@
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
 //    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
+    self.originalCenter = self.view.center;
+ //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+- (void)keyboardDidShow: (NSNotification *) notif {
+    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 264 - 44);
+}
+
+- (void)keyboardDidHide: (NSNotification *) notif {
+    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
 }
 
 -(void)saveVisitation{
@@ -156,8 +170,8 @@
     handler = myHandler;
 }
 
-- (IBAction) segmentedControlIndexChanged {
-    switch (self.segmentedControl.selectedSegmentIndex) {
+- (IBAction)segmentClicked:(id)sender {
+    switch (_segmentedControl.selectedSegmentIndex) {
         case 0:
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
             break;
@@ -166,9 +180,7 @@
             break;
         default:
             break;
-            
     }
-    
     [self.tableView reloadData];
 }
 

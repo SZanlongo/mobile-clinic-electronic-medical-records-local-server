@@ -37,19 +37,25 @@
     }
     return self;
 }
-- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib
+- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib withUpdatedObject:(NSDictionary*)dic
 {
     self = [super init];
     if (self) {
         [self loadObjectForID:objectID inDatabase:database forAttribute:attrib];
+        
+        if (dic) {
+             [self setValueToDictionaryValues:dic];
+        }
     }
     return self;
 }
 
 -(NSDictionary *)consolidateForTransmitting{
-    /* Setup some of variables that are common to all the 
+    /* 
+     * Setup some of variables that are common to all the
      * the object that inherit from this base class
      */
+    
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
 
     [consolidate setValue:[self.databaseObject dictionaryWithValuesForKeys:self.databaseObject.entity.attributesByName.allKeys] forKey:DATABASEOBJECT];
@@ -64,19 +70,60 @@
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
 }
 
--(NSString *)description{
-   
-    return @"";
-}
 
--(void)saveObject:(ObjectResponse)eventResponse{
-    //Do not save the objectID, That is automatically saved and generated
-    eventResponse(nil, nil);
-    [self SaveCurrentObjectToDatabase];
+-(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib{
+    
+    id objID = [self.databaseObject valueForKey:attrib];
+    
+    NSManagedObject* obj = [self loadObjectWithID:objID inDatabase:DBName forAttribute:attrib];
+    
+    [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+    
+    if (obj){
+        
+        if (!self.databaseObject.managedObjectContext) {
+            [self SaveAndRefreshObjectToDatabase:obj];
+        }else{
+            [self SaveAndRefreshObjectToDatabase:self.databaseObject];
+        }
+    }else{
+        
+        if (self.databaseObject.managedObjectContext) {
+            [self SaveAndRefreshObjectToDatabase:self.databaseObject];
+        }else{
+            
+            obj = [self CreateANewObjectFromClass:DBName isTemporary:NO];
+            
+            [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+            
+            [self SaveAndRefreshObjectToDatabase:obj];
+        }
+    }
+    eventResponse(self, nil);
 }
 
 -(void)CommonExecution{
-    NSLog(@"CommonExecution Not implemented.");
+    
+}
+
+-(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects{
+    
+    NSMutableArray* arrayWithDictionaries = [[NSMutableArray alloc]initWithCapacity:managedObjects.count];
+    
+    for (NSManagedObject* objs in managedObjects) {
+        self.databaseObject = objs;
+        [arrayWithDictionaries addObject:self.getDictionaryValuesFromManagedObject];
+    }
+    return arrayWithDictionaries;
+}
+
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
+    if (arr.count > 0) {
+        return [arr objectAtIndex:0];
+    }
+    return nil;
 }
 
 -(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse{
@@ -92,7 +139,9 @@
 -(void)setValueToDictionaryValues:(NSDictionary*)values{
     
     for (NSString* key in values.allKeys) {
-        [self.databaseObject setValue:[values objectForKey:key] forKey:key];
+        if (![[values objectForKey:key]isKindOfClass:[NSNull class]]) {
+            [self.databaseObject setValue:[values objectForKey:key] forKey:key];
+        }
     }
 }
 
@@ -116,41 +165,25 @@
    return [super getObjectForAttribute:attribute inDatabaseObject:databaseObject];
 }
 
--(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database{
+-(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database withAttribute:(NSString*)attrib{
     
     [self tryAndSendData:DataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        [self saveObject:^(id<BaseObjectProtocol> innerdata, NSError *innererror) {
-            response(data,error);
-        }];
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+             response(data,error);
+        } inDatabase:database forAttribute:attrib];
         
     } andWithPositiveResponse:^(id PosData) {
         // Save Returned Values
         StatusObject* status = PosData;
 
         [self setValueToDictionaryValues:status.data];
-        
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-
-           response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[DataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
-       }];
+            response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[DataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
+        } inDatabase:database forAttribute:attrib];
     }];
 }
 
--(void)shouldLockVisit:(BOOL)lockVisit forDatabase:(NSString*)database onCompletion:(ObjectResponse)Response{
-    
-    if (lockVisit) {
-        [self.databaseObject setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
-    }else{
-        [self.databaseObject setValue:@"" forKey:ISLOCKEDBY];
-    }
-    
-    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-    
-    [dataToSend setValue:[NSNumber numberWithInteger:kToggleObjectLock] forKey:OBJECTCOMMAND];
-    
-    [self UpdateObject:Response andSendObjects:dataToSend forDatabase:database];
-    
-}
+
 -(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
     // checks to see if object exists
     NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];

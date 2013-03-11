@@ -134,7 +134,7 @@
     // Populate view in cell
     [cell addSubview: [cell viewController].view];
     
-    //
+    // This is where the information that the screen handler uses to manipulate the screens
     [[cell viewController] setScreenHandler:^(id object, NSError *error) {
         _patientData = [NSMutableDictionary dictionaryWithDictionary:object];
         

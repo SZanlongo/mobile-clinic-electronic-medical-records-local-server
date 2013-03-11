@@ -77,27 +77,35 @@
         UINib * nib = [UINib nibWithNibName:@"PatientResultTableCellView" bundle:nil];
         cell = [nib instantiateWithOwner:nil options:nil][0];
     }
-    BaseObject* base = [[BaseObject alloc]init];
-    [base setDBObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
+    
+    NSDictionary* base = [[NSDictionary alloc]initWithDictionary:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
     
     // Display contents of cells
-    UIImage* image = [UIImage imageWithData:[base getObjectForAttribute:PICTURE]];
-    [cell.patientImage setImage:image];
-    cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [base getObjectForAttribute:FIRSTNAME], [base getObjectForAttribute:FAMILYNAME]];
-    NSDate* date = [base getObjectForAttribute:DOB];
-    cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",date.getNumberOfYearsElapseFromDate];
-    cell.patientDOB.text = [[base getObjectForAttribute:DOB]convertNSDateFullBirthdayString];
+    if ([[base objectForKey:PICTURE]isKindOfClass:[NSData class]]) {
+        UIImage* image = [UIImage imageWithData: [base objectForKey:PICTURE]];
+        [cell.patientImage setImage:image];
+    }
     
+    cell.patientName.text = [NSString stringWithFormat:@"%@ %@", [base objectForKey:FIRSTNAME], [base objectForKey:FAMILYNAME]];
+    NSDate* date = [base objectForKey:DOB];
+    BOOL doesDOBExist = ([date isKindOfClass:[NSDate class]] && date);
+    cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",(doesDOBExist)?date.getNumberOfYearsElapseFromDate:0];
     
-    NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
+    cell.patientDOB.text = (doesDOBExist)?[[base objectForKey:DOB]convertNSDateFullBirthdayString]:@"Not Available";
+
+//    NSLog(@"SIZE OF ARRAY: %u", _patientSearchResultsArray.count);
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    BaseObject* base = [[BaseObject alloc]init];
-    [base setDBObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
-    NSString * lockedBy = [base getObjectForAttribute:ISLOCKEDBY];
+    
+    if (!mobileFacade) {
+        mobileFacade = [[MobileClinicFacade alloc]init];
+    }
+    
+    NSString * lockedBy = [[NSMutableDictionary dictionaryWithDictionary:[_patientSearchResultsArray objectAtIndex:indexPath.row]] objectForKey:ISLOCKEDBY];
+                            
     if (![lockedBy isEqualToString:mobileFacade.GetCurrentUsername]) {
         [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor yellowColor]];
     } else {
@@ -112,11 +120,8 @@
     [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor grayColor]];
     
     // TODO: MAKE SURE THAT THIS OBJECT IS NOT IN USE AND THAT YOU LOCK IT WHEN YOU USE IT.
-    BaseObject* base = [[BaseObject alloc]init];
-    
-    [base setDatabaseObject:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
-    
-    _patientData = [NSMutableDictionary dictionaryWithDictionary:base.getDictionaryValuesFromManagedObject];
+
+    _patientData = [NSMutableDictionary dictionaryWithDictionary:[_patientSearchResultsArray objectAtIndex:indexPath.row]];
     
     handler(_patientData, nil);
 }
@@ -125,48 +130,15 @@
 
 //
 - (IBAction)searchByNameButton:(id)sender {
-    // TEMPORARY CODE TO DO SEARCH
-    // Check if there is at least one name
-    //    if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
-    //
-    //        NSError *error;
-    //        context = [[FIUAppDelegate alloc] managedObjectContext];
-    //        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    //
-    //        [request setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-    //        [request setPredicate:[NSPredicate predicateWithFormat: @"(firstName beginswith[cd] %@) OR (familyName beginswith[cd] %@)", _patientNameField.text, _familyNameField.text]];
-    //
-    //        _patientSearchResultsArray = [NSMutableArray arrayWithArray:[context executeFetchRequest:request error:&error]];
-    //
-    //        // Redisplay the information
-    //        [_searchResultTableView reloadData];
-    //    }
-    
-    // MIKE'S SEARCH (WILL EVENTUALLY IMPLEMENT WHEN ITS WORKING) ( DO NO DELETE!)
     // Check if there is at least one name
     switch (_mode) {
         case kTriageMode:
             [self BroadSearchForPatient];
             break;
-        case kDoctorMode:
-            [self narrowSearchInQueue];
-            break;
         default:
+             [self BroadSearchForPatient];
             break;
     }
-    
-    
-    //// FOR MY OWN TESTING (RIGO)
-    //    if([_patientSearchResultsArray count] == 0) {
-    //        NSLog(@"ARRAY IS EMPTY!!!!!!!!!");
-    //    }
-    //    else{
-    //        NSLog(@"ARRAY HAS STUFF INSIDE IT!!!!!!!!");
-    //
-    //        for(Patients * obj in _patientSearchResultsArray) {
-    //            NSLog(@"NAME: %@ %@", obj.firstName, obj.familyName);
-    //        }
-    //    }
 }
 -(void)BroadSearchForPatient{
     //this will remove spaces BEFORE AND AFTER the string. I am leaving spaces in the middle because we might have names that are 2 words
@@ -188,21 +160,8 @@
     }
 }
 -(void)narrowSearchInQueue{
-
-    if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
-        [mobileFacade findAllOpenVisitsAndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-            if (error) {
-                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
-            }
-            // Get all the result from the query
-            _patientSearchResultsArray  = [NSArray arrayWithArray:allObjectsFromSearch];
-            
-            // Redisplay the information
-            [_searchResultTableView reloadData];
-            
-        }];
-    }
 }
+
 - (IBAction)searchByNFCButton:(id)sender {
 }
 

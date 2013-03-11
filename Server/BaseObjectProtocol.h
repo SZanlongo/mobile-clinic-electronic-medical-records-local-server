@@ -27,11 +27,9 @@ typedef enum {
     kLogoutUser                 = 2,
     kStatusClientWillRecieve    = 3,
     kStatusServerWillRecieve    = 4,
-    kToggleObjectLock           = 5,
-    kCreateNewObject            = 6,
-    kFindObject                 = 7,
-    kUpdateObject               = 8,
-    kFindOpenObjects            = 9,
+    kUpdateObject               = 5,
+    kFindObject                 = 6,
+    kFindOpenObjects            = 7,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>
@@ -62,7 +60,7 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 /* This only needs to be implemented if the object needs to save to
  * its local database
  */
--(void)saveObject:(ObjectResponse)eventResponse;
+-(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib;
 
 /* This needs to be implemented at all times. This is responsible for
  * carrying out the instructions that it was given.
@@ -126,4 +124,6 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 @property(strong, nonatomic)NSManagedObject* databaseObject;
 
 -(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message;
+
+-(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database;
 @end

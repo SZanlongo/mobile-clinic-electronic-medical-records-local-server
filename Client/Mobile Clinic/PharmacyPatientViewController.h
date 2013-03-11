@@ -19,7 +19,7 @@
     ScreenHandler handler;
 }
 
-@property (strong, nonatomic) PatientObject * patientData;
+@property (strong, nonatomic) NSMutableDictionary *  patientData;
 @property (strong, nonatomic) PrescriptionObject * prescriptionData;
 @property (nonatomic, strong) PharamcyPrescriptionViewController * precriptionViewController;
 @property (nonatomic, strong) MedicineSearchViewController * medicineViewController;

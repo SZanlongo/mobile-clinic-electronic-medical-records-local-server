@@ -30,11 +30,9 @@ typedef enum {
     kLogoutUser                 = 2,
     kStatusClientWillRecieve    = 3,
     kStatusServerWillRecieve    = 4,
-    kToggleObjectLock           = 5,
-    kCreateNewObject            = 6,
-    kFindObject                 = 7,
-    kUpdateObject               = 8,
-    kFindOpenObjects            = 9,
+    kUpdateObject               = 5,
+    kFindObject                 = 6,
+    kFindOpenObjects            = 7,
 }RemoteCommands;
 
 @protocol BaseObjectProtocol <NSObject>
@@ -42,10 +40,11 @@ typedef enum {
 typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 @optional
+
 - (id)initWithDatabase:(NSString*)database;
 - (id)initWithNewDatabaseObject:(NSString*)database;
 - (id)initAndFillWithNewObject:(NSDictionary *)info andRelatedDatabase:(NSString*)database;
-- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib;
+- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib withUpdatedObject:(NSDictionary*)dic;
 /** This method should take all the objects important information
  * and place them inside a dictionary with keys that should be 
  * reflected in the server.
@@ -67,7 +66,7 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 /* This only needs to be implemented if the object needs to save to
  * its local database
  */
--(void)saveObject:(ObjectResponse)eventResponse;
+-(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib;
 
 /** This needs to be implemented at all times. This is responsible for
  * carrying out the instructions that it was given.
@@ -128,11 +127,13 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
 
--(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database;
-
--(void)shouldLockVisit:(BOOL)lockVisit forDatabase:(NSString*)database onCompletion:(ObjectResponse)Response;
+-(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database withAttribute:(NSString*)attrib;
 
 -(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+
+-(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects;
 
 @property(strong, nonatomic)NSManagedObject* databaseObject;
 
