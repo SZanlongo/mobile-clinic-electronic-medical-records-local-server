@@ -18,10 +18,8 @@
     NSMutableArray* visitList;
     NSMutableArray* allItems;
     NSManagedObject* patient;
-    int selectedRow;
+    NSInteger selectedRow;
 }
-@property (weak) IBOutlet NSScrollView *scrollView;
-@property (weak) IBOutlet NSTableView *patientTable;
 @property (weak) IBOutlet NSBrowser *patientDirectory;
 
 - (IBAction)refreshPatients:(id)sender;

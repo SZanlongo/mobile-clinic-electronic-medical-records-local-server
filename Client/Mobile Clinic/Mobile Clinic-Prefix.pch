@@ -16,11 +16,13 @@
     #import "FIUAppDelegate.h"
     #import "TestFlight.h"
     #import "NSObject+CustomTools.h"
+    #import"ColorMe.h"
+
     #define CREATE_NEW_PATIENT  @"Creating a new patient"
-#define MOVE_TO_SEARCH_FOR_MEDICINE @"Searching for medicine"
-#define MOVE_FROM_SEARCH_FOR_MEDICINE @"Back form searching medicine"
-#define SAVE_VISITATION @"Save visitation object"
-#define SAVE_PRESCRIPTION @"Save prescription object"
+    #define MOVE_TO_SEARCH_FOR_MEDICINE @"Searching for medicine"
+    #define MOVE_FROM_SEARCH_FOR_MEDICINE @"Back form searching medicine"
+    #define SAVE_VISITATION @"Save visitation object"
+    #define SAVE_PRESCRIPTION @"Save prescription object"
     #define SEARCH_FOR_PATIENT  @"Searching for a patient"
     #define CREATE_NEW_DIAGNOSIS  @"Creating a new diagnosis"
 #endif
