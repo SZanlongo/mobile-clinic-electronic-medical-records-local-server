@@ -51,7 +51,7 @@
     if (self.validateDiagnosis) {
         [_visitationData setObject:_diagnosisTextbox.text withAttribute:OBSERVATION];
         [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
-        handler(self,nil);
+//        handler(self,nil);
     }
 }
 
