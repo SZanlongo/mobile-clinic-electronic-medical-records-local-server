@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
+#import "MobileClinicFacade.h"
 #import "PharmacyPatientViewController.h"
 
 @interface PharmacyPatientViewController ()
@@ -58,11 +59,21 @@
 }
 
 -(void)savePrescription {
-   // VisitationObject *mObject = [[VisitationObject alloc] initWithNewVisit];
-   // PrescriptionObject *presc = [[PrescriptionObject alloc]initWithNewPrescription];
-//    [presc setObject:@"Advil" withAttribute:INSTRUCTIONS];
-//    [mObject addPrescriptionToCurrentVisit:presc];
-   // [_patientData addVisitToCurrentPatient:mObject];
+    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    [mobileFacade findAllOpenVisitsAndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        for(int i = 0;i < [allObjectsFromSearch count]; i++){
+            NSDictionary * mDic = [allObjectsFromSearch objectAtIndex:i];
+            if([[mDic objectForKey:PATIENTID] isEqualToNumber:[_patientData objectForKey:PATIENTID]]){
+                [mobileFacade updatePrescription:[allObjectsFromSearch objectAtIndex:0] AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
+                    if (!object) {
+                        [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+                    }else{
+                        handler(object,error);
+                    }
+                }];
+            }
+        }
+    }];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
