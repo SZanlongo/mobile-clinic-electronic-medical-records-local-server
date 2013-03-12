@@ -746,11 +746,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="queueCell" rowHeight="75" id="Vge-9V-3xX" customClass="QueueTableCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="queueCell" rowHeight="75" id="Vge-9V-3xX" customClass="QueueTableCell">
                                         <rect key="frame" x="0.0" y="22" width="625" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="605" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="625" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="zuL-8v-n0u">
@@ -1015,6 +1015,10 @@
                                 <rect key="frame" x="0.0" y="216" width="768" height="744"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Iw3-0E-8E0" id="C3F-xw-66d"/>
+                                    <outlet property="delegate" destination="Iw3-0E-8E0" id="PEI-2F-WwT"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ubh-Dq-uHM">
                                 <rect key="frame" x="224" y="46" width="50" height="21"/>
@@ -1036,7 +1040,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="N/A" minimumFontSize="17" id="vtu-n0-5rz">
-                                        <rect key="frame" x="235" y="105" width="188" height="18"/>
+                                        <rect key="frame" x="235" y="101" width="188" height="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1644,7 +1648,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <action selector="newTimeOfDay:" destination="hcs-ty-94e" eventType="touchUpInside" id="jEW-Th-INE"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="RVf-Oa-IYq">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="RVf-Oa-IYq">
                                 <rect key="frame" x="97" y="78" width="575" height="130"/>
                                 <color key="backgroundColor" red="0.85574776785714279" green="0.85574776785714279" blue="0.85574776785714279" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
@@ -1668,8 +1672,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="doctorsDiagnosis" destination="RVf-Oa-IYq" id="4bF-SB-Ue5"/>
                         <outlet property="drugTextField" destination="BZN-qm-bTe" id="FTd-eT-MCy"/>
+                        <outlet property="medicationNotes" destination="RVf-Oa-IYq" id="YLY-4B-O99"/>
                         <outlet property="tabletsTextField" destination="Cen-pj-qnU" id="qdT-cp-ych"/>
                         <outlet property="timeOfDayTextFields" destination="th7-GH-spJ" id="zoG-Vu-EfM"/>
                         <outletCollection property="timeOfDayButtons" destination="W80-dJ-Gcv" id="lUB-UX-i3l"/>
@@ -1880,8 +1884,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="findDrugs:"/>
                 <relationship kind="action" name="newTimeOfDay:"/>
                 <relationship kind="action" name="savePrescription:"/>
-                <relationship kind="outlet" name="doctorsDiagnosis" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="drugTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="medicationNotes" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="tabletsTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="timeOfDayTextFields" candidateClass="UITextField"/>
                 <relationship kind="outletCollection" name="timeOfDayButtons" candidateClass="UIButton"/>

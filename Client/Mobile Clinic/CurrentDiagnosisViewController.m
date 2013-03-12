@@ -25,21 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.    
+    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     // Populate condition for doctor to see
     _conditionsTextbox.text = [_patientData objectForKey:CONDITION];
-    
-//    NSArray * arr = [[NSArray alloc] init];
-//    arr = [_patientData getAllVisitsForCurrentPatient];
-//    VisitationObject * tempVisit = [arr objectAtIndex:(arr.count - 1)];
-//
-//    if (arr.count > 0) {
-//        _conditionsTextbox.text = [tempVisit getObjectForAttribute:CONDITION];
-//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,10 +49,10 @@
 - (IBAction)submitButton:(id)sender {
     //set visitiation diag
     if (self.validateDiagnosis) {
-        [_visitationData setObject:_diagnosisTextbox.text withAttribute:CONDITION];
+        [_visitationData setObject:_diagnosisTextbox.text withAttribute:OBSERVATION];
         [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
         handler(self,nil);
-    }    
+    }
 }
 
 - (BOOL)validateDiagnosis {

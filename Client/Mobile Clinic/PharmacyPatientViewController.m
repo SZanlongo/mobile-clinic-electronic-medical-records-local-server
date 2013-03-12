@@ -55,19 +55,12 @@
 
     MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
     [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-    if(allObjectsFromSearch && [allObjectsFromSearch objectAtIndex:0]) {
+    if(allObjectsFromSearch && [allObjectsFromSearch count] != 0) {
         _prescriptionData = [allObjectsFromSearch objectAtIndex:0];
         [_precriptionViewController setPatientData:_patientData];
         [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         }
     }];
-    
-//    MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
-//    [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-//        _prescriptionData = [allObjectsFromSearch objectAtIndex:0];
-//        [_precriptionViewController setPatientData:_patientData];
-//        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-//    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -144,8 +144,19 @@
     self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
 }
 
-- (void)saveVisitation {
-//    [_patientData addVisitToCurrentPatient:_control1.visitationData];
+- (void)saveVisitation:(NSNotification *)note {
+    _patientData = note.object;
+    
+    MobileClinicFacade *mobileFacade = [[MobileClinicFacade alloc]init];
+    [mobileFacade updateVisitRecord:_patientData andShouldUnlock:YES andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
+        if(!object)
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        else
+            handler(object, error);
+    }];
+    
+//    _patientData addVisitToCurrentPatient:_control1.visitationData];
+    
     visitationHasBeenSaved = YES;
     [_tableView setScrollEnabled:NO];
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
