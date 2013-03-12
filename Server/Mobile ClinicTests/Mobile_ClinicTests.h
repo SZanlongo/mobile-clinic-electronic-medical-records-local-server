@@ -11,6 +11,8 @@
 @interface Mobile_ClinicTests : SenTestCase{
     ConnectListContent* connectionList;
     UserObject* user;
+    BaseObject*obj;
+    dispatch_semaphore_t semaphore;
 }
 
 @end
