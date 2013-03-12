@@ -9,17 +9,17 @@
 #import <Cocoa/Cocoa.h>
 #import "PatientObject.h"
 #import "VisitationObject.h"
+#import "PrescriptionObject.h"
 @interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSBrowserDelegate>{
     PatientObject* patientsHandler;
     VisitationObject* visitsHandler;
+    PrescriptionObject* prescriptionHandler;
     NSArray* patientList;
     NSMutableArray* visitList;
     NSMutableArray* allItems;
     NSManagedObject* patient;
-    int selectedRow;
+    NSInteger selectedRow;
 }
-@property (weak) IBOutlet NSScrollView *scrollView;
-@property (weak) IBOutlet NSTableView *patientTable;
 @property (weak) IBOutlet NSBrowser *patientDirectory;
 
 - (IBAction)refreshPatients:(id)sender;

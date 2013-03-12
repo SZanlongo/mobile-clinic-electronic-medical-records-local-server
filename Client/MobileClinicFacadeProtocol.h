@@ -92,9 +92,12 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  */
 -(void) findAllPrescriptionForCurrentVisit:(NSDictionary*)visit AndOnCompletion:(MobileClinicSearchResponse)Response;
 /**
- * Not Implemented yet
+ * Creates a new patient and associates it to a given visit. 
+ * Can also lock the prescription using the AndLockVisit boolean variable
+ * The block will return an error or the updated object.
+ * @param Rx the prescription dictionary that must be sent
  */
-//-(void) addNewPrescriptionForCurrentPatientAndUnlockPatient:(NSDictionary*)PrescriptionInfo onCompletion:(MobileClinicCommandResponse)Response;
+-(void) addNewPrescription:(NSDictionary*)Rx ForCurrentVisit:(NSDictionary*)visit AndlockVisit:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
 
 /**
  * Updates existing medication or creates new ones if it doesn't exist

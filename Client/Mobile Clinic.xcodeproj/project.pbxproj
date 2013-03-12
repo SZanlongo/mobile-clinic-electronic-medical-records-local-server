@@ -102,6 +102,8 @@
 		EAADC02216E113A5009E7AF9 /* MobileClinicFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADC02116E113A5009E7AF9 /* MobileClinicFacade.m */; };
 		EAC19C7516DDB72A00B0B8DA /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C7416DDB72A00B0B8DA /* Visitation.m */; };
 		EAC19C8216DEC07500B0B8DA /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C8116DEC07500B0B8DA /* Patients.m */; };
+		EAC37EE416EEBC3700836C1C /* ColorMe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE316EEBC3700836C1C /* ColorMe.m */; };
+		EAC37EE516EEBC3700836C1C /* ColorMe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE316EEBC3700836C1C /* ColorMe.m */; };
 		EACEB53916BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
 		EACEB53F16BED11B00685AE8 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */; };
@@ -303,6 +305,8 @@
 		EAC19C7416DDB72A00B0B8DA /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visitation.m; sourceTree = "<group>"; };
 		EAC19C8016DEC07500B0B8DA /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patients.h; sourceTree = "<group>"; };
 		EAC19C8116DEC07500B0B8DA /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patients.m; sourceTree = "<group>"; };
+		EAC37EE216EEBC3700836C1C /* ColorMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMe.h; sourceTree = "<group>"; };
+		EAC37EE316EEBC3700836C1C /* ColorMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorMe.m; sourceTree = "<group>"; };
 		EACEB53716BEC4E100685AE8 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -497,6 +501,8 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				EAC37EE216EEBC3700836C1C /* ColorMe.h */,
+				EAC37EE316EEBC3700836C1C /* ColorMe.m */,
 				EA7CDC2A16ECF874005A9070 /* Makefile */,
 				EA7CDC2416ECF6FF005A9070 /* RunTests.sh */,
 				EA7CDC2516ECF700005A9070 /*  RunIPhoneSecurityd.sh */,
@@ -1133,6 +1139,7 @@
 				6DB5994C16EA463D0016AE82 /* PatientQueueTableCell.m in Sources */,
 				6DB5995016EA46640016AE82 /* GenericStartViewController.m in Sources */,
 				0FDE47BF16ED0CFB00966C77 /* PatientQueueViewController.m in Sources */,
+				EAC37EE416EEBC3700836C1C /* ColorMe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1142,6 +1149,7 @@
 			files = (
 				EA7CDC4F16ED08E6005A9070 /* GHUnitIOSTestMain.m in Sources */,
 				EA7CDC4E16ED08AE005A9070 /* PatientObjectTest.m in Sources */,
+				EAC37EE516EEBC3700836C1C /* ColorMe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

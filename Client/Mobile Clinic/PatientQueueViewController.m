@@ -35,13 +35,13 @@
 	// Do any additional setup after loading the view.
     if(!mobileFacade)
             mobileFacade = [[MobileClinicFacade alloc] init];
-    
-    // For setting of navbar color
+
     UINavigationBar * navbar = [self.navigationController navigationBar];
     
     // Request patient's that are currently checked in
     [mobileFacade findAllOpenVisitsAndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         queueArray = [NSArray arrayWithArray:allObjectsFromSearch];
+        [_queueTableView reloadData];
     }];
     
     // Settings with respect to station chosen
@@ -79,15 +79,8 @@
         default:
             break;
     }
-    
-    // Load cells
-    [_queueTableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)viewDidUnload {
     [self setQueueTableView:nil];
@@ -153,8 +146,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Sets color of cell when selected
-    [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor lightGrayColor]];
     
+    //[[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor lightGrayColor]];
+    
+    [ColorMe ColorTint:[[tableView cellForRowAtIndexPath:indexPath]layer] forCustomColor:[UIColor lightGrayColor]];
+    
+    [UIView animateWithDuration:.3 animations:^{
+        [ColorMe ColorTint:[[tableView cellForRowAtIndexPath:indexPath]layer] forCustomColor:[UIColor clearColor]];
+    }];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // TODO: MAKE SURE THAT THIS OBJECT IS NOT IN USE AND THAT YOU LOCK IT WHEN YOU USE IT.
     
     DoctorPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
@@ -186,4 +187,7 @@
 //    }
 //}
 
+-(void)reloadTableView{
+    
+}
 @end
