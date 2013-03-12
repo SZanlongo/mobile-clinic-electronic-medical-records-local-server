@@ -46,7 +46,7 @@
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
     
-   // _visitationData = [[VisitationObject alloc] initWithNewVisit];
+    // _visitationData = [[VisitationObject alloc] initWithNewVisit];
     
     _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
     _familyNameField.text = [_patientData objectForKey:FAMILYNAME];

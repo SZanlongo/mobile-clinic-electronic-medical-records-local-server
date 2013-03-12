@@ -7,6 +7,7 @@
 //
 
 #import "PatientQueueViewController.h"
+#import "DoctorPatientViewController.h"
 
 @interface PatientQueueViewController () {
     MobileClinicFacade * mobileFacade;
@@ -49,9 +50,9 @@
             [navbar setTintColor:[UIColor blueColor]];
             
             // Filter results to patient's that haven't seen the doctor
-            NSString * predicateString = [NSString stringWithFormat:@"'%@' == '%@'", @"doctorOut", nil];
-            NSPredicate * predicate = [NSPredicate predicateWithFormat:predicateString];
-            queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
+//            NSString * predicateString = [NSString stringWithFormat:@"'%@' == '%@'", @"doctorOut", nil];
+//            NSPredicate * predicate = [NSPredicate predicateWithFormat:predicateString];
+//            queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
             
             // Sort queue by priority
             NSSortDescriptor * sortDescriptor;
@@ -155,6 +156,15 @@
     [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor lightGrayColor]];
     
     // TODO: MAKE SURE THAT THIS OBJECT IS NOT IN USE AND THAT YOU LOCK IT WHEN YOU USE IT.
+    
+    DoctorPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
+    
+    [newView setPatientData:[[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]]];
+    
+    [self.navigationController pushViewController:newView animated:YES];
+    
+    
+    
     
 //    _patientData = [NSMutableDictionary dictionaryWithDictionary:[queueArray objectAtIndex:indexPath.row]];
 //    handler(_patientData, nil);
