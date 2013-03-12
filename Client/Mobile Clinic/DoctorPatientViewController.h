@@ -9,21 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "CurrentDiagnosisTableCell.h"
 #import "PreviousVisitsTableCell.h"
-#import "PharamcyPrescriptionViewController.h"
-#import "MedicineSearchViewController.h"
 #import "PharamcyPrescriptionCell.h"
 #import "MedicineSearchCell.h"
+#import "PharamcyPrescriptionViewController.h"
+#import "MedicineSearchViewController.h"
 #import "MobileClinicFacade.h"
 
 @interface DoctorPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     ScreenHandler handler;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *  patientData;
+@property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) NSMutableDictionary * visitationData;
 @property (strong, nonatomic) NSMutableDictionary * prescriptionData;
-@property (strong, nonatomic) CurrentDiagnosisViewController * control1;
-@property (strong, nonatomic) PreviousVisitsViewController * control2;
+
+@property (strong, nonatomic) CurrentDiagnosisViewController * diagnosisViewController;
+@property (strong, nonatomic) PreviousVisitsViewController * previousVisitViewController;
 @property (nonatomic, strong) PharamcyPrescriptionViewController * precriptionViewController;
 @property (nonatomic, strong) MedicineSearchViewController * medicineViewController;
 
@@ -38,8 +39,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIToolbar * toolBar;
-@property (nonatomic, retain) IBOutlet UISegmentedControl * segmentedControl;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
+
 - (IBAction)segmentClicked:(id)sender;
 
 @end

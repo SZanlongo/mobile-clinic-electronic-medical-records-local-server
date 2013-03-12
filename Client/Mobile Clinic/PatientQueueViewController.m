@@ -8,6 +8,7 @@
 
 #import "PatientQueueViewController.h"
 #import "DoctorPatientViewController.h"
+#import "PharmacyPatientViewController.h"
 
 @interface PatientQueueViewController () {
     MobileClinicFacade * mobileFacade;
@@ -144,11 +145,7 @@
 
 // Action upon selecting cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     // Sets color of cell when selected
-    
-    //[[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor lightGrayColor]];
-    
     [ColorMe ColorTint:[[tableView cellForRowAtIndexPath:indexPath]layer] forCustomColor:[UIColor lightGrayColor]];
     
     [UIView animateWithDuration:.3 animations:^{
@@ -156,19 +153,23 @@
     }];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    // TODO: MAKE SURE THAT THIS OBJECT IS NOT IN USE AND THAT YOU LOCK IT WHEN YOU USE IT.
     
-    DoctorPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
-    
-    [newView setPatientData:[[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]]];
-    
-    [self.navigationController pushViewController:newView animated:YES];
+    // Lock patients / visit
     
     
+    // Push to doctor & pharmacy view controllers
+    NSMutableDictionary * pDic = [[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
     
-    
-//    _patientData = [NSMutableDictionary dictionaryWithDictionary:[queueArray objectAtIndex:indexPath.row]];
-//    handler(_patientData, nil);
+    if([[self stationChosen]intValue] == 2) {
+        DoctorPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
+        [newView setPatientData:pDic];
+        [self.navigationController pushViewController:newView animated:YES];
+    }
+    else if ([[self stationChosen]intValue] == 3) {
+        PharmacyPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
+        [newView setPatientData:pDic];
+        [self.navigationController pushViewController:newView animated:YES];
+    }
 }
 
 //// Coloring cell depending on priority
@@ -187,7 +188,7 @@
 //    }
 //}
 
--(void)reloadTableView{
-    
+- (void)reloadTableView{
 }
+
 @end

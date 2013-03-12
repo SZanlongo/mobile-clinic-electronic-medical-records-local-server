@@ -81,15 +81,15 @@
     [super viewDidUnload];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * currentVisitCellIdentifier = @"currentVisitCell";
     static NSString * previousVisitsCellIdentifier = @"previousVisitsCell";
     
@@ -140,7 +140,7 @@
     }
 }
 
--(void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
 

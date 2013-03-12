@@ -19,7 +19,7 @@
     ScreenHandler handler;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *  patientData;
+@property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) NSMutableDictionary * prescriptionData;
 @property (strong, nonatomic) NSMutableDictionary * visitationData;
 @property (nonatomic, strong) PharamcyPrescriptionViewController * precriptionViewController;
@@ -35,5 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 @end

@@ -43,33 +43,46 @@
     [_tableView setShowsVerticalScrollIndicator:NO];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    
     // Create controllers for each view
+    _diagnosisViewController = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
+    _previousVisitViewController = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
     
-    _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
-    _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
+    _precriptionViewController = [self getViewControllerFromiPadStoryboardWithName:@"prescriptionFormViewController"];
+    [_precriptionViewController view];
+    _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
+    [_medicineViewController view];
     
-    // _visitationData = [[VisitationObject alloc] initWithNewVisit];
+//    _visitationData = [[VisitationObject alloc] initWithNewVisit];
     
-    _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
-    _familyNameField.text = [_patientData objectForKey:FAMILYNAME];
-    _villageNameField.text = [_patientData objectForKey:VILLAGE];
-    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB]getNumberOfYearsElapseFromDate]];
-    _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
+    NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
+    
+    // Populate patient info
     id data = [_patientData objectForKey:PICTURE];
     [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
-    [_control1 view];
-    [_control1 setPatientData:_patientData];
-    [_control2 view];
-    [_control2 setPatientData:_patientData];
+    
+    _patientNameField.text = [patientDic objectForKey:FIRSTNAME];
+    _familyNameField.text = [patientDic objectForKey:FAMILYNAME];
+    _villageNameField.text = [patientDic objectForKey:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[patientDic objectForKey:DOB]getNumberOfYearsElapseFromDate]];
+    _patientSexField.text = ([patientDic objectForKey:SEX]==0)?@"Female":@"Male";
+    
+    // Populate patient's vitals from triage
+    _patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[_patientData objectForKey:WEIGHT]doubleValue]];
+    _patientBPLabel.text = [_patientData objectForKey:BLOODPRESSURE];
+    
+    [_diagnosisViewController view];
+    [_diagnosisViewController setPatientData:_patientData];
+    [_previousVisitViewController view];
+    [_previousVisitViewController setPatientData:_patientData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
-//    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
+//    [_diagnosisViewController.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
     self.originalCenter = self.view.center;
- //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-    
-    //pharmacy notifications
+    // Pharmacy notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideFromSearchMedicine) name:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
@@ -77,9 +90,21 @@
     visitationHasBeenSaved = NO;
 }
 
--(void)savePrescription {
+- (void)setControllers {
+    _diagnosisViewController = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
+    _previousVisitViewController = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
+    _precriptionViewController = [self getViewControllerFromiPadStoryboardWithName:@"prescriptionFormViewController"];
+    _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
+}
 
-    
+- (void)instatiateViews {
+    [_precriptionViewController view];
+    [_medicineViewController view];
+    [_diagnosisViewController view];
+    [_previousVisitViewController view];
+}
+
+- (void)savePrescription {    
     [_prescriptionData setObject:@"some instructions" forKey:INSTRUCTIONS];
     [_prescriptionData setObject:@"2" forKey:MEDICATIONID];
     [_prescriptionData setObject:@"some time" forKey:PRESCRIBETIME];
@@ -97,22 +122,19 @@
         }
     }];
 
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)slideToSearchMedicine {
+- (void)slideToSearchMedicine {
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
--(void)slideFromSearchMedicine {
+- (void)slideFromSearchMedicine {
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     _precriptionViewController.drugTextField.text = _medicineViewController.medicineField.text;
-    //    [_tableView reloadData];
+//    [_tableView reloadData];
 }
-
-
 
 - (void)keyboardDidShow: (NSNotification *) notif {
     self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 264 - 44);
@@ -122,16 +144,15 @@
     self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
 }
 
--(void)saveVisitation{
-   // [_patientData addVisitToCurrentPatient:_control1.visitationData];
+- (void)saveVisitation {
+//    [_patientData addVisitToCurrentPatient:_control1.visitationData];
     visitationHasBeenSaved = YES;
     [_tableView setScrollEnabled:NO];
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -150,15 +171,15 @@
     [super viewDidUnload];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * currentDiagnosisCellIdentifier = @"currentDiagnosisCell";
     static NSString * previousVisitsCellIdentifier = @"previousVisitsCell";
     static NSString * currentVisitCellIdentifier = @"prescriptionCell";
@@ -169,8 +190,7 @@
         
         if (!cell) {
             cell = [[CurrentDiagnosisTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentDiagnosisCellIdentifier];
-            
-            cell.viewController = _control1;
+            cell.viewController = _diagnosisViewController;
         }
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
@@ -193,8 +213,7 @@
         
         if(!cell){
             cell = [[PreviousVisitsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:previousVisitsCellIdentifier];
-            
-            cell.viewController = _control2;
+            cell.viewController = _previousVisitViewController;
         }
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
@@ -253,7 +272,7 @@
     }
 }
 
-- (void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
 
@@ -270,8 +289,6 @@
     }
     [self.tableView reloadData];
 }
-
-
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity

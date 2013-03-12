@@ -85,7 +85,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:nil];
 }
 
-- (void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
 @end

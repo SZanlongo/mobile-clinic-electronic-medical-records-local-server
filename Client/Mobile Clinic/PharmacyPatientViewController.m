@@ -35,32 +35,40 @@
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_tableView setShowsVerticalScrollIndicator:NO];
     [_tableView setScrollEnabled:NO];
-
     
     _precriptionViewController = [self getViewControllerFromiPadStoryboardWithName:@"prescriptionFormViewController"];
     [_precriptionViewController view];
     [_precriptionViewController deactivateControllerFields];
     _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
     [_medicineViewController view];
-
-    _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
-    _familyNameField.text = [_patientData objectForKey:FAMILYNAME];
-    _villageNameField.text = [_patientData objectForKey:VILLAGE];
-    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[_patientData objectForKey:DOB]getNumberOfYearsElapseFromDate]];
-    _patientSexField.text = ([_patientData objectForKey:SEX]==0)?@"Female":@"Male";
-    id data = [_patientData objectForKey:PICTURE];
+    
+    NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
+    
+    id data = [patientDic objectForKey:PICTURE];
     [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
     
+    _patientNameField.text = [patientDic objectForKey:FIRSTNAME];
+    _familyNameField.text = [patientDic objectForKey:FAMILYNAME];
+    _villageNameField.text = [patientDic objectForKey:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[patientDic objectForKey:DOB]getNumberOfYearsElapseFromDate]];
+    _patientSexField.text = ([patientDic objectForKey:SEX]==0)?@"Female":@"Male";
+
     MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
     [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+    if(allObjectsFromSearch && [allObjectsFromSearch objectAtIndex:0]) {
         _prescriptionData = [allObjectsFromSearch objectAtIndex:0];
         [_precriptionViewController setPatientData:_patientData];
         [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+        }
     }];
     
-    
+//    MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
+//    [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+//        _prescriptionData = [allObjectsFromSearch objectAtIndex:0];
+//        [_precriptionViewController setPatientData:_patientData];
+//        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+//    }];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -86,7 +94,7 @@
     return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * currentVisitCellIdentifier = @"prescriptionCell";
 //    static NSString * previousVisitsCellIdentifier = @"medicineSearchCell";
     
@@ -109,11 +117,10 @@
         [cell addSubview:cell.viewController.view];
         
         return cell;
-
+//    }
 }
 
-
--(void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
 @end

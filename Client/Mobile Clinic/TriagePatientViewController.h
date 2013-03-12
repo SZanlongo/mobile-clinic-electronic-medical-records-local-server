@@ -28,10 +28,6 @@
 
 //@property (weak, nonatomic) IBOutlet UIButton *patientAgeField;
 
-// Vitals Labels :: WE MAY END UP DELETING THESE FOR TRIAGE
-@property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
-@property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
-
 // Objects on View
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;

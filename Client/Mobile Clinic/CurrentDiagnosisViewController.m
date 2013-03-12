@@ -30,14 +30,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    //    // Populate condition for doctor to see
-    //    NSArray * arr = [[NSArray alloc] init];
-    //    arr = [_patientData getAllVisitsForCurrentPatient];
-    //    VisitationObject * tempVisit = [arr objectAtIndex:(arr.count - 1)];
-    //
-    //    if (arr.count > 0) {
-    //        _conditionsTextbox.text = [tempVisit getObjectForAttribute:CONDITION];
-    //    }
+    // Populate condition for doctor to see
+    _conditionsTextbox.text = [_patientData objectForKey:CONDITION];
+    
+//    NSArray * arr = [[NSArray alloc] init];
+//    arr = [_patientData getAllVisitsForCurrentPatient];
+//    VisitationObject * tempVisit = [arr objectAtIndex:(arr.count - 1)];
+//
+//    if (arr.count > 0) {
+//        _conditionsTextbox.text = [tempVisit getObjectForAttribute:CONDITION];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
