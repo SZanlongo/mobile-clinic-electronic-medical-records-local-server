@@ -102,6 +102,12 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  */
 @property(nonatomic, assign)    RemoteCommands commands;
 
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(strong, nonatomic)NSManagedObject* databaseObject;
+
 /** 
  This is the setter for the databaseObject that all objects that implement this protocal must have
  @param databaseObject the coredata object that you want to manipulate
@@ -135,7 +141,6 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 -(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects;
 
-@property(strong, nonatomic)NSManagedObject* databaseObject;
 
 @end
 

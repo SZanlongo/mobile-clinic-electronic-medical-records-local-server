@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BaseObject.m"
-         timestampString = "384593128.364612"
+         timestampString = "384756997.383504"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "171"
-         endingLineNumber = "171"
+         startingLineNumber = "175"
+         endingLineNumber = "175"
          landmarkName = "-UpdateObject:andSendObjects:forDatabase:withAttribute:"
          landmarkType = "5">
       </FileBreakpoint>

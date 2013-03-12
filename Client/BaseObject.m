@@ -12,7 +12,8 @@
 
 @implementation BaseObject
 @synthesize databaseObject;
-
+#pragma mark- Init Methods
+#pragma mark-
 - (id)initWithDatabase:(NSString*)database
 {
     self = [super init];
@@ -49,7 +50,8 @@
     }
     return self;
 }
-
+#pragma mark- Init Methods
+#pragma mark-
 -(NSDictionary *)consolidateForTransmitting{
     /* 
      * Setup some of variables that are common to all the
@@ -60,6 +62,7 @@
 
     [consolidate setValue:[self.databaseObject dictionaryWithValuesForKeys:self.databaseObject.entity.attributesByName.allKeys] forKey:DATABASEOBJECT];
     [consolidate setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
+    [consolidate setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
     return consolidate;
 }
 
@@ -68,6 +71,7 @@
      * the object that inherit from this base class
      */
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
+    [self.databaseObject setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
 

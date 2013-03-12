@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
+#define VISITID         @"visitId"
 #define DATABASE    @"Prescription"
 #define ALLITEMS    @"ALL_ITEMS"
 #import "PrescriptionObject.h"
@@ -36,7 +37,6 @@
     } inDatabase:DATABASE forAttribute:VISITID];
 }
 
-
 -(BOOL)loadPrescriptionWithPrescriptionID:(NSString *)prescriptionID{
     // checks to see if object exists
   return [self loadObjectForID:prescriptionID inDatabase:DATABASE forAttribute:PRESCRIPTIONID];
@@ -55,6 +55,7 @@
     
     return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:VISITID];
 }
+
 -(void)FindAllPrescriptionsOnServerForVisit:(NSDictionary *)visit OnCompletion:(ObjectResponse)eventResponse
 {
     
@@ -74,6 +75,7 @@
         respondToEvent(self,nil);
     }];
 }
+
 -(void)SaveListOfPrescriptionsToTheDatabase:(NSDictionary*)prescriptionList
 {
     // get all the users returned from server
@@ -92,6 +94,7 @@
         }];
     }
 }
+
 -(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response{
     
     if (shouldLock) {

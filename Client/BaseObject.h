@@ -20,7 +20,8 @@
     */
     ObjectResponse respondToEvent;
 }
-
+@property(nonatomic, weak)      NSString* COMMONID;
+@property(nonatomic, assign)    int CLASSTYPE;
 @property(nonatomic, weak)      id client;
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;

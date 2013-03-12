@@ -104,6 +104,8 @@
 		EAC19C8216DEC07500B0B8DA /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C8116DEC07500B0B8DA /* Patients.m */; };
 		EAC37EE416EEBC3700836C1C /* ColorMe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE316EEBC3700836C1C /* ColorMe.m */; };
 		EAC37EE516EEBC3700836C1C /* ColorMe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE316EEBC3700836C1C /* ColorMe.m */; };
+		EAC37EE816EED8E900836C1C /* MedicationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE716EED8E900836C1C /* MedicationObject.m */; };
+		EAC37EE916EED8E900836C1C /* MedicationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE716EED8E900836C1C /* MedicationObject.m */; };
 		EACEB53916BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
 		EACEB53F16BED11B00685AE8 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */; };
@@ -307,6 +309,10 @@
 		EAC19C8116DEC07500B0B8DA /* Patients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patients.m; sourceTree = "<group>"; };
 		EAC37EE216EEBC3700836C1C /* ColorMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMe.h; sourceTree = "<group>"; };
 		EAC37EE316EEBC3700836C1C /* ColorMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorMe.m; sourceTree = "<group>"; };
+		EAC37EE616EED8E900836C1C /* MedicationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationObject.h; sourceTree = "<group>"; };
+		EAC37EE716EED8E900836C1C /* MedicationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationObject.m; sourceTree = "<group>"; };
+		EAC37EEA16EED95F00836C1C /* MedicationObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationObjectProtocol.h; sourceTree = "<group>"; };
+		EAC37EEB16EED99A00836C1C /* CommonObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonObjectProtocol.h; sourceTree = "<group>"; };
 		EACEB53716BEC4E100685AE8 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -889,6 +895,10 @@
 				EAADC02716E1169C009E7AF9 /* Patient Object */,
 				EAADC02816E36F54009E7AF9 /* Visitation Object */,
 				EAE51CBC16E6D0AE00B858CE /* Prescription Object */,
+				EAC37EE616EED8E900836C1C /* MedicationObject.h */,
+				EAC37EE716EED8E900836C1C /* MedicationObject.m */,
+				EAC37EEA16EED95F00836C1C /* MedicationObjectProtocol.h */,
+				EAC37EEB16EED99A00836C1C /* CommonObjectProtocol.h */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1140,6 +1150,7 @@
 				6DB5995016EA46640016AE82 /* GenericStartViewController.m in Sources */,
 				0FDE47BF16ED0CFB00966C77 /* PatientQueueViewController.m in Sources */,
 				EAC37EE416EEBC3700836C1C /* ColorMe.m in Sources */,
+				EAC37EE816EED8E900836C1C /* MedicationObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1161,7 @@
 				EA7CDC4F16ED08E6005A9070 /* GHUnitIOSTestMain.m in Sources */,
 				EA7CDC4E16ED08AE005A9070 /* PatientObjectTest.m in Sources */,
 				EAC37EE516EEBC3700836C1C /* ColorMe.m in Sources */,
+				EAC37EE916EED8E900836C1C /* MedicationObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

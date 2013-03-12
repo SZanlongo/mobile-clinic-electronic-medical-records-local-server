@@ -28,7 +28,7 @@
         <attribute name="prescriptionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tabletPerDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="timeOfDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="visitId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visitationId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>

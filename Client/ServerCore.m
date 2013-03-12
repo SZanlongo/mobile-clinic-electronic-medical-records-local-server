@@ -188,7 +188,7 @@ ServerCallback onComplete;
     
     if(data) {
         // ObjectFactory: Used to instatiate the proper class but returns it generically
-        id obj = [ObjectFactory createObjectForType:myDictionary];
+        id<BaseObjectProtocol> obj = [ObjectFactory createObjectForType:myDictionary];
         
         // setup the object to use the dictionary values
         [obj unpackageFileForUser:myDictionary];
