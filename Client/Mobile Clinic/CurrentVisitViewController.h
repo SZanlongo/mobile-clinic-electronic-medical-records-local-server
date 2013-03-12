@@ -17,7 +17,8 @@
 
 @property (strong, nonatomic) NSMutableDictionary *patientData;
 @property (strong, nonatomic) IBOutlet UITextField *patientWeightField;
-@property (strong, nonatomic) IBOutlet UITextField *patientBPField;
+@property (weak, nonatomic) IBOutlet UITextField *systolicField;
+@property (weak, nonatomic) IBOutlet UITextField *diastolicField;
 @property (strong, nonatomic) IBOutlet UITextView *conditionsTextbox;
 
 - (IBAction)checkInButton:(id)sender;

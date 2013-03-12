@@ -45,11 +45,12 @@
 
 - (void)viewDidUnload {
     [self setPatientWeightField:nil];
-    [self setPatientBPField:nil];
     [self setConditionsTextbox:nil];
     [self setVisitPriority:nil];
     [self setRespirationField:nil];
     [self setHeartField:nil];
+    [self setSystolicField:nil];
+    [self setDiastolicField:nil];
     [super viewDidUnload];
 }
 
@@ -60,50 +61,7 @@
 
 // Allows nurse to check-out a patient without going thru doctor/pharmacy
 - (IBAction)quickCheckOutButton:(id)sender {
-    //replaced with setVisitData
-    //need to implement QC, which should be:
-        //              if (!innerObject) {
-        //                    [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        //                }else{
-        //                    [mobileFacade updateVisitRecord:innerObject andShouldUnlock:YES onCompletion:^(NSDictionary *inceptionObject, NSError *error) {
-        //                        if (!inceptionObject) {
-        //                            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        //                        }else{
-        //                            handler(inceptionObject,error);
-        //                        }
-        //                    }];
-        //                }
-
-    
-    
-//    if (self.validateCheckin) {
-//        MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
-//        
-//        [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
-//        [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
-//        [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
-//        [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
-//        [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
-////        [currentVisit setValue:[NSNumber numberWithInteger:_visitPriority.selectedSegmentIndex] forKey:PRIORITY];
-//        
-//        [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
-//            
-//            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *innerObject, NSError *error) {
-//                
-//                if (!innerObject) {
-//                    [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-//                }else{
-//                    [mobileFacade updateVisitRecord:innerObject andShouldUnlock:YES onCompletion:^(NSDictionary *inceptionObject, NSError *error) {
-//                        if (!inceptionObject) {
-//                            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-//                        }else{
-//                            handler(inceptionObject,error);
-//                        }
-//                    }];
-//                }
-//            }];
-//        }];
-//    }
+    [self setVisitData];
 }
 
 - (void)setVisitData {
@@ -111,7 +69,7 @@
         MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
         
         [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
-        [currentVisit setValue:_patientBPField.text forKey:BLOODPRESSURE];
+        [currentVisit setValue:[NSString stringWithFormat: @"%@ / %@", _systolicField.text, _diastolicField.text] forKey:BLOODPRESSURE];
 //        [currentVisit setValue:_heartField.text forKey:(HEARTRATE)];
 //        [currentVisit setValue:_respirationField.text forKey:RESPIRATION];
         [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
@@ -142,7 +100,10 @@
     if([_patientWeightField.text isEqualToString:@""] || _patientWeightField.text == nil) {
         errorMsg = @"Missing Weight";
         inputIsValid = NO;
-    } else if([_patientBPField.text isEqualToString:@""] || _patientBPField.text == nil) {
+    } else if([_systolicField.text isEqualToString:@""] || _systolicField.text == nil) {
+        errorMsg = @"Missing Blood Pressure";
+        inputIsValid = NO;
+    } else if([_diastolicField.text isEqualToString:@""] || _diastolicField.text == nil) {
         errorMsg = @"Missing Blood Pressure";
         inputIsValid = NO;
     } else if([_conditionsTextbox.text isEqualToString:@""] || _conditionsTextbox.text == nil){
@@ -151,7 +112,10 @@
     } else if (![predicate evaluateWithObject:_patientWeightField.text]){
         errorMsg = @"Weight has Letters";
         inputIsValid = NO;
-    } else if (![predicate evaluateWithObject:_patientBPField.text]){
+    } else if (![predicate evaluateWithObject:_systolicField.text]){
+        errorMsg = @"Blood Pressure has Letters";
+        inputIsValid = NO;
+    } else if (![predicate evaluateWithObject:_diastolicField.text]){
         errorMsg = @"Blood Pressure has Letters";
         inputIsValid = NO;
     } else if ([_heartField.text isEqualToString:@""] || _heartField.text == nil) {
