@@ -9,7 +9,9 @@
 #import "DoctorPatientViewController.h"
 #import "DoctorViewController.h"
 
-@interface DoctorPatientViewController ()
+@interface DoctorPatientViewController (){
+    BOOL visitationHasBeenSaved;
+}
 
 @property CGPoint originalCenter;
 
@@ -46,6 +48,11 @@
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
     
+    _precriptionViewController = [self getViewControllerFromiPadStoryboardWithName:@"prescriptionFormViewController"];
+    [_precriptionViewController view];
+    _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
+    [_medicineViewController view];
+    
    // _visitationData = [[VisitationObject alloc] initWithNewVisit];
     
     _patientNameField.text = [_patientData objectForKey:FIRSTNAME];
@@ -60,13 +67,57 @@
     [_control2 view];
     [_control2 setPatientData:_patientData];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
 //    [_control1.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
     self.originalCenter = self.view.center;
  //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     
    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+    //pharmacy notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideFromSearchMedicine) name:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
+    
+    visitationHasBeenSaved = NO;
 }
+
+-(void)savePrescription {
+
+    
+    [_prescriptionData setObject:@"some instructions" forKey:INSTRUCTIONS];
+    [_prescriptionData setObject:@"2" forKey:MEDICATIONID];
+    [_prescriptionData setObject:@"some time" forKey:PRESCRIBETIME];
+    [_prescriptionData setObject:_precriptionViewController.timeOfDayTextFields.text forKey:TIMEOFDAY];
+    [_prescriptionData setObject:[_visitationData objectForKey:VISITID] forKey:VISITID];
+//    [_prescriptionData setObject:@"" forKey:PRESCRIPTIONID];
+    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+
+    [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
+                    
+        if (!object) {
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        }else{
+                handler(object,error);
+        }
+    }];
+
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)slideToSearchMedicine {
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+-(void)slideFromSearchMedicine {
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    _precriptionViewController.drugTextField.text = _medicineViewController.medicineField.text;
+    //    [_tableView reloadData];
+}
+
+
 
 - (void)keyboardDidShow: (NSNotification *) notif {
     self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 264 - 44);
@@ -78,6 +129,9 @@
 
 -(void)saveVisitation{
    // [_patientData addVisitToCurrentPatient:_control1.visitationData];
+    visitationHasBeenSaved = YES;
+    [_tableView setScrollEnabled:NO];
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -106,12 +160,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * currentDiagnosisCellIdentifier = @"currentDiagnosisCell";
     static NSString * previousVisitsCellIdentifier = @"previousVisitsCell";
+    static NSString * currentVisitCellIdentifier = @"prescriptionCell";
+    static NSString * medicineSearchCellIdentifier = @"medicineSearchCell";
     
     if(indexPath.item == 0) {
         CurrentDiagnosisTableCell * cell = [tableView dequeueReusableCellWithIdentifier:currentDiagnosisCellIdentifier];
@@ -137,7 +193,7 @@
         
         return cell;
     }
-    else {
+    else if(indexPath.item == 1){
         PreviousVisitsTableCell * cell = [tableView dequeueReusableCellWithIdentifier:previousVisitsCellIdentifier];
         
         if(!cell){
@@ -160,11 +216,47 @@
         
         return cell;
     }
-    
+    else if(indexPath.item == 2) {
+        PharamcyPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
+        
+        if (!cell) {
+            cell = [[PharamcyPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
+            cell.viewController = _precriptionViewController;
+        }
+        
+        CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+        cell.viewController.view.transform = transform;
+        cell.viewController.view.frame = CGRectMake(-20, -15, 768, 700);
+        
+        for(UIView *mView in [cell.contentView subviews]) {
+            [mView removeFromSuperview];
+        }
+        
+        [cell addSubview:cell.viewController.view];
+        
+        return cell;
+    }
+    else{
+        MedicineSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:medicineSearchCellIdentifier];
+        
+        if(!cell){
+            cell = [[MedicineSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:medicineSearchCellIdentifier];
+            cell.viewController = _medicineViewController;
+        }
+        
+        CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
+        cell.viewController.view.transform = transform;
+        cell.viewController.view.frame = CGRectMake(-50, 40, 768, 700);
+        
+        for(UIView *mView in [cell.contentView subviews]) {
+            [mView removeFromSuperview];
+        }
+        
+        [cell addSubview: cell.viewController.view];
+        
+        return cell;
+    }
 }
-
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//}
 
 - (void)setScreenHandler:(ScreenHandler)myHandler{
     handler = myHandler;
@@ -191,6 +283,9 @@
               targetContentOffset:(inout CGPoint *)targetContentOffset {
     int cellHeight = 768;
     
+    if(!visitationHasBeenSaved && (int)targetContentOffset->y >= 2*cellHeight)
+        *targetContentOffset = CGPointMake(targetContentOffset->x, 2*cellHeight);
+
     if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
         *targetContentOffset = CGPointMake(targetContentOffset->x,
                                            targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));

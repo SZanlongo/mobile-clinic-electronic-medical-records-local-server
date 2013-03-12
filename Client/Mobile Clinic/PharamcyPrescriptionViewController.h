@@ -28,6 +28,7 @@
 - (IBAction)newTimeOfDay:(id)sender;
 - (IBAction)savePrescription:(id)sender;
 
+-(void)deactivateControllerFields;
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end
