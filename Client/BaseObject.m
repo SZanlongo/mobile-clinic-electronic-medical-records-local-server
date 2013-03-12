@@ -62,7 +62,7 @@
 
     [consolidate setValue:[self.databaseObject dictionaryWithValuesForKeys:self.databaseObject.entity.attributesByName.allKeys] forKey:DATABASEOBJECT];
     [consolidate setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
-    [consolidate setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
+    //[consolidate setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
     return consolidate;
 }
 

@@ -231,7 +231,7 @@ ServerCallback onComplete;
     [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
     //finalize archiving
     [archiver finishEncoding];
-
+    NSLog(@"Server did Send data %i",globalData.length);
 	[asyncSocket writeData:globalData withTimeout:-1 tag:10];
 	
 }
