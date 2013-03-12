@@ -56,6 +56,16 @@
     [super viewDidUnload];
 }
 
+-(void)deactivateControllerFields{
+    [_doctorsDiagnosis setEditable:NO];
+    [_tabletsTextField setEnabled:NO];
+    [_timeOfDayTextFields setEnabled:NO];
+    
+    for(int i = 0; i <[_timeOfDayButtons count]; i++){
+        [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setEnabled:NO];
+    }
+}
+
 - (IBAction)findDrugs:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
 }

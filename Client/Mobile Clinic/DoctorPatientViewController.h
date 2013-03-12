@@ -9,15 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "CurrentDiagnosisTableCell.h"
 #import "PreviousVisitsTableCell.h"
+#import "PharamcyPrescriptionViewController.h"
+#import "MedicineSearchViewController.h"
+#import "PharamcyPrescriptionCell.h"
+#import "MedicineSearchCell.h"
+#import "MobileClinicFacade.h"
 
 @interface DoctorPatientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     ScreenHandler handler;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *  patientData;
-@property (strong, nonatomic) VisitationObject * visitationData;
+@property (strong, nonatomic) NSMutableDictionary * visitationData;
+@property (strong, nonatomic) NSMutableDictionary * prescriptionData;
 @property (strong, nonatomic) CurrentDiagnosisViewController * control1;
 @property (strong, nonatomic) PreviousVisitsViewController * control2;
+@property (nonatomic, strong) PharamcyPrescriptionViewController * precriptionViewController;
+@property (nonatomic, strong) MedicineSearchViewController * medicineViewController;
 
 @property (weak, nonatomic) IBOutlet UITextField *patientNameField;
 @property (weak, nonatomic) IBOutlet UITextField *familyNameField;
