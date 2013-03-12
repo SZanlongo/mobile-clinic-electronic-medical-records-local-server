@@ -84,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0o8-64-UtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4523" y="-2106"/>
+            <point key="canvasLocation" x="-4571" y="-2082"/>
         </scene>
         <!--Table View Controller - Root View Controller-->
         <scene sceneID="Rhq-ke-Q5g">
@@ -144,7 +144,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42u-c6-gV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3483" y="-3809"/>
+            <point key="canvasLocation" x="-3655" y="-4854"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="iVL-oP-1h5">
@@ -177,7 +177,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mn6-ty-jiZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2764" y="-3809"/>
+            <point key="canvasLocation" x="-2936" y="-4854"/>
         </scene>
         <!--Search Patient View Controller - Search-->
         <scene sceneID="N6E-Bk-1aJ">
@@ -323,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sPv-ra-j8U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="-4746"/>
+            <point key="canvasLocation" x="-511" y="-4746"/>
         </scene>
         <!--Previous Visits View Controller - Previous Visit-->
         <scene sceneID="6VF-Cz-cgB">
@@ -466,7 +466,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhU-xK-0WO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2350" y="-4515"/>
+            <point key="canvasLocation" x="1966" y="-4515"/>
         </scene>
         <!--Current Visit View Controller - Current Visit-->
         <scene sceneID="vfe-ac-97b">
@@ -602,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhc-ST-MPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="-4515"/>
+            <point key="canvasLocation" x="1052" y="-4515"/>
         </scene>
         <!--Station View Controller - Change Station-->
         <scene sceneID="48z-Ya-HO0">
@@ -664,21 +664,6 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l08-Np-L3f">
-                                <rect key="frame" x="592" y="508" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="PPP-xq-jTq" kind="push" id="Dkb-Rn-xYK"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -693,7 +678,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1np-HY-Zx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2415" y="-2075"/>
+            <point key="canvasLocation" x="-2403" y="-2082"/>
         </scene>
         <!--Generic Start View Controller-->
         <scene sceneID="2Vk-kW-nEn">
@@ -740,32 +725,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hu-ry-bHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-912" y="-2075"/>
+            <point key="canvasLocation" x="-948" y="-3537"/>
         </scene>
         <!--Patient Queue View Controller-->
         <scene sceneID="skW-tX-e2a">
             <objects>
                 <viewController storyboardIdentifier="patientQueueViewController" id="PPP-xq-jTq" customClass="PatientQueueViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hYX-ZI-bZg">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Patient Queue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OqD-GA-CZH">
-                                <rect key="frame" x="197" y="19" width="374" height="59"/>
+                                <rect key="frame" x="197" y="20" width="374" height="59"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="43"/>
                                 <color key="textColor" red="0.39096380739999997" green="0.39096380739999997" blue="0.39096380739999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="4gW-xJ-gYh">
-                                <rect key="frame" x="72" y="93" width="625" height="805"/>
+                                <rect key="frame" x="72" y="93" width="625" height="849"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="queueCell" rowHeight="75" id="Vge-9V-3xX" customClass="QueueTableCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="queueCell" rowHeight="75" id="Vge-9V-3xX" customClass="QueueTableCell">
                                         <rect key="frame" x="0.0" y="22" width="625" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="625" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="605" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="zuL-8v-n0u">
@@ -790,6 +775,13 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="go7-Ef-BnG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="75"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -798,6 +790,7 @@
                                             <outlet property="patientDOB" destination="dNX-bf-ZIh" id="fOv-mJ-AlU"/>
                                             <outlet property="patientName" destination="e0Q-ke-f73" id="rIE-JM-hK3"/>
                                             <outlet property="patientPhoto" destination="zuL-8v-n0u" id="21z-o2-L0s"/>
+                                            <outlet property="priorityIndicator" destination="go7-Ef-BnG" id="fIO-pg-QEg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -816,7 +809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="si4-J8-CIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298" y="-2075"/>
+            <point key="canvasLocation" x="-948" y="-2082"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0qa-8z-TKD">
@@ -831,7 +824,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omo-f8-06g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3495" y="-2075"/>
+            <point key="canvasLocation" x="-3491" y="-2082"/>
         </scene>
         <!--Doctor Patient View Controller - Diagnosis-->
         <scene sceneID="9hY-Te-Soj">
@@ -1009,7 +1002,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GRV-kd-o0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="-2082"/>
+            <point key="canvasLocation" x="1052" y="-2082"/>
         </scene>
         <!--Pharmacy Patient View Controller - Pharmacy-->
         <scene sceneID="Jev-F2-BS6">
@@ -1129,7 +1122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAr-bH-USm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="-549"/>
+            <point key="canvasLocation" x="1052" y="-549"/>
         </scene>
         <!--Register Patient View Controller - Register Patient-->
         <scene sceneID="GBf-St-TNM">
@@ -1255,7 +1248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vwe-Ft-fgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-570" y="-4746"/>
+            <point key="canvasLocation" x="-1385" y="-4746"/>
         </scene>
         <!--Date Controller-->
         <scene sceneID="FQf-4H-R94">
@@ -1338,7 +1331,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAd-l6-bLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-91" y="-5254"/>
+            <point key="canvasLocation" x="-897" y="-5242"/>
         </scene>
         <!--Current Diagnosis View Controller-->
         <scene sceneID="DUp-td-RKP">
@@ -1404,7 +1397,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxl-6X-EOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2350" y="-2082"/>
+            <point key="canvasLocation" x="1966" y="-2082"/>
         </scene>
         <!--Triage Patient View Controller - Visit-->
         <scene sceneID="n9R-pB-Rwb">
@@ -1577,7 +1570,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAE-l1-sXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="-3537"/>
+            <point key="canvasLocation" x="1052" y="-3537"/>
         </scene>
         <!--Pharamcy Prescription View Controller-->
         <scene sceneID="EDj-98-lUl">
@@ -1731,7 +1724,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CwY-KQ-xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2350" y="-549"/>
+            <point key="canvasLocation" x="1966" y="-543"/>
         </scene>
         <!--Medicine Search View Controller - Search-->
         <scene sceneID="cYc-vb-L8X">
@@ -1810,7 +1803,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nck-as-ZrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3256" y="-544"/>
+            <point key="canvasLocation" x="2872" y="-538"/>
         </scene>
     </scenes>
     <resources>
@@ -1821,6 +1814,203 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="night.png" width="176" height="134"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
+    <classes>
+        <class className="CurrentDiagnosisViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentDiagnosisViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitButton:"/>
+                <relationship kind="outlet" name="conditionsTextbox" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="diagnosisTextbox" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="view" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="CurrentVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentVisitViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="checkInButton:"/>
+                <relationship kind="action" name="quickCheckOutButton:"/>
+                <relationship kind="outlet" name="conditionsTextbox" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="heartField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="respirationField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="visitPriority" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="DateController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveNewDate:"/>
+                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="DoctorPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentClicked:"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="GenericStartViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericStartViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentClicked:"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButton:"/>
+                <relationship kind="action" name="move:"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MedicineSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicineSearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="moveBackToPrescription:"/>
+                <relationship kind="action" name="searchMedicine:"/>
+                <relationship kind="outlet" name="medicineField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PatientHistoryTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientHistoryTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientConditionsTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="patientDOBLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientHeartLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientMedicationTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="patientRespirationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientQueueViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientQueueViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="queueTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PatientResultTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientResultTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientAge" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientDOB" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PharamcyPrescriptionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PharamcyPrescriptionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="findDrugs:"/>
+                <relationship kind="action" name="newTimeOfDay:"/>
+                <relationship kind="action" name="savePrescription:"/>
+                <relationship kind="outlet" name="doctorsDiagnosis" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="drugTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tabletsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="timeOfDayTextFields" candidateClass="UITextField"/>
+                <relationship kind="outletCollection" name="timeOfDayButtons" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PharmacyPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PharmacyPatientViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PreviousVisitsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousVisitsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientHistoryTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="QueueTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QueueTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientAge" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientDOB" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="priorityIndicator" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="RegisterPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createPatient:"/>
+                <relationship kind="action" name="getAgeOfPatient:"/>
+                <relationship kind="action" name="patientPhotoButton:"/>
+                <relationship kind="outlet" name="createPatientButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SearchPatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchPatientViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="searchByFingerprintButton:"/>
+                <relationship kind="action" name="searchByNFCButton:"/>
+                <relationship kind="action" name="searchByNameButton:"/>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="searchResultTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="StationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doctorButton:"/>
+                <relationship kind="action" name="logout:"/>
+                <relationship kind="action" name="pharmacyButton:"/>
+                <relationship kind="action" name="triageButton:"/>
+            </relationships>
+        </class>
+        <class className="TriagePatientViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriagePatientViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

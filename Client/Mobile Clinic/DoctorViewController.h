@@ -14,8 +14,6 @@
     ScreenHandler handler;
 }
 
-
-
 @property (strong, nonatomic) SearchPatientViewController * viewController;
 @property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) SearchPatientViewController * control;

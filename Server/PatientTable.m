@@ -21,33 +21,36 @@
     if (self) {
         patientsHandler = [[PatientObject alloc]init];
         visitsHandler = [[VisitationObject alloc]init];
-        patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
-       
-        BaseObject* base = [[BaseObject alloc]init];
-       
-        allItems = [[NSMutableArray alloc]init];
-        
-        for (Patients* p in patientList) {
-          
-            NSDictionary* pDic = [base getDictionaryValuesFromManagedObject:p];
-           
-            NSArray* temp = [visitsHandler getVisitsForPatientWithID:[p valueForKey:PATIENTID]];
-           
-            NSMutableArray* allVisits = [[NSMutableArray alloc]initWithCapacity:temp.count];
-            
-            for (Visitation* v in temp) {
-                // Place all visits into array
-                [allVisits addObject: [base getDictionaryValuesFromManagedObject:v]];      
-            }
-            
-            [pDic setValue:allVisits forKey:INNER];
-            
-            [allItems addObject:pDic];
-        }
-        [_patientDirectory reloadColumn:0];
-       // [_patientTable reloadData];
+        [self reloadData];
     }
     return self;
+}
+
+-(void)reloadData{
+    patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
+    
+    BaseObject* base = [[BaseObject alloc]init];
+    
+    allItems = [[NSMutableArray alloc]init];
+    
+    for (Patients* p in patientList) {
+        
+        NSDictionary* pDic = [base getDictionaryValuesFromManagedObject:p];
+        
+        NSArray* temp = [visitsHandler getVisitsForPatientWithID:[p valueForKey:PATIENTID]];
+        
+        NSMutableArray* allVisits = [[NSMutableArray alloc]initWithCapacity:temp.count];
+        
+        for (Visitation* v in temp) {
+            // Place all visits into array
+            [allVisits addObject: [base getDictionaryValuesFromManagedObject:v]];
+        }
+        
+        [pDic setValue:allVisits forKey:INNER];
+        
+        [allItems addObject:pDic];
+    }
+    [_patientDirectory loadColumnZero];
 }
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
@@ -96,24 +99,26 @@
             return [NSString stringWithFormat:@"%@",[item objectForKey:CONDITION]];
         }
     }
-
+    return nil;
+}
+-(BOOL)browser:(NSBrowser *)sender selectRow:(NSInteger)row inColumn:(NSInteger)column{
+    selectedRow = row;
+    return YES;
 }
 
-
 - (IBAction)refreshPatients:(id)sender {
-    patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
-    [_patientTable reloadData];
+    [self reloadData];
 }
 
 - (IBAction)unblockPatients:(id)sender {
     patient = [patientList objectAtIndex:selectedRow];
     [patient setValue:@"" forKey:ISLOCKEDBY];
     [patientsHandler SaveCurrentObjectToDatabase:patient];
-    [_patientTable deselectRow:selectedRow];
     patient = nil;
 }
 
 - (IBAction)pushPatientsIntoCloud:(id)sender {
     
 }
+
 @end

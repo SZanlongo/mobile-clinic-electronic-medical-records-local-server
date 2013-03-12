@@ -88,7 +88,12 @@ FIUAppDelegate* appDelegate;
 // Updates a visitation record and locks it depend the Bool variable
 -(void)updateVisitRecord:(NSDictionary *)visitRecord andShouldUnlock:(BOOL)unlock andShouldCloseVisit:(BOOL)closeVisit onCompletion:(MobileClinicCommandResponse)Response{
    
-    VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObject:[visitRecord objectForKey:VISITID] inDatabase:[VisitationObject DatabaseName] forAttribute:VISITID withUpdatedObject:visitRecord];
+    NSMutableDictionary* temp = [NSMutableDictionary dictionaryWithDictionary:visitRecord];
+   
+    // Just in case people become silly
+    [temp removeObjectForKey:OPEN_VISITS_PATIENT];
+    
+    VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObject:[visitRecord objectForKey:VISITID] inDatabase:[VisitationObject DatabaseName] forAttribute:VISITID withUpdatedObject:temp];
    
     [vObject shouldSetCurrentVisitToOpen:closeVisit];
    
@@ -148,5 +153,20 @@ FIUAppDelegate* appDelegate;
     [prescript UpdateObjectAndShouldLock:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
          Response([data getDictionaryValuesFromManagedObject],error);
     }];
+}
+-(void)addNewPrescription:(NSDictionary *)Rx ForCurrentVisit:(NSDictionary *)visit AndlockVisit:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
+   
+    PrescriptionObject* prescript = [[PrescriptionObject alloc]initWithNewDatabaseObject:[PrescriptionObject DatabaseName]];
+    
+    [prescript setValueToDictionaryValues:Rx];
+   
+    [prescript setObject:[visit objectForKey:VISITID] withAttribute:VISITID];
+    
+    [prescript associatePrescriptionToVisit:[visit objectForKey:VISITID]];
+    
+    [prescript UpdateObjectAndShouldLock:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
+        Response([data getDictionaryValuesFromManagedObject],error);
+    }];
+
 }
 @end
