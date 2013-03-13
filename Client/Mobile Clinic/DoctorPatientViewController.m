@@ -33,6 +33,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Set navbar color
     UINavigationBar *bar =[self.navigationController navigationBar];
     [bar setTintColor:[UIColor blueColor]];
     
@@ -45,20 +46,18 @@
     _tableView.dataSource = self;
     
     // Create controllers for each view
-    _diagnosisViewController = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
-    _previousVisitViewController = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
+    [self setControllers];
+    [self instantiateViews];
+
+    // Pass patient visit dictionary to dependant views
+    [_diagnosisViewController setPatientData:_patientData];
+    [_previousVisitViewController setPatientData:_patientData];
     
-    _precriptionViewController = [self getViewControllerFromiPadStoryboardWithName:@"prescriptionFormViewController"];
-    [_precriptionViewController view];
-    _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
-    [_medicineViewController view];
-    
-//    _visitationData = [[VisitationObject alloc] initWithNewVisit];
-    
+    // Extract patient name/village/etc from visit dictionary
     NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
     
     // Populate patient info
-    id data = [_patientData objectForKey:PICTURE];
+    id data = [_patientData objectForKey:PICTURE];      
     [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
     
     _patientNameField.text = [patientDic objectForKey:FIRSTNAME];
@@ -70,24 +69,24 @@
     // Populate patient's vitals from triage
     _patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[_patientData objectForKey:WEIGHT]doubleValue]];
     _patientBPLabel.text = [_patientData objectForKey:BLOODPRESSURE];
+//    _patientHRLabel.text = [_patientData objectForKey:HEARTRATE];
+//    _patientRespirationLabel.text = [_patientData objectForKey:RESPIRATION];
+//    _patientTempLabel.text = [_patientData objectForKey:TEMPERATURE];
     
-    [_diagnosisViewController view];
-    [_diagnosisViewController setPatientData:_patientData];
-    [_previousVisitViewController view];
-    [_previousVisitViewController setPatientData:_patientData];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation) name:SAVE_VISITATION object:_patientData];
-//    [_diagnosisViewController.submitButton addTarget:self action:@selector(saveVisitation) forControlEvents:UIControlEventTouchUpInside];
+    // Diagnosis notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation:) name:SAVE_VISITATION object:_patientData];
     self.originalCenter = self.view.center;
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
-    // Pharmacy notifications
+    // Prescription notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideFromSearchMedicine) name:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
     
     visitationHasBeenSaved = NO;
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+
 }
 
 - (void)setControllers {
@@ -97,11 +96,26 @@
     _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
 }
 
-- (void)instatiateViews {
-    [_precriptionViewController view];
-    [_medicineViewController view];
+- (void)instantiateViews {
     [_diagnosisViewController view];
     [_previousVisitViewController view];
+    [_precriptionViewController view];
+    [_medicineViewController view];
+}
+
+- (void)saveVisitation:(NSNotification *)note {
+    _patientData = note.object;
+    
+    MobileClinicFacade *mobileFacade = [[MobileClinicFacade alloc]init];
+    [mobileFacade updateVisitRecord:_patientData andShouldUnlock:NO andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
+        if(!object)
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        else{
+            visitationHasBeenSaved = YES;
+            [_tableView setScrollEnabled:NO];
+            [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+    }];
 }
 
 - (void)savePrescription {    
@@ -111,18 +125,15 @@
     [_prescriptionData setObject:_precriptionViewController.timeOfDayTextFields.text forKey:TIMEOFDAY];
     [_prescriptionData setObject:[_visitationData objectForKey:VISITID] forKey:VISITID];
 //    [_prescriptionData setObject:@"" forKey:PRESCRIPTIONID];
+    
     MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
 
-    [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
-                    
-        if (!object) {
+    [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {                    
+        if (!object)
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        }else{
-                handler(object,error);
-        }
+        else
+            [self.navigationController popViewControllerAnimated:YES];
     }];
-
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)slideToSearchMedicine {
@@ -144,24 +155,7 @@
     self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
 }
 
-- (void)saveVisitation:(NSNotification *)note {
-    _patientData = note.object;
-    
-    MobileClinicFacade *mobileFacade = [[MobileClinicFacade alloc]init];
-    [mobileFacade updateVisitRecord:_patientData andShouldUnlock:YES andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
-        if(!object)
-            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        else
-            handler(object, error);
-    }];
-    
-//    _patientData addVisitToCurrentPatient:_control1.visitationData];
-    
-    visitationHasBeenSaved = YES;
-    [_tableView setScrollEnabled:NO];
-    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
+// SAVE VISITATION
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -177,8 +171,11 @@
     [self setPatientPhoto:nil];
     [self setPatientWeightLabel:nil];
     [self setPatientBPLabel:nil];
+    [self setPatientHRLabel:nil];
+    [self setPatientRespirationLabel:nil];
     [self setTableView:nil];
     [self setToolBar:nil];
+    [self setPatientTempLabel:nil];
     [super viewDidUnload];
 }
 
@@ -217,6 +214,8 @@
         
         [_segmentedControl setEnabled:YES forSegmentAtIndex:0];
         
+        [_segmentedControl setHidden:NO];
+        
         return cell;
     }
     else if(indexPath.item == 1){
@@ -239,9 +238,13 @@
         
         [_segmentedControl setEnabled:YES forSegmentAtIndex:1];
         
+        [_segmentedControl setHidden:NO];
+        
         return cell;
     }
     else if(indexPath.item == 2) {
+        
+        
         PharamcyPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
         
         if (!cell) {
@@ -258,6 +261,8 @@
         }
         
         [cell addSubview:cell.viewController.view];
+        
+        [_segmentedControl setHidden:YES];
         
         return cell;
     }
@@ -301,22 +306,18 @@
     [self.tableView reloadData];
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                     withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset {
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)offset {
     int cellHeight = 768;
     
-    if(!visitationHasBeenSaved && (int)targetContentOffset->y >= 2*cellHeight)
-        *targetContentOffset = CGPointMake(targetContentOffset->x, 2*cellHeight);
-
-    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+    if(!visitationHasBeenSaved && (int)offset->y >= 1 * cellHeight)
+        *offset = CGPointMake(offset->x, 1*cellHeight);
+    
+    if(((int)offset->y) % (cellHeight) > cellHeight/2){
+        *offset = CGPointMake(offset->x, offset->y + (cellHeight - (((int)offset->y) % (cellHeight))));
         self.segmentedControl.selectedSegmentIndex = 1;
     }
     else{
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+        *offset = CGPointMake(offset->x, offset->y - (((int)offset->y) % (cellHeight)));
         self.segmentedControl.selectedSegmentIndex = 0;
     }
 }

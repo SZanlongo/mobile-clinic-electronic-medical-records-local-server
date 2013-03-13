@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _visitationData = [[VisitationObject alloc]init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,8 +50,11 @@
 - (IBAction)submitButton:(id)sender {
     //set visitiation diag
     if (self.validateDiagnosis) {
-        [_visitationData setObject:_diagnosisTextbox.text withAttribute:OBSERVATION];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
+        [_patientData setObject:_diagnosisTextbox.text forKey:OBSERVATION];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_patientData];
+        
+//        [_visitationData setObject:_diagnosisTextbox.text withAttribute:OBSERVATION];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
 //        handler(self,nil);
     }
 }
@@ -76,7 +80,7 @@
     return inputIsValid;
 }
 
--(void)setScreenHandler:(ScreenHandler)myHandler{
+- (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
 

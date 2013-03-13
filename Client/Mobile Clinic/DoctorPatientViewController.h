@@ -37,6 +37,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *patientWeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *patientBPLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientHRLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientRespirationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *patientTempLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;

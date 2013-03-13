@@ -10,7 +10,7 @@
 #define PRESCRIBETIME   @"prescribedTime"
 #define TABLEPERDAY     @"tabletPerDay"
 #define TIMEOFDAY       @"timeOfDay"
-#define VISITID         @"visitId"
+#define VISITID         @"visitationId"
 #define PRESCRIPTIONID  @"prescriptionId"
 
 #import <Foundation/Foundation.h>
