@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) PrescriptionObject * prescriptionData;
 
-@property (weak, nonatomic) IBOutlet UITextView *doctorsDiagnosis;
+@property (weak, nonatomic) IBOutlet UITextView *medicationNotes;
 @property (weak, nonatomic) IBOutlet UITextField *tabletsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *timeOfDayTextFields;
 @property (weak, nonatomic) IBOutlet UITextField *drugTextField;
