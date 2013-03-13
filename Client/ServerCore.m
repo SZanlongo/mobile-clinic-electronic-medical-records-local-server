@@ -17,10 +17,11 @@ ServerCallback onComplete;
 - (void)connectToNextAddress;
 @end
 
+static ServerCore *sharedMyManager = nil;
 @implementation ServerCore
 
 +(id)sharedInstance{
-    static ServerCore *sharedMyManager = nil;
+    
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{

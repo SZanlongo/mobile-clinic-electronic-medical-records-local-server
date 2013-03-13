@@ -10,8 +10,11 @@
 
 typedef void (^ClientServerConnect) (BOOL isConnected);
 typedef void (^ServerCallback)(id data);
+
 @protocol ServerProtocol <NSObject>
+
 @required
++ (id)sharedInstance;
 - (void) startClient;
 - (void) stopClient;
 - (void)sendData:(NSDictionary*)dataToBeSent withOnComplete:(ServerCallback)response;

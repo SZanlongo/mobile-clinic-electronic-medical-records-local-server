@@ -59,26 +59,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BaseObject.m"
-         timestampString = "384756997.383504"
+         filePath = "ServerCore.m"
+         timestampString = "384840625.385739"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "175"
-         endingLineNumber = "175"
-         landmarkName = "-UpdateObject:andSendObjects:forDatabase:withAttribute:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/PatientQueueViewController.m"
-         timestampString = "384744293.020276"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         startingLineNumber = "192"
+         endingLineNumber = "192"
+         landmarkName = "-socket:didReadData:withTag:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

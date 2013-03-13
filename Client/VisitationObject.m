@@ -146,7 +146,7 @@
 -(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response{
 
     if (shouldLock) {
-        [self.databaseObject setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
+        [self.databaseObject setValue:[BaseObject getCurrenUserName] forKey:ISLOCKEDBY];
     }else{
         [self.databaseObject setValue:@"" forKey:ISLOCKEDBY];
     }
@@ -154,7 +154,7 @@
     NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
     
     [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
-    [dataToSend setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
+    [dataToSend setValue:[BaseObject getCurrenUserName] forKey:ISLOCKEDBY];
     
     [super UpdateObject:response andSendObjects:dataToSend forDatabase:DATABASE withAttribute:VISITID];
 }

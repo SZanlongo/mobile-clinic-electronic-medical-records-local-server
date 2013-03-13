@@ -67,7 +67,7 @@
 // Pushed to base & refactor
 -(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response{
    
-    NSString* username = self.appDelegate.currentUserName;
+    NSString* username = [BaseObject getCurrenUserName];
 
     [self.databaseObject setValue:(shouldLock)?username:@"" forKey:ISLOCKEDBY];
     

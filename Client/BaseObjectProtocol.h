@@ -13,6 +13,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "ServerProtocol.h"
 /* These are all the classes the server and client will know how to handle */
 typedef enum {
     kUserType       = 1,

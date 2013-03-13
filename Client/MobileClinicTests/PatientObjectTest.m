@@ -10,7 +10,7 @@
 #import "ServerCore.h"
 
 @interface PatientObjectTest: GHAsyncTestCase {
-    PatientObject* patient;
+   
     ServerCore* server;
 }
 
@@ -25,7 +25,7 @@
 }
 
 - (void)setUpClass {
-    //server = [[ServerCore alloc]init];
+    server = [[ServerCore alloc]init];
    // [server startClient];
 }
 

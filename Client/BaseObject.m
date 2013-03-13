@@ -6,14 +6,23 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
-#import "BaseObject.h"
 #define MAX_NUMBER_ITEMS 4
+
+#import "BaseObject.h"
+#import "ServerCore.h"
 #import "StatusObject.h"
+
+id<ServerProtocol> serverManager;
 
 @implementation BaseObject
 @synthesize databaseObject;
+
+
 #pragma mark- Init Methods
 #pragma mark-
++(NSString *)getCurrenUserName{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:CURRENT_USER];
+}
 - (id)initWithDatabase:(NSString*)database
 {
     self = [super init];
@@ -61,7 +70,7 @@
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
 
     [consolidate setValue:[self.databaseObject dictionaryWithValuesForKeys:self.databaseObject.entity.attributesByName.allKeys] forKey:DATABASEOBJECT];
-    [consolidate setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
+    [consolidate setValue:[BaseObject getCurrenUserName] forKey:ISLOCKEDBY];
     //[consolidate setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
     return consolidate;
 }
@@ -132,9 +141,12 @@
 
 -(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse{
     
-    if ([self.appDelegate.ServerManager isClientConntectToServer]) {
+    if (!serverManager) 
+        serverManager = [ServerCore sharedInstance];
+    
+    if ([serverManager isClientConntectToServer]) {
         // Sending information to the server
-        [self.appDelegate.ServerManager sendData:data withOnComplete:posResponse];
+        [serverManager sendData:data withOnComplete:posResponse];
     }else{
         negativeResponse(nil,[self createErrorWithDescription:@"Server is Down, Please contact you Application Administrator" andErrorCodeNumber:10 inDomain:@"BaseObject"]);
     }

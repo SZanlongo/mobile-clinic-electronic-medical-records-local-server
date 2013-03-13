@@ -33,6 +33,9 @@ PatientTable* pTable;
 {
     
     [self managedObjectContext];
+   
+}
+-(void)SetupWithFictitiousPatients{
     // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
     // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
     NSError* err = nil;
@@ -50,26 +53,42 @@ PatientTable* pTable;
                                     inManagedObjectContext:_managedObjectContext];
         NSDictionary* dic = [NSDictionary dictionaryWithDictionary:obj];
         
-        failedBankInfo.age = [NSDate dateWithString:[dic valueForKey:@"age"]];
-        failedBankInfo.firstName = [dic valueForKey:@"firstName"];
-        failedBankInfo.familyName = [dic valueForKey:@"familyName"];
-        failedBankInfo.isLockedBy = [dic valueForKey:@"isLockedBy"];
-        failedBankInfo.patientId = [dic valueForKey:@"patientId"];
-        failedBankInfo.photo = nil;
-        failedBankInfo.sex = [dic valueForKey:@"sex"];
-        failedBankInfo.status = [dic valueForKey:@"status"];
-        failedBankInfo.villageName = [dic valueForKey:@"villageName"];
-        NSError *error;
+        BaseObject* base = [[BaseObject alloc]init];
         
-        if (![_managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        if ([base loadObjectForID:[dic valueForKey:@"patientId"] inDatabase:PATIENTID forAttribute:PATIENTID]) {
+            
+            failedBankInfo.age = [NSDate dateWithString:[dic valueForKey:@"age"]];
+            
+            failedBankInfo.firstName = [dic valueForKey:@"firstName"];
+            
+            failedBankInfo.familyName = [dic valueForKey:@"familyName"];
+            
+            failedBankInfo.isLockedBy = [dic valueForKey:@"isLockedBy"];
+            
+            failedBankInfo.patientId = [dic valueForKey:@"patientId"];
+            
+            failedBankInfo.photo = nil;
+            
+            failedBankInfo.sex = [dic valueForKey:@"sex"];
+            
+            failedBankInfo.status = [dic valueForKey:@"status"];
+            
+            failedBankInfo.villageName = [dic valueForKey:@"villageName"];
+            
+            NSError *error;
+            
+            if (![_managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                
+            }
+            
         }
     }];
     
     BaseObject * obj = [[BaseObject alloc] init];
     
     NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
-
+    
     [mDic setObject:@"pooop" forKey:@"userName"];
     [mDic setObject:@"poooop" forKey:@"password"];
     [mDic setObject:@"poop" forKey:@"firstName"];
@@ -79,10 +98,9 @@ PatientTable* pTable;
     [mDic setObject:@"1" forKey:@"status"];
     [mDic setObject:@"asd" forKey:@"remember_token"];
     [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-
+        
     }];
 }
-
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.
 - (NSURL *)applicationFilesDirectory
 {
@@ -176,6 +194,7 @@ PatientTable* pTable;
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     
+    [self SetupWithFictitiousPatients];
  [[NSNotificationCenter defaultCenter]postNotificationName:APPDELEGATE_STARTED object:self];
     return _managedObjectContext;
 }

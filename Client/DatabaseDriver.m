@@ -8,11 +8,16 @@
 
 #import "DatabaseDriver.h"
 
+NSManagedObjectContext* context;
 @implementation DatabaseDriver
-@synthesize appDelegate;
+//@synthesize appDelegate;
+@synthesize database;
+
 -(id)init{
     if (self = [super init]) {
-        appDelegate = (FIUAppDelegate*)[[UIApplication sharedApplication]delegate];
+        //appDelegate = (FIUAppDelegate*)[[UIApplication sharedApplication]delegate];
+        database = [Database sharedInstance];
+        context = database.managedObjectContext;
     }
 return self;
 }
@@ -38,16 +43,16 @@ return self;
 }
 
 -(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name isTemporary:(BOOL)temporary{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:appDelegate.managedObjectContext];
-    return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:(temporary)?nil:appDelegate.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:context];
+    return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:(temporary)?nil:context];
 }
 
 -(void)SaveCurrentObjectToDatabase{
-    [appDelegate saveContext];
+    [database saveContext];
 }
 -(void)SaveAndRefreshObjectToDatabase:(NSManagedObject *)object{
     [self SaveCurrentObjectToDatabase];
-    [appDelegate.managedObjectContext refreshObject:object mergeChanges:YES];
+    [context refreshObject:object mergeChanges:YES];
 }
 -(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute{
 
@@ -69,10 +74,8 @@ return self;
 
 -(NSArray*)fetchElementsUsingFetchRequest:(NSFetchRequest*)request withTable:(NSString*)tableName{
     
-     NSManagedObjectContext* ctx = appDelegate.managedObjectContext;
-    
-    if (ctx) {
-        NSEntityDescription* semesterEntity = [NSEntityDescription entityForName:tableName inManagedObjectContext: ctx];
+    if (context) {
+        NSEntityDescription* semesterEntity = [NSEntityDescription entityForName:tableName inManagedObjectContext: context];
 
         [request setEntity:semesterEntity];
         
@@ -80,7 +83,7 @@ return self;
         
         NSError *error  = nil;
         
-        NSArray*  temp = [NSArray arrayWithArray: [ctx executeFetchRequest:request error:&error]];
+        NSArray*  temp = [NSArray arrayWithArray: [context executeFetchRequest:request error:&error]];
         
         if (error) {
             NSLog(@"ERROR: DATAMODEL COULD NOT FETCH");
