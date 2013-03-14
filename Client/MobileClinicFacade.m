@@ -53,16 +53,14 @@ FIUAppDelegate* appDelegate;
     }];
 }
 
-// Use to find visits for a given patient. Has no need to lock
--(void)findAllVisitsForCurrentPatient:(NSDictionary *)patientInfo AndOnCompletion:(MobileClinicSearchResponse)Response{
+-(void)updateCurrentPatient:(NSDictionary *)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
     
-    /* Create a temporary Patient Object to make request */
-    VisitationObject* vObject = [[VisitationObject alloc]init];
+    PatientObject* patient = [[PatientObject alloc]initWithCachedObject:[patientInfo objectForKey:PATIENTID] inDatabase:[PatientObject DatabaseName] forAttribute:PATIENTID withUpdatedObject:patientInfo];
     
-    [vObject FindAllVisitsOnServerForPatient:patientInfo OnCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
-        NSArray* allVisits = [NSArray arrayWithArray:[vObject FindAllVisitsForCurrentPatientLocally:patientInfo]];
-        Response(allVisits,error);
+    [patient UpdateAndLockPatientObject:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
+        Response([data getDictionaryValuesFromManagedObject],error);
     }];
+    
 }
 
 // Creates a new visit for a given patient. Has no need to lock
@@ -84,7 +82,6 @@ FIUAppDelegate* appDelegate;
 
 }
 
-
 // Updates a visitation record and locks it depend the Bool variable
 -(void)updateVisitRecord:(NSDictionary *)visitRecord andShouldUnlock:(BOOL)unlock andShouldCloseVisit:(BOOL)closeVisit onCompletion:(MobileClinicCommandResponse)Response{
    
@@ -99,6 +96,18 @@ FIUAppDelegate* appDelegate;
    
     [vObject UpdateObjectAndShouldLock:!unlock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
+    }];
+}
+
+// Use to find visits for a given patient. Has no need to lock
+-(void)findAllVisitsForCurrentPatient:(NSDictionary *)patientInfo AndOnCompletion:(MobileClinicSearchResponse)Response{
+    
+    /* Create a temporary Patient Object to make request */
+    VisitationObject* vObject = [[VisitationObject alloc]init];
+    
+    [vObject FindAllVisitsOnServerForPatient:patientInfo OnCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+        NSArray* allVisits = [NSArray arrayWithArray:[vObject FindAllVisitsForCurrentPatientLocally:patientInfo]];
+        Response(allVisits,error);
     }];
 }
 
@@ -125,14 +134,29 @@ FIUAppDelegate* appDelegate;
     }];
 }
 
--(void)updateCurrentPatient:(NSDictionary *)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
+-(void)addNewPrescription:(NSDictionary *)Rx ForCurrentVisit:(NSDictionary *)visit AndlockVisit:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
     
-    PatientObject* patient = [[PatientObject alloc]initWithCachedObject:[patientInfo objectForKey:PATIENTID] inDatabase:[PatientObject DatabaseName] forAttribute:PATIENTID withUpdatedObject:patientInfo];
-
-    [patient UpdateAndLockPatientObject:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
+    PrescriptionObject* prescript = [[PrescriptionObject alloc]initWithNewDatabaseObject:[PrescriptionObject DatabaseName]];
+    
+    [prescript setValueToDictionaryValues:Rx];
+    
+    [prescript setObject:[visit objectForKey:VISITID] withAttribute:VISITID];
+    
+    [prescript associatePrescriptionToVisit:[visit objectForKey:VISITID]];
+    
+    [prescript UpdateObjectAndShouldLock:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
         Response([data getDictionaryValuesFromManagedObject],error);
     }];
     
+}
+
+-(void)updatePrescription:(NSDictionary*)Rx AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
+    
+    PrescriptionObject* prescript = [[PrescriptionObject alloc]initWithCachedObject:[Rx objectForKey:PRESCRIPTIONID] inDatabase:[PrescriptionObject DatabaseName] forAttribute:PRESCRIPTIONID withUpdatedObject:Rx];
+    
+    [prescript UpdateObjectAndShouldLock:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
+        Response([data getDictionaryValuesFromManagedObject],error);
+    }];
 }
 
 -(void)findAllPrescriptionForCurrentVisit:(NSDictionary *)visit AndOnCompletion:(MobileClinicSearchResponse)Response{
@@ -146,27 +170,4 @@ FIUAppDelegate* appDelegate;
     }];
 }
 
--(void) updatePrescription:(NSDictionary*)Rx AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
-    
-    PrescriptionObject* prescript = [[PrescriptionObject alloc]initWithCachedObject:[Rx objectForKey:PRESCRIPTIONID] inDatabase:[PrescriptionObject DatabaseName] forAttribute:PRESCRIPTIONID withUpdatedObject:Rx];
-   
-    [prescript UpdateObjectAndShouldLock:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
-         Response([data getDictionaryValuesFromManagedObject],error);
-    }];
-}
--(void)addNewPrescription:(NSDictionary *)Rx ForCurrentVisit:(NSDictionary *)visit AndlockVisit:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
-   
-    PrescriptionObject* prescript = [[PrescriptionObject alloc]initWithNewDatabaseObject:[PrescriptionObject DatabaseName]];
-    
-    [prescript setValueToDictionaryValues:Rx];
-   
-    [prescript setObject:[visit objectForKey:VISITID] withAttribute:VISITID];
-    
-    [prescript associatePrescriptionToVisit:[visit objectForKey:VISITID]];
-    
-    [prescript UpdateObjectAndShouldLock:lock onComplete:^(id<BaseObjectProtocol> data, NSError *error) {
-        Response([data getDictionaryValuesFromManagedObject],error);
-    }];
-
-}
 @end

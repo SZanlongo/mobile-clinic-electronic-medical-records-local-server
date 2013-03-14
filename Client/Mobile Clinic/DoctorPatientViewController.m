@@ -86,9 +86,9 @@
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-
 }
 
+// Set controllers used in tableview
 - (void)setControllers {
     _diagnosisViewController = [self getViewControllerFromiPadStoryboardWithName:@"currentDiagnosisViewController"];
     _previousVisitViewController = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
@@ -96,6 +96,7 @@
     _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
 }
 
+// Instantiate views used in tableview
 - (void)instantiateViews {
     [_diagnosisViewController view];
     [_previousVisitViewController view];
@@ -103,6 +104,7 @@
     [_medicineViewController view];
 }
 
+// Save diagnosis and slide view to enter medication
 - (void)saveVisitation:(NSNotification *)note {
     _patientData = note.object;
     
@@ -118,6 +120,7 @@
     }];
 }
 
+// 
 - (void)savePrescription {    
     [_prescriptionData setObject:@"some instructions" forKey:INSTRUCTIONS];
     [_prescriptionData setObject:@"2" forKey:MEDICATIONID];
@@ -154,8 +157,6 @@
 - (void)keyboardDidHide: (NSNotification *) notif {
     self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
 }
-
-// SAVE VISITATION
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

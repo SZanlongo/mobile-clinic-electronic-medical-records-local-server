@@ -70,7 +70,7 @@
 //            NSPredicate * predicate = [NSPredicate predicateWithFormat:predicateString];
 //            queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
             
-            // Sort queue by time patient left doctor's station
+//            // Sort queue by time patient left doctor's station
 //            NSSortDescriptor * sortDescriptor;
 //            sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"doctorOut" ascending:NO];
 //            NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
