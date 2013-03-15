@@ -11,6 +11,7 @@
 #import "ObjectFactory.h"
 ServerCommand onComplete;
 static int TIMEOUT;
+NSMutableData* majorData;
 @implementation ServerCore
 @synthesize isServerRunning;
 +(id)sharedInstance{
@@ -77,7 +78,7 @@ static int TIMEOUT;
             NSLog(@"Error in acceptOnPort:error: -> %@", err);
         }
         
-       // [asyncSocket readDataWithTimeout:-1 tag:30];
+        // [asyncSocket readDataWithTimeout:-1 tag:30];
     }
 }
 -(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port{
@@ -88,7 +89,7 @@ static int TIMEOUT;
 	NSLog(@"Accepted new socket from %@:%hu", [newSocket connectedHost], [newSocket connectedPort]);
 	
 	// The newSocket automatically inherits its delegate & delegateQueue from its parent.
-   
+    
     [newSocket readDataWithTimeout:-1 tag:0];
 	[connectedSockets addObject:newSocket];
 }
@@ -102,7 +103,7 @@ static int TIMEOUT;
 {
     isServerRunning = YES;
 	NSLog(@"Bonjour Service Published: domain(%@) type(%@) name(%@) port(%i)",
-			  [ns domain], [ns type], [ns name], (int)[ns port]);
+          [ns domain], [ns type], [ns name], (int)[ns port]);
 }
 
 - (void)netService:(NSNetService *)ns didNotPublish:(NSDictionary *)errorDict
@@ -112,43 +113,55 @@ static int TIMEOUT;
 	// Note: This method in invoked on our bonjour thread.
 	
 	NSLog(@"Failed to Publish Service: domain(%@) type(%@) name(%@) - %@",
-               [ns domain], [ns type], [ns name], errorDict);
+          [ns domain], [ns type], [ns name], errorDict);
 }
 
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
     
     NSLog(@"Server did accept data %li",data.length);
     
-    NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:data] copyItems:YES];
-
-    if(data) {
-        // ObjectFactory: Used to instatiate the proper class but returns it generically
-      id<BaseObjectProtocol> factoryObject = [ObjectFactory createObjectForType:myDictionary];
+    if (!majorData) {
+        majorData = [[NSMutableData alloc]initWithData:data];
+    }else{
+        [majorData appendData:data];
+    }
+    
+    @try {
         
-        NSLog(@"Dictionary From Client: %@",myDictionary.description);
+        NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:majorData] copyItems:YES];
         
-        [factoryObject ServerCommand:myDictionary withOnComplete:^(NSDictionary *dataToBeSent) {
-   
-            //New mutable data object
-            NSMutableData *data = [[NSMutableData alloc] init];
+        if(majorData) {
+            // ObjectFactory: Used to instatiate the proper class but returns it generically
+            id<BaseObjectProtocol> factoryObject = [ObjectFactory createObjectForType:myDictionary];
             
-            //Created an archiver to serialize dictionary into data object
-            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+            [factoryObject ServerCommand:myDictionary withOnComplete:^(NSDictionary *dataToBeSent) {
+                
+                //New mutable data object
+                NSMutableData *data = [[NSMutableData alloc] init];
+                
+                //Created an archiver to serialize dictionary into data object
+                NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+                
+                //encodes the dataToBeSent into data object
+                [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
+                //finalize archiving
+                [archiver finishEncoding];
+                majorData = nil;
+                //send data
+                NSLog(@"Server Will Send data %li",data.length);
+                [sock writeData:data withTimeout:TIMEOUT tag:10];
+            }];
             
-            //encodes the dataToBeSent into data object
-            [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
-            //finalize archiving
-            [archiver finishEncoding];
-
-            //send data
-            NSLog(@"Server Will Send data %li",data.length);
-            [sock writeData:data withTimeout:TIMEOUT tag:10];
-        }];
-        
-        NSLog(@"Dictionary: %@",[factoryObject description]);
-  
-    } else {
-        NSLog(@"Write Error in Log: Recieved No data");
+            NSLog(@"Dictionary: %@",[factoryObject description]);
+            
+        }
+        else
+        {
+            NSLog(@"Write Error in Log: Recieved No data");
+        }
+    }
+    @catch (NSException *exception) {
+        [sock readDataWithTimeout:TIMEOUT tag:tag];
     }
 }
 
@@ -159,14 +172,13 @@ static int TIMEOUT;
 
 -(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data
 {
-    
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    
-    NSDictionary* myDictionary = [unarchiver decodeObjectForKey:ARCHIVER];
-    
-    [unarchiver finishDecoding];
-    
-    return myDictionary;
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        
+        NSDictionary* myDictionary = [unarchiver decodeObjectForKey:ARCHIVER];
+        
+        [unarchiver finishDecoding];
+        
+        return myDictionary;
 }
 
 -(void)stopServer{

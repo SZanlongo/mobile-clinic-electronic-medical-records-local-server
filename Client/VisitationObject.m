@@ -7,7 +7,7 @@
 //
 
 #import "VisitationObject.h"
-#define ISOPEN      @"isOpen"
+
 #define DATABASE    @"Visitation"
 #define ALLVISITS   @"all visits"
 

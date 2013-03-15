@@ -48,7 +48,7 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
  * @param visitInfo The visitation information 
  * @param patientInfo The patient to associate the visitation to
  */
--(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response;
+-(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo shouldCheckOut:(BOOL)checkout onCompletion:(MobileClinicCommandResponse)Response;
 
 /**
  * This will update the give visit in local and remote database. 

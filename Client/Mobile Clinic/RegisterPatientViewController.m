@@ -114,7 +114,7 @@ UIPopoverController * pop;
 
 - (IBAction)getAgeOfPatient:(id)sender
 {    
-    // get datepicker view
+    // get datepicker view    
     DateController *datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
     
     // Instatiate popover if not available
@@ -137,7 +137,7 @@ UIPopoverController * pop;
             
             [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old", [date getNumberOfYearsElapseFromDate]] forState:UIControlStateNormal];
         }
-        [pop dismissPopoverAnimated:YES];
+        [pop dismissPopoverAnimated:YES];        
     }];
     
     // show the screen beside the button
