@@ -22,6 +22,7 @@
 #define HEARTRATE       @"heartRate"
 #define RESPIRATION     @"respiration"
 #define PRIORITY        @"priority"
+#define ISOPEN      @"isOpen"
 #import <Foundation/Foundation.h>
 #import "CommonObjectProtocol.h"
 @protocol VisitationObjectProtocol <NSObject>
