@@ -17,8 +17,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-+ (UIViewController*) topMostController
-{
++ (UIViewController*) topMostController {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
     while (topController.presentedViewController) {
@@ -48,8 +47,8 @@
     
     //RIGO - FOR TESTING PURPOSES ONLY
     //MANUALLY ENTERS DATA INTO THE DATABASE
-   // NSError *error;
-   // NSManagedObjectContext *context = [self managedObjectContext];
+//    NSError *error;
+//    NSManagedObjectContext *context = [self managedObjectContext];
 
     /*
     // Delete all entries in the Core Data table (ex. Patients)
@@ -62,18 +61,6 @@
     [context deleteObject:entries];
     }
     */
-
-    /*
-     // Delete all entries in the Core Data table (ex. Patients)
-     NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
-     [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-     
-     NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
-     
-     for(NSManagedObject *entries in currentRecords) {
-     [context deleteObject:entries];
-     }
-     */
     
     // Print (to NSLog) content of table (ex. Patients)
 //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -81,7 +68,7 @@
 //    
 //    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
 
-  //  [self saveContext];
+//    [self saveContext];
     
     // Override point for customization after application launch.
     ServerManager = [ServerCore sharedInstance];

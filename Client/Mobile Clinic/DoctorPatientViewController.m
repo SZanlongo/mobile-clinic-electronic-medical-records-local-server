@@ -45,14 +45,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    // Create controllers for each view
-    [self setControllers];
-    [self instantiateViews];
-
-    // Pass patient visit dictionary to dependant views
-    [_diagnosisViewController setPatientData:_patientData];
-    [_previousVisitViewController setPatientData:_patientData];
-    
     // Extract patient name/village/etc from visit dictionary
     NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
     
@@ -73,15 +65,23 @@
 //    _patientRespirationLabel.text = [_patientData objectForKey:RESPIRATION];
 //    _patientTempLabel.text = [_patientData objectForKey:TEMPERATURE];
     
+    // Create controllers for each view
+    [self setControllers];
+    [self instantiateViews];
+    
+    // Pass patient visit dictionary to dependant views
+    [_diagnosisViewController setPatientData:_patientData];
+    [_previousVisitViewController setPatientData:_patientData];
+    
     // Diagnosis notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation:) name:SAVE_VISITATION object:_patientData];
     self.originalCenter = self.view.center;
     
     // Prescription notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription) name:SAVE_PRESCRIPTION object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideFromSearchMedicine) name:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideFromSearchMedicine:) name:MOVE_FROM_SEARCH_FOR_MEDICINE object:_prescriptionData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription:) name:SAVE_PRESCRIPTION object:_prescriptionData];
+
     visitationHasBeenSaved = NO;
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
@@ -114,28 +114,10 @@
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
         else{
             visitationHasBeenSaved = YES;
+            // MAY HAVE TO REINSTANTIATE _patientData WITH object (CHECK W/ MIKE)
             [_tableView setScrollEnabled:NO];
             [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }
-    }];
-}
-
-// 
-- (void)savePrescription {    
-    [_prescriptionData setObject:@"some instructions" forKey:INSTRUCTIONS];
-    [_prescriptionData setObject:@"2" forKey:MEDICATIONID];
-    [_prescriptionData setObject:@"some time" forKey:PRESCRIBETIME];
-    [_prescriptionData setObject:_precriptionViewController.timeOfDayTextFields.text forKey:TIMEOFDAY];
-    [_prescriptionData setObject:[_visitationData objectForKey:VISITID] forKey:VISITID];
-//    [_prescriptionData setObject:@"" forKey:PRESCRIPTIONID];
-    
-    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
-
-    [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {                    
-        if (!object)
-            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
-        else
-            [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 
@@ -143,19 +125,28 @@
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
-- (void)slideFromSearchMedicine {
-    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+- (void)slideFromSearchMedicine:(NSNotification *)note {
+    _prescriptionData = note.object;
     
+    [_precriptionViewController setPrescriptionData:_prescriptionData];
     _precriptionViewController.drugTextField.text = _medicineViewController.medicineField.text;
-//    [_tableView reloadData];
+    
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-- (void)keyboardDidShow: (NSNotification *) notif {
-    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 264 - 44);
-}
+// 
+- (void)savePrescription:(NSNotification *)note {
+    _prescriptionData = note.object;
 
-- (void)keyboardDidHide: (NSNotification *) notif {
-    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
+//    [_prescriptionData setObject:[_visitationData objectForKey:VISITID] forKey:VISITID];    // ASK MIKE IF WE NEED THIS
+    
+    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {                    
+        if (!object)
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        else
+            [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -204,7 +195,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -214,7 +205,6 @@
         [cell.viewController setScreenHandler:handler];
         
         [_segmentedControl setEnabled:YES forSegmentAtIndex:0];
-        
         [_segmentedControl setHidden:NO];
         
         return cell;
@@ -229,7 +219,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -238,7 +228,6 @@
         [cell addSubview: cell.viewController.view];
         
         [_segmentedControl setEnabled:YES forSegmentAtIndex:1];
-        
         [_segmentedControl setHidden:NO];
         
         return cell;
@@ -255,7 +244,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-20, -15, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];
@@ -277,7 +266,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-50, 40, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];
@@ -287,10 +276,6 @@
         
         return cell;
     }
-}
-
-- (void)setScreenHandler:(ScreenHandler)myHandler {
-    handler = myHandler;
 }
 
 - (IBAction)segmentClicked:(id)sender {
@@ -321,6 +306,22 @@
         *offset = CGPointMake(offset->x, offset->y - (((int)offset->y) % (cellHeight)));
         self.segmentedControl.selectedSegmentIndex = 0;
     }
+}
+
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
+//- (void)keyboardDidShow: (NSNotification *) notif {
+//    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 264 - 44);
+//}
+//- (void)keyboardDidHide: (NSNotification *) notif {
+//    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
+//}
+
+- (void)setScreenHandler:(ScreenHandler)myHandler {
+    handler = myHandler;
 }
 
 @end

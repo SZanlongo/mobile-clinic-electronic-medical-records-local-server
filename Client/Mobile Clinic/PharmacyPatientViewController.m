@@ -57,7 +57,7 @@
     [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
     if(allObjectsFromSearch && [allObjectsFromSearch count] != 0) {
         _prescriptionData = [allObjectsFromSearch objectAtIndex:0];
-        [_precriptionViewController setPatientData:_patientData];
+        [_precriptionViewController setPatientData:_patientData];     // DID U MEAN [setPrescriptionData:_prescriptionData]
         [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         }
     }];
@@ -113,7 +113,13 @@
 //    }
 }
 
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
+
 @end

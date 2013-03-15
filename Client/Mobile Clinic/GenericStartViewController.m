@@ -156,18 +156,19 @@
         [newView setPatientData:_patientData];
         
         [newView setScreenHandler:^(id object, NSError *error) {
+            [self.navigationController popViewControllerAnimated:YES];
             
-            switch ([[self stationChosen] intValue]) {
-                case 1:
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    break;
-                case 2:
-                case 3:
-                    [self.navigationController popViewControllerAnimated:YES];
-                     break;
-                default:
-                    break;
-            }
+//            switch ([[self stationChosen] intValue]) {
+//                case 1:
+//                    [self dismissViewControllerAnimated:YES completion:nil];
+//                    break;
+//                case 2:
+//                case 3:
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                     break;
+//                default:
+//                    break;
+//            }
             
             if (!object && error) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
@@ -176,18 +177,18 @@
             
             [[cell viewController]resetData];
         }];
-        
-        switch ([[self stationChosen] intValue]) {
-            case 1:
-                [self presentViewController:newView animated:YES completion:nil];
-                break;
-            case 2:
-            case 3:
-                [self.navigationController pushViewController:newView animated:YES];
-                break;
-            default:
-                break;
-        }
+        [self.navigationController pushViewController:newView animated:YES];
+//        switch ([[self stationChosen] intValue]) {
+//            case 1:
+//                [self presentViewController:newView animated:YES completion:nil];
+//                break;
+//            case 2:
+//            case 3:
+//                [self.navigationController pushViewController:newView animated:YES];
+//                break;
+//            default:
+//                break;
+//        }
     }];
     
     return cell;
@@ -197,18 +198,15 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset {
+              targetContentOffset:(inout CGPoint *)offset {
     int cellHeight = 768;
     
-    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+    if(((int)offset->y) % (cellHeight) > cellHeight/2) {
+        *offset = CGPointMake(offset->x, offset->y + (cellHeight - (((int)offset->y) % (cellHeight))));
         _segmentedControl.selectedSegmentIndex = 1;
     }
-    else
-    {
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+    else {
+        *offset = CGPointMake(offset->x, offset->y - (((int)offset->y) % (cellHeight)));
         _segmentedControl.selectedSegmentIndex = 0;
     }
 }

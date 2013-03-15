@@ -8,7 +8,9 @@
 
 #import "MedicineSearchViewController.h"
 
-@interface MedicineSearchViewController ()
+@interface MedicineSearchViewController () {
+    NSMutableArray *medicationArray;
+}
 
 @end
 
@@ -23,18 +25,19 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
-    _data = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen", @"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
     
+    // Request all medications in database
+    
+
+    // TEMP LIST OF MEDICATIONS
+    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen", @"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
     _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg", @"250mg",@"250mg",@"100mg", nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -51,33 +54,46 @@
     
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 5;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MedicineSearchResultCell * cell = [tableView dequeueReusableCellWithIdentifier:@"medicineResult"];
 
     if(!cell){
         cell = [[MedicineSearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"medicineResult"];
         UINib * mNib = [UINib nibWithNibName:@"MedicineSearchResultView" bundle:nil];
         cell = [mNib instantiateWithOwner:nil options:nil][0];
-        
     }
     
-    cell.medicineName.text = (NSString *)[_data objectAtIndex:indexPath.row];
+    cell.medicineName.text = (NSString *)[_data1 objectAtIndex:indexPath.row];
     cell.medicineDose.text = (NSString *)[_data2 objectAtIndex:indexPath.row];
     
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    _medicineField.text = (NSString *)[_data objectAtIndex:indexPath.row];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Display medication
+    NSString *medName = (NSString *)[_data1 objectAtIndex:indexPath.row];
+    NSString *dosage = (NSString *)[_data2 objectAtIndex:indexPath.row];
+    _medicineField.text = [NSString stringWithFormat:@"%@ %@", medName, dosage];
+    
+    NSMutableDictionary *prescriptionData = [[NSMutableDictionary alloc] init];
+    [prescriptionData setObject:(NSString *)[_data1 objectAtIndex:indexPath.row] forKey:@"medicationID"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:prescriptionData];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
+}
+
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 @end

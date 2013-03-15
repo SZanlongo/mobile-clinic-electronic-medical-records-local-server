@@ -31,6 +31,7 @@ PatientTable* pTable;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [self managedObjectContext]; 
     
     [self managedObjectContext];
     [self SetupWithFictitiousPatients];
@@ -83,7 +84,7 @@ PatientTable* pTable;
 //    [mDic setObject:@"1" forKey:@"status"];
 ////    [mDic setObject:@"asd" forKey:@"remember_token"];
 //    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-//        
+//
 //    }];
 }
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.

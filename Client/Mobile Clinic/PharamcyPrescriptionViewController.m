@@ -28,18 +28,6 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-//    // Populate condition for doctor to see
-
-//    NSArray * arr = [[NSArray alloc] init];
-//    arr = [_patientData getAllVisitsForCurrentPatient];
-//    VisitationObject * tempVisit = [arr objectAtIndex:(arr.count - 1)];
-//
-//    if (arr.count > 0) {
-//        _conditionsTextbox.text = [tempVisit getObjectForAttribute:CONDITION];
-//    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -54,39 +42,83 @@
     [super viewDidUnload];
 }
 
-- (void)deactivateControllerFields {
-    [_medicationNotes setEditable:NO];
-    [_tabletsTextField setEnabled:NO];
-    [_timeOfDayTextFields setEnabled:NO];
-    
-    for(int i = 0; i <[_timeOfDayButtons count]; i++){
-        [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setEnabled:NO];
+- (IBAction)newTimeOfDay:(id)sender {
+    for(int i = 0; i < [_timeOfDayButtons count]; i++) {
+        if([[_timeOfDayButtons objectAtIndex:i] isEqual:sender]) {
+            [((UIButton *)sender) setAlpha:1];
+            _timeOfDayTextFields.text = [self getTimeOfDay:i];
+        }else
+            [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setAlpha:0.5];
     }
+}
+
+- (NSString *)getTimeOfDay:(int)num {
+    if(num == 0)   return @"Midday";
+    if(num == 1)   return @"Evening";
+    if(num == 2)   return @"Afternoon";
+    if(num == 3)   return @"Morning";
+    return @"";
 }
 
 - (IBAction)findDrugs:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
 }
 
-- (IBAction)newTimeOfDay:(id)sender {
-    for(int i = 0; i < [_timeOfDayButtons count]; i++){
-        if([[_timeOfDayButtons objectAtIndex:i] isEqual:sender])
-            [((UIButton *)sender) setAlpha:1];
-        else
-            [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setAlpha:0.5];
+// Change name of button (Send to Pharmacy / Checkout)
+- (IBAction)savePrescription:(id)sender{
+    if([self validatePrescription]) {
+        // Save prescription fields
+        [_prescriptionData setObject:_medicationNotes forKey:INSTRUCTIONS];
+        [_prescriptionData setObject:_tabletsTextField.text forKey:TABLEPERDAY];
+        [_prescriptionData setObject:_timeOfDayTextFields.text forKey:TIMEOFDAY];
+//        [_prescriptionData setObject:????? forKey:PRESCRIBETIME];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:_prescriptionData];
     }
 }
 
-// Change name of button (Send to Pharmacy / Checkout)
-- (IBAction)savePrescription:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:nil];
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
-- (void)checkOut {
+- (void)deactivateControllerFields {
+    [_medicationNotes setEditable:NO];
+    [_tabletsTextField setEnabled:NO];
+    [_timeOfDayTextFields setEnabled:NO];
     
+    
+    for(int i = 0; i <[_timeOfDayButtons count]; i++){
+        [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setEnabled:NO];
+    }
+}
+
+- (BOOL)validatePrescription {
+    BOOL inputIsValid = YES;
+    NSString *errorMsg;
+    
+    if([_drugTextField.text isEqualToString:@""] || _drugTextField.text == nil) {
+        errorMsg = @"Missing medication";
+        inputIsValid = NO;
+    } else if([_tabletsTextField.text isEqualToString:@""] || _tabletsTextField.text == nil) {
+        errorMsg = @"Missing number of tablets per day";
+        inputIsValid = NO;
+    } else if([_timeOfDayTextFields.text isEqualToString:@""] || _timeOfDayTextFields.text == nil) {
+        errorMsg = @"Choose time of day";
+        inputIsValid = NO;
+    }
+    
+    // Display error message on invalid input
+    if(inputIsValid == NO){
+        UIAlertView *validateDiagnosisAlert = [[UIAlertView alloc] initWithTitle:nil message:errorMsg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [validateDiagnosisAlert show];
+    }
+    
+    return inputIsValid;
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }
+
 @end
