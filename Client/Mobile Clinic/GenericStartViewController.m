@@ -197,18 +197,15 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset {
+              targetContentOffset:(inout CGPoint *)offset {
     int cellHeight = 768;
     
-    if(((int)targetContentOffset->y) % (cellHeight) > cellHeight/2){
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y + (cellHeight - (((int)targetContentOffset->y) % (cellHeight))));
+    if(((int)offset->y) % (cellHeight) > cellHeight/2) {
+        *offset = CGPointMake(offset->x, offset->y + (cellHeight - (((int)offset->y) % (cellHeight))));
         _segmentedControl.selectedSegmentIndex = 1;
     }
-    else
-    {
-        *targetContentOffset = CGPointMake(targetContentOffset->x,
-                                           targetContentOffset->y - (((int)targetContentOffset->y) % (cellHeight)));
+    else {
+        *offset = CGPointMake(offset->x, offset->y - (((int)offset->y) % (cellHeight)));
         _segmentedControl.selectedSegmentIndex = 0;
     }
 }

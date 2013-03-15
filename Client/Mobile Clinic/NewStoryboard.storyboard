@@ -1325,9 +1325,6 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="newTimeOfDay:" destination="hcs-ty-94e" eventType="touchUpInside" id="Tje-7W-S0k"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g7F-iC-HDt">
                                                     <rect key="frame" x="159" y="16" width="300" height="21"/>
@@ -1383,7 +1380,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="MqT-CZ-Rte">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="MqT-CZ-Rte">
                                 <rect key="frame" x="134" y="734" width="500" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96308992346938771" green="0.96308992346938771" blue="0.96308992346938771" alpha="1" colorSpace="calibratedRGB"/>
@@ -1825,15 +1822,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="228" y="387" width="313" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="time of day" minimumFontSize="17" id="th7-GH-spJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="time of day" minimumFontSize="17" id="th7-GH-spJ">
                                 <rect key="frame" x="228" y="425" width="313" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="drug" minimumFontSize="17" id="BZN-qm-bTe">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="drug" minimumFontSize="17" id="BZN-qm-bTe">
                                 <rect key="frame" x="228" y="349" width="313" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1957,10 +1954,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="medicationNotes" destination="RVf-Oa-IYq" id="YLY-4B-O99"/>
                         <outlet property="tabletsTextField" destination="Cen-pj-qnU" id="qdT-cp-ych"/>
                         <outlet property="timeOfDayTextFields" destination="th7-GH-spJ" id="zoG-Vu-EfM"/>
-                        <outletCollection property="timeOfDayButtons" destination="W80-dJ-Gcv" id="lUB-UX-i3l"/>
-                        <outletCollection property="timeOfDayButtons" destination="e5U-04-fg5" id="Pne-3S-ot9"/>
-                        <outletCollection property="timeOfDayButtons" destination="Bzf-g4-icP" id="xBJ-Ty-IUQ"/>
-                        <outletCollection property="timeOfDayButtons" destination="UUM-3o-2I2" id="NTD-TU-F6b"/>
+                        <outletCollection property="timeOfDayButtons" destination="UUM-3o-2I2" id="vcv-95-xQN"/>
+                        <outletCollection property="timeOfDayButtons" destination="Bzf-g4-icP" id="QWQ-Dg-5y6"/>
+                        <outletCollection property="timeOfDayButtons" destination="e5U-04-fg5" id="EWU-LU-YUX"/>
+                        <outletCollection property="timeOfDayButtons" destination="W80-dJ-Gcv" id="7pq-8X-qyN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CwY-KQ-xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>

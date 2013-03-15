@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "MedicineSearchResultCell.h"
+//#import "PrescriptionObjectProtocol.h"
 
 @interface MedicineSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *medicineField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray * data;
+@property (strong, nonatomic) NSMutableArray * data1;
 @property (strong, nonatomic) NSMutableArray * data2;
 
 - (IBAction)moveBackToPrescription:(id)sender;
 - (IBAction)searchMedicine:(id)sender;
-- (IBAction)back:(id)sender;
 
 @end

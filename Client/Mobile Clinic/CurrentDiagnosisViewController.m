@@ -48,14 +48,10 @@
 }
 
 - (IBAction)submitButton:(id)sender {
-    //set visitiation diag
+    // Save diagnosis
     if (self.validateDiagnosis) {
         [_patientData setObject:_diagnosisTextbox.text forKey:OBSERVATION];
         [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_patientData];
-        
-//        [_visitationData setObject:_diagnosisTextbox.text withAttribute:OBSERVATION];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_VISITATION object:_visitationData];
-//        handler(self,nil);
     }
 }
 
@@ -71,7 +67,7 @@
         inputIsValid = NO;
     }
     
-    //display error message on invlaid input
+    // Display error message on invalid input
     if(inputIsValid == NO){
         UIAlertView *validateDiagnosisAlert = [[UIAlertView alloc] initWithTitle:nil message:errorMsg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [validateDiagnosisAlert show];
