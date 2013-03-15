@@ -156,18 +156,19 @@
         [newView setPatientData:_patientData];
         
         [newView setScreenHandler:^(id object, NSError *error) {
+            [self.navigationController popViewControllerAnimated:YES];
             
-            switch ([[self stationChosen] intValue]) {
-                case 1:
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    break;
-                case 2:
-                case 3:
-                    [self.navigationController popViewControllerAnimated:YES];
-                     break;
-                default:
-                    break;
-            }
+//            switch ([[self stationChosen] intValue]) {
+//                case 1:
+//                    [self dismissViewControllerAnimated:YES completion:nil];
+//                    break;
+//                case 2:
+//                case 3:
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                     break;
+//                default:
+//                    break;
+//            }
             
             if (!object && error) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view
@@ -176,18 +177,18 @@
             
             [[cell viewController]resetData];
         }];
-        
-        switch ([[self stationChosen] intValue]) {
-            case 1:
-                [self presentViewController:newView animated:YES completion:nil];
-                break;
-            case 2:
-            case 3:
-                [self.navigationController pushViewController:newView animated:YES];
-                break;
-            default:
-                break;
-        }
+        [self.navigationController pushViewController:newView animated:YES];
+//        switch ([[self stationChosen] intValue]) {
+//            case 1:
+//                [self presentViewController:newView animated:YES completion:nil];
+//                break;
+//            case 2:
+//            case 3:
+//                [self.navigationController pushViewController:newView animated:YES];
+//                break;
+//            default:
+//                break;
+//        }
     }];
     
     return cell;
