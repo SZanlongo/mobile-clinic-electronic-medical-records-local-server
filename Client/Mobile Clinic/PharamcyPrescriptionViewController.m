@@ -67,11 +67,18 @@
 // Change name of button (Send to Pharmacy / Checkout)
 - (IBAction)savePrescription:(id)sender{
     if([self validatePrescription]) {
+        
+        /* TODO: NEED TO VALIDATE THAT FIELD ENTRY IS CORRECT (STRING or INTs) */
+        
+        NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+        [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        NSString *dateStamp = [DateFormatter stringFromDate:[NSDate date]];
+        
         // Save prescription fields
-        [_prescriptionData setObject:_medicationNotes forKey:INSTRUCTIONS];
-        [_prescriptionData setObject:_tabletsTextField.text forKey:TABLEPERDAY];
-        [_prescriptionData setObject:_timeOfDayTextFields.text forKey:TIMEOFDAY];
-//        [_prescriptionData setObject:????? forKey:PRESCRIBETIME];
+        [_prescriptionData setObject:_medicationNotes.text forKey:INSTRUCTIONS];
+        [_prescriptionData setObject:[NSNumber numberWithInteger:[_tabletsTextField.text integerValue]] forKey:TABLEPERDAY];
+        [_prescriptionData setObject:[NSNumber numberWithInteger:[_timeOfDayTextFields.text integerValue]] forKey:TIMEOFDAY];
+        [_prescriptionData setObject:dateStamp forKey:PRESCRIBETIME];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:_prescriptionData];
     }
