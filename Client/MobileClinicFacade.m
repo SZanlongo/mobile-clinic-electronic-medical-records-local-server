@@ -49,13 +49,12 @@
 }
 
 // Creates a new visit for a given patient.
--(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo onCompletion:(MobileClinicCommandResponse)Response{
+-(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo shouldCheckOut:(BOOL)checkout onCompletion:(MobileClinicCommandResponse)Response{
     
     VisitationObject* visit = [[VisitationObject alloc]initAndMakeNewDatabaseObject];
 
     
-    if ([visit shouldSetCurrentVisitToOpen:YES]) {
-        
+    if ([visit shouldSetCurrentVisitToOpen:checkout]) {
         [self CommonCommandObject:visit ForCreating:visitInfo bindedToParentObject:patientInfo withResults:Response];
     }else{
         NSString* msg = [NSString stringWithFormat:@"%@ %@ already has an open visit",[patientInfo objectForKey:FIRSTNAME],[patientInfo objectForKey:FAMILYNAME]];

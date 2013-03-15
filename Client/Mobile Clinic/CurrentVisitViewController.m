@@ -70,7 +70,7 @@
         
         [currentVisit setValue:[NSNumber numberWithInt:[_patientWeightField.text intValue]] forKey:WEIGHT];
         [currentVisit setValue:[NSString stringWithFormat: @"%@/%@", _systolicField.text, _diastolicField.text] forKey:BLOODPRESSURE];
-//        [currentVisit setValue:_heartField.text forKey:(HEARTRATE)];
+ //       [currentVisit setValue:_heartField.text forKey:HEARTRATE];
 //        [currentVisit setValue:_respirationField.text forKey:RESPIRATION];
         [currentVisit setValue:_conditionsTextbox.text forKey:CONDITION];
         [currentVisit setValue:[NSDate date] forKey:TRIAGEOUT];
@@ -78,7 +78,7 @@
         [currentVisit setValue:[NSNumber numberWithInteger:_visitPriority.selectedSegmentIndex] forKey:PRIORITY];
         
         [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
-            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData onCompletion:^(NSDictionary *object, NSError *error) {
+            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData shouldCheckOut:NO onCompletion:^(NSDictionary *object, NSError *error) {
                 if (!object) {
                     [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
                 }else{
