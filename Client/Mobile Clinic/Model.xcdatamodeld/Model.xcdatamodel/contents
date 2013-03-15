@@ -7,7 +7,7 @@
         <attribute name="medicationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numContainers" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="tabletsContainter" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tabletsContainer" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="total" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Patients" representedClassName="Patients" syncable="YES">

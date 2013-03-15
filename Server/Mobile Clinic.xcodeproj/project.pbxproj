@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FCC49CE16F3C63400FD3338 /* MedicationFile.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCC49CD16F3C63400FD3338 /* MedicationFile.json */; };
 		463294A216C9B97B00C57DCE /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 463294A116C9B97B00C57DCE /* PatientObject.m */; };
 		EA172D3616B50A9C00F00C61 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3516B50A9C00F00C61 /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA172D3716B50A9C00F00C61 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3516B50A9C00F00C61 /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -95,6 +96,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FCC49CD16F3C63400FD3338 /* MedicationFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MedicationFile.json; sourceTree = "<group>"; };
 		463294A016C9B97B00C57DCE /* PatientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObject.h; sourceTree = "<group>"; };
 		463294A116C9B97B00C57DCE /* PatientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientObject.m; sourceTree = "<group>"; };
 		EA172D3416B50A9C00F00C61 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				EAC37F1416F36DBA00836C1C /* CloudService.m */,
 				EAC37F1616F36DD500836C1C /* CloudServiceProtocol.h */,
 				EAADC01D16E0596C009E7AF9 /* PatientFile.json */,
+				0FCC49CD16F3C63400FD3338 /* MedicationFile.json */,
 				EAEF2F9716ED5B7300A9B49A /* Patient Control */,
 				EA172D3E16B5828600F00C61 /* ConnectionTable.h */,
 				EA172D3F16B5828600F00C61 /* ConnectionTable.m */,
@@ -616,6 +619,7 @@
 				EA8D860516B0C9C000256495 /* MainMenu.xib in Resources */,
 				EAD015F316DAB086002A8B3B /* PatientScreen.xib in Resources */,
 				EAC19C7F16DE839C00B0B8DA /* PatientTable.xib in Resources */,
+				0FCC49CE16F3C63400FD3338 /* MedicationFile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

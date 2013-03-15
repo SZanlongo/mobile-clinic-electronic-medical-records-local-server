@@ -16,6 +16,6 @@
 @dynamic medId;
 @dynamic medName;
 @dynamic numContainers;
-@dynamic tabletsContainter;
+@dynamic tabletsContainer;
 
 @end

@@ -36,6 +36,7 @@
     NSDictionary *myDic = [[NSDictionary alloc]init];
     
     [mobileFacade findAllMedication:myDic AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        NSLog(@"ALl Medications:%@",allObjectsFromSearch.description);
         medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
     }];
 

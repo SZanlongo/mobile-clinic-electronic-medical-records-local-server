@@ -46,26 +46,26 @@
     
     //RIGO - FOR TESTING PURPOSES ONLY
     //MANUALLY ENTERS DATA INTO THE DATABASE
-    NSError *error;
-    NSManagedObjectContext *context = [self managedObjectContext];
+//    NSError *error;
+//    NSManagedObjectContext *context = [self managedObjectContext];
 
-    // ADD MEDICATION MANUALLY
-    NSManagedObject *medication = [NSEntityDescription
-                                       insertNewObjectForEntityForName:@"Medication"
-                                       inManagedObjectContext:context];
-    
-    [medication setValue:@"200" forKey:@"dosage"];
-//    [medication setValue:@"" forKey:@"expiration"];
-//    [medication setValue:@"" forKey:@"isLockedBy"];
-    [medication setValue:@"advil.200" forKey:@"medicationId"];
-    [medication setValue:@"Advil" forKey:@"medName"];
-    [medication setValue:[NSNumber numberWithInt:5] forKey:@"numContainers"];
-    [medication setValue:[NSNumber numberWithInt:50] forKey:@"tabletsContainter"];
-    [medication setValue:[NSNumber numberWithInt:250] forKey:@"total"];
-    
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
+//    // ADD MEDICATION MANUALLY
+//    NSManagedObject *medication = [NSEntityDescription
+//                                       insertNewObjectForEntityForName:@"Medication"
+//                                       inManagedObjectContext:context];
+//    
+//    [medication setValue:@"200" forKey:@"dosage"];
+////    [medication setValue:@"" forKey:@"expiration"];
+////    [medication setValue:@"" forKey:@"isLockedBy"];
+//    [medication setValue:@"advil.200" forKey:@"medicationId"];
+//    [medication setValue:@"Advil" forKey:@"medName"];
+//    [medication setValue:[NSNumber numberWithInt:5] forKey:@"numContainers"];
+//    [medication setValue:[NSNumber numberWithInt:50] forKey:@"tabletsContainer"];
+//    [medication setValue:[NSNumber numberWithInt:250] forKey:@"total"];
+//    
+//    if (![context save:&error]) {
+//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//    }
     
     /*
     // Delete all entries in the Core Data table (ex. Patients)
@@ -85,7 +85,7 @@
 //    
 //    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
 
-    [self saveContext];
+//    [self saveContext];
     
     // Override point for customization after application launch.
     ServerManager = [ServerCore sharedInstance];

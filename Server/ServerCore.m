@@ -130,7 +130,7 @@ NSMutableData* majorData;
         
         NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:majorData] copyItems:YES];
         
-        if(majorData) {
+        if(myDictionary) {
             // ObjectFactory: Used to instatiate the proper class but returns it generically
             id<BaseObjectProtocol> factoryObject = [ObjectFactory createObjectForType:myDictionary];
             
@@ -146,17 +146,17 @@ NSMutableData* majorData;
                 [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
                 //finalize archiving
                 [archiver finishEncoding];
-                majorData = nil;
+                
                 //send data
                 NSLog(@"Server Will Send data %li",data.length);
                 [sock writeData:data withTimeout:TIMEOUT tag:10];
+                majorData = nil;
             }];
-            
-            NSLog(@"Dictionary: %@",[factoryObject description]);
-            
+        
         }
         else
         {
+            majorData = nil;
             NSLog(@"Write Error in Log: Recieved No data");
         }
     }

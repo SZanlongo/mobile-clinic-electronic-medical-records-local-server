@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSString * medId;
 @property (nonatomic, retain) NSString * medName;
 @property (nonatomic, retain) NSNumber * numContainers;
-@property (nonatomic, retain) NSNumber * tabletsContainter;
+@property (nonatomic, retain) NSNumber * tabletsContainer;
 
 @end
