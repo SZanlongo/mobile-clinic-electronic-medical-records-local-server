@@ -80,6 +80,11 @@
     return inputIsValid;
 }
 
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
 }

@@ -82,8 +82,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:nil];
 }
 
-- (void)checkOut {
-    
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
