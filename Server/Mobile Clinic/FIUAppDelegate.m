@@ -80,7 +80,6 @@ PatientTable* pTable;
 //
 //    }];
 }
-
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.
 - (NSURL *)applicationFilesDirectory
 {

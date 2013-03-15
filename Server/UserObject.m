@@ -14,7 +14,6 @@
 // These are elements within the database
 // This prevents hardcoding
 
-#define ALL_USERS   @"all users"
 #define DATABASE    @"Users"
 
 #import "Users.h"
@@ -262,7 +261,7 @@
     
     //[dict setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dict setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
-    [dict setValue:arrayToSend forKey:ALL_USERS];
+    [dict setValue:arrayToSend forKey:ALLITEMS];
 
     // status will hold a copy of this user data
     [status setData:dict];

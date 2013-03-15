@@ -7,7 +7,7 @@
 //
 #define ERRORMSG    @"errormsg"
 #import "StatusObject.h"
-#import "FIUAppDelegate.h"
+
 @implementation StatusObject
 
 

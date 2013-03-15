@@ -11,4 +11,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "TestFlight.h"
+
+    #define CURRENT_USER    @"current user of device"
+    #define GLOBAL_STATUS_LISTENER @"listen for my message"
 #endif

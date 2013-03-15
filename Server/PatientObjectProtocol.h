@@ -15,7 +15,6 @@
 #define PICTURE         @"photo"
 #define VISITS          @"visits"
 #define PATIENTID       @"patientId"
-#define ALL_PATIENTS    @"all patients"
 #define ISLOCKEDBY      @"isLockedBy"
 #define DATABASE        @"Patients"
 #import <Foundation/Foundation.h>

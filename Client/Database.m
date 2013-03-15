@@ -1,123 +1,27 @@
 //
-//  FIUAppDelegate.m
+//  Database.m
 //  Mobile Clinic
 //
-//  Created by Steven Berlanga on 2/2/13.
+//  Created by Michael Montaque on 3/12/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "FIUAppDelegate.h"
-#import "ServerCore.h"
+#import "Database.h"
 
 
-@implementation FIUAppDelegate
-@synthesize ServerManager;
-
+@implementation Database
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-+ (UIViewController*) topMostController
++ (id)sharedInstance
 {
-    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    
-    while (topController.presentedViewController) {
-        topController = topController.presentedViewController;
-    }
-    
-    return topController;
-}
-
-+(AJNotificationView *)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString *)msg{
-    UIView *topMostView = [[FIUAppDelegate topMostController]view];
-    return [AJNotificationView showNoticeInView:topMostView type:color title:msg linedBackground:animate hideAfter:10];
-}
-
-+(AJNotificationView *)getNotificationWithColor:(int)color Animation:(int)animate WithMessage:(NSString *)msg inView:(UIView *)view{
-    return [AJNotificationView showNoticeInView:view type:color title:msg linedBackground:animate hideAfter:10];
-}
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    #define TESTING 1
-        #ifdef TESTING
-            [TestFlight setDeviceIdentifier:[[NSUUID UUID]UUIDString]];
-        #endif
-    
-        [TestFlight takeOff:@"afc6ff4013b9e807e5a97743e2a8d270_MTg2NjAwMjAxMy0wMi0xMiAxODozOTozOS41NzU1OTk"];
-    
-    //RIGO - FOR TESTING PURPOSES ONLY
-    //MANUALLY ENTERS DATA INTO THE DATABASE
-   // NSError *error;
-   // NSManagedObjectContext *context = [self managedObjectContext];
-
-    /*
-    // Delete all entries in the Core Data table (ex. Patients)
-    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
-    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-
-    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
-     
-    for(NSManagedObject *entries in currentRecords) {
-    [context deleteObject:entries];
-    }
-    */
-
-    /*
-    // Delete all entries in the Core Data table (ex. Patients)
-    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
-    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-     
-    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
-     
-    for(NSManagedObject *entries in currentRecords) {
-        [context deleteObject:entries];
-    }
-    */
-    
-    // Print (to NSLog) content of table (ex. Patients)
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
-//    
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-
-  //  [self saveContext];
-    
-    // Override point for customization after application launch.
-    ServerManager = [ServerCore sharedInstance];
-    [ServerManager startClient];
-    
-    return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
-    [ServerManager stopClient];
+    static dispatch_once_t pred = 0;
+    __strong static id _sharedObject = nil;
+    dispatch_once(&pred, ^{
+        _sharedObject = [[self alloc] init]; 
+    });
+    return _sharedObject;
 }
 
 - (void)saveContext
@@ -218,5 +122,4 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-
 @end

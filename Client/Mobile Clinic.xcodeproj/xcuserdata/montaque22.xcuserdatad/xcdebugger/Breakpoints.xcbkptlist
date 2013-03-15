@@ -8,45 +8,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mobile Clinic/CurrentVisitViewController.m"
-         timestampString = "384035835.084536"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
-         landmarkName = "-quickCheckOutButton:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "PatientObject.m"
-         timestampString = "384236069.00336"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
-         landmarkName = "-syncAllPatientsAndVisits"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/CurrentVisitViewController.m"
-         timestampString = "384035835.084536"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
-         landmarkName = "-quickCheckOutButton:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/CurrentVisitViewController.m"
          timestampString = "384046312.947044"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
@@ -59,39 +20,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BaseObject.m"
-         timestampString = "384593128.364612"
+         filePath = "BaseObjectProtocol.h"
+         timestampString = "384961186.558602"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "171"
-         endingLineNumber = "171"
-         landmarkName = "-UpdateObject:andSendObjects:forDatabase:withAttribute:"
-         landmarkType = "5">
+         startingLineNumber = "47"
+         endingLineNumber = "47"
+         landmarkName = "@protocol BaseObjectProtocol"
+         landmarkType = "2">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mobile Clinic/CurrentVisitViewController.m"
-         timestampString = "384648952.938009"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "127"
-         endingLineNumber = "127"
-         landmarkName = "-setVisitData"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/PatientQueueViewController.m"
-         timestampString = "384744293.020276"
+         timestampString = "384961843.514198"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "80"
          endingLineNumber = "80"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkName = "-setVisitData"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

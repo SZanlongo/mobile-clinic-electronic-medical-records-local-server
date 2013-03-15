@@ -85,7 +85,9 @@ NSString* isLockedBy;
     // Load old patient in global object and save new patient in variable
     NSManagedObject* oldVisit = [self loadObjectWithID:[self.databaseObject valueForKey:PRESCRIPTIONID] inDatabase:nil forAttribute:VISITID];
     
-    BOOL isNotLockedUp = (!oldVisit || ![[oldVisit valueForKey:ISLOCKEDBY] isEqualToString:isLockedBy]);
+    NSString* lockedString = [oldVisit valueForKey:ISLOCKEDBY];
+   
+    BOOL isNotLockedUp = (!oldVisit || [lockedString isEqualToString:isLockedBy]||lockedString.length == 0);
     
     
     if (isNotLockedUp) {

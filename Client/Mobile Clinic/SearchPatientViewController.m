@@ -36,6 +36,8 @@
     mobileFacade = [[MobileClinicFacade alloc]init];
     // Set height of rows of result table
     _searchResultTableView.rowHeight = 75;
+    [_searchResultTableView setDelegate:self];
+    [_searchResultTableView setDataSource:self];
 }
 
 

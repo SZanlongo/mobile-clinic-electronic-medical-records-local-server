@@ -14,7 +14,7 @@
 #import "Prescription.h"
 #import "PrescriptionObjectProtocol.h"
 
-@interface PrescriptionObject : BaseObject<PrescriptionObjectProtocol>{
+@interface PrescriptionObject : BaseObject<PrescriptionObjectProtocol,CommonObjectProtocol>{
     Prescription* prescription;
 }
 

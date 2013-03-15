@@ -19,42 +19,80 @@
     return DATABASE;
 }
 
--(NSDictionary *)consolidateForTransmitting{
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
-    [consolidate setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
-    return consolidate;
-}
-
--(void)unpackageFileForUser:(NSDictionary *)data{
-    [super unpackageFileForUser:data];
-    [self linkVisit];
-    [visit setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
-}
-
--(void)saveObject:(ObjectResponse)eventResponse
+- (id)init
 {
-    [super saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-         eventResponse(data,error);
-    } inDatabase:DATABASE forAttribute:VISITID];
+    [self setupObject];
+    return [super init];
+}
+-(id)initAndMakeNewDatabaseObject
+{
+    [self setupObject];
+    return [super initAndMakeNewDatabaseObject];
+}
+- (id)initAndFillWithNewObject:(NSDictionary *)info
+{
+    [self setupObject];
+    return [super initAndFillWithNewObject:info];
+}
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
+{
+    [self setupObject];
+    return [super initWithCachedObjectWithUpdatedObject:dic];
 }
 
+-(void)setupObject{
+    
+    self.COMMONID =  PATIENTID;
+    self.CLASSTYPE = kVisitationType;
+    self.COMMONDATABASE = DATABASE;
+}
 #pragma mark- Private Methods
 #pragma mark-
--(BOOL)isVisitUniqueForVisitID
+
+
+-(void)createNewObject:(NSDictionary*) object Locally:(ObjectResponse)onSuccessHandler
 {
-    NSArray* pastVisits = [self FindObjectInTable:DATABASE withName:visit.visitationId forAttribute:VISITID];
     
-    if (pastVisits.count > 0) {
-        return NO;
+    if (object) {
+        [self setValueToDictionaryValues:object];
     }
     
-    return YES;
+    
+    // Check for patientID
+    if (![self.databaseObject valueForKey:VISITID] || ![self.databaseObject valueForKey:PATIENTID]) {
+        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kUpdateObject inDomain:@"Visitation Object"]);
+        return;
+    }
+    
+    [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kUpdateObject];
 }
 
--(BOOL)loadVisitWithVisitationID:(NSString *)visitID{   
-   return [super loadObjectForID:visitID inDatabase:DATABASE forAttribute:VISITID];
-
+-(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary*)parentObject{
+    
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[parentObject objectForKey:PATIENTID]];
+    
+    return [self convertListOfManagedObjectsToListOfDictionaries: [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:PATIENTID]];
 }
+
+-(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse{
+    
+    NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:4];
+    
+    [query setValue:[parentObject objectForKey:PATIENTID] forKey:PATIENTID];
+    [query setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
+    [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
+    
+    [ self tryAndSendData:query withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+        eventResponse(nil,error);
+    } andWithPositiveResponse:^(id data) {
+        StatusObject* status = data;
+        [self SaveListOfObjectsFromDictionary:status.data];
+        eventResponse(self,nil);
+    }];
+}
+
+
+
 
 -(void)linkVisit{
     visit = (Visitation*)self.databaseObject;
@@ -62,17 +100,25 @@
 
 #pragma mark- Public Methods
 #pragma mark-
--(void)associatePatientToVisit:(NSString *)patientFirstName{
+
+-(void)associateObjectToItsSuperParent:(NSDictionary *)parent
+{
     [self linkVisit];
-    [visit setVisitationId:[NSString stringWithFormat:@"%@_%f",patientFirstName,[[NSDate date]timeIntervalSince1970]]];
+    NSString* pId = [parent objectForKey:PATIENTID];
+    [visit setVisitationId:[NSString stringWithFormat:@"%@_%f",pId,[[NSDate date]timeIntervalSince1970]]];
+    [visit setPatientId:pId];
 }
 
 -(BOOL)shouldSetCurrentVisitToOpen:(BOOL)shouldOpen{
+   
     BOOL isAlreadyOpen = ([[self.databaseObject valueForKey:ISOPEN]boolValue]);
+    
     if (isAlreadyOpen) {
         return NO;
     }
+    
     [self.databaseObject setValue:[NSNumber numberWithBool:shouldOpen] forKey:ISOPEN];
+    
     return YES;
 }
 
@@ -83,7 +129,7 @@
         Response(data,error);
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
-        [self SaveListOfPatientsToTheDatabase:status.data];
+        [self SaveListOfObjectsFromDictionary:status.data];
         Response(self,nil);
     }];
 }
@@ -95,68 +141,6 @@
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
 
--(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient
-{
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[patient objectForKey:PATIENTID]];
-    
-    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:PATIENTID];
-}
 
--(void)FindAllVisitsOnServerForPatient:(NSDictionary*)patient OnCompletion:(ObjectResponse)eventResponse
-{
-    
-    respondToEvent = eventResponse;
-    
-    NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:4];
-    
-    [query setValue:[patient objectForKey:PATIENTID] forKey:PATIENTID];
-    [query setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
-    [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
-    
-    [ self tryAndSendData:query withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        respondToEvent(nil,error);
-    } andWithPositiveResponse:^(id data) {
-        StatusObject* status = data;
-        [self SaveListOfPatientsToTheDatabase:status.data];
-        respondToEvent(self,nil);        
-    }];
-}
-
--(void)SaveListOfPatientsToTheDatabase:(NSDictionary*)VisitList
-{
-    // get all the users returned from server
-    NSArray* arr = [VisitList objectForKey:ALLVISITS];
-    
-    // Go through all users in array
-    for (NSDictionary* dict in arr) {
-        // If the user doesnt exists in the database currently then add it in
-        if (![self loadVisitWithVisitationID:[dict objectForKey:VISITID]]) {
-            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-        }
-        [self linkVisit];
-        
-        [visit setValuesForKeysWithDictionary:dict];
-        
-        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
-        }];
-    }
-}
-
--(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response{
-
-    if (shouldLock) {
-        [self.databaseObject setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
-    }else{
-        [self.databaseObject setValue:@"" forKey:ISLOCKEDBY];
-    }
-    
-    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-    
-    [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
-    [dataToSend setValue:self.appDelegate.currentUserName forKey:ISLOCKEDBY];
-    
-    [super UpdateObject:response andSendObjects:dataToSend forDatabase:DATABASE withAttribute:VISITID];
-}
 
 @end

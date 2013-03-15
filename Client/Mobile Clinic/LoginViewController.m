@@ -51,7 +51,8 @@
             // Listens for the logout button
             [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
             [self navigateToMainScreen];
-            [user.appDelegate setCurrentUserName:usernameTextField.text];
+            [[NSUserDefaults standardUserDefaults]setObject:usernameTextField.text forKey:CURRENT_USER];
+            [[NSUserDefaults standardUserDefaults]synchronize];
         }
     }];
     
@@ -60,7 +61,8 @@
     [self dismissViewControllerAnimated:YES completion:^{
         // Stops listening
         [passwordTextField setText:@""];
-         [user.appDelegate setCurrentUserName:@""];
+        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:CURRENT_USER];
+        [[NSUserDefaults standardUserDefaults]synchronize];
         [[NSNotificationCenter defaultCenter]removeObserver:self];
     }];
 }

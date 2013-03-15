@@ -12,11 +12,7 @@
 #import "BaseObject.h"
 #import "Visitation.h"
 #import "VisitationObjectProtocol.h"
-@interface VisitationObject : BaseObject<VisitationObjectProtocol>{
+@interface VisitationObject : BaseObject<VisitationObjectProtocol,CommonObjectProtocol>{
     Visitation* visit;
 }
-
--(void)linkVisit;
-
-+(NSString*)DatabaseName;
 @end

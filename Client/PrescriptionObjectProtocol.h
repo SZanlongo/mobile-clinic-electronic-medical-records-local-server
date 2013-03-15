@@ -10,22 +10,11 @@
 #define PRESCRIBETIME   @"prescribedTime"
 #define TABLEPERDAY     @"tabletPerDay"
 #define TIMEOFDAY       @"timeOfDay"
-#define VISITID         @"visitationId"
 #define PRESCRIPTIONID  @"prescriptionId"
 
 #import <Foundation/Foundation.h>
-
+#import "CommonObjectProtocol.h"
 @protocol PrescriptionObjectProtocol <NSObject>
-+(NSString *)DatabaseName;
 
-/**
- * Loads the current object with a previously existing visitation that resides locally on the client
- *@param visitID represents the id of the object that you want to find
- */
--(BOOL)loadPrescriptionWithPrescriptionID:(NSString *)prescriptionID;
 
--(void)associatePrescriptionToVisit:(NSString *)visitID;
--(NSArray *)FindAllPrescriptionForCurrentVisitLocally:(NSDictionary*)visit;
--(void)FindAllPrescriptionsOnServerForVisit:(NSDictionary*)visit OnCompletion:(ObjectResponse)eventResponse;
--(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response;
 @end

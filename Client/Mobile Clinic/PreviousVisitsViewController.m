@@ -45,11 +45,17 @@
      */
      
     [mobileFacade findAllVisitsForCurrentPatient:_patientData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        
         _patientHistoryArray = [NSMutableArray arrayWithArray:allObjectsFromSearch];
+        
         NSSortDescriptor *sortDescriptor;
+        
         sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"triageOut" ascending:NO];
+        
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+      
         _patientHistoryArray = [NSMutableArray arrayWithArray:[_patientHistoryArray sortedArrayUsingDescriptors:sortDescriptors]];
+       
         [_patientHistoryTableView reloadData];
     }];
 }
@@ -89,14 +95,13 @@
     cell.patientDOBLabel.text = [[_patientData objectForKey:DOB]convertNSDateFullBirthdayString];
 
     // Set Visitation Data
-    BaseObject * visitData = [[BaseObject alloc]init];
-    [visitData setDBObject:[_patientHistoryArray objectAtIndex:indexPath.row]];
+    NSDictionary* visitData = [NSDictionary dictionaryWithDictionary:[_patientHistoryArray objectAtIndex:indexPath.row]];
     
-    cell.patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[visitData getObjectForAttribute:WEIGHT]doubleValue]];
-    cell.patientBPLabel.text = [visitData getObjectForAttribute:BLOODPRESSURE];
-//    cell.patientHeartLabel.text = [visitData getObjectForAttribute:HEARTRATE];
-//    cell.patientRespirationLabel.text = [visitData getObjectForAttribute:RESPIRATION];
-    [cell.patientConditionsTextView setText:[visitData getObjectForAttribute:CONDITION]];
+    cell.patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[visitData objectForKey:WEIGHT]doubleValue]];
+    cell.patientBPLabel.text = [visitData objectForKey:BLOODPRESSURE];
+    cell.patientHeartLabel.text = [visitData objectForKey:HEARTRATE];
+    cell.patientRespirationLabel.text = [visitData objectForKey:RESPIRATION];
+    [cell.patientConditionsTextView setText:[visitData objectForKey:CONDITION]];
 
     return cell;
 }

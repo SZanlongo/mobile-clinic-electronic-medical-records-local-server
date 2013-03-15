@@ -17,10 +17,12 @@ ServerCallback onComplete;
 - (void)connectToNextAddress;
 @end
 
+NSMutableData* majorData;
+static ServerCore *sharedMyManager = nil;
 @implementation ServerCore
 
 +(id)sharedInstance{
-    static ServerCore *sharedMyManager = nil;
+    
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
@@ -40,14 +42,14 @@ ServerCallback onComplete;
 }
 -(void)startClient{
     NSLog(@"Started ServerCore: Searching for Servers...");
-    [netServiceBrowser searchForServicesOfType:@"_MC-EMR._tcp." inDomain:@"local."]; 
+    [netServiceBrowser searchForServicesOfType:@"_MC-EMR._tcp." inDomain:@"local."];
 }
 - (void)netServiceBrowser:(NSNetServiceBrowser *)sender didNotSearch:(NSDictionary *)errorInfo
 {
 	NSLog(@"DidNotSearch: %@", errorInfo);
 }
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
-
+    
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)sender
@@ -74,7 +76,7 @@ ServerCallback onComplete;
                moreComing:(BOOL)moreServicesComing
 {
 	NSLog(@"Removing Service: %@", [netService name]);
-   
+    
     if ([serverService.name isEqualToString:netService.name]) {
         NSLog(@"Removed Current Service that was in use");
         connected = NO;
@@ -95,7 +97,7 @@ ServerCallback onComplete;
 - (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict
 {
 	NSLog(@"DidNotResolve");
-    	connected = NO;
+    connected = NO;
     [self startClient];
 }
 
@@ -164,7 +166,7 @@ ServerCallback onComplete;
 	NSLog(@"Socket:DidConnectToHost: %@ Port: %hu", host, port);
 	[self grabURLInBackground:host];
 	connected = YES;
-   
+    
     if (connectionStatus) {
         connectionStatus(connected);
     }
@@ -173,8 +175,8 @@ ServerCallback onComplete;
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
 	NSLog(@"SocketDidDisconnect:WithError: %@", err);
-
-		[self connectToNextAddress];
+    
+    [self connectToNextAddress];
     if (connectionStatus) {
         connectionStatus(NO);
     }
@@ -182,23 +184,38 @@ ServerCallback onComplete;
 }
 
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
+    
     NSLog(@"Server did accept data %i",data.length);
     
-    NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:data] copyItems:YES];
-    
-    if(data) {
-        // ObjectFactory: Used to instatiate the proper class but returns it generically
-        id obj = [ObjectFactory createObjectForType:myDictionary];
-        
-        // setup the object to use the dictionary values
-        [obj unpackageFileForUser:myDictionary];
-        
-        NSLog(@"Dictionary: %@",[obj description]);
-        
-        onComplete(obj);
-    } else {
-        NSLog(@"Write Error in Log: Recieved No data");
+    if (!majorData) {
+        majorData = [[NSMutableData alloc]initWithData:data];
+    }else{
+        [majorData appendData:data];
     }
+    @try {
+        NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:majorData] copyItems:YES];
+        
+        if(majorData) {
+            // ObjectFactory: Used to instatiate the proper class but returns it generically
+            id<BaseObjectProtocol> obj = [ObjectFactory createObjectForType:myDictionary];
+            
+            // setup the object to use the dictionary values
+            [obj unpackageFileForUser:myDictionary];
+            
+            NSLog(@"Dictionary: %@",[myDictionary description]);
+            majorData = nil;
+            onComplete(obj);
+        } else {
+            NSLog(@"Write Error in Log: Recieved No data");
+        }
+        
+    }
+    @catch (NSException *exception) {
+        [asyncSocket readDataWithTimeout:-1 tag:tag];
+    }
+}
+-(void)socketDidCloseReadStream:(GCDAsyncSocket *)sock{
+    NSLog(@"Read Stream CLosed");
 }
 
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
@@ -208,7 +225,7 @@ ServerCallback onComplete;
 
 -(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data{
     
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
     
     NSDictionary* myDictionary = [unarchiver decodeObjectForKey:ARCHIVER];
     
@@ -219,7 +236,6 @@ ServerCallback onComplete;
 
 - (void)sendData:(NSDictionary*)dataToBeSent withOnComplete:(ServerCallback)response
 {
-    
     onComplete = response;
     
     //New mutable data object
@@ -231,7 +247,7 @@ ServerCallback onComplete;
     [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
     //finalize archiving
     [archiver finishEncoding];
-
+    NSLog(@"Server did Send data %i",globalData.length);
 	[asyncSocket writeData:globalData withTimeout:-1 tag:10];
 	
 }

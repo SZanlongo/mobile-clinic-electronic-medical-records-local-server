@@ -7,13 +7,13 @@
 //
 #define OBJECTID          @"objectId"
 #import <Foundation/Foundation.h>
-#import "FIUAppDelegate.h"
+#import "Database.h"
 #import "DatabaseDriverProtocol.h"
 @interface DatabaseDriver : NSObject<DatabaseDriverProtocol>
 
-@property(nonatomic, strong) FIUAppDelegate* appDelegate;
+//@property(nonatomic, strong) FIUAppDelegate* appDelegate;
 
-
+@property(nonatomic, strong) id<DatabaseProtocol> database;
 
 -(id)init;
 

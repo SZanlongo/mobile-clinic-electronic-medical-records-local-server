@@ -12,7 +12,6 @@
 #define TIMEOFDAY       @"timeOfDay"
 #define PRESCRIPTIONID  @"prescriptionId"
 #define VISITID         @"visitationId"
-#define ALLITEMS        @"all visits"
 #import <Foundation/Foundation.h>
 
 @protocol PrescriptionObjectProtocol <NSObject>
