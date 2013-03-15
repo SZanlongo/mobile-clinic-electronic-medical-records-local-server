@@ -38,13 +38,13 @@
          Response([data getDictionaryValuesFromManagedObject], error);
     }];
 }
+
 // creates a new prescription for a given visit
 -(void)addNewPrescription:(NSDictionary *)Rx ForCurrentVisit:(NSDictionary *)visit AndlockVisit:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
     
     PrescriptionObject* prescript = [[PrescriptionObject alloc]initAndMakeNewDatabaseObject];
     
     [self CommonCommandObject:prescript ForCreating:Rx bindedToParentObject:visit withResults:Response];
-    
 }
 
 // Creates a new visit for a given patient.
@@ -87,18 +87,6 @@
     [self CommonCommandObject:vObject ForSearch:patientInfo withResults:Response];
 }
 
-// Use to find visits for a given patient. Has no need to lock
--(void)findAllVisitsForCurrentPatient:(NSDictionary *)patientInfo AndOnCompletion:(MobileClinicSearchResponse)Response{
-    
-    /* Create a temporary Patient Object to make request */
-    VisitationObject* vObject = [[VisitationObject alloc]init];
-    
-    [vObject FindAllVisitsOnServerForPatient:patientInfo OnCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
-        NSArray* allVisits = [NSArray arrayWithArray:[vObject FindAllVisitsForCurrentPatientLocally:patientInfo]];
-        Response(allVisits,error);
-    }];
-}
-
 //TODO: Needs to be optimized
 // Use to find open visits that needs servicing
 -(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{
@@ -127,6 +115,7 @@
         Response(allVisits,error);
     }];
 }
+
 // Use to find all Prescriptions
 -(void)findAllPrescriptionForCurrentVisit:(NSDictionary *)visit AndOnCompletion:(MobileClinicSearchResponse)Response{
     
@@ -152,12 +141,14 @@
     VisitationObject* base = [[VisitationObject alloc]initWithCachedObjectWithUpdatedObject:temp];
     [self CommonCommandObject:base ShouldLock:!unlock CommonUpdate:[NSMutableDictionary dictionaryWithDictionary:temp] withResults:Response];
 }
+
 // Updates the patient and locks based on Bool variable
 -(void)updateCurrentPatient:(NSDictionary *)patientInfo AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
     
     PatientObject* base = [[PatientObject alloc]initWithCachedObjectWithUpdatedObject:patientInfo];
     [self CommonCommandObject:base ShouldLock:lock CommonUpdate:[NSMutableDictionary dictionaryWithDictionary:patientInfo] withResults:Response];
 }
+
 // Updates the prescription and locks based on Bool variable
 -(void) updatePrescription:(NSDictionary*)Rx AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
      PrescriptionObject* base = [[PrescriptionObject alloc]initWithCachedObjectWithUpdatedObject:Rx];
