@@ -31,7 +31,7 @@ PatientTable* pTable;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [self managedObjectContext];
+    [self managedObjectContext]; 
     
 //    NSError* err = nil;
 //    
