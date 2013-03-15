@@ -10,7 +10,7 @@
 #import "ServerCore.h"
 #import "ObjectFactory.h"
 ServerCommand onComplete;
-static int TIMEOUT = -1;
+static int TIMEOUT;
 @implementation ServerCore
 @synthesize isServerRunning;
 +(id)sharedInstance{
@@ -19,6 +19,7 @@ static int TIMEOUT = -1;
     
     dispatch_once(&onceToken, ^{
         sharedMyManager = [[self alloc] init];
+        TIMEOUT = -1;
     });
     
     return sharedMyManager;
@@ -124,6 +125,8 @@ static int TIMEOUT = -1;
         // ObjectFactory: Used to instatiate the proper class but returns it generically
       id<BaseObjectProtocol> factoryObject = [ObjectFactory createObjectForType:myDictionary];
         
+        NSLog(@"Dictionary From Client: %@",myDictionary.description);
+        
         [factoryObject ServerCommand:myDictionary withOnComplete:^(NSDictionary *dataToBeSent) {
    
             //New mutable data object
@@ -136,7 +139,9 @@ static int TIMEOUT = -1;
             [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
             //finalize archiving
             [archiver finishEncoding];
+
             //send data
+            NSLog(@"Server Will Send data %li",data.length);
             [sock writeData:data withTimeout:TIMEOUT tag:10];
         }];
         
@@ -149,7 +154,7 @@ static int TIMEOUT = -1;
 
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
     NSLog(@"Server is now Listening for Data");
-    [sock readDataWithTimeout:-1 tag:tag];
+    [sock readDataWithTimeout:TIMEOUT tag:tag];
 }
 
 -(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data

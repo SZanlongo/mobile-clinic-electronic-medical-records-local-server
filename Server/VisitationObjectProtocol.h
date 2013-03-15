@@ -20,9 +20,8 @@
 #define BLOODPRESSURE   @"bloodPressure"
 #define VISITID         @"visitationId"
 
-
 #define ISOPEN      @"isOpen"
-#define ALLVISITS   @"all visits"
+
 #import <Foundation/Foundation.h>
 
 @protocol VisitationObjectProtocol <NSObject>

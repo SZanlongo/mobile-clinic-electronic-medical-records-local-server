@@ -9,6 +9,6 @@
 #import "BaseObject.h"
 #import "MedicationObjectProtocol.h"
 #import "CommonObjectProtocol.h"
-@interface MedicationObject : BaseObject<CommonObjectProtocol>
+@interface MedicationObject : BaseObject<MedicationObjectProtocol,CommonObjectProtocol>
 
 @end

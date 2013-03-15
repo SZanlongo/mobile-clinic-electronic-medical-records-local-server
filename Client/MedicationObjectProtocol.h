@@ -11,13 +11,4 @@
 
 @protocol MedicationObjectProtocol <NSObject>
 
--(BOOL)loadPrescriptionWithPrescriptionID:(NSString *)prescriptionID;
-
--(void)associatePrescriptionToVisit:(NSString *)visitID;
-
--(NSArray *)FindAllPrescriptionForCurrentVisitLocally:(NSDictionary*)visit;
-
--(void)FindAllPrescriptionsOnServerForVisit:(NSDictionary*)visit OnCompletion:(ObjectResponse)eventResponse;
-
--(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response;
 @end

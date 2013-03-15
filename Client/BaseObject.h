@@ -20,19 +20,44 @@
     */
     ObjectResponse respondToEvent;
 }
-@property(nonatomic, weak)      NSString* COMMONID;
-@property(nonatomic, assign)    int CLASSTYPE;
-@property(nonatomic, weak)      id client;
-@property(nonatomic, assign)    ObjectTypes objectType;
-@property(nonatomic, assign)    RemoteCommands commands;
-@property(strong, nonatomic)    NSManagedObject* databaseObject;
-/**
- * <<This method SHOULD NOT be used by anyone. This method will be hidden in future releases.>>
- This method checks to see if the device is connected to the server before it attempts to send data. 
- @param data the data that should be sent to the server
- @param negativeResponse if the client is not connect to the server then the methods wihin this block will be fired. This will give the user a chance to run their method even if the server is unable to respond to the request.
- */
 
+/** This needs to be set everytime information is recieved
+ * by the serverCore, so it knows how to send information
+ * back
+ */
+@property(nonatomic, weak)      id client;
+
+/** This needs to be set (during unpackageFileForUser:(NSDictionary*)data
+ * method) so that any recieving device knows how to unpack the
+ * information
+ */
+@property(nonatomic, assign)    ObjectTypes objectType;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(nonatomic, assign)    RemoteCommands commands;
+
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(strong, nonatomic)NSManagedObject* databaseObject;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(nonatomic, weak)      NSString* COMMONDATABASE;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(nonatomic, weak)      NSString* COMMONID;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(nonatomic, assign)    NSInteger CLASSTYPE;
 
 +(NSString*)getCurrenUserName;
 @end

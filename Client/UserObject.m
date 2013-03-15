@@ -27,78 +27,44 @@ NSString* tempPassword;
     return DATABASE;
 }
 
--(NSString *)description
+- (id)init
 {
-    NSString* text = [NSString stringWithFormat:@"\nUsername: %@ \nPassword: %@ \nUsertype: %i ",user.userName,user.password,user.userType.intValue];
-    return text;
+    [self setupObject];
+    return [super init];
+}
+-(id)initAndMakeNewDatabaseObject
+{
+    [self setupObject];
+    return [super initAndMakeNewDatabaseObject];
+}
+- (id)initAndFillWithNewObject:(NSDictionary *)info
+{
+    [self setupObject];
+    return [super initAndFillWithNewObject:info];
+}
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
+{
+    [self setupObject];
+    return [super initWithCachedObjectWithUpdatedObject:dic];
+}
+
+-(void)setupObject{
+    
+    self.COMMONID =  USERNAME;
+    self.CLASSTYPE = kPatientType;
+    self.COMMONDATABASE = DATABASE;
+}
+
+-(void)linkDatabase{
+    user = self.databaseObject;
 }
 
 #pragma mark - Protocol Methods
 #pragma mark -
--(void)setDBObject:(NSManagedObject *)DatabaseObject{
-    [super setDBObject:DatabaseObject];
-    user = (Users*)self.databaseObject;
-}
--(NSDictionary *)consolidateForTransmitting:(NSManagedObject *)object
-{
-    
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
-    
-    [consolidate setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
-    
-    return consolidate;
-}
-
--(void)unpackageFileForUser:(NSDictionary *)data
-{
-    [super unpackageFileForUser:data];
-    [user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
-}
-
-
--(void)saveObject:(ObjectResponse)eventResponse
-{
-    // First check to see if a databaseObject is present
-    if (user){
-        
-        [self SaveCurrentObjectToDatabase];
-    }
-    
-    if (eventResponse != nil) {
-        eventResponse(self,nil);
-    }
-    
-}
 
 #pragma mark - User Validation
 #pragma mark -
 
--(BOOL)usernameAndPasswordValidation
-{
-    // Username must be between 5 - 20 chars
-    if (user.password.length < 5 || user.password.length > 20) {
-        return NO;
-    }
-    // Username must be between 5 - 20 chars
-    else if (user.userName.length < 5 || user.userName.length > 20) {
-        return NO;
-    }
-    // Check if contains any symbols
-    else if (![user.userName isAlphaNumeric]) {
-        return NO;
-    }
-    
-    return YES;
-}
-
--(BOOL)isObject:(NSString*)obj UniqueForKey:(NSString*)key
-{
-    // Check if it exists in database
-    if ([self FindObjectInTable:DATABASE withName:obj forAttribute:key].count > 0) {
-        return NO;
-    }
-    return YES;
-}
 
 #pragma mark - User Login & Creation
 #pragma mark -
@@ -112,8 +78,10 @@ NSString* tempPassword;
     [self getUsersFromServer:^(id<BaseObjectProtocol> data, NSError *error) {
 
         // Try to find user from username in local DB
-        BOOL didFindUser = [self loadUserWithUsername:username];
+        BOOL didFindUser = [self loadObjectForID:username];
         
+        // link databaseObject to convenience Object named "user" 
+        [self linkDatabase];
         // if we find the user locally then....
         if (didFindUser) {
             
@@ -146,66 +114,6 @@ NSString* tempPassword;
     
 }
 
--(void)sendLoginRequestToServer{
-    // Any methods that makes calls and expects information back
-    // you have to listen for the GLOBAL_STATUS_LISTENER
-    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(ActionSuccessfull:) name:GLOBAL_STATUS_LISTENER object:tempObject];
-    
-    //storing internal variables to be sent to the client
-    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:user]];
-    
-    //** SETTING THE COMMAND YOU WANT THE SERVER TO EXECUTE WITH YOUR INFORMATION **
-    [dataToSend setValue:[NSNumber numberWithInt:kLoginUser] forKey:OBJECTCOMMAND];
-    
-    
-    
-}
-
-/*
--(void)CreateANewUser:(ObjectResponse)onSuccessHandler
-{
-    // Handle callback
-    respondToEvent = onSuccessHandler;
-    
-    // client side validation
-    if ([self usernameAndPasswordValidation]) {
-        
-        //Repackage data to be sent
-        NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting:user]];
-        
-        // adding Command to tell the server to create a new user
-        // with the information provided
-        [dataToSend setValue:[NSNumber numberWithInt:kCreateNewUser] forKey:OBJECTCOMMAND];
-        
-        // Create a listener for when the server sends a responses
-        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self selector:@selector(ActionSuccessfull) name:GLOBAL_STATUS_LISTENER object:tempObject];
-        
-        // Send data to server
-        [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-            [self ActionSuccessfull:nil];
-        }];
-
-        
-    }
-}
-*/
-
--(BOOL)loadUserWithUsername:(NSString *)usersName
-{
-
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K ==[cd] %@",USERNAME,usersName];
-    // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:USERNAME];
-    
-    if (arr.count == 1) {
-        user = arr.lastObject;
-        return  YES;
-    }
-    return  NO;
-}
-
 -(void)getUsersFromServer:(ObjectResponse)withResponse
 {
     classResponder = withResponse;
@@ -213,11 +121,13 @@ NSString* tempPassword;
     NSMutableDictionary* dataToSend = [[NSMutableDictionary alloc]initWithCapacity:2];
     [dataToSend setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dataToSend setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
-    // Send data to server
+
     [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
         classResponder(nil,error);
     } andWithPositiveResponse:^(id data) {
-        [self PullAllUsers:data];
+        StatusObject* status = data;
+        [self SaveListOfObjectsFromDictionary:status.data];
+        withResponse(self,nil);
     }];
 
 }
@@ -235,10 +145,11 @@ NSString* tempPassword;
         // Reset this object with the information brought back through the server
         [self unpackageFileForUser:notification.userInfo];
         
-        // Activate the callback so user knows it was successful
-        respondToEvent(self, nil);
         // Save the new user information that has been returned
-        [self saveObject:nil];
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            // Activate the callback so user knows it was successful
+            respondToEvent(self, nil);
+        }];
     }else{
         respondToEvent(nil,[self createErrorWithDescription:tempObject.errorMessage andErrorCodeNumber:10 inDomain:@"BaseObject"] );
     }

@@ -45,8 +45,15 @@ NSString* PATIENTID;
 
 - (void) testUnpackagingFileForUser {
    
-    [base unpackageFileForUser:testData];
+    [base unpackageFileForUser:[NSDictionary dictionaryWithObjectsAndKeys:testData,DATABASEOBJECT, nil]];
    
+    GHAssertEqualStrings([base.databaseObject valueForKey:PATIENTID], @"Michael.9084", @"Patient's ID should be Michael.9084");
+}
+
+- (void) testUnpackagingFileForUser {
+    
+    [base unpackageFileForUser:[NSDictionary dictionaryWithObjectsAndKeys:testData,DATABASEOBJECT, nil]];
+    
     GHAssertEqualStrings([base.databaseObject valueForKey:PATIENTID], @"Michael.9084", @"Patient's ID should be Michael.9084");
 }
 

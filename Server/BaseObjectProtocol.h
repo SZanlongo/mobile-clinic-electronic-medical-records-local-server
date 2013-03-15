@@ -8,6 +8,7 @@
 #define ISLOCKEDBY          @"isLockedBy"
 #define OBJECTTYPE          @"objectType"
 #define OBJECTCOMMAND       @"userCommand" //The different user types (look at enum)
+#define ALLITEMS            @"ALL_ITEMS"
 
 #import <Foundation/Foundation.h>
 
@@ -129,6 +130,6 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 -(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database;
 
 -(void)copyDictionaryValues:(NSDictionary*)dictionary intoManagedObject:(NSManagedObject*)mObject;
-
+-(void)setValueToDictionaryValues:(NSDictionary*)values;
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object;
 @end

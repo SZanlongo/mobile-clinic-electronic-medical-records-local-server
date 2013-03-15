@@ -6,26 +6,65 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 #define DATABASE    @"Medication"
-#define ALLITEMS    @"ALL_ITEMS"
+
 #import "MedicationObject.h"
 #import "StatusObject.h"
 @implementation MedicationObject
 
+#pragma mark- DATABASE PROTOCOL OVERIDES
+#pragma mark-
+
+- (id)init
+{
+    [self setupObject];
+    return [super init];
+}
+-(id)initAndMakeNewDatabaseObject
+{
+    [self setupObject];
+    return [super initAndMakeNewDatabaseObject];
+}
+- (id)initAndFillWithNewObject:(NSDictionary *)info
+{
+    [self setupObject];
+    return [super initAndFillWithNewObject:info];
+}
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
+{
+    [self setupObject];
+    return [super initWithCachedObjectWithUpdatedObject:dic];
+}
+
+#pragma mark- PRIVATE METHODS
+#pragma mark-
 +(NSString *)DatabaseName{
     return DATABASE;
 }
 
--(void)associateObjectToItsSuperParent:(NSString *)parentID{
+-(void)setupObject{
     
+    self.COMMONID =  MEDICATIONID;
+    self.CLASSTYPE = kMedicationType;
+    self.COMMONDATABASE = DATABASE;
 }
-// push to base
--(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary*)parentObject{
+
+#pragma mark- COMMON PROTOCOL METHODS
+#pragma mark-
+-(void)createNewObject:(NSDictionary*) object Locally:(ObjectResponse)onSuccessHandler{
+    NSLog(@"Does not need to be implemented");
+}
+-(void)associateObjectToItsSuperParent:(NSDictionary *)parent{
+    NSLog(@"Does not need to be implemented");
+}
+
+-(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary *)parentObject
+{
    
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",self.COMMONID,[parentObject objectForKey:self.COMMONID]];
     
     return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:self.COMMONID];
 }
-// Refactor and Pushed to base
+
 -(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse{
    
     respondToEvent = eventResponse;
@@ -40,42 +79,8 @@
         respondToEvent(nil,error);
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
-        [self SaveListOfObjectsToTheDatabase:status.data];
+        [self SaveListOfObjectsFromDictionary:status.data];
         respondToEvent(self,nil);
     }];
 }
-
-// Pushed to base
--(void)SaveListOfObjectsToTheDatabase:(NSDictionary*)objectList
-{
-    // get all the users returned from server
-    NSArray* arr = [objectList objectForKey:ALLITEMS];
-    
-    // Go through all users in array
-    for (NSDictionary* dict in arr) {
-        
-        if (![self loadObjectForID:[dict objectForKey:self.COMMONID] inDatabase:DATABASE forAttribute:self.COMMONID]) {
-            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-        }
-        [objectList setValuesForKeysWithDictionary:dict];
-        
-        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
-        } inDatabase:DATABASE forAttribute:self.COMMONID];
-    }
-}
-// Pushed to base & refactor
--(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response{
-   
-    NSString* username = [BaseObject getCurrenUserName];
-
-    [self.databaseObject setValue:(shouldLock)?username:@"" forKey:ISLOCKEDBY];
-    
-    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-    
-    [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
-    
-    [super UpdateObject:response andSendObjects:dataToSend forDatabase:DATABASE withAttribute:self.COMMONID];
-}
-
 @end

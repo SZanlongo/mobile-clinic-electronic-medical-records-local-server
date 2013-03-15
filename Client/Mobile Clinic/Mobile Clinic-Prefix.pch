@@ -19,6 +19,8 @@
     #import"ColorMe.h"
 
     #define CURRENT_USER    @"current user of device"
+    #define GLOBAL_STATUS_LISTENER @"listen for my message"
+
     #define CREATE_NEW_PATIENT  @"Creating a new patient"
     #define MOVE_TO_SEARCH_FOR_MEDICINE @"Searching for medicine"
     #define MOVE_FROM_SEARCH_FOR_MEDICINE @"Back form searching medicine"

@@ -106,7 +106,6 @@
 		EAC37EE816EED8E900836C1C /* MedicationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE716EED8E900836C1C /* MedicationObject.m */; };
 		EAC37EEC16EFE18600836C1C /* ServerCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDCC16BE46CC008949DC /* ServerCore.m */; };
 		EAC37EED16EFE1B900836C1C /* ObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDD516BE46CC008949DC /* ObjectFactory.m */; };
-		EAC37EEE16EFE1E200836C1C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDF116BE481E008949DC /* GCDAsyncSocket.m */; };
 		EAC37EEF16EFE20500836C1C /* HTTPCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDF516BE48AE008949DC /* HTTPCore.m */; };
 		EAC37EF016EFE3C300836C1C /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDAD16BE4682008949DC /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAC37EF116EFE3C300836C1C /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */; };
@@ -124,6 +123,9 @@
 		EAC37EFF16EFF56800836C1C /* AJNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDD116BE46CC008949DC /* AJNotificationView.m */; };
 		EAC37F0216F022A400836C1C /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37F0116F022A300836C1C /* Database.m */; };
 		EAC37F0316F022A400836C1C /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37F0116F022A300836C1C /* Database.m */; };
+		EAC37F0516F099C300836C1C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4677413516BD9386002FD4A5 /* Model.xcdatamodeld */; };
+		EAC37F0D16F19DB800836C1C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37F0C16F19DB800836C1C /* GCDAsyncSocket.m */; };
+		EAC37F0E16F19DB800836C1C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37F0C16F19DB800836C1C /* GCDAsyncSocket.m */; };
 		EACEB53916BEC4E100685AE8 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */; };
 		EACEB53C16BECEB700685AE8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACEB53B16BECEB700685AE8 /* Accelerate.framework */; };
 		EACEB53F16BED11B00685AE8 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */; };
@@ -144,7 +146,6 @@
 		EAE6CDE416BE46CC008949DC /* BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDD316BE46CC008949DC /* BaseObject.m */; };
 		EAE6CDE616BE46CC008949DC /* ObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDD516BE46CC008949DC /* ObjectFactory.m */; };
 		EAE6CDE816BE46CC008949DC /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDD916BE46CC008949DC /* UserObject.m */; };
-		EAE6CDF216BE481E008949DC /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDF116BE481E008949DC /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAE6CDF616BE48AE008949DC /* HTTPCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CDF516BE48AE008949DC /* HTTPCore.m */; };
 		EAE6CDF916BE496E008949DC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CDF816BE496E008949DC /* CFNetwork.framework */; };
 		EAE6CDFB16BE4981008949DC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE6CDFA16BE4981008949DC /* MobileCoreServices.framework */; };
@@ -335,6 +336,8 @@
 		EAC37F0016F022A300836C1C /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		EAC37F0116F022A300836C1C /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		EAC37F0416F02F2C00836C1C /* DatabaseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseProtocol.h; sourceTree = "<group>"; };
+		EAC37F0B16F19DB800836C1C /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		EAC37F0C16F19DB800836C1C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EACEB53716BEC4E100685AE8 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -379,8 +382,6 @@
 		EAE6CDD716BE46CC008949DC /* StatusObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusObject.h; sourceTree = "<group>"; };
 		EAE6CDD816BE46CC008949DC /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		EAE6CDD916BE46CC008949DC /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
-		EAE6CDF016BE481E008949DC /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
-		EAE6CDF116BE481E008949DC /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EAE6CDF416BE48AE008949DC /* HTTPCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPCore.h; sourceTree = "<group>"; };
 		EAE6CDF516BE48AE008949DC /* HTTPCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPCore.m; sourceTree = "<group>"; };
 		EAE6CDF816BE496E008949DC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -547,7 +548,7 @@
 				EA9AC88616C860D500493485 /* Interfaces */,
 				467740FE16BD931E002FD4A5 /* Mobile Clinic */,
 				4677412216BD931E002FD4A5 /* Mobile ClinicTests */,
-				EAADC02616E1165C009E7AF9 /* Mobile Clinic Driver */,
+				EAADC02616E1165C009E7AF9 /* MCF-> Data */,
 				467740F616BD931E002FD4A5 /* Products */,
 				EAE6CDED16BE4743008949DC /* Server API */,
 				46E773D316CB0BFB00242454 /* TestFlightSDK1.1 */,
@@ -800,23 +801,23 @@
 			name = Interfaces;
 			sourceTree = "<group>";
 		};
-		EAADC02616E1165C009E7AF9 /* Mobile Clinic Driver */ = {
+		EAADC02616E1165C009E7AF9 /* MCF-> Data */ = {
 			isa = PBXGroup;
 			children = (
-				EAE6CDEB16BE4701008949DC /* Objects */,
+				EAE6CDEB16BE4701008949DC /* System Objects */,
 				EAADC02416E113D2009E7AF9 /* MobileClinicFacadeProtocol.h */,
 				EAADC02016E113A5009E7AF9 /* MobileClinicFacade.h */,
 				EAADC02116E113A5009E7AF9 /* MobileClinicFacade.m */,
 			);
-			name = "Mobile Clinic Driver";
+			name = "MCF-> Data";
 			sourceTree = "<group>";
 		};
 		EAADC02716E1169C009E7AF9 /* Patient Object */ = {
 			isa = PBXGroup;
 			children = (
-				EAADC02516E1163D009E7AF9 /* PatientObjectProtocol.h */,
 				EAA7AC2616C33D8700B3B911 /* PatientObject.h */,
 				EAA7AC2516C33D8700B3B911 /* PatientObject.m */,
+				EAADC02516E1163D009E7AF9 /* PatientObjectProtocol.h */,
 			);
 			name = "Patient Object";
 			sourceTree = "<group>";
@@ -831,15 +832,41 @@
 			name = "Visitation Object";
 			sourceTree = "<group>";
 		};
+		EAC37F0616F1780F00836C1C /* Medication Object */ = {
+			isa = PBXGroup;
+			children = (
+				EAC37EE616EED8E900836C1C /* MedicationObject.h */,
+				EAC37EE716EED8E900836C1C /* MedicationObject.m */,
+				EAC37EEA16EED95F00836C1C /* MedicationObjectProtocol.h */,
+			);
+			name = "Medication Object";
+			sourceTree = "<group>";
+		};
+		EAC37F0716F1789A00836C1C /* Database Core */ = {
+			isa = PBXGroup;
+			children = (
+				EAC37F0016F022A300836C1C /* Database.h */,
+				EAC37F0116F022A300836C1C /* Database.m */,
+				EAC37F0416F02F2C00836C1C /* DatabaseProtocol.h */,
+			);
+			name = "Database Core";
+			sourceTree = "<group>";
+		};
+		EAC37F0816F178B800836C1C /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				EAC37F0716F1789A00836C1C /* Database Core */,
+				EAE51CB916E6D06F00B858CE /* Database Drivers */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		EAE51CB916E6D06F00B858CE /* Database Drivers */ = {
 			isa = PBXGroup;
 			children = (
 				EACEB53D16BED11B00685AE8 /* DatabaseDriver.h */,
 				EACEB53E16BED11B00685AE8 /* DatabaseDriver.m */,
 				EA9E98E016DBF7BA002BEB87 /* DatabaseDriverProtocol.h */,
-				EAC37F0016F022A300836C1C /* Database.h */,
-				EAC37F0116F022A300836C1C /* Database.m */,
-				EAC37F0416F02F2C00836C1C /* DatabaseProtocol.h */,
 			);
 			name = "Database Drivers";
 			sourceTree = "<group>";
@@ -912,32 +939,30 @@
 			name = "Factory Pattern";
 			sourceTree = "<group>";
 		};
-		EAE6CDEB16BE4701008949DC /* Objects */ = {
+		EAE6CDEB16BE4701008949DC /* System Objects */ = {
 			isa = PBXGroup;
 			children = (
-				EAE6CDEC16BE471D008949DC /* BaseObject */,
+				EAC37EEB16EED99A00836C1C /* CommonObjectProtocol.h */,
+				EAE6CDEC16BE471D008949DC /* Base Object */,
 				EAE51CBD16E6D0BF00B858CE /* Status Object */,
 				EAE51CBA16E6D08F00B858CE /* User Object */,
 				EAADC02716E1169C009E7AF9 /* Patient Object */,
 				EAADC02816E36F54009E7AF9 /* Visitation Object */,
 				EAE51CBC16E6D0AE00B858CE /* Prescription Object */,
-				EAC37EE616EED8E900836C1C /* MedicationObject.h */,
-				EAC37EE716EED8E900836C1C /* MedicationObject.m */,
-				EAC37EEA16EED95F00836C1C /* MedicationObjectProtocol.h */,
-				EAC37EEB16EED99A00836C1C /* CommonObjectProtocol.h */,
+				EAC37F0616F1780F00836C1C /* Medication Object */,
 			);
-			name = Objects;
+			name = "System Objects";
 			sourceTree = "<group>";
 		};
-		EAE6CDEC16BE471D008949DC /* BaseObject */ = {
+		EAE6CDEC16BE471D008949DC /* Base Object */ = {
 			isa = PBXGroup;
 			children = (
-				EAE51CB916E6D06F00B858CE /* Database Drivers */,
+				EAC37F0816F178B800836C1C /* Database */,
 				EAE6CDD216BE46CC008949DC /* BaseObject.h */,
 				EAE6CDD316BE46CC008949DC /* BaseObject.m */,
 				EAE6CE0216BE4E45008949DC /* BaseObjectProtocol.h */,
 			);
-			name = BaseObject;
+			name = "Base Object";
 			sourceTree = "<group>";
 		};
 		EAE6CDED16BE4743008949DC /* Server API */ = {
@@ -966,8 +991,8 @@
 		EAE6CDEF16BE479C008949DC /* ServerCore  */ = {
 			isa = PBXGroup;
 			children = (
-				EAE6CDF016BE481E008949DC /* GCDAsyncSocket.h */,
-				EAE6CDF116BE481E008949DC /* GCDAsyncSocket.m */,
+				EAC37F0B16F19DB800836C1C /* GCDAsyncSocket.h */,
+				EAC37F0C16F19DB800836C1C /* GCDAsyncSocket.m */,
 				EAE6CDD616BE46CC008949DC /* Server.h */,
 				EAE6CDCA16BE46CC008949DC /* Server.m */,
 			);
@@ -1127,7 +1152,6 @@
 				EAE6CDE416BE46CC008949DC /* BaseObject.m in Sources */,
 				EAE6CDE616BE46CC008949DC /* ObjectFactory.m in Sources */,
 				EAE6CDE816BE46CC008949DC /* UserObject.m in Sources */,
-				EAE6CDF216BE481E008949DC /* GCDAsyncSocket.m in Sources */,
 				EAE6CDF616BE48AE008949DC /* HTTPCore.m in Sources */,
 				EAE6CE0616BE552B008949DC /* NSString+Validation.m in Sources */,
 				EACEB53916BEC4E100685AE8 /* RNBlurModalView.m in Sources */,
@@ -1178,6 +1202,7 @@
 				EAC37EE416EEBC3700836C1C /* ColorMe.m in Sources */,
 				EAC37EE816EED8E900836C1C /* MedicationObject.m in Sources */,
 				EAC37F0216F022A400836C1C /* Database.m in Sources */,
+				EAC37F0D16F19DB800836C1C /* GCDAsyncSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1185,6 +1210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC37F0516F099C300836C1C /* Model.xcdatamodeld in Sources */,
 				EAC37EFF16EFF56800836C1C /* AJNotificationView.m in Sources */,
 				EAC37EFE16EFF4E600836C1C /* FIUAppDelegate.m in Sources */,
 				EAC37EF716EFE42900836C1C /* Reachability.m in Sources */,
@@ -1199,13 +1225,13 @@
 				EAC37EF416EFE3C300836C1C /* UserObject.m in Sources */,
 				EAC37EF516EFE3C300836C1C /* PatientObject.m in Sources */,
 				EAC37EEF16EFE20500836C1C /* HTTPCore.m in Sources */,
-				EAC37EEE16EFE1E200836C1C /* GCDAsyncSocket.m in Sources */,
 				EAC37EED16EFE1B900836C1C /* ObjectFactory.m in Sources */,
 				EAC37EEC16EFE18600836C1C /* ServerCore.m in Sources */,
 				EA7CDC4F16ED08E6005A9070 /* GHUnitIOSTestMain.m in Sources */,
 				EA7CDC4E16ED08AE005A9070 /* PatientObjectTest.m in Sources */,
 				EAC37EFD16EFE49500836C1C /* BaseObjectTest.m in Sources */,
 				EAC37F0316F022A400836C1C /* Database.m in Sources */,
+				EAC37F0E16F19DB800836C1C /* GCDAsyncSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1303,7 +1329,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
 					"$(FRANK_LIBRARY_SEARCH_PATHS)",
@@ -1326,7 +1352,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/TestFlightSDK1.1\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

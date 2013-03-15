@@ -23,27 +23,8 @@
 #define RESPIRATION     @"respiration"
 #define PRIORITY        @"priority"
 #import <Foundation/Foundation.h>
-#import "BaseObjectProtocol.h"
+#import "CommonObjectProtocol.h"
 @protocol VisitationObjectProtocol <NSObject>
-
-/**
- *
- */
--(void)associatePatientToVisit:(NSString*)patientFirstName;
-
-/**
- *
- */
--(NSArray *)FindAllVisitsForCurrentPatientLocally:(NSDictionary*)patient;
-/**
- *
- */
--(void)FindAllVisitsOnServerForPatient:(NSDictionary*)patient OnCompletion:(ObjectResponse)eventResponse;
-
-/**
- *
- */
--(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response;
 
 /**
  *

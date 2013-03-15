@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#define GLOBAL_STATUS_LISTENER @"listen for my message"
+
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 #import "ServerProtocol.h"

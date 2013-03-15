@@ -23,36 +23,36 @@ id<ServerProtocol> serverManager;
 +(NSString *)getCurrenUserName{
     return [[NSUserDefaults standardUserDefaults] stringForKey:CURRENT_USER];
 }
-- (id)initWithDatabase:(NSString*)database
+-(id)init
 {
     self = [super init];
     if (self) {
-        self.databaseObject = [super CreateANewObjectFromClass:database isTemporary:YES];
+        self.databaseObject = [super CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:YES];
     }
     return self;
 }
--(id)initWithNewDatabaseObject:(NSString*)database{
+-(id)initAndMakeNewDatabaseObject
+{
     self = [super init];
     if (self) {
-        self.databaseObject = [super CreateANewObjectFromClass:database isTemporary:NO];
+        self.databaseObject = [super CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
     }
     return self;
 }
-- (id)initAndFillWithNewObject:(NSDictionary *)info andRelatedDatabase:(NSString*)database
+- (id)initAndFillWithNewObject:(NSDictionary *)info
 {
-    self = [self initWithDatabase:database];
+    self = [self init];
     if (self) {
         [self unpackageFileForUser:info];
-        
     }
     return self;
 }
-- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib withUpdatedObject:(NSDictionary*)dic
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
 {
     self = [super init];
     if (self) {
-        [self loadObjectForID:objectID inDatabase:database forAttribute:attrib];
-        
+        NSString* objectID = [dic objectForKey:self.COMMONID];
+        [self loadObjectForID:objectID];
         if (dic) {
              [self setValueToDictionaryValues:dic];
         }
@@ -61,19 +61,6 @@ id<ServerProtocol> serverManager;
 }
 #pragma mark- Init Methods
 #pragma mark-
--(NSDictionary *)consolidateForTransmitting{
-    /* 
-     * Setup some of variables that are common to all the
-     * the object that inherit from this base class
-     */
-    
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
-
-    [consolidate setValue:[self.databaseObject dictionaryWithValuesForKeys:self.databaseObject.entity.attributesByName.allKeys] forKey:DATABASEOBJECT];
-    [consolidate setValue:[BaseObject getCurrenUserName] forKey:ISLOCKEDBY];
-    //[consolidate setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
-    return consolidate;
-}
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     /* Setup some of variables that are common to all the
@@ -84,11 +71,11 @@ id<ServerProtocol> serverManager;
 }
 
 
--(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib{
+-(void)saveObject:(ObjectResponse)eventResponse{
     
-    id objID = [self.databaseObject valueForKey:attrib];
+    id objID = [self.databaseObject valueForKey:self.COMMONID];
     
-    NSManagedObject* obj = [self loadObjectWithID:objID inDatabase:DBName forAttribute:attrib];
+    NSManagedObject* obj = [self loadObjectWithID:objID];
     
     [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
     
@@ -105,7 +92,7 @@ id<ServerProtocol> serverManager;
             [self SaveAndRefreshObjectToDatabase:self.databaseObject];
         }else{
             
-            obj = [self CreateANewObjectFromClass:DBName isTemporary:NO];
+            obj = [self CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
             
             [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
             
@@ -116,7 +103,7 @@ id<ServerProtocol> serverManager;
 }
 
 -(void)CommonExecution{
-    
+    NSLog(@"Not Implemented");
 }
 
 -(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects{
@@ -130,9 +117,9 @@ id<ServerProtocol> serverManager;
     return arrayWithDictionaries;
 }
 
--(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID{
     // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
+    NSArray* arr = [self FindObjectInTable:self.COMMONDATABASE withName:objectID forAttribute:self.COMMONID];
     if (arr.count > 0) {
         return [arr objectAtIndex:0];
     }
@@ -161,6 +148,9 @@ id<ServerProtocol> serverManager;
     }
 }
 
+/**
+ * Transforms the native database object into a dictionary
+ */
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
     for (NSString* key in self.databaseObject.entity.attributesByName.allKeys) {
@@ -181,28 +171,50 @@ id<ServerProtocol> serverManager;
    return [super getObjectForAttribute:attribute inDatabaseObject:databaseObject];
 }
 
--(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database withAttribute:(NSString*)attrib{
+-(void)UpdateObject:(ObjectResponse)response shouldLock:(BOOL)shouldLock andSendObjects:(NSMutableDictionary*)dataToSend withInstruction:(NSInteger)instruction{
     
-    [self tryAndSendData:DataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+    // Set/Clear the lock on the object
+    NSMutableDictionary* container = [NSMutableDictionary dictionaryWithCapacity:3];
+    
+    NSString* lock = (shouldLock)?[BaseObject getCurrenUserName]:@"";
+    
+    [container setValue:[BaseObject getCurrenUserName] forKey:ISLOCKEDBY];
+    
+    [dataToSend setValue:lock forKey:ISLOCKEDBY];
+
+    // Place the DataObject inside a dictionary
+    [container setValue:dataToSend forKey:DATABASEOBJECT];
+    
+    // Add instructions
+    [container setValue:[NSNumber numberWithInteger:instruction] forKey:OBJECTCOMMAND];
+    
+    // Add the object Type
+    [container setValue:[NSNumber numberWithInteger:self.CLASSTYPE] forKey:OBJECTTYPE];
+    
+    // Try to send information to the server
+    [self tryAndSendData:container withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+        // Save current information if cannot connect
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
              response(data,error);
-        } inDatabase:database forAttribute:attrib];
+        }];
         
     } andWithPositiveResponse:^(id PosData) {
-        // Save Returned Values
+        // Cast Status Object
         StatusObject* status = PosData;
-
+        
+        // Save object to this device
         [self setValueToDictionaryValues:status.data];
+        
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[DataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
-        } inDatabase:database forAttribute:attrib];
+            response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[dataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
+        }];
     }];
 }
 
 
--(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
+-(BOOL)loadObjectForID:(NSString *)objectID{
     // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
+    NSArray* arr = [self FindObjectInTable:self.COMMONDATABASE withName:objectID forAttribute:self.COMMONID];
     
     if (arr.count == 1) {
         self.databaseObject = [arr objectAtIndex:0];
@@ -210,4 +222,25 @@ id<ServerProtocol> serverManager;
     }
     return  NO;
 }
+
+-(void)SaveListOfObjectsFromDictionary:(NSDictionary*)patientList
+{
+    // get all the users returned from server
+    NSArray* arr = [patientList objectForKey:ALLITEMS];
+    
+    // Go through all users in array
+    for (NSDictionary* dict in arr) {
+        
+        // Try and find previously existing value
+        if(![self loadObjectForID:[dict objectForKey:self.COMMONID]]){
+            self.databaseObject = [self CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
+        }
+        [self setValueToDictionaryValues:dict];
+        // Try and save while handling duplication control
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
+    }
+}
+
 @end

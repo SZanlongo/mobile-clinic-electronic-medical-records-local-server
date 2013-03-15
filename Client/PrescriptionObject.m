@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#define VISITID         @"visitId"
+#define VISITID         @"visitationId"
 #define DATABASE    @"Prescription"
-#define ALLITEMS    @"ALL_ITEMS"
+
 #import "PrescriptionObject.h"
 #import "StatusObject.h"
 
@@ -19,96 +19,80 @@
     return DATABASE;
 }
 
--(NSDictionary *)consolidateForTransmitting{
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
-    [consolidate setValue:[NSNumber numberWithInt:kPrescriptionType] forKey:OBJECTTYPE];
-    return consolidate;
-}
-
--(void)unpackageFileForUser:(NSDictionary *)data{
-    [super unpackageFileForUser:data];
-    [self.databaseObject setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
-}
-
--(void)saveObject:(ObjectResponse)eventResponse
+- (id)init
 {
-    [super saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        eventResponse(data,error);
-    } inDatabase:DATABASE forAttribute:VISITID];
+    [self setupObject];
+    return [super init];
+}
+-(id)initAndMakeNewDatabaseObject
+{
+    [self setupObject];
+    return [super initAndMakeNewDatabaseObject];
+}
+- (id)initAndFillWithNewObject:(NSDictionary *)info
+{
+    [self setupObject];
+    return [super initAndFillWithNewObject:info];
+}
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
+{
+    [self setupObject];
+    return [super initWithCachedObjectWithUpdatedObject:dic];
 }
 
--(BOOL)loadPrescriptionWithPrescriptionID:(NSString *)prescriptionID{
-    // checks to see if object exists
-  return [self loadObjectForID:prescriptionID inDatabase:DATABASE forAttribute:PRESCRIPTIONID];
+-(void)setupObject{
+    
+    self.COMMONID =  PRESCRIPTIONID;
+    self.CLASSTYPE = kPrescriptionType;
+    self.COMMONDATABASE = DATABASE;
 }
 
 #pragma mark- Public Methods
 #pragma mark-
--(void)associatePrescriptionToVisit:(NSString *)visitID{
- 
-    [self.databaseObject setValue:visitID forKey:VISITID];
+-(void)associateObjectToItsSuperParent:(NSDictionary *)parent{
+    NSString* vId = [parent objectForKey:VISITID];
+    [self.databaseObject setValue:[NSString stringWithFormat:@"%@_%f",vId,[[NSDate date]timeIntervalSince1970]] forKey:PRESCRIPTIONID];
+    [self.databaseObject setValue:vId forKey:VISITID];
 }
 
--(NSArray *)FindAllPrescriptionForCurrentVisitLocally:(NSDictionary*)visit
+-(void)createNewObject:(NSDictionary*) object Locally:(ObjectResponse)onSuccessHandler
 {
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",VISITID,[visit objectForKey:VISITID]];
+    
+    if (object) {
+        [self setValueToDictionaryValues:object];
+    }
+    
+    // Check for main ID's
+    if (![self.databaseObject valueForKey:VISITID] || ![self.databaseObject valueForKey:PRESCRIPTIONID]) {
+        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kUpdateObject inDomain:@"Visitation Object"]);
+        return;
+    }
+    
+    [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kUpdateObject];
+}
+
+-(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary*)parentObject{
+    
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",VISITID,[parentObject objectForKey:VISITID]];
     
     return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:VISITID];
 }
 
--(void)FindAllPrescriptionsOnServerForVisit:(NSDictionary *)visit OnCompletion:(ObjectResponse)eventResponse
-{
-    
-    respondToEvent = eventResponse;
+-(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse{
     
     NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:4];
     
-    [query setValue:[visit objectForKey:VISITID] forKey:VISITID];
+    [query setValue:[parentObject objectForKey:VISITID] forKey:VISITID];
     [query setValue:[NSNumber numberWithInt:kPrescriptionType] forKey:OBJECTTYPE];
     [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
     
     [ self tryAndSendData:query withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        respondToEvent(nil,error);
+        eventResponse(nil,error);
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
-        [self SaveListOfPrescriptionsToTheDatabase:status.data];
-        respondToEvent(self,nil);
+        [self SaveListOfObjectsFromDictionary:status.data];
+        eventResponse(self,nil);
     }];
-}
-
--(void)SaveListOfPrescriptionsToTheDatabase:(NSDictionary*)prescriptionList
-{
-    // get all the users returned from server
-    NSArray* arr = [prescriptionList objectForKey:ALLITEMS];
-    
-    // Go through all users in array
-    for (NSDictionary* dict in arr) {
-
-        if (![self loadPrescriptionWithPrescriptionID:[dict objectForKey:PRESCRIPTIONID]]) {
-            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-        }
-        [prescriptionList setValuesForKeysWithDictionary:dict];
-       
-        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
-        }];
-    }
-}
-
--(void)UpdateObjectAndShouldLock:(BOOL)shouldLock onComplete:(ObjectResponse)response{
-    
-    if (shouldLock) {
-        [self.databaseObject setValue:[BaseObject getCurrenUserName] forKey:ISLOCKEDBY];
-    }else{
-        [self.databaseObject setValue:@"" forKey:ISLOCKEDBY];
-    }
-    
-    NSMutableDictionary* dataToSend = [NSMutableDictionary dictionaryWithDictionary:[self consolidateForTransmitting]];
-    
-    [dataToSend setValue:[NSNumber numberWithInteger:kUpdateObject] forKey:OBJECTCOMMAND];
-    [dataToSend setValue:[BaseObject getCurrenUserName] forKey:ISLOCKEDBY];
-    
-    [super UpdateObject:response andSendObjects:dataToSend forDatabase:DATABASE withAttribute:VISITID];
 }
 
 @end

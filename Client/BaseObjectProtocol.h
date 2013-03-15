@@ -5,23 +5,25 @@
 //  Created by Michael Montaque on 2/1/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
-#define DATABASEOBJECT @"Database Object"
+#define DATABASEOBJECT      @"Database Object"
 #define ISLOCKEDBY          @"isLockedBy"
 #define SAVECOMPLETE        @"savedone"
 #define OBJECTTYPE          @"objectType"
 #define OBJECTCOMMAND       @"userCommand" //The different user types (look at enum)
+#define ALLITEMS            @"ALL_ITEMS"
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "ServerProtocol.h"
 /* These are all the classes the server and client will know how to handle */
 typedef enum {
-    kUserType       = 1,
-    kStatusType     = 2,
-    kPatientType    = 3,
-    kVisitationType = 4,
-    kPharmacyType   = 5,
+    kUserType           = 1,
+    kStatusType         = 2,
+    kPatientType        = 3,
+    kVisitationType     = 4,
+    kPharmacyType       = 5,
     kPrescriptionType   = 6,
+    kMedicationType     = 7,
 }ObjectTypes;
 
 /* These are all the commands the server and client will understand */
@@ -42,17 +44,26 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 @optional
 
-- (id)initWithDatabase:(NSString*)database;
-- (id)initWithNewDatabaseObject:(NSString*)database;
-- (id)initAndFillWithNewObject:(NSDictionary *)info andRelatedDatabase:(NSString*)database;
-- (id)initWithCachedObject:(NSString*)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attrib withUpdatedObject:(NSDictionary*)dic;
-/** This method should take all the objects important information
- * and place them inside a dictionary with keys that should be 
- * reflected in the server.
- *
- * Once packaged, return the dictionary
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
  */
--(NSDictionary*) consolidateForTransmitting;
+- (id)init;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+- (id)initAndMakeNewDatabaseObject;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+- (id)initAndFillWithNewObject:(NSDictionary *)info;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+- (id)initWithCachedObjectWithUpdatedObject:(NSDictionary*)dic;
 
 /** This should only take in a dictionary that contains information
  * for the object that is unpackaging it.
@@ -64,10 +75,10 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  */
 -(void) unpackageFileForUser:(NSDictionary*)data;
 
-/* This only needs to be implemented if the object needs to save to
+/** This only needs to be implemented if the object needs to save to
  * its local database
  */
--(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib;
+-(void)saveObject:(ObjectResponse)eventResponse;
 
 /** This needs to be implemented at all times. This is responsible for
  * carrying out the instructions that it was given.
@@ -86,34 +97,6 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  */
 -(void)CommonExecution;
 
-/** This needs to be set everytime information is recieved
- * by the serverCore, so it knows how to send information
- * back
- */
-@property(nonatomic, weak)      id client;
-
-/* This needs to be set (during unpackageFileForUser:(NSDictionary*)data
- * method) so that any recieving device knows how to unpack the 
- * information
- */
-@property(nonatomic, assign)    ObjectTypes objectType;
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
- */
-@property(nonatomic, assign)    RemoteCommands commands;
-
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
- */
-@property(strong, nonatomic)NSManagedObject* databaseObject;
-
-/** 
- This is the setter for the databaseObject that all objects that implement this protocal must have
- @param databaseObject the coredata object that you want to manipulate
- */
--(void)setDBObject:(NSManagedObject*)DatabaseObject;
 
 /**
  * Use this to retrieve objects/values from the Patient object.
@@ -127,21 +110,45 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  *@param attribute the name of the attribute or the key to which the object needs to be saved
  */
 -(void)setObject:(id)object withAttribute:(NSString*)attribute;
-
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
 -(void)tryAndSendData:(NSDictionary*)data withErrorToFire:(ObjectResponse)negativeResponse andWithPositiveResponse:(ServerCallback)posResponse;
-
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
 -(void)setValueToDictionaryValues:(NSDictionary*)values;
-
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
-
--(void)UpdateObject:(ObjectResponse)response andSendObjects:(NSDictionary*)DataToSend forDatabase:(NSString*)database withAttribute:(NSString*)attrib;
-
--(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
-
--(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
-
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+-(void)UpdateObject:(ObjectResponse)response shouldLock:(BOOL)shouldLock andSendObjects:(NSMutableDictionary*)dataToSend withInstruction:(NSInteger)instruction;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+-(BOOL)loadObjectForID:(NSString *)objectID;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
 -(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects;
-
-
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+-(void)SaveListOfObjectsFromDictionary:(NSDictionary*)patientList;
 @end
 
