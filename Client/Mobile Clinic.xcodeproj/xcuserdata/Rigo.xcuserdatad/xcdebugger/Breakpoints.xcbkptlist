@@ -12,9 +12,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "139"
-         endingLineNumber = "139"
-         landmarkName = "-savePrescription:"
-         landmarkType = "5">
+         endingLineNumber = "139">
       </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
