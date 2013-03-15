@@ -87,6 +87,18 @@
     [self CommonCommandObject:vObject ForSearch:patientInfo withResults:Response];
 }
 
+// Use to find visits for a given patient. Has no need to lock
+-(void)findAllVisitsForCurrentPatient:(NSDictionary *)patientInfo AndOnCompletion:(MobileClinicSearchResponse)Response{
+    
+    /* Create a temporary Patient Object to make request */
+    VisitationObject* vObject = [[VisitationObject alloc]init];
+    
+    [vObject FindAllVisitsOnServerForPatient:patientInfo OnCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
+        NSArray* allVisits = [NSArray arrayWithArray:[vObject FindAllVisitsForCurrentPatientLocally:patientInfo]];
+        Response(allVisits,error);
+    }];
+}
+
 //TODO: Needs to be optimized
 // Use to find open visits that needs servicing
 -(void)findAllOpenVisitsAndOnCompletion:(MobileClinicSearchResponse)Response{

@@ -64,11 +64,6 @@
     }
 }
 
-// Change name of button (Send to Pharmacy / Checkout)
-- (void)checkOut {
-
-}
-
 - (IBAction)findDrugs:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
 }
@@ -82,10 +77,13 @@
     }
 }
 
+// Change name of button (Send to Pharmacy / Checkout)
 - (IBAction)savePrescription:(id)sender {
-    
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:nil];
+}
+
+- (void)checkOut {
+    
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {

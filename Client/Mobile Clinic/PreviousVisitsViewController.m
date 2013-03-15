@@ -9,9 +9,11 @@
 #import "PreviousVisitsViewController.h"
 #import "MobileClinicFacade.h"
 #import "BaseObject.h"
+
 @interface PreviousVisitsViewController (){
     NSManagedObjectContext *context;
     MobileClinicFacade* mobileFacade;
+    NSArray *tempArray;                     // TEMP .. CAN DELELE
 }
 @end
 
@@ -58,8 +60,7 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -89,8 +90,6 @@
     if(!cell) {
         cell = [[PatientHistoryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    
     
     // Set Patient Data
     cell.patientDOBLabel.text = [[_patientData objectForKey:DOB]convertNSDateFullBirthdayString];

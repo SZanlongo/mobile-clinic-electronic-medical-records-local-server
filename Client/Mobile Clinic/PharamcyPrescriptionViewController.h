@@ -24,11 +24,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *drugTextField;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *timeOfDayButtons;
 
-- (IBAction)findDrugs:(id)sender;
 - (IBAction)newTimeOfDay:(id)sender;
+- (IBAction)findDrugs:(id)sender;
 - (IBAction)savePrescription:(id)sender;
 
--(void)deactivateControllerFields;
+- (void)deactivateControllerFields;
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 
 @end
