@@ -130,7 +130,6 @@
 //    [_prescriptionData setObject:@"" forKey:PRESCRIPTIONID];
     
     MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
-
     [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {                    
         if (!object)
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
@@ -204,7 +203,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -214,7 +213,6 @@
         [cell.viewController setScreenHandler:handler];
         
         [_segmentedControl setEnabled:YES forSegmentAtIndex:0];
-        
         [_segmentedControl setHidden:NO];
         
         return cell;
@@ -229,7 +227,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(0, 0, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -238,7 +236,6 @@
         [cell addSubview: cell.viewController.view];
         
         [_segmentedControl setEnabled:YES forSegmentAtIndex:1];
-        
         [_segmentedControl setHidden:NO];
         
         return cell;
@@ -255,7 +252,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-20, -15, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];
@@ -277,7 +274,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-50, 40, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];
@@ -287,10 +284,6 @@
         
         return cell;
     }
-}
-
-- (void)setScreenHandler:(ScreenHandler)myHandler {
-    handler = myHandler;
 }
 
 - (IBAction)segmentClicked:(id)sender {
@@ -321,6 +314,10 @@
         *offset = CGPointMake(offset->x, offset->y - (((int)offset->y) % (cellHeight)));
         self.segmentedControl.selectedSegmentIndex = 0;
     }
+}
+
+- (void)setScreenHandler:(ScreenHandler)myHandler {
+    handler = myHandler;
 }
 
 @end
