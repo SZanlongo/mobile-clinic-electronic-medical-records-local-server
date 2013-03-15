@@ -22,9 +22,12 @@
 
 #define ISOPEN      @"isOpen"
 
+#import "CommonObjectProtocol.h"
 #import <Foundation/Foundation.h>
 
 @protocol VisitationObjectProtocol <NSObject>
 
--(NSArray*)getVisitsForPatientWithID:(NSString*)pID;
+-(NSArray*)FindAllOpenVisits;
+
+-(NSArray*)serviceAllObjectsForParentID:(NSString*)parentID;
 @end

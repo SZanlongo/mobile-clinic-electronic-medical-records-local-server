@@ -10,12 +10,11 @@
 #import "BaseObject.h"
 #import "Visitation.h"
 #import "VisitationObjectProtocol.h"
-@interface VisitationObject : BaseObject<VisitationObjectProtocol>{
+
+@interface VisitationObject : BaseObject<VisitationObjectProtocol,CommonObjectProtocol>{
     NSString* associatedPatient;
     Visitation* visit;
 }
-
--(id)initWithVisit:(NSDictionary*)info;
 
 
 @end

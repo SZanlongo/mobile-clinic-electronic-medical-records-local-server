@@ -19,19 +19,52 @@
 #import "DatabaseDriver.h"
 #import "BaseObjectProtocol.h"
 #import "StatusObject.h"
-
+#import "CloudServiceProtocol.h"
 
 @interface BaseObject : DatabaseDriver <BaseObjectProtocol>{
     ObjectResponse respondToEvent;
     ServerCommand commandPattern;
     StatusObject* status;
+    id<CloudServiceProtocol> cloudAPI;
 }
+
+/** This needs to be set everytime information is recieved
+ * by the serverCore, so it knows how to send information
+ * back
+ */
 @property(nonatomic, weak)      id client;
+
+@property(nonatomic, weak)      NSString* isLockedBy;
+/** This needs to be set (during unpackageFileForUser:(NSDictionary*)data
+ * method) so that any recieving device knows how to unpack the
+ * information
+ */
 @property(nonatomic, assign)    ObjectTypes objectType;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
 @property(nonatomic, assign)    RemoteCommands commands;
-@property(strong, nonatomic)    NSManagedObject* databaseObject;
--(id)init;
--(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion;
--(void)queryWithPartialURL:(NSString *)partialURL parameters: (NSDictionary *)params imageData:(NSData *)imageData completion:(void(^)(NSError *error, NSDictionary *result)) completion;
+
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(strong, nonatomic)NSManagedObject* databaseObject;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(nonatomic, weak)      NSString* COMMONDATABASE;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(nonatomic, weak)      NSString* COMMONID;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+@property(nonatomic, assign)    NSInteger CLASSTYPE;
 
 @end

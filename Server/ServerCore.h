@@ -21,6 +21,6 @@
 -(void)stopServer;
 -(void)startServer;
 -(NSString*)getCurrentConnectionName;
-- (void)sendData:(NSDictionary*)dataToBeSent toClient:(GCDAsyncSocket*)sock;
+
 - (NSInteger)numberOfConnections;
 @end

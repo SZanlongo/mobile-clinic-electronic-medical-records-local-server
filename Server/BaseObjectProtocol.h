@@ -14,12 +14,13 @@
 
 /* These are all the classes the server and client will know how to handle */
 typedef enum {
-    kUserType       = 1,
-    kStatusType     = 2,
-    kPatientType    = 3,
-    kVisitationType = 4,
-    kPharmacyType   = 5,
+    kUserType           = 1,
+    kStatusType         = 2,
+    kPatientType        = 3,
+    kVisitationType     = 4,
+    kPharmacyType       = 5,
     kPrescriptionType   = 6,
+    kMedicationType     = 7,
 }ObjectTypes;
 
 /* These are all the commands the server and client will understand */
@@ -40,6 +41,33 @@ typedef void (^ObjectResponse)(id<BaseObjectProtocol> data, NSError* error);
 typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 
 @required
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+- (id)init;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+- (id)initAndMakeNewDatabaseObject;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+- (id)initAndFillWithNewObject:(NSDictionary *)info;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+- (id)initWithCachedObjectWithUpdatedObject:(NSDictionary*)dic;
+
+-(void)UpdateObjectAndSendToClient;
+
+-(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects;
+
+-(void)sendSearchResults:(NSArray*)results;
+
 - (void)ServerCommand:(NSDictionary*)dataToBeRecieved withOnComplete:(ServerCommand)response;
 /* This method should take all the objects important information
  * and place them inside a dictionary with keys that should be
@@ -62,7 +90,7 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 /* This only needs to be implemented if the object needs to save to
  * its local database
  */
--(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib;
+-(void)saveObject:(ObjectResponse)eventResponse;
 
 /* This needs to be implemented at all times. This is responsible for
  * carrying out the instructions that it was given.
@@ -119,17 +147,19 @@ typedef void (^ServerCommand)(NSDictionary* dataToBeSent);
 
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
 
--(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+-(BOOL)loadObjectForID:(NSString *)objectID;
 
--(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute;
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID;
 
 @property(strong, nonatomic)NSManagedObject* databaseObject;
 
 -(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message;
 
--(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database;
+-(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key;
 
 -(void)copyDictionaryValues:(NSDictionary*)dictionary intoManagedObject:(NSManagedObject*)mObject;
+
 -(void)setValueToDictionaryValues:(NSDictionary*)values;
+
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object;
 @end

@@ -13,7 +13,7 @@
 #define PRESCRIPTIONID  @"prescriptionId"
 #define VISITID         @"visitationId"
 #import <Foundation/Foundation.h>
-
+#import "CommonObjectProtocol.h"
 @protocol PrescriptionObjectProtocol <NSObject>
 
 @end

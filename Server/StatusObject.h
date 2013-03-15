@@ -6,14 +6,7 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
-#import "BaseObjectProtocol.h"
-#define DATA      @"data to transfer"
-#define STATUS     @"status"
-
-typedef enum {
-    kSuccess    = 0,
-    kError      = 1,
-} ServerStatus;
+#import "StatusObjectProtocol.h"
 
 @interface StatusObject : NSObject<BaseObjectProtocol>
 
@@ -26,6 +19,7 @@ typedef enum {
 
 #pragma mark - BaseObjectProtocol Variables
 #pragma mark
+
 @property(nonatomic, weak)      id client;
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;

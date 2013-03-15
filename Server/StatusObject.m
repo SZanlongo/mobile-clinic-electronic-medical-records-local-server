@@ -7,20 +7,9 @@
 //
 #define ERRORMSG    @"errormsg"
 #import "StatusObject.h"
-#import "FIUAppDelegate.h"
-FIUAppDelegate* appDelegate;
+
+
 @implementation StatusObject
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        appDelegate = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
-    }
-    return self;
-}
-
-
 
 #pragma mark - BaseObjectProtocol Method
 #pragma mark -
@@ -57,9 +46,4 @@ FIUAppDelegate* appDelegate;
 #pragma mark - Private Methods
 #pragma mark -
 
-
--(NSString *)description{
-    NSString* text = [NSString stringWithFormat:@"\nError Message: %@ \nData: %@ \nObjectType: %i",_errorMessage,_data.description,self.objectType];
-    return text;
-}
 @end

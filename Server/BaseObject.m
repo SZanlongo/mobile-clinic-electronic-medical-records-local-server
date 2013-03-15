@@ -9,48 +9,76 @@
 #import "BaseObject.h"
 #define MAX_NUMBER_ITEMS 4
 #import "StatusObject.h"
+#import "CloudService.h"
 
-@interface BaseObject()
-{
-    NSString *kURL;
-}
-@end
 
 @implementation BaseObject
 @synthesize databaseObject;
-#pragma mark - Public Methods
+#pragma mark - Initialization Methods
 #pragma mark-
--(id)init{
+-(id)init
+{
     self = [super init];
-    if(self)
-    {
-         kURL = @"http://znja-webapp.herokuapp.com/api/";
-//        kURL = @"http://0.0.0.0:3000/api/";
+    if (self) {
+        cloudAPI = [[CloudService alloc]init];
+        self.databaseObject = [super CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:YES];
+    }
+    return self;
+}
+-(id)initAndMakeNewDatabaseObject
+{
+    self = [super init];
+    if (self) {
+        cloudAPI = [[CloudService alloc]init];
+        self.databaseObject = [super CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
+    }
+    return self;
+}
+- (id)initAndFillWithNewObject:(NSDictionary *)info
+{
+    self = [self init];
+    if (self) {
+        cloudAPI = [[CloudService alloc]init];
+        [self unpackageFileForUser:info];
+    }
+    return self;
+}
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
+{
+    self = [super init];
+    if (self) {
+        cloudAPI = [[CloudService alloc]init];
+        NSString* objectID = [dic objectForKey:self.COMMONID];
+        [self loadObjectForID:objectID];
+        if (dic) {
+            [self setValueToDictionaryValues:dic];
+        }
     }
     return self;
 }
 
-#pragma mark - BaseObject Protocol Methods
+#pragma mark - Convenience Methods
 #pragma mark-
 -(NSDictionary *)consolidateForTransmitting{
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:MAX_NUMBER_ITEMS];
-    
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:1];    
     [consolidate setValue:[databaseObject dictionaryWithValuesForKeys:databaseObject.entity.attributeKeys] forKey:DATABASEOBJECT];
     return consolidate;
 }
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     self.commands = [[data objectForKey:OBJECTCOMMAND]intValue];
-}
-
--(NSString *)description{
-    NSString* text = [NSString stringWithFormat:@"\nObjectType: %i",self.objectType];
-    return text;
+    
+    self.isLockedBy = [data objectForKey:ISLOCKEDBY];
+    
+    self.databaseObject = [self CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:YES];
+    
+    [self setValueToDictionaryValues:[data objectForKey:DATABASEOBJECT]];
 }
 
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
-    
+    commandPattern = response;
 }
+
 -(void)setValueToDictionaryValues:(NSDictionary*)values{
     
     for (NSString* key in values.allKeys) {
@@ -59,6 +87,7 @@
         }
     }
 }
+
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
     for (NSString* key in object.entity.attributesByName.allKeys) {
@@ -81,58 +110,9 @@
     }
 }
 
--(BOOL)loadObjectForID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
-    // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
-    
-    if (arr.count == 1) {
-        self.databaseObject = [arr objectAtIndex:0];
-        return  YES;
-    }
-    return  NO;
-}
--(NSManagedObject*)loadObjectWithID:(NSString *)objectID inDatabase:(NSString*)database forAttribute:(NSString*)attribute{
-    // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:database withName:objectID forAttribute:attribute];
-    if (arr.count > 0) {
-         return [arr objectAtIndex:0];
-    }
-return nil;
-}
--(void)saveObject:(ObjectResponse)eventResponse inDatabase:(NSString*)DBName forAttribute:(NSString*)attrib{
-    
-    id objID = [self.databaseObject valueForKey:attrib];
-   
-    NSManagedObject* obj = [self loadObjectWithID:objID inDatabase:DBName forAttribute:attrib];
-    
-    [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
-    
-    if (obj){
-        
-        if (!self.databaseObject.managedObjectContext) {
-            [self SaveCurrentObjectToDatabase:obj];
-        }else{
-            [self SaveCurrentObjectToDatabase:self.databaseObject];
-        }
-    }else{
-        
-        if (self.databaseObject.managedObjectContext) {
-            [self SaveCurrentObjectToDatabase:self.databaseObject];
-        }else{
-            obj = [self CreateANewObjectFromClass:DBName isTemporary:NO];
-            
-            [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
-            
-            [self SaveCurrentObjectToDatabase:obj];
-        }   
-    }
-    eventResponse(self, nil);
-}
-
 -(void)CommonExecution{
     
 }
-
 
 -(void)setObject:(id)object withAttribute:(NSString *)attribute{
     [super setObject:object withAttribute:attribute inDatabaseObject:databaseObject];
@@ -146,6 +126,63 @@ return nil;
     databaseObject = DatabaseObject;
 }
 
+-(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key
+{
+    // Check if it exists in database
+    if ([self FindObjectInTable:self.COMMONDATABASE withName:obj forAttribute:key].count > 0) {
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark- DATA RETRIEVAL & TELEPORTION Methods
+#pragma mark-
+// MARK: Converts and array of NSManagedObjects to an array of dictionaries
+-(NSMutableArray*)convertListOfManagedObjectsToListOfDictionaries:(NSArray*)managedObjects{
+    
+    NSMutableArray* arrayWithDictionaries = [[NSMutableArray alloc]initWithCapacity:managedObjects.count];
+    
+    for (NSManagedObject* objs in managedObjects) {
+        self.databaseObject = objs;
+        [arrayWithDictionaries addObject:self.getDictionaryValuesFromManagedObject];
+    }
+    return arrayWithDictionaries;
+}
+
+// MARK: Send and array of dictionaries to the client
+-(void)sendSearchResults:(NSArray*)results{
+    
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    [dict setValue:[NSNumber numberWithInteger:self.CLASSTYPE] forKey:OBJECTTYPE];
+    
+    [dict setValue:results forKey:ALLITEMS];
+    
+    [self sendInformation:dict toClientWithStatus:kSuccess andMessage:@"Server search completed"];
+}
+
+// MARK: Loads objects to an instantiated databaseObject
+-(BOOL)loadObjectForID:(NSString *)objectID{
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:self.COMMONDATABASE withName:objectID forAttribute:self.COMMONID];
+    
+    if (arr.count == 1) {
+        self.databaseObject = [arr objectAtIndex:0];
+        return  YES;
+    }
+    return  NO;
+}
+
+-(NSManagedObject*)loadObjectWithID:(NSString *)objectID{
+    // checks to see if object exists
+    NSArray* arr = [self FindObjectInTable:self.COMMONDATABASE withName:objectID forAttribute:self.COMMONID];
+    if (arr.count > 0) {
+        return [arr objectAtIndex:0];
+    }
+    return nil;
+}
+
+// MARK: Sends a Dictionary to the client
 -(void)sendInformation:(id)data toClientWithStatus:(int)kStatus andMessage:(NSString*)message{
     if (!status) {
         status =[[StatusObject alloc]init];
@@ -162,171 +199,85 @@ return nil;
     commandPattern([status consolidateForTransmitting]);
 }
 
--(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key inDatabase:(NSString*)database
-{
-    // Check if it exists in database
-    if ([self FindObjectInTable:database withName:obj forAttribute:key].count > 0) {
-        return NO;
-    }
-    return YES;
-}
-
-
-
-#pragma mark - Cloud API
+#pragma mark- SAVE Methods
 #pragma mark-
--(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        [self queryWithPartialURL:stringQuery parameters:params completion:completion];
-        
-    });
-}
 
--(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params imageData:(NSData *)imageData completion:(void(^)(NSError *error, NSDictionary *result)) completion
-{
+// MARK: Saves the current databaseObject without duplicating it
+-(void)saveObject:(ObjectResponse)eventResponse{
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),  ^{
+    id objID = [self.databaseObject valueForKey:self.COMMONID];
+    
+    NSManagedObject* obj = [self loadObjectWithID:objID];
+    
+    [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+    
+    if (obj){
         
-        [self queryWithPartialURL:stringQuery parameters:params imageData:imageData completion:completion];
+        if (!self.databaseObject.managedObjectContext) {
+            [self SaveCurrentObjectToDatabase:obj];
+        }else{
+            [self SaveCurrentObjectToDatabase:self.databaseObject];
+        }
+    }else{
         
-    });
-    
-}
-
--(void)queryWithPartialURL:(NSString *)partialURL parameters: (NSDictionary *)params imageData:(NSData *)imageData completion:(void(^)(NSError *error, NSDictionary *result)) completion
-{
-//    [[NSApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
-    
-    NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@%@", kURL, partialURL]];
-    
-    
-    //////////////////////////////////////////////////////
-    NSData *json = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
-    
-    NSLog(@"%@", [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding]);
-    
-//    NSDictionary *_params = [NSDictionary dictionaryWithObjectsAndKeys:
-//                             kAPI_Key , @"X-ApiKey", deviceID ,
-//                             @"X-DeviceID", accessToken ,
-//                             @"X-AccessToken",[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding],
-//                             @"&X-UserToken=", userToken,
-//                             @"params", nil];
-    
-    
-    NSString *POSTBoundary = @"0xKhTmLbOuNdArY";
-    // create request
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    //    [request setHTTPShouldHandleCookies:NO];
-    [request setTimeoutInterval:30];
-    [request setHTTPMethod:@"POST"];
-    
-    // set Content-Type in HTTP header
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", POSTBoundary];
-    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
-    // post body
-    NSMutableData *body = [NSMutableData data];
-    
-    // add params (all params are strings)
-//    for (NSString *param in _params) {
-//        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", POSTBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [_params objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
-//    }
-    
-    // add image data
-    //    NSData *imageData = UIImageJPEGRepresentation(imageToPost, 1.0);
-    if (imageData) {
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", POSTBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n", @"file"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:imageData];
-        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", POSTBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // setting the body of the post to the reqeust
-    [request setHTTPBody:body];
-    
-    // set the content-length
-    NSString *postLength = [NSString stringWithFormat:@"%li", (unsigned long)[body length]];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    
-    // set URL
-    [request setURL:url];
-    
-    [self sendAsyncRequest:request completion:completion];
-}
-
--(void)queryWithPartialURL:(NSString *)partialURL parameters: (NSDictionary *)param completion:(void(^)(NSError *error, NSDictionary *result)) completion
-{
-//    [[NSApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
-    
-    NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@%@", kURL, partialURL]];
-    
-    NSData *data;
-    
-    if (param) {
-        NSData *json = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:nil];
-        
-        data = [[NSString stringWithFormat:@"%@%@",
-                 @"&params=",[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding] ]
-                dataUsingEncoding: NSUTF8StringEncoding];
-    }
-    else
-    {
-        data = [[NSString stringWithFormat:@"%@",@""] dataUsingEncoding: NSUTF8StringEncoding];
-    }
-    
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
-    
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody: data];
-    
-    
-    [self sendAsyncRequest:request completion:completion];
-}
-
--(void)sendAsyncRequest:(NSURLRequest *)request completion:(void(^)(NSError *error, NSDictionary *result)) completion
-{
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-        
-        if(!error){
-            NSError *jsonError;
+        if (self.databaseObject.managedObjectContext) {
+            [self SaveCurrentObjectToDatabase:self.databaseObject];
+        }else{
             
-            //read and print the server response for debug
-            NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"%@", myString);
+            obj = [self CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
             
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
             
-            if (completion) {
-                completion(jsonError, json);
+            [self SaveCurrentObjectToDatabase:obj];
+        }
+    }
+    eventResponse(self, nil);
+}
+
+// MARK: Updates the object and sends the info to the client
+-(void)UpdateObjectAndSendToClient{
+    // Load old patient in global object and save new patient in variable
+   NSManagedObject* oldValue = [self loadObjectWithID:[self.databaseObject valueForKey:self.COMMONID]];
+
+    NSString* lockedByOlduser = [oldValue valueForKey:ISLOCKEDBY] ;
+    
+    BOOL isNotLockedUp = (!oldValue || [lockedByOlduser isEqualToString:self.isLockedBy] || lockedByOlduser.length == 0);
+    
+    if (isNotLockedUp) {
+        // save to local database
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            if (!data) {
+                [self sendInformation:nil toClientWithStatus:kError andMessage:error.localizedDescription];
+            }else{
+                [self sendInformation:[data getDictionaryValuesFromManagedObject] toClientWithStatus:kSuccess andMessage:@"Succesfully updated & synced"];
             }
-        }
-        else
-        {
-            completion(error, nil);
-        }
-        
-    }];
-    
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
-    
+        }];
+    }else{
+        [self sendInformation:nil toClientWithStatus:kError andMessage:[NSString stringWithFormat:@"This currently being used by %@",lockedByOlduser]];
+    }
+
 }
 
-#pragma mark- Cloud API Utilities
-#pragma mark-
--(NSString *)convertDictionaryToString:(NSDictionary *) jsonParams
+// MARK: Saves an array of Dictionaries
+-(void)SaveListOfObjectsFromDictionary:(NSDictionary*)List
 {
-    NSData *jsonParamsData = [NSJSONSerialization dataWithJSONObject:jsonParams options:NSJSONWritingPrettyPrinted error:nil];
-    return [[NSString alloc] initWithData:jsonParamsData encoding:NSUTF8StringEncoding];
+    // get all the users returned from server
+    NSArray* arr = [List objectForKey:ALLITEMS];
+    
+    // Go through all users in array
+    for (NSDictionary* dict in arr) {
+        
+        // Try and find previously existing value
+        if(![self loadObjectForID:[dict objectForKey:self.COMMONID]]){
+            self.databaseObject = [self CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
+        }
+        [self setValueToDictionaryValues:dict];
+        // Try and save while handling duplication control
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
+    }
 }
+
 
 @end

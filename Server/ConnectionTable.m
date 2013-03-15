@@ -57,9 +57,8 @@ UserObject* users;
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-    UserObject* user = [[UserObject alloc]init];
-    [user setDBObject:[listOfUsers objectAtIndex:rowIndex]];
-	return [user getObjectForAttribute:USERNAME];
+   NSDictionary* user = [NSDictionary dictionaryWithDictionary:[listOfUsers objectAtIndex:rowIndex]];
+	return [user objectForKey:USERNAME];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -70,8 +69,10 @@ UserObject* users;
 }
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
 
-    NSManagedObject* user = [listOfUsers objectAtIndex:row];
-    NSString* username = [user valueForKey:USERNAME];
+    NSDictionary* user = [NSDictionary dictionaryWithDictionary:[listOfUsers objectAtIndex:row]];
+    
+    NSString* username = [user objectForKey:USERNAME];
+    
     [[NSNotificationCenter defaultCenter]postNotificationName:SELECTED_A_USER object:username];
     return YES;
 }
@@ -87,7 +88,7 @@ UserObject* users;
         [users SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
             [self beginUpdates];
             
-            listOfUsers = [NSArray arrayWithArray:[users getAllUsersFromDatabase]];
+            listOfUsers = [NSArray arrayWithArray:[users serviceAllObjects]];
             [self endUpdates];
             [self reloadData];
         }];

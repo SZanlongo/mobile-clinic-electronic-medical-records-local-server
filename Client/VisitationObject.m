@@ -42,7 +42,7 @@
 
 -(void)setupObject{
     
-    self.COMMONID =  PATIENTID;
+    self.COMMONID =  VISITID;
     self.CLASSTYPE = kVisitationType;
     self.COMMONDATABASE = DATABASE;
 }

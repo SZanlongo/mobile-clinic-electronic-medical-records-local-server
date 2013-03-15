@@ -18,10 +18,11 @@
 #define ISLOCKEDBY      @"isLockedBy"
 #define DATABASE        @"Patients"
 #import <Foundation/Foundation.h>
-
+#import "CommonObjectProtocol.h"
 @protocol PatientObjectProtocol <NSObject>
--(id)init;
--(void) UnlockPatient;
+
+-(NSArray*)serviceAllObjects;
+-(void)UnlockPatient:(ObjectResponse)WhatIDOAfterThePatientIsUnlocked;
 -(void) PushPatientsToCloud;
 -(void) SyncPatientsWithCloud;
 @end

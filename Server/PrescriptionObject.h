@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "PrescriptionObjectProtocol.h"
 #import "BaseObject.h"
-@interface PrescriptionObject : BaseObject<PrescriptionObjectProtocol>
+@interface PrescriptionObject : BaseObject<PrescriptionObjectProtocol,CommonObjectProtocol>
 
 @end

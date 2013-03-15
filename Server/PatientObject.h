@@ -14,7 +14,7 @@
 #import "Patients.h"
 
 
-@interface PatientObject : BaseObject<PatientObjectProtocol>{
+@interface PatientObject : BaseObject<PatientObjectProtocol,CommonObjectProtocol>{
     Patients* patient;
 }
       

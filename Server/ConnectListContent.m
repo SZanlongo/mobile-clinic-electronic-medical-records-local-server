@@ -28,7 +28,7 @@
 
 -(void)displayUserInformation:(NSNotification*)note{
    
-    user = [[UserObject alloc]initWithExistingWithID:note.object];
+    user = [[UserObject alloc]initWithCachedObjectWithUpdatedObject:note.object];
     
     [_username setStringValue:[user getObjectForAttribute:USERNAME]];
     [_email setStringValue:[user getObjectForAttribute:EMAIL]];

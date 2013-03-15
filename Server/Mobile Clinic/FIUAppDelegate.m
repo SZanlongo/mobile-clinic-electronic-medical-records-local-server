@@ -63,29 +63,10 @@ PatientTable* pTable;
         
         [base setValueToDictionaryValues:dic];
 
-//            failedBankInfo.age = [NSDate dateWithString:[dic valueForKey:@"age"]];
-//            
-//            failedBankInfo.firstName = [dic valueForKey:@"firstName"];
-//            
-//            failedBankInfo.familyName = [dic valueForKey:@"familyName"];
-//            
-//            failedBankInfo.isLockedBy = [dic valueForKey:@"isLockedBy"];
-//            
-//            failedBankInfo.patientId = [dic valueForKey:@"patientId"];
-//            
-//            failedBankInfo.photo = nil;
-//            
-//            failedBankInfo.sex = [dic valueForKey:@"sex"];
-//            
-//            failedBankInfo.status = [dic valueForKey:@"status"];
-//            
-//            failedBankInfo.villageName = [dic valueForKey:@"villageName"];
-//            
-//            [base setDatabaseObject:failedBankInfo];
         
             [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
                 
-            } inDatabase:@"Patients" forAttribute:PATIENTID];
+            }];
 
     }];
     

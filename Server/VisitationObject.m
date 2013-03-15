@@ -16,158 +16,90 @@ NSString* patientID;
 NSString* isLockedBy;
 @implementation VisitationObject
 
++(NSString *)DatabaseName{
+    return DATABASE;
+}
+
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        [self linkDatabaseObject];
-    }
-    return self;
+    [self setupObject];
+    return [super init];
 }
-
-- (id)initWithVisit:(NSDictionary *)info
+-(id)initAndMakeNewDatabaseObject
 {
-    self = [super init];
-    if (self) {
-        
-        if ([info.allKeys containsObject:DATABASEOBJECT]) {
-            [self unpackageFileForUser:info];
-        }else{
-            NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:info,DATABASEOBJECT, nil];
-            [self unpackageFileForUser:dic];
-        }
-    }
-    return self;
+    [self setupObject];
+    return [super initAndMakeNewDatabaseObject];
+}
+- (id)initAndFillWithNewObject:(NSDictionary *)info
+{
+    [self setupObject];
+    return [super initAndFillWithNewObject:info];
+}
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
+{
+    [self setupObject];
+    return [super initWithCachedObjectWithUpdatedObject:dic];
 }
 
--(NSDictionary *)consolidateForTransmitting{
+-(void)setupObject{
     
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
-
-    [consolidate setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
-    return consolidate;
+    self.COMMONID =  VISITID;
+    self.CLASSTYPE = kVisitationType;
+    self.COMMONDATABASE = DATABASE;
 }
 
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
-    commandPattern = response;
+    [super ServerCommand:nil withOnComplete:response];
     [self unpackageFileForUser:dataToBeRecieved];
     [self CommonExecution];
 }
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-
-    self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:YES];
-    
-    [self linkDatabaseObject];
-    
-    [visit setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
-    
     patientID = [data objectForKey:PATIENTID];
-    
-    isLockedBy = [data objectForKey:ISLOCKEDBY];
 }
 
--(void)saveObject:(ObjectResponse)eventResponse
-{
-    [self linkDatabaseObject];
-    
-        [super saveObject:eventResponse inDatabase:DATABASE forAttribute:VISITID];
-}
 
 -(void)CommonExecution
 {
     switch (self.commands) {
         case kUpdateObject:
-            [self UpdateVisitationWithError:@"Server could not update patient"  orPositiveErro:@"Server successfully updated your information"];
+            [super UpdateObjectAndSendToClient];
             break;
             
         case kFindObject:
-            [self FindVisitByPatients];
+            [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];            
             break;
             
         case kFindOpenObjects:
-            [self FindAllOpenVisits];
+           [self sendSearchResults:[self FindAllOpenVisits]];
             break;  
         default:
             break;
     }
 }
-
--(void)UpdateVisitationWithError:(NSString*)negError orPositiveErro:(NSString*)posError{
-    // Load old patient in global object and save new patient in variable
-    Visitation* oldVisit = (Visitation*)[self loadObjectWithID:visit.visitationId inDatabase:nil forAttribute:VISITID];
+#pragma mark - COMMON OBJECT Methods
+#pragma mark -
+-(NSArray *)FindAllObjectsLocallyFromParentObject{
     
-    BOOL isNotLockedUp = (!oldVisit || [oldVisit.isLockedBy isEqualToString:isLockedBy] || oldVisit.isLockedBy.length == 0);
-    
-    
-    if (isNotLockedUp) {
-        
-        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            if (!error) {
-                [self sendInformation:[self getDictionaryValuesFromManagedObject] toClientWithStatus:kSuccess andMessage:posError];
-            }else{
-                [self sendInformation:nil toClientWithStatus:kError andMessage:negError];
-            }
-        }];
-    }else{
-        [self loadObjectForID:visit.visitationId inDatabase:DATABASE forAttribute:VISITID];
-        
-        [self sendInformation:[self getDictionaryValuesFromManagedObject] toClientWithStatus:kError andMessage:[NSString stringWithFormat:@"Patient is being used by %@",[self.databaseObject valueForKey:ISLOCKEDBY]]];
-
-    }
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,patientID];    
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
--(NSArray*)getVisitsForPatientWithID:(NSString*)pID{
-    
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,pID];
-    
-    return [NSArray arrayWithArray:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
+
+-(NSArray *)serviceAllObjectsForParentID:(NSString *)parentID{
+    patientID = parentID;
+    return [self FindAllObjectsLocallyFromParentObject];
 }
 #pragma mark - Private Methods
 #pragma mark-
--(BOOL)isObject:(id)obj UniqueForKey:(NSString*)key{
-    return [super isObject:obj UniqueForKey:key inDatabase:DATABASE];
-}
 
--(void) FindAllOpenVisits{
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",ISOPEN,visit.isOpen];
-    
-  NSArray* arr = [NSArray arrayWithArray:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
-    
-    NSMutableArray* arrayToSend = [[NSMutableArray alloc]initWithCapacity:arr.count];
-    
-    for (Visitation* obj in arr) {
-        [arrayToSend addObject:[obj dictionaryWithValuesForKeys:obj.attributeKeys]];
-    }
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc]initWithCapacity:2];
-    
-    [dict setValue:[NSNumber numberWithInt:kPatientType] forKey:OBJECTTYPE];
-    
-    [dict setValue:arrayToSend forKey:ALLITEMS];
-    
-    [self sendInformation:dict toClientWithStatus:kSuccess andMessage:@"Server search completed"];
-}
+-(NSArray*)FindAllOpenVisits{
 
--(void)FindVisitByPatients{
-    NSArray* arr = [self getVisitsForPatientWithID:patientID];
+    BOOL isOpen = [self.databaseObject valueForKey:ISOPEN];
     
-    NSMutableArray* arrayToSend = [[NSMutableArray alloc]initWithCapacity:arr.count];
-    
-    for (Visitation* obj in arr) {
-        [arrayToSend addObject:[obj dictionaryWithValuesForKeys:obj.attributeKeys]];
-    }
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc]initWithCapacity:2];
-    
-    [dict setValue:[NSNumber numberWithInt:kPatientType] forKey:OBJECTTYPE];
-    
-    [dict setValue:arrayToSend forKey:ALLITEMS];
-    
-    [self sendInformation:dict toClientWithStatus:kSuccess andMessage:@"Server search completed"];
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",ISOPEN,isOpen];
 
-}
-
--(NSManagedObject *)loadObjectWithID:(NSString *)objectID inDatabase:(NSString *)database forAttribute:(NSString *)attribute{
-   return [super loadObjectWithID:objectID inDatabase:DATABASE forAttribute:attribute];
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
 
 -(void)linkDatabaseObject{

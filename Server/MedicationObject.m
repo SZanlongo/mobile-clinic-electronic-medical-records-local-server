@@ -1,19 +1,16 @@
 //
-//  PrescriptionObject.m
+//  MedicationObject.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 3/11/13.
+//  Created by Michael Montaque on 3/15/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
+#define DATABASE    @"Medication"
+#import "MedicationObject.h"
 
-#import "PrescriptionObject.h"
-#define DATABASE    @"Prescription"
-NSString* visitID;
-NSString* isLockedBy;
-@implementation PrescriptionObject
+NSString* medicationID;
 
-#pragma mark - BaseObjectProtocol Methods
-#pragma mark -
+@implementation MedicationObject
 
 +(NSString *)DatabaseName{
     return DATABASE;
@@ -39,14 +36,12 @@ NSString* isLockedBy;
     [self setupObject];
     return [super initWithCachedObjectWithUpdatedObject:dic];
 }
-
 -(void)setupObject{
     
-    self.COMMONID =  PRESCRIPTIONID;
-    self.CLASSTYPE = kPrescriptionType;
+    self.COMMONID =  MEDICATIONID;
+    self.CLASSTYPE = kMedicationType;
     self.COMMONDATABASE = DATABASE;
 }
-
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
     [super ServerCommand:nil withOnComplete:response];
     [self unpackageFileForUser:dataToBeRecieved];
@@ -55,7 +50,7 @@ NSString* isLockedBy;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    visitID = [data objectForKey:VISITID];
+    medicationID = [data objectForKey:MEDICATIONID];
 }
 
 
@@ -78,10 +73,6 @@ NSString* isLockedBy;
 #pragma mark -
 -(NSArray *)FindAllObjectsLocallyFromParentObject{
     
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",VISITID,visitID];
-    
-    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:PRESCRIBETIME]];
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:MEDNAME]];
 }
-
-
 @end

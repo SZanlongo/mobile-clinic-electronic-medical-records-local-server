@@ -27,28 +27,24 @@
 }
 
 -(void)reloadData{
-    patientList = [NSArray arrayWithArray:[patientsHandler FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
-    
-    BaseObject* base = [[BaseObject alloc]init];
+    patientList = [NSArray arrayWithArray:[patientsHandler serviceAllObjects]];
     
     allItems = [[NSMutableArray alloc]init];
     
-    for (Patients* p in patientList) {
+    for (NSDictionary* p in patientList) {
         
-        NSDictionary* pDic = [base getDictionaryValuesFromManagedObject:p];
-        
-        NSArray* temp = [visitsHandler getVisitsForPatientWithID:[p valueForKey:PATIENTID]];
-        
+        NSArray* temp = [visitsHandler serviceAllObjectsForParentID:[p objectForKey:PATIENTID]];
+        NSMutableDictionary* patientDictionary = [[NSMutableDictionary alloc]initWithCapacity:temp.count];
         NSMutableArray* allVisits = [[NSMutableArray alloc]initWithCapacity:temp.count];
         
-        for (Visitation* v in temp) {
+        for (NSDictionary* v in temp) {
             // Place all visits into array
-            [allVisits addObject: [base getDictionaryValuesFromManagedObject:v]];
+            [allVisits addObject:v];
         }
         
-        [pDic setValue:allVisits forKey:INNER];
+        [patientDictionary setValue:allVisits forKey:INNER];
         
-        [allItems addObject:pDic];
+        [allItems addObject:patientDictionary];
     }
     [_patientDirectory loadColumnZero];
 }

@@ -21,30 +21,37 @@
 #import "NSString+Validation.h"
 
 @implementation UserObject
-
++(NSString *)DatabaseName{
+    return DATABASE;
+}
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:YES];
-        [self linkDatabaseObjects];
-        // Find and return object if it exists
-        status = [[StatusObject alloc]init];
-    }
-    return self;
+    [self setupObject];
+    return [super init];
+}
+-(id)initAndMakeNewDatabaseObject
+{
+    [self setupObject];
+    return [super initAndMakeNewDatabaseObject];
+}
+- (id)initAndFillWithNewObject:(NSDictionary *)info
+{
+    [self setupObject];
+    return [super initAndFillWithNewObject:info];
+}
+-(id)initWithCachedObjectWithUpdatedObject:(NSDictionary *)dic
+{
+    [self setupObject];
+    return [super initWithCachedObjectWithUpdatedObject:dic];
 }
 
-- (id)initWithExistingWithID:(NSString*)username
-{
-    self = [super init];
-    if (self) {
-        [self loadObjectForID:username inDatabase:DATABASE forAttribute:USERNAME];
-        [self linkDatabaseObjects];
-        // Find and return object if it exists
-        status = [[StatusObject alloc]init];
-    }
-    return self;
+-(void)setupObject{
+    
+    self.COMMONID =  USERNAME;
+    self.CLASSTYPE = kPatientType;
+    self.COMMONDATABASE = DATABASE;
 }
+
 #pragma mark - BaseObjectProtocol Methods
 #pragma mark -
 
@@ -59,14 +66,8 @@
     return consolidate;
 }
 
-/* The super needs to be called first */
--(void)unpackageFileForUser:(NSDictionary *)data{
-    [super unpackageFileForUser:data];
-    [user setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
-}
-
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
-    commandPattern = response;
+    [super ServerCommand:nil withOnComplete:response];
     [self unpackageFileForUser:dataToBeRecieved];
     [self CommonExecution];
 }
@@ -76,7 +77,7 @@
 {
     switch (self.commands) {
         case kPullAllUsers:
-            [self PushAllUsersToClient];
+            [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];            
             break;
         case kLoginUser:
             [self ValidateAndLoginUser];
@@ -88,50 +89,31 @@
     }
 }
 
+#pragma mark - COMMON OBJECT Methods
+#pragma mark -
 
--(void)saveObject:(ObjectResponse)eventResponse
-{
-
-    [self linkDatabaseObjects];
+-(NSArray *)FindAllObjectsLocallyFromParentObject{
     
-    [super saveObject:eventResponse inDatabase:DATABASE forAttribute:USERNAME];
-    
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:USERNAME]];
 }
 
+-(NSArray*)serviceAllObjects{
+    
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:USERNAME]];
+}
 
 #pragma mark- Public Methods
 #pragma mark-
 
-
--(BOOL)loadUserWithUsername:(NSString *)usersName
-{
-    
-    // checks to see if object exists
-    NSArray* arr = [self FindObjectInTable:DATABASE withName:usersName forAttribute:USERNAME];
-    
-    if (arr.count == 1) {
-        user = [arr objectAtIndex:0];
-        return  YES;
-    }
-    return  NO;
-}
-
--(NSArray *)getAllUsersFromDatabase
-{
-    
-    return [self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:USERNAME];
-}
-
 -(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder
 {
-    
     
     NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
     
     //TODO: Remove Hard Dependencies
     [mDic setObject:@"1" forKey:@"created_at"];
     
-    [self query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+    [cloudAPI query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
         if (!error) {
             [self storeMultipleCloudUsers:result];
             responder(self,nil);
@@ -141,14 +123,11 @@
     }];
 }
 
--(void)setDBObject:(NSManagedObject *)DatabaseObject{
-    [super setDBObject:DatabaseObject];
-    [self linkDatabaseObjects];
-}
+
+
 
 #pragma mark - Private Methods
 #pragma mark -
-
 
 -(BOOL)CompleteServerSideValidation
 {
@@ -224,7 +203,7 @@
     NSArray* users = [cloudUsers objectForKey:@"data"];
     
     for (NSDictionary* userInfo in users) {
-        self.databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME] inDatabase:DATABASE forAttribute:USERNAME];
+        self.databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME]];
         
         if (!self.databaseObject) {
             self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
@@ -247,31 +226,6 @@
     }
 }
 
--(void)PushAllUsersToClient
-{
-    
-    NSArray* arr = [self FindObjectInTable:DATABASE withName:@"" forAttribute:USERNAME];
-    
-    NSMutableArray* arrayToSend = [[NSMutableArray alloc]initWithCapacity:arr.count];
-    
-    for (Users* obj in arr) {
-        [arrayToSend addObject:[obj dictionaryWithValuesForKeys:obj.attributeKeys]];
-    }
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc]initWithCapacity:3];
-    
-    //[dict setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
-    [dict setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
-    [dict setValue:arrayToSend forKey:ALLITEMS];
-
-    // status will hold a copy of this user data
-    [status setData:dict];
-    // Indicates that this was a success
-    [status setStatus:kSuccess];
-    // Its good to send a message
-    [status setErrorMessage:@"Synced All users to device from server. Please Try logging in."];
-    
-    commandPattern([status consolidateForTransmitting]);
-}
 
 -(void)ValidateAndLoginUser
 {
