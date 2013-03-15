@@ -10,7 +10,7 @@
 #import "BaseObject.h"
 #import "PatientObject.h"
 @interface BaseObjectTest : GHTestCase {
-    BaseObject* base;
+    PatientObject* base;
     NSMutableDictionary* testData;
 }
 @end
@@ -28,7 +28,7 @@ NSString* PATIENTID;
 }
 
 - (void)setUp {
-    base = [[BaseObject alloc]initWithDatabase:@"Patients"];
+    base = [[PatientObject alloc]init];
     
     testData = [[NSMutableDictionary alloc]initWithCapacity:5];
   
@@ -47,14 +47,8 @@ NSString* PATIENTID;
    
     [base unpackageFileForUser:[NSDictionary dictionaryWithObjectsAndKeys:testData,DATABASEOBJECT, nil]];
    
-    GHAssertEqualStrings([base.databaseObject valueForKey:PATIENTID], @"Michael.9084", @"Patient's ID should be Michael.9084");
+    GHAssertEqualStrings([base.databaseObject valueForKey:PATIENTID], @"Michael.908", @"Patient's ID should be Michael.9084");
 }
 
-- (void) testUnpackagingFileForUser {
-    
-    [base unpackageFileForUser:[NSDictionary dictionaryWithObjectsAndKeys:testData,DATABASEOBJECT, nil]];
-    
-    GHAssertEqualStrings([base.databaseObject valueForKey:PATIENTID], @"Michael.9084", @"Patient's ID should be Michael.9084");
-}
 
 @end

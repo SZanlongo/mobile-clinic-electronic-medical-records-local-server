@@ -338,6 +338,7 @@
 		EAC37F0416F02F2C00836C1C /* DatabaseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseProtocol.h; sourceTree = "<group>"; };
 		EAC37F0B16F19DB800836C1C /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		EAC37F0C16F19DB800836C1C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		EAC37F1216F2E9DE00836C1C /* UserObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObjectProtocol.h; sourceTree = "<group>"; };
 		EACEB53716BEC4E100685AE8 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		EACEB53816BEC4E100685AE8 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		EACEB53B16BECEB700685AE8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -876,6 +877,7 @@
 			children = (
 				EAE6CDD816BE46CC008949DC /* UserObject.h */,
 				EAE6CDD916BE46CC008949DC /* UserObject.m */,
+				EAC37F1216F2E9DE00836C1C /* UserObjectProtocol.h */,
 			);
 			name = "User Object";
 			sourceTree = "<group>";

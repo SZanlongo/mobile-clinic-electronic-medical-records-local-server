@@ -55,7 +55,11 @@ PatientTable* pTable;
         
         PatientObject* base = [[PatientObject alloc]init];
         
-        [dic setValue:[NSDate dateWithString:[dic valueForKey:@"age"]] forKey:DOB];
+        NSDateFormatter *format =[[NSDateFormatter alloc]init];
+
+        [format setDateFormat:@"yyyy-MMMM-dd"];
+
+        [dic setValue:[format dateFromString:[dic valueForKey:@"age"]] forKey:DOB];
         
         [base setValueToDictionaryValues:dic];
 

@@ -10,6 +10,7 @@
 #import "PatientObject.h"
 #import "VisitationObject.h"
 #import "PrescriptionObject.h"
+#import "MedicationObject.h"
 
 @implementation MobileClinicFacade
 
@@ -126,6 +127,11 @@
     
 }
 
+// Finds all the medication
+-(void)findAllMedication:(NSDictionary *)visit AndOnCompletion:(MobileClinicSearchResponse)Response{
+    MedicationObject* base = [[MedicationObject alloc]init];
+    [self CommonCommandObject:base ForSearch:nil withResults:Response];
+}
 
 
 #pragma mark- UPDATING OBJECTS
@@ -155,7 +161,11 @@
     [self CommonCommandObject:base ShouldLock:lock CommonUpdate:[NSMutableDictionary dictionaryWithDictionary:Rx] withResults:Response];
 }
 
-
+// Updates the medication and locks it if necessary
+-(void)updateMedication:(NSDictionary *)Rx AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
+    MedicationObject* base = [[MedicationObject alloc]initWithCachedObjectWithUpdatedObject:Rx];
+    [self CommonCommandObject:base ShouldLock:lock CommonUpdate:[NSMutableDictionary dictionaryWithDictionary:Rx] withResults:Response];
+}
 
 #pragma mark- PRIVATE GENERIC METHODS
 #pragma mark-

@@ -56,15 +56,8 @@ NSString* tempPassword;
 }
 
 -(void)linkDatabase{
-    user = self.databaseObject;
+    user = (Users*)self.databaseObject;
 }
-
-#pragma mark - Protocol Methods
-#pragma mark -
-
-#pragma mark - User Validation
-#pragma mark -
-
 
 #pragma mark - User Login & Creation
 #pragma mark -
@@ -116,65 +109,18 @@ NSString* tempPassword;
 
 -(void)getUsersFromServer:(ObjectResponse)withResponse
 {
-    classResponder = withResponse;
-
     NSMutableDictionary* dataToSend = [[NSMutableDictionary alloc]initWithCapacity:2];
     [dataToSend setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dataToSend setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
 
     [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        classResponder(nil,error);
+        withResponse(nil,error);
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
         [self SaveListOfObjectsFromDictionary:status.data];
         withResponse(self,nil);
     }];
 
-}
-
-#pragma mark - Listen & Respond Methods
-#pragma mark -
-
--(void)ActionSuccessfull:(NSNotification *)notification
-{
-    
-    // Remove event listener
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-    tempObject = notification.object;
-    if (tempObject.status == kSuccess) {
-        // Reset this object with the information brought back through the server
-        [self unpackageFileForUser:notification.userInfo];
-        
-        // Save the new user information that has been returned
-        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            // Activate the callback so user knows it was successful
-            respondToEvent(self, nil);
-        }];
-    }else{
-        respondToEvent(nil,[self createErrorWithDescription:tempObject.errorMessage andErrorCodeNumber:10 inDomain:@"BaseObject"] );
-    }
-    
-    
-}
--(void)PullAllUsers:(StatusObject *)notification{
-    // Get information that was returned from server
-    tempObject = notification;
-    
-    // get all the users returned from server
-    NSArray* arr = [tempObject.data objectForKey:ALL_USERS];
-    
-    // Go through all users in array
-    for (NSDictionary* dict in arr) {
-        // If the user doesnt exists in the database currently then add it in
-        if (![self loadUserWithUsername:[dict objectForKey:USERNAME]]) {
-            user = (Users*)[self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-        }
-        
-        [user setValuesForKeysWithDictionary:dict];
-        [self SaveCurrentObjectToDatabase];
-    }
-    
-    classResponder(nil,nil);
 }
 
 @end

@@ -8,6 +8,7 @@
         <attribute name="medName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numContainers" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="tabletsContainter" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Patients" representedClassName="Patients" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Date" syncable="YES"/>
@@ -61,7 +62,7 @@
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Medication" positionX="396" positionY="666" width="128" height="150"/>
+        <element name="Medication" positionX="396" positionY="666" width="128" height="165"/>
         <element name="Patients" positionX="-11" positionY="468" width="128" height="180"/>
         <element name="Prescription" positionX="403" positionY="450" width="128" height="165"/>
         <element name="Users" positionX="205" positionY="402" width="128" height="150"/>

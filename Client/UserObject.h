@@ -23,6 +23,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseObject.h"
 #import "Users.h"
+#import "UserObjectProtocol.h"
 /* Users of the system */
 typedef enum {
     kTriageNurse    = 0,
@@ -32,16 +33,9 @@ typedef enum {
     kRecordKeeper   = 4,
 }UserTypes;
 
-@interface UserObject : BaseObject{
+@interface UserObject : BaseObject<UserObjectProtocol,CommonObjectProtocol>{
     Users* user;
 }    
-+ (NSString*)DatabaseName;
--(id)initWithNewUser;
-/* call to send this object to be verified by the server */
--(void)loginWithUsername:(NSString*)username andPassword:(NSString*)password onCompletion:(ObjectResponse)onSuccessHandler;
 
-/* call to send this object to be create a new user to be authorized */
-//-(void)CreateANewUser:(ObjectResponse)onSuccessHandler;
 
--(BOOL)loadUserWithUsername:(NSString *)usersName;
 @end

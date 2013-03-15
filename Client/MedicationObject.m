@@ -59,28 +59,22 @@
 
 -(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary *)parentObject
 {
-   
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",self.COMMONID,[parentObject objectForKey:self.COMMONID]];
-    
-    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:self.COMMONID];
+    return [self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:self.COMMONID];
 }
 
 -(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse{
-   
-    respondToEvent = eventResponse;
     
-    NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:4];
-    
-    [query setValue:[parentObject objectForKey:self.COMMONID] forKey:self.COMMONID];
+    NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:2];
+
     [query setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
     [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
     
     [ self tryAndSendData:query withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        respondToEvent(nil,error);
+        eventResponse(nil,error);
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
         [self SaveListOfObjectsFromDictionary:status.data];
-        respondToEvent(self,nil);
+        eventResponse(self,nil);
     }];
 }
 @end
