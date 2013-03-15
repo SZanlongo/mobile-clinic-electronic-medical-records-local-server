@@ -31,55 +31,54 @@ PatientTable* pTable;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    
     [self managedObjectContext];
     
-    NSError* err = nil;
-    
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
-    
-    NSArray* Banks = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
-    
-    NSLog(@"Imported Banks: %@", Banks);
-    
-    [Banks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        Patients *failedBankInfo = [NSEntityDescription
-                                    insertNewObjectForEntityForName:@"Patients"
-                                    inManagedObjectContext:_managedObjectContext];
-        NSDictionary* dic = [NSDictionary dictionaryWithDictionary:obj];
-        
-        failedBankInfo.age = [NSDate dateWithString:[dic valueForKey:@"age"]];
-        failedBankInfo.firstName = [dic valueForKey:@"firstName"];
-        failedBankInfo.familyName = [dic valueForKey:@"familyName"];
-        failedBankInfo.isLockedBy = [dic valueForKey:@"isLockedBy"];
-        failedBankInfo.patientId = [dic valueForKey:@"patientId"];
-        failedBankInfo.photo = nil;
-        failedBankInfo.sex = [dic valueForKey:@"sex"];
-        failedBankInfo.status = [dic valueForKey:@"status"];
-        failedBankInfo.villageName = [dic valueForKey:@"villageName"];
-        NSError *error;
-        
-        if (![_managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
-    }];
-    
-    BaseObject * obj = [[BaseObject alloc] init];
-    
-    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
-    
-    [mDic setObject:@"pooop" forKey:@"userName"];
-    [mDic setObject:@"poooop" forKey:@"password"];
-    [mDic setObject:@"poop" forKey:@"firstName"];
-    [mDic setObject:@"poop" forKey:@"lastName"];
-    [mDic setObject:@"poop@popper.com" forKey:@"email"];
-    [mDic setObject:@"1" forKey:@"userType"];
-    [mDic setObject:@"1" forKey:@"status"];
-//    [mDic setObject:@"asd" forKey:@"remember_token"];
-    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-
-    }];
+//    NSError* err = nil;
+//    
+//    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
+//    
+//    NSArray* Banks = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+//    
+//    NSLog(@"Imported Banks: %@", Banks);
+//    
+//    [Banks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        
+//        Patients *failedBankInfo = [NSEntityDescription
+//                                    insertNewObjectForEntityForName:@"Patients"
+//                                    inManagedObjectContext:_managedObjectContext];
+//        NSDictionary* dic = [NSDictionary dictionaryWithDictionary:obj];
+//        
+//        failedBankInfo.age = [NSDate dateWithString:[dic valueForKey:@"age"]];
+//        failedBankInfo.firstName = [dic valueForKey:@"firstName"];
+//        failedBankInfo.familyName = [dic valueForKey:@"familyName"];
+//        failedBankInfo.isLockedBy = [dic valueForKey:@"isLockedBy"];
+//        failedBankInfo.patientId = [dic valueForKey:@"patientId"];
+//        failedBankInfo.photo = nil;
+//        failedBankInfo.sex = [dic valueForKey:@"sex"];
+//        failedBankInfo.status = [dic valueForKey:@"status"];
+//        failedBankInfo.villageName = [dic valueForKey:@"villageName"];
+//        NSError *error;
+//        
+//        if (![_managedObjectContext save:&error]) {
+//            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//        }
+//    }];
+//    
+//    BaseObject * obj = [[BaseObject alloc] init];
+//    
+//    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
+//    
+//    [mDic setObject:@"pooop" forKey:@"userName"];
+//    [mDic setObject:@"poooop" forKey:@"password"];
+//    [mDic setObject:@"poop" forKey:@"firstName"];
+//    [mDic setObject:@"poop" forKey:@"lastName"];
+//    [mDic setObject:@"poop@popper.com" forKey:@"email"];
+//    [mDic setObject:@"1" forKey:@"userType"];
+//    [mDic setObject:@"1" forKey:@"status"];
+////    [mDic setObject:@"asd" forKey:@"remember_token"];
+//    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+//
+//    }];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.

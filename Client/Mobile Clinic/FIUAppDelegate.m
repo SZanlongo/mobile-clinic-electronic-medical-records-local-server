@@ -64,16 +64,16 @@
     */
 
     /*
-     // Delete all entries in the Core Data table (ex. Patients)
-     NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
-     [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
+    // Delete all entries in the Core Data table (ex. Patients)
+    NSFetchRequest *fetchRecords = [[NSFetchRequest alloc] init];
+    [fetchRecords setEntity:[NSEntityDescription entityForName:@"Patients" inManagedObjectContext:context]];
      
-     NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
+    NSArray *currentRecords = [context executeFetchRequest:fetchRecords error:&error];
      
-     for(NSManagedObject *entries in currentRecords) {
-     [context deleteObject:entries];
-     }
-     */
+    for(NSManagedObject *entries in currentRecords) {
+        [context deleteObject:entries];
+    }
+    */
     
     // Print (to NSLog) content of table (ex. Patients)
 //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
