@@ -7,8 +7,10 @@
 //
 
 #import "MedicineSearchViewController.h"
+#import "MobileClinicFacade.h"
 
 @interface MedicineSearchViewController () {
+    MobileClinicFacade *mobileFacade;
     NSMutableArray *medicationArray;
 }
 
@@ -30,11 +32,17 @@
 	// Do any additional setup after loading the view.
     
     // Request all medications in database
+    mobileFacade = [[MobileClinicFacade alloc]init];
+    NSDictionary *myDic = [[NSDictionary alloc]init];
     
+    [mobileFacade findAllMedication:myDic AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        NSLog(@"ALl Medications:%@",allObjectsFromSearch.description);
+        medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
+    }];
 
-    // TEMP LIST OF MEDICATIONS
-    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen", @"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
-    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg", @"250mg",@"250mg",@"100mg", nil];
+//    // TEMP LIST OF MEDICATIONS
+//    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen", @"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
+//    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg", @"250mg",@"250mg",@"100mg", nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,9 +78,14 @@
         UINib * mNib = [UINib nibWithNibName:@"MedicineSearchResultView" bundle:nil];
         cell = [mNib instantiateWithOwner:nil options:nil][0];
     }
+
+    NSDictionary *myDic = [medicationArray objectAtIndex:indexPath.row];
     
-    cell.medicineName.text = (NSString *)[_data1 objectAtIndex:indexPath.row];
-    cell.medicineDose.text = (NSString *)[_data2 objectAtIndex:indexPath.row];
+    cell.medicineName.text = [myDic objectForKey:@""];
+//    cell.medicineDose.text = [];
+    
+//    cell.medicineName.text = (NSString *)[_data1 objectAtIndex:indexPath.row];
+//    cell.medicineDose.text = (NSString *)[_data2 objectAtIndex:indexPath.row];
     
     return cell;
 }

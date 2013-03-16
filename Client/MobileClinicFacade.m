@@ -133,9 +133,9 @@
 #pragma mark-
 // Updates a visitation record and locks it depend the Bool variable
 -(void)updateVisitRecord:(NSDictionary *)visitRecord andShouldUnlock:(BOOL)unlock andShouldCloseVisit:(BOOL)closeVisit onCompletion:(MobileClinicCommandResponse)Response{
-   
+    
     NSMutableDictionary* temp = [NSMutableDictionary dictionaryWithDictionary:visitRecord];
-   
+    
     // Just in case people become silly
     [temp removeObjectForKey:OPEN_VISITS_PATIENT];
     

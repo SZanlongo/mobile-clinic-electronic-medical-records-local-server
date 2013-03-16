@@ -59,7 +59,7 @@
 
 -(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary *)parentObject
 {
-    return [self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:self.COMMONID];
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:self.COMMONID]];
 }
 
 -(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse{

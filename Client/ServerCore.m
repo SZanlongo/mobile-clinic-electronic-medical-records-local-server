@@ -202,7 +202,6 @@ static ServerCore *sharedMyManager = nil;
             // setup the object to use the dictionary values
             [obj unpackageFileForUser:myDictionary];
             
-            NSLog(@"Dictionary: %@",[myDictionary description]);
             majorData = nil;
             onComplete(obj);
         } else {

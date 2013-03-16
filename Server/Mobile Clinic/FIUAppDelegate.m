@@ -9,7 +9,7 @@
 #import "FIUAppDelegate.h"
 #import "BaseObject.h"
 #import "PatientTable.h"
-//#import "PatientObject.h"
+#import "MedicationObject.h"
 
 PatientTable* pTable;
 //PatientObject* patients;
@@ -44,13 +44,11 @@ PatientTable* pTable;
     
     NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
     
-    NSArray* Banks = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+    NSArray* patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
     
-    NSLog(@"Imported Banks: %@", Banks);
+    NSLog(@"Imported Patients: %@", patients);
     
-    [Banks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-       // Patients *failedBankInfo = [NSEntityDescription insertNewObjectForEntityForName:@"Patients" inManagedObjectContext:_managedObjectContext];
+    [patients enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:obj];
         
@@ -64,13 +62,38 @@ PatientTable* pTable;
         
         [base setValueToDictionaryValues:dic];
 
-        
             [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
                 
             }];
 
     }];
+}
+
+- (void)setWithFictitiousMedication {
+    NSError* err = nil;
     
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
+    
+    NSArray* Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+    
+    NSLog(@"Imported Medications: %@", Meds);
+    
+    [Meds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:obj];
+        
+        MedicationObject* base = [[MedicationObject alloc]init];
+        
+        [base setValueToDictionaryValues:dic];
+        
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
+        
+    }];
+}
+
+- (void) testCloud {
 //    BaseObject * obj = [[BaseObject alloc] init];
 //    
 //    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
@@ -82,11 +105,12 @@ PatientTable* pTable;
 //    [mDic setObject:@"poop@popper.com" forKey:@"email"];
 //    [mDic setObject:@"1" forKey:@"userType"];
 //    [mDic setObject:@"1" forKey:@"status"];
-////    [mDic setObject:@"asd" forKey:@"remember_token"];
+//    //    [mDic setObject:@"asd" forKey:@"remember_token"];
 //    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-//
+//        
 //    }];
 }
+
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.
 - (NSURL *)applicationFilesDirectory
 {

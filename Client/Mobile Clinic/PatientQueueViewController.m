@@ -42,44 +42,45 @@
     // Request patient's that are currently checked in
     [mobileFacade findAllOpenVisitsAndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         queueArray = [NSArray arrayWithArray:allObjectsFromSearch];
+        
+        // Settings with respect to station chosen
+        switch ([[self stationChosen] intValue]) {
+            case 2: {
+                [navbar setTintColor:[UIColor blueColor]];
+                
+                // Filter results to patient's that haven't seen the doctor
+                //            NSString * predicateString = [NSString stringWithFormat:@"'%K' == '%@'", DOCTOROUT, nil];
+                NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", DOCTOROUT, nil];
+                queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
+                
+                // Sort queue by priority
+                NSSortDescriptor * sortDescriptor;
+                sortDescriptor = [[NSSortDescriptor alloc]initWithKey:PRIORITY ascending:NO];
+                NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
+            }
+                break;
+            case 3: {
+                [navbar setTintColor:[UIColor greenColor]];
+                
+                // Filter results (Seen doctor & need to see pharmacy)
+                //            NSString * predicateString = [NSString stringWithFormat:@"'%@' != '%@'", @"doctorOut", @""];
+                NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K != %@", DOCTOROUT, nil];
+                queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
+                
+                // Sort queue by time patient left doctor's station
+//                NSSortDescriptor * sortDescriptor;
+//                sortDescriptor = [[NSSortDescriptor alloc]initWithKey:DOCTOROUT ascending:NO];
+//                NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//                queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
+            }
+                break;
+            default:
+                break;
+        }
+        
         [_queueTableView reloadData];
     }];
-    
-    // Settings with respect to station chosen
-    switch ([[self stationChosen] intValue]) {
-        case 2: {
-            [navbar setTintColor:[UIColor blueColor]];
-            
-            // Filter results to patient's that haven't seen the doctor
-//            NSString * predicateString = [NSString stringWithFormat:@"'%@' == '%@'", @"doctorOut", nil];
-//            NSPredicate * predicate = [NSPredicate predicateWithFormat:predicateString];
-//            queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
-            
-            // Sort queue by priority
-            NSSortDescriptor * sortDescriptor;
-            sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"priority" ascending:NO];
-            NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
-        }
-            break;
-        case 3: {
-            [navbar setTintColor:[UIColor greenColor]];
-            
-//            // Filter results (Seen doctor & need to see pharmacy)
-//            NSString * predicateString = [NSString stringWithFormat:@"'%@' != '%@'", @"doctorOut", @""];
-//            NSPredicate * predicate = [NSPredicate predicateWithFormat:predicateString];
-//            queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
-            
-//            // Sort queue by time patient left doctor's station
-//            NSSortDescriptor * sortDescriptor;
-//            sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"doctorOut" ascending:NO];
-//            NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//            queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
-        }
-            break;
-        default:
-            break;
-    }
 }
 
 
@@ -154,22 +155,26 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    // Lock patients / visit
-    
-    
     // Push to doctor & pharmacy view controllers
     NSMutableDictionary * pDic = [[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
     
-    if([[self stationChosen]intValue] == 2) {
-        DoctorPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
-        [newView setPatientData:pDic];
-        [self.navigationController pushViewController:newView animated:YES];
-    }
-    else if ([[self stationChosen]intValue] == 3) {
-        PharmacyPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
-        [newView setPatientData:pDic];
-        [self.navigationController pushViewController:newView animated:YES];
-    }
+    // Lock patients / visit
+    [mobileFacade updateVisitRecord:pDic andShouldUnlock:NO andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
+        if(!object){
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeDisabled WithMessage:error.localizedDescription inView:self.view];
+        }else{
+            if([[self stationChosen]intValue] == 2) {
+                DoctorPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
+                [newView setPatientData:pDic];
+                [self.navigationController pushViewController:newView animated:YES];
+            }
+            else if ([[self stationChosen]intValue] == 3) {
+                PharmacyPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
+                [newView setPatientData:pDic];
+                [self.navigationController pushViewController:newView animated:YES];
+            }
+        }
+    }];
 }
 
 //// Coloring cell depending on priority
