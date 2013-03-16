@@ -43,21 +43,35 @@
 }
 
 - (IBAction)newTimeOfDay:(id)sender {
+    
     for(int i = 0; i < [_timeOfDayButtons count]; i++) {
         if([[_timeOfDayButtons objectAtIndex:i] isEqual:sender]) {
             [((UIButton *)sender) setAlpha:1];
             _timeOfDayTextFields.text = [self getTimeOfDay:i];
         }else
-            [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setAlpha:0.5];
+            [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setAlpha:0.35];
     }
 }
 
 - (NSString *)getTimeOfDay:(int)num {
-    if(num == 0)   return @"Midday";
-    if(num == 1)   return @"Evening";
-    if(num == 2)   return @"Afternoon";
-    if(num == 3)   return @"Morning";
-    return @"";
+    switch (num)
+    {
+        case 0:
+            return @"Morning";
+            break;
+        case 1:
+            return @"Midday";
+            break;
+        case 2:
+            return @"Mid-Afternoon";
+            break;
+        case 3:
+            return @"Evening";
+            break;
+        default:
+            return @"";
+            break;
+    }
 }
 
 - (IBAction)findDrugs:(id)sender {

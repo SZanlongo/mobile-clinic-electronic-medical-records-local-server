@@ -27,14 +27,15 @@
 }
 
 -(void)reloadData{
+   
     patientList = [NSArray arrayWithArray:[patientsHandler serviceAllObjects]];
     
     allItems = [[NSMutableArray alloc]init];
     
-    for (NSDictionary* p in patientList) {
+    for (NSMutableDictionary* patientDictionary in patientList) {
         
-        NSArray* temp = [visitsHandler serviceAllObjectsForParentID:[p objectForKey:PATIENTID]];
-        NSMutableDictionary* patientDictionary = [[NSMutableDictionary alloc]initWithCapacity:temp.count];
+        NSArray* temp = [visitsHandler serviceAllObjectsForParentID:[patientDictionary objectForKey:PATIENTID]];
+
         NSMutableArray* allVisits = [[NSMutableArray alloc]initWithCapacity:temp.count];
         
         for (NSDictionary* v in temp) {
@@ -46,6 +47,7 @@
         
         [allItems addObject:patientDictionary];
     }
+    
     [_patientDirectory loadColumnZero];
 }
 

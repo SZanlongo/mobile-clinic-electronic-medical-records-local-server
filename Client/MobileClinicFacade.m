@@ -54,7 +54,7 @@
     VisitationObject* visit = [[VisitationObject alloc]initAndMakeNewDatabaseObject];
     NSMutableDictionary* openVisit = [[NSMutableDictionary alloc]initWithDictionary:visitInfo];
     
-    [openVisit setValue:[NSNumber numberWithBool:checkout] forKey:ISOPEN];
+    [openVisit setValue:[NSNumber numberWithBool:!checkout] forKey:ISOPEN];
 
     [self CommonCommandObject:visit ForCreating:openVisit bindedToParentObject:patientInfo withResults:Response];
 }
