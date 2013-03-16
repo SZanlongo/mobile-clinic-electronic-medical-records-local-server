@@ -9,11 +9,10 @@
 #import "MedicineSearchViewController.h"
 #import "MobileClinicFacade.h"
 
-@interface MedicineSearchViewController () {
+@interface MedicineSearchViewController() {
     MobileClinicFacade *mobileFacade;
     NSMutableArray *medicationArray;
 }
-
 @end
 
 @implementation MedicineSearchViewController
@@ -33,16 +32,21 @@
     
     // Request all medications in database
     mobileFacade = [[MobileClinicFacade alloc]init];
-    NSDictionary *myDic = [[NSDictionary alloc]init];
+    NSDictionary *myDic = [[NSDictionary alloc]init];       //NOT REALLY USED BY METHOD.  NEED TO MENTION TO MIKE.
     
     [mobileFacade findAllMedication:myDic AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-        NSLog(@"ALl Medications:%@",allObjectsFromSearch.description);
+        NSLog(@"All Medications: %@",allObjectsFromSearch.description);
         medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
+        
+//        // Sort medication by name
+//        NSSortDescriptor * sortDescriptor;
+//        sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"medName" ascending:YES];
+//        NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//        medicationArray = [NSMutableArray arrayWithArray:[medicationArray sortedArrayUsingDescriptors:sortDescriptors]];
     }];
 
-//    // TEMP LIST OF MEDICATIONS
-//    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen", @"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
-//    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg", @"250mg",@"250mg",@"100mg", nil];
+//    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen",@"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
+//    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg",@"250mg",@"250mg",@"100mg", nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,11 +57,13 @@
 - (IBAction)moveBackToPrescription:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:_medicineField.text];
 }
+
 - (void)viewDidUnload {
     [self setMedicineField:nil];
     [self setTableView:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)searchMedicine:(id)sender {
     
 }
@@ -79,29 +85,27 @@
         cell = [mNib instantiateWithOwner:nil options:nil][0];
     }
 
-    NSDictionary *myDic = [medicationArray objectAtIndex:indexPath.row];
+    NSDictionary *medDic = [medicationArray objectAtIndex:indexPath.row];
     
-    cell.medicineName.text = [myDic objectForKey:@""];
-//    cell.medicineDose.text = [];
-    
-//    cell.medicineName.text = (NSString *)[_data1 objectAtIndex:indexPath.row];
-//    cell.medicineDose.text = (NSString *)[_data2 objectAtIndex:indexPath.row];
+    cell.medicineName.text = [medDic objectForKey:@"medName"];
+    cell.medicineDose.text = [medDic objectForKey:@"dosage"];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSMutableDictionary *medDic = [NSMutableDictionary dictionaryWithDictionary:[medicationArray objectAtIndex:indexPath.row]];
+    
     // Display medication
-    NSString *medName = (NSString *)[_data1 objectAtIndex:indexPath.row];
-    NSString *dosage = (NSString *)[_data2 objectAtIndex:indexPath.row];
+    NSString *medName = [medDic objectForKey:@"medName"];
+    NSString *dosage = [medDic objectForKey:@"dosage"];
     _medicineField.text = [NSString stringWithFormat:@"%@ %@", medName, dosage];
     
-    NSMutableDictionary *prescriptionData = [[NSMutableDictionary alloc] init];
-    [prescriptionData setObject:(NSString *)[_data1 objectAtIndex:indexPath.row] forKey:@"medicationID"];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:prescriptionData];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
+    // Pass medication back to prescription view
+    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:medDic];
 }
 
 // Hides keyboard when whitespace is pressed

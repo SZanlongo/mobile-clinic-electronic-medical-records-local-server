@@ -54,24 +54,12 @@
 }
 
 - (NSString *)getTimeOfDay:(int)num {
-    switch (num)
-    {
-        case 0:
-            return @"Morning";
-            break;
-        case 1:
-            return @"Midday";
-            break;
-        case 2:
-            return @"Mid-Afternoon";
-            break;
-        case 3:
-            return @"Evening";
-            break;
-        default:
-            return @"";
-            break;
-    }
+         if (num == 0) return @"Morning";
+    else if (num == 1) return @"Midday";
+    else if (num == 2) return @"Afternoon";
+    else if (num == 3) return @"Evening";
+    
+    return @"";
 }
 
 - (IBAction)findDrugs:(id)sender {
@@ -79,11 +67,12 @@
 }
 
 // Change name of button (Send to Pharmacy / Checkout)
-- (IBAction)savePrescription:(id)sender{
+- (IBAction)savePrescription:(id)sender {
     if([self validatePrescription]) {
         
-        /* TODO: NEED TO VALIDATE THAT FIELD ENTRY IS CORRECT (STRING or INTs) */
+        // TODO: NEED TO VALIDATE THAT FIELD ENTRY IS CORRECT (STRING or INTs)
         
+        // Create a timestamp for Prescribe Time
         NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
         [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
         NSString *dateStamp = [DateFormatter stringFromDate:[NSDate date]];

@@ -134,7 +134,6 @@
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-// 
 - (void)savePrescription:(NSNotification *)note {
     _prescriptionData = note.object;
 
@@ -292,7 +291,9 @@
     [self.tableView reloadData];
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)offset {
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)offset {
     int cellHeight = 768;
     
     if(!visitationHasBeenSaved && (int)offset->y >= 1 * cellHeight)
