@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mobile Clinic/CurrentVisitViewController.m"
-         timestampString = "384046312.947044"
+         timestampString = "385075727.12583"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
          landmarkName = "-quickCheckOutButton:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -33,13 +33,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/CurrentVisitViewController.m"
-         timestampString = "385067743.772664"
+         filePath = "MobileClinicFacade.m"
+         timestampString = "385073927.326719"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
-         landmarkName = "-setVisitData"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
+         landmarkName = "-addNewVisit:ForCurrentPatient:shouldCheckOut:onCompletion:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

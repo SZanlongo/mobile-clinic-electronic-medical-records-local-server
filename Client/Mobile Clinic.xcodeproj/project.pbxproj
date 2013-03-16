@@ -49,7 +49,6 @@
 		6D3A635D16C8472D003B79F7 /* CameraFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635A16C8472D003B79F7 /* CameraFacade.m */; };
 		6D3A635F16C8472D003B79F7 /* UICamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635C16C8472D003B79F7 /* UICamera.m */; };
 		6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */; };
-		6DAF266916F3BD6200ADF382 /* .gitignore.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF266816F3BD6200ADF382 /* .gitignore.rtf */; };
 		6DB0676A16D7DDF000D177E7 /* CurrentDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */; };
 		6DB5994C16EA463D0016AE82 /* PatientQueueTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5994B16EA463D0016AE82 /* PatientQueueTableCell.m */; };
 		6DB5995016EA46640016AE82 /* GenericStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5994F16EA46640016AE82 /* GenericStartViewController.m */; };
@@ -245,7 +244,6 @@
 		6D3A635C16C8472D003B79F7 /* UICamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICamera.m; sourceTree = "<group>"; };
 		6D522C9616DADAA3004FFC21 /* CurrentDiagnosisTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentDiagnosisTableCell.h; sourceTree = "<group>"; };
 		6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDiagnosisTableCell.m; sourceTree = "<group>"; };
-		6DAF266816F3BD6200ADF382 /* .gitignore.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = .gitignore.rtf; sourceTree = "<group>"; };
 		6DB0676816D7DDF000D177E7 /* CurrentDiagnosisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentDiagnosisViewController.h; sourceTree = "<group>"; };
 		6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDiagnosisViewController.m; sourceTree = "<group>"; };
 		6DB5994A16EA463D0016AE82 /* PatientQueueTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientQueueTableCell.h; sourceTree = "<group>"; };
@@ -538,7 +536,6 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
-				6DAF266816F3BD6200ADF382 /* .gitignore.rtf */,
 				EAC37EE216EEBC3700836C1C /* ColorMe.h */,
 				EAC37EE316EEBC3700836C1C /* ColorMe.m */,
 				EA7CDC2A16ECF874005A9070 /* Makefile */,
@@ -1095,7 +1092,6 @@
 				EA7CDC2616ECF700005A9070 /* RunTests.sh in Resources */,
 				EA7CDC2716ECF700005A9070 /*  RunIPhoneSecurityd.sh in Resources */,
 				EA7CDC2B16ECF874005A9070 /* Makefile in Resources */,
-				6DAF266916F3BD6200ADF382 /* .gitignore.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

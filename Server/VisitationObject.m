@@ -97,7 +97,7 @@ NSString* isLockedBy;
 
     BOOL isOpen = [self.databaseObject valueForKey:ISOPEN];
     
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",ISOPEN,isOpen];
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == YES",ISOPEN];
 
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
