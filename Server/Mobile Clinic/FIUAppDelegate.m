@@ -11,16 +11,16 @@
 #import "PatientTable.h"
 #import "MedicationObject.h"
 
-PatientTable* pTable;
-//PatientObject* patients;
+PatientTable *pTable;
+//PatientObject *patients;
 @implementation FIUAppDelegate
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
 
--(void)showPatientsView:(id)sender{
-    if(! [_window isVisible] )
+- (void)showPatientsView:(id)sender {
+    if(![_window isVisible] )
         [_window makeKeyAndOrderFront:sender];
     
     if (!pTable)
@@ -29,67 +29,57 @@ PatientTable* pTable;
     [_window setContentView:pTable.view];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    [self managedObjectContext]; 
-    
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [self managedObjectContext];
-    [self SetupWithFictitiousPatients];
-   
+    [self createFictitiousPatients];
+    [self createFictitiousMedication];
 }
--(void)SetupWithFictitiousPatients{
-    // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
-    // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
-    NSError* err = nil;
-    
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
-    
-    NSArray* patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+
+// Uses JSONs to create patients (for testing)
+- (void)createFictitiousPatients {
+    // DO NOT COMMENT: RESTARTING SERVER WILL PLACE DEMO PATIENTS IN DB FOR TESTING
+    // LIST OF THESE PATIENTS ARE AVAIABLE IN THE PatientFile.json file
+    NSError *err = nil;
+    NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
+    NSArray *patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
     
     NSLog(@"Imported Patients: %@", patients);
     
     [patients enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:obj];
-        
-        PatientObject* base = [[PatientObject alloc]init];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:obj];
+        PatientObject *base = [[PatientObject alloc]init];
         
         NSDateFormatter *format =[[NSDateFormatter alloc]init];
-
         [format setDateFormat:@"yyyy-MMMM-dd"];
-
         [dic setValue:[format dateFromString:[dic valueForKey:@"age"]] forKey:DOB];
         
         [base setValueToDictionaryValues:dic];
 
-            [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                
-            }];
-
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        }];
     }];
 }
 
-- (void)setWithFictitiousMedication {
-    NSError* err = nil;
-    
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
-    
-    NSArray* Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+// Uses JSONs to create medication (for testing)
+- (void)createFictitiousMedication {
+    // DO NOT COMMENT: RESTARTING SERVER WILL PLACE DEMO MEDICATIONS IN DB FOR TESTING
+    // LIST OF THESE MEDICATIONS ARE AVAIABLE IN THE MedicationFile.json file
+    NSError * err = nil;
+    NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
+    NSArray * Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
     
     NSLog(@"Imported Medications: %@", Meds);
     
     [Meds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:obj];
-        
-        MedicationObject* base = [[MedicationObject alloc]init];
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:obj];
+        MedicationObject * base = [[MedicationObject alloc]init];
         
         [base setValueToDictionaryValues:dic];
         
         [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
         }];
-        
     }];
 }
 
@@ -107,7 +97,6 @@ PatientTable* pTable;
 //    [mDic setObject:@"1" forKey:@"status"];
 //    //    [mDic setObject:@"asd" forKey:@"remember_token"];
 //    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-//        
 //    }];
 }
 
