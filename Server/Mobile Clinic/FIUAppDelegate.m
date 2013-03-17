@@ -31,17 +31,17 @@ PatientTable *pTable;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [self managedObjectContext]; 
-
-    [self SetupWithFictitiousPatients];
-    [self setupWithFictitiousMedication];
-    
+    [self managedObjectContext];  
    
 }
 - (IBAction)setupTestPatients:(id)sender {
     // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
     // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
     NSError* err = nil;
+    
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
+    
+    NSArray* patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
     
     NSLog(@"Imported Patients: %@", patients);
     
@@ -63,16 +63,16 @@ PatientTable *pTable;
         }];
         
     }];
-
-        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        }];
-    }];
 }
 
 - (IBAction)createTestMedications:(id)sender {
     NSError* err = nil;
     
-    NSLog(@"Imported Medications: %@", Meds);
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
+    
+    NSArray* Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+    
+    NSLog(@"Imported Medications: %@", Meds.description);
     
     [Meds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
@@ -86,11 +86,6 @@ PatientTable *pTable;
 
 }
 
--(void)SetupWithFictitiousPatients{
-   }
-
-- (void)setupWithFictitiousMedication {
-   }
 
 - (void) testCloud {
 //    BaseObject * obj = [[BaseObject alloc] init];
