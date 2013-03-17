@@ -10,6 +10,7 @@
 		0F0172A616DBEBC1000A7F3B /* PatientHistoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0172A516DBEBC1000A7F3B /* PatientHistoryTableCell.m */; };
 		0F428B8016D4073D00E25B4B /* RegisterPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B7F16D4073D00E25B4B /* RegisterPatientTableCell.m */; };
 		0F428B8416D40AA800E25B4B /* SearchPatientTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */; };
+		0F56A41216F58C3300225136 /* TempCellToDelete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F56A41116F58C3300225136 /* TempCellToDelete.xib */; };
 		0F9E6BA616D17FDB008AFB49 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */; };
 		0FCB7C2B16EA535B008F434C /* CurrentVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */; };
 		0FDE47BF16ED0CFB00966C77 /* PatientQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE47BE16ED0CFB00966C77 /* PatientQueueViewController.m */; };
@@ -183,6 +184,7 @@
 		0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPatientTableCell.m; sourceTree = "<group>"; };
 		0F4E4F3616D59D2F00992B7F /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medication.h; sourceTree = "<group>"; };
 		0F4E4F3716D59D2F00992B7F /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medication.m; sourceTree = "<group>"; };
+		0F56A41116F58C3300225136 /* TempCellToDelete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempCellToDelete.xib; sourceTree = "<group>"; };
 		0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewStoryboard.storyboard; sourceTree = "<group>"; };
 		0FB2B9C116DB54E100F334F7 /* afternoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = afternoon.png; sourceTree = "<group>"; };
 		0FB2B9C216DB54E100F334F7 /* evening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evening.png; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				0F428B8316D40AA800E25B4B /* SearchPatientTableCell.m */,
 				0F1A596616D8327600C121BA /* CurrentVisitTableCell.h */,
 				0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */,
+				0F56A41116F58C3300225136 /* TempCellToDelete.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1092,6 +1095,7 @@
 				EA7CDC2616ECF700005A9070 /* RunTests.sh in Resources */,
 				EA7CDC2716ECF700005A9070 /*  RunIPhoneSecurityd.sh in Resources */,
 				EA7CDC2B16ECF874005A9070 /* Makefile in Resources */,
+				0F56A41216F58C3300225136 /* TempCellToDelete.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
