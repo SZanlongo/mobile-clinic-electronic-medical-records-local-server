@@ -194,7 +194,7 @@ static ServerCore *sharedMyManager = nil;
     }
     @try {
         NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:majorData] copyItems:YES];
-        
+        NSLog(@"Client will Recieve: %@",myDictionary.description);
         if(majorData) {
             // ObjectFactory: Used to instatiate the proper class but returns it generically
             id<BaseObjectProtocol> obj = [ObjectFactory createObjectForType:myDictionary];
@@ -246,7 +246,7 @@ static ServerCore *sharedMyManager = nil;
     [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
     //finalize archiving
     [archiver finishEncoding];
-    NSLog(@"Server did Send data %i",globalData.length);
+    NSLog(@"Client will Send: %@ Size: %i Bytes",dataToBeSent.description, globalData.length);
 	[asyncSocket writeData:globalData withTimeout:-1 tag:10];
 	
 }

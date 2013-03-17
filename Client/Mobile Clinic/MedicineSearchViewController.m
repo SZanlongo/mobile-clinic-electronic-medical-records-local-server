@@ -10,7 +10,6 @@
 #import "MobileClinicFacade.h"
 
 @interface MedicineSearchViewController () {
-    MobileClinicFacade *mobileFacade;
     NSMutableArray *medicationArray;
 }
 
@@ -29,20 +28,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    
+    [mobileFacade findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        NSLog(@"All Medications:%@",allObjectsFromSearch.description);
+        medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
+       // [medicationArray filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != nil",MEDNAME]];
+        [self.tableView reloadData];
+    }];
 	// Do any additional setup after loading the view.
     
     // Request all medications in database
-    mobileFacade = [[MobileClinicFacade alloc]init];
-    NSDictionary *myDic = [[NSDictionary alloc]init];
-    
-    [mobileFacade findAllMedication:myDic AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-        NSLog(@"ALl Medications:%@",allObjectsFromSearch.description);
-        medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
-    }];
 
 //    // TEMP LIST OF MEDICATIONS
 //    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen", @"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
 //    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg", @"250mg",@"250mg",@"100mg", nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+     
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +74,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return medicationArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,27 +88,33 @@
 
     NSDictionary *myDic = [medicationArray objectAtIndex:indexPath.row];
     
-    cell.medicineName.text = [myDic objectForKey:@""];
-//    cell.medicineDose.text = [];
-    
-//    cell.medicineName.text = (NSString *)[_data1 objectAtIndex:indexPath.row];
-//    cell.medicineDose.text = (NSString *)[_data2 objectAtIndex:indexPath.row];
+    cell.medicineName.text = [myDic objectForKey:MEDNAME];
+    cell.medicineDose.text = [myDic objectForKey:DOSAGE];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // Display medication
-    NSString *medName = (NSString *)[_data1 objectAtIndex:indexPath.row];
-    NSString *dosage = (NSString *)[_data2 objectAtIndex:indexPath.row];
+    // Display get medication at the specified index
+    NSDictionary *myDic = [medicationArray objectAtIndex:indexPath.row];
+    
+    // get desired values
+    NSString *medName = [myDic objectForKey:MEDNAME];
+    NSString *dosage = [myDic objectForKey:DOSAGE];
+    
+    // Construct a text
     _medicineField.text = [NSString stringWithFormat:@"%@ %@", medName, dosage];
     
+    // Create PrescriptionObject
     NSMutableDictionary *prescriptionData = [[NSMutableDictionary alloc] init];
-    [prescriptionData setObject:(NSString *)[_data1 objectAtIndex:indexPath.row] forKey:@"medicationID"];
     
+    // !!!: should reconsider implementation
+    // Set Prescription data with medication ID
+    [prescriptionData setValue:[myDic objectForKey:MEDICATIONID] forKey:MEDICATIONID];
+    
+    // Send prescription back
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:prescriptionData];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:nil];
 }
 
 // Hides keyboard when whitespace is pressed

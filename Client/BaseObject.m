@@ -191,8 +191,13 @@ id<ServerProtocol> serverManager;
     // Add the object Type
     [container setValue:[NSNumber numberWithInteger:self.CLASSTYPE] forKey:OBJECTTYPE];
     
+    
     // Try to send information to the server
     [self tryAndSendData:container withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+        
+        // Make sure that the object is attached to this object
+        [self setValueToDictionaryValues:dataToSend];
+        
         // Save current information if cannot connect
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
              response(data,error);
@@ -202,12 +207,17 @@ id<ServerProtocol> serverManager;
         // Cast Status Object
         StatusObject* status = PosData;
         
-        // Save object to this device
-        [self setValueToDictionaryValues:status.data];
+        if (status.status == kSuccess) {
+            // Save object to this device
+            [self setValueToDictionaryValues:status.data];
+            
+            [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[dataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
+            }];
+        }else{
+            response(nil,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[dataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
+        }
         
-        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[dataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
-        }];
     }];
 }
 

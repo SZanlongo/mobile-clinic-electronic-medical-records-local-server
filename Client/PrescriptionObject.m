@@ -55,7 +55,7 @@
     [self.databaseObject setValue:vId forKey:VISITID];
 }
 
--(void)createNewObject:(NSDictionary*) object Locally:(ObjectResponse)onSuccessHandler
+-(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler
 {
     
     if (object) {

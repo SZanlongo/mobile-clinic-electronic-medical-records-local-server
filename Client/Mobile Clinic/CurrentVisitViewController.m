@@ -78,15 +78,13 @@
         [currentVisit setValue:mobileFacade.GetCurrentUsername forKey:NURSEID];
         [currentVisit setValue:[NSNumber numberWithInteger:_visitPriority.selectedSegmentIndex] forKey:PRIORITY];
         
-        [mobileFacade updateCurrentPatient:_patientData AndShouldLock:NO onCompletion:^(NSDictionary *object, NSError *error) {
-            [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData shouldCheckOut:type onCompletion:^(NSDictionary *object, NSError *error) {
+        [mobileFacade addNewVisit:currentVisit ForCurrentPatient:_patientData shouldCheckOut:type onCompletion:^(NSDictionary *object, NSError *error) {
                 if (!object) {
                     [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
                 }else{
                     handler(object,error);
                 }
             }];
-        }];
     }
 }
 

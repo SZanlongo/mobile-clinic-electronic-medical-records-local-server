@@ -66,23 +66,33 @@ NSString* isLockedBy;
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;
-            
+        case kConditionalCreate:
+            [self checkForExisitingOpenVisit];
         case kFindObject:
-            [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];            
+            [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];
             break;
-            
         case kFindOpenObjects:
-           [self sendSearchResults:[self FindAllOpenVisits]];
-            break;  
+            [self sendSearchResults:[self FindAllOpenVisits]];
+            break;
         default:
             break;
     }
 }
 #pragma mark - COMMON OBJECT Methods
 #pragma mark -
+-(void)checkForExisitingOpenVisit{
+    NSArray* allVisits = [self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES && %K == %@",ISOPEN,PATIENTID,patientID] andSortByAttribute:TRIAGEIN];
+    if (allVisits.count == 0) {
+        [super UpdateObjectAndSendToClient];
+    }
+    else
+    {
+        [super sendInformation:nil toClientWithStatus:kError andMessage:@"This Patient already has an open visit"];
+    }
+}
 -(NSArray *)FindAllObjectsLocallyFromParentObject{
     
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,patientID];    
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,patientID];
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
 
@@ -94,11 +104,9 @@ NSString* isLockedBy;
 #pragma mark-
 
 -(NSArray*)FindAllOpenVisits{
-
-    BOOL isOpen = [self.databaseObject valueForKey:ISOPEN];
     
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == YES",ISOPEN];
-
+    
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
 

@@ -20,6 +20,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)setupTestPatients:(id)sender;
+- (IBAction)createTestMedications:(id)sender;
 
 - (IBAction)saveAction:(id)sender;
 

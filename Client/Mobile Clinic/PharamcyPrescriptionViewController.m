@@ -60,10 +60,10 @@
             return @"Morning";
             break;
         case 1:
-            return @"Midday";
+            return @"Mid-Afternoon";
             break;
         case 2:
-            return @"Mid-Afternoon";
+            return @"Midday";
             break;
         case 3:
             return @"Evening";

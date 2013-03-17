@@ -11,7 +11,7 @@
 #import "PharmacyPatientViewController.h"
 
 @interface PatientQueueViewController () {
-    MobileClinicFacade * mobileFacade;
+
     NSArray * queueArray;
 }
 @end
@@ -34,8 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    if(!mobileFacade)
-            mobileFacade = [[MobileClinicFacade alloc] init];
+
+    MobileClinicFacade*  mobileFacade = [[MobileClinicFacade alloc] init];
 
     UINavigationBar * navbar = [self.navigationController navigationBar];
     
@@ -159,6 +159,7 @@
     NSMutableDictionary * pDic = [[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
     
     // Lock patients / visit
+    MobileClinicFacade*  mobileFacade = [[MobileClinicFacade alloc] init];
     [mobileFacade updateVisitRecord:pDic andShouldUnlock:NO andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
         if(!object){
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeDisabled WithMessage:error.localizedDescription inView:self.view];

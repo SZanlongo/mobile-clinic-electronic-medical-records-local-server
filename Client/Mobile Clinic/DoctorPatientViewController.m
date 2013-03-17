@@ -138,7 +138,7 @@
 - (void)savePrescription:(NSNotification *)note {
     _prescriptionData = note.object;
 
-//    [_prescriptionData setObject:[_visitationData objectForKey:VISITID] forKey:VISITID];    // ASK MIKE IF WE NEED THIS
+    [_prescriptionData setObject:[_visitationData objectForKey:VISITID] forKey:VISITID];    // ASK MIKE IF WE NEED THIS
     
     MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
     [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {                    

@@ -32,12 +32,13 @@ PatientTable* pTable;
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self managedObjectContext]; 
-    
-    [self managedObjectContext];
+
     [self SetupWithFictitiousPatients];
+    [self setupWithFictitiousMedication];
+    
    
 }
--(void)SetupWithFictitiousPatients{
+- (IBAction)setupTestPatients:(id)sender {
     // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
     // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
     NSError* err = nil;
@@ -55,21 +56,22 @@ PatientTable* pTable;
         PatientObject* base = [[PatientObject alloc]init];
         
         NSDateFormatter *format =[[NSDateFormatter alloc]init];
-
+        
         [format setDateFormat:@"yyyy-MMMM-dd"];
-
+        
         [dic setValue:[format dateFromString:[dic valueForKey:@"age"]] forKey:DOB];
         
         [base setValueToDictionaryValues:dic];
-
-            [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                
-            }];
-
+        
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
+        
     }];
+
 }
 
-- (void)setWithFictitiousMedication {
+- (IBAction)createTestMedications:(id)sender {
     NSError* err = nil;
     
     NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
@@ -80,18 +82,23 @@ PatientTable* pTable;
     
     [Meds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:obj];
-        
         MedicationObject* base = [[MedicationObject alloc]init];
         
-        [base setValueToDictionaryValues:dic];
+        [base setValueToDictionaryValues:obj];
         
         [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
             
         }];
         
     }];
+
 }
+
+-(void)SetupWithFictitiousPatients{
+   }
+
+- (void)setupWithFictitiousMedication {
+   }
 
 - (void) testCloud {
 //    BaseObject * obj = [[BaseObject alloc] init];
@@ -207,6 +214,8 @@ PatientTable* pTable;
  [[NSNotificationCenter defaultCenter]postNotificationName:APPDELEGATE_STARTED object:self];
     return _managedObjectContext;
 }
+
+
 
 // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
