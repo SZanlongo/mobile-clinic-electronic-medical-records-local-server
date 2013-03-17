@@ -43,8 +43,13 @@
 // creates a new prescription for a given visit
 -(void)addNewPrescription:(NSDictionary *)Rx ForCurrentVisit:(NSDictionary *)visit AndlockVisit:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response{
     
+    [self updateVisitRecord:visit andShouldUnlock:!lock andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
+        if (!object) {
+            Response(object,error);
+        }else{
     [self CommonCommandObject:[[PrescriptionObject alloc]initAndMakeNewDatabaseObject] ForCreating:Rx bindedToParentObjectToUpdate:visit withResults:Response];
-    
+        }
+    }];    
 }
 
 // Creates a new visit for a given patient.

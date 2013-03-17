@@ -43,10 +43,6 @@ PatientTable *pTable;
     // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
     NSError* err = nil;
     
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
-    
-    NSArray* patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
-    
     NSLog(@"Imported Patients: %@", patients);
     
     [patients enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -68,14 +64,13 @@ PatientTable *pTable;
         
     }];
 
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        }];
+    }];
 }
 
 - (IBAction)createTestMedications:(id)sender {
     NSError* err = nil;
-    
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
-    
-    NSArray* Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
     
     NSLog(@"Imported Medications: %@", Meds);
     

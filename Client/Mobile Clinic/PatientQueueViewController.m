@@ -156,6 +156,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Push to doctor & pharmacy view controllers
+    // This is Visit and Patient Data Bundle
     NSMutableDictionary * pDic = [[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
     
     // Lock patients / visit

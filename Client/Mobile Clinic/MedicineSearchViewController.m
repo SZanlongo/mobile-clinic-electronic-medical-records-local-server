@@ -88,8 +88,8 @@
 
     NSDictionary *medDic = [medicationArray objectAtIndex:indexPath.row];
     
-    cell.medicineName.text = [myDic objectForKey:MEDNAME];
-    cell.medicineDose.text = [myDic objectForKey:DOSAGE];
+    cell.medicineName.text = [medDic objectForKey:MEDNAME];
+    cell.medicineDose.text = [medDic objectForKey:DOSAGE];
     
     return cell;
 }

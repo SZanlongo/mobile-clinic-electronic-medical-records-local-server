@@ -106,6 +106,9 @@
 
 // Save diagnosis and slide view to enter medication
 - (void)saveVisitation:(NSNotification *)note {
+    // TODO: RECONSIDER
+    /* Because of objects can be locked, you have to handle the saving process on the screen that is responsible for saving this object. That way if something wrong occured the user will not have to redo what they did.
+     */
     _patientData = note.object;
     
     MobileClinicFacade *mobileFacade = [[MobileClinicFacade alloc]init];
@@ -135,17 +138,24 @@
 }
 
 - (void)savePrescription:(NSNotification *)note {
+    /* Because of objects can be locked, you have to handle the saving process on the screen that is responsible for saving this object. That way if something wrong occured the user will not have to redo what they did. 
+     */
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    /*
     _prescriptionData = note.object;
 
     [_prescriptionData setObject:[_visitationData objectForKey:VISITID] forKey:VISITID];    // ASK MIKE IF WE NEED THIS
     
     MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    
     [mobileFacade addNewPrescription:_prescriptionData ForCurrentVisit:_visitationData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {                    
         if (!object)
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeOrange Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
         else
             [self.navigationController popViewControllerAnimated:YES];
     }];
+    */
 }
 
 - (void)didReceiveMemoryWarning {

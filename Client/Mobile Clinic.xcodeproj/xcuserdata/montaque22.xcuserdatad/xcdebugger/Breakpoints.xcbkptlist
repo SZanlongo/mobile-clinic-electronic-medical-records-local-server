@@ -7,13 +7,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "MobileClinicFacade.m"
-         timestampString = "385228609.483201"
+         filePath = "Mobile Clinic/PharamcyPrescriptionViewController.m"
+         timestampString = "385230794.75384"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "242"
-         endingLineNumber = "242"
-         landmarkName = "-CommonCommandObject:ForCreating:bindedToParentObjectToUpdate:withResults:"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
+         landmarkName = "-savePrescription:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
