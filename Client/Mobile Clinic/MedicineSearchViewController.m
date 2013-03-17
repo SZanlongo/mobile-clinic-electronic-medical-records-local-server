@@ -12,7 +12,6 @@
 @interface MedicineSearchViewController () {
     NSMutableArray *medicationArray;
 }
-
 @end
 
 @implementation MedicineSearchViewController
@@ -41,9 +40,8 @@
     
     // Request all medications in database
 
-//    // TEMP LIST OF MEDICATIONS
-//    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen", @"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
-//    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg", @"250mg",@"250mg",@"100mg", nil];
+//    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen",@"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
+//    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg",@"250mg",@"250mg",@"100mg", nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -60,11 +58,13 @@
 - (IBAction)moveBackToPrescription:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:_medicineField.text];
 }
+
 - (void)viewDidUnload {
     [self setMedicineField:nil];
     [self setTableView:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)searchMedicine:(id)sender {
     
 }
@@ -86,7 +86,7 @@
         cell = [mNib instantiateWithOwner:nil options:nil][0];
     }
 
-    NSDictionary *myDic = [medicationArray objectAtIndex:indexPath.row];
+    NSDictionary *medDic = [medicationArray objectAtIndex:indexPath.row];
     
     cell.medicineName.text = [myDic objectForKey:MEDNAME];
     cell.medicineDose.text = [myDic objectForKey:DOSAGE];

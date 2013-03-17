@@ -79,11 +79,12 @@
 }
 
 // Change name of button (Send to Pharmacy / Checkout)
-- (IBAction)savePrescription:(id)sender{
+- (IBAction)savePrescription:(id)sender {
     if([self validatePrescription]) {
         
-        /* TODO: NEED TO VALIDATE THAT FIELD ENTRY IS CORRECT (STRING or INTs) */
+        // TODO: NEED TO VALIDATE THAT FIELD ENTRY IS CORRECT (STRING or INTs)
         
+        // Create a timestamp for Prescribe Time
         NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
         [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
         NSString *dateStamp = [DateFormatter stringFromDate:[NSDate date]];

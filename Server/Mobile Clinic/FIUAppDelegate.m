@@ -11,16 +11,16 @@
 #import "PatientTable.h"
 #import "MedicationObject.h"
 
-PatientTable* pTable;
-//PatientObject* patients;
+PatientTable *pTable;
+//PatientObject *patients;
 @implementation FIUAppDelegate
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
 
--(void)showPatientsView:(id)sender{
-    if(! [_window isVisible] )
+- (void)showPatientsView:(id)sender {
+    if(![_window isVisible] )
         [_window makeKeyAndOrderFront:sender];
     
     if (!pTable)
@@ -51,9 +51,8 @@ PatientTable* pTable;
     
     [patients enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:obj];
-        
-        PatientObject* base = [[PatientObject alloc]init];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:obj];
+        PatientObject *base = [[PatientObject alloc]init];
         
         NSDateFormatter *format =[[NSDateFormatter alloc]init];
         
@@ -87,9 +86,7 @@ PatientTable* pTable;
         [base setValueToDictionaryValues:obj];
         
         [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
         }];
-        
     }];
 
 }
@@ -114,7 +111,6 @@ PatientTable* pTable;
 //    [mDic setObject:@"1" forKey:@"status"];
 //    //    [mDic setObject:@"asd" forKey:@"remember_token"];
 //    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-//        
 //    }];
 }
 
