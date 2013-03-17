@@ -14,7 +14,7 @@
 
 -(void)associateObjectToItsSuperParent:(NSDictionary *)parent;
 
--(void)createNewObject:(NSDictionary*) object Locally:(ObjectResponse)onSuccessHandler;
+-(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler;
 
 -(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary*)parentObject;
 

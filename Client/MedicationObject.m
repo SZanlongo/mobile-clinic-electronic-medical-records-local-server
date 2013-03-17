@@ -50,7 +50,7 @@
 
 #pragma mark- COMMON PROTOCOL METHODS
 #pragma mark-
--(void)createNewObject:(NSDictionary*) object Locally:(ObjectResponse)onSuccessHandler{
+-(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler{
     NSLog(@"Does not need to be implemented");
 }
 -(void)associateObjectToItsSuperParent:(NSDictionary *)parent{

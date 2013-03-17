@@ -11,7 +11,6 @@
 #import "MobileClinicFacade.h"
 @interface SearchPatientViewController (){
     NSManagedObjectContext *context;
-    MobileClinicFacade* mobileFacade;
 }
 
 @end
@@ -33,7 +32,7 @@
     
     if (!_patientData)
         _patientData = [[NSMutableDictionary alloc]init];
-    mobileFacade = [[MobileClinicFacade alloc]init];
+    
     // Set height of rows of result table
     _searchResultTableView.rowHeight = 75;
     [_searchResultTableView setDelegate:self];
@@ -102,13 +101,9 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (!mobileFacade) {
-        mobileFacade = [[MobileClinicFacade alloc]init];
-    }
-    
     NSString * lockedBy = [[NSMutableDictionary dictionaryWithDictionary:[_patientSearchResultsArray objectAtIndex:indexPath.row]] objectForKey:ISLOCKEDBY];
                             
-    if (![lockedBy isEqualToString:mobileFacade.GetCurrentUsername]) {
+    if (![lockedBy isEqualToString:[BaseObject getCurrenUserName ]]) {
         [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor yellowColor]];
     } else {
         [[[tableView cellForRowAtIndexPath:indexPath]contentView]setBackgroundColor:[UIColor whiteColor]];
@@ -150,14 +145,21 @@
     _patientNameField.text = [_patientNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     _familyNameField.text = [_familyNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    
     if (_patientNameField.text.isNotEmpty || _familyNameField.text.isNotEmpty) {
+        
         [mobileFacade findPatientWithFirstName:_patientNameField.text orLastName:_familyNameField.text onCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-            // Get all the result from the query
-            _patientSearchResultsArray  = [NSArray arrayWithArray:allObjectsFromSearch];
-            
-            // Redisplay the information
-            [_searchResultTableView reloadData];
-            
+            if (allObjectsFromSearch) {
+                // Get all the result from the query
+                _patientSearchResultsArray  = [NSArray arrayWithArray:allObjectsFromSearch];
+                
+                // Redisplay the information
+                [_searchResultTableView reloadData];
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeBlue Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+            }else{
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+            }
         }];
     }
 }

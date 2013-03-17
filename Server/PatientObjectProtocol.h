@@ -22,6 +22,7 @@
 @protocol PatientObjectProtocol <NSObject>
 
 -(NSArray*)serviceAllObjects;
+-(NSArray*)FindAllOpenPatients;
 -(void)UnlockPatient:(ObjectResponse)WhatIDOAfterThePatientIsUnlocked;
 -(void) PushPatientsToCloud;
 -(void) SyncPatientsWithCloud;

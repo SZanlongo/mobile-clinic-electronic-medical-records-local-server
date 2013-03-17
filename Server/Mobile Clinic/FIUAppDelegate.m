@@ -29,19 +29,19 @@ PatientTable *pTable;
     [_window setContentView:pTable.view];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [self managedObjectContext];
-    [self createFictitiousPatients];
-    [self createFictitiousMedication];
-}
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    [self managedObjectContext]; 
 
-// Uses JSONs to create patients (for testing)
-- (void)createFictitiousPatients {
-    // DO NOT COMMENT: RESTARTING SERVER WILL PLACE DEMO PATIENTS IN DB FOR TESTING
-    // LIST OF THESE PATIENTS ARE AVAIABLE IN THE PatientFile.json file
-    NSError *err = nil;
-    NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
-    NSArray *patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+    [self SetupWithFictitiousPatients];
+    [self setupWithFictitiousMedication];
+    
+   
+}
+- (IBAction)setupTestPatients:(id)sender {
+    // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
+    // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
+    NSError* err = nil;
     
     NSLog(@"Imported Patients: %@", patients);
     
@@ -51,37 +51,46 @@ PatientTable *pTable;
         PatientObject *base = [[PatientObject alloc]init];
         
         NSDateFormatter *format =[[NSDateFormatter alloc]init];
+        
         [format setDateFormat:@"yyyy-MMMM-dd"];
+        
         [dic setValue:[format dateFromString:[dic valueForKey:@"age"]] forKey:DOB];
         
         [base setValueToDictionaryValues:dic];
+        
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
+        
+    }];
 
         [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
         }];
     }];
 }
 
-// Uses JSONs to create medication (for testing)
-- (void)createFictitiousMedication {
-    // DO NOT COMMENT: RESTARTING SERVER WILL PLACE DEMO MEDICATIONS IN DB FOR TESTING
-    // LIST OF THESE MEDICATIONS ARE AVAIABLE IN THE MedicationFile.json file
-    NSError * err = nil;
-    NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
-    NSArray * Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+- (IBAction)createTestMedications:(id)sender {
+    NSError* err = nil;
     
     NSLog(@"Imported Medications: %@", Meds);
     
     [Meds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithDictionary:obj];
-        MedicationObject * base = [[MedicationObject alloc]init];
+        MedicationObject* base = [[MedicationObject alloc]init];
         
-        [base setValueToDictionaryValues:dic];
+        [base setValueToDictionaryValues:obj];
         
         [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
         }];
     }];
+
 }
+
+-(void)SetupWithFictitiousPatients{
+   }
+
+- (void)setupWithFictitiousMedication {
+   }
 
 - (void) testCloud {
 //    BaseObject * obj = [[BaseObject alloc] init];
@@ -196,6 +205,8 @@ PatientTable *pTable;
  [[NSNotificationCenter defaultCenter]postNotificationName:APPDELEGATE_STARTED object:self];
     return _managedObjectContext;
 }
+
+
 
 // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window

@@ -7,7 +7,7 @@
 //
 
 #import "PharamcyPrescriptionViewController.h"
-
+#import "MobileClinicFacade.h"
 @interface PharamcyPrescriptionViewController ()
 
 @end
@@ -54,12 +54,24 @@
 }
 
 - (NSString *)getTimeOfDay:(int)num {
-         if (num == 0) return @"Morning";
-    else if (num == 1) return @"Midday";
-    else if (num == 2) return @"Afternoon";
-    else if (num == 3) return @"Evening";
-    
-    return @"";
+    switch (num)
+    {
+        case 0:
+            return @"Morning";
+            break;
+        case 1:
+            return @"Mid-Afternoon";
+            break;
+        case 2:
+            return @"Midday";
+            break;
+        case 3:
+            return @"Evening";
+            break;
+        default:
+            return @"";
+            break;
+    }
 }
 
 - (IBAction)findDrugs:(id)sender {
@@ -83,7 +95,19 @@
         [_prescriptionData setObject:[NSNumber numberWithInteger:[_timeOfDayTextFields.text integerValue]] forKey:TIMEOFDAY];
         [_prescriptionData setObject:dateStamp forKey:PRESCRIBETIME];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:_prescriptionData];
+        // You need to save the information on this screen. it will be too much work and complication to save it elsewhere
+        MobileClinicFacade* mcf = [[MobileClinicFacade alloc]init];
+        
+        /* The _patientData should not be contian patient data but Visit dictionary with the patient data inside Or just the visit data alone. This method will not work if there is no visitation data*/
+        // TODO: Fix this  class so that is has the visit data
+        [mcf addNewPrescription:_prescriptionData ForCurrentVisit:_patientData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
+            if (!object) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:_prescriptionData];
+            }
+            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+        }];
+        
+    
     }
 }
 

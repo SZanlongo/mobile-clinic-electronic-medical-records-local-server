@@ -5,7 +5,7 @@
 //  Created by Steven Berlanga on 2/11/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
-
+#define ISOPEN  @"isOpen"
 #import "PatientObject.h"
 #import "StatusObject.h"
 #import "NSString+Validation.h"
@@ -79,10 +79,10 @@ NSString* isLockedBy;
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;
-            
         case kFindObject:
             [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];            break;
-            
+        case kFindOpenObjects:
+            [self sendSearchResults:[self FindAllOpenPatients]];
         default:
             break;
     }
@@ -91,11 +91,16 @@ NSString* isLockedBy;
 #pragma mark -
 -(NSArray *)FindAllObjectsLocallyFromParentObject{
     
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K contains[cd] %@ || %K contains[cd] %@",FIRSTNAME,firstname,FAMILYNAME,lastname];
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K beginswith[cd] %@ || %K contains[cd] %@",FIRSTNAME,firstname,FAMILYNAME,lastname];
     
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:FIRSTNAME]];
 }
-
+-(NSArray*)FindAllOpenPatients{
+    
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == YES",ISOPEN];
+    
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:FIRSTNAME]];
+}
 -(NSArray*)serviceAllObjects{
     
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];

@@ -50,7 +50,7 @@
 #pragma mark-
 
 
--(void)createNewObject:(NSDictionary*) object Locally:(ObjectResponse)onSuccessHandler
+-(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler
 {
     
     if (object) {
@@ -60,11 +60,11 @@
     
     // Check for patientID
     if (![self.databaseObject valueForKey:VISITID] || ![self.databaseObject valueForKey:PATIENTID]) {
-        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kUpdateObject inDomain:@"Visitation Object"]);
+        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kConditionalCreate inDomain:@"Visitation Object"]);
         return;
     }
     
-    [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kUpdateObject];
+    [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kConditionalCreate];
 }
 
 -(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary*)parentObject{

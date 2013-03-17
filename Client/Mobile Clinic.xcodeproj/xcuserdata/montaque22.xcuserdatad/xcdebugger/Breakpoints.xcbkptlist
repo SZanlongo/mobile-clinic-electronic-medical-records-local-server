@@ -7,39 +7,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mobile Clinic/CurrentVisitViewController.m"
-         timestampString = "385075727.12583"
+         filePath = "Mobile Clinic/PharamcyPrescriptionViewController.m"
+         timestampString = "385230794.75384"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
-         landmarkName = "-quickCheckOutButton:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BaseObjectProtocol.h"
-         timestampString = "384961186.558602"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
-         landmarkName = "@protocol BaseObjectProtocol"
-         landmarkType = "2">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MobileClinicFacade.m"
-         timestampString = "385073927.326719"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "59"
-         endingLineNumber = "59"
-         landmarkName = "-addNewVisit:ForCurrentPatient:shouldCheckOut:onCompletion:"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
+         landmarkName = "-savePrescription:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

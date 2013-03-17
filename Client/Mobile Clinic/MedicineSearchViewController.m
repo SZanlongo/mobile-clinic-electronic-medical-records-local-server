@@ -9,8 +9,7 @@
 #import "MedicineSearchViewController.h"
 #import "MobileClinicFacade.h"
 
-@interface MedicineSearchViewController() {
-    MobileClinicFacade *mobileFacade;
+@interface MedicineSearchViewController () {
     NSMutableArray *medicationArray;
 }
 @end
@@ -28,25 +27,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    
+    [mobileFacade findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        NSLog(@"All Medications:%@",allObjectsFromSearch.description);
+        medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
+       // [medicationArray filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != nil",MEDNAME]];
+        [self.tableView reloadData];
+    }];
 	// Do any additional setup after loading the view.
     
     // Request all medications in database
-    mobileFacade = [[MobileClinicFacade alloc]init];
-    NSDictionary *myDic = [[NSDictionary alloc]init];       //NOT REALLY USED BY METHOD.  NEED TO MENTION TO MIKE.
-    
-    [mobileFacade findAllMedication:myDic AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-        NSLog(@"All Medications: %@",allObjectsFromSearch.description);
-        medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
-        
-//        // Sort medication by name
-//        NSSortDescriptor * sortDescriptor;
-//        sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"medName" ascending:YES];
-//        NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//        medicationArray = [NSMutableArray arrayWithArray:[medicationArray sortedArrayUsingDescriptors:sortDescriptors]];
-    }];
 
 //    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen",@"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
 //    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg",@"250mg",@"250mg",@"100mg", nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+     
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +74,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return medicationArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,25 +88,33 @@
 
     NSDictionary *medDic = [medicationArray objectAtIndex:indexPath.row];
     
-    cell.medicineName.text = [medDic objectForKey:@"medName"];
-    cell.medicineDose.text = [medDic objectForKey:@"dosage"];
+    cell.medicineName.text = [medDic objectForKey:MEDNAME];
+    cell.medicineDose.text = [medDic objectForKey:DOSAGE];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSMutableDictionary *medDic = [NSMutableDictionary dictionaryWithDictionary:[medicationArray objectAtIndex:indexPath.row]];
+    // Display get medication at the specified index
+    NSDictionary *myDic = [medicationArray objectAtIndex:indexPath.row];
     
-    // Display medication
-    NSString *medName = [medDic objectForKey:@"medName"];
-    NSString *dosage = [medDic objectForKey:@"dosage"];
+    // get desired values
+    NSString *medName = [myDic objectForKey:MEDNAME];
+    NSString *dosage = [myDic objectForKey:DOSAGE];
+    
+    // Construct a text
     _medicineField.text = [NSString stringWithFormat:@"%@ %@", medName, dosage];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // Create PrescriptionObject
+    NSMutableDictionary *prescriptionData = [[NSMutableDictionary alloc] init];
     
-    // Pass medication back to prescription view
-    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:medDic];
+    // !!!: should reconsider implementation
+    // Set Prescription data with medication ID
+    [prescriptionData setValue:[myDic objectForKey:MEDICATIONID] forKey:MEDICATIONID];
+    
+    // Send prescription back
+    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:prescriptionData];
 }
 
 // Hides keyboard when whitespace is pressed

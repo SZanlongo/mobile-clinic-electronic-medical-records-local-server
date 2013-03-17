@@ -10,6 +10,7 @@
 #import "PatientObjectProtocol.h"
 #import "VisitationObjectProtocol.h"
 #import "PrescriptionObjectProtocol.h"
+#import "MedicationObjectProtocol.h"
 #import <Foundation/Foundation.h>
 
 /**
@@ -110,4 +111,6 @@ typedef void (^MobileClinicSearchResponse)(NSArray* allObjectsFromSearch, NSErro
 -(void) findAllMedication:(NSDictionary*)visit AndOnCompletion:(MobileClinicSearchResponse)Response;
 
 -(void) updateMedication:(NSDictionary*)Rx AndShouldLock:(BOOL)lock onCompletion:(MobileClinicCommandResponse)Response;
+
+-(void)checkoutVisit:(NSDictionary*)visit forPatient:(NSDictionary*)patient AndWillUlockOnCompletion:(MobileClinicCommandResponse)Response;
 @end
