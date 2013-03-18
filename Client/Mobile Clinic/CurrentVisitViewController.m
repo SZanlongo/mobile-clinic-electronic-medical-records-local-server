@@ -11,6 +11,8 @@
 
 @interface CurrentVisitViewController ()
 
+@property CGPoint originalCenter;
+
 @end
 
 @implementation CurrentVisitViewController
@@ -27,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     currentVisit = [[NSMutableDictionary alloc]initWithCapacity:10];
-    [currentVisit setValue:[NSDate date] forKey:TRIAGEIN];
+    [currentVisit setValue:[NSDate date] forKey:TRIAGEIN];    
+    self.conditionsTextbox.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -85,6 +88,25 @@
                     handler(object,error);
                 }
             }];
+    }
+}
+
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
+#pragma mark - UITextField Delegate Methods
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    if (textView == self.conditionsTextbox) {
+        self.view.center = CGPointMake(self.view.center.x + 132, self.view.center.y);
+    }
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    if (textView == self.conditionsTextbox) {
+        self.view.center = CGPointMake(self.view.center.x - 132, self.view.center.y);
     }
 }
 

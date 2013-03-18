@@ -178,6 +178,11 @@
     handler(nil,nil);
 }
 
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)resetData {
     [_patientData removeAllObjects];
     [_familyNameField setText:@""];
