@@ -47,7 +47,7 @@
     for(int i = 0; i < [_timeOfDayButtons count]; i++) {
         if([[_timeOfDayButtons objectAtIndex:i] isEqual:sender]) {
             [((UIButton *)sender) setAlpha:1];
-            _timeOfDayTextFields.text = [self getTimeOfDay:i];
+            _timeOfDayTextFields.text = [self getTimeOfDay:((UIButton *)sender).tag];
         }else
             [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setAlpha:0.35];
     }
