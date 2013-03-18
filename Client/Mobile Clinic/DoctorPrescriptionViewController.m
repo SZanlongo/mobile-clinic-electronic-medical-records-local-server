@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PharamcyPrescriptionViewController.h"
+#import "DoctorPrescriptionViewController.h"
 #import "MobileClinicFacade.h"
-@interface PharamcyPrescriptionViewController ()
+@interface DoctorPrescriptionViewController ()
 
 @end
 
-@implementation PharamcyPrescriptionViewController
+@implementation DoctorPrescriptionViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,6 +75,7 @@
 }
 
 - (IBAction)findDrugs:(id)sender {
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
 }
 

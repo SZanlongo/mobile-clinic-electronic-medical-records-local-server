@@ -125,6 +125,7 @@
 }
 
 - (void)slideToSearchMedicine {
+    self.medicineViewController.prescriptionData = self.prescriptionData;
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
@@ -244,10 +245,10 @@
     else if(indexPath.item == 2) {
         
         
-        PharamcyPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
+        DoctorPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
         
         if (!cell) {
-            cell = [[PharamcyPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
+            cell = [[DoctorPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
             cell.viewController = _precriptionViewController;
         }
         

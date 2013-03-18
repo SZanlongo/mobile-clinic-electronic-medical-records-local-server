@@ -120,7 +120,7 @@
         
 //        PharamcyPrescriptionViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
         
-        PharamcyPrescriptionViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
+        DoctorPrescriptionViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
         
         newView.patientData = _patientData;
         
