@@ -75,6 +75,11 @@
     return 1;
 }
 
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 // Defines number of row in the table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _patientHistoryArray.count;

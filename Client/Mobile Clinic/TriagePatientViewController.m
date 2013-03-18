@@ -45,6 +45,17 @@
     // Create controllers for each view (Previous Visits & current visit)
     _control1 = [self getViewControllerFromiPadStoryboardWithName:@"currentVisitViewController"];
     _control2 = [self getViewControllerFromiPadStoryboardWithName:@"previousVisitsViewController"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+- (void)keyboardDidShow: (NSNotification *) notif {
+    
+}
+
+- (void)keyboardDidHide: (NSNotification *) notif {
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,6 +92,11 @@
     [super viewDidUnload];
 }
 
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -103,7 +119,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];
@@ -126,7 +142,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-20, -35, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 744, 768);
         
         for(UIView *mView in [cell.contentView subviews]){
             [mView removeFromSuperview];

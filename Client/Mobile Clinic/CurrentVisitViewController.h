@@ -10,7 +10,7 @@
 #import "StationViewHandlerProtocol.h"
 
 
-@interface CurrentVisitViewController : UIViewController {
+@interface CurrentVisitViewController : UIViewController <UITextViewDelegate> {
     ScreenHandler handler;
     NSMutableDictionary *currentVisit;
 }

@@ -192,4 +192,10 @@ UIPopoverController * pop;
     [_patientSexSegment setSelectedSegmentIndex:0];
     [_patient removeAllObjects];
 }
+
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 @end
