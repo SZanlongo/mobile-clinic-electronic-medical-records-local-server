@@ -11,7 +11,7 @@
 #import "PatientObject.h"
 #import "PrescriptionObject.h"
 
-@interface PharamcyPrescriptionViewController : UIViewController{
+@interface DoctorPrescriptionViewController : UIViewController{
     ScreenHandler handler;
 }
 

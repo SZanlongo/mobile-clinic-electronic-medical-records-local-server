@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PharamcyPrescriptionViewController.h"
-@interface PharamcyPrescriptionCell : UITableViewCell
-@property (nonatomic, strong) PharamcyPrescriptionViewController * viewController;
+#import "DoctorPrescriptionViewController.h"
+@interface DoctorPrescriptionCell : UITableViewCell
+@property (nonatomic, strong) DoctorPrescriptionViewController * viewController;
 @end

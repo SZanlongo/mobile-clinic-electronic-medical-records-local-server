@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PharamcyPrescriptionCell.h"
+#import "DoctorPrescriptionCell.h"
 
-@implementation PharamcyPrescriptionCell
+@implementation DoctorPrescriptionCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

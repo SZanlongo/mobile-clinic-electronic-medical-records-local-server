@@ -36,11 +36,6 @@
     [_tableView setShowsVerticalScrollIndicator:NO];
     [_tableView setScrollEnabled:NO];
     
-    _precriptionViewController = [self getViewControllerFromiPadStoryboardWithName:@"prescriptionFormViewController"];
-    [_precriptionViewController view];
-    [_precriptionViewController deactivateControllerFields];
-    _medicineViewController = [self getViewControllerFromiPadStoryboardWithName:@"searchMedicineViewController"];
-    [_medicineViewController view];
     
     NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
     
@@ -55,12 +50,11 @@
 
     MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
     [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-    if(allObjectsFromSearch && [allObjectsFromSearch count] != 0) {
-        _prescriptionData = [allObjectsFromSearch objectAtIndex:0];
-        [_precriptionViewController setPatientData:_patientData];     // DID U MEAN [setPrescriptionData:_prescriptionData]
-        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-        }
+        self.prescriptions = allObjectsFromSearch;
     }];
+    
+#warning Need to find method that will either return medication for specific visit or all the medication. Current method requires a dictionary which is not needed
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,25 +78,46 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.prescriptions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * currentVisitCellIdentifier = @"prescriptionCell";
-//    static NSString * previousVisitsCellIdentifier = @"medicineSearchCell";
     
-//    if(indexPath.item == 0) {
-        PharamcyPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
-        
+        PharmacyPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
+    
         if (!cell) {
-            cell = [[PharamcyPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
-            cell.viewController = _precriptionViewController;
+            cell = [[PharmacyPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
+            
+            cell.viewController = [self getViewControllerFromiPadStoryboardWithName:@"PharmacyPrescriptionViewController"];
         }
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
         cell.viewController.view.frame = CGRectMake(-20, -15, 768, 700);
-        
+    
+    if([[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TIMEOFDAY] integerValue] == 0){
+        [cell.viewController.timeOfDayButton setBackgroundImage:[UIImage imageNamed:@"morning"] forState:UIControlStateDisabled];
+        cell.viewController.timeOfDayLabel.text = @"Morning";
+    }
+    else if([[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TIMEOFDAY] integerValue] == 1){
+            [cell.viewController.timeOfDayButton setBackgroundImage:[UIImage imageNamed:@"afternoon"] forState:UIControlStateDisabled];
+        cell.viewController.timeOfDayLabel.text = @"Afternoon";
+    }
+    else if([[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TIMEOFDAY] integerValue] == 2){
+        [cell.viewController.timeOfDayButton setBackgroundImage:[UIImage imageNamed:@"evening"] forState:UIControlStateDisabled];
+        cell.viewController.timeOfDayLabel.text = @"Evening";
+    }
+    else if([[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TIMEOFDAY] integerValue] == 3){
+        [cell.viewController.timeOfDayButton setBackgroundImage:[UIImage imageNamed:@"night"] forState:UIControlStateDisabled];
+        cell.viewController.timeOfDayLabel.text = @"Night";
+    }
+    
+    
+    cell.viewController.drugNameLabel.text = @"DUMMY DRUG";
+
+    cell.viewController.numberOfPrescriptionLabel.text = [[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TABLEPERDAY];
+    
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];
         }
@@ -110,12 +125,14 @@
         [cell addSubview:cell.viewController.view];
         
         return cell;
-//    }
 }
 
 // Hides keyboard when whitespace is pressed
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+}
+
+- (IBAction)checkoutPatient:(id)sender {
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {

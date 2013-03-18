@@ -47,6 +47,11 @@
     [_dateLbl setText:[NSString stringWithFormat:@"%i Years Old",_datePicker.date.getNumberOfYearsElapseFromDate]];
 }
 
+// Hides keyboard when whitespace is pressed
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)viewDidUnload {
     [self setDatePicker:nil];
     [self setDateLbl:nil];

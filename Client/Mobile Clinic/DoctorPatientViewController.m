@@ -13,8 +13,6 @@
     BOOL visitationHasBeenSaved;
 }
 
-@property CGPoint originalCenter;
-
 @end
 
 @implementation DoctorPatientViewController
@@ -75,7 +73,6 @@
     
     // Diagnosis notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveVisitation:) name:SAVE_VISITATION object:_patientData];
-    self.originalCenter = self.view.center;
     
     // Prescription notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(slideToSearchMedicine) name:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
@@ -84,8 +81,7 @@
 
     visitationHasBeenSaved = NO;
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
 }
 
 // Set controllers used in tableview
@@ -125,6 +121,7 @@
 }
 
 - (void)slideToSearchMedicine {
+    self.medicineViewController.prescriptionData = self.prescriptionData;
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
@@ -244,10 +241,10 @@
     else if(indexPath.item == 2) {
         
         
-        PharamcyPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
+        DoctorPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
         
         if (!cell) {
-            cell = [[PharamcyPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
+            cell = [[DoctorPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
             cell.viewController = _precriptionViewController;
         }
         
@@ -323,13 +320,6 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
-
-//- (void)keyboardDidShow: (NSNotification *) notif {
-//    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 264 - 44);
-//}
-//- (void)keyboardDidHide: (NSNotification *) notif {
-//    self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 44);
-//}
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
     handler = myHandler;
