@@ -54,7 +54,7 @@
         [mobileFacede findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
             NSMutableString * myPredicate = [[NSMutableString alloc]init];
             for(int i = 0; i < [self.prescriptions count]; i++){
-                NSDictionary * dic = [self.prescriptions objectAtIndex:i];
+                NSMutableDictionary * dic = [self.prescriptions objectAtIndex:i];
                 [myPredicate appendFormat:@" %@ != %@ ",MEDICATIONID,[[self.prescriptions objectAtIndex:i] objectForKey:MEDICATIONID]];
                 
                 if (i+1 != [self.prescriptions count]) {
@@ -63,7 +63,7 @@
             }
             [allObjectsFromSearch filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:myPredicate]];
             self.medName = [[allObjectsFromSearch objectAtIndex:0] objectForKey:MEDNAME];
-            [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+            [_tableView reloadData];
         }];
     }];  
 }
@@ -127,7 +127,7 @@
     
     cell.viewController.drugNameLabel.text = self.medName;
 
-    cell.viewController.numberOfPrescriptionLabel.text = [[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TABLEPERDAY];
+    cell.viewController.numberOfPrescriptionLabel.text =  [NSString stringWithFormat:@"%d", [[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TABLEPERDAY] integerValue]];
     
         for(UIView *mView in [cell.contentView subviews]) {
             [mView removeFromSuperview];
@@ -144,6 +144,11 @@
 }
 
 - (IBAction)checkoutPatient:(id)sender {
+    //[[[MobileClinicFacade alloc]init] updateVisitRecord:[self.patientData objectForKey:@"Open Visit"] andShouldUnlock:YES andShouldCloseVisit:YES onCompletion:^(NSDictionary *object, NSError *error) {
+    [self.navigationController popViewControllerAnimated:YES];
+    //}];
+        
+        
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
