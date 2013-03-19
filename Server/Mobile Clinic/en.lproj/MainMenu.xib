@@ -1061,7 +1061,7 @@
 									<reference key="NSSuperview" ref="355079029"/>
 									<reference key="NSNextKeyView" ref="70811603"/>
 									<string key="NSReuseIdentifierKey">_NS:11</string>
-									<string key="NSClassName">NSView</string>
+									<string key="NSClassName">UserView</string>
 								</object>
 							</array>
 							<string key="NSFrameSize">{663, 583}</string>
@@ -2617,14 +2617,6 @@
 						<reference key="parent" ref="70811603"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">902</int>
-						<reference key="object" ref="917652499"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="450572199"/>
-						</array>
-						<reference key="parent" ref="70811603"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">747</int>
 						<reference key="object" ref="287119554"/>
 						<array class="NSMutableArray" key="children">
@@ -2697,16 +2689,6 @@
 						<reference key="parent" ref="70811603"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1006</int>
-						<reference key="object" ref="484286733"/>
-						<reference key="parent" ref="70811603"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">994</int>
-						<reference key="object" ref="527915958"/>
-						<reference key="parent" ref="70811603"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1005</int>
 						<reference key="object" ref="442702789"/>
 						<reference key="parent" ref="70811603"/>
@@ -2755,11 +2737,6 @@
 						<int key="objectID">755</int>
 						<reference key="object" ref="759879862"/>
 						<reference key="parent" ref="287119554"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">903</int>
-						<reference key="object" ref="450572199"/>
-						<reference key="parent" ref="917652499"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">923</int>
@@ -2817,19 +2794,9 @@
 						<reference key="parent" ref="70811603"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1106</int>
-						<reference key="object" ref="259981175"/>
-						<reference key="parent" ref="70811603"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1107</int>
 						<reference key="object" ref="686956384"/>
 						<reference key="parent" ref="70811603"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1110</int>
-						<reference key="object" ref="998291443"/>
-						<reference key="parent" ref="809814160"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1118</int>
@@ -2892,11 +2859,6 @@
 						<int key="objectID">1146</int>
 						<reference key="object" ref="75418644"/>
 						<reference key="parent" ref="636336752"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1151</int>
-						<reference key="object" ref="978138973"/>
-						<reference key="parent" ref="809814160"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1153</int>
@@ -3015,11 +2977,6 @@
 						<reference key="parent" ref="70811603"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1163</int>
-						<reference key="object" ref="495905390"/>
-						<reference key="parent" ref="809814160"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1166</int>
 						<reference key="object" ref="314282661"/>
 						<reference key="parent" ref="809814160"/>
@@ -3080,14 +3037,57 @@
 						<reference key="parent" ref="70811603"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">1182</int>
+						<reference key="object" ref="484007218"/>
+						<reference key="parent" ref="70811603"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">902</int>
+						<reference key="object" ref="917652499"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="450572199"/>
+						</array>
+						<reference key="parent" ref="70811603"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">994</int>
+						<reference key="object" ref="527915958"/>
+						<reference key="parent" ref="70811603"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">1181</int>
 						<reference key="object" ref="322042161"/>
 						<reference key="parent" ref="70811603"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1182</int>
-						<reference key="object" ref="484007218"/>
+						<int key="objectID">1106</int>
+						<reference key="object" ref="259981175"/>
 						<reference key="parent" ref="70811603"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1006</int>
+						<reference key="object" ref="484286733"/>
+						<reference key="parent" ref="70811603"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">903</int>
+						<reference key="object" ref="450572199"/>
+						<reference key="parent" ref="917652499"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1110</int>
+						<reference key="object" ref="998291443"/>
+						<reference key="parent" ref="809814160"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1163</int>
+						<reference key="object" ref="495905390"/>
+						<reference key="parent" ref="809814160"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1151</int>
+						<reference key="object" ref="978138973"/>
+						<reference key="parent" ref="809814160"/>
 					</object>
 				</array>
 			</object>
@@ -3338,7 +3338,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1193</int>
+			<int key="maxID">1200</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

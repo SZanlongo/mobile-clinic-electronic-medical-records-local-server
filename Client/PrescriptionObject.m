@@ -75,7 +75,8 @@
     
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",VISITID,[parentObject objectForKey:VISITID]];
     
-    return [self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:VISITID];
+   return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:self.COMMONDATABASE withCustomPredicate:pred andSortByAttribute:self.COMMONID]];
+
 }
 
 -(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse{
