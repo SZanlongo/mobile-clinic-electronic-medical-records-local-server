@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CurrentDiagnosisTableCell.h"
 #import "PreviousVisitsTableCell.h"
-#import "PharamcyPrescriptionCell.h"
+#import "DoctorPrescriptionCell.h"
 #import "MedicineSearchCell.h"
-#import "PharamcyPrescriptionViewController.h"
+#import "DoctorPrescriptionViewController.h"
 #import "MedicineSearchViewController.h"
 #import "MobileClinicFacade.h"
 
@@ -25,7 +25,7 @@
 
 @property (strong, nonatomic) CurrentDiagnosisViewController * diagnosisViewController;
 @property (strong, nonatomic) PreviousVisitsViewController * previousVisitViewController;
-@property (nonatomic, strong) PharamcyPrescriptionViewController * precriptionViewController;
+@property (nonatomic, strong) DoctorPrescriptionViewController * precriptionViewController;
 @property (nonatomic, strong) MedicineSearchViewController * medicineViewController;
 
 @property (weak, nonatomic) IBOutlet UITextField *patientNameField;

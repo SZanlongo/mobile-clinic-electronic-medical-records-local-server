@@ -67,6 +67,9 @@
     [self setControllers];
     [self instantiateViews];
     
+    self.prescriptionData = [[NSMutableDictionary alloc]init];
+    
+    
     // Pass patient visit dictionary to dependant views
     [_diagnosisViewController setPatientData:_patientData];
     [_previousVisitViewController setPatientData:_patientData];
@@ -80,8 +83,26 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(savePrescription:) name:SAVE_PRESCRIPTION object:_prescriptionData];
 
     visitationHasBeenSaved = NO;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    //set notifications that will be called when the keyboard is going to be displayed
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     
+    //remove the notifications that open the keyboard
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 // Set controllers used in tableview
@@ -116,11 +137,13 @@
             // MAY HAVE TO REINSTANTIATE _patientData WITH object (CHECK W/ MIKE)
             [_tableView setScrollEnabled:NO];
             [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            _precriptionViewController.patientData = self.patientData;
         }
     }];
 }
 
 - (void)slideToSearchMedicine {
+    self.medicineViewController.prescriptionData = self.prescriptionData;
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
@@ -240,10 +263,10 @@
     else if(indexPath.item == 2) {
         
         
-        PharamcyPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
+        DoctorPrescriptionCell * cell = [tableView dequeueReusableCellWithIdentifier:currentVisitCellIdentifier];
         
         if (!cell) {
-            cell = [[PharamcyPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
+            cell = [[DoctorPrescriptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:currentVisitCellIdentifier];
             cell.viewController = _precriptionViewController;
         }
         
@@ -318,6 +341,60 @@
 // Hides keyboard when whitespace is pressed
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+}
+
+#pragma view movement for keyboard
+
+//the Y position of the cell will be at 216
+
+-(void)keyboardWillShow {
+    // Animate the current view out of the way
+    NSLog(@"%f", self.diagnosisViewController.view.frame.origin.x);
+//    if (_diagnosisViewController.view.frame.origin.x >= 0)
+//    {
+        [self setViewMovedUp:YES];
+//    }
+//    else if (_diagnosisViewController.view.frame.origin.x < 0)
+//    {
+//        [self setViewMovedUp:NO];
+//    }
+}
+
+-(void)keyboardWillHide {
+    // Animate the current view back to the origin
+        NSLog(@"%f", self.diagnosisViewController.view.frame.origin.x);
+//    if (_diagnosisViewController.view.frame.origin.x >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
+//    else if (_diagnosisViewController.view.frame.origin.x < 0)
+//    {
+        [self setViewMovedUp:NO];
+//    }
+}
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        CGRect rect = _diagnosisViewController.view.frame;
+        // move the view's origin up so that the text field that will be hidden come above the keyboard
+        // revert back to the normal state.
+        rect.origin.x = movedUp ? rect.origin.x + 100 : rect.origin.x -100;
+        _diagnosisViewController.view.frame = rect;
+        
+        CGRect rect1 = _diagnosisViewController.conditionsTextbox.frame;
+        rect1.origin.y = movedUp ? rect.origin.x + 50 : rect.origin.x + 130;
+        _diagnosisViewController.conditionsTextbox.frame = rect1;
+        
+        CGRect rect2 = _diagnosisViewController.conditionsLabel.frame;
+        rect2.origin.y = movedUp ? rect.origin.x + 20 : rect.origin.x + 90;
+        _diagnosisViewController.conditionsLabel.frame = rect2;
+        
+        
+    }];
+    
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {

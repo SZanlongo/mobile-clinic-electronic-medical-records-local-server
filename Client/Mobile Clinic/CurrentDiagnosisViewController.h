@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *diagnosisTextbox;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (strong, nonatomic) IBOutlet UIView *view;
+@property (weak, nonatomic) IBOutlet UILabel *conditionsLabel;
 
 - (IBAction)submitButton:(id)sender;
 

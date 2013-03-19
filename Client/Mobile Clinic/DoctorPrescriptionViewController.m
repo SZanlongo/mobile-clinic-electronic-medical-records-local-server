@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
 
-#import "PharamcyPrescriptionViewController.h"
+#import "DoctorPrescriptionViewController.h"
 #import "MobileClinicFacade.h"
-@interface PharamcyPrescriptionViewController ()
+@interface DoctorPrescriptionViewController ()
 
 @end
 
-@implementation PharamcyPrescriptionViewController
+@implementation DoctorPrescriptionViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +47,7 @@
     for(int i = 0; i < [_timeOfDayButtons count]; i++) {
         if([[_timeOfDayButtons objectAtIndex:i] isEqual:sender]) {
             [((UIButton *)sender) setAlpha:1];
-            _timeOfDayTextFields.text = [self getTimeOfDay:i];
+            _timeOfDayTextFields.text = [self getTimeOfDay:((UIButton *)sender).tag];
         }else
             [((UIButton *)[_timeOfDayButtons objectAtIndex:i]) setAlpha:0.35];
     }
@@ -75,6 +75,7 @@
 }
 
 - (IBAction)findDrugs:(id)sender {
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
 }
 
@@ -94,12 +95,14 @@
         [_prescriptionData setObject:[NSNumber numberWithInteger:[_tabletsTextField.text integerValue]] forKey:TABLEPERDAY];
         [_prescriptionData setObject:[NSNumber numberWithInteger:[_timeOfDayTextFields.text integerValue]] forKey:TIMEOFDAY];
         [_prescriptionData setObject:dateStamp forKey:PRESCRIBETIME];
+        [_patientData setValue:[NSDate date] forKey:DOCTOROUT];
         
         // You need to save the information on this screen. it will be too much work and complication to save it elsewhere
         MobileClinicFacade* mcf = [[MobileClinicFacade alloc]init];
         
         /* The _patientData should not be contian patient data but Visit dictionary with the patient data inside Or just the visit data alone. This method will not work if there is no visitation data*/
         // TODO: Fix this  class so that is has the visit data
+
         [mcf addNewPrescription:_prescriptionData ForCurrentVisit:_patientData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
             if (!object) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:_prescriptionData];

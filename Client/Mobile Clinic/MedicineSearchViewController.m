@@ -56,7 +56,9 @@
 }
 
 - (IBAction)moveBackToPrescription:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:_medicineField.text];
+//    [self.prescriptionData setObject:[NSNumber numberWithInt:[self.tableView indexPathForSelectedRow].row] forKey:MEDICATIONID];
+    [self.prescriptionData setObject:@"poo" forKey:MEDICATIONID];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:self.prescriptionData];
 }
 
 - (void)viewDidUnload {

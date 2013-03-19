@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PatientObject.h"
-#import "PharamcyPrescriptionViewController.h"
-#import "PharamcyPrescriptionCell.h"
+#import "DoctorPrescriptionViewController.h"
 #import "MedicineSearchViewController.h"
 #import "StationViewHandlerProtocol.h"
+#import "PharmacyPrescriptionCell.h"
 #import "PrescriptionObject.h"
 #import "MedicineSearchCell.h"
 
@@ -22,8 +22,7 @@
 @property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) NSMutableDictionary * prescriptionData;
 @property (strong, nonatomic) NSMutableDictionary * visitationData;
-@property (nonatomic, strong) PharamcyPrescriptionViewController * precriptionViewController;
-@property (nonatomic, strong) MedicineSearchViewController * medicineViewController;
+@property (strong, nonatomic) NSArray * prescriptions;
 
 @property (strong, nonatomic) NSString * medName;
 
@@ -35,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)checkoutPatient:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;
 @end
