@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4V1-xg-f76">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4V1-xg-f76">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -787,7 +787,7 @@
                                                     <rect key="frame" x="20" y="7" width="60" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rigo Hernandez" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e0Q-ke-f73">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Patient Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e0Q-ke-f73">
                                                     <rect key="frame" x="92" y="7" width="404" height="34"/>
                                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="25"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -920,77 +920,77 @@
                                 <rect key="frame" x="496" y="31" width="225" height="168"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Weight:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qs8-Z9-1ge">
-                                        <rect key="frame" x="40" y="49" width="50" height="20"/>
+                                        <rect key="frame" x="30" y="49" width="50" height="20"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Blood Pressure:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4SW-0r-XBL">
-                                        <rect key="frame" x="40" y="69" width="90" height="20"/>
+                                        <rect key="frame" x="30" y="69" width="90" height="20"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Previous Vitals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3lx-ve-m9P">
-                                        <rect key="frame" x="40" y="21" width="150" height="21"/>
+                                        <rect key="frame" x="30" y="21" width="150" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l0F-qY-8ge">
-                                        <rect key="frame" x="98" y="49" width="65" height="21"/>
+                                        <rect key="frame" x="88" y="49" width="65" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6a1-3h-dEa">
-                                        <rect key="frame" x="138" y="69" width="55" height="21"/>
+                                        <rect key="frame" x="128" y="69" width="80" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Respiration:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RuD-zg-QNr">
-                                        <rect key="frame" x="40" y="109" width="70" height="20"/>
+                                        <rect key="frame" x="30" y="109" width="70" height="20"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rDE-DE-yhk">
-                                        <rect key="frame" x="40" y="129" width="40" height="20"/>
+                                        <rect key="frame" x="30" y="129" width="40" height="20"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A74-Nr-w4x">
-                                        <rect key="frame" x="118" y="109" width="55" height="21"/>
+                                        <rect key="frame" x="108" y="109" width="55" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="51b-5g-rIj">
-                                        <rect key="frame" x="85" y="129" width="55" height="21"/>
+                                        <rect key="frame" x="75" y="129" width="55" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Heart Rate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gag-Kn-lvg">
-                                        <rect key="frame" x="40" y="89" width="70" height="20"/>
+                                        <rect key="frame" x="30" y="89" width="70" height="20"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9q5-90-uSc">
-                                        <rect key="frame" x="116" y="89" width="55" height="21"/>
+                                        <rect key="frame" x="106" y="89" width="55" height="21"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1425,7 +1425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQH-Th-Oiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1966" y="-549"/>
+            <point key="canvasLocation" x="3779" y="-549"/>
         </scene>
         <!--Pharmacy Prescription View Controller-->
         <scene sceneID="ce9-No-yeH">
@@ -1544,7 +1544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PI8-bb-9wd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2858" y="-609"/>
+            <point key="canvasLocation" x="1966" y="-549"/>
         </scene>
         <!--Register Patient View Controller - Register Patient-->
         <scene sceneID="GBf-St-TNM">
@@ -1998,7 +1998,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ftw-vW-aHP">
-                                <rect key="frame" x="568" y="701" width="155" height="44"/>
+                                <rect key="frame" x="479" y="517" width="155" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Send to Pharmacy">
@@ -2090,11 +2090,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oHV-HK-p9l">
-                                <rect key="frame" x="172" y="499" width="462" height="194"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2203,218 +2198,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="night.png" width="176" height="134"/>
         <image name="userImage.jpeg" width="120" height="120"/>
     </resources>
-    <classes>
-        <class className="CurrentDiagnosisViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentDiagnosisViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitButton:"/>
-                <relationship kind="outlet" name="conditionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="conditionsTextbox" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="diagnosisTextbox" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="view" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="CurrentVisitViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentVisitViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="checkInButton:"/>
-                <relationship kind="action" name="quickCheckOutButton:"/>
-                <relationship kind="outlet" name="conditionsTextbox" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="diastolicField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="heartField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientWeightField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="respirationField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="systolicField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="visitPriority" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="DateController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveNewDate:"/>
-                <relationship kind="outlet" name="dateLbl" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="DoctorPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorPatientViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="segmentClicked:"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientHRLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientRespirationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientTempLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="DoctorPrescriptionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorPrescriptionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="findDrugs:"/>
-                <relationship kind="action" name="newTimeOfDay:"/>
-                <relationship kind="action" name="savePrescription:"/>
-                <relationship kind="outlet" name="drugTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="medicationNotes" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="tabletsTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="timeOfDayTextFields" candidateClass="UITextField"/>
-                <relationship kind="outletCollection" name="timeOfDayButtons" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="GenericStartViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericStartViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="segmentClicked:"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButton:"/>
-                <relationship kind="action" name="move:"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MedicineSearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicineSearchViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="moveBackToPrescription:"/>
-                <relationship kind="action" name="searchMedicine:"/>
-                <relationship kind="outlet" name="medicineField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PatientHistoryTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientHistoryTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="patientBPLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientConditionsTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="patientDOBLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientHeartLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientMedicationTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="patientRespirationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientWeightLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PatientQueueViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientQueueViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="queueTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PatientResultTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientResultTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="patientAge" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientDOB" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PharmacyPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PharmacyPatientViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="checkoutPatient:"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PharmacyPrescriptionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PharmacyPrescriptionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="medicationDispensed:"/>
-                <relationship kind="outlet" name="doctorsNotesField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="drugNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="medicationDispensedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="numberOfPrescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeOfDayButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="timeOfDayLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PreviousVisitsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousVisitsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="patientHistoryTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="QueueTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QueueTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="patientAge" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientDOB" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="priorityIndicator" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="RegisterPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterPatientViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPatient:"/>
-                <relationship kind="action" name="getAgeOfPatient:"/>
-                <relationship kind="action" name="patientPhotoButton:"/>
-                <relationship kind="outlet" name="createPatientButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SearchPatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchPatientViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="searchByFingerprintButton:"/>
-                <relationship kind="action" name="searchByNFCButton:"/>
-                <relationship kind="action" name="searchByNameButton:"/>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="searchResultTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="StationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doctorButton:"/>
-                <relationship kind="action" name="logout:"/>
-                <relationship kind="action" name="pharmacyButton:"/>
-                <relationship kind="action" name="triageButton:"/>
-            </relationships>
-        </class>
-        <class className="TriagePatientViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TriagePatientViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientAgeField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="patientSexField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
