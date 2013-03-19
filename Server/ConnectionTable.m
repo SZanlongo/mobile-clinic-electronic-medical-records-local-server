@@ -27,32 +27,16 @@ UserObject* users;
         
         [self setDelegate:self];
         [self setDataSource:self];
-        
-         NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        
-        // Normally the appdelegate starts first but in this case it doesnt, so
-        // we listen for when the appdelegate says its up and running
-        [center addObserver:self selector:@selector(SetupAnythingThatNeedsCoreData:) name:APPDELEGATE_STARTED object:appDelegate];
-        
-        // listen for when users add themselves to the database
-       // [center addObserver:self selector:@selector(refreshServer:) name:SAVE_USER object:nil];
 
         // connection = [ServerWrapper sharedServerManager];
         connection = [ServerCore sharedInstance];
         
         [connection startServer];
+        
+        users = [[UserObject alloc]init];
+        appDelegate.server = connection;
+        [self refreshServer:nil];
     }
-}
-
--(void)SetupAnythingThatNeedsCoreData:(NSNotification*)note{
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:APPDELEGATE_STARTED object:appDelegate];
-    
-    // On First load, Sync Users from cloud to local server
-    users = [[UserObject alloc]init];
-    appDelegate = note.object;
-    appDelegate.server = connection;
-    [self refreshServer:nil];    
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
@@ -86,10 +70,9 @@ UserObject* users;
     
     if (users) {
         [users SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
-            [self beginUpdates];
-            
+
             listOfUsers = [NSArray arrayWithArray:[users serviceAllObjects]];
-            [self endUpdates];
+
             [self reloadData];
         }];
 

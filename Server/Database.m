@@ -1,117 +1,29 @@
 //
-//  FIUAppDelegate.m
+//  Database.m
 //  Mobile Clinic
 //
-//  Created by Michael Montaque on 1/23/13.
+//  Created by Michael Montaque on 3/18/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 
-#import "FIUAppDelegate.h"
-#import "BaseObject.h"
-#import "PatientTable.h"
-#import "MedicationObject.h"
 #import "Database.h"
 
-PatientTable *pTable;
+@implementation Database
 
-@implementation FIUAppDelegate
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize managedObjectContext = _managedObjectContext;
 
-//@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-//@synthesize managedObjectModel = _managedObjectModel;
-//@synthesize managedObjectContext = _managedObjectContext;
-
-- (void)showPatientsView:(id)sender {
-    if(![_window isVisible] )
-        [_window makeKeyAndOrderFront:sender];
-    
-    if (!pTable)
-        pTable = [[PatientTable alloc]initWithNibName:@"PatientTable" bundle:nil];
-    
-    [_window setContentView:pTable.view];
-}
-- (void)showUsersView:(id)sender {
-    if(![_window isVisible] )
-        [_window makeKeyAndOrderFront:sender];
-    
-    if (!pTable)
-        pTable = [[PatientTable alloc]initWithNibName:@"PatientTable" bundle:nil];
-    
-    [_window setContentView:pTable.view];
-}
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
++ (id)sharedInstance
 {
-    //[_server startServer];
-}
-- (IBAction)setupTestPatients:(id)sender {
-    // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
-    // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
-    NSError* err = nil;
-    
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
-    
-    NSArray* patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
-    
-    NSLog(@"Imported Patients: %@", patients);
-    
-    [patients enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:obj];
-        PatientObject *base = [[PatientObject alloc]init];
-        
-        NSDateFormatter *format =[[NSDateFormatter alloc]init];
-        
-        [format setDateFormat:@"yyyy-MMMM-dd"];
-        
-        [dic setValue:[format dateFromString:[dic valueForKey:@"age"]] forKey:DOB];
-        
-        [base setValueToDictionaryValues:dic];
-        
-        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
-        }];
-        
-    }];
+    static dispatch_once_t pred = 0;
+    __strong static id _sharedObject = nil;
+    dispatch_once(&pred, ^{
+        _sharedObject = [[self alloc] init];
+    });
+    return _sharedObject;
 }
 
-- (IBAction)createTestMedications:(id)sender {
-    NSError* err = nil;
-    
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
-    
-    NSArray* Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
-    
-    NSLog(@"Imported Medications: %@", Meds.description);
-    
-    [Meds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        MedicationObject* base = [[MedicationObject alloc]init];
-        
-        [base setValueToDictionaryValues:obj];
-        
-        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        }];
-    }];
-
-}
-
-
-- (void) testCloud {
-//    BaseObject * obj = [[BaseObject alloc] init];
-//    
-//    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
-//    
-//    [mDic setObject:@"pooop" forKey:@"userName"];
-//    [mDic setObject:@"poooop" forKey:@"password"];
-//    [mDic setObject:@"poop" forKey:@"firstName"];
-//    [mDic setObject:@"poop" forKey:@"lastName"];
-//    [mDic setObject:@"poop@popper.com" forKey:@"email"];
-//    [mDic setObject:@"1" forKey:@"userType"];
-//    [mDic setObject:@"1" forKey:@"status"];
-//    //    [mDic setObject:@"asd" forKey:@"remember_token"];
-//    [obj query:@"deactivate_user" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
-//    }];
-}
-/*
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "FIU.Mobile_Clinic" in the user's Application Support directory.
 - (NSURL *)applicationFilesDirectory
 {
@@ -186,7 +98,7 @@ PatientTable *pTable;
     return _persistentStoreCoordinator;
 }
 
-// Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) 
+// Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (_managedObjectContext) {
@@ -204,17 +116,8 @@ PatientTable *pTable;
     }
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    
- [[NSNotificationCenter defaultCenter]postNotificationName:APPDELEGATE_STARTED object:self];
+
     return _managedObjectContext;
-}
-
-
-
-// Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
-- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
-{
-    return [[self managedObjectContext] undoManager];
 }
 
 // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
@@ -231,17 +134,43 @@ PatientTable *pTable;
     }
 }
 
-*/
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+- (void)saveContext
 {
-
-    Database* database = [Database sharedInstance];
-    
-    if ([database shutdownDatabase]) {
-        [_server stopServer];
-        return NSTerminateNow;
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
     }
-    return NSTerminateCancel;
+}
+
+-(BOOL)shutdownDatabase{
+
+    // Save changes in the application's managed object context before the application terminates.
+    
+    if (!_managedObjectContext) {
+        return YES;
+    }
+    
+    if (![[self managedObjectContext] commitEditing]) {
+        NSLog(@"%@:%@ unable to commit editing to terminate", [self class], NSStringFromSelector(_cmd));
+        return NO;
+    }
+    
+    if (![[self managedObjectContext] hasChanges]) {
+        return NO;
+    }
+    
+    NSError *error = nil;
+    if (![[self managedObjectContext] save:&error]) {
+
+        return YES;
+    }
+    return NO;
 }
 
 @end

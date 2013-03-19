@@ -7,12 +7,13 @@
 //
 
 #import "DatabaseDriver.h"
+#import "Database.h"
 
 @implementation DatabaseDriver
 
 -(id)init{
     if (self = [super init]) {
-        appDelegate = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
+        database = [Database sharedInstance];
     }
 return self;
 }
@@ -24,15 +25,15 @@ return self;
 
 
 -(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name isTemporary:(BOOL)temp{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:appDelegate.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:database.managedObjectContext];
    
-    return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:(temp)?nil:appDelegate.managedObjectContext];
+    return [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:(temp)?nil:database.managedObjectContext];
 
 }
 
 -(void)SaveCurrentObjectToDatabase:(NSManagedObject*)databaseObject{
     [appDelegate saveAction:nil];
-    [appDelegate.managedObjectContext refreshObject:databaseObject mergeChanges:YES];
+    [database.managedObjectContext refreshObject:databaseObject mergeChanges:YES];
 }
 
 
@@ -75,7 +76,7 @@ return self;
 
 -(NSArray*)fetchElementsUsingFetchRequest:(NSFetchRequest*)request withTable:(NSString*)tableName{
     
-    NSManagedObjectContext* ctx = appDelegate.managedObjectContext;
+    NSManagedObjectContext* ctx = database.managedObjectContext;
     
     if (ctx) {
         NSEntityDescription* semesterEntity = [NSEntityDescription entityForName:tableName inManagedObjectContext: ctx];

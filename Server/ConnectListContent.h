@@ -21,6 +21,7 @@ IBOutlet NSTextField *Password;
 @property (nonatomic,strong) IBOutlet NSTextField *email;
 @property (nonatomic,strong) IBOutlet NSComboBox *userTypeBox;
 @property (nonatomic,strong) IBOutlet NSSegmentedControl *isActiveSegment;
+
 -(IBAction)AuthorizeUser:(id)sender;
 -(IBAction)CommitNewUserInfo:(id)sender;
 @end

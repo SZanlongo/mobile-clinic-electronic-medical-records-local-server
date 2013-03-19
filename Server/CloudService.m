@@ -159,7 +159,7 @@
             
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
             
-            if (completion) {
+            if ((completion && json) || (completion && jsonError)) {
                 completion(jsonError, json);
             }
         }
