@@ -76,7 +76,7 @@ PatientTable *pTable;
 - (IBAction)createTestMedications:(id)sender {
     NSError* err = nil;
     
-    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
     
     NSArray* Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
     

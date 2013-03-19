@@ -51,9 +51,13 @@
     MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
     [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         self.prescriptions = allObjectsFromSearch;
+        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }];
     
-#warning Need to find method that will either return medication for specific visit or all the medication. Current method requires a dictionary which is not needed
+    [mobileFacede findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        ;
+    }];
+
     
 }
 
