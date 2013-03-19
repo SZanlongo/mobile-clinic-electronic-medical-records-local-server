@@ -1189,6 +1189,10 @@
                                 <rect key="frame" x="47" y="234" width="674" height="600"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Iw3-0E-8E0" id="ucH-Hd-bP1"/>
+                                    <outlet property="delegate" destination="Iw3-0E-8E0" id="MOO-U9-aP3"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
