@@ -67,6 +67,9 @@
     [self setControllers];
     [self instantiateViews];
     
+    self.prescriptionData = [[NSMutableDictionary alloc]init];
+    
+    
     // Pass patient visit dictionary to dependant views
     [_diagnosisViewController setPatientData:_patientData];
     [_previousVisitViewController setPatientData:_patientData];
@@ -134,6 +137,7 @@
             // MAY HAVE TO REINSTANTIATE _patientData WITH object (CHECK W/ MIKE)
             [_tableView setScrollEnabled:NO];
             [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            _precriptionViewController.patientData = self.patientData;
         }
     }];
 }

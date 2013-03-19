@@ -95,12 +95,14 @@
         [_prescriptionData setObject:[NSNumber numberWithInteger:[_tabletsTextField.text integerValue]] forKey:TABLEPERDAY];
         [_prescriptionData setObject:[NSNumber numberWithInteger:[_timeOfDayTextFields.text integerValue]] forKey:TIMEOFDAY];
         [_prescriptionData setObject:dateStamp forKey:PRESCRIBETIME];
+        [_patientData setValue:[NSDate date] forKey:DOCTOROUT];
         
         // You need to save the information on this screen. it will be too much work and complication to save it elsewhere
         MobileClinicFacade* mcf = [[MobileClinicFacade alloc]init];
         
         /* The _patientData should not be contian patient data but Visit dictionary with the patient data inside Or just the visit data alone. This method will not work if there is no visitation data*/
         // TODO: Fix this  class so that is has the visit data
+
         [mcf addNewPrescription:_prescriptionData ForCurrentVisit:_patientData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
             if (!object) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:_prescriptionData];
