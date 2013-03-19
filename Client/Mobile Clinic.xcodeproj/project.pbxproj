@@ -122,6 +122,7 @@
 		6DD5D90816D315F3007C3F74 /* PreviousVisitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */; };
 		EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA09329916F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
+		EA09329B16F8F77600536DF3 /* PatientFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAADC01A16E05554009E7AF9 /* PatientFile.json */; };
 		EA1EE19B16C8877F00E263D2 /* NSString+StringExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */; };
 		EA1EE19F16C982DB00E263D2 /* DateController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19E16C982DB00E263D2 /* DateController.m */; };
 		EA1EE1A316C9B7C300E263D2 /* VisitationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */; };
@@ -209,6 +210,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		EA09329A16F8F76700536DF3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				EA09329B16F8F77600536DF3 /* PatientFile.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAADC01116E03F24009E7AF9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -612,7 +623,7 @@
 				EA8BB92E16C8798600A4BC6E /* HUD */,
 				EA8BB92D16C8795100A4BC6E /* Images */,
 				EA9AC88616C860D500493485 /* Interfaces */,
-				467740FE16BD931E002FD4A5 /* Mobile Clinic */,
+				467740FE16BD931E002FD4A5 /* Mobile Clinic -> Controllers */,
 				4677412216BD931E002FD4A5 /* Mobile ClinicTests */,
 				EAADC02616E1165C009E7AF9 /* MCF-> Data */,
 				467740F616BD931E002FD4A5 /* Products */,
@@ -649,14 +660,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		467740FE16BD931E002FD4A5 /* Mobile Clinic */ = {
+		467740FE16BD931E002FD4A5 /* Mobile Clinic -> Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				46E773C716CAF9E800242454 /* API */,
 				0F9E6BA816D1E41F008AFB49 /* NewViews */,
 				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
 				0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */,
-				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
 				4677410716BD931E002FD4A5 /* FIUAppDelegate.h */,
 				4677410816BD931E002FD4A5 /* FIUAppDelegate.m */,
 				0F0DB8D116F2B7C100BCBF98 /* DB Objects */,
@@ -664,6 +674,7 @@
 				4614288616BF7EE600802410 /* Resources */,
 				467740FF16BD931E002FD4A5 /* Supporting Files */,
 			);
+			name = "Mobile Clinic -> Controllers";
 			path = "Mobile Clinic";
 			sourceTree = "<group>";
 		};
@@ -862,6 +873,7 @@
 		EAADC02616E1165C009E7AF9 /* MCF-> Data */ = {
 			isa = PBXGroup;
 			children = (
+				4677413516BD9386002FD4A5 /* Model.xcdatamodeld */,
 				EAE6CDEB16BE4701008949DC /* System Objects */,
 				EAADC02416E113D2009E7AF9 /* MobileClinicFacadeProtocol.h */,
 				EAADC02016E113A5009E7AF9 /* MobileClinicFacade.h */,
@@ -1087,6 +1099,7 @@
 				EA6F747116E8181F001FD385 /* Frameworks */,
 				EA6F747216E8181F001FD385 /* Resources */,
 				EA7CDC2916ECF846005A9070 /* ShellScript */,
+				EA09329A16F8F76700536DF3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1569,7 +1582,8 @@
 				4677413616BD9386002FD4A5 /* Model.xcdatamodel */,
 			);
 			currentVersion = 4677413616BD9386002FD4A5 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			name = Model.xcdatamodeld;
+			path = "Mobile Clinic/Model.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

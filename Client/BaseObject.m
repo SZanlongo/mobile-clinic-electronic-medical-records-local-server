@@ -220,8 +220,12 @@ id<ServerProtocol> serverManager;
         
     }];
 }
-
-
+-(BOOL)deleteCurrentlyHeldObjectFromDatabase{
+    return [self deleteNSManagedObject:self.databaseObject];
+}
+-(BOOL)deleteDatabaseDictionaryObject:(NSDictionary *)object{
+    return [self deleteObjectFromDatabase:self.COMMONDATABASE withDefiningAttribute:[object objectForKey:self.COMMONID] forKey:self.COMMONID];
+}
 -(BOOL)loadObjectForID:(NSString *)objectID{
     // checks to see if object exists
     NSArray* arr = [self FindObjectInTable:self.COMMONDATABASE withName:objectID forAttribute:self.COMMONID];

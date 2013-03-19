@@ -19,5 +19,6 @@
 @protocol PatientObjectProtocol <NSObject>
 
 -(NSArray*)FindAllOpenPatientsLocally;
+
 -(void) SyncAllOpenPatietnsOnServer:(ObjectResponse)Response;
 @end

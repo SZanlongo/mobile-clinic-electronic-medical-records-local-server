@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Database.h"
 #import "DatabaseDriverProtocol.h"
-@interface DatabaseDriver : NSObject<DatabaseDriverProtocol>
 
-//@property(nonatomic, strong) FIUAppDelegate* appDelegate;
+@interface DatabaseDriver : NSObject<DatabaseDriverProtocol>
 
 @property(nonatomic, strong) id<DatabaseProtocol> database;
 
@@ -26,5 +25,6 @@
 -(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute;
 
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(id)name forAttribute:(NSString*)attribute;
+
 
 @end

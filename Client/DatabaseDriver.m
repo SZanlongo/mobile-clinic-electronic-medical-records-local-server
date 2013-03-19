@@ -22,6 +22,31 @@ NSManagedObjectContext* context;
 return self;
 }
 
+-(BOOL)deleteObjectFromDatabase:(NSString *)table withDefiningAttribute:(NSString *)attrib forKey:(NSString *)key{
+
+    if (!table || !key || !attrib) {
+        return NO;
+    }
+    
+    NSArray* oneObject = [self FindObjectInTable:table withName:attrib forAttribute:key];
+   
+    if (oneObject.count == 1) {
+        [context deleteObject:oneObject.lastObject];
+        NSError* error = nil;
+        return ![context save:&error];
+    }
+
+    return NO;
+}
+-(BOOL)deleteNSManagedObject:(NSManagedObject *)object{
+   
+    if (object) {
+        [context deleteObject:object];
+        NSError* error = nil;
+        return ![context save:&error];
+    }
+return NO;
+}
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(NSString*)name forAttribute:(NSString*)attribute{
     
     NSFetchRequest *fetch = [[NSFetchRequest alloc]init];

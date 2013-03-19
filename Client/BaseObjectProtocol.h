@@ -151,5 +151,9 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  * the CommonExecution method
  */
 -(void)SaveListOfObjectsFromDictionary:(NSDictionary*)patientList;
+
+-(BOOL)deleteCurrentlyHeldObjectFromDatabase;
+
+-(BOOL)deleteDatabaseDictionaryObject:(NSDictionary*)object;
 @end
 
