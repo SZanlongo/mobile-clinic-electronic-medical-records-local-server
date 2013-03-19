@@ -13,7 +13,7 @@
 		0F134D0716F7D77D003F4CE6 /* NSObject+CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3856A716C0E80D00FA83FD /* NSObject+CustomTools.m */; };
 		0F134D0816F7D78B003F4CE6 /* UIViewControllerExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C2F3A16BF624F000F38CD /* UIViewControllerExt.m */; };
 		0F134D0916F7D805003F4CE6 /* CurrentVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */; };
-		0F134D0A16F7D805003F4CE6 /* PharamcyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3816DB24EC008CD600 /* PharamcyPrescriptionCell.m */; };
+		0F134D0A16F7D805003F4CE6 /* DoctorPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3816DB24EC008CD600 /* DoctorPrescriptionCell.m */; };
 		0F134D0B16F7D875003F4CE6 /* CurrentDiagnosisTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */; };
 		0F134D0C16F7D875003F4CE6 /* MedicineSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3B16DB266C008CD600 /* MedicineSearchCell.m */; };
 		0F134D0D16F7D875003F4CE6 /* PreviousVisitsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0D701D16D97EE4005A8C1F /* PreviousVisitsTableCell.m */; };
@@ -46,7 +46,7 @@
 		0F134D3516F7DBA1003F4CE6 /* DateController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19E16C982DB00E263D2 /* DateController.m */; };
 		0F134D3616F7DBA1003F4CE6 /* DoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28B716D7DCE9007FB79F /* DoctorViewController.m */; };
 		0F134D3716F7DBA1003F4CE6 /* CurrentDiagnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0676916D7DDF000D177E7 /* CurrentDiagnosisViewController.m */; };
-		0F134D3816F7DBA1003F4CE6 /* PharamcyPrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A2716DB1C0E008CD600 /* PharamcyPrescriptionViewController.m */; };
+		0F134D3816F7DBA1003F4CE6 /* DoctorPrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A2716DB1C0E008CD600 /* DoctorPrescriptionViewController.m */; };
 		0F134D3916F7DBA1003F4CE6 /* MedicineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11A3516DB21E4008CD600 /* MedicineSearchViewController.m */; };
 		0F134D3A16F7DBA1003F4CE6 /* PharmacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D28BB16D7DCF5007FB79F /* PharmacyViewController.m */; };
 		0F134D3B16F7DBA1003F4CE6 /* PharmacyPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC75C5C16DAED47000F527A /* PharmacyPatientViewController.m */; };
@@ -72,7 +72,6 @@
 		0FCB7C2B16EA535B008F434C /* CurrentVisitTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */; };
 		0FDE47BF16ED0CFB00966C77 /* PatientQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE47BE16ED0CFB00966C77 /* PatientQueueViewController.m */; };
 		0FECD55D16DA92A6008B4041 /* PatientResultTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */; };
-		4602DFCE16F7BE7100B4F58C /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4602DFCD16F7BE7100B4F58C /* PharmacyPrescriptionCell.m */; };
 		4602DFD116F7BF0600B4F58C /* PharmacyPrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4602DFD016F7BF0600B4F58C /* PharmacyPrescriptionViewController.m */; };
 		4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4614288316BF7EBB00802410 /* MainStoryboard.storyboard */; };
 		4614288916BF7F2900802410 /* orant_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4614288716BF7F2900802410 /* orant_logo.png */; };
@@ -121,6 +120,8 @@
 		6DD5D90216D3158E007C3F74 /* SearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90116D3158E007C3F74 /* SearchPatientViewController.m */; };
 		6DD5D90516D315DD007C3F74 /* CurrentVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */; };
 		6DD5D90816D315F3007C3F74 /* PreviousVisitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */; };
+		EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
+		EA09329916F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA1EE19B16C8877F00E263D2 /* NSString+StringExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */; };
 		EA1EE19F16C982DB00E263D2 /* DateController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19E16C982DB00E263D2 /* DateController.m */; };
 		EA1EE1A316C9B7C300E263D2 /* VisitationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */; };
@@ -252,8 +253,6 @@
 		0FDE47BD16ED0CFB00966C77 /* PatientQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientQueueViewController.h; sourceTree = "<group>"; };
 		0FDE47BE16ED0CFB00966C77 /* PatientQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientQueueViewController.m; sourceTree = "<group>"; };
 		0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clinicLogo.jpg; sourceTree = "<group>"; };
-		4602DFCC16F7BE7100B4F58C /* PharmacyPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPrescriptionCell.h; sourceTree = "<group>"; };
-		4602DFCD16F7BE7100B4F58C /* PharmacyPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPrescriptionCell.m; sourceTree = "<group>"; };
 		4602DFCF16F7BF0600B4F58C /* PharmacyPrescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPrescriptionViewController.h; sourceTree = "<group>"; };
 		4602DFD016F7BF0600B4F58C /* PharmacyPrescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPrescriptionViewController.m; sourceTree = "<group>"; };
 		4614288316BF7EBB00802410 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -333,6 +332,8 @@
 		6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitViewController.m; sourceTree = "<group>"; };
 		6DD5D90616D315F3007C3F74 /* PreviousVisitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitsViewController.h; sourceTree = "<group>"; };
 		6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitsViewController.m; sourceTree = "<group>"; };
+		EA09329616F8287300536DF3 /* PharmacyPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPrescriptionCell.h; sourceTree = "<group>"; };
+		EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPrescriptionCell.m; sourceTree = "<group>"; };
 		EA1EE19916C8877F00E263D2 /* NSString+StringExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringExt.h"; sourceTree = "<group>"; };
 		EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringExt.m"; sourceTree = "<group>"; };
 		EA1EE19D16C982DB00E263D2 /* DateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateController.h; sourceTree = "<group>"; };
@@ -524,6 +525,8 @@
 		0F428B9116D5215600E25B4B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EA09329616F8287300536DF3 /* PharmacyPrescriptionCell.h */,
+				EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */,
 				6D522C9616DADAA3004FFC21 /* CurrentDiagnosisTableCell.h */,
 				6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */,
 				6D0D701916D97611005A8C1F /* CurrentVisitTableCell.h */,
@@ -552,8 +555,6 @@
 				0F1A596616D8327600C121BA /* CurrentVisitTableCell.h */,
 				0F1A596716D8327600C121BA /* CurrentVisitTableCell.m */,
 				0F56A41116F58C3300225136 /* TempCellToDelete.xib */,
-				4602DFCC16F7BE7100B4F58C /* PharmacyPrescriptionCell.h */,
-				4602DFCD16F7BE7100B4F58C /* PharmacyPrescriptionCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1259,8 +1260,8 @@
 				EAC37EE816EED8E900836C1C /* MedicationObject.m in Sources */,
 				EAC37F0216F022A400836C1C /* Database.m in Sources */,
 				EAC37F0D16F19DB800836C1C /* GCDAsyncSocket.m in Sources */,
-				4602DFCE16F7BE7100B4F58C /* PharmacyPrescriptionCell.m in Sources */,
 				4602DFD116F7BF0600B4F58C /* PharmacyPrescriptionViewController.m in Sources */,
+				EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1297,7 +1298,7 @@
 				0F134D3516F7DBA1003F4CE6 /* DateController.m in Sources */,
 				0F134D3616F7DBA1003F4CE6 /* DoctorViewController.m in Sources */,
 				0F134D3716F7DBA1003F4CE6 /* CurrentDiagnosisViewController.m in Sources */,
-				0F134D3816F7DBA1003F4CE6 /* PharamcyPrescriptionViewController.m in Sources */,
+				0F134D3816F7DBA1003F4CE6 /* DoctorPrescriptionViewController.m in Sources */,
 				0F134D3916F7DBA1003F4CE6 /* MedicineSearchViewController.m in Sources */,
 				0F134D3A16F7DBA1003F4CE6 /* PharmacyViewController.m in Sources */,
 				0F134D3B16F7DBA1003F4CE6 /* PharmacyPatientViewController.m in Sources */,
@@ -1314,7 +1315,7 @@
 				0F134D0C16F7D875003F4CE6 /* MedicineSearchCell.m in Sources */,
 				0F134D0D16F7D875003F4CE6 /* PreviousVisitsTableCell.m in Sources */,
 				0F134D0916F7D805003F4CE6 /* CurrentVisitTableCell.m in Sources */,
-				0F134D0A16F7D805003F4CE6 /* PharamcyPrescriptionCell.m in Sources */,
+				0F134D0A16F7D805003F4CE6 /* DoctorPrescriptionCell.m in Sources */,
 				0F134D0816F7D78B003F4CE6 /* UIViewControllerExt.m in Sources */,
 				0F134D0716F7D77D003F4CE6 /* NSObject+CustomTools.m in Sources */,
 				0F134D0616F7D6D4003F4CE6 /* DoctorPatientViewController.m in Sources */,
@@ -1341,6 +1342,7 @@
 				0F134D5316F7E9A5003F4CE6 /* BaseObjectTest.m in Sources */,
 				0F134D5416F7E9A5003F4CE6 /* GHUnitIOSTestMain.m in Sources */,
 				0F134D5616F7E9A5003F4CE6 /* PatientObjectTest.m in Sources */,
+				EA09329916F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
