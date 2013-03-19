@@ -51,14 +51,21 @@
     MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
     [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         self.prescriptions = allObjectsFromSearch;
-        [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    }];
-    
-    [mobileFacede findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-        ;
-    }];
-
-    
+        [mobileFacede findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+            NSMutableString * myPredicate = [[NSMutableString alloc]init];
+            for(int i = 0; i < [self.prescriptions count]; i++){
+                NSDictionary * dic = [self.prescriptions objectAtIndex:i];
+                [myPredicate appendFormat:@" %@ != %@ ",MEDICATIONID,[[self.prescriptions objectAtIndex:i] objectForKey:MEDICATIONID]];
+                
+                if (i+1 != [self.prescriptions count]) {
+                    [myPredicate appendString:@" && "];
+                }
+            }
+            [allObjectsFromSearch filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:myPredicate]];
+            self.medName = [[allObjectsFromSearch objectAtIndex:0] objectForKey:MEDNAME];
+            [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+        }];
+    }];  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,7 +125,7 @@
     }
     
     
-    cell.viewController.drugNameLabel.text = @"DUMMY DRUG";
+    cell.viewController.drugNameLabel.text = self.medName;
 
     cell.viewController.numberOfPrescriptionLabel.text = [[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TABLEPERDAY];
     
