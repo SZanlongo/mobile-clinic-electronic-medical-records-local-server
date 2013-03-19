@@ -22,7 +22,9 @@
     self = [super init];
     if(self)
     {
-        kURL = @"http://znja-webapp.herokuapp.com/api/";
+        kURL = @"http://staging-webapp.herokuapp.com/api/";
+        //production
+//        kURL = @"http://znja-webapp.herokuapp.com/api/";
         //        kURL = @"http://0.0.0.0:3000/api/";
     }
     return self;

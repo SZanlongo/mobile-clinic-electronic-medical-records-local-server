@@ -37,5 +37,7 @@
 
 - (IBAction)medicationDispensed:(id)sender {
     
+    [((UIButton *)sender) setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    
 }
 @end

@@ -43,32 +43,14 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    // Extract patient name/village/etc from visit dictionary
-    NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
-    
-    // Populate patient info
-    id data = [_patientData objectForKey:PICTURE];      
-    [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
-    
-    _patientNameField.text = [patientDic objectForKey:FIRSTNAME];
-    _familyNameField.text = [patientDic objectForKey:FAMILYNAME];
-    _villageNameField.text = [patientDic objectForKey:VILLAGE];
-    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[patientDic objectForKey:DOB]getNumberOfYearsElapseFromDate]];
-    _patientSexField.text = ([patientDic objectForKey:SEX]==0)?@"Female":@"Male";
-    
-    // Populate patient's vitals from triage
-    _patientWeightLabel.text = [NSString stringWithFormat:@"%.02f",[[_patientData objectForKey:WEIGHT]doubleValue]];
-    _patientBPLabel.text = [_patientData objectForKey:BLOODPRESSURE];
-//    _patientHRLabel.text = [_patientData objectForKey:HEARTRATE];
-//    _patientRespirationLabel.text = [_patientData objectForKey:RESPIRATION];
-//    _patientTempLabel.text = [_patientData objectForKey:TEMPERATURE];
+    // Display patient data
+    [self displayPatientData];
     
     // Create controllers for each view
     [self setControllers];
     [self instantiateViews];
     
     self.prescriptionData = [[NSMutableDictionary alloc]init];
-    
     
     // Pass patient visit dictionary to dependant views
     [_diagnosisViewController setPatientData:_patientData];
@@ -103,6 +85,29 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+}
+
+// Display patient info & vitals
+- (void)displayPatientData {
+    // Extract patient name/village/etc from visit dictionary
+    NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
+    
+    // Populate patient info
+    id data = [_patientData objectForKey:PICTURE];
+    [_patientPhoto setImage:[UIImage imageWithData:([data isKindOfClass:[NSData class]])?data:nil]];
+    
+    _patientNameField.text = [patientDic objectForKey:FIRSTNAME];
+    _familyNameField.text = [patientDic objectForKey:FAMILYNAME];
+    _villageNameField.text = [patientDic objectForKey:VILLAGE];
+    _patientAgeField.text = [NSString stringWithFormat:@"%i",[[patientDic objectForKey:DOB]getNumberOfYearsElapseFromDate]];
+    _patientSexField.text = ([patientDic objectForKey:SEX]==0)?@"Female":@"Male";
+    
+    // Populate patient's vitals from triage
+    _patientWeightLabel.text = [NSString stringWithFormat:@"%.1f %@",[[_patientData objectForKey:WEIGHT]doubleValue], @"kg"];
+    _patientBPLabel.text = [NSString stringWithFormat:@"%@ %@",[_patientData objectForKey:BLOODPRESSURE], @"mmHg"];
+    _patientHRLabel.text = [NSString stringWithFormat:@"%@ %@",[_patientData objectForKey:HEARTRATE], @"bpm"];
+    _patientRespirationLabel.text = [NSString stringWithFormat:@"%@ %@",[_patientData objectForKey:RESPIRATION], @"bpm"];
+//    _patientTempLabel.text = [NSString stringWithFormat:@"%@ %@",[_patientData objectForKey:TEMPERATURE], @"C"];
 }
 
 // Set controllers used in tableview
@@ -391,10 +396,7 @@
         CGRect rect2 = _diagnosisViewController.conditionsLabel.frame;
         rect2.origin.y = movedUp ? rect.origin.x + 20 : rect.origin.x + 90;
         _diagnosisViewController.conditionsLabel.frame = rect2;
-        
-        
     }];
-    
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
