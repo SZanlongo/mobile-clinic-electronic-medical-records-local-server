@@ -11,13 +11,11 @@
 #import "PharmacyPatientViewController.h"
 
 @interface PatientQueueViewController () {
-
     NSArray * queueArray;
 }
 @end
 
 @implementation QueueTableCell
-
 @end
 
 @implementation PatientQueueViewController
@@ -34,12 +32,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
 
-    MobileClinicFacade*  mobileFacade = [[MobileClinicFacade alloc] init];
+- (void)viewWillAppear:(BOOL)animated {
 
-    UINavigationBar * navbar = [self.navigationController navigationBar];
+    MobileClinicFacade *mobileFacade = [[MobileClinicFacade alloc] init];
+    UINavigationBar *navbar = [self.navigationController navigationBar];
     
-    // Request patient's that are currently checked in
+    // Request patient's that are currently checked-in
     [mobileFacade findAllOpenVisitsAndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         queueArray = [NSArray arrayWithArray:allObjectsFromSearch];
         
@@ -49,30 +49,22 @@
                 [navbar setTintColor:[UIColor blueColor]];
                 
                 // Filter results to patient's that haven't seen the doctor
-                //            NSString * predicateString = [NSString stringWithFormat:@"'%K' == '%@'", DOCTOROUT, nil];
                 NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", DOCTOROUT, nil];
                 queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
                 
                 // Sort queue by priority
-                NSSortDescriptor * sortDescriptor;
-                sortDescriptor = [[NSSortDescriptor alloc]initWithKey:PRIORITY ascending:NO];
-                NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
+                [self sortBy:PRIORITY inAscendingOrder:NO];
             }
                 break;
             case 3: {
                 [navbar setTintColor:[UIColor greenColor]];
                 
                 // Filter results (Seen doctor & need to see pharmacy)
-                //            NSString * predicateString = [NSString stringWithFormat:@"'%@' != '%@'", @"doctorOut", @""];
                 NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K != %@", DOCTOROUT, nil];
                 queueArray = [NSMutableArray arrayWithArray:[queueArray filteredArrayUsingPredicate:predicate]];
                 
                 // Sort queue by time patient left doctor's station
-//                NSSortDescriptor * sortDescriptor;
-//                sortDescriptor = [[NSSortDescriptor alloc]initWithKey:DOCTOROUT ascending:NO];
-//                NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//                queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptors]];
+                [self sortBy:DOCTOROUT inAscendingOrder:YES];
             }
                 break;
             default:
@@ -83,35 +75,42 @@
     }];
 }
 
+// Sorts queue for category specified in ascending or decending order
+- (void)sortBy:(NSString *)sortCategory inAscendingOrder:(BOOL)order {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:sortCategory ascending:order];
+
+    NSArray *sortDescriptorArray = [NSArray arrayWithObject:sortDescriptor];
+    
+    queueArray = [NSMutableArray arrayWithArray:[queueArray sortedArrayUsingDescriptors:sortDescriptorArray]];
+}
 
 - (void)viewDidUnload {
     [self setQueueTableView:nil];
     [super viewDidUnload];
 }
 
-// Defines number of sections 
+// Defines number of sections
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 // Defines number of cells in table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"COUNT OF QUEUE RESULTS: %d", queueArray.count);
+    //NSLog(@"COUNT OF QUEUE RESULTS: %d", queueArray.count);
     return queueArray.count;
 }
 
 // Populate cells with respective content
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * CellIdentifier = @"queueCell";
+    static NSString *CellIdentifier = @"queueCell";
     
-    QueueTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    QueueTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if(!cell) {
+    if(!cell)
         cell = [[QueueTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     
-    NSDictionary * visitDic = [[NSDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
-    NSDictionary * patientDic = [visitDic objectForKey:OPEN_VISITS_PATIENT];
+    NSDictionary *visitDic = [[NSDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
+    NSDictionary *patientDic = [visitDic objectForKey:OPEN_VISITS_PATIENT];
     
     // Set Priority Indicator color
     // Hide it for Pharmacy
@@ -120,22 +119,22 @@
     
     // Show for Doctor
     else if([[visitDic objectForKey:PRIORITY]intValue] == 0)
-        cell.priorityIndicator.backgroundColor = [UIColor yellowColor];
+        cell.priorityIndicator.backgroundColor = [UIColor greenColor];
     else if([[visitDic objectForKey:PRIORITY]intValue] == 1)
-        cell.priorityIndicator.backgroundColor = [UIColor purpleColor];
+        cell.priorityIndicator.backgroundColor = [UIColor yellowColor];
     else if([[visitDic objectForKey:PRIORITY]intValue] == 2)
         cell.priorityIndicator.backgroundColor = [UIColor redColor];
     
     // Display contents of cells
     if ([[patientDic objectForKey:PICTURE]isKindOfClass:[NSData class]]) {
-        UIImage * image = [UIImage imageWithData: [patientDic objectForKey:PICTURE]];
+        UIImage *image = [UIImage imageWithData: [patientDic objectForKey:PICTURE]];
         [cell.patientPhoto setImage:image];
     }
     
-    NSDate * date = [patientDic objectForKey:DOB];
+    NSDate *date = [patientDic objectForKey:DOB];
     BOOL doesDOBExist = ([date isKindOfClass:[NSDate class]] && date);
-    NSString * firstName = [patientDic objectForKey:FIRSTNAME];
-    NSString * familyName = [patientDic objectForKey:FAMILYNAME];
+    NSString *firstName = [patientDic objectForKey:FIRSTNAME];
+    NSString *familyName = [patientDic objectForKey:FAMILYNAME];
     
     cell.patientName.text = [NSString stringWithFormat:@"%@ %@", firstName, familyName];
     cell.patientAge.text = [NSString stringWithFormat:@"%i Years Old",(doesDOBExist)?date.getNumberOfYearsElapseFromDate:0];
@@ -195,7 +194,7 @@
 //    }
 //}
 
-- (void)reloadTableView{
-}
+//- (void)reloadTableView{
+//}
 
 @end

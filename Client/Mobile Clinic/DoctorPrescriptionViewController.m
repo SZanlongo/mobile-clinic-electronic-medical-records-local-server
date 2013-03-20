@@ -104,13 +104,11 @@
         // TODO: Fix this  class so that is has the visit data
 
         [mcf addNewPrescription:_prescriptionData ForCurrentVisit:_patientData AndlockVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
-            if (!object) {
+            if (!object)
+                [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
+            else
                 [[NSNotificationCenter defaultCenter] postNotificationName:SAVE_PRESCRIPTION object:_prescriptionData];
-            }
-            [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription inView:self.view];
         }];
-        
-    
     }
 }
 
