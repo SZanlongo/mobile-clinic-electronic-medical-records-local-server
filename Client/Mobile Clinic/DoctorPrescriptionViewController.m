@@ -75,7 +75,6 @@
 }
 
 - (IBAction)findDrugs:(id)sender {
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_TO_SEARCH_FOR_MEDICINE object:nil];
 }
 

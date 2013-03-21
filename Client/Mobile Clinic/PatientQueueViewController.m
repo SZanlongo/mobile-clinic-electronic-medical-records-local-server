@@ -156,22 +156,22 @@
     
     // Push to doctor & pharmacy view controllers
     // This is Visit and Patient Data Bundle
-    NSMutableDictionary * pDic = [[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
+    NSMutableDictionary * patientDic = [[NSMutableDictionary alloc]initWithDictionary:[queueArray objectAtIndex:indexPath.row]];
     
     // Lock patients / visit
     MobileClinicFacade*  mobileFacade = [[MobileClinicFacade alloc] init];
-    [mobileFacade updateVisitRecord:pDic andShouldUnlock:NO andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
+    [mobileFacade updateVisitRecord:patientDic andShouldUnlock:NO andShouldCloseVisit:NO onCompletion:^(NSDictionary *object, NSError *error) {
         if(!object){
             [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeDisabled WithMessage:error.localizedDescription inView:self.view];
         }else{
             if([[self stationChosen]intValue] == 2) {
                 DoctorPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"doctorPatientViewController"];
-                [newView setPatientData:pDic];
+                [newView setPatientData:patientDic];
                 [self.navigationController pushViewController:newView animated:YES];
             }
             else if ([[self stationChosen]intValue] == 3) {
                 PharmacyPatientViewController * newView = [self getViewControllerFromiPadStoryboardWithName:@"pharmacyPatientViewController"];
-                [newView setPatientData:pDic];
+                [newView setPatientData:patientDic];
                 [self.navigationController pushViewController:newView animated:YES];
             }
         }

@@ -22,8 +22,8 @@
 @property (strong, nonatomic) NSMutableDictionary * patientData;
 @property (strong, nonatomic) NSMutableDictionary * prescriptionData;
 @property (strong, nonatomic) NSMutableDictionary * visitationData;
-@property (strong, nonatomic) NSArray * prescriptions;
 
+@property (strong, nonatomic) NSMutableArray * prescriptions;
 @property (strong, nonatomic) NSString * medName;
 
 @property (weak, nonatomic) IBOutlet UITextField *patientNameField;
@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 - (IBAction)checkoutPatient:(id)sender;
 
 - (void)setScreenHandler:(ScreenHandler)myHandler;

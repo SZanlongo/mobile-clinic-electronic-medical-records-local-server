@@ -30,13 +30,13 @@
     
     // Rotate table horizontally (-90 degrees)
     CGAffineTransform transform = CGAffineTransformMakeRotation(-1.5707963);
-    _tableView.rowHeight = 768;
+    _tableView.rowHeight = 674;
     _tableView.transform = transform;
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_tableView setShowsVerticalScrollIndicator:NO];
     [_tableView setScrollEnabled:NO];
     
-    
+    // Display patient information
     NSDictionary * patientDic = [_patientData objectForKey:OPEN_VISITS_PATIENT];
     
     id data = [patientDic objectForKey:PICTURE];
@@ -47,22 +47,43 @@
     _villageNameField.text = [patientDic objectForKey:VILLAGE];
     _patientAgeField.text = [NSString stringWithFormat:@"%i",[[patientDic objectForKey:DOB]getNumberOfYearsElapseFromDate]];
     _patientSexField.text = ([patientDic objectForKey:SEX]==0)?@"Female":@"Male";
-
-    MobileClinicFacade * mobileFacede = [[MobileClinicFacade alloc]init];
-    [mobileFacede findAllPrescriptionForCurrentVisit:_visitationData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-        self.prescriptions = allObjectsFromSearch;
-        [mobileFacede findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
-            NSMutableString * myPredicate = [[NSMutableString alloc]init];
-            for(int i = 0; i < [self.prescriptions count]; i++){
-                NSMutableDictionary * dic = [self.prescriptions objectAtIndex:i];
-                [myPredicate appendFormat:@" %@ != %@ ",MEDICATIONID,[[self.prescriptions objectAtIndex:i] objectForKey:MEDICATIONID]];
+    
+    //
+    MobileClinicFacade *mobileFacade = [[MobileClinicFacade alloc]init];
+    [mobileFacade findAllPrescriptionForCurrentVisit:_patientData AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+        _prescriptions = [NSMutableArray arrayWithArray:allObjectsFromSearch];
+        
+        [mobileFacade findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
+            
+            for(int i = 0; i < [_prescriptions count]; i++)
+            {
+                NSMutableArray *medArray = [NSMutableArray arrayWithArray:allObjectsFromSearch];
+                //NSMutableString *myPredicate = [[NSMutableString alloc]init];
                 
-                if (i+1 != [self.prescriptions count]) {
+                NSMutableDictionary *prescriptionDic = [_prescriptions objectAtIndex:i];
+                NSString *medID = [prescriptionDic objectForKey:MEDICATIONID];
+                
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", MEDICATIONID, medID];
+                
+                NSArray *tempArray = [NSMutableArray arrayWithArray:[medArray filteredArrayUsingPredicate:predicate]];
+                _medName = [[tempArray objectAtIndex:i] objectForKey:MEDNAME];
+                
+                [[_prescriptions objectAtIndex:i] setObject:_medName forKey:MEDNAME];
+                
+                /*
+                [myPredicate appendFormat:@"%@ != %@",MEDICATIONID,[[_prescriptions objectAtIndex:i] objectForKey:MEDICATIONID]];
+                
+                if(i+1 != [_prescriptions count]){
                     [myPredicate appendString:@" && "];
                 }
+                */
             }
+
+            /*
             [allObjectsFromSearch filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:myPredicate]];
-            self.medName = [[allObjectsFromSearch objectAtIndex:0] objectForKey:MEDNAME];
+            _medName = [[allObjectsFromSearch objectAtIndex:0] objectForKey:MEDNAME];
+            */
+             
             [_tableView reloadData];
         }];
     }];  
@@ -105,7 +126,7 @@
         
         CGAffineTransform transform = CGAffineTransformMakeRotation(1.5707963);
         cell.viewController.view.transform = transform;
-        cell.viewController.view.frame = CGRectMake(-20, -15, 768, 700);
+        cell.viewController.view.frame = CGRectMake(0, 0, 650, 674);
     
     if([[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TIMEOFDAY] integerValue] == 0){
         [cell.viewController.timeOfDayButton setBackgroundImage:[UIImage imageNamed:@"morning"] forState:UIControlStateDisabled];
@@ -124,14 +145,12 @@
         cell.viewController.timeOfDayLabel.text = @"Night";
     }
     
-    
     cell.viewController.drugNameLabel.text = self.medName;
 
-    cell.viewController.numberOfPrescriptionLabel.text =  [NSString stringWithFormat:@"%d", [[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TABLEPERDAY] integerValue]];
+    cell.viewController.numberOfPrescriptionLabel.text = [NSString stringWithFormat:@"%d", [[[self.prescriptions objectAtIndex:indexPath.row] objectForKey:TABLEPERDAY] integerValue]];
     
-        for(UIView *mView in [cell.contentView subviews]) {
+        for(UIView *mView in [cell.contentView subviews])
             [mView removeFromSuperview];
-        }
         
         [cell addSubview:cell.viewController.view];
         
@@ -144,11 +163,11 @@
 }
 
 - (IBAction)checkoutPatient:(id)sender {
-    //[[[MobileClinicFacade alloc]init] updateVisitRecord:[self.patientData objectForKey:@"Open Visit"] andShouldUnlock:YES andShouldCloseVisit:YES onCompletion:^(NSDictionary *object, NSError *error) {
-    [self.navigationController popViewControllerAnimated:YES];
-    //}];
-        
-        
+//    NSDictionary *patientInfo = [_patientData objectForKey:@"Open Visit"];
+    
+    [[[MobileClinicFacade alloc]init] updateVisitRecord:_patientData andShouldUnlock:YES andShouldCloseVisit:YES onCompletion:^(NSDictionary *object, NSError *error) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {

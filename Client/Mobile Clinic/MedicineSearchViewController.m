@@ -27,27 +27,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
-    MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
+    MobileClinicFacade *mobileFacade = [[MobileClinicFacade alloc]init];
     
+    // Request all medications in database
     [mobileFacade findAllMedication:nil AndOnCompletion:^(NSArray *allObjectsFromSearch, NSError *error) {
         NSLog(@"All Medications:%@",allObjectsFromSearch.description);
         medicationArray = [NSArray arrayWithArray:allObjectsFromSearch];
-       // [medicationArray filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != nil",MEDNAME]];
-        [self.tableView reloadData];
+        //[medicationArray filterUsingPredicate:[NSPredicate predicateWithFormat:@"%K != nil",MEDNAME]];
+        [_tableView reloadData];
     }];
-	// Do any additional setup after loading the view.
-    
-    // Request all medications in database
 
-//    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen",@"Cephalexin",@"Ciprofloxacin",@"Doxycycline", nil];
-//    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg",@"250mg",@"250mg",@"100mg", nil];
+//    _data1 = [[NSMutableArray alloc] initWithObjects:@"Advil",@"Ibuprofen",@"Cephalexin",@"Ciprofloxacin", nil];
+//    _data2 = [[NSMutableArray alloc] initWithObjects:@"250mg",@"500mg",@"250mg",@"250mg", nil];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-     
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,8 +54,8 @@
 
 - (IBAction)moveBackToPrescription:(id)sender {
 //    [self.prescriptionData setObject:[NSNumber numberWithInt:[self.tableView indexPathForSelectedRow].row] forKey:MEDICATIONID];
-    [self.prescriptionData setObject:@"poo" forKey:MEDICATIONID];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:self.prescriptionData];
+//    [self.prescriptionData setObject:@"poo" forKey:MEDICATIONID];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:_prescriptionData];
 }
 
 - (void)viewDidUnload {
@@ -68,7 +65,7 @@
 }
 
 - (IBAction)searchMedicine:(id)sender {
-    
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -108,15 +105,15 @@
     // Construct a text
     _medicineField.text = [NSString stringWithFormat:@"%@ %@", medName, dosage];
     
-    // Create PrescriptionObject
-    NSMutableDictionary *prescriptionData = [[NSMutableDictionary alloc] init];
+    // Create Prescription Dictionary
+//    NSMutableDictionary *prescriptionData = [[NSMutableDictionary alloc] init];
     
     // !!!: should reconsider implementation
-    // Set Prescription data with medication ID
-    [prescriptionData setValue:[myDic objectForKey:MEDICATIONID] forKey:MEDICATIONID];
+    // Save medicationId in Prescription dictionary
+    [_prescriptionData setValue:[myDic objectForKey:MEDICATIONID] forKey:MEDICATIONID];
     
     // Send prescription back
-    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:prescriptionData];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:MOVE_FROM_SEARCH_FOR_MEDICINE object:_prescriptionData];
 }
 
 // Hides keyboard when whitespace is pressed
