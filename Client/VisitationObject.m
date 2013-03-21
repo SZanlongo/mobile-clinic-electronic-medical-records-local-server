@@ -79,10 +79,8 @@
     NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:4];
     
     [query setValue:[parentObject objectForKey:PATIENTID] forKey:PATIENTID];
-    [query setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
-    [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
-    
-    [self SendData:query toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:eventResponse];
+
+    [self startSearchWithData:query withsearchType:kFindObject andOnComplete:eventResponse];
 }
 
 
@@ -117,10 +115,9 @@
 }
 
 -(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response{
-   
-    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kFindOpenObjects],OBJECTCOMMAND,[NSNumber numberWithInteger:kVisitationType],OBJECTTYPE, nil];
 
-    [self SendData:dict toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:Response];
+
+   [self startSearchWithData:[[NSDictionary alloc]init] withsearchType:kFindOpenObjects andOnComplete:Response];
 }
 
 -(NSArray*)FindAllOpenVisitsLocally{

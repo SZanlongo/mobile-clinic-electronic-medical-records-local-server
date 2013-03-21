@@ -84,10 +84,8 @@
     NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:4];
     
     [query setValue:[parentObject objectForKey:VISITID] forKey:VISITID];
-    [query setValue:[NSNumber numberWithInt:kPrescriptionType] forKey:OBJECTTYPE];
-    [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
     
-    [self SendData:query toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:eventResponse];
+    [self startSearchWithData:query withsearchType:kFindObject andOnComplete:eventResponse];
 }
 
 @end

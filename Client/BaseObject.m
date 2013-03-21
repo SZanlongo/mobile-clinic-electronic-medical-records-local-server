@@ -150,6 +150,18 @@ id<ServerProtocol> serverManager;
     }
 }
 
+-(void)startSearchWithData:(NSDictionary*)data withsearchType:(RemoteCommands)rCommand andOnComplete:(ObjectResponse)response{
+    
+    NSMutableDictionary* dataToSend = [[NSMutableDictionary alloc]initWithCapacity:3
+                                       ];
+    [dataToSend setValue:data forKey:DATABASEOBJECT];
+    
+    [dataToSend setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
+    [dataToSend setValue:[NSNumber numberWithInt:rCommand] forKey:OBJECTCOMMAND];
+    
+    [self SendData:dataToSend toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:response];
+}
+
 -(void)setValueToDictionaryValues:(NSDictionary*)values{
     
     for (NSString* key in values.allKeys) {

@@ -55,7 +55,7 @@ NSString* isLockedBy;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    visitID = [data objectForKey:VISITID];
+    visitID = [self.databaseObject valueForKey:VISITID];
 }
 
 

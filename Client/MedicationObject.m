@@ -63,12 +63,7 @@
 }
 
 -(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse{
-    
-    NSMutableDictionary* query = [[NSMutableDictionary alloc]initWithCapacity:2];
-
-    [query setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
-    [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
-    
-    [self SendData:query toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:eventResponse];
+ 
+    [self startSearchWithData:parentObject withsearchType:kFindObject andOnComplete:eventResponse];
 }
 @end

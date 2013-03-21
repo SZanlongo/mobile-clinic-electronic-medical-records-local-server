@@ -67,8 +67,8 @@ NSString* isLockedBy;
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
 
-    firstname = [data objectForKey:FIRSTNAME];
-    lastname = [data objectForKey:FAMILYNAME];
+    firstname = [self.databaseObject valueForKey:FIRSTNAME];
+    lastname = [self.databaseObject valueForKey:FAMILYNAME];
     
 }
 
@@ -91,7 +91,7 @@ NSString* isLockedBy;
 #pragma mark -
 -(NSArray *)FindAllObjectsLocallyFromParentObject{
     
-    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K beginswith[cd] %@ || %K contains[cd] %@",FIRSTNAME,firstname,FAMILYNAME,lastname];
+    NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K beginswith[cd] %@ || %K beginswith[cd] %@",FIRSTNAME,firstname,FAMILYNAME,lastname];
     
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:FIRSTNAME]];
 }

@@ -56,7 +56,7 @@ NSString* isLockedBy;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    patientID = [data objectForKey:PATIENTID];
+    patientID = [self.databaseObject valueForKey:PATIENTID];
 }
 
 
@@ -81,8 +81,11 @@ NSString* isLockedBy;
 #pragma mark - COMMON OBJECT Methods
 #pragma mark -
 -(void)checkForExisitingOpenVisit{
-    NSArray* allVisits = [self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES && %K == %@",ISOPEN,PATIENTID,patientID] andSortByAttribute:TRIAGEIN];
-    if (allVisits.count == 0) {
+    NSArray* allVisits = [self FindAllOpenVisits];
+    
+    NSArray* filtered = [allVisits filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,patientID]];
+   
+    if (filtered.count == 0) {
         [super UpdateObjectAndSendToClient];
     }
     else

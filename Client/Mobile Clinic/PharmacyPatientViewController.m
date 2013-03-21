@@ -163,13 +163,10 @@
 }
 
 - (IBAction)checkoutPatient:(id)sender {
-//    NSDictionary *patientInfo = [_patientData objectForKey:@"Open Visit"];
-    
-    
-    [[[MobileClinicFacade alloc]init] updateVisitRecord:_patientData andShouldUnlock:YES andShouldCloseVisit:YES onCompletion:^(NSDictionary *object, NSError *error) {
+
+    [[[MobileClinicFacade alloc]init]checkoutVisit:_patientData forPatient:[_patientData objectForKey:OPEN_VISITS_PATIENT] AndWillUlockOnCompletion:^(NSDictionary *object, NSError *error) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {

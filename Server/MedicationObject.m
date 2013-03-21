@@ -50,7 +50,7 @@ NSString* medicationID;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    medicationID = [data objectForKey:MEDICATIONID];
+    medicationID = [self.databaseObject valueForKey:MEDICATIONID];
 }
 
 

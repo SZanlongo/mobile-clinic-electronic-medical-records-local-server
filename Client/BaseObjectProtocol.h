@@ -161,6 +161,8 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  * the CommonExecution method
  */
 -(void)SendData:(NSDictionary*)data toServerWithErrorMessage:(NSString*)msg andResponse:(ObjectResponse)Response;
+
+-(void)startSearchWithData:(NSDictionary*)data withsearchType:(RemoteCommands)rCommand andOnComplete:(ObjectResponse)response;
 @end
 
 

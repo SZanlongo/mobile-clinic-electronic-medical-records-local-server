@@ -59,8 +59,6 @@
     
      [openPatient setValue:[NSNumber numberWithBool:!checkout] forKey:ISOPEN];
     
-  //  PatientObject * patient = [[PatientObject alloc]initWithCachedObjectWithUpdatedObject:openPatient];
-    
     [self CommonCommandObject:[[PatientObject alloc]init] ShouldLock:NO CommonUpdate:openPatient withResults:^(NSDictionary *object, NSError *error) {
         if (!object) {
             Response(object,error);
