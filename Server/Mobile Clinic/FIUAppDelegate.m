@@ -11,7 +11,8 @@
 #import "PatientTable.h"
 #import "MedicationObject.h"
 #import "Database.h"
-
+#define PTESTING @"Patients Testing"
+#define MTESTING @"Medicine Testing"
 PatientTable *pTable;
 
 @implementation FIUAppDelegate
@@ -40,8 +41,20 @@ PatientTable *pTable;
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+        NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
+    
+    [_createMedicineMenu setEnabled:![uDefault boolForKey:PTESTING]];
+    [_createPatientMenu setEnabled:![uDefault boolForKey:MTESTING]];
+    
+    
     //[_server startServer];
 }
+- (IBAction)resetTestSettings:(id)sender {
+    NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
+    [uDefault removeObjectForKey:PTESTING];
+    [uDefault removeObjectForKey:MTESTING];
+}
+
 - (IBAction)setupTestPatients:(id)sender {
     // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
     // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
@@ -71,6 +84,8 @@ PatientTable *pTable;
         }];
         
     }];
+        NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
+    [uDefault setBool:YES forKey:PTESTING];
 }
 
 - (IBAction)createTestMedications:(id)sender {
@@ -91,7 +106,8 @@ PatientTable *pTable;
         [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
         }];
     }];
-
+    NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
+    [uDefault setBool:YES forKey:MTESTING];
 }
 
 

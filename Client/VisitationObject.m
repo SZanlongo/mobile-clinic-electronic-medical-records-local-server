@@ -67,7 +67,8 @@
     if (localVisit.count <= 1 ) {
          [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kConditionalCreate];
     }else{
-        onSuccessHandler(nil,[self createErrorWithDescription:MULTIPLE_VISIT_ERROR andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:self.COMMONDATABASE]);
+        [self deleteCurrentlyHeldObjectFromDatabase];
+        onSuccessHandler(nil,[self createErrorWithDescription:MULTIPLE_VISIT_ERROR andErrorCodeNumber:kError inDomain:self.COMMONDATABASE]);
     }
    
 }
