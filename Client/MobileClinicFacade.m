@@ -171,6 +171,8 @@
     
     NSMutableDictionary* temp = [NSMutableDictionary dictionaryWithDictionary:visitRecord];
     
+    [temp setValue:[NSNumber numberWithBool:closeVisit] forKey:ISOPEN];
+    
     // Just in case people become silly
     [temp removeObjectForKey:OPEN_VISITS_PATIENT];
     
@@ -206,6 +208,10 @@
     
     NSMutableDictionary* visitDictionary = [NSMutableDictionary dictionaryWithDictionary:visit];
     [visitDictionary setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
+    
+    // Just in case people become silly
+    [visitDictionary removeObjectForKey:OPEN_VISITS_PATIENT];
+    
     
     VisitationObject* myVisit = [[VisitationObject alloc]init];
     
