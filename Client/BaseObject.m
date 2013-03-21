@@ -70,6 +70,18 @@ id<ServerProtocol> serverManager;
     [self.databaseObject setValuesForKeysWithDictionary:[data objectForKey:DATABASEOBJECT]];
 }
 
+-(void)SendData:(NSDictionary *)data toServerWithErrorMessage:(NSString *)msg andResponse:(ObjectResponse)Response{
+    
+    [ self tryAndSendData:data withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
+        Response(nil, [self createErrorWithDescription:msg andErrorCodeNumber:kErrorDisconnected inDomain:@"PatientObject"]);
+    } andWithPositiveResponse:^(id data) {
+        StatusObject* status = data;
+        
+        [self SaveListOfObjectsFromDictionary:status.data];
+        
+        Response((status.status == kSuccess)?self:nil, [self createErrorWithDescription:status.errorMessage andErrorCodeNumber:status.status inDomain:self.COMMONDATABASE]);
+    }];
+}
 
 -(void)saveObject:(ObjectResponse)eventResponse{
     
@@ -132,10 +144,9 @@ id<ServerProtocol> serverManager;
         serverManager = [ServerCore sharedInstance];
     
     if ([serverManager isClientConntectToServer]) {
-        // Sending information to the server
         [serverManager sendData:data withOnComplete:posResponse];
     }else{
-        negativeResponse(nil,[self createErrorWithDescription:@"Server is Down, Please contact you Application Administrator" andErrorCodeNumber:10 inDomain:@"BaseObject"]);
+        negativeResponse(nil,[self createErrorWithDescription:@"This device is not connected with the server" andErrorCodeNumber:kErrorDisconnected inDomain:@"BaseObject"]);
     }
 }
 
@@ -199,7 +210,7 @@ id<ServerProtocol> serverManager;
         [self setValueToDictionaryValues:dataToSend];
         
         // Save current information if cannot connect
-        [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        [self saveObject:^(id<BaseObjectProtocol> data, NSError *noError) {
              response(data,error);
         }];
         
@@ -212,20 +223,23 @@ id<ServerProtocol> serverManager;
             [self setValueToDictionaryValues:status.data];
             
             [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[dataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
+                response(self,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:kSuccess inDomain:@"BaseObject"]);
             }];
         }else{
-            response(nil,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:[[dataToSend objectForKey:OBJECTCOMMAND]integerValue] inDomain:@"BaseObject"]);
+            response(nil,[self createErrorWithDescription:status.errorMessage andErrorCodeNumber:status.status inDomain:@"BaseObject"]);
         }
         
     }];
 }
+
 -(BOOL)deleteCurrentlyHeldObjectFromDatabase{
     return [self deleteNSManagedObject:self.databaseObject];
 }
+
 -(BOOL)deleteDatabaseDictionaryObject:(NSDictionary *)object{
     return [self deleteObjectFromDatabase:self.COMMONDATABASE withDefiningAttribute:[object objectForKey:self.COMMONID] forKey:self.COMMONID];
 }
+
 -(BOOL)loadObjectForID:(NSString *)objectID{
     // checks to see if object exists
     NSArray* arr = [self FindObjectInTable:self.COMMONDATABASE withName:objectID forAttribute:self.COMMONID];

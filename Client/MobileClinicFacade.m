@@ -197,10 +197,11 @@
     MedicationObject* base = [[MedicationObject alloc]initWithCachedObjectWithUpdatedObject:Rx];
     [self CommonCommandObject:base ShouldLock:lock CommonUpdate:[NSMutableDictionary dictionaryWithDictionary:Rx] withResults:Response];
 }
-
+// Makes sure that the Patient and the associated Visit is closed
 -(void)checkoutVisit:(NSDictionary*)visit forPatient:(NSDictionary*)patient AndWillUlockOnCompletion:(MobileClinicCommandResponse)Response{
     
     NSMutableDictionary* patientDictionary = [NSMutableDictionary dictionaryWithDictionary:patient];
+    
     [patientDictionary setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
     
     NSMutableDictionary* visitDictionary = [NSMutableDictionary dictionaryWithDictionary:visit];

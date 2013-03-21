@@ -38,6 +38,7 @@ return self;
 
     return NO;
 }
+
 -(BOOL)deleteNSManagedObject:(NSManagedObject *)object{
    
     if (object) {
@@ -47,6 +48,7 @@ return self;
     }
 return NO;
 }
+
 -(NSArray*)FindObjectInTable:(NSString*)table withName:(NSString*)name forAttribute:(NSString*)attribute{
     
     NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
@@ -75,10 +77,12 @@ return NO;
 -(void)SaveCurrentObjectToDatabase{
     [database saveContext];
 }
+
 -(void)SaveAndRefreshObjectToDatabase:(NSManagedObject *)object{
     [self SaveCurrentObjectToDatabase];
     [context refreshObject:object mergeChanges:YES];
 }
+
 -(NSArray *)FindObjectInTable:(NSString *)table withCustomPredicate:(NSPredicate *)predicateString andSortByAttribute:(NSString*)attribute{
 
     NSFetchRequest *fetch = [[NSFetchRequest alloc]init];
@@ -95,7 +99,6 @@ return NO;
     
     return [self fetchElementsUsingFetchRequest:fetch withTable:table];
 }
-
 
 -(NSArray*)fetchElementsUsingFetchRequest:(NSFetchRequest*)request withTable:(NSString*)tableName{
     
@@ -122,6 +125,7 @@ return NO;
 -(void)setObject:(id)object withAttribute:(NSString*)attribute inDatabaseObject:(NSManagedObject*)DBObject{
     [DBObject setValue:object forKey:attribute];
 }
+
 -(id)getObjectForAttribute:(NSString*)attribute inDatabaseObject:(NSManagedObject*)DBObject{
    return [DBObject valueForKey:attribute];
 }

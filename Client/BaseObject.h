@@ -14,12 +14,7 @@
 #import "NSString+StringExt.h"
 #import "NSObject+CustomTools.h"
 
-@interface BaseObject : DatabaseDriver <BaseObjectProtocol>{
-   /* This is a callback block variable 
-    * Its type can be found int he BaseObjectProtocol
-    */
-    ObjectResponse respondToEvent;
-}
+@interface BaseObject : DatabaseDriver <BaseObjectProtocol>
 
 /** This needs to be set everytime information is recieved
  * by the serverCore, so it knows how to send information

@@ -64,9 +64,6 @@ NSString* tempPassword;
 
 -(void)loginWithUsername:(NSString*)username andPassword:(NSString*)password onCompletion:(ObjectResponse)onSuccessHandler{
     
-    //Call back method that the caller is expecting
-    respondToEvent = onSuccessHandler;
-    
     // Sync all the users from server to the client
     [self getUsersFromServer:^(id<BaseObjectProtocol> data, NSError *error) {
 
@@ -84,24 +81,24 @@ NSString* tempPassword;
                 // Check credentials against the found user
                 if ([user.password isEqualToString:password])
                 {
-                    respondToEvent(self,nil);
+                    onSuccessHandler(self,nil);
                 }
                 // If incorrect password then throw an error
                 else
                 {
-                    respondToEvent(Nil,[self createErrorWithDescription:@"Username & Password combination is incorrect" andErrorCodeNumber:0 inDomain:@"User Object"]);
+                    onSuccessHandler(Nil,[self createErrorWithDescription:@"Username & Password combination is incorrect" andErrorCodeNumber:kErrorIncorrectLogin inDomain:self.COMMONDATABASE]);
                 }
             }
             // If the user doesn't have permission, throw an error
             else
             {
-                respondToEvent(Nil,[self createErrorWithDescription:@"You do not have permission to login. Please contact you application administrator" andErrorCodeNumber:0 inDomain:@"User Object"]);
+                onSuccessHandler(Nil,[self createErrorWithDescription:@"You do not have permission to login. Please contact you application administrator" andErrorCodeNumber:kErrorPermissionDenied inDomain:self.COMMONDATABASE]);
             }
         }
         // if we cannot find the user, throw an error
         else
         {
-            respondToEvent(Nil,[self createErrorWithDescription:@"The user does not exists" andErrorCodeNumber:0 inDomain:@"User Object"]);
+            onSuccessHandler(Nil,[self createErrorWithDescription:@"The user does not exists" andErrorCodeNumber:kErrorUserDoesNotExist inDomain:self.COMMONDATABASE]);
         }
     }];
     
@@ -112,14 +109,7 @@ NSString* tempPassword;
     NSMutableDictionary* dataToSend = [[NSMutableDictionary alloc]initWithCapacity:2];
     [dataToSend setValue:[NSNumber numberWithInt:kPullAllUsers] forKey:OBJECTCOMMAND];
     [dataToSend setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
-
-    [self tryAndSendData:dataToSend withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        withResponse(nil,error);
-    } andWithPositiveResponse:^(id data) {
-        StatusObject* status = data;
-        [self SaveListOfObjectsFromDictionary:status.data];
-        withResponse(self,nil);
-    }];
+    [self SendData:dataToSend toServerWithErrorMessage:@"Could not connect to server. Validating against cache" andResponse:withResponse];
 
 }
 

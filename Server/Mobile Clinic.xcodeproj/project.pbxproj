@@ -10,7 +10,8 @@
 		0FCC49CE16F3C63400FD3338 /* MedicationFile.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCC49CD16F3C63400FD3338 /* MedicationFile.json */; };
 		463294A216C9B97B00C57DCE /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 463294A116C9B97B00C57DCE /* PatientObject.m */; };
 		EA09328916F818D200536DF3 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09328816F818D200536DF3 /* Database.m */; };
-		EA09329216F8249300536DF3 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329116F8249300536DF3 /* UserView.m */; };
+		EA09329F16FA683800536DF3 /* VisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329D16FA683800536DF3 /* VisitViewController.m */; };
+		EA0932A016FA683800536DF3 /* VisitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA09329E16FA683800536DF3 /* VisitViewController.xib */; };
 		EA172D3616B50A9C00F00C61 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3516B50A9C00F00C61 /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA172D3716B50A9C00F00C61 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3516B50A9C00F00C61 /* Server.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA172D3C16B56AEE00F00C61 /* ServerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D3B16B56AEE00F00C61 /* ServerWrapper.m */; };
@@ -69,7 +70,6 @@
 		EAC37F1C16F394DB00836C1C /* MedicationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37F1B16F394DA00836C1C /* MedicationObject.m */; };
 		EAD015EA16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */; };
 		EAD015EB16D5E524002A8B3B /* NSObject+CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */; };
-		EAD015F316DAB086002A8B3B /* PatientScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD015F216DAB086002A8B3B /* PatientScreen.xib */; };
 		EAE655E616F5443800139C62 /* MedicationList.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE655E416F5443800139C62 /* MedicationList.m */; };
 		EAE655E716F5443800139C62 /* MedicationList.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE655E516F5443800139C62 /* MedicationList.xib */; };
 		EAE6CD9F16BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
@@ -106,8 +106,9 @@
 		EA09328716F818D200536DF3 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		EA09328816F818D200536DF3 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		EA09328A16F81C2800536DF3 /* DatabaseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseProtocol.h; sourceTree = "<group>"; };
-		EA09329016F8249300536DF3 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
-		EA09329116F8249300536DF3 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		EA09329C16FA683800536DF3 /* VisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitViewController.h; sourceTree = "<group>"; };
+		EA09329D16FA683800536DF3 /* VisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitViewController.m; sourceTree = "<group>"; };
+		EA09329E16FA683800536DF3 /* VisitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisitViewController.xib; sourceTree = "<group>"; };
 		EA172D3416B50A9C00F00C61 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		EA172D3516B50A9C00F00C61 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		EA172D3A16B56AEE00F00C61 /* ServerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerWrapper.h; sourceTree = "<group>"; };
@@ -198,7 +199,6 @@
 		EAC37F1F16F3A01C00836C1C /* StatusObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusObjectProtocol.h; sourceTree = "<group>"; };
 		EAD015E816D5E524002A8B3B /* NSObject+CustomTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CustomTools.h"; sourceTree = "<group>"; };
 		EAD015E916D5E524002A8B3B /* NSObject+CustomTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CustomTools.m"; sourceTree = "<group>"; };
-		EAD015F216DAB086002A8B3B /* PatientScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientScreen.xib; sourceTree = "<group>"; };
 		EAE655E316F5443800139C62 /* MedicationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationList.h; sourceTree = "<group>"; };
 		EAE655E416F5443800139C62 /* MedicationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationList.m; sourceTree = "<group>"; };
 		EAE655E516F5443800139C62 /* MedicationList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicationList.xib; sourceTree = "<group>"; };
@@ -337,8 +337,9 @@
 		EA8D85DF16B0C9BF00256495 = {
 			isa = PBXGroup;
 			children = (
-				EA09329016F8249300536DF3 /* UserView.h */,
-				EA09329116F8249300536DF3 /* UserView.m */,
+				EA09329C16FA683800536DF3 /* VisitViewController.h */,
+				EA09329D16FA683800536DF3 /* VisitViewController.m */,
+				EA09329E16FA683800536DF3 /* VisitViewController.xib */,
 				EAE655E316F5443800139C62 /* MedicationList.h */,
 				EAE655E416F5443800139C62 /* MedicationList.m */,
 				EAE655E516F5443800139C62 /* MedicationList.xib */,
@@ -406,7 +407,6 @@
 				EA8D860116B0C9C000256495 /* FIUAppDelegate.m */,
 				EA8D860316B0C9C000256495 /* MainMenu.xib */,
 				EA8D85F516B0C9BF00256495 /* Supporting Files */,
-				EAD015F216DAB086002A8B3B /* PatientScreen.xib */,
 				EAC19C5216DD24BC00B0B8DA /* Mobile_Clinic.xcdatamodeld */,
 				EAC37F0F16F213E400836C1C /* Prescription.h */,
 				EAC37F1016F213E400836C1C /* Prescription.m */,
@@ -661,10 +661,10 @@
 				EA8D85F916B0C9BF00256495 /* InfoPlist.strings in Resources */,
 				EA8D85FF16B0C9BF00256495 /* Credits.rtf in Resources */,
 				EA8D860516B0C9C000256495 /* MainMenu.xib in Resources */,
-				EAD015F316DAB086002A8B3B /* PatientScreen.xib in Resources */,
 				EAC19C7F16DE839C00B0B8DA /* PatientTable.xib in Resources */,
 				0FCC49CE16F3C63400FD3338 /* MedicationFile.json in Resources */,
 				EAE655E716F5443800139C62 /* MedicationList.xib in Resources */,
+				EA0932A016FA683800536DF3 /* VisitViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,7 +729,7 @@
 				EAC37F1C16F394DB00836C1C /* MedicationObject.m in Sources */,
 				EAE655E616F5443800139C62 /* MedicationList.m in Sources */,
 				EA09328916F818D200536DF3 /* Database.m in Sources */,
-				EA09329216F8249300536DF3 /* UserView.m in Sources */,
+				EA09329F16FA683800536DF3 /* VisitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

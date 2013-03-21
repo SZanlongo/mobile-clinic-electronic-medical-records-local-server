@@ -60,7 +60,7 @@
     
     // Check for patientID
     if (![self.databaseObject valueForKey:VISITID] || ![self.databaseObject valueForKey:PATIENTID]) {
-        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kConditionalCreate inDomain:@"Visitation Object"]);
+        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:self.COMMONDATABASE]);
         return;
     }
     
@@ -82,13 +82,7 @@
     [query setValue:[NSNumber numberWithInt:kVisitationType] forKey:OBJECTTYPE];
     [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
     
-    [ self tryAndSendData:query withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        eventResponse(nil,error);
-    } andWithPositiveResponse:^(id data) {
-        StatusObject* status = data;
-        [self SaveListOfObjectsFromDictionary:status.data];
-        eventResponse(self,nil);
-    }];
+    [self SendData:query toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:eventResponse];
 }
 
 
@@ -123,15 +117,10 @@
 }
 
 -(void) SyncAllOpenVisitsOnServer:(ObjectResponse)Response{
+   
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kFindOpenObjects],OBJECTCOMMAND,[NSNumber numberWithInteger:kVisitationType],OBJECTTYPE, nil];
-    
-    [self tryAndSendData:dict withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        Response(data,error);
-    } andWithPositiveResponse:^(id data) {
-        StatusObject* status = data;
-        [self SaveListOfObjectsFromDictionary:status.data];
-        Response(self,nil);
-    }];
+
+    [self SendData:dict toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:Response];
 }
 
 -(NSArray*)FindAllOpenVisitsLocally{

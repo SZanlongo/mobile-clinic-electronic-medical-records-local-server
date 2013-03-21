@@ -18,8 +18,13 @@
 #import "NSObject+CustomTools.h"
 #import "BaseObjectProtocol.h"
 typedef enum {
-    kSuccess    = 0,
-    kError      = 1,
+    kSuccess                        = 0,
+    kError                          = 1,
+    kErrorDisconnected              = 3,
+    kErrorObjectMisconfiguration    = 4,
+    kErrorUserDoesNotExist          = 5,
+    kErrorIncorrectLogin            = 6,
+    kErrorPermissionDenied          = 7,
 } ServerStatus;
 
 @interface StatusObject : NSObject <BaseObjectProtocol>

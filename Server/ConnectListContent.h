@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "FIUAppDelegate.h"
 #import "UserObject.h"
-@interface ConnectListContent : NSView {
+@interface ConnectListContent : NSViewController {
     FIUAppDelegate* appDelegate;
 }
 @property (nonatomic,strong)  UserObject *user;

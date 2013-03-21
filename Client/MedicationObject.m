@@ -69,12 +69,6 @@
     [query setValue:[NSNumber numberWithInt:self.CLASSTYPE] forKey:OBJECTTYPE];
     [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
     
-    [ self tryAndSendData:query withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        eventResponse(nil,error);
-    } andWithPositiveResponse:^(id data) {
-        StatusObject* status = data;
-        [self SaveListOfObjectsFromDictionary:status.data];
-        eventResponse(self,nil);
-    }];
+    [self SendData:query toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:eventResponse];
 }
 @end

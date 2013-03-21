@@ -64,7 +64,7 @@
     
     // Check for main ID's
     if (![self.databaseObject valueForKey:VISITID] || ![self.databaseObject valueForKey:PRESCRIPTIONID]) {
-        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kUpdateObject inDomain:@"Visitation Object"]);
+        onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID and patientID" andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:@"Visitation Object"]);
         return;
     }
     
@@ -87,13 +87,7 @@
     [query setValue:[NSNumber numberWithInt:kPrescriptionType] forKey:OBJECTTYPE];
     [query setValue:[NSNumber numberWithInt:kFindObject] forKey:OBJECTCOMMAND];
     
-    [ self tryAndSendData:query withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        eventResponse(nil,error);
-    } andWithPositiveResponse:^(id data) {
-        StatusObject* status = data;
-        [self SaveListOfObjectsFromDictionary:status.data];
-        eventResponse(self,nil);
-    }];
+    [self SendData:query toServerWithErrorMessage:DATABASE_ERROR_MESSAGE andResponse:eventResponse];
 }
 
 @end

@@ -5,6 +5,8 @@
 //  Created by Michael Montaque on 2/1/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
+#define DATABASE_ERROR_MESSAGE @"Results may be incomplete due to the device being disconnected from the server"
+
 #define DATABASEOBJECT      @"Database Object"
 #define ISLOCKEDBY          @"isLockedBy"
 #define SAVECOMPLETE        @"savedone"
@@ -15,6 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "ServerProtocol.h"
+
 /* These are all the classes the server and client will know how to handle */
 typedef enum {
     kUserType           = 1,
@@ -45,14 +48,12 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
 
 @optional
 
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
+/** 
+ * used for generic purposes like searching, 
  */
 - (id)init;
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
+/** 
+ * use this if you expect the object to save new values
  */
 - (id)initAndMakeNewDatabaseObject;
 /** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
@@ -60,19 +61,13 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  * the CommonExecution method
  */
 - (id)initAndFillWithNewObject:(NSDictionary *)info;
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
+/** 
+ * Loads the older data and overides it with the new info
  */
 - (id)initWithCachedObjectWithUpdatedObject:(NSDictionary*)dic;
 
-/** This should only take in a dictionary that contains information
- * for the object that is unpackaging it.
+/** 
  *
- * This means that the if a Class called Face is unpackaging the 
- * dictionary, then the dictionary's type should be tested to see 
- * if it is of type Face. This can be done by looking at the object 
- * for key: OBJECTTYPE
  */
 -(void) unpackageFileForUser:(NSDictionary*)data;
 
@@ -151,9 +146,21 @@ typedef void (^ObjectResponse)(id <BaseObjectProtocol> data, NSError* error);
  * the CommonExecution method
  */
 -(void)SaveListOfObjectsFromDictionary:(NSDictionary*)patientList;
-
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
 -(BOOL)deleteCurrentlyHeldObjectFromDatabase;
-
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
 -(BOOL)deleteDatabaseDictionaryObject:(NSDictionary*)object;
+/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+ * method so the recieving device knows how to execute the request via
+ * the CommonExecution method
+ */
+-(void)SendData:(NSDictionary*)data toServerWithErrorMessage:(NSString*)msg andResponse:(ObjectResponse)Response;
 @end
+
 

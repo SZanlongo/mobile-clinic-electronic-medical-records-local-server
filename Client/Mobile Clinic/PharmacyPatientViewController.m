@@ -144,11 +144,10 @@
 }
 
 - (IBAction)checkoutPatient:(id)sender {
-    //[[[MobileClinicFacade alloc]init] updateVisitRecord:[self.patientData objectForKey:@"Open Visit"] andShouldUnlock:YES andShouldCloseVisit:YES onCompletion:^(NSDictionary *object, NSError *error) {
-    [self.navigationController popViewControllerAnimated:YES];
-    //}];
-        
-        
+    
+    [[[MobileClinicFacade alloc]init] updateVisitRecord:self.patientData andShouldUnlock:YES andShouldCloseVisit:YES onCompletion:^(NSDictionary *object, NSError *error) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 - (void)setScreenHandler:(ScreenHandler)myHandler {
