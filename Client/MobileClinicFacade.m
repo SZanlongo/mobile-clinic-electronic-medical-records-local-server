@@ -12,6 +12,7 @@
 #import "PrescriptionObject.h"
 #import "MedicationObject.h"
 
+
 @implementation MobileClinicFacade
 
 - (id)init
@@ -55,21 +56,29 @@
 // Creates a new visit for a given patient.
 -(void)addNewVisit:(NSDictionary *)visitInfo ForCurrentPatient:(NSDictionary *)patientInfo shouldCheckOut:(BOOL)checkout onCompletion:(MobileClinicCommandResponse)Response{
     
-    NSMutableDictionary* openPatient = [[NSMutableDictionary alloc]initWithDictionary:patientInfo];
     
-     [openPatient setValue:[NSNumber numberWithBool:!checkout] forKey:ISOPEN];
-    
-    [self CommonCommandObject:[[PatientObject alloc]init] ShouldLock:NO CommonUpdate:openPatient withResults:^(NSDictionary *object, NSError *error) {
-        if (!object) {
-            Response(object,error);
-        }else{
-            NSMutableDictionary* openVisit = [[NSMutableDictionary alloc]initWithDictionary:visitInfo];
-            
-            [openVisit setValue:[NSNumber numberWithBool:!checkout] forKey:ISOPEN];
-            
-            [self CommonCommandObject:[[VisitationObject alloc]initAndMakeNewDatabaseObject] ForCreating:openVisit bindedToParentObjectToUpdate:patientInfo withResults:Response];
-        }
-    }];
+    // If Patient being passed is already open do not go further
+    if (![[patientInfo objectForKey:ISOPEN]boolValue]) {
+        
+        NSMutableDictionary* openPatient = [[NSMutableDictionary alloc]initWithDictionary:patientInfo];
+        // Set patient to open
+        [openPatient setValue:[NSNumber numberWithBool:!checkout] forKey:ISOPEN];
+        
+        [self CommonCommandObject:[[PatientObject alloc]init] ShouldLock:NO CommonUpdate:openPatient withResults:^(NSDictionary *object, NSError *error) {
+            if (!object && error.code == kError) {
+                Response(object,error);
+            }else{
+                NSMutableDictionary* openVisit = [[NSMutableDictionary alloc]initWithDictionary:visitInfo];
+                
+                [openVisit setValue:[NSNumber numberWithBool:!checkout] forKey:ISOPEN];
+                
+                [self CommonCommandObject:[[VisitationObject alloc]initAndMakeNewDatabaseObject] ForCreating:openVisit bindedToParentObjectToUpdate:patientInfo withResults:Response];
+            }
+        }];
+
+    }else{
+        Response(nil,[self createErrorWithDescription:MULTIPLE_VISIT_ERROR andErrorCodeNumber:kError inDomain:@"MCF"]);
+    }
 }
 
 
@@ -106,7 +115,7 @@
     // Fetch and Save query results from server
     [vObject SyncAllOpenVisitsOnServer:^(id<BaseObjectProtocol> vData, NSError *error) {
         
-        if (!vData)
+        if (error.code == kError && !vData)
         {
             Response(nil,error);
         }
@@ -116,7 +125,7 @@
             
             [pObject SyncAllOpenPatietnsOnServer:^(id<BaseObjectProtocol> pData, NSError *error) {
                 
-                if (!pData)
+                if (error.code == kError && !pData)
                 {
                     Response(nil,error);
                 }
@@ -169,7 +178,7 @@
     
     NSMutableDictionary* temp = [NSMutableDictionary dictionaryWithDictionary:visitRecord];
     
-    [temp setValue:[NSNumber numberWithBool:closeVisit] forKey:ISOPEN];
+    [temp setValue:[NSNumber numberWithBool:!closeVisit] forKey:ISOPEN];
     
     // Just in case people become silly
     [temp removeObjectForKey:OPEN_VISITS_PATIENT];

@@ -136,6 +136,8 @@
     
     // This is where the information that the screen handler uses to manipulate the screens
     [[cell viewController] setScreenHandler:^(id object, NSError *error) {
+       
+// TODO: check & show error message
         _patientData = [NSMutableDictionary dictionaryWithDictionary:object];
         
         TriagePatientViewController *newView = [self getViewControllerFromiPadStoryboardWithName:@"triagePatientViewController"];

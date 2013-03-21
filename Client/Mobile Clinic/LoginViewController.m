@@ -5,9 +5,10 @@
 //  Created by sebastian a zanlongo on 2/18/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
-
+#define TESTING @"Test"
 #import "LoginViewController.h"
-
+#import "MedicationObject.h"
+#import "PatientObject.h"
 @interface LoginViewController ()
 
 @end
@@ -27,6 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Leave this while Device is in Testing mode
+    NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
+    
+    if (![uDefault boolForKey:TESTING]) {
+        [self createTestMedications:nil];
+        [self setupTestPatients:nil];
+        [self setupUser:nil];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:TESTING];
+    }
+   
 	// Do any additional setup after loading the view.
 }
 
@@ -79,5 +90,80 @@
 - (IBAction)move:(id)sender {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LogOffDevice) name:LOGOFF object:nil];
     [self navigateToMainScreen];
+}
+
+- (IBAction)setupTestPatients:(id)sender {
+    // - DO NOT COMMENT: IF YOUR RESTART YOUR SERVER IT WILL PLACE DEMO PATIENTS INSIDE TO HELP ACCELERATE YOUR TESTING
+    // - YOU CAN SEE WHAT PATIENTS ARE ADDED BY CHECKING THE PatientFile.json file
+    NSError* err = nil;
+    
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"PatientFile" ofType:@"json"];
+    
+    NSArray* patients = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+    
+    NSLog(@"Imported Patients: %@", patients);
+    
+    [patients enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:obj];
+        PatientObject *base = [[PatientObject alloc]init];
+        
+        NSDateFormatter *format =[[NSDateFormatter alloc]init];
+        
+        [format setDateFormat:@"yyyy-MMMM-dd"];
+        
+        [dic setValue:[format dateFromString:[dic valueForKey:@"age"]] forKey:DOB];
+        
+        [base setValueToDictionaryValues:dic];
+        
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
+        
+    }];
+}
+
+- (IBAction)setupUser:(id)sender {
+    NSError* err = nil;
+    
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"User" ofType:@"json"];
+    
+    NSArray* user = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+    
+    NSLog(@"Imported User: %@", user);
+    
+    [user enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:obj];
+       
+        UserObject *base = [[UserObject alloc]init];
+        
+        [base setValueToDictionaryValues:dic];
+        
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+            
+        }];
+    }];
+}
+
+- (IBAction)createTestMedications:(id)sender {
+    NSError* err = nil;
+    
+    NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
+    
+    NSArray* Meds = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]options:0 error:&err]];
+    
+    NSLog(@"Imported Medications: %@", Meds.description);
+    
+    [Meds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        MedicationObject* base = [[MedicationObject alloc]init];
+        
+        [base setValueToDictionaryValues:obj];
+        
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        }];
+    }];
+    
 }
 @end

@@ -25,6 +25,7 @@ typedef enum {
     kErrorUserDoesNotExist          = 5,
     kErrorIncorrectLogin            = 6,
     kErrorPermissionDenied          = 7,
+    kErrorIncompleteSearch          = 8,
 } ServerStatus;
 
 @interface StatusObject : NSObject <BaseObjectProtocol>

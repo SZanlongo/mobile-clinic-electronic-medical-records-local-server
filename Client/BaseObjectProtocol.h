@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 #define DATABASE_ERROR_MESSAGE @"Results may be incomplete due to the device being disconnected from the server"
+#define MULTIPLE_VISIT_ERROR    @"This patient already has an open visit"
 
 #define DATABASEOBJECT      @"Database Object"
 #define ISLOCKEDBY          @"isLockedBy"

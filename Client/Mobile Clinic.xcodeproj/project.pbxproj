@@ -125,6 +125,12 @@
 		EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA09329916F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA09329B16F8F77600536DF3 /* PatientFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAADC01A16E05554009E7AF9 /* PatientFile.json */; };
+		EA0932A216FAD05800536DF3 /* MedicationFile.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0932A116FAD05800536DF3 /* MedicationFile.json */; };
+		EA0932A316FAD05800536DF3 /* MedicationFile.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0932A116FAD05800536DF3 /* MedicationFile.json */; };
+		EA0932A416FAD06700536DF3 /* MedicationFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA0932A116FAD05800536DF3 /* MedicationFile.json */; };
+		EA0932A616FAD85200536DF3 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0932A516FAD85100536DF3 /* User.json */; };
+		EA0932A716FAD85200536DF3 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0932A516FAD85100536DF3 /* User.json */; };
+		EA0932A816FAD96E00536DF3 /* User.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA0932A516FAD85100536DF3 /* User.json */; };
 		EA1EE19B16C8877F00E263D2 /* NSString+StringExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */; };
 		EA1EE19F16C982DB00E263D2 /* DateController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE19E16C982DB00E263D2 /* DateController.m */; };
 		EA1EE1A316C9B7C300E263D2 /* VisitationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1EE1A216C9B7C300E263D2 /* VisitationObject.m */; };
@@ -224,13 +230,15 @@
 		};
 		EAADC01116E03F24009E7AF9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
 				EAADC01B16E05554009E7AF9 /* PatientFile.json in CopyFiles */,
+				EA0932A416FAD06700536DF3 /* MedicationFile.json in CopyFiles */,
+				EA0932A816FAD96E00536DF3 /* User.json in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -349,6 +357,8 @@
 		6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitsViewController.m; sourceTree = "<group>"; };
 		EA09329616F8287300536DF3 /* PharmacyPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPrescriptionCell.h; sourceTree = "<group>"; };
 		EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPrescriptionCell.m; sourceTree = "<group>"; };
+		EA0932A116FAD05800536DF3 /* MedicationFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MedicationFile.json; sourceTree = "<group>"; };
+		EA0932A516FAD85100536DF3 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
 		EA1EE19916C8877F00E263D2 /* NSString+StringExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringExt.h"; sourceTree = "<group>"; };
 		EA1EE19A16C8877F00E263D2 /* NSString+StringExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringExt.m"; sourceTree = "<group>"; };
 		EA1EE19D16C982DB00E263D2 /* DateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateController.h; sourceTree = "<group>"; };
@@ -610,6 +620,7 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
+				EA0932A516FAD85100536DF3 /* User.json */,
 				0F134CEE16F7D298003F4CE6 /* DoctorPatient.m */,
 				EAC37EE216EEBC3700836C1C /* ColorMe.h */,
 				EAC37EE316EEBC3700836C1C /* ColorMe.m */,
@@ -617,6 +628,7 @@
 				EA7CDC2416ECF6FF005A9070 /* RunTests.sh */,
 				EA7CDC2516ECF700005A9070 /*  RunIPhoneSecurityd.sh */,
 				EAADC01A16E05554009E7AF9 /* PatientFile.json */,
+				EA0932A116FAD05800536DF3 /* MedicationFile.json */,
 				EAE6CDEE16BE4754008949DC /* Animated Notifications  */,
 				EA8BB92C16C8794200A4BC6E /* Camera API */,
 				EA952F1816BEF1EC006A9AF9 /* Categories */,
@@ -1171,6 +1183,8 @@
 				EA7CDC2716ECF700005A9070 /*  RunIPhoneSecurityd.sh in Resources */,
 				EA7CDC2B16ECF874005A9070 /* Makefile in Resources */,
 				0F56A41216F58C3300225136 /* TempCellToDelete.xib in Resources */,
+				EA0932A216FAD05800536DF3 /* MedicationFile.json in Resources */,
+				EA0932A616FAD85200536DF3 /* User.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1180,6 +1194,8 @@
 			files = (
 				0F134D1C16F7D9CE003F4CE6 /* InfoPlist.strings in Resources */,
 				0F134D5516F7E9A5003F4CE6 /* MobileClinicTests-Info.plist in Resources */,
+				EA0932A316FAD05800536DF3 /* MedicationFile.json in Resources */,
+				EA0932A716FAD85200536DF3 /* User.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

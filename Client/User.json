@@ -1,0 +1,9 @@
+ [{
+  "email" : "tooKool@Awesome.com",
+  "firstName" : "Gandalf",
+  "lastName" : "theGrey",
+  "password" : "000000",
+  "status" : 1,
+  "userName" : "admin",
+  "userType" : 0,
+  }]

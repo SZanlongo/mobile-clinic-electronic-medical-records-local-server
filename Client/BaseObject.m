@@ -73,7 +73,7 @@ id<ServerProtocol> serverManager;
 -(void)SendData:(NSDictionary *)data toServerWithErrorMessage:(NSString *)msg andResponse:(ObjectResponse)Response{
     
     [ self tryAndSendData:data withErrorToFire:^(id<BaseObjectProtocol> data, NSError *error) {
-        Response(nil, [self createErrorWithDescription:msg andErrorCodeNumber:kErrorDisconnected inDomain:@"PatientObject"]);
+        Response(nil, [self createErrorWithDescription:msg andErrorCodeNumber:kErrorDisconnected inDomain:@"BaseObject"]);
     } andWithPositiveResponse:^(id data) {
         StatusObject* status = data;
         

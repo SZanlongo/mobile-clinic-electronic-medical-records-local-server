@@ -52,19 +52,24 @@
 
 -(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler
 {
-    
     if (object) {
         [self setValueToDictionaryValues:object];
     }
     
-    
-    // Check for patientID
+    // Check for patientID and returns an error if there's none
     if (![self.databaseObject valueForKey:VISITID] || ![self.databaseObject valueForKey:PATIENTID]) {
         onSuccessHandler(nil,[self createErrorWithDescription:@"Developer Error: Please set visitationID  and patientID" andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:self.COMMONDATABASE]);
         return;
     }
+    // Gets all open visits and narrows visits to a specific patient
+    NSArray* localVisit = [[self FindAllOpenVisitsLocally]filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[self getObjectForAttribute:PATIENTID]]];
     
-    [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kConditionalCreate];
+    if (localVisit.count <= 1 ) {
+         [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kConditionalCreate];
+    }else{
+        onSuccessHandler(nil,[self createErrorWithDescription:MULTIPLE_VISIT_ERROR andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:self.COMMONDATABASE]);
+    }
+   
 }
 
 -(NSArray *)FindAllObjectsLocallyFromParentObject:(NSDictionary*)parentObject{

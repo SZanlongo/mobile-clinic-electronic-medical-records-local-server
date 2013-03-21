@@ -16,7 +16,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import "StatusObject.h"
 #import "MobileClinicFacadeProtocol.h"
 
 @interface MobileClinicFacade : NSObject <MobileClinicFacadeProtocol>
