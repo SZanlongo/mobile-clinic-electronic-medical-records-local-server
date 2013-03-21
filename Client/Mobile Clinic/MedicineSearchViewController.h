@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *medicineField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) NSMutableDictionary * prescriptionData;
+@property (nonatomic, strong) NSMutableDictionary *prescriptionData;
 
 - (IBAction)moveBackToPrescription:(id)sender;
 - (IBAction)searchMedicine:(id)sender;
