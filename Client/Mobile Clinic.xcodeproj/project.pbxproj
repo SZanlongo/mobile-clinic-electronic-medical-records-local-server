@@ -122,6 +122,7 @@
 		6DD5D90216D3158E007C3F74 /* SearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90116D3158E007C3F74 /* SearchPatientViewController.m */; };
 		6DD5D90516D315DD007C3F74 /* CurrentVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */; };
 		6DD5D90816D315F3007C3F74 /* PreviousVisitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */; };
+		9C43B31216FE37C7006DC4AF /* RegisterFingerControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C43B31116FE37C6006DC4AF /* RegisterFingerControllerViewController.m */; };
 		EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA09329916F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA09329B16F8F77600536DF3 /* PatientFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAADC01A16E05554009E7AF9 /* PatientFile.json */; };
@@ -355,6 +356,8 @@
 		6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitViewController.m; sourceTree = "<group>"; };
 		6DD5D90616D315F3007C3F74 /* PreviousVisitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitsViewController.h; sourceTree = "<group>"; };
 		6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitsViewController.m; sourceTree = "<group>"; };
+		9C43B31016FE37C6006DC4AF /* RegisterFingerControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFingerControllerViewController.h; sourceTree = "<group>"; };
+		9C43B31116FE37C6006DC4AF /* RegisterFingerControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFingerControllerViewController.m; sourceTree = "<group>"; };
 		EA09329616F8287300536DF3 /* PharmacyPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPrescriptionCell.h; sourceTree = "<group>"; };
 		EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPrescriptionCell.m; sourceTree = "<group>"; };
 		EA0932A116FAD05800536DF3 /* MedicationFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MedicationFile.json; sourceTree = "<group>"; };
@@ -764,6 +767,8 @@
 				6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */,
 				EA1EE19D16C982DB00E263D2 /* DateController.h */,
 				EA1EE19E16C982DB00E263D2 /* DateController.m */,
+				9C43B31016FE37C6006DC4AF /* RegisterFingerControllerViewController.h */,
+				9C43B31116FE37C6006DC4AF /* RegisterFingerControllerViewController.m */,
 			);
 			name = Triage;
 			sourceTree = "<group>";
@@ -1297,6 +1302,7 @@
 				EAC37F0D16F19DB800836C1C /* GCDAsyncSocket.m in Sources */,
 				4602DFD116F7BF0600B4F58C /* PharmacyPrescriptionViewController.m in Sources */,
 				EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */,
+				9C43B31216FE37C7006DC4AF /* RegisterFingerControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,7 +1423,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: carlos Corvaia (SWLS8HK547)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: carlos Corvaia (SWLS8HK547)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1432,6 +1439,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "8D479794-FE5A-45BA-94EB-B256557A23BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D479794-FE5A-45BA-94EB-B256557A23BF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1449,7 +1458,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: carlos Corvaia (SWLS8HK547)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: carlos Corvaia (SWLS8HK547)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1457,6 +1467,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "8D479794-FE5A-45BA-94EB-B256557A23BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D479794-FE5A-45BA-94EB-B256557A23BF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -1488,7 +1500,7 @@
 		4677412F16BD931E002FD4A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Montaque (62654Q2EZG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: carlos Corvaia (SWLS8HK547)";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
@@ -1497,7 +1509,7 @@
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/TestFlightSDK1.1\"";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "83C4DDE5-1829-4575-9DB5-F361306A6958";
+				PROVISIONING_PROFILE = "8D479794-FE5A-45BA-94EB-B256557A23BF";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;

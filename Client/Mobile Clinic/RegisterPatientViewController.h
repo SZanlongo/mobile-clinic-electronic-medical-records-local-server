@@ -24,11 +24,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *patientPhoto;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *patientSexSegment;
 @property (weak, nonatomic) IBOutlet UIButton *createPatientButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerFingerButton;
 
 @property (strong, nonatomic) NSMutableDictionary *patient;
 
 - (IBAction)patientPhotoButton:(id)sender;
 - (IBAction)createPatient:(id)sender;
+- (IBAction)registerFinger:(id)sender;
 
 - (BOOL)validateRegistration;
 - (IBAction)getAgeOfPatient:(id)sender;

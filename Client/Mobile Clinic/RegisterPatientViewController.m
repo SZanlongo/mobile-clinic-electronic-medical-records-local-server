@@ -111,6 +111,10 @@ UIPopoverController * pop;
         }];
     }
 }
+- (IBAction)registerPatiant:(id)sender {
+    
+    
+}
 
 - (IBAction)getAgeOfPatient:(id)sender
 {    
