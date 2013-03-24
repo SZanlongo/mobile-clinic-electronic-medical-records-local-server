@@ -45,6 +45,10 @@
 @synthesize verifyAgainstAllFingers;
 @synthesize enrollableFingers;
 
+-(CGSize)contentSizeForViewInPopover {
+    return CGSizeMake(768, 916);
+}
+
 - (id) initWithDatabase: (id<PBBiometryDatabase>) aDatabase
                 andUser: (PBBiometryUser*) aUser;
 {

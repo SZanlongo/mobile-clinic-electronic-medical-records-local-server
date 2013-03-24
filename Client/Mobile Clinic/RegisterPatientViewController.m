@@ -8,12 +8,14 @@
 
 #import "DateController.h"
 #import "RegisterPatientViewController.h"
-#import "ManageFingersViewController.h"
+#import "PBManageFingersController.h"
+#import "PBReferenceDatabase.h"
 
 UIPopoverController * pop;
-UIPopoverController * fPop;
 
-@interface RegisterPatientViewController ()
+@interface RegisterPatientViewController () {
+    PBManageFingersController *fManager;
+}
 
 @end
 
@@ -103,35 +105,27 @@ UIPopoverController * fPop;
          */
         
         MobileClinicFacade* mobileFacade = [[MobileClinicFacade alloc]init];
-       
+        
         [mobileFacade createAndCheckInPatient:_patient onCompletion:^(NSDictionary *object, NSError *error) {
             if (!object) {
                 [FIUAppDelegate getNotificationWithColor:AJNotificationTypeRed Animation:AJLinedBackgroundTypeAnimated WithMessage:error.localizedDescription];
-            }else{                
+            }else{
                 handler(object,error);
             }
         }];
     }
 }
 
--(IBAction)registerFinger:(id)sender{
-    ManageFingersViewController *manageFingers = [self getViewControllerFromiPadStoryboardWithName:@"manageFingers"];
-    
-    if (!fPop) {
-        fPop = [[UIPopoverController alloc]initWithContentViewController:manageFingers];
-    }
-    
-    [fPop presentPopoverFromRect:_registerFingerButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
 - (IBAction)getAgeOfPatient:(id)sender
-{    
-    // get datepicker view    
+{
+    // get datepicker view
     DateController *datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
     
     // Instatiate popover if not available
-        pop = [[UIPopoverController alloc]initWithContentViewController:datepicker];
-
+    //    if (!pop) {
+    //        pop = [[UIPopoverController alloc]initWithContentViewController:datepicker];
+    //    }
+    pop = [[UIPopoverController alloc]initWithContentViewController:datepicker];
     
     // Set Date if it is available
     if ([_patient objectForKey:DOB]) {
@@ -148,8 +142,7 @@ UIPopoverController * fPop;
             
             [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old", [date getNumberOfYearsElapseFromDate]] forState:UIControlStateNormal];
         }
-        
-        [pop dismissPopoverAnimated:YES];        
+        [pop dismissPopoverAnimated:YES];
     }];
     
     // show the screen beside the button
@@ -181,10 +174,10 @@ UIPopoverController * fPop;
         errorMsg = @"Missing Age";
         inputIsValid = NO;
     }
-//    else if ([_patient objectForKey:PICTURE] == nil) {
-//        errorMsg = @"Missing Photo";
-//        inputIsValid = NO;
-//    }
+    //    else if ([_patient objectForKey:PICTURE] == nil) {
+    //        errorMsg = @"Missing Photo";
+    //        inputIsValid = NO;
+    //    }
     
     //display error message on invlaid input
     if(inputIsValid == NO){
@@ -211,5 +204,15 @@ UIPopoverController * fPop;
 }
 
 
+
+- (IBAction)registerFingerprintsButton:(id)sender {
+    [_patientNameField resignFirstResponder];
+    [_familyNameField resignFirstResponder];
+    [_villageNameField resignFirstResponder];
+    fManager = [[PBManageFingersController alloc] init];
+    UINavigationController* navControllerManageFingers = [[UINavigationController alloc] initWithRootViewController:fManager];
+    pop = [[UIPopoverController alloc] initWithContentViewController:navControllerManageFingers];
+    [pop presentPopoverFromRect:_registerFingerprintsButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
 
 @end

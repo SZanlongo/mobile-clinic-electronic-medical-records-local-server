@@ -109,7 +109,6 @@
 		6D3A635D16C8472D003B79F7 /* CameraFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635A16C8472D003B79F7 /* CameraFacade.m */; };
 		6D3A635F16C8472D003B79F7 /* UICamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635C16C8472D003B79F7 /* UICamera.m */; };
 		6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */; };
-		6D5D334216FF657C00C837CE /* ManageFingersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D334116FF657C00C837CE /* ManageFingersViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D747BE816FE329400CE3F71 /* libiOSLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D747BE716FE329400CE3F71 /* libiOSLibrary.a */; };
 		6D747C4A16FE32A100CE3F71 /* PBPractice1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D747BEA16FE32A100CE3F71 /* PBPractice1Controller.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D747C4B16FE32A100CE3F71 /* PBFingerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D747BEB16FE32A100CE3F71 /* PBFingerImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -197,7 +196,6 @@
 		6DD5D90216D3158E007C3F74 /* SearchPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90116D3158E007C3F74 /* SearchPatientViewController.m */; };
 		6DD5D90516D315DD007C3F74 /* CurrentVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */; };
 		6DD5D90816D315F3007C3F74 /* PreviousVisitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */; };
-		9C43B31216FE37C7006DC4AF /* RegisterFingerControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C43B31116FE37C6006DC4AF /* RegisterFingerControllerViewController.m */; };
 		EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA09329916F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */; };
 		EA09329B16F8F77600536DF3 /* PatientFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAADC01A16E05554009E7AF9 /* PatientFile.json */; };
@@ -408,8 +406,6 @@
 		6D3A635C16C8472D003B79F7 /* UICamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICamera.m; sourceTree = "<group>"; };
 		6D522C9616DADAA3004FFC21 /* CurrentDiagnosisTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentDiagnosisTableCell.h; sourceTree = "<group>"; };
 		6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDiagnosisTableCell.m; sourceTree = "<group>"; };
-		6D5D334016FF657C00C837CE /* ManageFingersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageFingersViewController.h; sourceTree = "<group>"; };
-		6D5D334116FF657C00C837CE /* ManageFingersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageFingersViewController.m; sourceTree = "<group>"; };
 		6D747BD716FE327F00CE3F71 /* wintypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wintypes.h; sourceTree = "<group>"; };
 		6D747BD816FE327F00CE3F71 /* PBBiometryVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBiometryVerifier.h; sourceTree = "<group>"; };
 		6D747BD916FE327F00CE3F71 /* PBBiometryEnrollConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBiometryEnrollConfig.h; sourceTree = "<group>"; };
@@ -544,8 +540,6 @@
 		6DD5D90416D315DD007C3F74 /* CurrentVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentVisitViewController.m; sourceTree = "<group>"; };
 		6DD5D90616D315F3007C3F74 /* PreviousVisitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVisitsViewController.h; sourceTree = "<group>"; };
 		6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVisitsViewController.m; sourceTree = "<group>"; };
-		9C43B31016FE37C6006DC4AF /* RegisterFingerControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFingerControllerViewController.h; sourceTree = "<group>"; };
-		9C43B31116FE37C6006DC4AF /* RegisterFingerControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFingerControllerViewController.m; sourceTree = "<group>"; };
 		EA09329616F8287300536DF3 /* PharmacyPrescriptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPrescriptionCell.h; sourceTree = "<group>"; };
 		EA09329716F8287300536DF3 /* PharmacyPrescriptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPrescriptionCell.m; sourceTree = "<group>"; };
 		EA0932A116FAD05800536DF3 /* MedicationFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MedicationFile.json; sourceTree = "<group>"; };
@@ -962,10 +956,6 @@
 				6DD5D90716D315F3007C3F74 /* PreviousVisitsViewController.m */,
 				EA1EE19D16C982DB00E263D2 /* DateController.h */,
 				EA1EE19E16C982DB00E263D2 /* DateController.m */,
-				9C43B31016FE37C6006DC4AF /* RegisterFingerControllerViewController.h */,
-				9C43B31116FE37C6006DC4AF /* RegisterFingerControllerViewController.m */,
-				6D5D334016FF657C00C837CE /* ManageFingersViewController.h */,
-				6D5D334116FF657C00C837CE /* ManageFingersViewController.m */,
 			);
 			name = Triage;
 			sourceTree = "<group>";
@@ -1715,7 +1705,6 @@
 				4602DFD116F7BF0600B4F58C /* PharmacyPrescriptionViewController.m in Sources */,
 				EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */,
 				EAC0D7D116FB9E7000621DDC /* BaseObject+Protected.m in Sources */,
-				9C43B31216FE37C7006DC4AF /* RegisterFingerControllerViewController.m in Sources */,
 				6D747C4A16FE32A100CE3F71 /* PBPractice1Controller.m in Sources */,
 				6D747C4B16FE32A100CE3F71 /* PBFingerImageView.m in Sources */,
 				6D747C4C16FE32A100CE3F71 /* PBReferenceDatabase.m in Sources */,
@@ -1737,7 +1726,6 @@
 				6D747C8E16FE32A100CE3F71 /* PBDisconnectionViewController.m in Sources */,
 				6D747C8F16FE32A100CE3F71 /* PBPractice2Controller.m in Sources */,
 				6D747C9116FE32A100CE3F71 /* PBVerificationController.m in Sources */,
-				6D5D334216FF657C00C837CE /* ManageFingersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

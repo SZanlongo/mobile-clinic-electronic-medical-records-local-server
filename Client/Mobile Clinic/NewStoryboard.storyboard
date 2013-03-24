@@ -1646,7 +1646,7 @@
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerFinger:" destination="Vvd-v2-eiv" eventType="touchUpInside" id="jk0-pd-nWr"/>
+                                    <action selector="registerFingerprintsButton:" destination="Vvd-v2-eiv" eventType="touchUpInside" id="QWY-mI-kLG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Register Patient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pZg-eg-xaw">
@@ -1681,252 +1681,13 @@
                         <outlet property="patientNameField" destination="3qv-LF-C7e" id="Ahw-ND-zzI"/>
                         <outlet property="patientPhoto" destination="zxe-2W-IqS" id="dhZ-hH-GA3"/>
                         <outlet property="patientSexSegment" destination="0m8-fF-kvJ" id="40N-fx-gm0"/>
-                        <outlet property="registerFingerButton" destination="nJi-gT-c8d" id="em8-QJ-SfN"/>
+                        <outlet property="registerFingerprintsButton" destination="nJi-gT-c8d" id="8wI-Tz-77r"/>
                         <outlet property="villageNameField" destination="qaI-WC-PPv" id="6Ku-Uq-x3y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vwe-Ft-fgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1385" y="-4746"/>
-        </scene>
-        <!--Manage Fingers View Controller-->
-        <scene sceneID="Jdx-g6-pza">
-            <objects>
-                <viewController storyboardIdentifier="manageFingers" id="U2e-O4-oSt" customClass="ManageFingersViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6CQ-uA-F3m">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="igv-9g-5EA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eRf-9D-UHR">
-                                        <rect key="frame" x="270" y="172" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="Paz-2a-QdZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DUj-Ob-52y">
-                                        <rect key="frame" x="233" y="51" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="CLn-X7-ew7"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Wr-nZ-N9O">
-                                        <rect key="frame" x="152" y="9" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="Ngy-Qj-HhT"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Y8h-BT-WDu">
-                                        <rect key="frame" x="79" y="16" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="hZ3-34-UXy"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZQK-wg-olp">
-                                        <rect key="frame" x="7" y="73" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="xn5-C5-evg"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="handprint_left.png" id="Fjd-T5-gI3">
-                                        <rect key="frame" x="24" y="52" width="270" height="300"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="handprint_left.png" id="6FR-MC-l0F">
-                                        <rect key="frame" x="24" y="51" width="270" height="300"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4qd-Pg-Mxk">
-                                        <rect key="frame" x="270" y="172" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="YOp-Hg-SOM"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qU1-SL-iWN">
-                                        <rect key="frame" x="233" y="51" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="Fd5-v1-Rk8"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QOn-hv-PkW">
-                                        <rect key="frame" x="152" y="9" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="vwf-rQ-2y0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="evc-Hv-y8d">
-                                        <rect key="frame" x="79" y="16" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="dK0-uP-BRN"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jQT-DK-kcV">
-                                        <rect key="frame" x="7" y="73" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="key_add.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enrollFinger:" destination="U2e-O4-oSt" eventType="touchUpInside" id="hds-dK-xKZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CZR-oQ-s5v">
-                                        <rect key="frame" x="238" y="285" width="61" height="67"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="handprint_left.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="scrollRight" destination="U2e-O4-oSt" eventType="touchUpInside" id="oQX-T7-N81"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kQG-4Z-sby">
-                                        <rect key="frame" x="238" y="285" width="61" height="67"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <state key="normal" image="handprint_left.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="scrollLeft" destination="U2e-O4-oSt" eventType="touchUpInside" id="xZ7-nv-1ru"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No fingers registered" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="JNb-WW-ZUg">
-                                        <rect key="frame" x="19" y="170" width="280" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
-                                        <color key="textColor" red="0.75" green="0.75" blue="0.75" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <size key="shadowOffset" width="1" height="1"/>
-                                    </label>
-                                </subviews>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="leftHandImage" destination="6FR-MC-l0F" id="RDY-Dg-dKd"/>
-                        <outlet property="leftIndex" destination="DUj-Ob-52y" id="SZa-4o-61o"/>
-                        <outlet property="leftLittle" destination="ZQK-wg-olp" id="QFS-wC-OKk"/>
-                        <outlet property="leftMiddle" destination="8Wr-nZ-N9O" id="ce2-P4-7QY"/>
-                        <outlet property="leftRing" destination="Y8h-BT-WDu" id="2I9-2s-V7z"/>
-                        <outlet property="leftThumb" destination="eRf-9D-UHR" id="zX0-Wf-iJg"/>
-                        <outlet property="noFingersLabel" destination="JNb-WW-ZUg" id="sVp-Ix-fqt"/>
-                        <outlet property="rightHandImage" destination="Fjd-T5-gI3" id="LfU-du-0TY"/>
-                        <outlet property="rightIndex" destination="qU1-SL-iWN" id="fZy-hP-HPS"/>
-                        <outlet property="rightLittle" destination="jQT-DK-kcV" id="rCH-Yf-fHj"/>
-                        <outlet property="rightMiddle" destination="QOn-hv-PkW" id="Ztx-u8-NZQ"/>
-                        <outlet property="rightRing" destination="evc-Hv-y8d" id="UaA-Vg-RT5"/>
-                        <outlet property="rightThumb" destination="4qd-Pg-Mxk" id="7ea-63-bG8"/>
-                        <outlet property="scrollToLeftHandImage" destination="kQG-4Z-sby" id="r0V-QD-5iZ"/>
-                        <outlet property="scrollToRightHandImage" destination="CZR-oQ-s5v" id="XDE-U6-bRg"/>
-                        <outlet property="scrollView" destination="igv-9g-5EA" id="UTq-GL-C2I"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="irF-jh-VZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1385" y="-5254"/>
         </scene>
         <!--Date Controller-->
         <scene sceneID="FQf-4H-R94">
@@ -2450,8 +2211,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="afternoon.png" width="174" height="138"/>
         <image name="clinicLogo.jpg" width="325" height="260"/>
         <image name="evening.png" width="176" height="138"/>
-        <image name="handprint_left.png" width="541" height="640"/>
-        <image name="key_add.png" width="88" height="88"/>
         <image name="morning.png" width="176" height="142"/>
         <image name="night.png" width="176" height="134"/>
         <image name="userImage.jpeg" width="120" height="120"/>
@@ -2541,30 +2300,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="ManageFingersViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManageFingersViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="enrollFinger:"/>
-                <relationship kind="action" name="scrollLeft"/>
-                <relationship kind="action" name="scrollRight"/>
-                <relationship kind="outlet" name="leftHandImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="leftIndex" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="leftLittle" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="leftMiddle" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="leftRing" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="leftThumb" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="noFingersLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="rightHandImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="rightIndex" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="rightLittle" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="rightMiddle" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="rightRing" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="rightThumb" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollToLeftHandImage" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollToRightHandImage" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
         <class className="MedicineSearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicineSearchViewController.h"/>
             <relationships>
@@ -2649,13 +2384,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="getAgeOfPatient:"/>
                 <relationship kind="action" name="patientPhotoButton:"/>
                 <relationship kind="action" name="registerFinger:"/>
+                <relationship kind="action" name="registerFingerButton:"/>
+                <relationship kind="action" name="registerFingerprintsButton:"/>
                 <relationship kind="outlet" name="createPatientButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="familyNameField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientAgeField" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="patientNameField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patientPhoto" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="patientSexSegment" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="registerFingerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="registerFingerprintButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="registerFingerprintsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="villageNameField" candidateClass="UITextField"/>
             </relationships>
         </class>
