@@ -75,7 +75,6 @@
 		0FDE47BF16ED0CFB00966C77 /* PatientQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE47BE16ED0CFB00966C77 /* PatientQueueViewController.m */; };
 		0FECD55D16DA92A6008B4041 /* PatientResultTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1A596D16D8354F00C121BA /* PatientResultTableCell.m */; };
 		4602DFD116F7BF0600B4F58C /* PharmacyPrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4602DFD016F7BF0600B4F58C /* PharmacyPrescriptionViewController.m */; };
-		4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4614288316BF7EBB00802410 /* MainStoryboard.storyboard */; };
 		4614288916BF7F2900802410 /* orant_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4614288716BF7F2900802410 /* orant_logo.png */; };
 		4614288A16BF7F2900802410 /* userImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4614288816BF7F2900802410 /* userImage.jpeg */; };
 		467740F916BD931E002FD4A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 467740F816BD931E002FD4A5 /* UIKit.framework */; };
@@ -110,6 +109,7 @@
 		6D3A635D16C8472D003B79F7 /* CameraFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635A16C8472D003B79F7 /* CameraFacade.m */; };
 		6D3A635F16C8472D003B79F7 /* UICamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A635C16C8472D003B79F7 /* UICamera.m */; };
 		6D522C9816DADAA3004FFC21 /* CurrentDiagnosisTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */; };
+		6D5D334216FF657C00C837CE /* ManageFingersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D334116FF657C00C837CE /* ManageFingersViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D747BE816FE329400CE3F71 /* libiOSLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D747BE716FE329400CE3F71 /* libiOSLibrary.a */; };
 		6D747C4A16FE32A100CE3F71 /* PBPractice1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D747BEA16FE32A100CE3F71 /* PBPractice1Controller.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D747C4B16FE32A100CE3F71 /* PBFingerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D747BEB16FE32A100CE3F71 /* PBFingerImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -354,7 +354,6 @@
 		0FFA78D816D1E64500F04E15 /* clinicLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clinicLogo.jpg; sourceTree = "<group>"; };
 		4602DFCF16F7BF0600B4F58C /* PharmacyPrescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyPrescriptionViewController.h; sourceTree = "<group>"; };
 		4602DFD016F7BF0600B4F58C /* PharmacyPrescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PharmacyPrescriptionViewController.m; sourceTree = "<group>"; };
-		4614288316BF7EBB00802410 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4614288716BF7F2900802410 /* orant_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orant_logo.png; sourceTree = "<group>"; };
 		4614288816BF7F2900802410 /* userImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = userImage.jpeg; sourceTree = "<group>"; };
 		467740F516BD931E002FD4A5 /* Mobile Clinic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile Clinic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -407,6 +406,8 @@
 		6D3A635C16C8472D003B79F7 /* UICamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICamera.m; sourceTree = "<group>"; };
 		6D522C9616DADAA3004FFC21 /* CurrentDiagnosisTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentDiagnosisTableCell.h; sourceTree = "<group>"; };
 		6D522C9716DADAA3004FFC21 /* CurrentDiagnosisTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentDiagnosisTableCell.m; sourceTree = "<group>"; };
+		6D5D334016FF657C00C837CE /* ManageFingersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageFingersViewController.h; sourceTree = "<group>"; };
+		6D5D334116FF657C00C837CE /* ManageFingersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageFingersViewController.m; sourceTree = "<group>"; };
 		6D747BD716FE327F00CE3F71 /* wintypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wintypes.h; sourceTree = "<group>"; };
 		6D747BD816FE327F00CE3F71 /* PBBiometryVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBiometryVerifier.h; sourceTree = "<group>"; };
 		6D747BD916FE327F00CE3F71 /* PBBiometryEnrollConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBBiometryEnrollConfig.h; sourceTree = "<group>"; };
@@ -811,36 +812,32 @@
 		467740EC16BD931E002FD4A5 = {
 			isa = PBXGroup;
 			children = (
-				6D747C9816FE355600CE3F71 /* ExternalAccessory.framework */,
-				6D747C9616FE354F00CE3F71 /* AudioToolbox.framework */,
-				6D747BE916FE32A100CE3F71 /* reference */,
-				6D747BE616FE329400CE3F71 /* lib */,
-				6D747BD616FE327F00CE3F71 /* include */,
-				EA0932A516FAD85100536DF3 /* User.json */,
-				0F134CEE16F7D298003F4CE6 /* DoctorPatient.m */,
-				EAC37EE216EEBC3700836C1C /* ColorMe.h */,
-				EAC37EE316EEBC3700836C1C /* ColorMe.m */,
-				EA7CDC2A16ECF874005A9070 /* Makefile */,
-				EA7CDC2416ECF6FF005A9070 /* RunTests.sh */,
 				EA7CDC2516ECF700005A9070 /*  RunIPhoneSecurityd.sh */,
-				EAADC01A16E05554009E7AF9 /* PatientFile.json */,
-				EA0932A116FAD05800536DF3 /* MedicationFile.json */,
 				EAE6CDEE16BE4754008949DC /* Animated Notifications  */,
 				EA8BB92C16C8794200A4BC6E /* Camera API */,
 				EA952F1816BEF1EC006A9AF9 /* Categories */,
+				EAC37EE216EEBC3700836C1C /* ColorMe.h */,
+				EAC37EE316EEBC3700836C1C /* ColorMe.m */,
+				0F134CEE16F7D298003F4CE6 /* DoctorPatient.m */,
 				EAE6CDEA16BE46E6008949DC /* Factory Pattern */,
-				EA6F747816E8181F001FD385 /* MobileClinicTests */,
 				467740F716BD931E002FD4A5 /* Frameworks */,
 				EAE6CDC516BE468C008949DC /* HTTP API */,
 				EA8BB92E16C8798600A4BC6E /* HUD */,
 				EA8BB92D16C8795100A4BC6E /* Images */,
 				EA9AC88616C860D500493485 /* Interfaces */,
+				EA7CDC2A16ECF874005A9070 /* Makefile */,
+				EAADC02616E1165C009E7AF9 /* MCF-> Data */,
+				EA0932A116FAD05800536DF3 /* MedicationFile.json */,
 				467740FE16BD931E002FD4A5 /* Mobile Clinic -> Controllers */,
 				4677412216BD931E002FD4A5 /* Mobile ClinicTests */,
-				EAADC02616E1165C009E7AF9 /* MCF-> Data */,
+				EA6F747816E8181F001FD385 /* MobileClinicTests */,
+				EAADC01A16E05554009E7AF9 /* PatientFile.json */,
+				6D73432A16FF5D5100E04C66 /* Precise */,
 				467740F616BD931E002FD4A5 /* Products */,
+				EA7CDC2416ECF6FF005A9070 /* RunTests.sh */,
 				EAE6CDED16BE4743008949DC /* Server API */,
 				46E773D316CB0BFB00242454 /* TestFlightSDK1.1 */,
+				EA0932A516FAD85100536DF3 /* User.json */,
 			);
 			sourceTree = "<group>";
 		};
@@ -856,6 +853,8 @@
 		467740F716BD931E002FD4A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D747C9816FE355600CE3F71 /* ExternalAccessory.framework */,
+				6D747C9616FE354F00CE3F71 /* AudioToolbox.framework */,
 				EACEB53B16BECEB700685AE8 /* Accelerate.framework */,
 				EAE6CDF816BE496E008949DC /* CFNetwork.framework */,
 				4677413316BD936F002FD4A5 /* CoreData.framework */,
@@ -877,7 +876,6 @@
 			children = (
 				46E773C716CAF9E800242454 /* API */,
 				0F9E6BA816D1E41F008AFB49 /* NewViews */,
-				4614288316BF7EBB00802410 /* MainStoryboard.storyboard */,
 				0F9E6BA516D17FDB008AFB49 /* NewStoryboard.storyboard */,
 				4677410716BD931E002FD4A5 /* FIUAppDelegate.h */,
 				4677410816BD931E002FD4A5 /* FIUAppDelegate.m */,
@@ -962,6 +960,8 @@
 				EA1EE19E16C982DB00E263D2 /* DateController.m */,
 				9C43B31016FE37C6006DC4AF /* RegisterFingerControllerViewController.h */,
 				9C43B31116FE37C6006DC4AF /* RegisterFingerControllerViewController.m */,
+				6D5D334016FF657C00C837CE /* ManageFingersViewController.h */,
+				6D5D334116FF657C00C837CE /* ManageFingersViewController.m */,
 			);
 			name = Triage;
 			sourceTree = "<group>";
@@ -996,23 +996,33 @@
 			name = Pharmacy;
 			sourceTree = "<group>";
 		};
+		6D73432A16FF5D5100E04C66 /* Precise */ = {
+			isa = PBXGroup;
+			children = (
+				6D747BD616FE327F00CE3F71 /* include */,
+				6D747BE616FE329400CE3F71 /* lib */,
+				6D747BE916FE32A100CE3F71 /* reference */,
+			);
+			name = Precise;
+			sourceTree = "<group>";
+		};
 		6D747BD616FE327F00CE3F71 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				6D747BD716FE327F00CE3F71 /* wintypes.h */,
-				6D747BD816FE327F00CE3F71 /* PBBiometryVerifier.h */,
-				6D747BD916FE327F00CE3F71 /* PBBiometryEnrollConfig.h */,
-				6D747BDA16FE327F00CE3F71 /* PBLibrary.h */,
-				6D747BDB16FE327F00CE3F71 /* PBBiometryDatabase.h */,
-				6D747BDC16FE327F00CE3F71 /* PBBiometryGUI.h */,
-				6D747BDD16FE327F00CE3F71 /* PBBiometryVerifyConfig.h */,
-				6D747BDE16FE327F00CE3F71 /* PBSmartcard.h */,
-				6D747BDF16FE327F00CE3F71 /* PBBiometryUser.h */,
-				6D747BE016FE327F00CE3F71 /* PBBiometryTemplate.h */,
 				6D747BE116FE327F00CE3F71 /* PBAccessory.h */,
-				6D747BE216FE327F00CE3F71 /* winscard.h */,
 				6D747BE316FE327F00CE3F71 /* PBBiometry.h */,
+				6D747BDB16FE327F00CE3F71 /* PBBiometryDatabase.h */,
+				6D747BD916FE327F00CE3F71 /* PBBiometryEnrollConfig.h */,
 				6D747BE416FE327F00CE3F71 /* PBBiometryFinger.h */,
+				6D747BDC16FE327F00CE3F71 /* PBBiometryGUI.h */,
+				6D747BE016FE327F00CE3F71 /* PBBiometryTemplate.h */,
+				6D747BDF16FE327F00CE3F71 /* PBBiometryUser.h */,
+				6D747BD816FE327F00CE3F71 /* PBBiometryVerifier.h */,
+				6D747BDD16FE327F00CE3F71 /* PBBiometryVerifyConfig.h */,
+				6D747BDA16FE327F00CE3F71 /* PBLibrary.h */,
+				6D747BDE16FE327F00CE3F71 /* PBSmartcard.h */,
+				6D747BE216FE327F00CE3F71 /* winscard.h */,
+				6D747BD716FE327F00CE3F71 /* wintypes.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -1028,44 +1038,44 @@
 		6D747BE916FE32A100CE3F71 /* reference */ = {
 			isa = PBXGroup;
 			children = (
-				6D747BEA16FE32A100CE3F71 /* PBPractice1Controller.m */,
-				6D747BEB16FE32A100CE3F71 /* PBFingerImageView.m */,
-				6D747BEC16FE32A100CE3F71 /* PBReferenceDatabase.m */,
-				6D747BED16FE32A100CE3F71 /* PBPractice3Controller.m */,
-				6D747BEE16FE32A100CE3F71 /* PBDisconnectionViewController.h */,
-				6D747BEF16FE32A100CE3F71 /* PBVerificationController.h */,
-				6D747BF016FE32A100CE3F71 /* PBPractice2Controller.h */,
-				6D747BF116FE32A100CE3F71 /* PBPractice2.xib */,
-				6D747BF216FE32A100CE3F71 /* PBPractice4Controller.h */,
 				6D747BF316FE32A100CE3F71 /* PBBarImageView.h */,
-				6D747BF416FE32A100CE3F71 /* PBPracticeController.h */,
-				6D747BF516FE32A100CE3F71 /* PBManageFingersController.h */,
-				6D747BF616FE32A100CE3F71 /* PBPractice4.xib */,
-				6D747BF716FE32A100CE3F71 /* PBFingerPickerController.h */,
-				6D747BF816FE32A100CE3F71 /* PBPractice3.xib */,
-				6D747BF916FE32A100CE3F71 /* PBEnrollmentController.h */,
+				6D747C3A16FE32A100CE3F71 /* PBBarImageView.m */,
+				6D747BEE16FE32A100CE3F71 /* PBDisconnectionViewController.h */,
+				6D747C4516FE32A100CE3F71 /* PBDisconnectionViewController.m */,
 				6D747BFA16FE32A100CE3F71 /* PBDisconnectionViewController.xib */,
+				6D747BF916FE32A100CE3F71 /* PBEnrollmentController.h */,
+				6D747C3F16FE32A100CE3F71 /* PBEnrollmentController.m */,
+				6D747C4416FE32A100CE3F71 /* PBEnrollmentController.xib */,
+				6D747C4116FE32A100CE3F71 /* PBFingerImageView.h */,
+				6D747BEB16FE32A100CE3F71 /* PBFingerImageView.m */,
+				6D747BF716FE32A100CE3F71 /* PBFingerPickerController.h */,
+				6D747C3E16FE32A100CE3F71 /* PBFingerPickerController.m */,
+				6D747C3D16FE32A100CE3F71 /* PBFingerPickerController.xib */,
+				6D747BF516FE32A100CE3F71 /* PBManageFingersController.h */,
+				6D747C3C16FE32A100CE3F71 /* PBManageFingersController.m */,
+				6D747C4816FE32A100CE3F71 /* PBManageFingersController.xib */,
+				6D747C4216FE32A100CE3F71 /* PBPractice1.xib */,
+				6D747C4016FE32A100CE3F71 /* PBPractice1Controller.h */,
+				6D747BEA16FE32A100CE3F71 /* PBPractice1Controller.m */,
+				6D747BF116FE32A100CE3F71 /* PBPractice2.xib */,
+				6D747BF016FE32A100CE3F71 /* PBPractice2Controller.h */,
+				6D747C4716FE32A100CE3F71 /* PBPractice2Controller.m */,
+				6D747BF816FE32A100CE3F71 /* PBPractice3.xib */,
+				6D747C4316FE32A100CE3F71 /* PBPractice3Controller.h */,
+				6D747BED16FE32A100CE3F71 /* PBPractice3Controller.m */,
+				6D747BF616FE32A100CE3F71 /* PBPractice4.xib */,
+				6D747BF216FE32A100CE3F71 /* PBPractice4Controller.h */,
+				6D747C3916FE32A100CE3F71 /* PBPractice4Controller.m */,
+				6D747BF416FE32A100CE3F71 /* PBPracticeController.h */,
+				6D747C3B16FE32A100CE3F71 /* PBPracticeController.m */,
+				6D747C3816FE32A100CE3F71 /* PBPracticeController.xib */,
+				6D747C4616FE32A100CE3F71 /* PBReferenceDatabase.h */,
+				6D747BEC16FE32A100CE3F71 /* PBReferenceDatabase.m */,
+				6D747BEF16FE32A100CE3F71 /* PBVerificationController.h */,
+				6D747C4916FE32A100CE3F71 /* PBVerificationController.m */,
+				6D747C3716FE32A100CE3F71 /* PBVerificationController.xib */,
 				6D747BFB16FE32A100CE3F71 /* Resources */,
 				6D747C2616FE32A100CE3F71 /* Smartcard */,
-				6D747C3716FE32A100CE3F71 /* PBVerificationController.xib */,
-				6D747C3816FE32A100CE3F71 /* PBPracticeController.xib */,
-				6D747C3916FE32A100CE3F71 /* PBPractice4Controller.m */,
-				6D747C3A16FE32A100CE3F71 /* PBBarImageView.m */,
-				6D747C3B16FE32A100CE3F71 /* PBPracticeController.m */,
-				6D747C3C16FE32A100CE3F71 /* PBManageFingersController.m */,
-				6D747C3D16FE32A100CE3F71 /* PBFingerPickerController.xib */,
-				6D747C3E16FE32A100CE3F71 /* PBFingerPickerController.m */,
-				6D747C3F16FE32A100CE3F71 /* PBEnrollmentController.m */,
-				6D747C4016FE32A100CE3F71 /* PBPractice1Controller.h */,
-				6D747C4116FE32A100CE3F71 /* PBFingerImageView.h */,
-				6D747C4216FE32A100CE3F71 /* PBPractice1.xib */,
-				6D747C4316FE32A100CE3F71 /* PBPractice3Controller.h */,
-				6D747C4416FE32A100CE3F71 /* PBEnrollmentController.xib */,
-				6D747C4516FE32A100CE3F71 /* PBDisconnectionViewController.m */,
-				6D747C4616FE32A100CE3F71 /* PBReferenceDatabase.h */,
-				6D747C4716FE32A100CE3F71 /* PBPractice2Controller.m */,
-				6D747C4816FE32A100CE3F71 /* PBManageFingersController.xib */,
-				6D747C4916FE32A100CE3F71 /* PBVerificationController.m */,
 			);
 			path = reference;
 			sourceTree = "<group>";
@@ -1073,41 +1083,41 @@
 		6D747BFB16FE32A100CE3F71 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6D747BFC16FE32A100CE3F71 /* right_index.png */,
-				6D747BFD16FE32A100CE3F71 /* left_index.png */,
-				6D747BFE16FE32A100CE3F71 /* greenbackground.png */,
-				6D747BFF16FE32A100CE3F71 /* handprint_right.png */,
-				6D747C0016FE32A100CE3F71 /* practice_hand_inside.png */,
-				6D747C0116FE32A100CE3F71 /* arrow_right@2x.png */,
-				6D747C0216FE32A100CE3F71 /* shell.png */,
-				6D747C0316FE32A100CE3F71 /* tab_managefingers@2x.png */,
-				6D747C0416FE32A100CE3F71 /* left_middle.png */,
-				6D747C0516FE32A100CE3F71 /* tab_managefingers.png */,
-				6D747C0616FE32A100CE3F71 /* right_middle.png */,
-				6D747C0716FE32A100CE3F71 /* key.png */,
-				6D747C0816FE32A100CE3F71 /* practice_mark.png */,
-				6D747C0916FE32A100CE3F71 /* key_add.png */,
-				6D747C0A16FE32A100CE3F71 /* left_little.png */,
-				6D747C0B16FE32A100CE3F71 /* right_little.png */,
+				6D747C1916FE32A100CE3F71 /* accept.png */,
+				6D747C1E16FE32A100CE3F71 /* arrow_left.png */,
 				6D747C0C16FE32A100CE3F71 /* arrow_left@2x.png */,
 				6D747C0D16FE32A100CE3F71 /* arrow_right.png */,
+				6D747C0116FE32A100CE3F71 /* arrow_right@2x.png */,
+				6D747BFE16FE32A100CE3F71 /* greenbackground.png */,
+				6D747C2116FE32A100CE3F71 /* handprint_left.png */,
+				6D747BFF16FE32A100CE3F71 /* handprint_right.png */,
+				6D747C0716FE32A100CE3F71 /* key.png */,
+				6D747C0916FE32A100CE3F71 /* key_add.png */,
+				6D747C2316FE32A100CE3F71 /* key_delete.png */,
+				6D747BFD16FE32A100CE3F71 /* left_index.png */,
+				6D747C0A16FE32A100CE3F71 /* left_little.png */,
+				6D747C0416FE32A100CE3F71 /* left_middle.png */,
+				6D747C2516FE32A100CE3F71 /* left_ring.png */,
+				6D747C2016FE32A100CE3F71 /* left_thumb.png */,
+				6D747C1A16FE32A100CE3F71 /* phone.png */,
+				6D747C1C16FE32A100CE3F71 /* practice_cross.png */,
+				6D747C0016FE32A100CE3F71 /* practice_hand_inside.png */,
+				6D747C1D16FE32A100CE3F71 /* practice_hand_outside.png */,
+				6D747C0816FE32A100CE3F71 /* practice_mark.png */,
+				6D747C1B16FE32A100CE3F71 /* practice_sensor.png */,
 				6D747C0E16FE32A100CE3F71 /* redbackground.png */,
 				6D747C0F16FE32A100CE3F71 /* reject.png */,
-				6D747C1016FE32A100CE3F71 /* tab_practice.png */,
-				6D747C1116FE32A100CE3F71 /* Sounds */,
-				6D747C1916FE32A100CE3F71 /* accept.png */,
-				6D747C1A16FE32A100CE3F71 /* phone.png */,
-				6D747C1B16FE32A100CE3F71 /* practice_sensor.png */,
-				6D747C1C16FE32A100CE3F71 /* practice_cross.png */,
-				6D747C1D16FE32A100CE3F71 /* practice_hand_outside.png */,
-				6D747C1E16FE32A100CE3F71 /* arrow_left.png */,
-				6D747C1F16FE32A100CE3F71 /* right_thumb.png */,
-				6D747C2016FE32A100CE3F71 /* left_thumb.png */,
-				6D747C2116FE32A100CE3F71 /* handprint_left.png */,
-				6D747C2216FE32A100CE3F71 /* tab_practice@2x.png */,
-				6D747C2316FE32A100CE3F71 /* key_delete.png */,
+				6D747BFC16FE32A100CE3F71 /* right_index.png */,
+				6D747C0B16FE32A100CE3F71 /* right_little.png */,
+				6D747C0616FE32A100CE3F71 /* right_middle.png */,
 				6D747C2416FE32A100CE3F71 /* right_ring.png */,
-				6D747C2516FE32A100CE3F71 /* left_ring.png */,
+				6D747C1F16FE32A100CE3F71 /* right_thumb.png */,
+				6D747C0216FE32A100CE3F71 /* shell.png */,
+				6D747C1116FE32A100CE3F71 /* Sounds */,
+				6D747C0516FE32A100CE3F71 /* tab_managefingers.png */,
+				6D747C0316FE32A100CE3F71 /* tab_managefingers@2x.png */,
+				6D747C1016FE32A100CE3F71 /* tab_practice.png */,
+				6D747C2216FE32A100CE3F71 /* tab_practice@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1129,21 +1139,21 @@
 		6D747C2616FE32A100CE3F71 /* Smartcard */ = {
 			isa = PBXGroup;
 			children = (
-				6D747C2716FE32A100CE3F71 /* PBSmartcardAppDelegate.m */,
 				6D747C2816FE32A100CE3F71 /* PBBioMatch3Database.h */,
-				6D747C2916FE32A100CE3F71 /* PBSmartcardIDStoreContainer.h */,
-				6D747C2A16FE32A100CE3F71 /* PBSmartcard7816.m */,
+				6D747C3516FE32A100CE3F71 /* PBBioMatch3Database.m */,
 				6D747C2B16FE32A100CE3F71 /* PBBiomatch3Verifier.h */,
-				6D747C2C16FE32A100CE3F71 /* PBSmartcardIDStore.h */,
-				6D747C2D16FE32A100CE3F71 /* PBSmartcardBioManager.h */,
-				6D747C2E16FE32A100CE3F71 /* PBSmartcardBioManagerContainer.m */,
-				6D747C2F16FE32A100CE3F71 /* PBSmartcardIDStore.m */,
 				6D747C3016FE32A100CE3F71 /* PBBiomatch3Verifier.m */,
+				6D747C3416FE32A100CE3F71 /* PBSmartcard7816.h */,
+				6D747C2A16FE32A100CE3F71 /* PBSmartcard7816.m */,
+				6D747C3316FE32A100CE3F71 /* PBSmartcardAppDelegate.h */,
+				6D747C2716FE32A100CE3F71 /* PBSmartcardAppDelegate.m */,
+				6D747C2D16FE32A100CE3F71 /* PBSmartcardBioManager.h */,
 				6D747C3116FE32A100CE3F71 /* PBSmartcardBioManager.m */,
 				6D747C3216FE32A100CE3F71 /* PBSmartcardBioManagerContainer.h */,
-				6D747C3316FE32A100CE3F71 /* PBSmartcardAppDelegate.h */,
-				6D747C3416FE32A100CE3F71 /* PBSmartcard7816.h */,
-				6D747C3516FE32A100CE3F71 /* PBBioMatch3Database.m */,
+				6D747C2E16FE32A100CE3F71 /* PBSmartcardBioManagerContainer.m */,
+				6D747C2C16FE32A100CE3F71 /* PBSmartcardIDStore.h */,
+				6D747C2F16FE32A100CE3F71 /* PBSmartcardIDStore.m */,
+				6D747C2916FE32A100CE3F71 /* PBSmartcardIDStoreContainer.h */,
 				6D747C3616FE32A100CE3F71 /* PBSmartcardIDStoreContainer.m */,
 			);
 			path = Smartcard;
@@ -1521,7 +1531,6 @@
 				4677410B16BD931E002FD4A5 /* Default.png in Resources */,
 				4677410D16BD931E002FD4A5 /* Default@2x.png in Resources */,
 				4677410F16BD931E002FD4A5 /* Default-568h@2x.png in Resources */,
-				4614288416BF7EBB00802410 /* MainStoryboard.storyboard in Resources */,
 				4614288916BF7F2900802410 /* orant_logo.png in Resources */,
 				4614288A16BF7F2900802410 /* userImage.jpeg in Resources */,
 				EA38569F16C0844C00FA83FD /* black-ui-kit.png in Resources */,
@@ -1721,6 +1730,7 @@
 				6D747C8E16FE32A100CE3F71 /* PBDisconnectionViewController.m in Sources */,
 				6D747C8F16FE32A100CE3F71 /* PBPractice2Controller.m in Sources */,
 				6D747C9116FE32A100CE3F71 /* PBVerificationController.m in Sources */,
+				6D5D334216FF657C00C837CE /* ManageFingersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

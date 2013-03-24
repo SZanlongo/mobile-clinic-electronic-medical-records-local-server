@@ -1,21 +1,21 @@
 //
-//  RegisterFingerControllerViewController.h
+//  ManageFingersViewController.h
 //  Mobile Clinic
 //
-//  Created by Carlos Corvaia on 3/23/13.
+//  Created by sebastian a zanlongo on 3/24/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
+
+#import <UIKit/UIKit.h>
+
 #import "PBEnrollmentController.h"
 #import "PBVerificationController.h"
 
 #import "PBBiometry.h"
 #import "PBBiometryDatabase.h"
 #import "PBBiometryUser.h"
-#import "ScreenNavigationDelegate.h"
-#import <UIKit/UIKit.h>
 
-@interface RegisterFingerControllerViewController : UIViewController <PBEnrollmentDelegate, PBVerificationDelegate, UIActionSheetDelegate, UISplitViewControllerDelegate>{
-   
+@interface ManageFingersViewController : UIViewController<PBEnrollmentDelegate, PBVerificationDelegate, UIActionSheetDelegate, UIScrollViewDelegate> {
     IBOutlet UIImageView* leftHandImage;
     IBOutlet UIImageView* rightHandImage;
     
@@ -44,7 +44,14 @@
     NSInteger pageCurrentlyShown;
     
     BOOL isAnimatingScroll;
-
+    
+    /** Verifier, in case the default verifier shall not be used, e.g. for
+     * match on card. */
+    id<PBBiometryVerifier> verifier;
+    
+    /** The config parameters for the verification. If nil, the default config
+     * parameters will be used. */
+    PBBiometryVerifyConfig* verifyConfig;
     /** The config parameters for the enrollment. If nil, the default config
      * parameters will be used. */
     PBBiometryEnrollConfig* enrollConfig;
@@ -58,10 +65,10 @@
     /** The fingers that may be enrolled. If not set, then all 10 fingers may be
      *  enrolled. */
     NSArray* enrollableFingers;
-    
 }
-- (IBAction)registerFinger:(id)sender;
 
+@property (nonatomic, retain) id<PBBiometryVerifier> verifier;
+@property (nonatomic, retain) PBBiometryVerifyConfig* verifyConfig;
 @property (nonatomic, retain) PBBiometryEnrollConfig* enrollConfig;
 @property (nonatomic) BOOL verifyAgainstAllFingers;
 @property (nonatomic, retain) NSArray* enrollableFingers;
@@ -81,6 +88,5 @@
 - (IBAction)scrollLeft;
 
 - (IBAction)scrollRight;
-
 
 @end
