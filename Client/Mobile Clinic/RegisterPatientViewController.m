@@ -116,9 +116,11 @@ UIPopoverController * fPop;
 
 -(IBAction)registerFinger:(id)sender{
     ManageFingersViewController *manageFingers = [self getViewControllerFromiPadStoryboardWithName:@"manageFingers"];
+    
     if (!fPop) {
         fPop = [[UIPopoverController alloc]initWithContentViewController:manageFingers];
     }
+    
     [fPop presentPopoverFromRect:_registerFingerButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
