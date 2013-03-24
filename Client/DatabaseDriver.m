@@ -10,7 +10,7 @@
 
 NSManagedObjectContext* context;
 @implementation DatabaseDriver
-//@synthesize appDelegate;
+
 @synthesize database;
 
 -(id)init{
