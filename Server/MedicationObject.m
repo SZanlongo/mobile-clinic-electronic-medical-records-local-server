@@ -75,4 +75,7 @@ NSString* medicationID;
     
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:MEDNAME]];
 }
+-(NSArray *)serviceAllObjectsForParentID:(NSString *)parentID{
+    return [self FindAllObjectsLocallyFromParentObject];
+}
 @end

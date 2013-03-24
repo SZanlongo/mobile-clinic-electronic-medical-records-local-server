@@ -8,29 +8,27 @@
 #define APPDELEGATE_STARTED @"slow appdelegate"
 #import <Cocoa/Cocoa.h>
 #import "ServerCore.h"
+#import "MainMenu.h"
+@interface FIUAppDelegate : NSObject <NSTableViewDataSource,NSTableViewDelegate,NSApplicationDelegate>
 
-@interface FIUAppDelegate : NSObject <NSApplicationDelegate>{
-    
-}
+
 @property (weak) IBOutlet NSMenuItem *createPatientMenu;
 @property (weak) IBOutlet NSMenuItem *createMedicineMenu;
-@property (weak) IBOutlet NSMenuItem *resetAllMenu;
+
 
 @property (nonatomic, strong) ServerCore *server;
-@property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet MainMenu *window;
 
-//@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-//
-//@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-//@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-- (IBAction)resetTestSettings:(id)sender;
+- (IBAction)restartServer:(id)sender;
+- (IBAction)shutdownServer:(id)sender;
+
+- (IBAction)showMedicineView:(id)sender;
 
 - (IBAction)setupTestPatients:(id)sender;
-- (IBAction)createTestMedications:(id)sender;
+- (IBAction)TearDownEnvironment:(id)sender;
 
-- (IBAction)saveAction:(id)sender;
 
-- (IBAction)syncAllPatient:(id)sender;
 - (IBAction)showPatientsView:(id)sender;
+- (IBAction)showUserView:(id)sender;
 
 @end

@@ -118,9 +118,8 @@ UIPopoverController * pop;
     DateController *datepicker = [self getViewControllerFromiPadStoryboardWithName:@"datePicker"];
     
     // Instatiate popover if not available
-    if (!pop) {
         pop = [[UIPopoverController alloc]initWithContentViewController:datepicker];
-    }
+
     
     // Set Date if it is available
     if ([_patient objectForKey:DOB]) {
@@ -137,6 +136,7 @@ UIPopoverController * pop;
             
             [_patientAgeField setTitle:[NSString stringWithFormat:@"%i Years Old", [date getNumberOfYearsElapseFromDate]] forState:UIControlStateNormal];
         }
+        
         [pop dismissPopoverAnimated:YES];        
     }];
     

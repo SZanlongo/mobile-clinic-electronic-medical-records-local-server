@@ -18,6 +18,9 @@
 #define OBSERVATION     @"observation"
 #define NURSEID         @"nurseId"
 #define BLOODPRESSURE   @"bloodPressure"
+#define HEARTRATE       @"heartRate"
+#define RESPIRATION     @"respiration"
+#define PRIORITY        @"priority"
 #define VISITID         @"visitationId"
 
 #define ISOPEN      @"isOpen"

@@ -103,6 +103,11 @@ NSString* isLockedBy;
     patientID = parentID;
     return [self FindAllObjectsLocallyFromParentObject];
 }
+
+-(NSString *)printFormattedObject:(NSDictionary *)object{
+    
+   return [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n",[object objectForKey:BLOODPRESSURE],[object objectForKey:HEARTRATE],[object objectForKey:RESPIRATION],[object objectForKey:WEIGHT],[object objectForKey:CONDITION],[object objectForKey:OBSERVATION]];
+}
 #pragma mark - Private Methods
 #pragma mark-
 
@@ -113,7 +118,5 @@ NSString* isLockedBy;
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
 
--(void)linkDatabaseObject{
-    visit = (Visitation*)self.databaseObject;
-}
+
 @end

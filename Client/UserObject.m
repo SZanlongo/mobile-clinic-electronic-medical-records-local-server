@@ -13,11 +13,12 @@
 #import "UserObject.h"
 #import "StatusObject.h"
 #import "NSString+Validation.h"
-
+#import "BaseObject+Protected.h"
 StatusObject* tempObject;
 ObjectResponse classResponder;
 NSString* tempUsername;
 NSString* tempPassword;
+
 @implementation UserObject
 
 #pragma mark - Default Methods
@@ -61,6 +62,10 @@ NSString* tempPassword;
 
 #pragma mark - User Login & Creation
 #pragma mark -
+
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock witData:(NSMutableDictionary *)dataToSend AndInstructions:(NSInteger)instruction onCompletion:(ObjectResponse)response{
+    [self UpdateObject:response shouldLock:shouldLock andSendObjects:dataToSend withInstruction:instruction];
+}
 
 -(void)loginWithUsername:(NSString*)username andPassword:(NSString*)password onCompletion:(ObjectResponse)onSuccessHandler{
     

@@ -61,7 +61,7 @@
     if (![[patientInfo objectForKey:ISOPEN]boolValue]) {
         
         NSMutableDictionary* openPatient = [[NSMutableDictionary alloc]initWithDictionary:patientInfo];
-        // Set patient to open
+        // Set patient open status
         [openPatient setValue:[NSNumber numberWithBool:!checkout] forKey:ISOPEN];
         
         [self CommonCommandObject:[[PatientObject alloc]init] ShouldLock:NO CommonUpdate:openPatient withResults:^(NSDictionary *object, NSError *error) {
@@ -235,12 +235,12 @@
 
 #pragma mark- PRIVATE GENERIC METHODS
 #pragma mark-
--(void)CommonCommandObject:(id<BaseObjectProtocol>)base ShouldLock:(BOOL)lock CommonUpdate:(NSMutableDictionary*)object withResults:(MobileClinicCommandResponse)results{
+-(void)CommonCommandObject:(id<CommonObjectProtocol>)base ShouldLock:(BOOL)lock CommonUpdate:(NSMutableDictionary*)object withResults:(MobileClinicCommandResponse)results{
     
     /* Call the server to make a request for Visits */
-    [base UpdateObject:^(id<BaseObjectProtocol> data, NSError *error) {
+    [base UpdateObjectAndShouldLock:lock witData:object AndInstructions:kUpdateObject onCompletion:^(id<BaseObjectProtocol> data, NSError *error) {
         results([data getDictionaryValuesFromManagedObject],error);
-    } shouldLock:lock andSendObjects:object withInstruction:kUpdateObject];
+    }];
 }
 
 -(void)CommonCommandObject:(id<CommonObjectProtocol>)commandObject ForSearch:(NSDictionary*)object withResults:(MobileClinicSearchResponse)searchResults{

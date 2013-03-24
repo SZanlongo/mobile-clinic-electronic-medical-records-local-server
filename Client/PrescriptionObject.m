@@ -10,7 +10,7 @@
 #define DATABASE    @"Prescription"
 
 #import "PrescriptionObject.h"
-#import "StatusObject.h"
+#import "BaseObject+Protected.h"
 
 @implementation PrescriptionObject
 
@@ -53,6 +53,10 @@
     NSString* vId = [parent objectForKey:VISITID];
     [self.databaseObject setValue:[NSString stringWithFormat:@"%@_%f",vId,[[NSDate date]timeIntervalSince1970]] forKey:PRESCRIPTIONID];
     [self.databaseObject setValue:vId forKey:VISITID];
+}
+
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock witData:(NSMutableDictionary *)dataToSend AndInstructions:(NSInteger)instruction onCompletion:(ObjectResponse)response{
+    [self UpdateObject:response shouldLock:shouldLock andSendObjects:dataToSend withInstruction:instruction];
 }
 
 -(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler

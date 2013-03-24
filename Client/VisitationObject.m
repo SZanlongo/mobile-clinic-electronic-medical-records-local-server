@@ -11,7 +11,7 @@
 #define DATABASE    @"Visitation"
 #define ALLVISITS   @"all visits"
 
-#import "StatusObject.h"
+#import "BaseObject+Protected.h"
 #import "Visitation.h"
 @implementation VisitationObject
 
@@ -49,6 +49,9 @@
 #pragma mark- Private Methods
 #pragma mark-
 
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock witData:(NSMutableDictionary *)dataToSend AndInstructions:(NSInteger)instruction onCompletion:(ObjectResponse)response{
+    [self UpdateObject:response shouldLock:shouldLock andSendObjects:dataToSend withInstruction:instruction];
+}
 
 -(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler
 {
@@ -62,9 +65,9 @@
         return;
     }
     // Gets all open visits and narrows visits to a specific patient
-    NSArray* localVisit = [[self FindAllOpenVisitsLocally]filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[self getObjectForAttribute:PATIENTID]]];
+    NSArray* localVisit = [[self FindAllOpenVisitsLocally]filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[self.databaseObject valueForKey:PATIENTID]]];
     
-    if (localVisit.count <= 1 ) {
+    if (localVisit.count == 1 ) {
          [super UpdateObject:onSuccessHandler shouldLock:NO andSendObjects:[self getDictionaryValuesFromManagedObject] withInstruction:kConditionalCreate];
     }else{
         [self deleteCurrentlyHeldObjectFromDatabase];

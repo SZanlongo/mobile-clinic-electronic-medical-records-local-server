@@ -205,31 +205,28 @@
 // MARK: Saves the current databaseObject without duplicating it
 -(void)saveObject:(ObjectResponse)eventResponse{
     
+    // get the UID of the object
     id objID = [self.databaseObject valueForKey:self.COMMONID];
     
+    // Find if object already exists
     NSManagedObject* obj = [self loadObjectWithID:objID];
     
+    // update the object we found in the database
     [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
     
+    // if there is was something to save
     if (obj){
-        
-        if (!self.databaseObject.managedObjectContext) {
-            [self SaveCurrentObjectToDatabase:obj];
-        }else{
-            [self SaveCurrentObjectToDatabase:self.databaseObject];
-        }
+        // save it
+        [self SaveCurrentObjectToDatabase:obj];
+
     }else{
-        
-        if (self.databaseObject.managedObjectContext) {
-            [self SaveCurrentObjectToDatabase:self.databaseObject];
-        }else{
+
+        obj = [self CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
             
-            obj = [self CreateANewObjectFromClass:self.COMMONDATABASE isTemporary:NO];
+        [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
             
-            [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
-            
-            [self SaveCurrentObjectToDatabase:obj];
-        }
+        [self SaveCurrentObjectToDatabase:obj];
+
     }
     eventResponse(self, nil);
 }
@@ -253,6 +250,7 @@
             }
         }];
     }else{
+        
         [self sendInformation:nil toClientWithStatus:kError andMessage:[NSString stringWithFormat:@"This currently being used by %@",lockedByOlduser]];
     }
 

@@ -163,6 +163,8 @@
 		EAA7AC2716C33D8700B3B911 /* PatientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA7AC2516C33D8700B3B911 /* PatientObject.m */; };
 		EAADC01B16E05554009E7AF9 /* PatientFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAADC01A16E05554009E7AF9 /* PatientFile.json */; };
 		EAADC02216E113A5009E7AF9 /* MobileClinicFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADC02116E113A5009E7AF9 /* MobileClinicFacade.m */; };
+		EAC0D7D116FB9E7000621DDC /* BaseObject+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC0D7D016FB9E7000621DDC /* BaseObject+Protected.m */; };
+		EAC0D7D216FB9E7000621DDC /* BaseObject+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC0D7D016FB9E7000621DDC /* BaseObject+Protected.m */; };
 		EAC19C7516DDB72A00B0B8DA /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C7416DDB72A00B0B8DA /* Visitation.m */; };
 		EAC19C8216DEC07500B0B8DA /* Patients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C8116DEC07500B0B8DA /* Patients.m */; };
 		EAC37EE416EEBC3700836C1C /* ColorMe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37EE316EEBC3700836C1C /* ColorMe.m */; };
@@ -400,6 +402,8 @@
 		EAADC02416E113D2009E7AF9 /* MobileClinicFacadeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileClinicFacadeProtocol.h; sourceTree = "<group>"; };
 		EAADC02516E1163D009E7AF9 /* PatientObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObjectProtocol.h; sourceTree = "<group>"; };
 		EAADC02916E36F78009E7AF9 /* VisitationObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitationObjectProtocol.h; sourceTree = "<group>"; };
+		EAC0D7CF16FB9E7000621DDC /* BaseObject+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseObject+Protected.h"; sourceTree = "<group>"; };
+		EAC0D7D016FB9E7000621DDC /* BaseObject+Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseObject+Protected.m"; sourceTree = "<group>"; };
 		EAC19C7316DDB72A00B0B8DA /* Visitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Visitation.h; sourceTree = "<group>"; };
 		EAC19C7416DDB72A00B0B8DA /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visitation.m; sourceTree = "<group>"; };
 		EAC19C8016DEC07500B0B8DA /* Patients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patients.h; sourceTree = "<group>"; };
@@ -1047,9 +1051,11 @@
 			isa = PBXGroup;
 			children = (
 				EAC37F0816F178B800836C1C /* Database */,
+				EAC0D7CF16FB9E7000621DDC /* BaseObject+Protected.h */,
+				EAC0D7D016FB9E7000621DDC /* BaseObject+Protected.m */,
+				EAE6CE0216BE4E45008949DC /* BaseObjectProtocol.h */,
 				EAE6CDD216BE46CC008949DC /* BaseObject.h */,
 				EAE6CDD316BE46CC008949DC /* BaseObject.m */,
-				EAE6CE0216BE4E45008949DC /* BaseObjectProtocol.h */,
 			);
 			name = "Base Object";
 			sourceTree = "<group>";
@@ -1297,6 +1303,7 @@
 				EAC37F0D16F19DB800836C1C /* GCDAsyncSocket.m in Sources */,
 				4602DFD116F7BF0600B4F58C /* PharmacyPrescriptionViewController.m in Sources */,
 				EA09329816F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */,
+				EAC0D7D116FB9E7000621DDC /* BaseObject+Protected.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,6 +1387,7 @@
 				EA09329916F8287300536DF3 /* PharmacyPrescriptionCell.m in Sources */,
 				0FA7EAA416F8F02B001BC24E /* DoctorPatientViewControllerTest.m in Sources */,
 				0F459E1116F90B3300047304 /* CurrentDiagnosisViewControllerTest.m in Sources */,
+				EAC0D7D216FB9E7000621DDC /* BaseObject+Protected.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,6 +1474,7 @@
 		4677412E16BD931E002FD4A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
@@ -1479,6 +1488,7 @@
 					"$(FRANK_LDFLAGS)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -1488,7 +1498,7 @@
 		4677412F16BD931E002FD4A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Montaque (62654Q2EZG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
@@ -1497,7 +1507,7 @@
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/TestFlightSDK1.1\"";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "83C4DDE5-1829-4575-9DB5-F361306A6958";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;

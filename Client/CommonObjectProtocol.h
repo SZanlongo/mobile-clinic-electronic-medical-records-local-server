@@ -20,4 +20,8 @@
 
 -(void)FindAllObjectsOnServerFromParentObject:(NSDictionary*)parentObject OnCompletion:(ObjectResponse)eventResponse;
 
+/**
+ * Updates the given object and executes the given instruction on the server side
+ */
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock witData:(NSMutableDictionary*)dataToSend AndInstructions:(NSInteger)instruction onCompletion:(ObjectResponse)response;
 @end

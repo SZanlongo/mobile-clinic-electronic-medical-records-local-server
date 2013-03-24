@@ -14,4 +14,7 @@
 
 -(NSArray *)FindAllObjectsLocallyFromParentObject;
 
+-(NSString *)printFormattedObject:(NSDictionary *)object;
+
+-(NSArray*)serviceAllObjectsForParentID:(NSString*)parentID;
 @end

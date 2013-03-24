@@ -13,8 +13,6 @@
 
 @interface VisitationObject : BaseObject<VisitationObjectProtocol,CommonObjectProtocol>{
     NSString* associatedPatient;
-    Visitation* visit;
 }
-
 
 @end
