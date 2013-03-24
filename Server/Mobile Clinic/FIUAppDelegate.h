@@ -8,6 +8,7 @@
 #define APPDELEGATE_STARTED @"slow appdelegate"
 #import <Cocoa/Cocoa.h>
 #import "ServerCore.h"
+#import "CloudService.h"
 
 @interface FIUAppDelegate : NSObject <NSApplicationDelegate>{
     

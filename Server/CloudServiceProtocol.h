@@ -14,4 +14,6 @@
 
 -(void)queryWithPartialURL:(NSString *)partialURL parameters: (NSDictionary *)params imageData:(NSData *)imageData completion:(void(^)(NSError *error, NSDictionary *result)) completion;
 
+-(void)getAccessToken:(void(^)(BOOL success)) completion;
+-(void)getUserToken:(void(^)(BOOL success)) completion;
 @end

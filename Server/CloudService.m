@@ -11,6 +11,11 @@
 @interface CloudService()
 {
     NSString *kURL;
+    NSString *kAccessToken;
+    BOOL isAuthenticated;
+    NSString *kApiKey;
+    NSString *kUserToken;
+    NSString *kLocalServerKey;
 }
 @end
 
@@ -18,33 +23,163 @@
 
 #pragma mark - Cloud API
 #pragma mark-
+
++(CloudService *) cloud{
+    static CloudService *mApi = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        mApi = [[self alloc]init];
+    });
+    
+    return mApi;
+}
+
 -(id)init{
     self = [super init];
     if(self)
     {
-        kURL = @"http://staging-webapp.herokuapp.com/api/";
+//        kURL = @"http://staging-webapp.herokuapp.com/";
+        kApiKey = @"12345";
+        kAccessToken = @"";
+        kUserToken = @"";
+        isAuthenticated = NO;
         //production
 //        kURL = @"http://znja-webapp.herokuapp.com/api/";
-        //        kURL = @"http://0.0.0.0:3000/api/";
+        kURL = @"http://0.0.0.0:3000/";
     }
     return self;
 }
 
--(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion
-{
+-(void)getAccessToken:(void(^)(BOOL success)) completion{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc]init];
+    [params setObject:kApiKey forKey:@"api_key"];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        [self queryWithPartialURL:stringQuery parameters:params completion:completion];
+        NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@%@", kURL, @"auth/access_token"]];
+        
+        NSData *data;
+        
+        if (params) {
+            NSData *json = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+            
+            data = [[NSString stringWithFormat:@"%@%@",
+                     @"&params=",[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding] ]
+                    dataUsingEncoding: NSUTF8StringEncoding];
+        }
+        else
+        {
+            data = [[NSString stringWithFormat:@"%@",@""] dataUsingEncoding: NSUTF8StringEncoding];
+        }
+        
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+        
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody: data];
+        
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            
+            if(!error){
+                NSError *jsonError;
+                
+                //read and print the server response for debug
+                NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"%@", myString);
+                
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+                
+                if ((completion && json) || (completion && jsonError)) {
+                    kAccessToken = [[json objectForKey:@"data"] objectForKey:@"access_token"];
+                    completion(YES);
+                }
+            }
+            else
+            {
+                completion(NO);
+            }
+            
+        }];
+        
+    });
+}
+
+-(void)getUserToken:(void(^)(BOOL success)) completion{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc]init];
+    [params setObject:kAccessToken forKey:@"access_token"];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        
+        NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@%@", kURL, @"auth/user_token"]];
+        
+        NSData *data;
+        
+        if (params) {
+            NSData *json = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+            
+            data = [[NSString stringWithFormat:@"%@%@",
+                     @"&params=",[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding] ]
+                    dataUsingEncoding: NSUTF8StringEncoding];
+        }
+        else
+        {
+            data = [[NSString stringWithFormat:@"%@",@""] dataUsingEncoding: NSUTF8StringEncoding];
+        }
+        
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+        
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody: data];
+        
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            
+            if(!error){
+                NSError *jsonError;
+                
+                //read and print the server response for debug
+                NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"%@", myString);
+                
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+                
+                if ((completion && json) || (completion && jsonError)) {
+                    kUserToken = [[json objectForKey:@"data"] objectForKey:@"user_token"];
+                    completion(YES);
+                }
+            }
+            else
+            {
+                completion(NO);
+            }
+            
+        }];
+        
+    });
+}
+
+-(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params completion:(void(^)(NSError *error, NSDictionary *result)) completion
+{
+    NSMutableDictionary *mDic = [[NSMutableDictionary alloc]initWithDictionary:params];
+    [mDic setObject:kUserToken forKey:@"user_token"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [self queryWithPartialURL:[NSString stringWithFormat:@"api/%@", stringQuery] parameters:mDic completion:completion];
         
     });
 }
 
 -(void)query:(NSString *)stringQuery parameters: (NSDictionary *)params imageData:(NSData *)imageData completion:(void(^)(NSError *error, NSDictionary *result)) completion
 {
-    
+    NSMutableDictionary *mDic = [[NSMutableDictionary alloc]initWithDictionary:params];
+    [mDic setObject:kUserToken forKey:@"user_token"];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),  ^{
         
-        [self queryWithPartialURL:stringQuery parameters:params imageData:imageData completion:completion];
+        [self queryWithPartialURL:[NSString stringWithFormat:@"api/%@", mDic] parameters:params imageData:imageData completion:completion];
         
     });
     
