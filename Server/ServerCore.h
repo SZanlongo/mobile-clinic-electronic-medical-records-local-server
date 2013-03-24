@@ -9,18 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "GCDAsyncSocket.h"
 #import "ServerProtocol.h"
-@interface ServerCore : NSObject <GCDAsyncSocketDelegate,NSNetServiceDelegate> {
+@interface ServerCore : NSObject <ServerProtocol,GCDAsyncSocketDelegate,NSNetServiceDelegate> {
     NSNetService *netService;
 	GCDAsyncSocket *asyncSocket;
     NSMutableData* globalData;
 	NSMutableArray *connectedSockets;
     dispatch_queue_t multiThread;
+    BOOL isServerRunning;
 }
-@property(assign) BOOL isServerRunning;
-+(id)sharedInstance;
--(void)stopServer;
--(void)startServer;
--(NSString*)getCurrentConnectionName;
-
-- (NSInteger)numberOfConnections;
 @end

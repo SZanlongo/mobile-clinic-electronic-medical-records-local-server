@@ -38,6 +38,7 @@ typedef enum {
 
 #pragma mark - BaseObjectProtocol Variables
 #pragma mark
+ 
 @property(nonatomic, weak)      id client;
 @property(nonatomic, assign)    ObjectTypes objectType;
 @property(nonatomic, assign)    RemoteCommands commands;

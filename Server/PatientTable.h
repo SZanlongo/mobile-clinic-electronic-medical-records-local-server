@@ -10,20 +10,23 @@
 #import "PatientObject.h"
 #import "VisitationObject.h"
 #import "PrescriptionObject.h"
-@interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSBrowserDelegate>{
-    PatientObject* patientsHandler;
-    VisitationObject* visitsHandler;
-    PrescriptionObject* prescriptionHandler;
+@interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate>{
+    
     NSArray* patientList;
     NSMutableArray* visitList;
     NSMutableArray* allItems;
-    NSManagedObject* patient;
     NSInteger selectedRow;
 }
-@property (weak) IBOutlet NSBrowser *patientDirectory;
+@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+@property (weak) IBOutlet NSTableView *patientTableView;
+@property (weak) IBOutlet NSTableView *visitTableView;
+@property (weak) IBOutlet NSButton *details;
+
+
+- (IBAction)showDetails:(id)sender;
 
 - (IBAction)refreshPatients:(id)sender;
 - (IBAction)unblockPatients:(id)sender;
-- (IBAction)pushPatientsIntoCloud:(id)sender;
+- (IBAction)getPatientsFromCloud:(id)sender;
 
 @end

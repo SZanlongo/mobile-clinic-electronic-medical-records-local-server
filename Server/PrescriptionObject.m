@@ -83,5 +83,11 @@ NSString* isLockedBy;
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:PRESCRIBETIME]];
 }
 
-
+-(NSArray *)serviceAllObjectsForParentID:(NSString *)parentID{
+    visitID = parentID;
+    return [self FindAllObjectsLocallyFromParentObject];
+}
+-(NSString *)printFormattedObject:(NSDictionary *)object{
+    return [NSString stringWithFormat:@" Medication Name:\t%@ \n Dose:\t%@ \n Notes:\t%@ \n ",[object objectForKey:MEDICATIONID],[object objectForKey:TABLEPERDAY],[object objectForKey:INSTRUCTIONS]];
+}
 @end

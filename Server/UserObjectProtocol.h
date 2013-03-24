@@ -20,5 +20,4 @@
 @protocol UserObjectProtocol <NSObject>
 
 -(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder;
--(NSArray*)serviceAllObjects;
 @end

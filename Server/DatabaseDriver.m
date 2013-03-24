@@ -32,7 +32,7 @@ return self;
 }
 
 -(void)SaveCurrentObjectToDatabase:(NSManagedObject*)databaseObject{
-    [appDelegate saveAction:nil];
+    [database saveContext];
     [database.managedObjectContext refreshObject:databaseObject mergeChanges:YES];
 }
 

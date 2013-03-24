@@ -8,115 +8,112 @@
 
 #import "PatientTable.h"
 #define INNER   @"Inner"
-
+#import "DataProcessor.h"
+#import "VisitView.h"
+VisitView* visit;
 @interface PatientTable ()
-
+@property(strong)NSArray* patientArray;
+@property(strong)NSArray* AllVisitArray;
+@property(strong)NSArray* visitArray;
 @end
 
 @implementation PatientTable
-
+@synthesize patientArray,visitArray,patientTableView,visitTableView,AllVisitArray,progressIndicator;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        patientsHandler = [[PatientObject alloc]init];
-        visitsHandler = [[VisitationObject alloc]init];
-        [self reloadData];
+        [self refreshPatients:nil];
     }
     return self;
 }
 
--(void)reloadData{
-   
-    patientList = [NSArray arrayWithArray:[patientsHandler serviceAllObjects]];
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+    NSDictionary* commonDictionary;
     
-    allItems = [[NSMutableArray alloc]init];
-    
-    for (NSMutableDictionary* patientDictionary in patientList) {
-        
-        NSArray* temp = [visitsHandler serviceAllObjectsForParentID:[patientDictionary objectForKey:PATIENTID]];
-
-        NSMutableArray* allVisits = [[NSMutableArray alloc]initWithCapacity:temp.count];
-        
-        for (NSDictionary* v in temp) {
-            // Place all visits into array
-            [allVisits addObject:v];
+    if([aTableView isEqualTo:patientTableView]){
+        commonDictionary =  [patientArray objectAtIndex:rowIndex];
+        return [commonDictionary objectForKey:aTableColumn.identifier];
+    }else{
+        commonDictionary = [visitArray objectAtIndex:rowIndex];
+        id obj = [commonDictionary objectForKey:([aTableColumn.identifier isEqualToString:@"visitDate"])?TRIAGEIN:CONDITION];
+        if ([obj isKindOfClass:[NSDate class]]) {
+            return [obj convertNSDateToMonthDayYearTimeString];
         }
-        
-        [patientDictionary setValue:allVisits forKey:INNER];
-        
-        [allItems addObject:patientDictionary];
-    }
-    
-    [_patientDirectory loadColumnZero];
-}
-
-- (id)rootItemForBrowser:(NSBrowser *)browser {
-
-    return allItems;
-}
-
--(NSInteger)browser:(NSBrowser *)browser numberOfChildrenOfItem:(id)item{
-    if ([item isKindOfClass:[NSArray class]]) {
-        return [item count];
-    }else if ([item isKindOfClass:[NSDictionary class]]){
-        return [[item objectForKey:INNER]count];
-    }else{
-        return 0;
-    }
-}
--(id)browser:(NSBrowser *)browser child:(NSInteger)index ofItem:(id)item{
-   
-    if ([item isKindOfClass:[NSArray class]]) {
-        return [item objectAtIndex:index];
-    }else if([item isKindOfClass:[NSDictionary class]]) {
-        return [[item objectForKey:INNER]objectAtIndex:index];
-    }else{
-        return item;
+        return obj;
     }
 }
 
--(BOOL)browser:(NSBrowser *)browser isLeafItem:(id)item{
-
-    if ([item isKindOfClass:[NSDictionary class]]) {
-        NSArray* inner = [item objectForKey:INNER];
-        return (inner.count == 0 || !inner);
-    }
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+    if([aTableView isEqualTo:patientTableView])
+        return patientArray.count;
     else
-        return NO;
+        return visitArray.count;
 }
 
--(id)browser:(NSBrowser *)browser objectValueForItem:(id)item{
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
     
-    NSString* fn;
-    if ([item isKindOfClass:[NSDictionary class]]) {
-        fn =  [item objectForKey:FIRSTNAME];
-        if (fn) {
-            return [NSString stringWithFormat:@"%@ %@",fn,[item objectForKey:FAMILYNAME]];
-        }else{
-            return [NSString stringWithFormat:@"%@",[item objectForKey:CONDITION]];
-        }
+    if([tableView isEqualTo:patientTableView]){
+        
+        NSDictionary* patient = [patientArray objectAtIndex:row];
+
+        visitArray = [NSArray arrayWithArray:[[[VisitationObject alloc]init]serviceAllObjectsForParentID:[patient objectForKey:PATIENTID]]];
+        [visitTableView reloadData];
+
     }
-    return nil;
-}
--(BOOL)browser:(NSBrowser *)sender selectRow:(NSInteger)row inColumn:(NSInteger)column{
-    selectedRow = row;
+
     return YES;
 }
 
+
+- (IBAction)showDetails:(id)sender {
+  
+    
+    
+    NSInteger visitRow = [visitTableView selectedRow];
+    
+    if (visitRow > -1) {
+        if (!visit.window) {
+            visit= [[VisitView alloc]initWithWindowNibName:@"VisitView" owner:self];
+            [visit showWindow:self];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:VISITVIEWEVENT object:[NSArray arrayWithObjects:[visitArray objectAtIndex:visitRow],[patientArray objectAtIndex:[patientTableView selectedRow]], nil]];
+            
+            
+        }
+    }
+}
+
 - (IBAction)refreshPatients:(id)sender {
-    [self reloadData];
+    [progressIndicator startAnimation:self];
+    patientArray = [NSArray arrayWithArray:[[[PatientObject alloc]init]serviceAllObjectsForParentID:nil]];
+    visitArray = nil;
+    [patientTableView reloadData];
+    [visitTableView reloadData];
+    [progressIndicator stopAnimation:self];
 }
 
 - (IBAction)unblockPatients:(id)sender {
-    patient = [patientList objectAtIndex:selectedRow];
+   NSMutableDictionary* patient = [patientList objectAtIndex:selectedRow];
+    
     [patient setValue:@"" forKey:ISLOCKEDBY];
-    [patientsHandler SaveCurrentObjectToDatabase:patient];
-    patient = nil;
+    
+    [[[PatientObject alloc]initWithCachedObjectWithUpdatedObject:patient]saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        // Code to change color of object Here
+    }];
+   
 }
 
-- (IBAction)pushPatientsIntoCloud:(id)sender {
+- (IBAction)getPatientsFromCloud:(id)sender {
+   
+    [progressIndicator startAnimation:self];
     
+    [[[PatientObject alloc]init] PullAllPatientsFromCloud:^(id<BaseObjectProtocol> data, NSError *error) {
+        [progressIndicator stopAnimation:self];
+        [self refreshPatients:nil];
+    }];
 }
 
 @end

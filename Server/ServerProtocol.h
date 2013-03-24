@@ -10,8 +10,11 @@
 
 @protocol ServerProtocol <NSObject>
 @required
-- (void) startClient;
-- (void) stopClient;
-
-- (BOOL) isClientConntectToServer;
+@property(assign) BOOL isServerRunning;
++(id)sharedInstance;
+- (void) startServer;
+- (void) stopServer;
+-(NSString*)getHostNameForSocketAtIndex:(NSInteger)index;
+-(NSString*)getPortForSocketAtIndex:(NSInteger)index;
+- (NSInteger)numberOfConnections;
 @end

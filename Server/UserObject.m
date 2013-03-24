@@ -96,10 +96,8 @@
     
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:USERNAME]];
 }
-
--(NSArray*)serviceAllObjects{
-    
-    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:USERNAME]];
+-(NSArray *)serviceAllObjectsForParentID:(NSString *)parentID{
+     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:USERNAME]];
 }
 
 #pragma mark- Public Methods

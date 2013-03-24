@@ -21,9 +21,9 @@
 #import "CommonObjectProtocol.h"
 @protocol PatientObjectProtocol <NSObject>
 
--(NSArray*)serviceAllObjects;
+
 -(NSArray*)FindAllOpenPatients;
 -(void)UnlockPatient:(ObjectResponse)WhatIDOAfterThePatientIsUnlocked;
--(void) PushPatientsToCloud;
+-(void)PullAllPatientsFromCloud:(ObjectResponse)onComplete;
 -(void) SyncPatientsWithCloud;
 @end

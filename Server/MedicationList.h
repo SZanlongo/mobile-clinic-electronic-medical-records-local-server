@@ -7,7 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MedicationObject.h"
+@interface MedicationList : NSViewController <NSTableViewDataSource,NSTableViewDelegate>
 
-@interface MedicationList : NSViewController
-
+@property (weak) IBOutlet NSTableView *tableView;
+- (IBAction)destructiveResync:(id)sender;
+- (IBAction)setupView:(id)sender;
 @end

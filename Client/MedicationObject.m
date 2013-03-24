@@ -8,7 +8,8 @@
 #define DATABASE    @"Medication"
 
 #import "MedicationObject.h"
-#import "StatusObject.h"
+#import "BaseObject+Protected.h"
+
 @implementation MedicationObject
 
 #pragma mark- DATABASE PROTOCOL OVERIDES
@@ -50,6 +51,9 @@
 
 #pragma mark- COMMON PROTOCOL METHODS
 #pragma mark-
+-(void)UpdateObjectAndShouldLock:(BOOL)shouldLock witData:(NSMutableDictionary *)dataToSend AndInstructions:(NSInteger)instruction onCompletion:(ObjectResponse)response{
+    NSLog(@"Does not need to be implemented");
+}
 -(void)createNewObject:(NSDictionary*) object onCompletion:(ObjectResponse)onSuccessHandler{
     NSLog(@"Does not need to be implemented");
 }

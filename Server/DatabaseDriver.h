@@ -8,10 +8,8 @@
 #define OBJECTID          @"objectId"
 #import <Foundation/Foundation.h>
 #import "DatabaseDriverProtocol.h"
-#import "FIUAppDelegate.h"
 #import "DatabaseProtocol.h"
 @interface DatabaseDriver : NSObject<DatabaseDriverProtocol>{
-    FIUAppDelegate* appDelegate;
     id<DatabaseProtocol> database;
 }
 

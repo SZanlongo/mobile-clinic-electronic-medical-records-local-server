@@ -182,7 +182,14 @@ NSMutableData* majorData;
         
         return myDictionary;
 }
-
+-(NSString*)getHostNameForSocketAtIndex:(NSInteger)index{
+   GCDAsyncSocket* sock = [connectedSockets objectAtIndex:index];
+    return [sock connectedHost];
+}
+-(NSString*)getPortForSocketAtIndex:(NSInteger)index{
+    GCDAsyncSocket* sock = [connectedSockets objectAtIndex:index];
+    return [NSString stringWithFormat:@"%hu",sock.connectedPort];
+}
 -(void)stopServer{
     if (isServerRunning) {
         [asyncSocket disconnect];
@@ -197,7 +204,4 @@ NSMutableData* majorData;
     return connectedSockets.count;
 }
 
--(NSString *)getCurrentConnectionName{
-    return asyncSocket.connectedHost;
-}
 @end

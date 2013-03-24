@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 #define ISOPEN  @"isOpen"
+#import "DataProcessor.h"
 #import "PatientObject.h"
 #import "StatusObject.h"
 #import "NSString+Validation.h"
@@ -101,11 +102,13 @@ NSString* isLockedBy;
     
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:FIRSTNAME]];
 }
--(NSArray*)serviceAllObjects{
-    
+-(NSArray*)serviceAllObjectsForParentID:(NSString*)parentID{
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
 }
 
+-(NSString *)printFormattedObject:(NSDictionary *)object{
+    return [NSString stringWithFormat:@" Patient Name:\t%@ %@ \n Village:\t%@ \n Date of Birth:\t%@ \n Age:\t%li \n Sex:\t%li \n",[object objectForKey:FIRSTNAME],[object objectForKey:FAMILYNAME],[object objectForKey:VILLAGE],[[object objectForKey:DOB]convertNSDateFullBirthdayString],[[object objectForKey:DOB]getNumberOfYearsElapseFromDate],[[object objectForKey:SEX]integerValue]];
+}
 #pragma mark - Private Methods
 #pragma mark -
 
@@ -117,34 +120,63 @@ NSString* isLockedBy;
 }
 
 
--(void)PushPatientsToCloud{
-//    NSArray* allPatients = [self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME];
-//
-//    for (Patients* syncPatient in allPatients) {
+-(void)PullAllPatientsFromCloud:(ObjectResponse)onComplete{
+   // NSArray* allPatients = [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:FIRSTNAME]];
+[cloudAPI query:@"patients" parameters:nil completion:^(NSError *error, NSDictionary *result) {
+    if (!error) {
+        NSArray* allPatients = [result objectForKey:@"data"];
+        for (int i = 0; i < allPatients.count; i++) {
+            NSMutableDictionary* serverPatient = [NSMutableDictionary dictionaryWithDictionary:[allPatients objectAtIndex:i]];
+            [serverPatient removeObjectForKey:@"createdAt"];
+            [serverPatient removeObjectForKey:@"dob"];
+            [serverPatient setValue:[serverPatient objectForKey:@"village"] forKey:VILLAGE];
+            [serverPatient removeObjectForKey:@"village"];
+            [serverPatient setValue:[NSNumber numberWithInteger:[[serverPatient objectForKey:SEX]integerValue]] forKey:SEX];
+            [self setValueToDictionaryValues:serverPatient];
+            [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                
+            }];
+        }
+    }
+}];
+//    for (NSDictionary* syncPatient in allPatients) {
 //        
-//        self.databaseObject = syncPatient;
-//        
-//        [self query:@"patients" parameters:nil completion:^(NSError *error, NSDictionary *result) {
+//        [cloudAPI query:@"patient_for_id" parameters:[NSDictionary dictionaryWithObject:[syncPatient objectForKey:PATIENTID] forKey:@"userId"] completion:^(NSError *error, NSDictionary *result) {
 //            
-//            NSMutableDictionary* temp = [NSMutableDictionary dictionaryWithDictionary:[[self consolidateForTransmitting]objectForKey:DATABASEOBJECT]];
-//            
-//            //TODO: Deal with date values
-//            [temp setValue:[self convertDateToSeconds:syncPatient.age] forKey:DOB];
-//            //TODO: Deal with visists
-//            [temp removeObjectForKey:@"visits"];
-//            //TODO: Remover CreatedAt
-//            [temp setValue:@"131231" forKey:@"createdAt"];
-//       
-//            if ([[result objectForKey:@"data"]count] == 0) {
-//                [self query:CREATEPATIENT parameters:temp  completion:nil];
-//        } else {
-//            [self query:EDITPATIENT parameters:temp  completion:nil];
-//         }
-//            
+//            if (!error) {
+//                NSMutableDictionary* old = [NSMutableDictionary dictionaryWithDictionary:[result objectForKey:@"data"]];
+//                [old setDictionary:syncPatient];
+//                
+//                [self setValueToDictionaryValues:old];
+//                
+//                [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+//                    if (data) {
+//                        NSDate* date = [syncPatient objectForKey:DOB];
+//                        
+//                        //TODO: Deal with date values
+//                        [old setValue:[NSNumber numberWithLong:[date timeIntervalSince1970]] forKey:DOB];
+//                        
+//                        if ([[result objectForKey:@"data"]count] == 0)
+//                            [cloudAPI query:CREATEPATIENT parameters:old  completion:^(NSError *error, NSDictionary *result) {
+//                                NSLog(@"Create Patient: %@",result);
+//                            }];
+//                        else
+//                            [cloudAPI query:EDITPATIENT parameters:old  completion:^(NSError *error, NSDictionary *result) {
+//                                NSLog(@"Edited Patient: %@",result);
+//                            }];
+//                    }
+//                }];
+//            }
+//    
 //        }];
 //    }
+    if (onComplete) {
+        onComplete(self,nil);
+    }
 }
-
+-(void)PushAllPatientsToCloud:(ObjectResponse)onComplete{
+    
+}
 -(void)SyncPatientsWithCloud{
 //    NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
 //    
