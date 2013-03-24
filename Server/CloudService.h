@@ -10,5 +10,5 @@
 #import "CloudServiceProtocol.h"
 @interface CloudService : NSObject<CloudServiceProtocol>
 +(CloudService *) cloud;
--(id)init;
+
 @end

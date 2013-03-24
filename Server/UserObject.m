@@ -111,7 +111,7 @@
     //TODO: Remove Hard Dependencies
     [mDic setObject:@"1" forKey:@"created_at"];
     
-    [cloudAPI query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
+    [[CloudService cloud] query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
         if (!error) {
             [self storeMultipleCloudUsers:result];
             responder(self,nil);
@@ -200,28 +200,28 @@
     //TODO: Remove Hard Dependencies
     NSArray* users = [cloudUsers objectForKey:@"data"];
     
-    for (NSDictionary* userInfo in users) {
-        self.databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME]];
-        
-        if (!self.databaseObject) {
-            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-            
-            [self linkDatabaseObjects];
-            
-            //TODO: Why are the improper values still showing?
-            //[self copyDictionaryValues:userInfo intoManagedObject:self.databaseObject];
-            user.userName = [userInfo objectForKey:USERNAME];
-            //TODO: How to deal with password
-            user.password = @"000000";
-            user.firstName = [userInfo objectForKey:FIRSTNAME];
-            user.lastName = [userInfo objectForKey:LASTNAME];
-            user.email = [userInfo objectForKey:EMAIL];
-            user.status = [userInfo objectForKey:STATUS];
-            user.userType = [userInfo objectForKey:USERTYPE];
-            [self SaveCurrentObjectToDatabase:user];
-            user = nil;
-        }  
-    }
+//    for (NSDictionary* userInfo in users) {
+//        self.databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME]];
+//        
+//        if (!self.databaseObject) {
+//            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
+//            
+//            [self linkDatabaseObjects];
+//            
+//            //TODO: Why are the improper values still showing?
+//            //[self copyDictionaryValues:userInfo intoManagedObject:self.databaseObject];
+//            user.userName = [userInfo objectForKey:USERNAME];
+//            //TODO: How to deal with password
+//            user.password = @"000000";
+//            user.firstName = [userInfo objectForKey:FIRSTNAME];
+//            user.lastName = [userInfo objectForKey:LASTNAME];
+//            user.email = [userInfo objectForKey:EMAIL];
+//            user.status = [userInfo objectForKey:STATUS];
+//            user.userType = [userInfo objectForKey:USERTYPE];
+//            [self SaveCurrentObjectToDatabase:user];
+//            user = nil;
+//        }  
+//    }
 }
 
 

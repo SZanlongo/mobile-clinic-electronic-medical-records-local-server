@@ -10,6 +10,7 @@
 #import "BaseObject.h"
 #import "Users.h"
 #import "UserObjectProtocol.h"
+#import "CloudService.h"
 typedef enum {
     kTriageNurse    = 0,
     kDoctor         = 1,

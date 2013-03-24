@@ -64,17 +64,11 @@ PatientTable *pTable;
 {
     connection = [ServerCore sharedInstance];
     
+    [CloudService cloud];
+    
     [connection startServer];
     
     NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
-    
-    [[CloudService cloud] getAccessToken:^(BOOL success) {
-        if(success)
-            [[CloudService cloud] getUserToken:^(BOOL success) {
-                if(success)
-                    NSLog(@"STARCRAFT TIME");
-            }];
-    }];
     
     [_createMedicineMenu setEnabled:![uDefault boolForKey:PTESTING]];
     [_createPatientMenu setEnabled:![uDefault boolForKey:MTESTING]];

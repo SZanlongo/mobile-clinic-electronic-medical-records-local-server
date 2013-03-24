@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "ServerCore.h"
 #import "CloudService.h"
+#import "MainMenu.h"
+@interface FIUAppDelegate : NSObject <NSTableViewDataSource,NSTableViewDelegate,NSApplicationDelegate>
+
 
 @property (weak) IBOutlet NSMenuItem *createPatientMenu;
 @property (weak) IBOutlet NSMenuItem *createMedicineMenu;
