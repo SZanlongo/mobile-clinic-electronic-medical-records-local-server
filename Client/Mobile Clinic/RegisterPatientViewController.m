@@ -8,8 +8,10 @@
 
 #import "DateController.h"
 #import "RegisterPatientViewController.h"
+#import "ManageFingersViewController.h"
 
 UIPopoverController * pop;
+UIPopoverController * fPop;
 
 @interface RegisterPatientViewController ()
 
@@ -112,6 +114,16 @@ UIPopoverController * pop;
     }
 }
 
+-(IBAction)registerFinger:(id)sender{
+    ManageFingersViewController *manageFingers = [self getViewControllerFromiPadStoryboardWithName:@"manageFingers"];
+    
+    if (!fPop) {
+        fPop = [[UIPopoverController alloc]initWithContentViewController:manageFingers];
+    }
+    
+    [fPop presentPopoverFromRect:_registerFingerButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
 - (IBAction)getAgeOfPatient:(id)sender
 {    
     // get datepicker view    
@@ -197,5 +209,7 @@ UIPopoverController * pop;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
+
+
 
 @end
