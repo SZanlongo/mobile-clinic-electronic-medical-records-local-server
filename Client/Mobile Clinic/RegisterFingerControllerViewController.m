@@ -14,6 +14,11 @@
 
 @implementation RegisterFingerControllerViewController
 
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.contentSizeForViewInPopover = CGSizeMake(150.0, 140.0);
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -23,11 +28,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
 
 - (void)didReceiveMemoryWarning
 {
