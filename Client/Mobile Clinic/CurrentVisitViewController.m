@@ -100,13 +100,183 @@
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     if (textView == self.conditionsTextbox) {
-        self.view.center = CGPointMake(self.view.center.x + 132, self.view.center.y);
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.view.center = CGPointMake(self.view.center.x + 130, self.view.center.y);
+            
+            //move the patient weight stuff
+            CGRect weightFrame = self.patientWeightField.frame;
+            weightFrame.origin.y += 60;
+            weightFrame.origin.x -= 110;
+            weightFrame.size.width -= 30;
+            self.patientWeightField.frame = weightFrame;
+            
+            CGRect weightLabelFrame = self.patientWeightLabel.frame;
+            weightLabelFrame.origin.y += 60;
+            weightLabelFrame.origin.x -= 100;
+            self.patientWeightLabel.frame = weightLabelFrame;
+            
+            CGRect weightLabelMeasurement = self.patientWeightMeasurementLabel.frame;
+            weightLabelMeasurement.origin.y += 60;
+            weightLabelMeasurement.origin.x -= 140;
+            self.patientWeightMeasurementLabel.frame = weightLabelMeasurement;
+            
+            //move patient bp stuff
+            CGRect bloodPressureFrame = self.bloodPressureLabel.frame;
+            bloodPressureFrame.origin.y += 60;
+            bloodPressureFrame.origin.x -= 80;
+            self.bloodPressureLabel.frame = bloodPressureFrame;
+            
+            CGRect bloodPressureDividerFrame = self.bloodPressureDivider.frame;
+            bloodPressureDividerFrame.origin.y += 60;
+            bloodPressureDividerFrame.origin.x -= 95;
+            self.bloodPressureDivider.frame = bloodPressureDividerFrame;
+            
+            CGRect bloodPressureMeasurementFrame = self.bloodPressureMeasurementLabel.frame;
+            bloodPressureMeasurementFrame.origin.y += 60;
+            bloodPressureMeasurementFrame.origin.x -= 110;
+            self.bloodPressureMeasurementLabel.frame = bloodPressureMeasurementFrame;
+            
+            CGRect systolicField = self.systolicField.frame;
+            systolicField.origin.y += 65;
+            systolicField.origin.x -= 80;
+            systolicField.size.width -= 15;
+            self.systolicField.frame = systolicField;
+            
+            CGRect diastolicField = self.diastolicField.frame;
+            diastolicField.origin.y += 65;
+            diastolicField.origin.x -= 95;
+            diastolicField.size.width -= 15;
+            self.diastolicField.frame = diastolicField;
+
+            //move heart field
+            CGRect heartFrame = self.heartField.frame;
+            heartFrame.origin.y += 22;
+            heartFrame.origin.x += 50;
+            heartFrame.size.width -= 30;
+            self.heartField.frame = heartFrame;
+            
+            CGRect heartLabelFrame = self.heartFieldLabel.frame;
+            heartLabelFrame.origin.y += 22;
+            heartLabelFrame.origin.x += 50;
+            self.heartFieldLabel.frame = heartLabelFrame;
+            
+            CGRect heartMeasurementFrame = self.heartMeasurementLabel.frame;
+            heartMeasurementFrame.origin.y += 22;
+            heartMeasurementFrame.origin.x += 20;
+            self.heartMeasurementLabel.frame = heartMeasurementFrame;
+            
+            
+            //move respiration stuff
+            CGRect respirationLabelFrame = self.respirationLabel.frame;
+            respirationLabelFrame.origin.y += 22;
+            respirationLabelFrame.origin.x += 165;
+            self.respirationLabel.frame = respirationLabelFrame;
+            
+            CGRect respirationMeasurementFrame = self.respirationMeasurementLabel.frame;
+            respirationMeasurementFrame.origin.y += 22;
+            respirationMeasurementFrame.origin.x += 90;
+            self.respirationMeasurementLabel.frame = respirationMeasurementFrame;
+            
+            
+            CGRect respirationFrame = self.respirationField.frame;
+            respirationFrame.origin.y += 22;
+            respirationFrame.origin.x += 155;
+            respirationFrame.size.width -= 60;
+            self.respirationField.frame = respirationFrame;
+        }];
+        
     }
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView{
     if (textView == self.conditionsTextbox) {
-        self.view.center = CGPointMake(self.view.center.x - 132, self.view.center.y);
+        [UIView animateWithDuration:.3 animations:^{
+            
+            self.view.center = CGPointMake(self.view.center.x - 132, self.view.center.y);
+            
+            //move the patient weight stuff
+            CGRect weightFrame = self.patientWeightField.frame;
+            weightFrame.origin.y -= 60;
+            weightFrame.origin.x += 110;
+            weightFrame.size.width += 30;
+            self.patientWeightField.frame = weightFrame;
+            
+            CGRect weightLabelFrame = self.patientWeightLabel.frame;
+            weightLabelFrame.origin.y -= 60;
+            weightLabelFrame.origin.x += 100;
+            self.patientWeightLabel.frame = weightLabelFrame;
+            
+            CGRect weightLabelMeasurement = self.patientWeightMeasurementLabel.frame;
+            weightLabelMeasurement.origin.y -= 60;
+            weightLabelMeasurement.origin.x += 140;
+            self.patientWeightMeasurementLabel.frame = weightLabelMeasurement;
+            
+            //move patient bp stuff
+            CGRect bloodPressureFrame = self.bloodPressureLabel.frame;
+            bloodPressureFrame.origin.y -= 60;
+            bloodPressureFrame.origin.x += 80;
+            self.bloodPressureLabel.frame = bloodPressureFrame;
+            
+            CGRect bloodPressureDividerFrame = self.bloodPressureDivider.frame;
+            bloodPressureDividerFrame.origin.y -= 60;
+            bloodPressureDividerFrame.origin.x += 95;
+            self.bloodPressureDivider.frame = bloodPressureDividerFrame;
+            
+            CGRect bloodPressureMeasurementFrame = self.bloodPressureMeasurementLabel.frame;
+            bloodPressureMeasurementFrame.origin.y -= 60;
+            bloodPressureMeasurementFrame.origin.x += 110;
+            self.bloodPressureMeasurementLabel.frame = bloodPressureMeasurementFrame;
+            
+            CGRect systolicField = self.systolicField.frame;
+            systolicField.origin.y -= 65;
+            systolicField.origin.x += 80;
+            systolicField.size.width += 15;
+            self.systolicField.frame = systolicField;
+            
+            CGRect diastolicField = self.diastolicField.frame;
+            diastolicField.origin.y -= 65;
+            diastolicField.origin.x += 95;
+            diastolicField.size.width += 15;
+            self.diastolicField.frame = diastolicField;
+            
+            //move heart field
+            CGRect heartFrame = self.heartField.frame;
+            heartFrame.origin.y -= 22;
+            heartFrame.origin.x -= 50;
+            heartFrame.size.width += 30;
+            self.heartField.frame = heartFrame;
+            
+            CGRect heartLabelFrame = self.heartFieldLabel.frame;
+            heartLabelFrame.origin.y -= 22;
+            heartLabelFrame.origin.x -= 50;
+            self.heartFieldLabel.frame = heartLabelFrame;
+            
+            CGRect heartMeasurementFrame = self.heartMeasurementLabel.frame;
+            heartMeasurementFrame.origin.y -= 22;
+            heartMeasurementFrame.origin.x -= 20;
+            self.heartMeasurementLabel.frame = heartMeasurementFrame;
+            
+            
+            //move respiration stuff
+            CGRect respirationLabelFrame = self.respirationLabel.frame;
+            respirationLabelFrame.origin.y -= 22;
+            respirationLabelFrame.origin.x -= 165;
+            self.respirationLabel.frame = respirationLabelFrame;
+            
+            CGRect respirationMeasurementFrame = self.respirationMeasurementLabel.frame;
+            respirationMeasurementFrame.origin.y -= 22;
+            respirationMeasurementFrame.origin.x -= 90;
+            self.respirationMeasurementLabel.frame = respirationMeasurementFrame;
+            
+            
+            CGRect respirationFrame = self.respirationField.frame;
+            respirationFrame.origin.y -= 22;
+            respirationFrame.origin.x -= 155;
+            respirationFrame.size.width += 60;
+            self.respirationField.frame = respirationFrame;
+        }];
+
     }
 }
 
