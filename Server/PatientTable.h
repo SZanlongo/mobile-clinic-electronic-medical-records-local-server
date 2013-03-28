@@ -23,6 +23,7 @@
 @property (weak) IBOutlet NSTableView *visitTableView;
 @property (weak) IBOutlet NSButton *details;
 - (IBAction)importFile:(id)sender;
+- (IBAction)CloseSelectedPatient:(id)sender;
 
 - (IBAction)printPatient:(id)sender;
 - (IBAction)showDetails:(id)sender;

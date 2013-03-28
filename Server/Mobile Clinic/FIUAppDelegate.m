@@ -101,11 +101,17 @@ MainMenu* mainView;
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:obj];
         PatientObject *base = [[PatientObject alloc]init];
         
-        [base setValueToDictionaryValues:dic];
+        BOOL success = [base setValueToDictionaryValues:dic];
         
-        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
-        }];
+        if (success) {
+            [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                
+            }];
+        }else{
+            NSLog(@"Could not save Due to misconfiguration: %@",dic);
+        }
+        
+     
         
     }];
    
@@ -120,10 +126,16 @@ MainMenu* mainView;
         
         MedicationObject* base = [[MedicationObject alloc]init];
         
-        [base setValueToDictionaryValues:obj];
+        BOOL success = [base setValueToDictionaryValues:obj];
         
-        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-        }];
+        if (success) {
+            [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                
+            }];
+        }else{
+            NSLog(@"Could not save Due to misconfiguration: %@",obj);
+        }
+        
     }];
     
     NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];

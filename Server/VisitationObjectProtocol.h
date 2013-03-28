@@ -29,8 +29,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol VisitationObjectProtocol <NSObject>
+-(void)UnlockVisit:(ObjectResponse)onComplete;
 
--(NSArray*)FindAllOpenVisits;
 
--(NSArray*)serviceAllObjectsForParentID:(NSString*)parentID;
 @end

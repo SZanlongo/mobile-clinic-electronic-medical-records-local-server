@@ -156,7 +156,7 @@ BOOL isServerRunning;
         obj = [ObjectFactory createObjectForType:myDictionary];
     
         // setup the object to use the dictionary values
-        [obj unpackageFileForUser:myDictionary];
+      //  [obj unpackageFileForUser:myDictionary];
         
         NSLog(@"Dictionary: %@",[obj description]);
 

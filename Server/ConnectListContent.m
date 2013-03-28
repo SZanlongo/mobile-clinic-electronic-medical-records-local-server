@@ -11,7 +11,7 @@
 @implementation ConnectListContent
 @synthesize user;
 
-
+/*
 -(void)viewWillDraw{
     if (!appDelegate) {
         NSString* username;
@@ -52,5 +52,5 @@
            [[NSNotificationCenter defaultCenter]postNotificationName:SAVE_USER object:[data getObjectForAttribute:USERNAME]];
        }
    }];
-}
+}*/
 @end

@@ -494,11 +494,11 @@
 			isa = PBXGroup;
 			children = (
 				EAC37F1716F37A8F00836C1C /* CommonObjectProtocol.h */,
-				EAC37F0A16F17A9A00836C1C /* Prescription Object */,
 				EAC37F1916F394B300836C1C /* Status Object */,
 				EAC37F1816F3821F00836C1C /* User Objects */,
 				EA749BD016EDAF3F000F849F /* Patient Objects */,
 				EA749BCF16EDAF2E000F849F /* Visitation Objects */,
+				EAC37F0A16F17A9A00836C1C /* Prescription Object */,
 				EAC37F1D16F394E100836C1C /* Medication Objects */,
 			);
 			name = "Object Types (USE THESE ONLY)";
@@ -545,9 +545,9 @@
 		EAC37F0916F17A8A00836C1C /* Base Object */ = {
 			isa = PBXGroup;
 			children = (
-				EA9372A716BC622C00D3D617 /* BaseObjectProtocol.h */,
 				EA172D6216B6116800F00C61 /* BaseObject.h */,
 				EA172D6316B6116800F00C61 /* BaseObject.m */,
+				EA9372A716BC622C00D3D617 /* BaseObjectProtocol.h */,
 				EA51359C17015D93001761FC /* BaseObject+Protected.h */,
 				EA51359D17015D93001761FC /* BaseObject+Protected.m */,
 			);

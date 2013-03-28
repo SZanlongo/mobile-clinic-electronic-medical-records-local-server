@@ -7,6 +7,8 @@
 //
 
 #import "PrescriptionObject.h"
+#import "BaseObject+Protected.h"
+
 #define DATABASE    @"Prescription"
 NSString* visitID;
 NSString* isLockedBy;
@@ -42,9 +44,9 @@ NSString* isLockedBy;
 
 -(void)setupObject{
     
-    self.COMMONID =  PRESCRIPTIONID;
-    self.CLASSTYPE = kPrescriptionType;
-    self.COMMONDATABASE = DATABASE;
+    self->COMMONID =  PRESCRIPTIONID;
+    self->CLASSTYPE = kPrescriptionType;
+    self->COMMONDATABASE = DATABASE;
 }
 
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
@@ -55,13 +57,13 @@ NSString* isLockedBy;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    visitID = [self.databaseObject valueForKey:VISITID];
+    visitID = [self->databaseObject valueForKey:VISITID];
 }
 
 
 -(void)CommonExecution
 {
-    switch (self.commands) {
+    switch (self->commands) {
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;

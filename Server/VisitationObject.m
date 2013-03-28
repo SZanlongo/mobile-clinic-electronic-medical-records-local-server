@@ -11,6 +11,7 @@
 #import "UserObject.h"
 #import "StatusObject.h"
 #import "Visitation.h"
+#import "BaseObject+Protected.h"
 
 #define DATABASE    @"Visitation"
 NSString* patientID;
@@ -44,9 +45,9 @@ NSString* isLockedBy;
 
 -(void)setupObject{
     
-    self.COMMONID =  VISITID;
-    self.CLASSTYPE = kVisitationType;
-    self.COMMONDATABASE = DATABASE;
+    self->COMMONID =  VISITID;
+    self->CLASSTYPE = kVisitationType;
+    self->COMMONDATABASE = DATABASE;
 }
 
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
@@ -57,13 +58,13 @@ NSString* isLockedBy;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    patientID = [self.databaseObject valueForKey:PATIENTID];
+    patientID = [self->databaseObject valueForKey:PATIENTID];
 }
 
 
 -(void)CommonExecution
 {
-    switch (self.commands) {
+    switch (self->commands) {
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;

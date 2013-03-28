@@ -26,45 +26,47 @@
     ServerCommand commandPattern;
     StatusObject* status;
     id<CloudServiceProtocol> cloudAPI;
+    
+    /** This needs to be set everytime information is recieved
+     * by the serverCore, so it knows how to send information
+     * back
+     */
+      id client;
+    
+      NSString* isLockedBy;
+    /** This needs to be set (during unpackageFileForUser:(NSDictionary*)data
+     * method) so that any recieving device knows how to unpack the
+     * information
+     */
+    ObjectTypes objectType;
+    /** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+     * method so the recieving device knows how to execute the request via
+     * the CommonExecution method
+     */
+        RemoteCommands commands;
+    
+    /** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+     * method so the recieving device knows how to execute the request via
+     * the CommonExecution method
+     */
+    NSManagedObject* databaseObject;
+    /** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+     * method so the recieving device knows how to execute the request via
+     * the CommonExecution method
+     */
+      NSString* COMMONDATABASE;
+    /** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+     * method so the recieving device knows how to execute the request via
+     * the CommonExecution method
+     */
+    NSString* COMMONID;
+    /** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
+     * method so the recieving device knows how to execute the request via
+     * the CommonExecution method
+     */
+    NSInteger CLASSTYPE;
 }
 
-/** This needs to be set everytime information is recieved
- * by the serverCore, so it knows how to send information
- * back
- */
-@property(nonatomic, weak)      id client;
 
-@property(nonatomic, weak)      NSString* isLockedBy;
-/** This needs to be set (during unpackageFileForUser:(NSDictionary*)data
- * method) so that any recieving device knows how to unpack the
- * information
- */
-@property(nonatomic, assign)    ObjectTypes objectType;
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
- */
-@property(nonatomic, assign)    RemoteCommands commands;
-
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
- */
-@property(strong, nonatomic)NSManagedObject* databaseObject;
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
- */
-@property(nonatomic, weak)      NSString* COMMONDATABASE;
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
- */
-@property(nonatomic, weak)      NSString* COMMONID;
-/** This needs to be set during the unpackageFileForUser:(NSDictionary*)data
- * method so the recieving device knows how to execute the request via
- * the CommonExecution method
- */
-@property(nonatomic, assign)    NSInteger CLASSTYPE;
 
 @end

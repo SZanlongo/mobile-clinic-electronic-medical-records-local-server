@@ -43,9 +43,9 @@ NSString* isLockedBy;
 
 -(void)setupObject{
     
-    self.COMMONID =  PATIENTID;
-    self.CLASSTYPE = kPatientType;
-    self.COMMONDATABASE = DATABASE;
+    self->COMMONID =  PATIENTID;
+    self->CLASSTYPE = kPatientType;
+    self->COMMONDATABASE = DATABASE;
 }
 #pragma mark - BaseObjectProtocol Methods
 #pragma mark -
@@ -68,15 +68,15 @@ NSString* isLockedBy;
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
 
-    firstname = [self.databaseObject valueForKey:FIRSTNAME];
-    lastname = [self.databaseObject valueForKey:FAMILYNAME];
+    firstname = [self->databaseObject valueForKey:FIRSTNAME];
+    lastname = [self->databaseObject valueForKey:FAMILYNAME];
     
 }
 
 /* Depending on the RemoteCommands it will execute a different Command */
 -(void)CommonExecution
 {
-    switch (self.commands) {
+    switch (self->commands) {
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;
@@ -122,7 +122,7 @@ NSString* isLockedBy;
 
 -(void)UnlockPatient:(ObjectResponse)onComplete{
     // Unlock patient
-    [self.databaseObject setValue:@"" forKey:ISLOCKEDBY];
+    [self->databaseObject setValue:@"" forKey:ISLOCKEDBY];
     // save changes
     [self saveObject:onComplete];
 }
@@ -139,10 +139,17 @@ NSString* isLockedBy;
                 [serverPatient setValue:[serverPatient objectForKey:@"village"] forKey:VILLAGE];
                 [serverPatient removeObjectForKey:@"village"];
                 [serverPatient setValue:[NSNumber numberWithInteger:[[serverPatient objectForKey:SEX]integerValue]] forKey:SEX];
-                [self setValueToDictionaryValues:serverPatient];
-                [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                    
-                }];
+                BOOL success = [self setValueToDictionaryValues:serverPatient];
+                
+                if (success) {
+                    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                        
+                    }];
+                }else{
+                    error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
+                    break;
+                }
+
             }
         }
         

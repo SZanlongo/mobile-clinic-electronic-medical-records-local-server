@@ -40,9 +40,9 @@ NSString* medicationID;
 }
 -(void)setupObject{
     
-    self.COMMONID =  MEDICATIONID;
-    self.CLASSTYPE = kMedicationType;
-    self.COMMONDATABASE = DATABASE;
+    self->COMMONID =  MEDICATIONID;
+    self->CLASSTYPE = kMedicationType;
+    self->COMMONDATABASE = DATABASE;
 }
 -(void)ServerCommand:(NSDictionary *)dataToBeRecieved withOnComplete:(ServerCommand)response{
     [super ServerCommand:nil withOnComplete:response];
@@ -52,13 +52,13 @@ NSString* medicationID;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-    medicationID = [self.databaseObject valueForKey:MEDICATIONID];
+    medicationID = [self->databaseObject valueForKey:MEDICATIONID];
 }
 
 
 -(void)CommonExecution
 {
-    switch (self.commands) {
+    switch (self->commands) {
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;
@@ -83,11 +83,18 @@ NSString* medicationID;
             
             for (NSDictionary* object in allMeds) {
 
-                [self setValueToDictionaryValues:object];
+               BOOL success = [self setValueToDictionaryValues:object];
                 
-                [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                if (success) {
+                    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                        
+                    }];
+                }else{
+                    error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
                     
-                }];
+                    break;
+                }
+            
             }
         }
         onComplete((!error)?self:nil,error);

@@ -58,6 +58,26 @@
         return visitArray.count;
 }
 
+-(void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
+   
+    NSDictionary* commonDictionary;
+
+    if([tableView isEqualTo:patientTableView]){
+        commonDictionary =  [patientArray objectAtIndex:row];
+
+    }else{
+        commonDictionary = [visitArray objectAtIndex:row];
+    }
+    
+    NSString* lockedBy = [commonDictionary objectForKey:ISLOCKEDBY];
+    if (lockedBy.length > 0) {
+        [cell setBackgroundColor:[NSColor lightGrayColor]];
+    }else{
+        [cell setBackgroundColor:[NSColor whiteColor]];
+    }
+
+}
+
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
     
     if([tableView isEqualTo:patientTableView]){
@@ -93,6 +113,7 @@
         [self displayRecordsForPatient:[[[PatientObject alloc]init]printFormattedObject:pRecord] visit:[[[VisitationObject alloc]init]printFormattedObject:vRecord] andPrescription:prescriptString];
     }
 }
+
 -(void)displayRecordsForPatient:(NSString*)pInfo visit:(NSString*)vInfo andPrescription:(NSString*)prInfo{
     
     NSString* info = [NSString stringWithFormat:@"%@\n%@\n%@\n",pInfo,vInfo,prInfo];
@@ -184,19 +205,52 @@
     }
     
 }
+
+- (IBAction)CloseSelectedPatient:(id)sender {
+    NSInteger pRow = [patientTableView selectedRow];
+    NSInteger vRow = [visitTableView selectedRow];
+    
+    if (pRow > -1) {
+        NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[patientArray objectAtIndex:pRow]];
+        [dict setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
+        PatientObject* pObject = [[PatientObject alloc]initWithCachedObjectWithUpdatedObject:dict];
+        [pObject saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+
+        }];
+    }
+    if (vRow > -1) {
+       NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[visitArray objectAtIndex:vRow]];
+        [dict setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
+        VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObjectWithUpdatedObject:dict];
+        
+        [vObject saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                
+        }];
+    }
+    [self refreshPatients:nil];
+}
+
 -(void)addJsonFileToDatabase:(id<BaseObjectProtocol>)base fromArray:(NSArray*)array{
 
     //TODO: Add a completed dialog here
      [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
      
-         [base setValueToDictionaryValues:obj];
+        BOOL success = [base setValueToDictionaryValues:obj];
      
-         [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-     
-         }];
+         if (success) {
+             [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                 
+             }];
+         }else{
+            NSError* error = [[NSError alloc]initWithDomain:@"Medication Object" code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
+             [NSApp presentError:error];
+             stop = YES;
+         }
+
      }];
 
 }
+
 - (IBAction)printPatient:(id)sender{
   
     NSPrintOperation *op = [NSPrintOperation printOperationWithView:_visitDocumentation];

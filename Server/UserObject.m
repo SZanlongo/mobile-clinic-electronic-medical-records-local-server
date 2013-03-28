@@ -19,6 +19,7 @@
 #import "Users.h"
 #import "UserObject.h"
 #import "NSString+Validation.h"
+#import "BaseObject+Protected.h"
 
 @implementation UserObject
 +(NSString *)DatabaseName{
@@ -47,9 +48,9 @@
 
 -(void)setupObject{
     
-    self.COMMONID =  USERNAME;
-    self.CLASSTYPE = kPatientType;
-    self.COMMONDATABASE = DATABASE;
+    self->COMMONID =  USERNAME;
+    self->CLASSTYPE = kPatientType;
+    self->COMMONDATABASE = DATABASE;
 }
 
 #pragma mark - BaseObjectProtocol Methods
@@ -75,7 +76,7 @@
 /* Depending on the RemoteCommands it will execute a different Command */
 -(void)CommonExecution
 {
-    switch (self.commands) {
+    switch (self->commands) {
         case kPullAllUsers:
             [self sendSearchResults:[self FindAllObjects]];
             break;
@@ -131,26 +132,34 @@
     NSArray* users = [cloudUsers objectForKey:@"data"];
     
     for (NSDictionary* userInfo in users) {
-        self.databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME]];
+        self->databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME]];
         
-        if (!self.databaseObject) {
-            self.databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-            
-            [self linkDatabaseObjects];
+        if (!self->databaseObject) {
+            self->databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
             
             //TODO: Why are the improper values still showing?
-            //[self copyDictionaryValues:userInfo intoManagedObject:self.databaseObject];
-            user.userName = [userInfo objectForKey:USERNAME];
-            //TODO: How to deal with password
-            user.password = @"000000";
-            user.firstName = [userInfo objectForKey:FIRSTNAME];
-            user.lastName = [userInfo objectForKey:LASTNAME];
-            user.email = [userInfo objectForKey:EMAIL];
-            user.status = [userInfo objectForKey:STATUS];
-            user.userType = [userInfo objectForKey:USERTYPE];
-            [self SaveCurrentObjectToDatabase:user];
-            user = nil;
-        }  
+            BOOL success = [self setValueToDictionaryValues:userInfo];
+            /*
+            [self setObject:[userInfo objectForKey:USERNAME] withAttribute:USERNAME];
+            [self setObject:[userInfo objectForKey:PASSWORD] withAttribute:PASSWORD];
+            [self setObject:[userInfo objectForKey:FIRSTNAME] withAttribute:FIRSTNAME];
+            [self setObject:[userInfo objectForKey:LASTNAME] withAttribute:LASTNAME];
+            [self setObject:[userInfo objectForKey:EMAIL] withAttribute:EMAIL];
+            [self setObject:[userInfo objectForKey:STATUS] withAttribute:STATUS];
+            [self setObject:[userInfo objectForKey:USERTYPE] withAttribute:USERTYPE];
+             */
+            if (success) {
+                [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                    
+                }];
+            }else{
+              NSError*  error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
+                
+                [NSApp presentError:error];
+                break;
+            }
+
+        }
     }
 }
 
@@ -197,6 +206,6 @@
 }
 
 -(void)linkDatabaseObjects{
-    user = (Users*) self.databaseObject;
+    user = (Users*) self->databaseObject;
 }
 @end
