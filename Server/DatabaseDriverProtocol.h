@@ -24,4 +24,8 @@
  @param DBObject the Core data object to modify its attribute
  */
 -(void)setObject:(id)object withAttribute:(NSString*)attribute inDatabaseObject:(NSManagedObject*)DBObject;
+
+-(BOOL)deleteNSManagedObject:(NSManagedObject*)object;
+
+-(BOOL)deleteObjectsFromDatabase:(NSString *)table withDefiningAttribute:(NSString *)attrib forKey:(NSString *)key;
 @end

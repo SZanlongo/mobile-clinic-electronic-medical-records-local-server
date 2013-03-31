@@ -70,6 +70,7 @@ NSString* isLockedBy;
             break;
         case kConditionalCreate:
             [self checkForExisitingOpenVisit];
+            break;
         case kFindObject:
             [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];
             break;
@@ -109,6 +110,14 @@ NSString* isLockedBy;
 -(NSString *)printFormattedObject:(NSDictionary *)object{
     
    return [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n",[object objectForKey:BLOODPRESSURE],[object objectForKey:HEARTRATE],[object objectForKey:RESPIRATION],[object objectForKey:WEIGHT],[object objectForKey:CONDITION],[object objectForKey:OBSERVATION],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEOUT]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTORIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTOROUT]]convertNSDateToMonthNumDayString]];
+}
+-(NSArray *)FindAllObjects{
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:TRIAGEIN]];
+}
+
+-(void)UnlockVisit:(ObjectResponse)onComplete{
+    [self setObject:@"" withAttribute:ISLOCKEDBY];
+    [self saveObject:onComplete];
 }
 #pragma mark - Private Methods
 #pragma mark-

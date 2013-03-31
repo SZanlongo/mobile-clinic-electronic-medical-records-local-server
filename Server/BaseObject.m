@@ -70,12 +70,13 @@
     @try{
         for (NSString* key in values.allKeys) {
             if (![[values objectForKey:key]isKindOfClass:[NSNull class]]) {
-                [databaseObject setValue:[values objectForKey:key] forKey:key];
+                id obj = [values objectForKey:key];
+                [databaseObject setValue:([obj isKindOfClass:[NSDate class]])?[obj convertNSDateToSeconds]:obj forKey:key];
             }
         }
         return YES;
     }@catch (NSException *exception) {
-        NSLog(@"Error: Cannot synthesize the file because it does not contain the right values for type  %@",COMMONDATABASE);
+        NSLog(@"Error: Object was misconfigured  %@",COMMONDATABASE);
         databaseObject = nil;
         return NO;
     }
@@ -134,7 +135,10 @@
         [self SaveCurrentObjectToDatabase:obj];
         
     }
-    eventResponse(self, nil);
+    
+    if (eventResponse) {
+        eventResponse(self, nil);
+    }
 }
 
 -(NSDictionary *)consolidateForTransmitting{
@@ -143,5 +147,11 @@
     return consolidate;
 }
 
+-(BOOL)deleteCurrentlyHeldObjectFromDatabase{
+   return [self deleteNSManagedObject:databaseObject];
+}
 
+-(BOOL)deleteDatabaseDictionaryObject:(NSDictionary *)object{
+    return [self deleteObjectsFromDatabase:COMMONDATABASE withDefiningAttribute:[object objectForKey:COMMONID] forKey:COMMONID];
+}
 @end

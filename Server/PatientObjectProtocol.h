@@ -12,7 +12,7 @@
 #define HEIGHT          @"height"
 #define SEX             @"sex"
 #define DOB             @"age"
-#define PICTURE         @"photo"
+#define PICTURE         @"picture"
 #define VISITS          @"visits"
 #define PATIENTID       @"patientId"
 #define ISLOCKEDBY      @"isLockedBy"

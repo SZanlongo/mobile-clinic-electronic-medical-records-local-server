@@ -107,7 +107,7 @@ NSString* isLockedBy;
 }
 
 -(NSString *)printFormattedObject:(NSDictionary *)object{
-    
+
     return [NSString stringWithFormat:@" Patient Name:\t%@ %@ \n Village:\t%@ \n Date of Birth:\t%@ \n Age:\t%li \n Sex:\t%@ \n",[object objectForKey:FIRSTNAME],[object objectForKey:FAMILYNAME],[object objectForKey:VILLAGE],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]convertNSDateFullBirthdayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]getNumberOfYearsElapseFromDate],([[object objectForKey:SEX]integerValue]==0)?@"Female":@"Male"];
 }
 #pragma mark - Private Methods
@@ -132,13 +132,15 @@ NSString* isLockedBy;
     [self makeCloudCallWithCommand:DATABASE withObject:nil onComplete:^(id cloudResults, NSError *error) {
         if (!error) {
             NSArray* allPatients = [cloudResults objectForKey:@"data"];
-            for (int i = 0; i < allPatients.count; i++) {
-                NSMutableDictionary* serverPatient = [NSMutableDictionary dictionaryWithDictionary:[allPatients objectAtIndex:i]];
-//            [serverPatient removeObjectForKey:@"createdAt"];
-                [serverPatient removeObjectForKey:@"dob"];
-                [serverPatient setValue:[serverPatient objectForKey:@"village"] forKey:VILLAGE];
-                [serverPatient removeObjectForKey:@"village"];
-                [serverPatient setValue:[NSNumber numberWithInteger:[[serverPatient objectForKey:SEX]integerValue]] forKey:SEX];
+            NSMutableDictionary* serverPatient;
+            for (NSMutableDictionary* temp in allPatients) {
+                
+                serverPatient = [NSMutableDictionary dictionaryWithDictionary:temp];
+             
+                //   [serverPatient setValue:[NSNumber numberWithInteger:[[serverPatient objectForKey:SEX]integerValue]] forKey:SEX];
+                
+                [serverPatient removeObjectForKey:PICTURE];
+               
                 BOOL success = [self setValueToDictionaryValues:serverPatient];
                 
                 if (success) {

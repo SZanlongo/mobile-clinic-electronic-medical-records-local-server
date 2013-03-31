@@ -19,6 +19,7 @@ typedef enum {
     kErrorIncorrectLogin            = 6,
     kErrorPermissionDenied          = 7,
     kErrorIncompleteSearch          = 8,
+    kErrorBadCommand                = 9,
 } ServerStatus;
 
 @protocol StatusObjectProtocol <NSObject>

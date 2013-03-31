@@ -34,7 +34,25 @@
 		EA4CEC1516E3F8F400D6AB58 /* Visitation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CEC1316E3F8F400D6AB58 /* Visitation.m */; };
 		EA51359E17015D93001761FC /* BaseObject+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = EA51359D17015D93001761FC /* BaseObject+Protected.m */; };
 		EA51359F17015D93001761FC /* BaseObject+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = EA51359D17015D93001761FC /* BaseObject+Protected.m */; };
-		EA5D38F816B9E38000377D2C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5D38F716B9E38000377D2C /* GCDAsyncSocket.m */; };
+		EA5272CE1708653E0033604C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8D85EE16B0C9BF00256495 /* Cocoa.framework */; };
+		EA5272D41708653E0033604C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA5272D21708653E0033604C /* InfoPlist.strings */; };
+		EA5272DA1708653E0033604C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = EA5272D81708653E0033604C /* Credits.rtf */; };
+		EA5272E5170866930033604C /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5272E4170866930033604C /* GHUnit.framework */; };
+		EA5272E71708673E0033604C /* GHUnit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA5272E4170866930033604C /* GHUnit.framework */; };
+		EA5272EA170867800033604C /* RunTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = EA5272E8170867800033604C /* RunTests.sh */; };
+		EA5272EB170867800033604C /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EA5272E9170867800033604C /* Makefile */; };
+		EA5272F2170867CE0033604C /* GHUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5272F1170867CE0033604C /* GHUnitTestMain.m */; };
+		EA5272F5170868C20033604C /* SmokeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5272F4170868C20033604C /* SmokeTest.m */; };
+		EA5272F917086CDB0033604C /* UserObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5272F817086CDB0033604C /* UserObjectTest.m */; };
+		EA5272FA17086D1F0033604C /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D5B16B60A6B00F00C61 /* UserObject.m */; };
+		EA5272FB17086D360033604C /* BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D6316B6116800F00C61 /* BaseObject.m */; };
+		EA5272FC17086D360033604C /* BaseObject+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = EA51359D17015D93001761FC /* BaseObject+Protected.m */; };
+		EA5272FD17086D4D0033604C /* CloudService.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC37F1416F36DBA00836C1C /* CloudService.m */; };
+		EA5272FE17086D4D0033604C /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09328816F818D200536DF3 /* Database.m */; };
+		EA5272FF17086D4D0033604C /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
+		EA52730017086D5F0033604C /* StatusObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172D7916B6371D00F00C61 /* StatusObject.m */; };
+		EA527301170877550033604C /* Mobile_Clinic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAC19C5216DD24BC00B0B8DA /* Mobile_Clinic.xcdatamodeld */; };
+		EA5D38F816B9E38000377D2C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5D38F716B9E38000377D2C /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		EA5D38F916B9E38000377D2C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5D38F716B9E38000377D2C /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA5D38FB16B9E3E400377D2C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5D38FA16B9E3E400377D2C /* Security.framework */; };
 		EA5D38FE16B9E55D00377D2C /* ServerCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5D38FD16B9E55D00377D2C /* ServerCore.m */; };
@@ -93,6 +111,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		EA5272E61708672F0033604C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EA5272E71708673E0033604C /* GHUnit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAADC01C16E0595F009E7AF9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,6 +163,17 @@
 		EA4CEC1316E3F8F400D6AB58 /* Visitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visitation.m; sourceTree = "<group>"; };
 		EA51359C17015D93001761FC /* BaseObject+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseObject+Protected.h"; sourceTree = "<group>"; };
 		EA51359D17015D93001761FC /* BaseObject+Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseObject+Protected.m"; sourceTree = "<group>"; };
+		EA5272CD1708653E0033604C /* MC-Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC-Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA5272D11708653E0033604C /* MC-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MC-Tests-Info.plist"; sourceTree = "<group>"; };
+		EA5272D31708653E0033604C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA5272D71708653E0033604C /* MC-Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MC-Tests-Prefix.pch"; sourceTree = "<group>"; };
+		EA5272D91708653E0033604C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		EA5272E4170866930033604C /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnit.framework; sourceTree = "<group>"; };
+		EA5272E8170867800033604C /* RunTests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RunTests.sh; sourceTree = "<group>"; };
+		EA5272E9170867800033604C /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EA5272F1170867CE0033604C /* GHUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitTestMain.m; sourceTree = "<group>"; };
+		EA5272F4170868C20033604C /* SmokeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmokeTest.m; sourceTree = "<group>"; };
+		EA5272F817086CDB0033604C /* UserObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObjectTest.m; sourceTree = "<group>"; };
 		EA5D38F616B9E38000377D2C /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		EA5D38F716B9E38000377D2C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EA5D38FA16B9E3E400377D2C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -219,6 +258,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA5272CA1708653E0033604C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5272CE1708653E0033604C /* Cocoa.framework in Frameworks */,
+				EA5272E5170866930033604C /* GHUnit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA8D85E716B0C9BF00256495 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -324,6 +372,39 @@
 			name = "Factory Pattern";
 			sourceTree = "<group>";
 		};
+		EA5272CF1708653E0033604C /* MC-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EA5272E8170867800033604C /* RunTests.sh */,
+				EA5272E9170867800033604C /* Makefile */,
+				EA5272E4170866930033604C /* GHUnit.framework */,
+				EA5272D01708653E0033604C /* Supporting Files */,
+				EA5272F6170868CA0033604C /* System Object Tests */,
+			);
+			path = "MC-Tests";
+			sourceTree = "<group>";
+		};
+		EA5272D01708653E0033604C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA5272F1170867CE0033604C /* GHUnitTestMain.m */,
+				EA5272D11708653E0033604C /* MC-Tests-Info.plist */,
+				EA5272D21708653E0033604C /* InfoPlist.strings */,
+				EA5272D71708653E0033604C /* MC-Tests-Prefix.pch */,
+				EA5272D81708653E0033604C /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA5272F6170868CA0033604C /* System Object Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EA5272F4170868C20033604C /* SmokeTest.m */,
+				EA5272F817086CDB0033604C /* UserObjectTest.m */,
+			);
+			name = "System Object Tests";
+			sourceTree = "<group>";
+		};
 		EA749BCF16EDAF2E000F849F /* Visitation Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,8 +429,6 @@
 			isa = PBXGroup;
 			children = (
 				EAC0D7E316FECDF800621DDC /* User View & Controller */,
-				EAC0D7D316FBBACD00621DDC /* DataProcessor.h */,
-				EAC0D7D416FBBACD00621DDC /* DataProcessor.m */,
 				EAC0D7D716FD1A0000621DDC /* Med View & Controller */,
 				EA09328616F8149F00536DF3 /* Cloud API */,
 				EAADC01D16E0596C009E7AF9 /* PatientFile.json */,
@@ -363,6 +442,7 @@
 				EA8D85F416B0C9BF00256495 /* Mobile Clinic */,
 				EA8D861416B0C9C000256495 /* Mobile ClinicTests */,
 				EA8D862D16B0C9C000256495 /* Mobile ClinicImporter */,
+				EA5272CF1708653E0033604C /* MC-Tests */,
 				EA8D85ED16B0C9BF00256495 /* Frameworks */,
 				EA8D85EB16B0C9BF00256495 /* Products */,
 			);
@@ -373,6 +453,7 @@
 			children = (
 				EA8D85EA16B0C9BF00256495 /* Mobile Clinic.app */,
 				EA8D860E16B0C9C000256495 /* Mobile ClinicTests.octest */,
+				EA5272CD1708653E0033604C /* MC-Tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -597,6 +678,8 @@
 		EACEB53616BEBDCD00685AE8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EAC0D7D316FBBACD00621DDC /* DataProcessor.h */,
+				EAC0D7D416FBBACD00621DDC /* DataProcessor.m */,
 				EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */,
 				EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */,
 				EAD015E816D5E524002A8B3B /* NSObject+CustomTools.h */,
@@ -618,6 +701,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA5272CC1708653E0033604C /* MC-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA5272E31708653E0033604C /* Build configuration list for PBXNativeTarget "MC-Tests" */;
+			buildPhases = (
+				EA5272C91708653E0033604C /* Sources */,
+				EA5272E61708672F0033604C /* CopyFiles */,
+				EA5272CA1708653E0033604C /* Frameworks */,
+				EA5272CB1708653E0033604C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MC-Tests";
+			productName = "MC-Tests";
+			productReference = EA5272CD1708653E0033604C /* MC-Tests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		EA8D85E916B0C9BF00256495 /* Mobile Clinic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA8D864116B0C9C000256495 /* Build configuration list for PBXNativeTarget "Mobile Clinic" */;
@@ -679,11 +780,22 @@
 			targets = (
 				EA8D85E916B0C9BF00256495 /* Mobile Clinic */,
 				EA8D860D16B0C9C000256495 /* Mobile ClinicTests */,
+				EA5272CC1708653E0033604C /* MC-Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EA5272CB1708653E0033604C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA5272D41708653E0033604C /* InfoPlist.strings in Resources */,
+				EA5272DA1708653E0033604C /* Credits.rtf in Resources */,
+				EA5272EA170867800033604C /* RunTests.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA8D85E816B0C9BF00256495 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -726,6 +838,25 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA5272C91708653E0033604C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA527301170877550033604C /* Mobile_Clinic.xcdatamodeld in Sources */,
+				EA52730017086D5F0033604C /* StatusObject.m in Sources */,
+				EA5272FD17086D4D0033604C /* CloudService.m in Sources */,
+				EA5272FE17086D4D0033604C /* Database.m in Sources */,
+				EA5272FF17086D4D0033604C /* DatabaseDriver.m in Sources */,
+				EA5272FB17086D360033604C /* BaseObject.m in Sources */,
+				EA5272FC17086D360033604C /* BaseObject+Protected.m in Sources */,
+				EA5272FA17086D1F0033604C /* UserObject.m in Sources */,
+				EA5272EB170867800033604C /* Makefile in Sources */,
+				EA5272F2170867CE0033604C /* GHUnitTestMain.m in Sources */,
+				EA5272F5170868C20033604C /* SmokeTest.m in Sources */,
+				EA5272F917086CDB0033604C /* UserObjectTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA8D85E616B0C9BF00256495 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -807,6 +938,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		EA5272D21708653E0033604C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA5272D31708653E0033604C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EA5272D81708653E0033604C /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA5272D91708653E0033604C /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
 		EA8D85F716B0C9BF00256495 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -850,6 +997,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA5272E11708653E0033604C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/MC-Tests\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MC-Tests/MC-Tests-Prefix.pch";
+				INFOPLIST_FILE = "MC-Tests/MC-Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EA5272E21708653E0033604C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/MC-Tests\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MC-Tests/MC-Tests-Prefix.pch";
+				INFOPLIST_FILE = "MC-Tests/MC-Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		EA8D863C16B0C9C000256495 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -911,7 +1098,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -925,7 +1112,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mobile Clinic/Mobile Clinic-Prefix.pch";
 				INFOPLIST_FILE = "Mobile Clinic/Mobile Clinic-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -964,6 +1151,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA5272E31708653E0033604C /* Build configuration list for PBXNativeTarget "MC-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA5272E11708653E0033604C /* Debug */,
+				EA5272E21708653E0033604C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		EA8D85E416B0C9BF00256495 /* Build configuration list for PBXProject "Mobile Clinic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

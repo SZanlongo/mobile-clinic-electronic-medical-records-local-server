@@ -6188,7 +6188,7 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 		return;
 	}
 	
-	status = SSLSetConnection(sslContext, (__bridge SSLConnectionRef)self);
+	status = SSLSetConnection(sslContext, ( __bridge SSLConnectionRef)self);
 	if (status != noErr)
 	{
 		[self closeWithError:[self otherError:@"Error in SSLSetConnection"]];

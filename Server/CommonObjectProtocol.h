@@ -8,7 +8,7 @@
 #import "BaseObjectProtocol.h"
 #import <Foundation/Foundation.h>
 
-@protocol CommonObjectProtocol <NSObject>
+@protocol CommonObjectProtocol <BaseObjectProtocol>
 
 +(NSString*)DatabaseName;
 

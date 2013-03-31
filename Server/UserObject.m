@@ -8,7 +8,7 @@
 
 /* NOTE ABOUT THIS CLASS
  * Make user you call super for any of the methods that are part of the BaseObjectProtocol
- * 
+ *
  */
 
 // These are elements within the database
@@ -22,6 +22,7 @@
 #import "BaseObject+Protected.h"
 
 @implementation UserObject
+
 +(NSString *)DatabaseName{
     return DATABASE;
 }
@@ -49,7 +50,7 @@
 -(void)setupObject{
     
     self->COMMONID =  USERNAME;
-    self->CLASSTYPE = kPatientType;
+    self->CLASSTYPE = kUserType;
     self->COMMONDATABASE = DATABASE;
 }
 
@@ -63,7 +64,7 @@
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithDictionary:[super consolidateForTransmitting]];
     
     [consolidate setValue:[NSNumber numberWithInt:kUserType] forKey:OBJECTTYPE];
-
+    
     return consolidate;
 }
 
@@ -77,6 +78,9 @@
 -(void)CommonExecution
 {
     switch (self->commands) {
+        case -1:
+            NSLog(@"Error: User Object Misconfiguration handled by baseObject");
+            break;
         case kPullAllUsers:
             [self sendSearchResults:[self FindAllObjects]];
             break;
@@ -86,6 +90,7 @@
         case kLogoutUser:
             break;
         default:
+            [self sendInformation:nil toClientWithStatus:kErrorBadCommand andMessage:@"Server recieved a bad command"];
             break;
     }
 }
@@ -100,14 +105,17 @@
     return [self FindAllObjects];
 }
 
+-(NSString *)printFormattedObject:(NSDictionary *)object{
+    return @"Not Implemented Yet";
+}
 #pragma mark- Public Methods
 #pragma mark-
--(void)pullFromCloud:(CloudCallback)onComplete{
-    
+
+-(void)pushToCloud:(CloudCallback)onComplete{
+    onComplete(nil,[[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"This feature is not implemented",NSLocalizedFailureReasonErrorKey, nil]]);
 }
--(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder
-{
-    
+
+-(void)pullFromCloud:(CloudCallback)onComplete{
     NSMutableDictionary * mDic = [[NSMutableDictionary alloc]init];
     
     //TODO: Remove Hard Dependencies
@@ -115,51 +123,55 @@
     
     [[CloudService cloud] query:@"users" parameters:mDic completion:^(NSError *error, NSDictionary *result) {
         if (error && !result) {
-            responder(nil,error);
+            onComplete(nil,error);
         }else{
-            [self storeMultipleCloudUsers:result];
-            responder(self,nil);
+            NSArray* users = [result objectForKey:@"data"];
+            
+            NSError* storeError = [self storeMultipleCloudUsers:users];
+           
+            onComplete((!storeError)?users:nil,storeError);
+            
         }
     }];
+    
 }
 
 #pragma mark - Private Methods
 #pragma mark -
 
--(void)storeMultipleCloudUsers:(NSDictionary*)cloudUsers
+-(NSError*)storeMultipleCloudUsers:(NSArray*)cloudUsers
 {
     //TODO: Remove Hard Dependencies
-    NSArray* users = [cloudUsers objectForKey:@"data"];
+    NSMutableArray* badUsers = [[NSMutableArray alloc]initWithCapacity:cloudUsers.count];
     
-    for (NSDictionary* userInfo in users) {
-        self->databaseObject = [self loadObjectWithID:[userInfo objectForKey:USERNAME]];
+    for (NSDictionary* userInfo in cloudUsers) {
+        //TODO: Why are the improper values still showing?
+        BOOL success = [self setValueToDictionaryValues:userInfo];
         
-        if (!self->databaseObject) {
-            self->databaseObject = [self CreateANewObjectFromClass:DATABASE isTemporary:NO];
-            
-            //TODO: Why are the improper values still showing?
-            BOOL success = [self setValueToDictionaryValues:userInfo];
-            /*
-            [self setObject:[userInfo objectForKey:USERNAME] withAttribute:USERNAME];
-            [self setObject:[userInfo objectForKey:PASSWORD] withAttribute:PASSWORD];
-            [self setObject:[userInfo objectForKey:FIRSTNAME] withAttribute:FIRSTNAME];
-            [self setObject:[userInfo objectForKey:LASTNAME] withAttribute:LASTNAME];
-            [self setObject:[userInfo objectForKey:EMAIL] withAttribute:EMAIL];
-            [self setObject:[userInfo objectForKey:STATUS] withAttribute:STATUS];
-            [self setObject:[userInfo objectForKey:USERTYPE] withAttribute:USERTYPE];
-             */
-            if (success) {
-                [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                    
-                }];
-            }else{
-              NSError*  error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
+        /*
+         [self setObject:[userInfo objectForKey:USERNAME] withAttribute:USERNAME];
+         [self setObject:[userInfo objectForKey:PASSWORD] withAttribute:PASSWORD];
+         [self setObject:[userInfo objectForKey:FIRSTNAME] withAttribute:FIRSTNAME];
+         [self setObject:[userInfo objectForKey:LASTNAME] withAttribute:LASTNAME];
+         [self setObject:[userInfo objectForKey:EMAIL] withAttribute:EMAIL];
+         [self setObject:[userInfo objectForKey:STATUS] withAttribute:STATUS];
+         [self setObject:[userInfo objectForKey:USERTYPE] withAttribute:USERTYPE];
+         */
+        if (success) {
+            [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
                 
-                [NSApp presentError:error];
-                break;
-            }
-
+            }];
+        }else{
+            [badUsers addObject:[userInfo objectForKey:USERNAME]];
         }
+    }
+    
+    if (badUsers.count >0) {
+       
+        NSString* msg = [NSString stringWithFormat:@"The Following %li out of %li users could not be saved: %@",badUsers.count,cloudUsers.count,badUsers.description];
+        return [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:msg,NSLocalizedFailureReasonErrorKey, nil]];
+    }else{
+        return nil;
     }
 }
 
@@ -177,28 +189,28 @@
         [status setErrorMessage:@"Username doesnt Exist or was incorrect"];
         // Let the status object send this information
         NSLog(@"Username doesnt Exist or was incorrect");
-
+        
     }else{
-    
-    // Validate with information inside database
-    user = [userArray objectAtIndex:0];
-    
-    if (![user.password isEqualToString:user.password]) {
+        
+        // Validate with information inside database
+        user = [userArray objectAtIndex:0];
+        
+        if (![user.password isEqualToString:user.password]) {
+            // Its good to send a message
+            [status setErrorMessage:@"User Password is incorrect"];
+            NSLog(@"User Password is incorrect");
+        }else if (!user.status.boolValue) {
+            // Its good to send a message
+            [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
+            NSLog(@"User is inactive");
+        }
+        // status will hold a copy of this user data
+        [status setData:[self consolidateForTransmitting]];
+        // Indicates that this was a success
+        [status setStatus:kSuccess];
         // Its good to send a message
-        [status setErrorMessage:@"User Password is incorrect"];
-        NSLog(@"User Password is incorrect");
-    }else if (!user.status.boolValue) {
-        // Its good to send a message
-        [status setErrorMessage:@"Please contact your Application Administator to Activate your Account"];
-        NSLog(@"User is inactive");
-    }
-    // status will hold a copy of this user data
-    [status setData:[self consolidateForTransmitting]];
-    // Indicates that this was a success
-    [status setStatus:kSuccess];
-    // Its good to send a message
-    [status setErrorMessage:@"Login Successfull"];
-
+        [status setErrorMessage:@"Login Successfull"];
+        
     }
     
     commandPattern([status consolidateForTransmitting]);

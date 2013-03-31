@@ -78,6 +78,9 @@ NSString* isLockedBy;
 
 #pragma mark - COMMON OBJECT Methods
 #pragma mark -
+-(NSArray *)FindAllObjects{
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:PRESCRIBETIME]];
+}
 -(NSArray *)FindAllObjectsLocallyFromParentObject{
     
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",VISITID,visitID];

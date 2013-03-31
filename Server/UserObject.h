@@ -17,6 +17,6 @@
     Users* user;
 }
 
-//@property(nonatomic, strong)      Users* user;
+
 
 @end

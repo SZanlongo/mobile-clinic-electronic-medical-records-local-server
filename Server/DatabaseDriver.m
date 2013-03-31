@@ -8,12 +8,13 @@
 
 #import "DatabaseDriver.h"
 #import "Database.h"
-
+NSManagedObjectContext* context;
 @implementation DatabaseDriver
 
 -(id)init{
     if (self = [super init]) {
         database = [Database sharedInstance];
+        context = [database managedObjectContext];
     }
 return self;
 }
@@ -23,6 +24,31 @@ return self;
    return [databaseObject valueForKey:key];
 }
 
+-(BOOL)deleteNSManagedObject:(NSManagedObject *)object{
+    
+    if (object) {
+        [context deleteObject:object];
+        NSError* error = nil;
+        return ![context save:&error];
+    }
+    return NO;
+}
+
+-(BOOL)deleteObjectsFromDatabase:(NSString *)table withDefiningAttribute:(NSString *)attrib forKey:(NSString *)key{
+    
+    if (!table || !key || !attrib) {
+        return NO;
+    }
+    
+    NSArray* objects = [self FindObjectInTable:table withName:attrib forAttribute:key];
+    
+    for (NSManagedObject* object in objects) {
+        [context deleteObject:object];
+    }
+    
+    NSError* error = nil;
+    return ![context save:&error];
+}
 
 -(NSManagedObject*)CreateANewObjectFromClass:(NSString *)name isTemporary:(BOOL)temp{
     NSEntityDescription *entity = [NSEntityDescription entityForName:name inManagedObjectContext:database.managedObjectContext];

@@ -18,7 +18,9 @@
     NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:5];
    
     [consolidate setValue:_errorMessage forKey:ERRORMSG];
-    [consolidate setValue:_data forKey:DATA];
+    if (_data) {
+        [consolidate setValue:_data forKey:DATA];
+    }
     [consolidate setValue:[NSNumber numberWithInt:_status] forKey:STATUS];
     [consolidate setValue:[NSNumber numberWithInt:kStatusType] forKey:OBJECTTYPE];
     [consolidate setValue:[NSNumber numberWithInt:kStatusClientWillRecieve] forKey:OBJECTCOMMAND];

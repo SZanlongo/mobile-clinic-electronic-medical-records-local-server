@@ -19,28 +19,20 @@
 
 }
 +(NSDate *)convertSecondsToNSDate:(NSNumber *)time{
-   
+
+    return [NSDate dateWithTimeIntervalSince1970:time.integerValue] ;
+}
+-(NSNumber *)convertNSDateToSeconds{
+    
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     NSDateComponents *components = [[NSDateComponents alloc] init];
     
-    [components setYear:2013];
+    [components setYear:1970];
     [components setMonth:1];
     [components setDay:1];
     NSDate* date = [calendar dateFromComponents:components];
-    return [NSDate dateWithTimeIntervalSinceReferenceDate:time.integerValue];
-}
--(NSNumber *)convertNSDateToSeconds{
-    
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    
-//    NSDateComponents *components = [[NSDateComponents alloc] init];
-//    
-//    [components setYear:2013];
-//    [components setMonth:1];
-//    [components setDay:1];
-   // NSDate* date = [calendar dateFromComponents:components];
-    return [NSNumber numberWithInteger:[self timeIntervalSinceReferenceDate]];
+    return [NSNumber numberWithInteger:[self timeIntervalSinceDate:date]];
 }
 
 +(NSDate*)convertStringToNSDate:(NSString*)string{

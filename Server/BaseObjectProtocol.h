@@ -82,6 +82,14 @@ typedef void (^CloudCallback)(id cloudResults, NSError* error);
  */
 -(void)saveObject:(ObjectResponse)eventResponse;
 
+/**
+ * Deletes the current database object
+ */
+-(BOOL)deleteCurrentlyHeldObjectFromDatabase;
+/**
+ * Deletes the related object from database based on the contents from the dictionary
+ */
+-(BOOL)deleteDatabaseDictionaryObject:(NSDictionary*)object;
 
 -(BOOL)setValueToDictionaryValues:(NSDictionary*)values;
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject;

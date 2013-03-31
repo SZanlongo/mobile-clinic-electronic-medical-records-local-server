@@ -13,9 +13,10 @@
 -(void)makeCloudCallWithCommand:(NSString *)command withObject:(id)object onComplete:(CloudCallback)onComplete{
     
     [[CloudService cloud] query:command parameters:object  completion:^(NSError *error, NSDictionary *result) {
-        //TODO: Create progress bar
-        onComplete(result,error);
-        NSLog(@"BASEOBJECT LOG: %@",result);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            onComplete(result,error);
+            NSLog(@"BASEOBJECT LOG: %@",result);
+        });   
     }];
     
 }
@@ -79,8 +80,7 @@
     NSMutableArray* arrayWithDictionaries = [[NSMutableArray alloc]initWithCapacity:managedObjects.count];
     
     for (NSManagedObject* objs in managedObjects) {
-        self->databaseObject = objs;
-        [arrayWithDictionaries addObject:self.getDictionaryValuesFromManagedObject];
+        [arrayWithDictionaries addObject:[self getDictionaryValuesFromManagedObject:objs]];
     }
     return arrayWithDictionaries;
 }
@@ -138,17 +138,23 @@
 
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
+   
+    if (!data) {
+        self->commands = -1;
+          [self sendInformation:nil toClientWithStatus:kErrorObjectMisconfiguration andMessage:@"The object sent was not configured properly"];
+        return;
+    }
+    
     self->commands = [[data objectForKey:OBJECTCOMMAND]intValue];
     
     self->isLockedBy = [data objectForKey:ISLOCKEDBY];
     
-    self->databaseObject = [self CreateANewObjectFromClass:self->COMMONDATABASE isTemporary:YES];
+    databaseObject = [self CreateANewObjectFromClass:self->COMMONDATABASE isTemporary:YES];
     
     BOOL success = [self setValueToDictionaryValues:[data objectForKey:DATABASEOBJECT]];
    
     if (!success) {
         [self sendInformation:nil toClientWithStatus:kErrorObjectMisconfiguration andMessage:@"The object sent was not configured properly"];
-        [NSException exceptionWithName:@"MCObjectMisconfiguration" reason:@"The object sent was not configured properly" userInfo:nil];
     }
 }
 

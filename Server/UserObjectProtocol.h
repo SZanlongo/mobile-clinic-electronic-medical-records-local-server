@@ -33,7 +33,7 @@ typedef enum {
     kPharmacists    = 2,
     kAdministrator  = 3,
 }UserTypes;
+
 @protocol UserObjectProtocol <NSObject>
 
--(void)SyncAllUsersToLocalDatabase:(ObjectResponse)responder;
 @end

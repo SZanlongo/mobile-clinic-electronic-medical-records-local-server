@@ -65,13 +65,15 @@
     
     [loadIndicator startAnimation:self];
     
-    [users SyncAllUsersToLocalDatabase:^(id<BaseObjectProtocol> data, NSError *error) {
+    [users pullFromCloud:^(id<BaseObjectProtocol> data, NSError *error) {
+      
         if (error) {
             [NSApp presentError:error];
         }else{
             [self refreshTable:nil];
         }
         [loadIndicator stopAnimation:self];
+            
     }];
 }
 @end

@@ -96,8 +96,11 @@
 
 
 - (IBAction)showDetails:(id)sender {
+    
     NSInteger* visitRow = [sender integerValue];
+    
     if(visitRow >= 0){
+        
         NSDictionary* vRecord = [visitArray objectAtIndex:visitRow];
         
         NSDictionary* pRecord = [patientArray objectAtIndex:patientTableView.selectedRow];
@@ -125,6 +128,7 @@
 - (IBAction)refreshPatients:(id)sender {
     [progressIndicator startAnimation:self];
     patientArray = [NSArray arrayWithArray:[[[PatientObject alloc]init]FindAllObjectsUnderParentID:nil]];
+    [_visitDocumentation setString:@""];
     visitArray = nil;
     [patientTableView reloadData];
     [visitTableView reloadData];
@@ -147,10 +151,10 @@
     [progressIndicator startAnimation:self];
     
     [[[PatientObject alloc]init] pullFromCloud:^(id cloudResults, NSError *error) {
-        if (error) {
+        if (!cloudResults && error) {
             [NSApp presentError:error];
         }else{
-            /*
+            
             [[[PatientObject alloc]init] pushToCloud:^(id cloudResults, NSError *error) {
                 if (error) {
                     [NSApp presentError:error];
@@ -158,7 +162,7 @@
                     [self refreshPatients:nil];
                 }
             }];
-             */
+             
         }
          [progressIndicator stopAnimation:self];
     }];
@@ -246,9 +250,7 @@
              [NSApp presentError:error];
              stop = YES;
          }
-
      }];
-
 }
 
 - (IBAction)printPatient:(id)sender{

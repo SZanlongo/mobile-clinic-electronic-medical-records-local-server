@@ -11,7 +11,7 @@
 @interface NSDate (DataProcessor) 
 
 -(NSString*)convertNSDateToString;
-
+-(NSNumber *)convertNSDateToSeconds;
 -(NSString*)convertNSDateToMonthNumDayString;
 -(NSString*)convertNSDateFullBirthdayString;
 -(NSString*)convertNSDateToTimeString;
