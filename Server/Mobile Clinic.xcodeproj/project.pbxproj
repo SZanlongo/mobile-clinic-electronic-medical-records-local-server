@@ -344,14 +344,15 @@
 			name = "Server (Do Not Edit)";
 			sourceTree = "<group>";
 		};
-		EA172D6616B6134200F00C61 /* Object Types */ = {
+		EA172D6616B6134200F00C61 /* MC-> Data Subsystem */ = {
 			isa = PBXGroup;
 			children = (
+				EAC19C5216DD24BC00B0B8DA /* Mobile_Clinic.xcdatamodeld */,
 				EA172D6816B615DD00F00C61 /* Factory Pattern */,
 				EA172D6716B6135100F00C61 /* System Objects (Decorator Base) */,
 				EA9372AE16BC7CBD00D3D617 /* Object Types (USE THESE ONLY) */,
 			);
-			name = "Object Types";
+			name = "MC-> Data Subsystem";
 			sourceTree = "<group>";
 		};
 		EA172D6716B6135100F00C61 /* System Objects (Decorator Base) */ = {
@@ -437,7 +438,7 @@
 				EA172D7C16B6412600F00C61 /* ConnectListContent.h */,
 				EA172D7D16B6412600F00C61 /* ConnectListContent.m */,
 				EACEB53616BEBDCD00685AE8 /* Categories */,
-				EA172D6616B6134200F00C61 /* Object Types */,
+				EA172D6616B6134200F00C61 /* MC-> Data Subsystem */,
 				EA172D3916B56ABC00F00C61 /* Server Core */,
 				EA8D85F416B0C9BF00256495 /* Mobile Clinic */,
 				EA8D861416B0C9C000256495 /* Mobile ClinicTests */,
@@ -496,7 +497,6 @@
 				EAC0D7DF16FEC65D00621DDC /* MainMenu.h */,
 				EAC0D7E016FEC65D00621DDC /* MainMenu.m */,
 				EA8D85F516B0C9BF00256495 /* Supporting Files */,
-				EAC19C5216DD24BC00B0B8DA /* Mobile_Clinic.xcdatamodeld */,
 				EAC37F0F16F213E400836C1C /* Prescription.h */,
 				EAC37F1016F213E400836C1C /* Prescription.m */,
 				EA4CEC1216E3F8F400D6AB58 /* Visitation.h */,
@@ -1196,7 +1196,8 @@
 				EAC19C5316DD24BC00B0B8DA /* Mobile_Clinic.xcdatamodel */,
 			);
 			currentVersion = EAC19C5316DD24BC00B0B8DA /* Mobile_Clinic.xcdatamodel */;
-			path = Mobile_Clinic.xcdatamodeld;
+			name = Mobile_Clinic.xcdatamodeld;
+			path = "Mobile Clinic/Mobile_Clinic.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

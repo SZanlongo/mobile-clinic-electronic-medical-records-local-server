@@ -3,6 +3,7 @@
     <entity name="Medication" representedClassName="Medication" syncable="YES">
         <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="expiration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isDirty" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLockedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medicationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medName" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,6 +40,7 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isDirty" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isDirty1" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="secondaryTypes" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -70,10 +72,10 @@
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Medication" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="Medication" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Patients" positionX="160" positionY="192" width="128" height="225"/>
         <element name="Prescription" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Users" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Users" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Visitation" positionX="160" positionY="192" width="128" height="360"/>
     </elements>
 </model>

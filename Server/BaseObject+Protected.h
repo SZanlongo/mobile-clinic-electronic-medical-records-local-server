@@ -5,6 +5,7 @@
 //  Created by Michael Montaque on 3/26/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
+#define ISDIRTY @"isDirty"
 
 #import "BaseObject.h"
 #import "StatusObject.h"

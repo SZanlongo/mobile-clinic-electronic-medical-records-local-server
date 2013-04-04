@@ -5,7 +5,7 @@
 //  Created by Michael Montaque on 3/11/13.
 //  Copyright (c) 2013 Steven Berlanga. All rights reserved.
 //
-#define ISDIRTY @"isDirty"
+
 
 #import "BaseObjectProtocol.h"
 #import <Foundation/Foundation.h>
