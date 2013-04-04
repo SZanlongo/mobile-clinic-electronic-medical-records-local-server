@@ -64,13 +64,13 @@ NSString* isLockedBy;
 -(void)CommonExecution
 {
     switch (self->commands) {
+        case kAbort:
+            break;
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;
-            
         case kFindObject:
             [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];            break;
-            
         default:
             break;
     }
@@ -92,7 +92,41 @@ NSString* isLockedBy;
     visitID = parentID;
     return [self FindAllObjectsLocallyFromParentObject];
 }
--(NSString *)printFormattedObject:(NSDictionary *)object{
-    return [NSString stringWithFormat:@" Medication Name:\t%@ \n Dose:\t%@ \n Notes:\t%@ \n ",[object objectForKey:MEDICATIONID],[object objectForKey:TABLEPERDAY],[object objectForKey:INSTRUCTIONS]];
+-(NSAttributedString *)printFormattedObject:(NSDictionary *)object{
+
+    
+    NSMutableAttributedString* container = [[NSMutableAttributedString alloc]init];
+    /*
+    for (NSString* key in object.allKeys) {
+        
+        NSString* main = [NSString stringWithFormat:@"%@:\n",key];
+        
+        NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
+        
+        [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:16.0] range:[main rangeOfString:main]];
+    
+
+        NSString* secondary = [NSString stringWithFormat:@"%@:\n",[[object objectForKey:key] description]];
+        
+        NSMutableAttributedString* line2 = [[NSMutableAttributedString alloc]initWithString:secondary];
+        
+        [line2 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:14.0] range:[secondary rangeOfString:secondary]];
+        
+        [line1 appendAttributedString:line2];
+        
+        [container appendAttributedString:line1];
+    }
+    
+    return container;
+    */
+NSString* main = [NSString stringWithFormat:@" Medication Name:\t%@ \n Dose:\t%@ \n Notes:\t%@ \n ",[object objectForKey:MEDICATIONID],[object objectForKey:TABLEPERDAY],[object objectForKey:INSTRUCTIONS]];
+    
+    NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
+    
+    [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:16.0] range:[main rangeOfString:main]];
+    
+    [container appendAttributedString:line1];
+    
+    return container;
 }
 @end

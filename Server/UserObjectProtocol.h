@@ -21,7 +21,7 @@
  * 1000 -> Administrator
  * 0101 -> Pharmacist and Triage
  */
-#define SECONDARYTYPE @"secondaryType"
+#define SECONDARYTYPE @"secondaryTypes"
 
 #import <Foundation/Foundation.h>
 #import "BaseObjectProtocol.h"

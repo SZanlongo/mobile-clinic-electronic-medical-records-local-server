@@ -81,20 +81,12 @@ NSString* medicationID;
             
             NSArray* allMeds = [cloudResults objectForKey:@"data"];
             
-            for (NSDictionary* object in allMeds) {
-
-               BOOL success = [self setValueToDictionaryValues:object];
-                
-                if (success) {
-                    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                        
-                    }];
-                }else{
-                    error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
-                    
-                    break;
-                }
-            
+           NSArray* allError = [self SaveListOfObjectsFromDictionary:allMeds];
+           
+            if (allError.count > 0) {
+                error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
+                onComplete(self,error);
+                return;
             }
         }
         onComplete((!error)?self:nil,error);

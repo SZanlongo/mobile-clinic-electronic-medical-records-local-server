@@ -6,14 +6,24 @@
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
 #define ARCHIVER    @"archiver"
-
+#define SERVER_TYPE @"_MC-EMR._tcp."
+#define LOCAL_DOMAIN      @"local."
 #import "ServerCore.h"
 #import "ObjectFactory.h"
+
 ServerCommand onComplete;
 static int TIMEOUT;
 NSMutableData* majorData;
+NSNetServiceBrowser *netServiceBrowser;
+NSTimer* searchTimer;
+NSRunLoop* runLoop;
+BOOL isSearchingForServers;
+BOOL shouldRunServer;
+
 @implementation ServerCore
+
 @synthesize isServerRunning;
+
 +(id)sharedInstance{
     static ServerCore *sharedMyManager = nil;
     static dispatch_once_t onceToken;
@@ -29,13 +39,58 @@ NSMutableData* majorData;
 -(id)init{
     if (self=[super init]) {
         multiThread = dispatch_queue_create("mainScreen", NULL);
+        netServiceBrowser = [[NSNetServiceBrowser alloc] init];
+        [netServiceBrowser setDelegate:self];
         isServerRunning = NO;
+        
     }
     return self;
 }
 
--(void)startServer{
-    if (!isServerRunning) {
+-(void)start{
+    
+    isSearchingForServers = YES;
+    shouldRunServer = YES;
+    NSLog(@"Searching for %@ servers on %@ domain",SERVER_TYPE,LOCAL_DOMAIN);
+    
+   // [netServiceBrowser searchForServicesOfType:@"" inDomain:LOCAL_DOMAIN];
+    [netServiceBrowser searchForBrowsableDomains];
+    
+    searchTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(startServer:) userInfo:nil repeats:NO];
+
+    runLoop = [NSRunLoop mainRunLoop];
+    
+    [runLoop addTimer:searchTimer forMode:NSDefaultRunLoopMode];
+    
+}
+
+- (void)netServiceBrowser:(NSNetServiceBrowser *)sender didNotSearch:(NSDictionary *)errorInfo
+{
+	NSLog(@"DidNotSearch: %@\n\n Will not start server", errorInfo);
+    isSearchingForServers = NO;
+    shouldRunServer = NO;
+}
+
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
+    
+    NSLog(@"Found server %@ on domain %@\n\n ", [netService name],domainString);
+    
+    if ([[netService name] isEqualToString:SERVER_TYPE]) {
+        [NSApp presentError:[NSError errorWithDomain:@"ServerCore" code:-2 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Found a similar server on the same domain. To start this server, please locate and shutdown the other server",NSLocalizedFailureReasonErrorKey, nil]]];
+        shouldRunServer = NO;
+        isSearchingForServers = NO;
+    }
+}
+
+
+-(void)startServer:(NSTimer*)theTimer{
+   
+    if (isSearchingForServers) {
+        [netServiceBrowser stop];
+        isSearchingForServers = NO;
+    }
+    
+    if (!isServerRunning && shouldRunServer) {
         asyncSocket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
         // Create an array to hold accepted incoming connections.
         
@@ -80,9 +135,11 @@ NSMutableData* majorData;
 
     }
 }
+
 -(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port{
     NSLog(@"Connected with Client");
 }
+
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
 	NSLog(@"Accepted new socket from %@:%hu", [newSocket connectedHost], [newSocket connectedPort]);

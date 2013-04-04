@@ -65,6 +65,8 @@ NSString* isLockedBy;
 -(void)CommonExecution
 {
     switch (self->commands) {
+        case kAbort:
+            break;
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;
@@ -107,9 +109,56 @@ NSString* isLockedBy;
     return [self FindAllObjectsLocallyFromParentObject];
 }
 
--(NSString *)printFormattedObject:(NSDictionary *)object{
+-(NSAttributedString *)printFormattedObject:(NSDictionary *)object{
+
+    NSString* titleString = [NSString stringWithFormat:@"Visitation Information \n\n"];
     
-   return [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n",[object objectForKey:BLOODPRESSURE],[object objectForKey:HEARTRATE],[object objectForKey:RESPIRATION],[object objectForKey:WEIGHT],[object objectForKey:CONDITION],[object objectForKey:OBSERVATION],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEOUT]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTORIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTOROUT]]convertNSDateToMonthNumDayString]];
+    NSMutableAttributedString* title = [[NSMutableAttributedString alloc]initWithString:titleString];
+    
+    [title addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:20.0] range:[titleString rangeOfString:titleString]];
+    
+   // [title setAlignment:NSCenterTextAlignment range:[titleString rangeOfString:titleString]];
+    
+    
+    NSMutableAttributedString* container = [[NSMutableAttributedString alloc]initWithAttributedString:title];
+  /*
+        for (NSString* key in object.allKeys) {
+            
+            NSString* main = [NSString stringWithFormat:@"%@:\n",key];
+            
+            NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
+            
+            [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:16.0] range:[main rangeOfString:main]];
+
+            id obj = [object objectForKey:key];
+            
+            if ([key isEqualToString:DOCTORIN] || [key isEqualToString:DOCTOROUT] || [key isEqualToString:TRIAGEIN] || [key isEqualToString:TRIAGEOUT]) {
+                obj = [[NSDate convertSecondsToNSDate:[object objectForKey:key]]convertNSDateFullBirthdayString];
+            }
+            
+            NSString* secondary = [NSString stringWithFormat:@"%@:\n",[obj description]];
+            
+            NSMutableAttributedString* line2 = [[NSMutableAttributedString alloc]initWithString:secondary];
+            
+            [line2 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:14.0] range:[secondary rangeOfString:secondary]];
+            
+            [line1 appendAttributedString:line2];
+            
+            [container appendAttributedString:line1];
+        }
+   
+    return container;
+   */
+    
+NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n\n",[object objectForKey:BLOODPRESSURE],[object objectForKey:HEARTRATE],[object objectForKey:RESPIRATION],[object objectForKey:WEIGHT],[object objectForKey:CONDITION],[object objectForKey:OBSERVATION],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEOUT]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTORIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTOROUT]]convertNSDateToMonthNumDayString]];
+    
+    NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
+    
+    [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:16.0] range:[main rangeOfString:main]];
+    
+    [container appendAttributedString:line1];
+    
+    return container;
 }
 -(NSArray *)FindAllObjects{
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:TRIAGEIN]];

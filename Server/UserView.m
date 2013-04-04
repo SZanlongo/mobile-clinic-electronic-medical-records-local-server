@@ -61,6 +61,7 @@
 }
 
 - (IBAction)cloudSync:(id)sender {
+    
     UserObject* users = [[UserObject alloc]init];
     
     [loadIndicator startAnimation:self];
@@ -69,9 +70,10 @@
       
         if (error) {
             [NSApp presentError:error];
-        }else{
-            [self refreshTable:nil];
         }
+        
+        [self refreshTable:nil];
+        
         [loadIndicator stopAnimation:self];
             
     }];

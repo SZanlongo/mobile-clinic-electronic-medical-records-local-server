@@ -5,6 +5,7 @@
 //  Created by Michael Montaque on 3/26/13.
 //  Copyright (c) 2013 Florida International University. All rights reserved.
 //
+#define ISDIRTY @"isDirty"
 
 #import "BaseObject+Protected.h"
 
@@ -13,12 +14,14 @@
 -(void)makeCloudCallWithCommand:(NSString *)command withObject:(id)object onComplete:(CloudCallback)onComplete{
     
     [[CloudService cloud] query:command parameters:object  completion:^(NSError *error, NSDictionary *result) {
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             onComplete(result,error);
             NSLog(@"BASEOBJECT LOG: %@",result);
-        });   
+        });
+        
     }];
-    
+
 }
 
 
@@ -108,6 +111,7 @@
 
 // MARK: Updates the object and sends the info to the client
 -(void)UpdateObjectAndSendToClient{
+    
     // Load old patient in global object and save new patient in variable
     NSManagedObject* oldValue = [self loadObjectWithID:[self->databaseObject valueForKey:self->COMMONID]];
     
@@ -118,7 +122,7 @@
     if (isNotLockedUp) {
         // save to local database
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            if (!data) {
+            if (!data && error) {
                 [self sendInformation:nil toClientWithStatus:kError andMessage:error.localizedDescription];
             }else{
                 [self sendInformation:[data getDictionaryValuesFromManagedObject] toClientWithStatus:kSuccess andMessage:@"Succesfully updated & synced"];
@@ -140,8 +144,8 @@
 -(void)unpackageFileForUser:(NSDictionary *)data{
    
     if (!data) {
-        self->commands = -1;
-          [self sendInformation:nil toClientWithStatus:kErrorObjectMisconfiguration andMessage:@"The object sent was not configured properly"];
+        self->commands = kAbort;
+          [self sendInformation:nil toClientWithStatus:kErrorObjectMisconfiguration andMessage:@"Server Error: The object sent was not configured properly"];
         return;
     }
     
@@ -151,31 +155,59 @@
     
     databaseObject = [self CreateANewObjectFromClass:self->COMMONDATABASE isTemporary:YES];
     
-    BOOL success = [self setValueToDictionaryValues:[data objectForKey:DATABASEOBJECT]];
+    NSError* success = [self setValueToDictionaryValues:[data objectForKey:DATABASEOBJECT]];
    
-    if (!success) {
-        [self sendInformation:nil toClientWithStatus:kErrorObjectMisconfiguration andMessage:@"The object sent was not configured properly"];
+    // When Clients send information Everything must be saved
+    // So if values cannot be added, Abort
+    if (success) {
+        self->commands = kAbort;
+        [self sendInformation:nil toClientWithStatus:kErrorObjectMisconfiguration andMessage:success.localizedDescription];
     }
 }
 
+-(void)handleCloudCallback:(CloudCallback)callBack UsingData:(NSArray*)data WithPotentialError:(NSError *)error{
+  
+    NSMutableArray* newObjects = [[NSMutableArray alloc]initWithCapacity:data.count];
+    
+    if (!error) {
+        
+        for (NSMutableDictionary* object in data) {
+            NSMutableDictionary* unlocked = [NSMutableDictionary dictionaryWithDictionary:object];
+            [unlocked setValue:[NSNumber numberWithBool:NO] forKey:ISDIRTY];
+            [newObjects addObject:unlocked];
+        }
+        
+        NSArray* allErrors = [self SaveListOfObjectsFromDictionary:newObjects];
+        
+        if (allErrors.count > 0) {
+            
+            error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:allErrors.description,NSLocalizedDescriptionKey, nil]];
+        }
+    }
+    
+    callBack((!error || error.code == kErrorObjectMisconfiguration)?data:nil,error);
+}
+
 // MARK: Saves an array of Dictionaries
--(void)SaveListOfObjectsFromDictionary:(NSDictionary*)List
+-(NSArray*)SaveListOfObjectsFromDictionary:(NSArray*)List
 {
-    // get all the users returned from server
-    NSArray* arr = [List objectForKey:ALLITEMS];
+    NSMutableArray* array = [[NSMutableArray alloc]initWithCapacity:List.count];
     
     // Go through all users in array
-    for (NSDictionary* dict in arr) {
+    for (NSDictionary* dict in List) {
+
+        //TODO: Revise this section to handle possibility of failure
+       NSError* err = [self setValueToDictionaryValues:dict];
         
-        // Try and find previously existing value
-        if(![self loadObjectForID:[dict objectForKey:self->COMMONID]]){
-            self->databaseObject = [self CreateANewObjectFromClass:self->COMMONDATABASE isTemporary:NO];
+        if (err) {
+            [array addObject:err.localizedDescription];
         }
-        [self setValueToDictionaryValues:dict];
+        
         // Try and save while handling duplication control
         [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-            
+            databaseObject = [self CreateANewObjectFromClass:COMMONDATABASE isTemporary:YES];
         }];
     }
+    return array;
 }
 @end

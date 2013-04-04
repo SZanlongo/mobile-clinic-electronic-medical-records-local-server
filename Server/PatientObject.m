@@ -77,6 +77,8 @@ NSString* isLockedBy;
 -(void)CommonExecution
 {
     switch (self->commands) {
+        case kAbort:
+            break;
         case kUpdateObject:
             [super UpdateObjectAndSendToClient];
             break;
@@ -106,9 +108,59 @@ NSString* isLockedBy;
     return [self FindAllObjects];
 }
 
--(NSString *)printFormattedObject:(NSDictionary *)object{
+-(NSAttributedString *)printFormattedObject:(NSDictionary *)object{
+    
+    NSString* titleString = [NSString stringWithFormat:@"Patient Information \n\n"];
+    
+    NSMutableAttributedString* title = [[NSMutableAttributedString alloc]initWithString:titleString];
+    
+    [title addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:20.0] range:[titleString rangeOfString:titleString]];
+    
+   // [title setAlignment:NSCenterTextAlignment range:[titleString rangeOfString:titleString]];
+    
+    NSMutableAttributedString* container = [[NSMutableAttributedString alloc]initWithAttributedString:title];
 
-    return [NSString stringWithFormat:@" Patient Name:\t%@ %@ \n Village:\t%@ \n Date of Birth:\t%@ \n Age:\t%li \n Sex:\t%@ \n",[object objectForKey:FIRSTNAME],[object objectForKey:FAMILYNAME],[object objectForKey:VILLAGE],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]convertNSDateFullBirthdayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]getNumberOfYearsElapseFromDate],([[object objectForKey:SEX]integerValue]==0)?@"Female":@"Male"];
+   /*
+    for (NSString* key in object.allKeys) {
+        
+        NSString* main = [NSString stringWithFormat:@"%@:\n",key];
+        
+        NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
+        
+        [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:16.0] range:[main rangeOfString:main]];
+        
+        id obj = [object objectForKey:key];
+        
+        if ([key isEqualToString:DOB]) {
+            obj = [[NSDate convertSecondsToNSDate:[object objectForKey:key]]convertNSDateFullBirthdayString];
+        }
+        
+        NSString* secondary = [NSString stringWithFormat:@"%@:\n",[obj description]];
+        
+        NSMutableAttributedString* line2 = [[NSMutableAttributedString alloc]initWithString:secondary];
+        
+        [line2 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:14.0] range:[secondary rangeOfString:secondary]];
+        
+        [line1 appendAttributedString:line2];
+        
+        [container appendAttributedString:line1];
+    }
+    
+    return container;
+*/
+    
+    
+     NSString* main = [NSString stringWithFormat:@" Patient Name:\t%@ %@ \n Village:\t%@ \n Date of Birth:\t%@ \n Age:\t%li \n Sex:\t%@ \n",[object objectForKey:FIRSTNAME],[object objectForKey:FAMILYNAME],[object objectForKey:VILLAGE],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]convertNSDateFullBirthdayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]getNumberOfYearsElapseFromDate],([[object objectForKey:SEX]integerValue]==0)?@"Female":@"Male"];
+    
+
+    
+    NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
+    
+    [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:16.0] range:[main rangeOfString:main]];
+    
+    [container appendAttributedString:line1];
+    
+    return container;
 }
 #pragma mark - Private Methods
 #pragma mark -
@@ -130,41 +182,20 @@ NSString* isLockedBy;
 -(void)pullFromCloud:(CloudCallback)onComplete{
     
     [self makeCloudCallWithCommand:DATABASE withObject:nil onComplete:^(id cloudResults, NSError *error) {
-        if (!error) {
-            NSArray* allPatients = [cloudResults objectForKey:@"data"];
-            NSMutableDictionary* serverPatient;
-            for (NSMutableDictionary* temp in allPatients) {
-                
-                serverPatient = [NSMutableDictionary dictionaryWithDictionary:temp];
-             
-                //   [serverPatient setValue:[NSNumber numberWithInteger:[[serverPatient objectForKey:SEX]integerValue]] forKey:SEX];
-                
-                [serverPatient removeObjectForKey:PICTURE];
-               
-                BOOL success = [self setValueToDictionaryValues:serverPatient];
-                
-                if (success) {
-                    [self saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                        
-                    }];
-                }else{
-                    error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
-                    break;
-                }
 
-            }
-        }
-        
-        onComplete((!error)?self:nil,error);
-        
+            NSArray* allPatients = [cloudResults objectForKey:@"data"];
+           
+            [self handleCloudCallback:onComplete UsingData:allPatients WithPotentialError:error];
+ 
     }];
 }
 -(void)pushToCloud:(CloudCallback)onComplete{
     
-    NSArray* allPatients= [self FindAllObjects];
+    NSArray* allPatients= [self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME];
     
     [self makeCloudCallWithCommand:UPDATEPATIENT withObject:[NSDictionary dictionaryWithObject:allPatients forKey:DATABASE] onComplete:^(id cloudResults, NSError *error) {
-        onComplete(cloudResults,error);
+        
+        [self handleCloudCallback:onComplete UsingData:allPatients WithPotentialError:error];
     }];
 }
 @end

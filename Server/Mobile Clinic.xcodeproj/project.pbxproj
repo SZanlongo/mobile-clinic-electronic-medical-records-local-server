@@ -1158,6 +1158,7 @@
 				EA5272E21708653E0033604C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA8D85E416B0C9BF00256495 /* Build configuration list for PBXProject "Mobile Clinic" */ = {
 			isa = XCConfigurationList;

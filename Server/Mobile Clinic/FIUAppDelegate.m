@@ -68,7 +68,7 @@ MainMenu* mainView;
     
     [CloudService cloud];
     
-    [connection startServer];
+    [connection start];
     
     NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
     
@@ -101,20 +101,13 @@ MainMenu* mainView;
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:obj];
         PatientObject *base = [[PatientObject alloc]init];
         
-        BOOL success = [base setValueToDictionaryValues:dic];
+        NSError* success = [base setValueToDictionaryValues:dic];
         
-        if (success) {
-            [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+
+        [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
                 
-            }];
-        }else{
-            NSLog(@"Could not save Due to misconfiguration: %@",dic);
-        }
-        
-     
-        
+        }];
     }];
-   
     
     dataPath = [[NSBundle mainBundle] pathForResource:@"MedicationFile" ofType:@"json"];
     
@@ -126,15 +119,13 @@ MainMenu* mainView;
         
         MedicationObject* base = [[MedicationObject alloc]init];
         
-        BOOL success = [base setValueToDictionaryValues:obj];
+        NSError* success = [base setValueToDictionaryValues:obj];
         
-        if (success) {
+
             [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
                 
             }];
-        }else{
-            NSLog(@"Could not save Due to misconfiguration: %@",obj);
-        }
+       
         
     }];
     
@@ -190,7 +181,7 @@ MainMenu* mainView;
         [connection stopServer];
     }
     
-    [connection startServer];
+    [connection start];
 }
 
 - (IBAction)shutdownServer:(id)sender {

@@ -50,9 +50,9 @@
         NSString* objectID = [dic objectForKey:COMMONID];
         [self loadObjectForID:objectID];
         if (dic) {
-            BOOL success = [self setValueToDictionaryValues:dic];
+            NSError* success = [self setValueToDictionaryValues:dic];
             
-            return (success)?self:nil;
+            return (!success)?self:nil;
         }
     }
     return self;
@@ -66,21 +66,42 @@
     commandPattern = response;
 }
 
--(BOOL)setValueToDictionaryValues:(NSDictionary*)values{
-    @try{
+-(NSError*)setValueToDictionaryValues:(NSDictionary*)values{
+    NSMutableArray* badValues = [[NSMutableArray alloc]initWithCapacity:values.count];
+    
+
         for (NSString* key in values.allKeys) {
+            @try{
             if (![[values objectForKey:key]isKindOfClass:[NSNull class]]) {
+                
                 id obj = [values objectForKey:key];
+                
+                if (!obj) {
+                    continue;
+                }
+                
                 [databaseObject setValue:([obj isKindOfClass:[NSDate class]])?[obj convertNSDateToSeconds]:obj forKey:key];
             }
+            }@catch (NSException *exception) {
+                NSString* badObject = [NSString stringWithFormat:@"Key: %@ Value: %@",key, [[values objectForKey:key] description]];
+                
+                [badValues addObject:badObject];
+                
+                NSLog(@"Error: Bad Key-Value pair: %@ in %@",badObject,COMMONDATABASE);
+
+            }
         }
-        return YES;
-    }@catch (NSException *exception) {
-        NSLog(@"Error: Object was misconfigured  %@",COMMONDATABASE);
-        databaseObject = nil;
-        return NO;
+   
+    if (badValues.count > 0) {
+        NSString* msg = [NSString stringWithFormat:@"The database could not handle the following Key-Value Pair: %@",badValues.description];
+        
+        return [self createErrorWithDescription:msg andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:COMMONDATABASE];
     }
+    
+    return nil;
 }
+
+   
 
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc]init];
@@ -114,6 +135,9 @@
     
     // get the UID of the object
     id objID = [databaseObject valueForKey:COMMONID];
+    
+    if(!objID)
+        eventResponse(nil,[self createErrorWithDescription:@"Object does not have a primary key ID" andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:COMMONDATABASE]);
     
     // Find if object already exists
     NSManagedObject* obj = [self loadObjectWithID:objID];

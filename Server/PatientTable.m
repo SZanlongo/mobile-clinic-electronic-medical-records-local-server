@@ -107,22 +107,35 @@
         
         NSArray* array = [NSArray arrayWithArray:[[[PrescriptionObject alloc]init]FindAllObjectsUnderParentID:[vRecord objectForKey:VISITID]]];
         
-        NSString* prescriptString = @"Prescribed Medication: \n\n";
+        NSString* titleString = [NSString stringWithFormat:@"Prescribed Medication: \n\n"];
+        
+        NSMutableAttributedString* title = [[NSMutableAttributedString alloc]initWithString:titleString];
+        
+        [title addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:20.0] range:[titleString rangeOfString:titleString]];
+        
+        //[title setAlignment:NSCenterTextAlignment range:[titleString rangeOfString:titleString]];
+        
+         NSMutableAttributedString* prescriptString = [[NSMutableAttributedString alloc]initWithAttributedString:title];
         
         for (NSDictionary* dict in array) {
-            prescriptString = [prescriptString stringByAppendingFormat:@" %@ \n",[[[PrescriptionObject alloc]init]printFormattedObject:dict]];
+            [prescriptString appendAttributedString:[[[PrescriptionObject alloc]init]printFormattedObject:dict]];
         }
         
         [self displayRecordsForPatient:[[[PatientObject alloc]init]printFormattedObject:pRecord] visit:[[[VisitationObject alloc]init]printFormattedObject:vRecord] andPrescription:prescriptString];
     }
 }
 
--(void)displayRecordsForPatient:(NSString*)pInfo visit:(NSString*)vInfo andPrescription:(NSString*)prInfo{
+-(void)displayRecordsForPatient:(NSAttributedString*)pInfo visit:(NSAttributedString*)vInfo andPrescription:(NSAttributedString*)prInfo{
     
-    NSString* info = [NSString stringWithFormat:@"%@\n%@\n%@\n",pInfo,vInfo,prInfo];
+    NSMutableAttributedString* info = [[NSMutableAttributedString alloc]initWithAttributedString:pInfo];
+
+    [info appendAttributedString:vInfo];
+    [info appendAttributedString:prInfo];
     
-    [_visitDocumentation setString:info];
+    [info addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:NSForegroundColorAttributeName,[NSColor blackColor], nil] range:[info.string rangeOfString:info.string]];
     
+    [_visitDocumentation insertText:info];
+
 }
 
 - (IBAction)refreshPatients:(id)sender {
@@ -237,26 +250,35 @@
 -(void)addJsonFileToDatabase:(id<BaseObjectProtocol>)base fromArray:(NSArray*)array{
 
     //TODO: Add a completed dialog here
+   
+    /*
      [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
      
-        BOOL success = [base setValueToDictionaryValues:obj];
+        [base setValueToDictionaryValues:obj];
      
-         if (success) {
+       
              [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
                  
              }];
-         }else{
-            NSError* error = [[NSError alloc]initWithDomain:@"Medication Object" code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Object was misconfigured",NSLocalizedFailureReasonErrorKey, nil]];
-             [NSApp presentError:error];
-             stop = YES;
-         }
      }];
+    */
 }
 
 - (IBAction)printPatient:(id)sender{
   
     NSPrintOperation *op = [NSPrintOperation printOperationWithView:_visitDocumentation];
-    
+    NSPrintInfo* pi = [[NSPrintInfo alloc]init];
+    [pi setBottomMargin:1];
+    [pi setTopMargin:1];
+    [pi setLeftMargin:1];
+    [pi setRightMargin:1];
+    [pi setVerticallyCentered:NO];
+    [pi setHorizontallyCentered:NO];
+    [pi setOrientation:NSPortraitOrientation];
+    [pi setScalingFactor:1];
+
+    [pi setPaperName:@"Letter"];
+    [op setPrintInfo:pi];
     [op setShowsPrintPanel:YES];
     
     if (op)

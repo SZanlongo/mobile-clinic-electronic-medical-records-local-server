@@ -13,7 +13,7 @@
 @required
 @property(assign) BOOL isServerRunning;
 +(id)sharedInstance;
-- (void) startServer;
+- (void) start;
 - (void) stopServer;
 -(NSString*)getHostNameForSocketAtIndex:(NSInteger)index;
 -(NSString*)getPortForSocketAtIndex:(NSInteger)index;

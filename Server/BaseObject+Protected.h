@@ -69,5 +69,7 @@
 
 -(void)UpdateObjectAndSendToClient;
 
--(void)SaveListOfObjectsFromDictionary:(NSDictionary*)List;
+-(NSArray*)SaveListOfObjectsFromDictionary:(NSArray*)List;
+
+-(void)handleCloudCallback:(CloudCallback)callBack UsingData:(NSArray*)data WithPotentialError:(NSError*)error;
 @end

@@ -27,6 +27,7 @@ typedef enum {
 
 /* These are all the commands the server and client will understand */
 typedef enum {
+    kAbort                      = -1,
     kPullAllUsers               = 0,
     kLoginUser                  = 1,
     kLogoutUser                 = 2,
@@ -91,7 +92,8 @@ typedef void (^CloudCallback)(id cloudResults, NSError* error);
  */
 -(BOOL)deleteDatabaseDictionaryObject:(NSDictionary*)object;
 
--(BOOL)setValueToDictionaryValues:(NSDictionary*)values;
+
+-(NSError*)setValueToDictionaryValues:(NSDictionary*)values;
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject;
 -(NSMutableDictionary*)getDictionaryValuesFromManagedObject:(NSManagedObject*)object;
 @end

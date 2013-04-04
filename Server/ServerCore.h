@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GCDAsyncSocket.h"
 #import "ServerProtocol.h"
-@interface ServerCore : NSObject <ServerProtocol,GCDAsyncSocketDelegate,NSNetServiceDelegate> {
+@interface ServerCore : NSObject <ServerProtocol,GCDAsyncSocketDelegate,NSNetServiceDelegate, NSNetServiceBrowserDelegate> {
     NSNetService *netService;
 	GCDAsyncSocket *asyncSocket;
     NSMutableData* globalData;
