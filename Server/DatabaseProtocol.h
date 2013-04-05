@@ -12,6 +12,9 @@
 @protocol DatabaseProtocol <NSObject>
 
 @required
+/**
+ * @brief Singleton for Database Class
+ */
 + (id)sharedInstance;
 - (BOOL)shutdownDatabase;
 - (NSManagedObjectContext *)managedObjectContext;

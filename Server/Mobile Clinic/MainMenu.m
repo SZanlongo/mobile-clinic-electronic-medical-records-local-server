@@ -44,8 +44,11 @@ id<ServerProtocol> connection;
 }
 
 -(void)SetStatus:(NSNotification*)note{
+    
     int i = [note.object intValue];
+    
     [_statusIndicator setIntValue:i];
+    
     switch (i) {
         case 0:
             [_statusLabel setStringValue:@"OFF"];

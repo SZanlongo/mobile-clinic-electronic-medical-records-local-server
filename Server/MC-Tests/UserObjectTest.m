@@ -8,6 +8,7 @@
 
 #import <GHUnit/GHUnit.h>
 #import "UserObject.h"
+
 @interface UserObjectTest : GHTestCase {
     id<CommonObjectProtocol, UserObjectProtocol> objectUnderTest;
     NSMutableDictionary* testUser;

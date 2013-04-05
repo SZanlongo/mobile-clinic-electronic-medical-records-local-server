@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DatabaseDriverProtocol.h"
 #import "DatabaseProtocol.h"
+
 @interface DatabaseDriver : NSObject<DatabaseDriverProtocol>{
     id<DatabaseProtocol> database;
 }

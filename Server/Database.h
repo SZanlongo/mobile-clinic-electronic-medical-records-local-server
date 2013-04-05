@@ -11,9 +11,19 @@
 
 @interface Database : NSObject<DatabaseProtocol>
 
+/**
+ * @brief property for the Persistent Storee Coordinator
+ */
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+/**
+ * @brief property for the Managed Object Model
+ */
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+
+/**
+ * @brief property for the Managed Object Context
+ */
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 

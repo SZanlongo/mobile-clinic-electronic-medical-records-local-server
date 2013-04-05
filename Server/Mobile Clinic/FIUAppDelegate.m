@@ -70,19 +70,8 @@ MainMenu* mainView;
     
     [connection start];
     
-    NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
-    
-    [_createMedicineMenu setEnabled:![uDefault boolForKey:PTESTING]];
-    [_createPatientMenu setEnabled:![uDefault boolForKey:MTESTING]];
-    
-    mainView = _window.contentView;
-    //[_server startServer];
-}
 
-- (IBAction)resetTestSettings:(id)sender {
-    NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
-    [uDefault removeObjectForKey:PTESTING];
-    [uDefault removeObjectForKey:MTESTING];
+    //[_server startServer];
 }
 
 - (IBAction)setupTestPatients:(id)sender {
@@ -128,16 +117,7 @@ MainMenu* mainView;
        
         
     }];
-    
-    NSUserDefaults* uDefault = [NSUserDefaults standardUserDefaults];
-    
-    [uDefault setBool:YES forKey:PTESTING];
-    
-    [_createPatientMenu setEnabled:NO];
-    
-    [uDefault setBool:YES forKey:MTESTING];
-    
-    [_createMedicineMenu setEnabled:NO];
+
 }
 
 - (IBAction)TearDownEnvironment:(id)sender {
@@ -208,6 +188,7 @@ MainMenu* mainView;
     if (!mainView) {
         mainView = [[MainMenu alloc]initWithNibName:@"MainMenu" bundle:nil];
     }
+    
     [_window setContentView:mainView.view];
 }
 @end

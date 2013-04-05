@@ -98,6 +98,7 @@
 		EAE655E716F5443800139C62 /* MedicationList.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE655E516F5443800139C62 /* MedicationList.xib */; };
 		EAE6CD9F16BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
 		EAE6CDA016BE29B9008949DC /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */; };
+		EAEA9E94170F4F07005F1202 /* BaseObject+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA9E93170F4F07005F1202 /* BaseObject+Protected.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +254,7 @@
 		EAE655E516F5443800139C62 /* MedicationList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicationList.xib; sourceTree = "<group>"; };
 		EAE6CD9D16BE29B9008949DC /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EAE6CD9E16BE29B9008949DC /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
+		EAEA9E93170F4F07005F1202 /* BaseObject+Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseObject+Protected.m"; sourceTree = "<group>"; };
 		EAEF2F9816ED63BD00A9B49A /* VisitationObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitationObjectProtocol.h; sourceTree = "<group>"; };
 		EAF4B6C416E68FED007B14B7 /* UserObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObjectProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -402,6 +404,7 @@
 			children = (
 				EA5272F4170868C20033604C /* SmokeTest.m */,
 				EA5272F817086CDB0033604C /* UserObjectTest.m */,
+				EAEA9E93170F4F07005F1202 /* BaseObject+Protected.m */,
 			);
 			name = "System Object Tests";
 			sourceTree = "<group>";
@@ -854,6 +857,7 @@
 				EA5272F2170867CE0033604C /* GHUnitTestMain.m in Sources */,
 				EA5272F5170868C20033604C /* SmokeTest.m in Sources */,
 				EA5272F917086CDB0033604C /* UserObjectTest.m in Sources */,
+				EAEA9E94170F4F07005F1202 /* BaseObject+Protected.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
