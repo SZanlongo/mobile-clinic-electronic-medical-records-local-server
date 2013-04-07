@@ -16,8 +16,8 @@
 #define VISITS                      @"visits"
 #define PATIENTID                   @"patientId"
 #define ISLOCKEDBY                  @"isLockedBy"
-#define PATIENTFINGERID             @"patientFingerID"
-#define PATIENTFINGERPOSITION       @"patientFingerPosition"
+#define USERID                      @"userID"
+#define FINGERPOSITION              @"fingerPosition"
 #define DATABASE                    @"Patients"
 
 #import <Foundation/Foundation.h>
