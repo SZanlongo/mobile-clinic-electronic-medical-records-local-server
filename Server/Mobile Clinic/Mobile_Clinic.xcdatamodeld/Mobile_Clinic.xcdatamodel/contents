@@ -18,8 +18,8 @@
         <attribute name="isDirty" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLockedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isOpen" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="patientFingerID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="patientFingerPosition" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="patientFingerID" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="patientFingerPosition" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
