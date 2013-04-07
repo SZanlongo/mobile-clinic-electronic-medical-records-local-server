@@ -22,7 +22,6 @@
         <attribute name="patientFingerPosition" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="randomID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" defaultValueString="YES" indexed="YES" syncable="YES"/>
         <attribute name="villageName" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,6 +31,7 @@
         <attribute name="isDirty" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLockedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medicationId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="medName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prescribedTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prescriptionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tabletPerDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -74,8 +74,8 @@
     </entity>
     <elements>
         <element name="Medication" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Patients" positionX="160" positionY="192" width="128" height="255"/>
-        <element name="Prescription" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Patients" positionX="160" positionY="192" width="128" height="240"/>
+        <element name="Prescription" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Users" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Visitation" positionX="160" positionY="192" width="128" height="360"/>
     </elements>
