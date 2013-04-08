@@ -12,6 +12,7 @@
 #define DOCTORIN    @"doctorIn"
 #define DOCTOROUT   @"doctorOut"
 #define CONDITION   @"condition"
+#define CONDITIONTITLE  @"conditionTitle"
 #define DTITLE      @"diagnosisTitle"
 #define GRAPHIC     @"isGraphic"
 #define WEIGHT          @"weight" //The different user types (look at enum)
