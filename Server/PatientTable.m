@@ -133,7 +133,7 @@
     [info appendAttributedString:prInfo];
     
     [info addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:NSForegroundColorAttributeName,[NSColor blackColor], nil] range:[info.string rangeOfString:info.string]];
-    
+    [_visitDocumentation setString:@""];
     [_visitDocumentation insertText:info];
 
 }

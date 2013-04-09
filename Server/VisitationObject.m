@@ -90,7 +90,7 @@ NSString* isLockedBy;
     
     NSArray* filtered = [allVisits filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,patientID]];
    
-    if (filtered.count == 1) {
+    if (filtered.count <= 1) {
         [super UpdateObjectAndSendToClient];
     }
     else
