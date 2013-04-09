@@ -12,12 +12,14 @@
 #define HEIGHT                      @"height"
 #define SEX                         @"sex"
 #define DOB                         @"age"
-#define PICTURE                     @"picture"
-#define VISITS                      @"visits"
+#define PICTURE                     @"photo"
 #define PATIENTID                   @"patientId"
 #define ISLOCKEDBY                  @"isLockedBy"
 #define USERID                      @"userID"
 #define FINGERPOSITION              @"fingerPosition"
+#define FINGERDATA                  @"fingerData"
+#define DATASIZE                    @"dataSize"
+#define TEMPLATETYPE                @"templateType"
 #define DATABASE                    @"Patients"
 
 #import <Foundation/Foundation.h>

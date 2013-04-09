@@ -10,9 +10,11 @@
 #define LOCAL_DOMAIN      @"local."
 #import "ServerCore.h"
 #import "ObjectFactory.h"
+#import "StatusObject.h"
 
 ServerCommand onComplete;
 static int TIMEOUT;
+NSMutableArray* dataBuffer;
 NSMutableData* majorData;
 NSNetServiceBrowser *netServiceBrowser;
 NSTimer* searchTimer;
@@ -56,7 +58,7 @@ BOOL shouldRunServer;
    // [netServiceBrowser searchForServicesOfType:@"" inDomain:LOCAL_DOMAIN];
     [netServiceBrowser searchForBrowsableDomains];
     
-    searchTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(startServer:) userInfo:nil repeats:NO];
+    searchTimer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(startServer:) userInfo:nil repeats:NO];
 
     runLoop = [NSRunLoop mainRunLoop];
     
@@ -176,12 +178,68 @@ BOOL shouldRunServer;
           [ns domain], [ns type], [ns name], errorDict);
 }
 
+-(NSData*)ArchiveDictionary:(NSDictionary*)dictionary{
+   
+    
+    //New mutable data object
+    NSMutableData *data = [[NSMutableData alloc] init];
+    
+    //Created an archiver to serialize dictionary into data object
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    //encodes the dataToBeSent into data object
+    [archiver encodeObject:dictionary forKey:ARCHIVER];
+    //finalize archiving
+    [archiver finishEncoding];
+    
+    return data;
+
+}
+/** This will be called when the data is not flushing properly
+ * This method will clear the data and send a message to the device that is
+ * waiting on the information
+ */
+-(void)flushDataBuffer:(NSTimer*)theTimer{
+    
+    // Get the offending client that 
+    GCDAsyncSocket* sock = [theTimer.userInfo objectForKey:@"sock"];
+    
+    // Create a status to send back to client
+    StatusObject* status = [[StatusObject alloc]init];
+    
+    // Setup Error message
+    [status setErrorMessage:@"Please Retry. If this error persist please restart the server"];
+    
+    // set Error value code
+    [status setStatus:kError];
+    
+    // Create a dictionary to send
+    NSDictionary* dict = [status consolidateForTransmitting];
+    
+    // Send the information back to client
+    [sock writeData:[self ArchiveDictionary:dict] withTimeout:TIMEOUT tag:kError];
+
+    // Invalidate Timer
+    [theTimer invalidate];
+    
+    // Clear the data Buffer
+    majorData = nil;
+    
+}
+
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
     
     NSLog(@"Server did accept data %li",data.length);
     
     if (!majorData) {
+        
         majorData = [[NSMutableData alloc]initWithData:data];
+        
+        searchTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(flushDataBuffer:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:sock,@"socket", nil] repeats:NO];
+        
+        runLoop = [NSRunLoop mainRunLoop];
+        
+        [runLoop addTimer:searchTimer forMode:NSDefaultRunLoopMode];
     }else{
         [majorData appendData:data];
     }
@@ -190,7 +248,9 @@ BOOL shouldRunServer;
         
         NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:majorData] copyItems:YES];
         
-        NSLog(@"Server Recieved: %@",myDictionary.description);
+        [searchTimer invalidate];
+        
+        NSLog(@"Server Recieved: %@",myDictionary.allKeys.description);
         
         if(myDictionary) {
             // ObjectFactory: Used to instatiate the proper class but returns it generically
@@ -210,8 +270,9 @@ BOOL shouldRunServer;
                 [archiver finishEncoding];
                 
                 //send data
-                NSLog(@"Server Will Send:%@ \n%li Bytes",dataToBeSent.description,data.length);
+                NSLog(@"Server Will Send:%@ \n%li Bytes",dataToBeSent.allKeys.description,data.length);
                 [sock writeData:data withTimeout:TIMEOUT tag:10];
+                
                 majorData = nil;
             }];
         

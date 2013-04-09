@@ -13,7 +13,9 @@
     </entity>
     <entity name="Patients" representedClassName="Patients" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 64" syncable="YES"/>
+        <attribute name="dataSize" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="familyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fingerData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="fingerPosition" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isDirty" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -23,6 +25,7 @@
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="templateType" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="villageName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -74,7 +77,7 @@
     </entity>
     <elements>
         <element name="Medication" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Patients" positionX="160" positionY="192" width="128" height="240"/>
+        <element name="Patients" positionX="160" positionY="192" width="128" height="285"/>
         <element name="Prescription" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Users" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Visitation" positionX="160" positionY="192" width="128" height="375"/>
