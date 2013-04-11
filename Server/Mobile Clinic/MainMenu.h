@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MainMenu : NSViewController<NSTableViewDataSource,NSTableViewDelegate>
+@interface MainMenu : NSViewController<NSWindowDelegate>
 
 @property (weak) IBOutlet NSTableView *serverTable;
 @property (weak) IBOutlet NSTextField *connectionLabel;

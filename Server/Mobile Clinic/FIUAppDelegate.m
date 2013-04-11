@@ -29,47 +29,22 @@ MainMenu* mainView;
 //@synthesize managedObjectContext = _managedObjectContext;
 
 - (void)showPatientsView:(id)sender {
-    if(![_window isVisible] )
-        [_window makeKeyAndOrderFront:sender];
-    
-    if (!pTable) {
-         pTable = [[PatientTable alloc]initWithNibName:@"PatientTable" bundle:nil];
-    }
- 
-    
-    [_window setContentView:pTable.view];
+
 }
 
 - (IBAction)showUserView:(id)sender {
-    if(![_window isVisible] )
-        [_window makeKeyAndOrderFront:sender];
-    
-    if (!userView) {
-        userView = [[UserView alloc]initWithNibName:@"UserView" bundle:nil];
-    }
-    
-    [_window setContentView:userView.view];
+
 }
 
 - (void)showUsersView:(id)sender {
     if(![_window isVisible] )
         [_window makeKeyAndOrderFront:sender];
-    
-//    if (!pTable)
-//        pTable = [[PatientTable alloc]initWithNibName:@"PatientTable" bundle:nil];
-//    
-//    [_window setContentView:pTable.view];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-   
-    connection = [ServerCore sharedInstance];
-    
+
     [CloudService cloud];
-    
-    [connection start];
-    
 
     //[_server startServer];
 }
@@ -172,23 +147,9 @@ MainMenu* mainView;
 }
 
 - (IBAction)showMedicineView:(id)sender {
-    if(![_window isVisible] )
-        [_window makeKeyAndOrderFront:sender];
-
-    if (!medList) {
-        medList = [[MedicationList alloc]initWithNibName:@"MedicationList" bundle:nil];
-    }
-    [_window setContentView:medList.view];
-
 }
 - (IBAction)showMainServerView:(id)sender {
     if(![_window isVisible] )
         [_window makeKeyAndOrderFront:sender];
-    
-    if (!mainView) {
-        mainView = [[MainMenu alloc]initWithNibName:@"MainMenu" bundle:nil];
-    }
-    
-    [_window setContentView:mainView.view];
 }
 @end

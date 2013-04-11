@@ -19,53 +19,28 @@ id currentView;
 id<ServerProtocol> connection;
 @implementation MainMenu
 
-
-
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+            }
     
-    if([aTableColumn.identifier isEqualToString:@"hostName"])
-        return  [connection getHostNameForSocketAtIndex:rowIndex];
-    else
-        return [connection getPortForSocketAtIndex:rowIndex];
+    return self;
 }
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
-{
+-(void)windowDidBecomeKey:(NSNotification *)notification{
     if (!connection){
+        
         connection = [ServerCore sharedInstance];
         
+        [connection start];
+        
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(manualTableRefresh:) name:SERVER_OBSERVER object:nil];
+        
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(SetStatus:) name:SERVER_STATUS object:[[NSNumber alloc]init]];
+        
+        [self manualTableRefresh:nil];
     }
-    NSInteger num = [connection numberOfConnections];
-    
-    [_statusIndicator setIntValue:(int)num];
-    
-    switch (num) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-            [_activityLabel setStringValue:@"Stable"];
-            break;
-        case 6:
-        case 7:
-            [_activityLabel setStringValue:@"Caution: High Load"];
-            break;
-        default:
-            [_activityLabel setStringValue:@"Warning: Unstable!"];
-            break;
-    }
-    [_connectionLabel setStringValue:[NSString stringWithFormat:@"%li Device(s) Connected",num]];
-    return num;
-}
-
--(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
-    
-    return NO;
+  
 }
 
 - (IBAction)showMedicationView:(id)sender {
@@ -97,7 +72,30 @@ id<ServerProtocol> connection;
 }
 
 - (IBAction)manualTableRefresh:(id)sender {
-    [_serverTable reloadData];
+   
+    NSInteger num = [connection numberOfConnections];
+    
+    [_statusIndicator setIntValue:(int)num];
+    
+    switch (num) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            [_activityLabel setStringValue:@"Stable"];
+            break;
+        case 6:
+        case 7:
+            [_activityLabel setStringValue:@"Caution: High Load"];
+            break;
+        default:
+            [_activityLabel setStringValue:@"Warning: Unstable!"];
+            break;
+    }
+    [_connectionLabel setStringValue:[NSString stringWithFormat:@"%li Device(s) Connected",num]];
+
 }
 
 - (IBAction)showUserView:(id)sender {
