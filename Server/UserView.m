@@ -30,6 +30,19 @@
     
     if ([aTableColumn.identifier isEqualToString:STATUS]) {
         return ([[user objectForKey:aTableColumn.identifier]integerValue]==0)?@"Inactive":@"Active";
+    }else if ([aTableColumn.identifier isEqualToString:USERTYPE]){
+        switch ([[user objectForKey:aTableColumn.identifier]integerValue]) {
+            case kTriageNurse:
+                return @"Triage Nurse";
+            case kDoctor:
+                return @"Doctor";
+            case kPharmacists:
+                return @"Pharmacists";
+            case kAdministrator:
+                return @"Administrator";
+            default:
+                return @"Unspecified";
+        }
     }
     return [user objectForKey:aTableColumn.identifier];
 }

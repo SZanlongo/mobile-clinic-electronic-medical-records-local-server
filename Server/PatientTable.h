@@ -17,6 +17,7 @@
     NSMutableArray* allItems;
     NSInteger selectedRow;
 }
+@property (weak) IBOutlet NSButton *printButton;
 @property (unsafe_unretained) IBOutlet NSTextView *visitDocumentation;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 @property (weak) IBOutlet NSTableView *patientTableView;

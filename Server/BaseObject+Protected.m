@@ -180,7 +180,7 @@
         
         if (allErrors.count > 0) {
             
-            error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:allErrors.description,NSLocalizedDescriptionKey, nil]];
+            error = [[NSError alloc]initWithDomain:COMMONDATABASE code:kErrorObjectMisconfiguration userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[allErrors.lastObject description],NSLocalizedDescriptionKey, nil]];
         }
     }
     

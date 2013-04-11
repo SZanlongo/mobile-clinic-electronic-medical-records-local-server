@@ -68,7 +68,7 @@
 
 -(NSError*)setValueToDictionaryValues:(NSDictionary*)values{
     NSMutableArray* badValues = [[NSMutableArray alloc]initWithCapacity:values.count];
-    
+    NSMutableArray* tracker = [[NSMutableArray alloc]init];
 
         for (NSString* key in values.allKeys) {
             @try{
@@ -83,17 +83,22 @@
                 [databaseObject setValue:([obj isKindOfClass:[NSDate class]])?[obj convertNSDateToSeconds]:obj forKey:key];
             }
             }@catch (NSException *exception) {
-                NSString* badObject = [NSString stringWithFormat:@"Key: %@ Value: %@",key, [[values objectForKey:key] description]];
                 
-                [badValues addObject:badObject];
+                NSArray* test =[tracker filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF == %@",key]];
                 
-                NSLog(@"Error: Bad Key-Value pair: %@ in %@",badObject,COMMONDATABASE);
-
+                if (test.count == 0) {
+                    
+                    [tracker addObject:key];
+                    
+                    [badValues addObject:key];
+                } 
+                NSLog(@"Error: Bad Key: %@ or Value: %@ in %@",key,[values objectForKey:key],COMMONDATABASE);
             }
         }
    
     if (badValues.count > 0) {
-        NSString* msg = [NSString stringWithFormat:@"The database could not handle the following Key-Value Pair: %@",badValues.description];
+        
+        NSString* msg = [NSString stringWithFormat:@"The database could not handle the following Keys: %@",badValues.description];
         
         return [self createErrorWithDescription:msg andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:COMMONDATABASE];
     }
@@ -136,14 +141,23 @@
     // get the UID of the object
     id objID = [databaseObject valueForKey:COMMONID];
     
-    if(!objID)
+    if(!objID){
         eventResponse(nil,[self createErrorWithDescription:@"Object does not have a primary key ID" andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:COMMONDATABASE]);
-    
+        return;
+    }
     // Find if object already exists
     NSManagedObject* obj = [self loadObjectWithID:objID];
     
+    // If the old object does not exist OR
+    // if the old object is Clean (Unmodified) OR
+    // if the old object is dirty (modified) AND the new object is dirty
+    if (!obj || ![obj valueForKey:ISDIRTY] || ([obj valueForKey:ISDIRTY] && [databaseObject valueForKey:ISDIRTY])) {
     // update the object we found in the database
     [obj setValuesForKeysWithDictionary:self.getDictionaryValuesFromManagedObject];
+    }else{
+        eventResponse(nil,[self createErrorWithDescription:@"A clean object cannot update a modified object" andErrorCodeNumber:kErrorObjectMisconfiguration inDomain:COMMONDATABASE]);
+        return;
+    }
     
     // if there is was something to save
     if (obj){
@@ -163,6 +177,7 @@
     if (eventResponse) {
         eventResponse(self, nil);
     }
+    
 }
 
 -(NSDictionary *)consolidateForTransmitting{

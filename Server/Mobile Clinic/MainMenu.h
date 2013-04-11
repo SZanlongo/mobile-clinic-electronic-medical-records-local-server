@@ -11,7 +11,13 @@
 @interface MainMenu : NSViewController<NSTableViewDataSource,NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *serverTable;
+@property (weak) IBOutlet NSTextField *connectionLabel;
+@property (weak) IBOutlet NSView *mainScreen;
+@property (weak) IBOutlet NSTextField *activityLabel;
 @property (weak) IBOutlet NSLevelIndicator *statusIndicator;
 @property (weak) IBOutlet NSTextField *statusLabel;
+- (IBAction)showMedicationView:(id)sender;
+- (IBAction)showPatientView:(id)sender;
 - (IBAction)manualTableRefresh:(id)sender;
+- (IBAction)showUserView:(id)sender;
 @end

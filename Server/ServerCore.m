@@ -130,11 +130,6 @@ BOOL shouldRunServer;
             NSData *txtData = [NSNetService dataFromTXTRecordDictionary:txtDict];
             [netService setTXTRecordData:txtData];
         }
-        else
-        {
-           [self fireStatus:1];
-        }
-
     }
 }
 
@@ -164,7 +159,7 @@ BOOL shouldRunServer;
     isServerRunning = YES;
 	NSLog(@"Bonjour Service Published: domain(%@) type(%@) name(%@) port(%i)",
           [ns domain], [ns type], [ns name], (int)[ns port]);
-    [self fireStatus:3];
+    [self fireStatus:0];
 }
 
 - (void)netService:(NSNetService *)ns didNotPublish:(NSDictionary *)errorDict
@@ -172,7 +167,6 @@ BOOL shouldRunServer;
 	// Override me to do something here...
 	//
 	// Note: This method in invoked on our bonjour thread.
-    [self fireStatus:2];
 	
 	NSLog(@"Failed to Publish Service: domain(%@) type(%@) name(%@) - %@",
           [ns domain], [ns type], [ns name], errorDict);
@@ -202,7 +196,7 @@ BOOL shouldRunServer;
 -(void)flushDataBuffer:(NSTimer*)theTimer{
     
     // Get the offending client that 
-    GCDAsyncSocket* sock = [theTimer.userInfo objectForKey:@"sock"];
+    GCDAsyncSocket* sock = [theTimer.userInfo objectForKey:@"socket"];
     
     // Create a status to send back to client
     StatusObject* status = [[StatusObject alloc]init];
@@ -247,12 +241,11 @@ BOOL shouldRunServer;
     @try {
         
         NSDictionary* myDictionary = [[NSDictionary alloc]initWithDictionary:[self unarchiveToDictionaryFromData:majorData] copyItems:YES];
-        
-        [searchTimer invalidate];
-        
+ 
         NSLog(@"Server Recieved: %@",myDictionary.allKeys.description);
         
-        if(myDictionary) {
+        if(myDictionary && myDictionary.allKeys.count > 0) {
+            [searchTimer invalidate];
             // ObjectFactory: Used to instatiate the proper class but returns it generically
             id<BaseObjectProtocol> factoryObject = [ObjectFactory createObjectForType:myDictionary];
             
@@ -280,7 +273,7 @@ BOOL shouldRunServer;
         else
         {
             majorData = nil;
-            NSLog(@"Write Error in Log: Recieved No data");
+            
         }
     }
     @catch (NSException *exception) {
@@ -322,7 +315,7 @@ BOOL shouldRunServer;
 -(void)netServiceDidStop:(NSNetService *)sender{
     NSLog(@"Server Has Been Turned Off");
     isServerRunning = NO;
-    [self fireStatus:0];
+    [self fireStatus:1];
 }
 -(NSInteger)numberOfConnections{
     return connectedSockets.count;

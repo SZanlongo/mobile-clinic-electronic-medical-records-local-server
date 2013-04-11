@@ -17,6 +17,8 @@
 @property(strong)NSArray* visitArray;
 @end
 
+id currentTable;
+
 @implementation PatientTable
 @synthesize patientArray,visitArray,patientTableView,visitTableView,AllVisitArray,progressIndicator;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,15 +34,21 @@
 {
     
     NSDictionary* commonDictionary;
-    id obj;
-    if([aTableView isEqualTo:patientTableView]){
-        commonDictionary =  [patientArray objectAtIndex:rowIndex];
-        obj = [commonDictionary objectForKey:aTableColumn.identifier];
-    }else{
-        commonDictionary = [visitArray objectAtIndex:rowIndex];
-        obj = [commonDictionary objectForKey:aTableColumn.identifier];
-    }
     
+    id obj;
+    
+    // If Patient Table
+    if([aTableView isEqualTo:patientTableView])
+        // Get the patient Dictionary
+        commonDictionary =  [patientArray objectAtIndex:rowIndex];
+        
+    else //If Visitation Table
+        commonDictionary = [visitArray objectAtIndex:rowIndex];
+
+    // get the value based on table identifier
+    obj = [commonDictionary objectForKey:aTableColumn.identifier];
+    
+        
     if([aTableColumn.identifier isEqualToString:ISOPEN]){
         return ([obj boolValue])?@"In Queue":@"Closed";
     }else if ([aTableColumn.identifier isEqualToString:TRIAGEIN]){
@@ -59,7 +67,7 @@
 }
 
 -(void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-   
+    
     NSDictionary* commonDictionary;
 
     if([tableView isEqualTo:patientTableView]){
@@ -79,15 +87,23 @@
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
+
+
     
     if([tableView isEqualTo:patientTableView]){
+        // Clear the Records
+        [_visitDocumentation setString:@""];
         
+        //Disable Print Button
+        [_printButton setEnabled:NO];
         NSDictionary* patient = [patientArray objectAtIndex:row];
         
         visitArray = [NSArray arrayWithArray:[[[VisitationObject alloc]init]FindAllObjectsUnderParentID:[patient objectForKey:PATIENTID]]];
         [visitTableView reloadData];
         
     }else{
+        // Enable Print Button
+        [_printButton setEnabled:YES];
         [self showDetails:[NSNumber numberWithInteger:row]];
     }
     
@@ -265,7 +281,9 @@
 }
 
 - (IBAction)printPatient:(id)sender{
-  
+
+    if (_visitDocumentation.string.length > 0) {
+
     NSPrintOperation *op = [NSPrintOperation printOperationWithView:_visitDocumentation];
     NSPrintInfo* pi = [[NSPrintInfo alloc]init];
     [pi setBottomMargin:1];
@@ -287,6 +305,8 @@
         //TODO: Show error Dialog here
         NSLog(@"Failed to open print dialog");
     }
-    
+    }else{
+
+    }
 }
 @end
