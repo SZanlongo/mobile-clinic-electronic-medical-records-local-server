@@ -98,6 +98,15 @@ id currentTable;
         [_printButton setEnabled:NO];
         NSDictionary* patient = [patientArray objectAtIndex:row];
         
+        id photo = [patient objectForKey:PICTURE];
+        
+        // Set Photo
+        if (!photo) {
+            [_patientPhoto setImage:[[NSImage alloc]initWithContentsOfFile:@"PatientData.png"]];
+        }else{
+        [_patientPhoto setImage:[[NSImage alloc]initWithData:photo]];
+        }
+        
         visitArray = [NSArray arrayWithArray:[[[VisitationObject alloc]init]FindAllObjectsUnderParentID:[patient objectForKey:PATIENTID]]];
         [visitTableView reloadData];
         

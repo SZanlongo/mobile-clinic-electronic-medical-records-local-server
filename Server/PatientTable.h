@@ -22,6 +22,7 @@
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 @property (weak) IBOutlet NSTableView *patientTableView;
 @property (weak) IBOutlet NSTableView *visitTableView;
+@property (weak) IBOutlet NSImageView *patientPhoto;
 @property (weak) IBOutlet NSButton *details;
 - (IBAction)importFile:(id)sender;
 - (IBAction)CloseSelectedPatient:(id)sender;

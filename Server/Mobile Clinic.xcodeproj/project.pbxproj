@@ -59,6 +59,10 @@
 		EA5D38FF16B9E55D00377D2C /* ServerCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5D38FD16B9E55D00377D2C /* ServerCore.m */; };
 		EA749BD316EDAF8D000F849F /* PrescriptionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA749BD216EDAF8D000F849F /* PrescriptionObject.m */; };
 		EA749BD416EDAF8D000F849F /* PrescriptionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EA749BD216EDAF8D000F849F /* PrescriptionObject.m */; };
+		EA7D505A17179D9E002ED819 /* PatientData.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7D505817179D9E002ED819 /* PatientData.png */; };
+		EA7D505B17179D9E002ED819 /* PatientFile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7D505917179D9E002ED819 /* PatientFile.png */; };
+		EA7D505E1717A045002ED819 /* Pills.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7D505D1717A044002ED819 /* Pills.png */; };
+		EA7D50601717A152002ED819 /* DoctorUser.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7D505F1717A152002ED819 /* DoctorUser.png */; };
 		EA8D85EF16B0C9BF00256495 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8D85EE16B0C9BF00256495 /* Cocoa.framework */; };
 		EA8D85F916B0C9BF00256495 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA8D85F716B0C9BF00256495 /* InfoPlist.strings */; };
 		EA8D85FB16B0C9BF00256495 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D85FA16B0C9BF00256495 /* main.m */; };
@@ -187,6 +191,10 @@
 		EA749BD216EDAF8D000F849F /* PrescriptionObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionObject.m; sourceTree = "<group>"; };
 		EA749BD616EDAFA6000F849F /* PrescriptionObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionObjectProtocol.h; sourceTree = "<group>"; };
 		EA7CDC7416ED1D13005A9070 /* PatientObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientObjectProtocol.h; sourceTree = "<group>"; };
+		EA7D505817179D9E002ED819 /* PatientData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PatientData.png; sourceTree = "<group>"; };
+		EA7D505917179D9E002ED819 /* PatientFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PatientFile.png; sourceTree = "<group>"; };
+		EA7D505D1717A044002ED819 /* Pills.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pills.png; sourceTree = "<group>"; };
+		EA7D505F1717A152002ED819 /* DoctorUser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoctorUser.png; sourceTree = "<group>"; };
 		EA8D85EA16B0C9BF00256495 /* Mobile Clinic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile Clinic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8D85EE16B0C9BF00256495 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EA8D85F116B0C9BF00256495 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -434,9 +442,21 @@
 			name = "Patient Objects";
 			sourceTree = "<group>";
 		};
+		EA7D505C17179DA3002ED819 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				EA7D505F1717A152002ED819 /* DoctorUser.png */,
+				EA7D505D1717A044002ED819 /* Pills.png */,
+				EA7D505817179D9E002ED819 /* PatientData.png */,
+				EA7D505917179D9E002ED819 /* PatientFile.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		EA8D85DF16B0C9BF00256495 = {
 			isa = PBXGroup;
 			children = (
+				EA7D505C17179DA3002ED819 /* Icons */,
 				EAC0D7E316FECDF800621DDC /* User View & Controller */,
 				EAC0D7D716FD1A0000621DDC /* Med View & Controller */,
 				EA09328616F8149F00536DF3 /* Cloud API */,
@@ -815,6 +835,10 @@
 				0FCC49CE16F3C63400FD3338 /* MedicationFile.json in Resources */,
 				EAE655E716F5443800139C62 /* MedicationList.xib in Resources */,
 				EAC0D7DD16FE7D6200621DDC /* UserView.xib in Resources */,
+				EA7D505A17179D9E002ED819 /* PatientData.png in Resources */,
+				EA7D505B17179D9E002ED819 /* PatientFile.png in Resources */,
+				EA7D505E1717A045002ED819 /* Pills.png in Resources */,
+				EA7D50601717A152002ED819 /* DoctorUser.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,6 +1048,7 @@
 				GCC_PREFIX_HEADER = "MC-Tests/MC-Tests-Prefix.pch";
 				INFOPLIST_FILE = "MC-Tests/MC-Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1044,6 +1069,7 @@
 				GCC_PREFIX_HEADER = "MC-Tests/MC-Tests-Prefix.pch";
 				INFOPLIST_FILE = "MC-Tests/MC-Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
