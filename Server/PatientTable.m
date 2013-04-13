@@ -94,6 +94,8 @@ id currentTable;
         // Clear the Records
         [_visitDocumentation setString:@""];
         
+        [visitTableView deselectAll:nil];
+        
         //Disable Print Button
         [_printButton setEnabled:NO];
         NSDictionary* patient = [patientArray objectAtIndex:row];
@@ -102,7 +104,7 @@ id currentTable;
         
         // Set Photo
         if (!photo) {
-            [_patientPhoto setImage:[[NSImage alloc]initWithContentsOfFile:@"PatientData.png"]];
+            [_patientPhoto setImage:[NSImage imageNamed:@"PatientData"]];
         }else{
         [_patientPhoto setImage:[[NSImage alloc]initWithData:photo]];
         }

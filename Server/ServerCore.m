@@ -52,6 +52,7 @@ BOOL shouldRunServer;
 -(void)start{
     
     isSearchingForServers = YES;
+    
     shouldRunServer = YES;
     NSLog(@"Searching for %@ servers on %@ domain",SERVER_TYPE,LOCAL_DOMAIN);
     

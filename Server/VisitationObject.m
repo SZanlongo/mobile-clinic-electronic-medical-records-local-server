@@ -121,36 +121,9 @@ NSString* isLockedBy;
     
     
     NSMutableAttributedString* container = [[NSMutableAttributedString alloc]initWithAttributedString:title];
-  /*
-        for (NSString* key in object.allKeys) {
-            
-            NSString* main = [NSString stringWithFormat:@"%@:\n",key];
-            
-            NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
-            
-            [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:16.0] range:[main rangeOfString:main]];
 
-            id obj = [object objectForKey:key];
-            
-            if ([key isEqualToString:DOCTORIN] || [key isEqualToString:DOCTOROUT] || [key isEqualToString:TRIAGEIN] || [key isEqualToString:TRIAGEOUT]) {
-                obj = [[NSDate convertSecondsToNSDate:[object objectForKey:key]]convertNSDateFullBirthdayString];
-            }
-            
-            NSString* secondary = [NSString stringWithFormat:@"%@:\n",[obj description]];
-            
-            NSMutableAttributedString* line2 = [[NSMutableAttributedString alloc]initWithString:secondary];
-            
-            [line2 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:14.0] range:[secondary rangeOfString:secondary]];
-            
-            [line1 appendAttributedString:line2];
-            
-            [container appendAttributedString:line1];
-        }
-   
-    return container;
-   */
     
-NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n\n",[object objectForKey:BLOODPRESSURE],[object objectForKey:HEARTRATE],[object objectForKey:RESPIRATION],[object objectForKey:WEIGHT],[object objectForKey:CONDITION],[object objectForKey:OBSERVATION],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:TRIAGEOUT]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTORIN]]convertNSDateToMonthNumDayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOCTOROUT]]convertNSDateToMonthNumDayString]];
+NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n\n",[object objectForKey:BLOODPRESSURE],[object objectForKey:HEARTRATE],[object objectForKey:RESPIRATION],[object objectForKey:WEIGHT],[object objectForKey:CONDITION],[object objectForKey:OBSERVATION],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEIN]],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEOUT]],[self convertDateNumberForPrinting:[object objectForKey:DOCTORIN]],[self convertDateNumberForPrinting:[object objectForKey:DOCTOROUT]]];
     
     NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
     
@@ -159,6 +132,12 @@ NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate
     [container appendAttributedString:line1];
     
     return container;
+}
+-(NSString*)convertDateNumberForPrinting:(NSNumber*)number{
+    if (number) {
+        return [[NSDate convertSecondsToNSDate:number]convertNSDateToMonthNumDayString];
+    }
+    return @"N/A";
 }
 -(NSArray *)FindAllObjects{
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:TRIAGEIN]];
