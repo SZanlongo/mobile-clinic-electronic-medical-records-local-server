@@ -52,6 +52,7 @@
         <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Visitation" representedClassName="Visitation" syncable="YES">
+        <attribute name="assessment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bloodPressure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="conditionTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -80,6 +81,6 @@
         <element name="Patients" positionX="160" positionY="192" width="128" height="285"/>
         <element name="Prescription" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Users" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Visitation" positionX="160" positionY="192" width="128" height="375"/>
+        <element name="Visitation" positionX="160" positionY="192" width="128" height="390"/>
     </elements>
 </model>
