@@ -140,8 +140,10 @@
     
     NSArray* userArray = [self FindObjectInTable:DATABASE withName:user.userName forAttribute:USERNAME];
     
+   NSArray* filtered = [userArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@",USERNAME,user.userName]];
+    
     // Checks if username exists (should return 1 or 0 value)
-    if (userArray.count == 0) {
+    if (filtered.count == 0 || filtered.count > 1) {
         // Its good to send a message
         [status setErrorMessage:@"Username doesnt Exist or was incorrect"];
         // Let the status object send this information
@@ -150,7 +152,7 @@
     }else{
         
         // Validate with information inside database
-        user = [userArray objectAtIndex:0];
+        user = [filtered objectAtIndex:0];
         
         if (![user.password isEqualToString:user.password]) {
             // Its good to send a message

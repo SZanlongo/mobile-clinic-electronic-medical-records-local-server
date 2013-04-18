@@ -45,7 +45,7 @@
         
         [self getAccessToken:^(BOOL success) {
             if(success)
-                NSLog(@"STARCRAFT TIME");
+                NSLog(@"Connected To Cloud");
         }];
 
 //        kURL = @"http://0.0.0.0:3000/";
@@ -89,7 +89,7 @@
                 
                 //read and print the server response for debug
                 NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSLog(@"%@", myString);
+               // NSLog(@"%@", myString);
                 
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
                 

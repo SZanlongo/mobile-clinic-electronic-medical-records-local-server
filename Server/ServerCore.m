@@ -11,6 +11,7 @@
 #import "ServerCore.h"
 #import "ObjectFactory.h"
 #import "StatusObject.h"
+#import "NSData+GZIP.h"
 
 ServerCommand onComplete;
 static int TIMEOUT;
@@ -173,6 +174,17 @@ BOOL shouldRunServer;
           [ns domain], [ns type], [ns name], errorDict);
 }
 
+-(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data
+{
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    
+    NSDictionary* myDictionary = [unarchiver decodeObjectForKey:ARCHIVER];
+    
+    [unarchiver finishDecoding];
+    
+    return myDictionary;
+}
+
 -(NSData*)ArchiveDictionary:(NSDictionary*)dictionary{
    
     
@@ -220,6 +232,7 @@ BOOL shouldRunServer;
     // Clear the data Buffer
     majorData = nil;
     
+    [sock disconnectAfterWriting];
 }
 
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
@@ -251,22 +264,13 @@ BOOL shouldRunServer;
             id<BaseObjectProtocol> factoryObject = [ObjectFactory createObjectForType:myDictionary];
             
             [factoryObject ServerCommand:myDictionary withOnComplete:^(NSDictionary *dataToBeSent) {
-                
-                //New mutable data object
-                NSMutableData *data = [[NSMutableData alloc] init];
-                
-                //Created an archiver to serialize dictionary into data object
-                NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-                
-                //encodes the dataToBeSent into data object
-                [archiver encodeObject:dataToBeSent forKey:ARCHIVER];
-                //finalize archiving
-                [archiver finishEncoding];
-                
+        
                 //send data
                 NSLog(@"Server Will Send:%@ \n%li Bytes",dataToBeSent.allKeys.description,data.length);
-                [sock writeData:data withTimeout:TIMEOUT tag:10];
                 
+                [sock writeData:[self ArchiveDictionary:dataToBeSent] withTimeout:TIMEOUT tag:10];
+                
+            
                 majorData = nil;
             }];
         
@@ -284,19 +288,11 @@ BOOL shouldRunServer;
 
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
     NSLog(@"Server is now Listening for Data");
+
     [sock readDataWithTimeout:TIMEOUT tag:tag];
 }
 
--(NSDictionary*)unarchiveToDictionaryFromData:(NSData*)data
-{
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        
-        NSDictionary* myDictionary = [unarchiver decodeObjectForKey:ARCHIVER];
-        
-        [unarchiver finishDecoding];
-        
-        return myDictionary;
-}
+
 -(NSString*)getHostNameForSocketAtIndex:(NSInteger)index{
    GCDAsyncSocket* sock = [connectedSockets objectAtIndex:index];
     return [sock connectedHost];
