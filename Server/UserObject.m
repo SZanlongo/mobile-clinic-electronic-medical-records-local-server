@@ -175,6 +175,16 @@
     commandPattern([status consolidateForTransmitting]);
     
 }
+-(NSArray *)covertAllSavedObjectsToJSON{
+    
+    NSArray* allPatients= [self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:USERNAME];
+    NSMutableArray* allObject = [[NSMutableArray alloc]initWithCapacity:allPatients.count];
+    
+    for (NSManagedObject* obj in allPatients) {
+        [allObject addObject:[obj dictionaryWithValuesForKeys:[obj attributeKeys]]];
+    }
+    return  allObject;
+}
 
 -(void)linkDatabaseObjects{
     user = (Users*) self->databaseObject;

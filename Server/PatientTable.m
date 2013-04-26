@@ -10,7 +10,7 @@
 #define INNER   @"Inner"
 #import "DataProcessor.h"
 #import "NSString+Validation.h"
-
+#import "SystemBackup.h"
 @interface PatientTable ()
 @property(strong)NSArray* patientArray;
 @property(strong)NSArray* AllVisitArray;
@@ -41,14 +41,14 @@ id currentTable;
     if([aTableView isEqualTo:patientTableView])
         // Get the patient Dictionary
         commonDictionary =  [patientArray objectAtIndex:rowIndex];
-        
+    
     else //If Visitation Table
         commonDictionary = [visitArray objectAtIndex:rowIndex];
-
+    
     // get the value based on table identifier
     obj = [commonDictionary objectForKey:aTableColumn.identifier];
     
-        
+    
     if([aTableColumn.identifier isEqualToString:ISOPEN]){
         return ([obj boolValue])?@"In Queue":@"Closed";
     }else if ([aTableColumn.identifier isEqualToString:TRIAGEIN]){
@@ -69,10 +69,10 @@ id currentTable;
 -(void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
     
     NSDictionary* commonDictionary;
-
+    
     if([tableView isEqualTo:patientTableView]){
         commonDictionary =  [patientArray objectAtIndex:row];
-
+        
     }else{
         commonDictionary = [visitArray objectAtIndex:row];
     }
@@ -83,12 +83,12 @@ id currentTable;
     }else{
         [cell setBackgroundColor:[NSColor whiteColor]];
     }
-
+    
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
-
-
+    
+    
     
     if([tableView isEqualTo:patientTableView]){
         // Clear the Records
@@ -106,7 +106,7 @@ id currentTable;
         if (!photo) {
             [_patientPhoto setImage:[NSImage imageNamed:@"PatientData"]];
         }else{
-        [_patientPhoto setImage:[[NSImage alloc]initWithData:photo]];
+            [_patientPhoto setImage:[[NSImage alloc]initWithData:photo]];
         }
         
         visitArray = [NSArray arrayWithArray:[[[VisitationObject alloc]init]FindAllObjectsUnderParentID:[patient objectForKey:PATIENTID]]];
@@ -142,7 +142,7 @@ id currentTable;
         
         //[title setAlignment:NSCenterTextAlignment range:[titleString rangeOfString:titleString]];
         
-         NSMutableAttributedString* prescriptString = [[NSMutableAttributedString alloc]initWithAttributedString:title];
+        NSMutableAttributedString* prescriptString = [[NSMutableAttributedString alloc]initWithAttributedString:title];
         
         for (NSDictionary* dict in array) {
             [prescriptString appendAttributedString:[[[PrescriptionObject alloc]init]printFormattedObject:dict]];
@@ -155,14 +155,14 @@ id currentTable;
 -(void)displayRecordsForPatient:(NSAttributedString*)pInfo visit:(NSAttributedString*)vInfo andPrescription:(NSAttributedString*)prInfo{
     
     NSMutableAttributedString* info = [[NSMutableAttributedString alloc]initWithAttributedString:pInfo];
-
+    
     [info appendAttributedString:vInfo];
     [info appendAttributedString:prInfo];
     
     [info addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:NSForegroundColorAttributeName,[NSColor blackColor], nil] range:[info.string rangeOfString:info.string]];
     [_visitDocumentation setString:@""];
     [_visitDocumentation insertText:info];
-
+    
 }
 
 - (IBAction)refreshPatients:(id)sender {
@@ -202,10 +202,33 @@ id currentTable;
                     [self refreshPatients:nil];
                 }
             }];
-             
+            
         }
-         [progressIndicator stopAnimation:self];
+        [progressIndicator stopAnimation:self];
     }];
+}
+
+- (IBAction)exportPatientData:(id)sender {
+    NSSavePanel* savePnl = [NSSavePanel savePanel];
+    
+    // Set array of file types
+    NSArray *fileTypesArray;
+    fileTypesArray = [NSArray arrayWithObjects:@"json", nil];
+    
+    // Enable options in the dialog.
+    [savePnl setAllowsOtherFileTypes:NO];
+    [savePnl setAllowedFileTypes:fileTypesArray];
+    
+    // Display the dialog box.  If the OK pressed,
+    // process the files.
+    if ( [savePnl runModal] == NSOKButton ) {
+        
+        // Gets list of all files selected
+        NSURL *file = [savePnl URL];
+        
+        NSLog(@"Saving to: %@",file.path);
+    }
+    
 }
 
 - (IBAction)importFile:(id)sender {
@@ -215,7 +238,7 @@ id currentTable;
     
     // Set array of file types
     NSArray *fileTypesArray;
-    fileTypesArray = [NSArray arrayWithObjects:@"csv",@"json", nil];
+    fileTypesArray = [NSArray arrayWithObjects:@"json", nil];
     
     // Enable options in the dialog.
     [openDlg setCanChooseFiles:YES];
@@ -232,22 +255,15 @@ id currentTable;
         // Loop through the files and process them.
         NSError* err = nil;
         
-        NSArray* arr = [NSArray arrayWithArray:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:files.lastObject] options:0 error:&err]];
+        NSDictionary* objects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:files.lastObject] options:0 error:&err];
         
-        if ([arr.description contains:PRESCRIPTIONID]) {
-            [self addJsonFileToDatabase:[[PrescriptionObject alloc]init] fromArray:arr];
-        }else if([arr.description contains:VISITID]){
-            [self addJsonFileToDatabase:[[VisitationObject alloc]init] fromArray:arr];
-        }else if([arr.description contains:PATIENTID]){
-            [self addJsonFileToDatabase:[[PatientObject alloc]init] fromArray:arr];
+        if (objects.allKeys.count > 0) {
+            [SystemBackup installFromBackup:objects];
+            NSLog(@"Imported Object: %@", objects);
         }else{
-            //TODO: Add error dialog here
-            NSLog(@"The file you chose is not an acceptable file");
+            NSLog(@"Could not import selected file");
         }
-        
-        NSLog(@"Imported Object: %@", arr);    
     }
-    
 }
 
 - (IBAction)CloseSelectedPatient:(id)sender {
@@ -259,65 +275,66 @@ id currentTable;
         [dict setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
         PatientObject* pObject = [[PatientObject alloc]initWithCachedObjectWithUpdatedObject:dict];
         [pObject saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-
+            
         }];
     }
     if (vRow > -1) {
-       NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[visitArray objectAtIndex:vRow]];
+        NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[visitArray objectAtIndex:vRow]];
         [dict setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
         VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObjectWithUpdatedObject:dict];
         
         [vObject saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                
+            
         }];
     }
     [self refreshPatients:nil];
 }
 
 -(void)addJsonFileToDatabase:(id<BaseObjectProtocol>)base fromArray:(NSArray*)array{
-
+    
     //TODO: Add a completed dialog here
-   
+    
     /*
      [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
      
-        [base setValueToDictionaryValues:obj];
+     [base setValueToDictionaryValues:obj];
      
-       
-             [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
-                 
-             }];
+     
+     [base saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+     
      }];
-    */
+     }];
+     */
 }
 
 - (IBAction)printPatient:(id)sender{
-
-    if (_visitDocumentation.string.length > 0) {
-
-    NSPrintOperation *op = [NSPrintOperation printOperationWithView:_visitDocumentation];
-    NSPrintInfo* pi = [[NSPrintInfo alloc]init];
-    [pi setBottomMargin:1];
-    [pi setTopMargin:1];
-    [pi setLeftMargin:1];
-    [pi setRightMargin:1];
-    [pi setVerticallyCentered:NO];
-    [pi setHorizontallyCentered:NO];
-    [pi setOrientation:NSPortraitOrientation];
-    [pi setScalingFactor:1];
-
-    [pi setPaperName:@"Letter"];
-    [op setPrintInfo:pi];
-    [op setShowsPrintPanel:YES];
     
-    if (op)
-        [op runOperation];
-    else{
-        //TODO: Show error Dialog here
-        NSLog(@"Failed to open print dialog");
-    }
+    if (_visitDocumentation.string.length > 0) {
+        
+        NSPrintOperation *op = [NSPrintOperation printOperationWithView:_visitDocumentation];
+        
+        NSPrintInfo* pi = [[NSPrintInfo alloc]init];
+        [pi setBottomMargin:1];
+        [pi setTopMargin:1];
+        [pi setLeftMargin:1];
+        [pi setRightMargin:1];
+        [pi setVerticallyCentered:NO];
+        [pi setHorizontallyCentered:NO];
+        [pi setOrientation:NSPortraitOrientation];
+        [pi setScalingFactor:1];
+        
+        [pi setPaperName:@"Letter"];
+        [op setPrintInfo:pi];
+        [op setShowsPrintPanel:YES];
+        
+        if (op)
+            [op runOperation];
+        else{
+            //TODO: Show error Dialog here
+            NSLog(@"Failed to open print dialog");
+        }
     }else{
-
+        
     }
 }
 @end

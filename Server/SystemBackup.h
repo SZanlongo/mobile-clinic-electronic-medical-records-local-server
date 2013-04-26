@@ -10,4 +10,9 @@
 
 @interface SystemBackup : NSObject
 
+-(id)init;
++(void)installFromBackup:(NSDictionary*)allObjects;
++(NSError*)exportObject:(NSDictionary*)object toFilePath:(NSString*)path;
++(NSDictionary*)GetAllValuesFromBackUp;
+
 @end

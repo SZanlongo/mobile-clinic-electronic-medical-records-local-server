@@ -11,4 +11,5 @@
 
 @interface ObjectFactory : NSObject
 +(id<BaseObjectProtocol>)createObjectForType:(NSDictionary*)data;
++(id<BaseObjectProtocol>)createObjectForInteger:(NSString*)data;
 @end

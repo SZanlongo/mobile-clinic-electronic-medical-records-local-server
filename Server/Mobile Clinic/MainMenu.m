@@ -11,7 +11,8 @@
 #import "UserView.h"
 #import "PatientTable.h"
 #import "MedicationList.h"
-
+#import "SystemBackup.h"
+SystemBackup* backup;
 MedicationList* medicationView;
 PatientTable* patientView;
 UserView* userView;
@@ -119,6 +120,9 @@ id<ServerProtocol> connection;
     switch (i) {
         case 0:
             [_statusLabel setStringValue:@"ON"];
+            if (!backup) {
+                backup = [[SystemBackup alloc]init];
+            }
             break;
 
         default:

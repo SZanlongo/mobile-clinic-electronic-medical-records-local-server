@@ -33,5 +33,6 @@
 - (IBAction)refreshPatients:(id)sender;
 - (IBAction)unblockPatients:(id)sender;
 - (IBAction)getPatientsFromCloud:(id)sender;
+- (IBAction)exportPatientData:(id)sender;
 
 @end

@@ -24,5 +24,5 @@
 
 -(void)pullFromCloud:(CloudCallback)onComplete;
 
--(NSString*)covertAllSavedObjectsToJSON;
+-(NSArray *)covertAllSavedObjectsToJSON;
 @end

@@ -102,4 +102,14 @@ NSString* medicationID;
 -(NSArray *)FindAllObjectsUnderParentID:(NSString *)parentID{
     return [self FindAllObjects];
 }
+-(NSArray *)covertAllSavedObjectsToJSON{
+    
+    NSArray* allPatients= [self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:MEDICATIONID];
+    NSMutableArray* allObject = [[NSMutableArray alloc]initWithCapacity:allPatients.count];
+    
+    for (NSManagedObject* obj in allPatients) {
+        [allObject addObject:[obj dictionaryWithValuesForKeys:[obj attributeKeys]]];
+    }
+    return  allObject;
+}
 @end

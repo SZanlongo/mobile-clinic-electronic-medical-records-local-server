@@ -8,7 +8,7 @@
 #define ISOPEN  @"isOpen"
 
 #import "PatientObject.h"
-
+#import "NSDataAdditions.h"
 #import "BaseObject+Protected.h"
 #import "Patients.h"
 
@@ -120,35 +120,6 @@ NSString* isLockedBy;
     
     NSMutableAttributedString* container = [[NSMutableAttributedString alloc]initWithAttributedString:title];
 
-   /*
-    for (NSString* key in object.allKeys) {
-        
-        NSString* main = [NSString stringWithFormat:@"%@:\n",key];
-        
-        NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
-        
-        [line1 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:16.0] range:[main rangeOfString:main]];
-        
-        id obj = [object objectForKey:key];
-        
-        if ([key isEqualToString:DOB]) {
-            obj = [[NSDate convertSecondsToNSDate:[object objectForKey:key]]convertNSDateFullBirthdayString];
-        }
-        
-        NSString* secondary = [NSString stringWithFormat:@"%@:\n",[obj description]];
-        
-        NSMutableAttributedString* line2 = [[NSMutableAttributedString alloc]initWithString:secondary];
-        
-        [line2 addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue" size:14.0] range:[secondary rangeOfString:secondary]];
-        
-        [line1 appendAttributedString:line2];
-        
-        [container appendAttributedString:line1];
-    }
-    
-    return container;
-*/
-    
     
      NSString* main = [NSString stringWithFormat:@" Patient Name:\t%@ %@ \n Village:\t%@ \n Date of Birth:\t%@ \n Age:\t%li \n Sex:\t%@ \n",[object objectForKey:FIRSTNAME],[object objectForKey:FAMILYNAME],[object objectForKey:VILLAGE],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]convertNSDateFullBirthdayString],[[NSDate convertSecondsToNSDate:[object objectForKey:DOB]]getNumberOfYearsElapseFromDate],([[object objectForKey:SEX]integerValue]==0)?@"Female":@"Male"];
     
@@ -193,13 +164,55 @@ NSString* isLockedBy;
  
     }];
 }
+
 -(void)pushToCloud:(CloudCallback)onComplete{
     
-    NSArray* allPatients= [self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME];
+    NSArray* allPatients= [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME]];
+    
+    // Remove Values that will break during serialization
+    for (NSMutableDictionary* object in allPatients) {
+        // Remove Pictures (NSData)
+        [object setValue:nil forKey:PICTURE];
+        // Remove FingerPrint (NSData)
+        [object setValue:nil forKey:FINGERDATA];
+    }
     
     [self makeCloudCallWithCommand:UPDATEPATIENT withObject:[NSDictionary dictionaryWithObject:allPatients forKey:DATABASE] onComplete:^(id cloudResults, NSError *error) {
         
         [self handleCloudCallback:onComplete UsingData:allPatients WithPotentialError:error];
     }];
 }
+
+-(NSArray *)covertAllSavedObjectsToJSON{
+    
+    NSArray* allPatients= [self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME];
+   
+    NSMutableArray* allObject = [[NSMutableArray alloc]initWithCapacity:allPatients.count];
+    
+    for (NSManagedObject* obj in allPatients) {
+       
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:[obj dictionaryWithValuesForKeys:[obj attributeKeys]]];
+        
+        NSData* picture = [dictionary objectForKey:PICTURE];
+        
+        if ([picture isKindOfClass:[NSData class]]) {
+            // Convert the picture to string
+            NSString* picString = [picture base64Encoding];
+            [dictionary setValue:picString forKey:PICTURE];
+        }
+       
+        id fingerData = [dictionary objectForKey:FINGERDATA];
+        
+        if ([fingerData isKindOfClass:[NSData class]] ) {
+            //convert finger data to string
+            [dictionary setValue:[fingerData base64Encoding] forKey:FINGERDATA];
+        }
+        
+        
+        [allObject addObject:dictionary];
+    }
+
+    return  allObject;
+}
+
 @end

@@ -157,5 +157,15 @@ NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:TRIAGEIN]];
 }
 
+-(NSArray *)covertAllSavedObjectsToJSON{
+    
+    NSArray* allPatients= [self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:VISITID];
+    NSMutableArray* allObject = [[NSMutableArray alloc]initWithCapacity:allPatients.count];
+    
+    for (NSManagedObject* obj in allPatients) {
+        [allObject addObject:[obj dictionaryWithValuesForKeys:[obj attributeKeys]]];
+    }
+    return  allObject;
+}
 
 @end

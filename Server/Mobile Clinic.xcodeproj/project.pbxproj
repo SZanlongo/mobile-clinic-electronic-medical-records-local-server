@@ -80,6 +80,8 @@
 		EA8D861C16B0C9C000256495 /* Mobile_ClinicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D861B16B0C9C000256495 /* Mobile_ClinicTests.m */; };
 		EA9372AB16BC6D6300D3D617 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
 		EA9372AC16BC6D6300D3D617 /* DatabaseDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */; };
+		EA9BAA52172AA9A400773B42 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BAA51172AA9A400773B42 /* NSDataAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA9BAA53172AA9A400773B42 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BAA51172AA9A400773B42 /* NSDataAdditions.m */; };
 		EAADC01E16E0596C009E7AF9 /* PatientFile.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAADC01D16E0596C009E7AF9 /* PatientFile.json */; };
 		EAC0D7D516FBBACD00621DDC /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC0D7D416FBBACD00621DDC /* DataProcessor.m */; };
 		EAC0D7D616FBBACD00621DDC /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC0D7D416FBBACD00621DDC /* DataProcessor.m */; };
@@ -239,6 +241,8 @@
 		EA9372A716BC622C00D3D617 /* BaseObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseObjectProtocol.h; sourceTree = "<group>"; };
 		EA9372A916BC6D6300D3D617 /* DatabaseDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDriver.h; sourceTree = "<group>"; };
 		EA9372AA16BC6D6300D3D617 /* DatabaseDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseDriver.m; sourceTree = "<group>"; };
+		EA9BAA50172AA9A400773B42 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
+		EA9BAA51172AA9A400773B42 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
 		EAADC01D16E0596C009E7AF9 /* PatientFile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PatientFile.json; sourceTree = "<group>"; };
 		EAADC01F16E05DA3009E7AF9 /* ServerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerProtocol.h; sourceTree = "<group>"; };
 		EAC0D7D316FBBACD00621DDC /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcessor.h; sourceTree = "<group>"; };
@@ -467,6 +471,8 @@
 		EA8D85DF16B0C9BF00256495 = {
 			isa = PBXGroup;
 			children = (
+				EA9BAA50172AA9A400773B42 /* NSDataAdditions.h */,
+				EA9BAA51172AA9A400773B42 /* NSDataAdditions.m */,
 				EA0FE4F3171E2BAF00E68DFD /* libz.dylib */,
 				EA0FE4EF171E2B1300E68DFD /* NSData+GZIP.h */,
 				EA0FE4F0171E2B1300E68DFD /* NSData+GZIP.m */,
@@ -908,6 +914,7 @@
 				EAEA9E971711BCA5005F1202 /* PatientObjectTest.m in Sources */,
 				EA0FE4DD171CB3CA00E68DFD /* SystemBackup.m in Sources */,
 				EA0FE4F2171E2B1300E68DFD /* NSData+GZIP.m in Sources */,
+				EA9BAA53172AA9A400773B42 /* NSDataAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +957,7 @@
 				EA51359E17015D93001761FC /* BaseObject+Protected.m in Sources */,
 				EA0FE4DC171CB3CA00E68DFD /* SystemBackup.m in Sources */,
 				EA0FE4F1171E2B1300E68DFD /* NSData+GZIP.m in Sources */,
+				EA9BAA52172AA9A400773B42 /* NSDataAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

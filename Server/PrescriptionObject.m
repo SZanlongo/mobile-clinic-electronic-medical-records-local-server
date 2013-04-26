@@ -129,4 +129,14 @@ NSString* main = [NSString stringWithFormat:@" Medication Name:\t%@ \n Dose:\t%@
     
     return container;
 }
+-(NSArray *)covertAllSavedObjectsToJSON{
+    
+    NSArray* allPatients= [self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:PRESCRIPTIONID];
+    NSMutableArray* allObject = [[NSMutableArray alloc]initWithCapacity:allPatients.count];
+    
+    for (NSManagedObject* obj in allPatients) {
+        [allObject addObject:[obj dictionaryWithValuesForKeys:[obj attributeKeys]]];
+    }
+    return  allObject;
+}
 @end

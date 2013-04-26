@@ -14,6 +14,7 @@
 #import "UserView.h"
 
 #import "Database.h"
+
 #define PTESTING @"Patients Testing"
 #define MTESTING @"Medicine Testing"
 
@@ -22,6 +23,8 @@ UserView* userView;
 MedicationList* medList;
 PatientTable *pTable;
 MainMenu* mainView;
+
+
 @implementation FIUAppDelegate
 
 //@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -45,8 +48,7 @@ MainMenu* mainView;
 {
 
     [CloudService cloud];
-
-    //[_server startServer];
+    
 }
 
 - (IBAction)setupTestPatients:(id)sender {
