@@ -12,6 +12,7 @@
 #import "StatusObject.h"
 #import "Visitation.h"
 #import "BaseObject+Protected.h"
+#import "FIUAppDelegate.h"
 
 #define DATABASE    @"Visitation"
 NSString* patientID;
@@ -77,7 +78,7 @@ NSString* isLockedBy;
             [self sendSearchResults:[self FindAllObjectsLocallyFromParentObject]];
             break;
         case kFindOpenObjects:
-            [self sendSearchResults:[self FindAllOpenVisits]];
+            [self sendSearchResults:[self OptimizedFindAllObjects]];
             break;
         default:
             break;
@@ -85,6 +86,22 @@ NSString* isLockedBy;
 }
 #pragma mark - COMMON OBJECT Methods
 #pragma mark -
+-(NSArray*)OptimizedFindAllObjects{
+    
+    FIUAppDelegate* app = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
+    
+    if ([app isOptimized]) {
+        return [self FindAllOpenVisits];
+    }else{
+        return [self FindAllOpenVisits];
+    }
+}
+
+-(NSArray*)FindAllDirtyVisits{
+    //TODO: Add BETWEEN Comparison
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:TRIAGEIN]];
+}
+
 -(void)checkForExisitingOpenVisit{
     NSArray* allVisits = [self FindAllOpenVisits];
     
@@ -123,7 +140,7 @@ NSString* isLockedBy;
     NSMutableAttributedString* container = [[NSMutableAttributedString alloc]initWithAttributedString:title];
 
     
-NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n\n",[object objectForKey:BLOODPRESSURE],[object objectForKey:HEARTRATE],[object objectForKey:RESPIRATION],[object objectForKey:WEIGHT],[object objectForKey:CONDITION],[object objectForKey:OBSERVATION],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEIN]],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEOUT]],[self convertDateNumberForPrinting:[object objectForKey:DOCTORIN]],[self convertDateNumberForPrinting:[object objectForKey:DOCTOROUT]]];
+NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n\n",[self convertTextForPrinting:[object objectForKey:BLOODPRESSURE]],[self convertTextForPrinting:[object objectForKey:HEARTRATE]],[self convertTextForPrinting:[object objectForKey:RESPIRATION]],[object objectForKey:WEIGHT],[self convertTextForPrinting:[object objectForKey:CONDITIONTITLE]],[object objectForKey:ASSESSMENT],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEIN]],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEOUT]],[self convertDateNumberForPrinting:[object objectForKey:DOCTORIN]],[self convertDateNumberForPrinting:[object objectForKey:DOCTOROUT]]];
     
     NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
     
@@ -138,6 +155,9 @@ NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate
         return [[NSDate convertSecondsToNSDate:number]convertNSDateToMonthNumDayString];
     }
     return @"N/A";
+}
+-(NSString*)convertTextForPrinting:(NSString*)text{
+    return ([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0 )?text:@"Incomplete";
 }
 -(NSArray *)FindAllObjects{
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:TRIAGEIN]];

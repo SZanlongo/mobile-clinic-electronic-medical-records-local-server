@@ -75,6 +75,7 @@ NSString* medicationID;
 #pragma mark - COMMON OBJECT Methods
 #pragma mark -
 -(void)pullFromCloud:(CloudCallback)onComplete{
+    
     [self makeCloudCallWithCommand:DATABASE withObject:nil onComplete:^(id cloudResults, NSError *error) {
         
         if (!error) {

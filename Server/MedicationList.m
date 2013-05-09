@@ -44,8 +44,17 @@
 }
 
 - (IBAction)destructiveResync:(id)sender {
-    
+   
+    [[[MedicationObject alloc]init] pullFromCloud:^(id cloudResults, NSError *error) {
+        if (error) {
+            [NSApp presentError:error];
+        }
+        
+        [self setupView:nil];
+
+    }];
 }
+
 
 - (IBAction)setupView:(id)sender {
     allMedication = [NSArray arrayWithArray:[[[MedicationObject alloc]init] FindAllObjects]];

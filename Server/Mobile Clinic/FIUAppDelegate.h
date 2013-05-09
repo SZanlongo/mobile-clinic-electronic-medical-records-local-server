@@ -28,7 +28,7 @@
 - (IBAction)setupTestPatients:(id)sender;
 - (IBAction)TearDownEnvironment:(id)sender;
 
-
+- (BOOL)isOptimized;
 - (IBAction)showPatientsView:(id)sender;
 - (IBAction)showUserView:(id)sender;
 

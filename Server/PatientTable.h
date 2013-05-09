@@ -10,7 +10,7 @@
 #import "PatientObject.h"
 #import "VisitationObject.h"
 #import "PrescriptionObject.h"
-@interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate>{
+@interface PatientTable : NSViewController<NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate>{
     
     NSArray* patientList;
     NSMutableArray* visitList;

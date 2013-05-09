@@ -16,8 +16,10 @@
 @property (weak) IBOutlet NSTextField *activityLabel;
 @property (weak) IBOutlet NSLevelIndicator *statusIndicator;
 @property (weak) IBOutlet NSTextField *statusLabel;
+- (IBAction)quitApplication:(id)sender;
 - (IBAction)showMedicationView:(id)sender;
 - (IBAction)showPatientView:(id)sender;
+- (IBAction)purgeTheSystem:(id)sender;
 - (IBAction)manualTableRefresh:(id)sender;
 - (IBAction)showUserView:(id)sender;
 @end

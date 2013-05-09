@@ -11,6 +11,7 @@
 #import "NSDataAdditions.h"
 #import "BaseObject+Protected.h"
 #import "Patients.h"
+#import "FIUAppDelegate.h"
 
 NSString* firstname;
 NSString* lastname;
@@ -83,16 +84,30 @@ NSString* isLockedBy;
             [super UpdateObjectAndSendToClient];
             break;
         case kFindObject:
-            [self sendSearchResults:[self FindAllObjectsForGivenCriteria]];            break;
+            [self sendSearchResults:[self FindAllObjectsForGivenCriteria]];
+            break;
         case kFindOpenObjects:
-            [self sendSearchResults:[self FindAllOpenPatients]];
+            [self sendSearchResults:[self OptimizedFindAllObjects]];
         default:
             break;
     }
 }
 #pragma mark - COMMON OBJECT Methods
 #pragma mark -
-
+-(NSArray*)OptimizedFindAllObjects{
+    
+    FIUAppDelegate* app = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
+    
+    if ([app isOptimized]) {
+        return [self FindAllOpenPatients];
+    }else{
+        return [self FindAllDirtyPatients];
+    }
+}
+-(NSArray*)FindAllDirtyPatients{
+    //TODO: Add BETWEEN Comparison
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME]];
+}
 -(NSArray*)FindAllOpenPatients{
     
     NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == YES",ISOPEN];

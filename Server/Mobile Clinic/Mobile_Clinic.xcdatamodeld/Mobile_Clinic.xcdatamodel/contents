@@ -34,10 +34,11 @@
         <attribute name="isDirty" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLockedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="medicationId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="medName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prescribedTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prescriptionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tabletPerDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="timeOfDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeOfDay" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visitationId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES">
@@ -65,6 +66,7 @@
         <attribute name="isGraphic" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isLockedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isOpen" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="medicationNotes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nurseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="observation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientId" optional="YES" attributeType="String" syncable="YES"/>
@@ -79,8 +81,8 @@
     <elements>
         <element name="Medication" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Patients" positionX="160" positionY="192" width="128" height="285"/>
-        <element name="Prescription" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Prescription" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Users" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Visitation" positionX="160" positionY="192" width="128" height="390"/>
+        <element name="Visitation" positionX="160" positionY="192" width="128" height="405"/>
     </elements>
 </model>

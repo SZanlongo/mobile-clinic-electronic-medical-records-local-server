@@ -27,11 +27,11 @@ NSTimer* saveTimer;
     
     if (self) {
         
-        saveTimer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(BackupEverything) userInfo:nil repeats:NO];
+       // saveTimer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(BackupEverything) userInfo:nil repeats:NO];
         
-        NSRunLoop* runLoop = [NSRunLoop mainRunLoop];
+       // NSRunLoop* runLoop = [NSRunLoop mainRunLoop];
         
-        [runLoop addTimer:saveTimer forMode:NSDefaultRunLoopMode];
+      //  [runLoop addTimer:saveTimer forMode:NSDefaultRunLoopMode];
     }
     return self;
 }

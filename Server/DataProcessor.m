@@ -19,8 +19,8 @@
 
 }
 +(NSDate *)convertSecondsToNSDate:(NSNumber *)time{
-
-    return [NSDate dateWithTimeIntervalSince1970:time.integerValue] ;
+    NSTimeZone* timeZone = [NSTimeZone defaultTimeZone];
+    return [NSDate dateWithTimeIntervalSince1970:time.integerValue - timeZone.secondsFromGMT] ;
 }
 -(NSNumber *)convertNSDateToSeconds{
     

@@ -175,6 +175,7 @@
     }
     
     if (eventResponse) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:UPDATEPATIENT object:nil];
         eventResponse(self, nil);
     }
     

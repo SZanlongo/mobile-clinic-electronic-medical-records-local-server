@@ -14,6 +14,11 @@
 @property (weak) IBOutlet NSTextField *usernameLabel;
 @property (weak) IBOutlet NSComboBox *primaryRolePicker;
 @property (weak) IBOutlet NSProgressIndicator *loadIndicator;
+@property (weak) IBOutlet NSComboBox *userStatus;
+@property (weak) IBOutlet NSButton *sTriage;
+@property (weak) IBOutlet NSButton *sDoctor;
+@property (weak) IBOutlet NSButton *sPharmacist;
+@property (weak) IBOutlet NSButton *sAdministrator;
 
 - (IBAction)refreshTable:(id)sender;
 - (IBAction)commitChanges:(id)sender;

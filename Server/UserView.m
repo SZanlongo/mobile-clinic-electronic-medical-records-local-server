@@ -8,7 +8,9 @@
 
 #import "UserView.h"
 
-@interface UserView ()
+@interface UserView (){
+    NSMutableDictionary* currentUser;
+}
 @property(strong)NSArray* allUsers;
 @end
 
@@ -54,11 +56,18 @@
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row{
     
-    NSDictionary* dict = [allUsers objectAtIndex:row];
+    currentUser = [NSMutableDictionary dictionaryWithDictionary:[allUsers objectAtIndex:row]];
     
-    [primaryRolePicker selectItemAtIndex:[[dict objectForKey:USERTYPE]integerValue]];
-    NSString* name = [NSString stringWithFormat:@"%@ %@",[dict objectForKey:FIRSTNAME],[dict objectForKey:LASTNAME]];
+    [primaryRolePicker selectItemAtIndex:[[currentUser objectForKey:USERTYPE]integerValue]];
+    
+    NSString* name = [NSString stringWithFormat:@"%@ %@",[currentUser objectForKey:FIRSTNAME],[currentUser objectForKey:LASTNAME]];
+    
     [usernameLabel setStringValue:name];
+    
+    NSNumber* stat = [currentUser objectForKey: STATUS];
+    
+    [_userStatus selectItemAtIndex:(stat.boolValue)?1:0];
+    
     return YES;
 }
 
@@ -71,6 +80,14 @@
 
 - (IBAction)commitChanges:(id)sender {
     
+    [currentUser setValue:[NSNumber numberWithBool:(_userStatus.indexOfSelectedItem==1)] forKey:STATUS];
+    
+    UserObject* user =[[UserObject alloc]initWithCachedObjectWithUpdatedObject:currentUser];
+    
+    [user saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+        NSLog(@"User save status:%@",(!error)?@"OK":@"FAILED");
+        [self refreshTable:nil];
+    }];
 }
 
 - (IBAction)cloudSync:(id)sender {

@@ -11,7 +11,9 @@
 #import "DataProcessor.h"
 #import "NSString+Validation.h"
 #import "SystemBackup.h"
-@interface PatientTable ()
+@interface PatientTable (){
+    NSMutableDictionary* selectedVisit;
+}
 @property(strong)NSArray* patientArray;
 @property(strong)NSArray* AllVisitArray;
 @property(strong)NSArray* visitArray;
@@ -26,6 +28,7 @@ id currentTable;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self refreshPatients:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshPatients:) name:UPDATEPATIENT object:nil];
     }
     return self;
 }
@@ -78,8 +81,10 @@ id currentTable;
     }
     
     NSString* lockedBy = [commonDictionary objectForKey:ISLOCKEDBY];
+    
     if (lockedBy.length > 0) {
-        [cell setBackgroundColor:[NSColor lightGrayColor]];
+ 
+        [cell setBackgroundColor:[NSColor redColor]];
     }else{
         [cell setBackgroundColor:[NSColor whiteColor]];
     }
@@ -110,6 +115,7 @@ id currentTable;
         }
         
         visitArray = [NSArray arrayWithArray:[[[VisitationObject alloc]init]FindAllObjectsUnderParentID:[patient objectForKey:PATIENTID]]];
+        
         [visitTableView reloadData];
         
     }else{
@@ -121,6 +127,19 @@ id currentTable;
     return YES;
 }
 
+-(void)controlTextDidChange:(NSNotification *)obj{
+   
+    NSTextField* textfield = [obj object];
+    
+    NSString* criteria =  textfield.stringValue;
+
+    if (criteria.length > 0) {
+      [self refreshPatients:[NSPredicate predicateWithFormat:@"%K beginswith[c] %@ || %K beginswith[c] %@",FIRSTNAME,criteria,FAMILYNAME,criteria]];
+    }else{
+        [self findPatientWithCriteria:nil];
+    }
+    
+}
 
 - (IBAction)showDetails:(id)sender {
     
@@ -167,7 +186,7 @@ id currentTable;
 
 - (IBAction)refreshPatients:(id)sender {
     [progressIndicator startAnimation:self];
-    patientArray = [NSArray arrayWithArray:[[[PatientObject alloc]init]FindAllObjectsUnderParentID:nil]];
+    patientArray = [self findPatientWithCriteria:([sender isKindOfClass:[NSPredicate class]])?sender:nil];
     [_visitDocumentation setString:@""];
     visitArray = nil;
     [patientTableView reloadData];
@@ -175,7 +194,20 @@ id currentTable;
     [progressIndicator stopAnimation:self];
 }
 
+-(NSArray*)findPatientWithCriteria:(NSPredicate*)criteria{
+    
+    NSArray* array = [NSArray arrayWithArray:[[[PatientObject alloc]init]FindAllObjectsUnderParentID:nil]];
+    
+    if (criteria != nil) {
+     return [array filteredArrayUsingPredicate:criteria];
+    }
+    
+    return array;
+   
+}
+
 - (IBAction)unblockPatients:(id)sender {
+    
     NSMutableDictionary* patient = [patientList objectAtIndex:selectedRow];
     
     [patient setValue:@"" forKey:ISLOCKEDBY];
@@ -267,27 +299,36 @@ id currentTable;
 }
 
 - (IBAction)CloseSelectedPatient:(id)sender {
+    
     NSInteger pRow = [patientTableView selectedRow];
-    NSInteger vRow = [visitTableView selectedRow];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UPDATEPATIENT object:nil];
     
     if (pRow > -1) {
         NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[patientArray objectAtIndex:pRow]];
+        
         [dict setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
+        
         PatientObject* pObject = [[PatientObject alloc]initWithCachedObjectWithUpdatedObject:dict];
+        
         [pObject saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
             
         }];
     }
-    if (vRow > -1) {
-        NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[visitArray objectAtIndex:vRow]];
-        [dict setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
-        VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObjectWithUpdatedObject:dict];
-        
-        [vObject saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+
+        for (NSMutableDictionary* dict in visitArray) {
+            [dict setValue:[NSNumber numberWithBool:NO] forKey:ISOPEN];
             
-        }];
-    }
+            VisitationObject* vObject = [[VisitationObject alloc]initWithCachedObjectWithUpdatedObject:dict];
+            
+            [vObject saveObject:^(id<BaseObjectProtocol> data, NSError *error) {
+                
+            }];
+
+        }
+    
     [self refreshPatients:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshPatients:) name:UPDATEPATIENT object:nil];
 }
 
 -(void)addJsonFileToDatabase:(id<BaseObjectProtocol>)base fromArray:(NSArray*)array{

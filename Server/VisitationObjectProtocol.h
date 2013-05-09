@@ -26,6 +26,7 @@
 #define VISITID         @"visitationId"
 
 #define ISOPEN      @"isOpen"
+#define MEDICATIONNOTES @"MedicationNotes"
 
 #import "CommonObjectProtocol.h"
 #import <Foundation/Foundation.h>

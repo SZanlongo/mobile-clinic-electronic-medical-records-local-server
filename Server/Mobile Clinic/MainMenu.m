@@ -44,6 +44,11 @@ id<ServerProtocol> connection;
   
 }
 
+
+- (IBAction)quitApplication:(id)sender {
+    [NSApp terminate:self];
+}
+
 - (IBAction)showMedicationView:(id)sender {
     if (!medicationView) {
         medicationView = [[MedicationList alloc]initWithNibName:@"MedicationList" bundle:nil];
@@ -70,6 +75,39 @@ id<ServerProtocol> connection;
         
     }
     currentView = patientView.view;
+}
+
+- (IBAction)purgeTheSystem:(id)sender {
+    VisitationObject* v = [[VisitationObject alloc]init];
+    
+    NSArray* allVisits =  [v FindAllObjects];
+    
+    PatientObject* p = [[PatientObject alloc]init];
+    
+    NSArray* allPatient = [p FindAllObjects];
+    
+    int counter = 0;
+    
+    for (NSDictionary* visit in allVisits) {
+
+        NSPredicate* pred = [NSPredicate predicateWithFormat:@"%K == %@",PATIENTID,[visit objectForKey:PATIENTID]];
+        
+       NSArray* filtered = [allPatient filteredArrayUsingPredicate:pred];
+        
+        if (filtered.count == 0) {
+            
+          BOOL didDelete =  [v deleteDatabaseDictionaryObject:visit];
+            if (didDelete) {
+                counter++;
+            }
+        }
+    }
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    NSString* msg = [NSString stringWithFormat:@"%i Unlinked visits were removed from the system",counter];
+    [alert setMessageText:msg];
+    
+    [alert runModal];
 }
 
 - (IBAction)manualTableRefresh:(id)sender {

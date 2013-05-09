@@ -23,7 +23,8 @@ UserView* userView;
 MedicationList* medList;
 PatientTable *pTable;
 MainMenu* mainView;
-
+NSTimer* switchTimer;
+BOOL isOptimized;
 
 @implementation FIUAppDelegate
 
@@ -46,9 +47,10 @@ MainMenu* mainView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-
+    isOptimized = YES;
+    [self ToggleOptimization:500];
     [CloudService cloud];
-    
+    [_window setHidesOnDeactivate:NO];
 }
 
 - (IBAction)setupTestPatients:(id)sender {
@@ -119,17 +121,14 @@ MainMenu* mainView;
 //    }];
 }
 
+-(void)applicationWillTerminate:(NSNotification *)notification{
+    
+}
+
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
-
-    Database* database = [Database sharedInstance];
-    
-    if ([database shutdownDatabase]) {
-        [_server stopServer];
-        return NSTerminateNow;
-    }
-    return NSTerminateCancel;
+    return NSTerminateNow;
 }
 
 
@@ -150,8 +149,30 @@ MainMenu* mainView;
 
 - (IBAction)showMedicineView:(id)sender {
 }
+
 - (IBAction)showMainServerView:(id)sender {
     if(![_window isVisible] )
         [_window makeKeyAndOrderFront:sender];
 }
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
+    
+    [_window makeKeyAndOrderFront:self];
+    
+    return YES;
+}
+-(void)ToggleOptimization:(NSInteger)seconds{
+    
+    isOptimized = !isOptimized;
+    
+    switchTimer = [NSTimer timerWithTimeInterval:(isOptimized)?500:300 target:self selector:@selector(syncronize) userInfo:nil repeats:NO];
+    
+    NSRunLoop* run = [NSRunLoop mainRunLoop];
+    
+    [run addTimer:switchTimer forMode:NSDefaultRunLoopMode];
+}
+-(BOOL)isOptimized{
+    return isOptimized;
+}
+
 @end
