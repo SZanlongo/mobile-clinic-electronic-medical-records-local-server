@@ -9,11 +9,20 @@
 #import <Cocoa/Cocoa.h>
 #import "ServerCore.h"
 #import "CloudService.h"
+
+typedef enum {
+    kFirstSync  = 120,
+    kFastSync   = 1000,
+    kStabilize  = 500,
+    kFinalize   = 300,
+}Optimizer;
+
 @interface FIUAppDelegate : NSObject <NSTableViewDataSource,NSTableViewDelegate,NSApplicationDelegate>
 
 
 @property (weak) IBOutlet NSMenuItem *createPatientMenu;
 @property (weak) IBOutlet NSMenuItem *createMedicineMenu;
+@property (weak) IBOutlet NSMenuItem *OptimizeToggler;
 
 - (IBAction)showMainServerView:(id)sender;
 
@@ -28,7 +37,8 @@
 - (IBAction)setupTestPatients:(id)sender;
 - (IBAction)TearDownEnvironment:(id)sender;
 
-- (BOOL)isOptimized;
+- (Optimizer)isOptimized;
+
 - (IBAction)showPatientsView:(id)sender;
 - (IBAction)showUserView:(id)sender;
 

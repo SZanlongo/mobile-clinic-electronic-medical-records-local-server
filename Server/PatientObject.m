@@ -68,10 +68,8 @@ NSString* isLockedBy;
 
 -(void)unpackageFileForUser:(NSDictionary *)data{
     [super unpackageFileForUser:data];
-
     firstname = [self->databaseObject valueForKey:FIRSTNAME];
     lastname = [self->databaseObject valueForKey:FAMILYNAME];
-    
 }
 
 /* Depending on the RemoteCommands it will execute a different Command */
@@ -88,24 +86,36 @@ NSString* isLockedBy;
             break;
         case kFindOpenObjects:
             [self sendSearchResults:[self OptimizedFindAllObjects]];
+        
         default:
             break;
     }
 }
+-(NSArray*)getObjectsUsingCustomPredicate:(NSString*)predicate{
+    
+    NSPredicate* pred = [NSPredicate predicateWithFormat:predicate];
+   
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:pred andSortByAttribute:FIRSTNAME]];
+}
+
 #pragma mark - COMMON OBJECT Methods
 #pragma mark -
 -(NSArray*)OptimizedFindAllObjects{
     
     FIUAppDelegate* app = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
     
-    if ([app isOptimized]) {
-        return [self FindAllOpenPatients];
-    }else{
-        return [self FindAllDirtyPatients];
+    switch ([app isOptimized]) {
+        case kFirstSync:
+            return [self FindAllObjects];
+        case kFastSync:
+            return  [self FindAllOpenPatients];
+        case kStabilize:
+            return [self FindAllDirtyPatients];
     }
 }
 -(NSArray*)FindAllDirtyPatients{
     //TODO: Add BETWEEN Comparison
+    
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME]];
 }
 -(NSArray*)FindAllOpenPatients{
@@ -125,11 +135,11 @@ NSString* isLockedBy;
 
 -(NSAttributedString *)printFormattedObject:(NSDictionary *)object{
     
-    NSString* titleString = [NSString stringWithFormat:@"Patient Information \n\n"];
+    NSString* titleString = [NSString stringWithFormat:@"Patient Records\n"];
     
     NSMutableAttributedString* title = [[NSMutableAttributedString alloc]initWithString:titleString];
     
-    [title addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:20.0] range:[titleString rangeOfString:titleString]];
+    [title addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Gill Sans" size:22.0] range:[titleString rangeOfString:titleString]];
     
    // [title setAlignment:NSCenterTextAlignment range:[titleString rangeOfString:titleString]];
     
@@ -147,6 +157,15 @@ NSString* isLockedBy;
     [container appendAttributedString:line1];
     
     return container;
+}
+-(NSString*)convertDateNumberForPrinting:(NSNumber*)number{
+    if (number) {
+        return [[NSDate convertSecondsToNSDate:number]convertNSDateToMonthDayYearTimeString];
+    }
+    return @"N/A";
+}
+-(NSString*)convertTextForPrinting:(NSString*)text{
+    return ([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)?text:@"Incomplete";
 }
 #pragma mark - Private Methods
 #pragma mark -
@@ -182,14 +201,25 @@ NSString* isLockedBy;
 
 -(void)pushToCloud:(CloudCallback)onComplete{
     
-    NSArray* allPatients= [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME]];
+//    NSArray* allPatients= [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:COMMONDATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:FIRSTNAME]];
+    
+    NSArray* allPatients= [self FindAllObjects];
     
     // Remove Values that will break during serialization
     for (NSMutableDictionary* object in allPatients) {
+        NSString* pId = [object objectForKey:PATIENTID];
+        pId = [pId stringByReplacingOccurrencesOfString:@"." withString:@""];
+        [object setValue:pId forKey:PATIENTID];
         // Remove Pictures (NSData)
         [object setValue:nil forKey:PICTURE];
         // Remove FingerPrint (NSData)
         [object setValue:nil forKey:FINGERDATA];
+        
+        id dob = [object objectForKey: DOB];
+        
+        if(!dob){
+            [object setValue:[NSNumber numberWithInteger:0] forKey:DOB];
+        }
     }
     
     [self makeCloudCallWithCommand:UPDATEPATIENT withObject:[NSDictionary dictionaryWithObject:allPatients forKey:DATABASE] onComplete:^(id cloudResults, NSError *error) {

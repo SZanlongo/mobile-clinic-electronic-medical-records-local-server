@@ -12,6 +12,8 @@
 #define TIMEOFDAY       @"timeOfDay"
 #define PRESCRIPTIONID  @"prescriptionId"
 #define VISITID         @"visitationId"
+#define MEDNAME         @"medName"
+
 #import <Foundation/Foundation.h>
 #import "CommonObjectProtocol.h"
 @protocol PrescriptionObjectProtocol <NSObject>

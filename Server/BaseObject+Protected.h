@@ -73,4 +73,6 @@
 -(NSArray*)SaveListOfObjectsFromDictionary:(NSArray*)List;
 
 -(void)handleCloudCallback:(CloudCallback)callBack UsingData:(NSArray*)data WithPotentialError:(NSError*)error;
+
+
 @end

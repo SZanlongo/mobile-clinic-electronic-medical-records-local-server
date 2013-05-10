@@ -181,11 +181,13 @@
     
 }
 
--(NSDictionary *)consolidateForTransmitting{
-    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:1];
-    [consolidate setValue:[databaseObject dictionaryWithValuesForKeys:databaseObject.entity.attributeKeys] forKey:DATABASEOBJECT];
-    return consolidate;
+-(NSString*)convertDateNumberForPrinting:(NSNumber*)number{
+    if (number) {
+        return [[NSDate convertSecondsToNSDate:number]convertNSDateToMonthDayYearTimeString];
+    }
+    return @"N/A";
 }
+
 
 -(BOOL)deleteCurrentlyHeldObjectFromDatabase{
    return [self deleteNSManagedObject:databaseObject];
@@ -193,5 +195,14 @@
 
 -(BOOL)deleteDatabaseDictionaryObject:(NSDictionary *)object{
     return [self deleteObjectsFromDatabase:COMMONDATABASE withDefiningAttribute:[object objectForKey:COMMONID] forKey:COMMONID];
+}
+-(NSString*)convertTextForPrinting:(NSString*)text{
+    return ([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)?text:@"Incomplete";
+}
+
+-(NSDictionary *)consolidateForTransmitting{
+    NSMutableDictionary* consolidate = [[NSMutableDictionary alloc]initWithCapacity:1];
+    [consolidate setValue:[databaseObject dictionaryWithValuesForKeys:databaseObject.entity.attributeKeys] forKey:DATABASEOBJECT];
+    return consolidate;
 }
 @end

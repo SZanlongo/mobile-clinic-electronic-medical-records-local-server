@@ -24,7 +24,8 @@ MedicationList* medList;
 PatientTable *pTable;
 MainMenu* mainView;
 NSTimer* switchTimer;
-BOOL isOptimized;
+
+Optimizer isOptimized;
 
 @implementation FIUAppDelegate
 
@@ -47,8 +48,8 @@ BOOL isOptimized;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    isOptimized = YES;
-    [self ToggleOptimization:500];
+    isOptimized = kFirstSync;
+    [_OptimizeToggler setTitle:@"First Sync -> Fast Sync"];
     [CloudService cloud];
     [_window setHidesOnDeactivate:NO];
 }
@@ -148,11 +149,33 @@ BOOL isOptimized;
 }
 
 - (IBAction)showMedicineView:(id)sender {
+    
 }
 
 - (IBAction)showMainServerView:(id)sender {
     if(![_window isVisible] )
         [_window makeKeyAndOrderFront:sender];
+}
+- (IBAction)ToggleOptimization:(id)sender {
+    
+    switch (isOptimized) {
+        case kFirstSync:
+            isOptimized = kFastSync;
+            [_OptimizeToggler setTitle:@"Fast Sync -> Stabilize Sync"];
+            break;
+        case kFastSync:
+            isOptimized = kStabilize;
+            [_OptimizeToggler setTitle:@"Stabilize Sync -> First Sync"];
+            break;
+        case kStabilize:
+            isOptimized = kFinalize;
+            [_OptimizeToggler setTitle:@"Stabilize Sync-> Finalize Sync"];
+            break;
+        case kFinalize:
+            isOptimized = kFirstSync;
+            [_OptimizeToggler setTitle:@"Finalize Sync -> First Sync"];
+            break;
+    }
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
@@ -161,17 +184,8 @@ BOOL isOptimized;
     
     return YES;
 }
--(void)ToggleOptimization:(NSInteger)seconds{
-    
-    isOptimized = !isOptimized;
-    
-    switchTimer = [NSTimer timerWithTimeInterval:(isOptimized)?500:300 target:self selector:@selector(syncronize) userInfo:nil repeats:NO];
-    
-    NSRunLoop* run = [NSRunLoop mainRunLoop];
-    
-    [run addTimer:switchTimer forMode:NSDefaultRunLoopMode];
-}
--(BOOL)isOptimized{
+
+-(Optimizer)isOptimized{
     return isOptimized;
 }
 

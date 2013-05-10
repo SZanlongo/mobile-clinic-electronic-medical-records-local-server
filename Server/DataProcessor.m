@@ -31,7 +31,9 @@
     [components setYear:1970];
     [components setMonth:1];
     [components setDay:1];
+    
     NSDate* date = [calendar dateFromComponents:components];
+   
     return [NSNumber numberWithInteger:[self timeIntervalSinceDate:date]];
 }
 

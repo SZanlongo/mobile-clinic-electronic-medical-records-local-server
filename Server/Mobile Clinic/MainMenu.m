@@ -45,6 +45,8 @@ id<ServerProtocol> connection;
 }
 
 
+
+
 - (IBAction)quitApplication:(id)sender {
     [NSApp terminate:self];
 }
@@ -167,5 +169,20 @@ id<ServerProtocol> connection;
             [_statusLabel setStringValue:@"OFF"];
             break;
     }
+}
+- (IBAction)pushPatientsToCloud:(id)sender {
+    
+    [[[PatientObject alloc]init]pushToCloud:^(id cloudResults, NSError *error) {
+        
+        if (error) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        
+       // NSString* msg = [NSString stringWithFormat:@"%i Unlinked visits were removed from the system",counter];
+        
+        [alert setMessageText:error.localizedDescription];
+        
+        [alert runModal];
+        }
+    }];
 }
 @end

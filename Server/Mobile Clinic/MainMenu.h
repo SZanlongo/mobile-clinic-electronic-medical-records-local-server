@@ -16,6 +16,7 @@
 @property (weak) IBOutlet NSTextField *activityLabel;
 @property (weak) IBOutlet NSLevelIndicator *statusIndicator;
 @property (weak) IBOutlet NSTextField *statusLabel;
+- (IBAction)startOptimization:(id)sender;
 - (IBAction)quitApplication:(id)sender;
 - (IBAction)showMedicationView:(id)sender;
 - (IBAction)showPatientView:(id)sender;

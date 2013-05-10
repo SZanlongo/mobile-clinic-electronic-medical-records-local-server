@@ -90,16 +90,29 @@ NSString* isLockedBy;
     
     FIUAppDelegate* app = (FIUAppDelegate*)[[NSApplication sharedApplication]delegate];
     
-    if ([app isOptimized]) {
-        return [self FindAllOpenVisits];
-    }else{
-        return [self FindAllOpenVisits];
+    switch ([app isOptimized]) {
+        case kFirstSync:
+            return [self FindAllObjects];
+        case kFastSync:
+            return [self FindAllPatientsWithinMinutes];
+        case kStabilize:
+            return [self FindAllOpenVisits];
+        case kFinalize:
+            return [self FindAllOpenVisits];
     }
+
+}
+-(NSArray*)FindAllPatientsWithinMinutes{
+    
+    NSDate* aDayPrior = [[NSDate alloc] initWithTimeInterval:-60*15 sinceDate:[NSDate date]];
+   
+    NSNumber* hoursBefore = [NSNumber numberWithInteger:[aDayPrior timeIntervalSince1970]];
+    
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES && %K >= %@",ISDIRTY,TRIAGEOUT,hoursBefore] andSortByAttribute:TRIAGEOUT]];
 }
 
 -(NSArray*)FindAllDirtyVisits{
-    //TODO: Add BETWEEN Comparison
-    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K == YES",ISDIRTY] andSortByAttribute:TRIAGEIN]];
+    return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:[NSPredicate predicateWithFormat:@"%K >= %@",ISDIRTY,YES] andSortByAttribute:TRIAGEIN]];
 }
 
 -(void)checkForExisitingOpenVisit{
@@ -128,19 +141,17 @@ NSString* isLockedBy;
 
 -(NSAttributedString *)printFormattedObject:(NSDictionary *)object{
 
-    NSString* titleString = [NSString stringWithFormat:@"Visitation Information \n\n"];
+    NSString* titleString = [NSString stringWithFormat:@"\n\nVisitation Information\n"];
     
     NSMutableAttributedString* title = [[NSMutableAttributedString alloc]initWithString:titleString];
     
-    [title addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"HelveticaNeue-Bold" size:20.0] range:[titleString rangeOfString:titleString]];
-    
-   // [title setAlignment:NSCenterTextAlignment range:[titleString rangeOfString:titleString]];
+    [title addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Gill Sans" size:22.0] range:[titleString rangeOfString:titleString]];
     
     
     NSMutableAttributedString* container = [[NSMutableAttributedString alloc]initWithAttributedString:title];
 
     
-NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Condition:\t%@ \n Diagnosis:\t%@ \n Triage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \n\n",[self convertTextForPrinting:[object objectForKey:BLOODPRESSURE]],[self convertTextForPrinting:[object objectForKey:HEARTRATE]],[self convertTextForPrinting:[object objectForKey:RESPIRATION]],[object objectForKey:WEIGHT],[self convertTextForPrinting:[object objectForKey:CONDITIONTITLE]],[object objectForKey:ASSESSMENT],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEIN]],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEOUT]],[self convertDateNumberForPrinting:[object objectForKey:DOCTORIN]],[self convertDateNumberForPrinting:[object objectForKey:DOCTOROUT]]];
+    NSString* main = [NSString stringWithFormat:@"Blood Pressure:\t%@ \n Heart Rate:\t%@ \n Respiration:\t%@ \n Weight:\t%@ \n Chief Complaint:\t%@ \n Diagnosis:\t%@ \nAssessment:\t%@ \nTriage In:\t%@ \n Triage Out:\t%@ \n Doctor In:\t%@ \n Doctor Out:\t%@ \nAdditional Medical Notes:\t%@ \n\n",[self convertTextForPrinting:[object objectForKey:BLOODPRESSURE]],[self convertTextForPrinting:[object objectForKey:HEARTRATE]],[self convertTextForPrinting:[object objectForKey:RESPIRATION]],[object objectForKey:WEIGHT],[self convertTextForPrinting:[object objectForKey:CONDITIONTITLE]],[self convertTextForPrinting:[object objectForKey:OBSERVATION]],[self convertTextForPrinting:[object objectForKey:ASSESSMENT]],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEIN]],[self convertDateNumberForPrinting:[object objectForKey:TRIAGEOUT]],[self convertDateNumberForPrinting:[object objectForKey:DOCTORIN]],[self convertDateNumberForPrinting:[object objectForKey:DOCTOROUT]],[self convertTextForPrinting:[object objectForKey:MEDICATIONNOTES]]];
     
     NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
     
@@ -152,12 +163,12 @@ NSString* main = [NSString stringWithFormat:@" Blood Pressure:\t%@ \n Heart Rate
 }
 -(NSString*)convertDateNumberForPrinting:(NSNumber*)number{
     if (number) {
-        return [[NSDate convertSecondsToNSDate:number]convertNSDateToMonthNumDayString];
+        return [[NSDate convertSecondsToNSDate:number]convertNSDateToMonthDayYearTimeString];
     }
     return @"N/A";
 }
 -(NSString*)convertTextForPrinting:(NSString*)text{
-    return ([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0 )?text:@"Incomplete";
+    return ([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)?text:@"Incomplete";
 }
 -(NSArray *)FindAllObjects{
     return [self convertListOfManagedObjectsToListOfDictionaries:[self FindObjectInTable:DATABASE withCustomPredicate:nil andSortByAttribute:TRIAGEIN]];

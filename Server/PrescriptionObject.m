@@ -119,7 +119,7 @@ NSString* isLockedBy;
     
     return container;
     */
-NSString* main = [NSString stringWithFormat:@" Medication Name:\t%@ \n Dose:\t%@ \n Notes:\t%@ \n ",[object objectForKey:MEDICATIONID],[object objectForKey:TABLEPERDAY],[object objectForKey:INSTRUCTIONS]];
+NSString* main = [NSString stringWithFormat:@" Medication Name:\t%@ \n Dose:\t%@ \n Notes:\t%@ \n ",[object objectForKey:MEDNAME],[object objectForKey:TABLEPERDAY],[object objectForKey:INSTRUCTIONS]];
     
     NSMutableAttributedString* line1 = [[NSMutableAttributedString alloc]initWithString:main];
     
