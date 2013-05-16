@@ -96,7 +96,6 @@ NSString* isLockedBy;
         case kFastSync:
             return [self FindAllPatientsWithinMinutes];
         case kStabilize:
-            return [self FindAllOpenVisits];
         case kFinalize:
             return [self FindAllOpenVisits];
     }

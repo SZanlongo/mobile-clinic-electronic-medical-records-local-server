@@ -110,6 +110,7 @@ NSString* isLockedBy;
         case kFastSync:
             return  [self FindAllOpenPatients];
         case kStabilize:
+        case kFinalize:
             return [self FindAllDirtyPatients];
     }
 }

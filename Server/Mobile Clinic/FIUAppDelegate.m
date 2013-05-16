@@ -165,15 +165,15 @@ Optimizer isOptimized;
             break;
         case kFastSync:
             isOptimized = kStabilize;
-            [_OptimizeToggler setTitle:@"Stabilize Sync -> First Sync"];
+            [_OptimizeToggler setTitle:@"Stabilize Sync -> Finalize Sync"];
             break;
         case kStabilize:
             isOptimized = kFinalize;
-            [_OptimizeToggler setTitle:@"Stabilize Sync-> Finalize Sync"];
+            [_OptimizeToggler setTitle:@"Finalize Sync-> First Sync"];
             break;
         case kFinalize:
             isOptimized = kFirstSync;
-            [_OptimizeToggler setTitle:@"Finalize Sync -> First Sync"];
+            [_OptimizeToggler setTitle:@"First Sync -> Fast Sync"];
             break;
     }
 }
